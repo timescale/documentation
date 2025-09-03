@@ -1,0 +1,164 @@
+---
+title: Glossary
+sidebarTitle: Glossary
+description: Comprehensive glossary of technical terms for Tiger Cloud services
+products: [cloud]
+keywords: [reference, glossary, terminology, definitions, Tiger Cloud, TimescaleDB]
+---
+
+import * as vars from '/snippets/vars.mdx';
+
+
+This glossary provides definitions for technical terms and concepts commonly used in {CLOUD_LONG} documentation and services.
+
+## A
+
+**Apache Kafka**: a distributed event streaming platform used for high-performance data pipelines, streaming analytics, and data integration.
+
+**AWS Private Link**: a secure connection service that enables private connectivity between VPCs and AWS services without traversing the public internet.
+
+**AWS Transit Gateway**: a cloud router that connects VPCs and on-premises networks through a central hub, enabling network isolation with overlapping CIDRs.
+
+## B
+
+**Backfill Operations**: the process of inserting historical data into compressed chunks, often requiring decompression of affected chunks first for optimal performance.
+
+**Bottomless Storage**: low-cost object storage built on Amazon S3 that provides unlimited storage capacity for infrequently accessed data while maintaining queryability.
+
+## C
+
+**Candlestick Chart**: a financial visualization showing open, high, low, and close (OHLC) values for asset price movements over time intervals.
+
+**CDC (Change Data Capture)**: a pattern that captures changes in database tables and streams them to other systems in real-time, implemented through tools like Debezium.
+
+**{CHUNK_CAP}**: a child table in a {HYPERTABLE} that contains data for a specific time range, automatically managed by {TIMESCALE_DB} for partitioning.
+
+**{CHUNK_CAP} Compression**: the process of converting {CHUNK}s from {ROWSTORE} to {COLUMNSTORE} format to achieve up to 90% storage reduction and improve query performance.
+
+**Chunk Interval**: the time span that determines how data is partitioned into chunks, typically configured as a time duration. For example 7 days.
+
+**{CHUNK_SKIPPING_CAP}**: an optimization technique that allows queries to skip {CHUNK}s that don't contain relevant data based on metadata.
+
+**{COLUMNSTORE_CAP}**: the compressed, columnar storage format in {HYPERCORE_CAP} that optimizes data for analytical queries and reduces storage requirements.
+
+**Connection Pooling**: a technique that optimizes database connections by efficiently managing and reusing them, reducing overhead for high-concurrency applications.
+
+**{CAGG_CAP}s (CAggs)**: materialized views that automatically refresh in the background as new data is added, providing pre-computed aggregations for faster analytical queries.
+
+## D
+
+**Data Tiering**: a storage strategy that automatically moves data between high-performance storage and low-cost object storage based on access patterns and age.
+
+**Debezium**: an open-source distributed platform for change data capture that enables real-time streaming of database changes.
+
+**Dual-Write and Backfill**: a migration strategy for large-scale workloads that involves implementing dual writes to both source and target systems while backfilling historical data.
+
+## F
+
+**Fork**: an exact copy of a database at a specific point in time that operates independently after creation, used for testing or troubleshooting.
+
+## H
+
+**{HA_REPLICA_CAP}s**: exact, up-to-date copies of your database hosted in multiple AWS availability zones that automatically take over if the primary node fails.
+
+**Hierarchical {CAGG_CAP}s**: CAggs built on top of other CAggs. For example seconds → minutes → hours → daily to reduce computational costs for multi-level aggregations.
+
+**{HYPERCORE_CAP}**: {TIMESCALE_DB}'s hybrid row-columnar storage engine that seamlessly switches between row-oriented and column-oriented storage for optimal performance.
+
+**{HYPERTABLE_CAP}**: a PostgreSQL table optimized for time-series data that automatically partitions data by time into {CHUNK}s for improved performance.
+
+## I
+
+**Iceberg Tables**: an open table format for large analytical datasets that enables reliable data lake functionality with ACID transactions.
+
+**Insights**: {CLOUD_LONG}'s built-in query monitoring tool that captures per-query statistics in real-time, providing visibility into database performance.
+
+**{IO_BOOST}**: an add-on feature that provides enhanced IOPS and bandwidth performance for demanding workloads.
+
+**IoT (Internet of Things)**: physical objects with embedded computing capabilities that collect sensor data and generate time-series datasets.
+
+## L
+
+**Live Migration**: an end-to-end migration solution that moves databases with minimal downtime using PostgreSQL logical replication and pgcopydb.
+
+**{LIVESYNC_CAP}**: a feature that enables continuous real-time synchronization between a PostgreSQL source database and {SERVICE_LONG}.
+
+**Logical Replication**: a PostgreSQL feature that replicates changes to database objects based on their replication identity, used for real-time data streaming.
+
+## M
+
+**Materialized View**: a database object that contains the results of a query and can be refreshed to update the data, used in continuous aggregates.
+
+**Multi-tenancy**: a system architecture that enables multiple users (tenants) to share the same application or database while keeping their data isolated.
+
+## O
+
+**Object Storage**: low-cost, scalable storage service built on Amazon S3 used for storing infrequently accessed data in {CLOUD_LONG}'s tiered storage architecture.
+
+**OHLCV**: open, High, Low, Close, Volume - standard financial data points used in market analysis and candlestick charts.
+
+## P
+
+**pgcopydb**: a PostgreSQL tool used for copying databases efficiently, particularly in live migration scenarios.
+
+**PITR (Point-in-Time Recovery)**: a backup feature that allows restoration of a database to any specific point in time within the retention period.
+
+**{PRICING_PLAN_CAP}**: service tiers ({PERFORMANCE}, {SCALE}, {ENTERPRISE}) that determine available features, resources, and support levels in {CLOUD_LONG}.
+
+## R
+
+**RAG (Retrieval-Augmented Generation)**: an AI technique that combines retrieval of relevant information with generation capabilities to provide more accurate responses.
+
+**{READ_REPLICA_CAP}**: a read-only copy of the primary database kept in sync for scaling read operations and analytical workloads.
+
+**Read Replica Sets**: an improved version of read replicas that allows up to 10 replica nodes behind a single read endpoint for horizontal read scaling.
+
+**Real-time Analytics**: the capability to process and analyze data as it's generated, providing immediate insights and enabling quick decision-making.
+
+**Rollup Compression**: a feature that combines multiple smaller, uncompressed {CHUNK}s into a single, larger compressed {CHUNK} to reduce storage costs.
+
+**{ROWSTORE_CAP}**: the uncompressed, row-oriented storage format in {HYPERCORE_CAP} optimized for transactional operations and recent data access.
+
+## S
+
+**Schema per Tenant**: a multi-tenancy approach where each tenant's data is isolated within its own database schema while sharing the same database instance.
+
+**Segmentby**: a configuration option in hypertables that determines how data is segmented, typically using frequently queried columns for optimization.
+
+**Service**: a managed database instance in {CLOUD_LONG} that provides PostgreSQL functionality extended with {TIMESCALE_DB} capabilities.
+
+**Service per Tenant**: a multi-tenancy model where each tenant gets a dedicated {SERVICE_LONG} for complete data isolation.
+
+## T
+
+**{TIME_BUCKET_CAP}**: a function that aggregates data by time intervals. For example 5-minute, 1-hour buckets for time-series analysis.
+
+**Time-series Data**: data that represents how a system, process, or behavior changes over time, typically timestamped and sequential.
+
+**{TIGER_POSTGRES}**: the underlying technology platform that powers {CLOUD_LONG} services with enhanced PostgreSQL capabilities.
+
+**Tiger Lake**: a connector that synchronizes data from {CLOUD_LONG} services to Iceberg tables in Amazon S3 in real-time.
+
+**Tiered Storage**: a storage architecture that automatically moves data between high-performance and low-cost storage tiers based on usage patterns.
+
+**timescaledb-parallel-copy**: a tool for efficiently ingesting CSV data into {TIMESCALE_DB} in parallel for improved performance.
+
+**{TIMESCALE_DB}**: an open-source time-series database built on PostgreSQL, providing the core technology behind {CLOUD_LONG} services.
+
+## V
+
+**Vector Search**: a capability that enables similarity searches on high-dimensional vector data, commonly used in AI and machine learning applications.
+
+**{VPC} (Virtual Private Cloud)**: a private network environment in AWS that provides network isolation and security for cloud resources.
+
+**{VPC} Peering**: a connection between two {VPC}s that enables private communication between resources in different networks.
+
+## W
+
+**WAL (Write-Ahead Log)**: postgreSQL's method of ensuring data integrity by writing changes to a log before applying them to the database.
+
+**WebSocket**: a communication protocol that provides full-duplex communication channels over a single TCP connection, used for real-time data streaming.
+
+**Wide Table Layout**: a table design approach with many columns (one per metric), suitable when all potential metrics are known upfront.
+
+**Workload Isolation**: the ability to separate read and write workloads to prevent performance interference and optimize resource utilization.

@@ -1,0 +1,31 @@
+{
+  "tab": "Get started",
+  "groups": [
+    {
+      "group": "Overview",
+      "pages": [
+        "get-started/get-started"
+      ]
+    },
+    {
+      "group": "Understand",
+      "pages": [
+        "get-started/understand/whitepaper",
+        "get-started/understand/implementation-workflow",
+        "get-started/understand/run-your-workload-in-cloud",
+        "get-started/understand/pricing-and-account-management",
+        "get-started/understand/changelog"
+
+      ]
+    },
+    {
+      "group": "Tutorials",
+      "pages": [
+        "get-started/tutorials/real-time-analytics-energy-consumption",
+        "get-started/tutorials/real-time-analytics-transport",
+        "get-started/tutorials/ingest-real-time-websocket-data",
+        "get-started/tutorials/simulate-iot-sensor-data"
+      ]
+    }
+  ]
+}
