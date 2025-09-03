@@ -1,0 +1,313 @@
+---
+title: Optimize your services
+description: The steps to design and implement the best architecture to match your business and technical requirements.
+products: [cloud]
+content_group: Getting started
+---
+
+
+
+## Schema Management
+
+
+### Multi-tenant architecture
+
+Multitenancy is a system architecture that enables multiple users (tenants), to utilize the same application or database while ensuring their data remains isolated and secure. This approach offers several advantages, such as cost efficiency, improved scalability, and optimized performance. By allowing tenants to share infrastructure and resources, multitenancy helps minimize expenses while maintaining operational effectiveness.
+
+
+#### Database Design Options
+
+Timescale supports two approaches for separating tenant data in a multitenant architecture:
+
+1. Service per tenant.
+2. Schema per tenant.
+
+Each of these designs comes with its own advantages and trade-offs. Let’s explore these multitenant database strategies in more detail to understand how they work and when to use them.
+
+
+##### Service per Tenant
+
+In Tiger Cloud, a service-per-tenant model aligns with the database-per-tenant strategy, where each tenant is assigned a dedicated TigerData service to store and manage their data independently.
+
+Since Tiger Cloud provisions one database per service, adopting a service-per-tenant approach involves creating a separate Timescale service for each tenant. This can be done through the Tiger Cloud interface or API. Once provisioned, the service is dedicated to that tenant, ensuring full data isolation and security.
+
+
+###### Advantages
+
+* Each tenant operates within its own Timescale service, providing the highest level of separation and security.
+* Deleting a tenant is as straightforward as decommissioning the associated service, eliminating risks of unintentional data exposure.
+* Businesses operating under strict regulatory requirements benefit from strong data separation and easier compliance management.
+* Since tenants do not share the same database instance, performance issues in one tenant’s service do not impact others.
+* This approach aligns naturally with Tiger Cloud’s architecture, making it easy to implement.
+
+
+###### Limitations
+
+* Managing multiple services can become complex as the number of tenants increases. Each service requires monitoring, maintenance, backups, and updates, which can introduce administrative challenges.
+* Running a separate Timescale service for each tenant results in higher infrastructure costs compared to shared database models.
+* Since each service operates independently, CPU, memory, and disk resources are not shared across tenants, potentially leading to inefficiencies.
+* Referential integrity constraints, such as foreign keys, cannot be used across services, limiting the ability to enforce relationships between shared datasets.
+* Common datasets, such as global configuration settings or metadata, must be replicated across all services, requiring synchronization mechanisms to keep data consistent.
+* Aggregating metrics across multiple tenants requires querying separate services, making multi-tenant analytics more challenging.
+
+The service-per-tenant approach in Tiger Cloud is ideal for organizations that prioritize strict data isolation, regulatory compliance, and performance guarantees for each tenant. However, for businesses looking to optimize cost and operational efficiency, other multitenancy strategies, such as schema-per-tenant or shared table models, may be more suitable.
+
+
+##### Schema per tenant.
+
+The schema-per-tenant model is a multitenancy strategy that organizes each tenant’s data within its own schema while using a shared database. A schema serves as a logical container for database objects such as tables, views, and functions, ensuring data isolation within a single Timescale service.
+
+A new schema is created for each tenant using the CREATE SCHEMA statement:
+
+Once created, tenant-specific tables and other database objects can be added within this schema. The schema can be verified using:
+
+Each tenant must have access only to their respective schema. This is enforced by creating a user and assigning the necessary privileges:
+
+To ensure that the tenant operates within their designated schema by default, the search path can be configured:
+
+This ensures that when the tenant logs in, operations default to their schema. Objects created within the schema remain inaccessible to other users unless explicitly granted access.
+
+
+###### Advantages
+
+* Unlike the service-per-tenant model, all tenants share the same database instance, optimizing resource usage.
+* Common data, typically stored in the public schema, can be referenced across schemas.
+* While tenants share the same database, their data is logically separated within distinct schemas.
+* Maintenance tasks such as backups, monitoring, and indexing are centralized within a single database.
+* Unlike the service-per-tenant model, transactions spanning multiple tenants can be executed efficiently.
+* Adding new tenants is straightforward; simply create a new schema.
+* Since connections are established at the database level rather than per tenant, connection pooling is more effective.
+
+
+###### Limitations
+
+* Since all tenant data resides in the same database, physical isolation is not achieved.
+* If each tenant has minimal data but the total tenant count is high, schema management may become complex.
+* Since all tenants share a single database, performance optimizations must account for workload balancing.
+
+## Tiered Storage
+
+Timescale provides layered storage, with the first layer comprising uncompressed data and compressed data as the second. These two layers are stored in high-performance EBS volumes.
+
+The third layer ([object storage](https://docs.timescale.com/use-timescale/latest/data-tiering/about-data-tiering/)) stores infrequently accessed data with lower performance requirements in AWS S3 storage.
+
+Object storage lowers storage cost, scales storage beyond the current 16 TB limit and data is transparently queriable.
+
+
+### Add a data tiering policy
+
+To tier data, you first [enable](https://docs.timescale.com/use-timescale/latest/data-tiering/enabling-data-tiering/#enable-tiered-storage) it from the service console Overview page. Then, add a data [tiering policy](https://docs.timescale.com/use-timescale/latest/data-tiering/enabling-data-tiering/#add-a-tiering-policy) to automate data tiering using the add_tiering_policy() function.
+
+The example below adds a tiering policy to remove
+
+
+### Remove a tiering policy
+
+Use remove_tiering_policy() to remove an existing tiering policy.
+
+
+### Tier or untier chunks manually
+
+Sometimes, there’s a need to tier or untier chunks manually. An example is when you’re almost reaching the 16 TB storage limit, you can manually tier chunks to free up storage space.
+
+Tiered data is immutable; therefore, if you need to modify tiered data, you need to untier the data first. untier_chunk() function is used to untier chunks.
+
+
+### Exploring tiered chunks
+
+To see all tired chunks for a hypertable:
+
+After invoking **tier_chunk()** function, you can see chunks scheduled for tiering using:
+
+
+### Disabling Tiering
+
+Sometimes, you want to move data from tiered storage back to high-performance EBS storage. Before moving forward, ensure you have enough free storage to accommodate untiered chunks.
+
+You must first **untier** all data or **drop** the tiered data before disabling data tiering.
+
+
+### Querying tiered data
+
+To query tiered data, you must enable **timescaledb.enable_tiered_reads** parameter. This parameter is disabled by default. You can configure the setting at the [service console](https://docs.timescale.com/use-timescale/latest/configuration/customize-configuration/) as demonstrated on this page or by using the SET command at the database or session level.
+
+Once this setting is enabled, you can use a standard SELECT statement to query tiered data.
+
+
+## Cloud Console
+
+
+### Creating your Service
+
+If you’d prefer, you can interact with your Timescale database via the Tiger Cloud Console rather than doing so directly through your terminal.
+
+
+
+![alt_text](images/image2.png "image_tooltip")
+
+
+By doing so, you can take advantage of several features of the console that better help you to visualize, modify, and manage your data.
+
+By going to the **Services** tab, you can view all of the services created under your project ID. If you do not have a service yet, you can click on the **New service** button to create your first one.
+
+
+![alt_text](images/image3.png "image_tooltip")
+
+
+You first choose your required capabilities based upon what you intend to use the service for. Many of our customers use us primarily for **Time series and analytics**, however you can also create a vanilla **PostgreSQL** service, or take advantage of our **AI and Vector** capabilities. For demonstration purposes, lets select the first option.
+
+
+![alt_text](images/image4.png "image_tooltip")
+
+
+You then select the region that you would like to create your service in. You should generally consider the geographic location of the majority of your end users when selecting a region for your service.
+
+
+![alt_text](images/image5.png "image_tooltip")
+
+
+You can then choose the compute and memory size for your service. By providing an estimate for how much data you will be working with, Timescale provides you with a recommendation for the most appropriate size for your service.
+
+
+![alt_text](images/image6.png "image_tooltip")
+
+
+Then, select the type of environment this will be, as well as whether or not you would like to create an HA replica to ensure that your service is always available. If you are unsure of whether to create one, Timescale will again recommend one based on what kind of environment you are creating.
+
+
+![alt_text](images/image7.png "image_tooltip")
+
+
+Finally, you can configure additional power-ups such as **Connection pooling** or connecting to your Timescale service directly from your own AWS **VPC**. These features can always be enabled/disabled afterwards if your business needs change.
+
+
+### Interacting with your Service
+
+Once you have created your service, you can then go back to the **Services** tab and click on your service to begin interacting with it.
+
+
+
+![alt_text](images/image8.png "image_tooltip")
+
+
+The Cloud Console offers several headers that allow you to interact with your database in various ways. An example would be the **Explorer** tab, where you can view information regarding your hypertables, compression, and configured polices.
+
+
+![alt_text](images/image9.png "image_tooltip")
+
+
+Another useful tab is the **Jobs** tab, where you can find information on the last run of your jobs, such as a compression job or a refresh of a continuous aggregate. This view is helpful for noticing job failures, which may indicate an underlying issue.
+
+
+![alt_text](images/image10.png "image_tooltip")
+
+
+There is also a built in **SQL Editor**, as well as the **Operations** tab which allows you to perform administrative actions on your service, such as modifying the CPU/memory, creating HA/read replicas, setting database parameters, and even changing the password of the service.
+
+
+![alt_text](images/image11.png "image_tooltip")
+
+
+The **Operations** tab also allows you to see what continuous aggregates you have created by going to the **Service management** section.
+
+There are also some tabs that can be very useful for observing trends in your metrics over time, or analyzing log messages to troubleshoot any issues. These can be found in the **Metrics** and **Logs** headers respectively.
+
+
+
+![alt_text](images/image12.png "image_tooltip")
+
+
+The **Metrics** tab will allow you to visualize changes in your CPU and Memory over time. In the top left corner, you can also adjust the timeframe of the graph. In the instance that you have created a replica, you can also view its metrics on this page by selecting it in a dropdown menu in the top-left corner.
+
+The other header, **Logs**, provides a helpful insight as to the activity that has been going on inside your service. You can filter based on the severity of each log message, allowing you to narrow your focus while searching for specific messages. In the instance that you experience an unexpected issue, you can always note the timestamp, and examine your service logs at this time to search for any clear root cause.
+
+
+![alt_text](images/image13.png "image_tooltip")
+
+
+The **Insights** tab is also incredibly helpful for visualizing change in metrics over time, as well as trying to identify the underlying cause. It also provides information on lock contention, so you can identify any jobs that may be conflicting with your applications, for example. Additionally, you can also view your top queries in this tab, which can be very helpful in visualizing how often queries are called and the resulting execution time.
+
+
+
+![alt_text](images/image14.png "image_tooltip")
+
+This is just a subset of the amazing things that you can do through the Tiger Cloud Console, which is a very convenient way of monitoring, configuring, and managing your database.
+
+
+## Replicas & Forking
+
+
+### Forking your service
+
+In some instances, it may be helpful to create a **fork** of your database for the purposes of troubleshooting, or to test the effects of a proposed change before doing so in production.
+
+A **fork** is an exact copy of your database at a given time, which after the fork is created, diverges from your original database and is then treated as its own independent service where data is not replicated from the original.
+
+You can create a **fork** of your service by first migrating to the **Services** tab, selecting the **Operations** header, and then lastly the **Service management** section.
+
+You are given the opportunity to create a **fork** of your service in the exact state it is in at that moment in time, or if you would prefer, make a recovery fork of your service to any point in the last 14 days using the backups taken from your environment.
+
+If you are not given the option to “Fork to a previous point in time”, it is likely that no backups are available yet.
+
+![alt_text](images/image15.png "image_tooltip")
+
+### Read replicas
+
+A read replica is a read-only copy of your primary database that is kept in sync, replaying each transaction that occurs with WAL records shipped from the primary. This enables you to interact with up-to-date production data for analysis or to scale out reads beyond the limits of your primary data instance.
+
+You can create as many read replicas as you need. Each read replica appears as its own service. You use a unique connection string to interact with each read replica. This provides both security and resource isolation. To restrict access without isolation, you can create a read-only role for each Tiger Cloud service. Users with read-only permissions cannot access the primary data instance directly.
+
+To create a read replica:
+
+1. Navigate to the Tiger Cloud console, and select your desired service
+2. Click on the **Operations** header
+3. Click on the **Read replicas** section
+4. Select **Add read replica**, and select your desired configurations
+5. Make note of the connection information for your replica, as each connection string is unique, and different from your primary instance
+
+To manage lag for your replicas, you can view the current replication lag under the **Operations** header as well, which will better help you understand trends affecting your replica’s ability to keep up with your primary.
+
+If you note issues with replication lag, it is possible that you might benefit from adjusting the *max_standby_streaming_delay* and *max_standby_archive_delay* parameters, which can be set to configure the maximum amount of time that the database will wait before cancelling a transaction to apply pending WAL records.
+
+This typically happens when a long running, expensive query generates a good deal of replication lag while the query runs, as conflicting WAL records need to wait for the transaction to complete before being applied. By setting the above parameters, we can avoid excessive replication lag – but it is important to balance this with your need for your long-running queries to complete, as cancelling them may affect your end users.
+
+
+### HA replicas
+
+Timescale also offers HA replicas as a means of maintaining as close to an up-to-date copy of your primary database as possible, which you have the ability to failover to in disaster scenarios. These copies are hosted in different AWS AZs within the same region as your primary node, and can take over if your primary becomes unavailable.
+
+HA replicas can be both synchronous and asynchronous:
+
+Synchronous (SYNC):
+
+
+
+* Commits its next write once the replica confirms the previous write is complete
+* No lag between the primary and the replica, in the same state at all times
+* Highest level of data integrity, however ingest is affected due to the wait for confirmation
+
+Asynchronous (ASYNC):
+
+
+
+* Commits its next write without confirmation of the previous write completion
+* Often lags behind the primary a little
+* Preferable if you need the shortest ingest time
+
+![alt_text](images/image16.png "image_tooltip")
+
+
+To configure an HA replica, or to modify the configuration of an existing replica, you can go to the **Operations** header and select the **High availability** section.
+
+There are a couple different configurations available:
+
+
+* **Non-production:** no replica, best for developer environments.
+* **High availability:** a single async replica in a different AWS availability zone from your primary. Provides high availability with cost efficiency. Best for production apps.
+* **Highest availability:** two replicas in different AWS availability zones from your primary. Available replication modes are: \
+
+* **High performance** - two async replicas. Provides the highest level of availability with two AZs and the ability to query the HA system. Best for absolutely critical apps. \
+
+* **High data integrity** - one sync replica and one async replica. The sync replica is identical to the primary at all times. Best for apps that can tolerate no data loss.
+
+You should select the appropriate configuration for your use case based on your tolerance for data loss, and desire for maximum performance.
