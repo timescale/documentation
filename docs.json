@@ -564,8 +564,8 @@
   },
   "contextual": {
     "options": [
-      "chatgpt",
-      "claude"
+      "claude",
+      "chatgpt"
     ]
   },
   "logo": {
