@@ -1,13 +1,15 @@
 ---
 description: "Welcome to the TigerData documentation! We make Postgres better for your real-time analytics and AI workloads. "
+toc: false
+sidebar: false
 mode: "wide"
 ---
 
 <Columns cols={2}>
-    <Card title="Get started with Tiger Cloud" icon="rocket" href="cloud/get-started/get-started-with-tiger-cloud">
+    <Card title="Get started with Tiger Cloud" icon="rocket" href="/cloud/tiger/get-started/get-started-with-tiger-cloud">
         Tiger Cloud is the fastest Postgres cloud, powered by Tiger Postgres. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.
     </Card>
-    <Card title="Get started with TimescaleDB" icon="play" href="open-source/timescaledb/get-started/get-started-with-timescaledb">
+    <Card title="Get started with TimescaleDB" icon="play" href="/manage-data/timescaledb/get-started/get-started-with-timescaledb">
         TimescaleDB is an open-source Postgres extension designed for running real-time analytics on time-series data. It is engineered up from Postgres and maintains full SQL support.
     </Card>
 </Columns>
@@ -19,27 +21,27 @@ mode: "wide"
   <Card
     title="Hypertables"
     icon="pen-to-square"
-    href="open-source/timescaledb/hypertables/understand-hypertables"
+    href="/manage-data/timescaledb/data-management/hypertables/understand-hypertables"
   >
   Postgres tables in TimescaleDB that automatically partition your time-series data by time.
   </Card>
   <Card
     title="Hypercore"
     icon="table-cells-row-unlock"
-    href="open-source/timescaledb/hypercore/understand-hypercore"
+    href="/manage-data/timescaledb/data-management/hypercore/understand-hypercore"
   >
   The hybrid row-columnar storage engine in TimescaleDB used by hypertables.
   </Card>
   <Card
       title="Continuous aggregates"
       icon="squirrel"
-      href="open-source/timescaledb/continuous_aggregates/understand-continuous-aggregates"
+      href="/manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
   >
-  Incrementally refresh aggregation queies in the background.
+  Incrementally refresh aggregation queries in the background.
   </Card>
 </CardGroup>
-<Card  icon="globe" href="/components/columns">
-    All Tiger Cloud services include the tooling you expect for production and developer environments: [live migration](link), [automatic backups](link) and [PITR](), [high availability](), [read replicas](), [data forking](), [connection pooling](), [tiered storage](), [usage-based storage](), [secure in-Console SQL editing](),  [service metrics and insights](), [streamlined maintenance](), and much more. Tiger Cloud continuously monitors your services and prevents common PostgreSQL out-of-memory crashes.
+<Card  icon="globe" href="/cloud/tiger">
+    All Tiger Cloud services include the tooling you expect for production and developer environments: [live migration](/manage-data/timescaledb/data-management/import-and-ingest/live-migration), [automatic backups](/cloud/tiger/data-security/backup) and [PITR](/cloud/tiger/data-security/restore-and-pitr), [high availability](/cloud/tiger/data-security/high-availability), [read replicas](/cloud/tiger/data-security/read-scaling), [data forking](/cloud/tiger/storage/replicas-and-forks-with-tiered-data), [connection pooling](/cloud/mst/data-performance/connection-pools), [tiered storage](/cloud/tiger/storage/manage-storage-tiers), [usage-based storage](/cloud/tiger/storage/manage-storage-tiers), [secure in-Console SQL editing](/cloud/tiger/get-started/run-queries-from-console),  [service metrics and insights](/cloud/tiger/monitoring/monitor-using-console), [streamlined maintenance](/cloud/tiger/understand/tiger-cloud-architecture), and much more. Tiger Cloud continuously monitors your services and prevents common PostgreSQL out-of-memory crashes.
 </Card>
 
 ## Integrations
@@ -85,7 +87,7 @@ mode: "wide"
     >
     </Card>
 </CardGroup>
-<Card  icon="globe" href="/components/columns">
+<Card  icon="globe" href="/integrations/integrations">
     See the BAZILLIONS of products you can easily [integrate with Tiger Cloud]().
 </Card>
 
@@ -155,6 +157,6 @@ mode: "wide"
     </Card>
 </CardGroup>
 
-<Card  icon="globe" href="/components/columns">
+<Card  icon="globe" href="/tutorials/tutorials">
     See the other tutorials in our [tutorials section](/tutorials/), including bla and bla and bla.
 </Card>

@@ -1,7 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
-  "name": "Billy the fish",
+  "name": "Tiger Data",
+  "page": "index",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -527,7 +528,10 @@
     ]
   },
   "contextual": {
-    "options": ["chatgpt", "claude"]
+    "options": [
+      "claude",
+      "chatgpt"
+    ]
   },
   "logo": {
     "light": "https://assets.timescale.com/timescale-web/shared/logo/tigerdata-logo-black.svg",
