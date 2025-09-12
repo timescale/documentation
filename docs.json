@@ -1,7 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
-  "name": "Billy the fish",
+  "name": "Tiger Data",
+  "page": "index",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
