@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 Tiger Cloud is the modern Postgres data platform for all your applications. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.
+=======
+<div align="center">
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://assets.timescale.com/docs/images/tigerdata-gradient-white.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://assets.timescale.com/docs/images/tigerdata-gradient-black.svg" />
+    <img alt="TigerData logo" src="https://assets.timescale.com/docs/images/tigerdata-gradient-black.svg" /> 
+</picture>
+</div>
+
+<div align="center">
+
+<h3>Tiger Cloud is the modern Postgres data platform for all your applications. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.</h3>
+>>>>>>> main
 
 [![Docs](https://img.shields.io/badge/Read_the_TigerData_docs-black?style=for-the-badge&logo=readthedocs&logoColor=white)](https://docs.tigerdata.com/)
 [![SLACK](https://img.shields.io/badge/Ask_the_TigerData_community-black?style=for-the-badge&logo=slack&logoColor=white)](https://timescaledb.slack.com/archives/C4GT3N90X)

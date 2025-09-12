@@ -1,7 +1,8 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Billy the fish",
+  "name": "Tiger Data",
+  "page": "index",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -516,7 +517,7 @@
     ]
   },
   "contextual": {
-    "options": ["chatgpt", "claude"]
+    "options": ["claude", "chatgpt"]
   },
   "fonts": {
     "family": "Geist"
