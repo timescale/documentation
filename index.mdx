@@ -3,161 +3,178 @@ description: "Welcome to the TigerData documentation! We make Postgres better fo
 mode: "custom"
 ---
 
+import {CardComponent} from "/snippets/card.jsx"
+import { CTALink } from "/snippets/cta-link.jsx"
 
-<div className="px-12 py-8 space-y-4">
-    <Columns cols={2}>
-        <Card title="Get started with Tiger Cloud" icon="rocket" href="/cloud/tiger/get-started/get-started-with-tiger-cloud">
-            Tiger Cloud is the fastest Postgres cloud, powered by Tiger Postgres. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.
-        </Card>
-        <Card title="Get started with TimescaleDB" icon="play" href="/manage-data/timescaledb/get-started/get-started-with-timescaledb">
-            TimescaleDB is an open-source Postgres extension designed for running real-time analytics on time-series data. It is engineered up from Postgres and maintains full SQL support.
-        </Card>
-    </Columns>
+<div className="px-12 py-8 prose">
 
+<Heading level={1} noAnchor className="font-bold text-4xl mb-4 dark:text-white">TigerData documentation</Heading>
 
-    ## Features
+<p style={{"maxWidth": "500px"}} className="text-neutral-600 dark:text-white pb-4">Welcome to the TigerData documentation! We make Postgres better 
+for your real-time analytics and AI workloads.</p>
 
-    <CardGroup cols={3}>
+<Columns cols={2}>
+<CardComponent
+    title="Get started with Tiger Cloud" 
+    icon="rocket" 
+    href="/cloud/tiger/get-started/get-started-with-tiger-cloud" 
+    cta={<CTALink text="Learn how" href="/cloud/tiger/get-started/get-started-with-tiger-cloud" />}>
+    Tiger Cloud is the fastest Postgres cloud, powered by Tiger Postgres. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.
+</CardComponent>
+
+<CardComponent
+    title="Get started with TimescaleDB" 
+    icon="play" 
+    href="/manage-data/timescaledb/get-started/get-started-with-timescaledb" 
+    cta={<CTALink text="Learn how" href="/manage-data/timescaledb/get-started/get-started-with-timescaledb" />}>
+    TimescaleDB is an open-source Postgres extension designed for running real-time analytics on time-series data. It is engineered up from Postgres and maintains full SQL support.
+</CardComponent>
+</Columns>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Features</Heading>
+
+<CardGroup cols={3}>
+<Card
+    title="Hypertables"
+    icon="pen-to-square"
+    href="/manage-data/timescaledb/data-management/hypertables/understand-hypertables"
+>
+Postgres tables in TimescaleDB that automatically partition your time-series data by time.
+</Card>
+<Card
+    title="Hypercore"
+    icon="table-cells-row-unlock"
+    href="/manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+>
+The hybrid row-columnar storage engine in TimescaleDB used by hypertables.
+</Card>
+<Card
+    title="Continuous aggregates"
+    icon="squirrel"
+    href="/manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+>
+Incrementally refresh aggregation queries in the background.
+</Card>
+</CardGroup>
+<Card  icon="globe" href="/cloud/tiger">
+    All Tiger Cloud services include the tooling you expect for production and developer environments: [live migration](/manage-data/timescaledb/data-management/import-and-ingest/live-migration), [automatic backups](/cloud/tiger/data-security/backup) and [PITR](/cloud/tiger/data-security/restore-and-pitr), [high availability](/cloud/tiger/data-security/high-availability), [read replicas](/cloud/tiger/data-security/read-scaling), [data forking](/cloud/tiger/storage/replicas-and-forks-with-tiered-data), [connection pooling](/cloud/mst/data-performance/connection-pools), [tiered storage](/cloud/tiger/storage/manage-storage-tiers), [usage-based storage](/cloud/tiger/storage/manage-storage-tiers), [secure in-Console SQL editing](/cloud/tiger/get-started/run-queries-from-console),  [service metrics and insights](/cloud/tiger/monitoring/monitor-using-console), [streamlined maintenance](/cloud/tiger/understand/tiger-cloud-architecture), and much more. Tiger Cloud continuously monitors your services and prevents common PostgreSQL out-of-memory crashes.
+</Card>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Integrations</Heading>
+
+<CardGroup cols={3}>
     <Card
-        title="Hypertables"
-        icon="pen-to-square"
-        href="/manage-data/timescaledb/data-management/hypertables/understand-hypertables"
-    >
-    Postgres tables in TimescaleDB that automatically partition your time-series data by time.
-    </Card>
-    <Card
-        title="Hypercore"
-        icon="table-cells-row-unlock"
-        href="/manage-data/timescaledb/data-management/hypercore/understand-hypercore"
-    >
-    The hybrid row-columnar storage engine in TimescaleDB used by hypertables.
-    </Card>
-    <Card
-        title="Continuous aggregates"
-        icon="squirrel"
-        href="/manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
-    >
-    Incrementally refresh aggregation queries in the background.
-    </Card>
-    </CardGroup>
-    <Card  icon="globe" href="/cloud/tiger">
-        All Tiger Cloud services include the tooling you expect for production and developer environments: [live migration](/manage-data/timescaledb/data-management/import-and-ingest/live-migration), [automatic backups](/cloud/tiger/data-security/backup) and [PITR](/cloud/tiger/data-security/restore-and-pitr), [high availability](/cloud/tiger/data-security/high-availability), [read replicas](/cloud/tiger/data-security/read-scaling), [data forking](/cloud/tiger/storage/replicas-and-forks-with-tiered-data), [connection pooling](/cloud/mst/data-performance/connection-pools), [tiered storage](/cloud/tiger/storage/manage-storage-tiers), [usage-based storage](/cloud/tiger/storage/manage-storage-tiers), [secure in-Console SQL editing](/cloud/tiger/get-started/run-queries-from-console),  [service metrics and insights](/cloud/tiger/monitoring/monitor-using-console), [streamlined maintenance](/cloud/tiger/understand/tiger-cloud-architecture), and much more. Tiger Cloud continuously monitors your services and prevents common PostgreSQL out-of-memory crashes.
-    </Card>
-
-    ## Integrations
-
-    <CardGroup cols={3}>
-        <Card
-            title="Amazon Web Services (AWS)"
-            icon="image"
-            href="https://mintlify.com/docs/quickstart"
-        >
-        </Card>
-        <Card
-            title="DataDog"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-        <Card
-            title="Terraform"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-    </CardGroup>
-
-    <CardGroup cols={3}>
-        <Card
-            title="Prometheus"
-            icon="image"
-            href="https://mintlify.com/docs/quickstart"
-        >
-        </Card>
-        <Card
-            title="Grafana"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-        <Card
-            title="Tableau"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-    </CardGroup>
-    <Card  icon="globe" href="/integrations/integrations">
-        See the BAZILLIONS of products you can easily [integrate with Tiger Cloud]().
-    </Card>
-
-    ## Migrate and ingest data
-
-    <CardGroup cols={3}>
-        <Card
-            title="Live migration"
-            icon="image"
-            href="https://mintlify.com/docs/quickstart"
-        >
-        </Card>
-        <Card
-            title="Livesync from Postgres"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-        <Card
-            title="Livesync from S3"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-    </CardGroup>
-    <CardGroup cols={3}>
-        <Card
-        title="Import from CSV"
+        title="Amazon Web Services (AWS)"
         icon="image"
         href="https://mintlify.com/docs/quickstart"
     >
     </Card>
-        <Card
-        title="Import from Mysql"
+    <Card
+        title="DataDog"
         icon="image"
         href="https://mintlify.com/docs/development"
     >
     </Card>
-        <Card
-        title="Import from Parquet"
+    <Card
+        title="Terraform"
         icon="image"
         href="https://mintlify.com/docs/development"
     >
     </Card>
-    </CardGroup>
+</CardGroup>
 
-    ## Tutorials
-
-    <CardGroup cols={3}>
-        <Card
-            title="Analytics on transport and geospatial data"
-            icon="image"
-            href="https://mintlify.com/docs/quickstart"
-        >
-        </Card>
-        <Card
-            title="Analytics on energy consumption"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-        <Card
-            title="Query the Bitcoin blockchain"
-            icon="image"
-            href="https://mintlify.com/docs/development"
-        >
-        </Card>
-    </CardGroup>
-
-    <Card  icon="globe" href="/tutorials/tutorials">
-        See the other tutorials in our [tutorials section](/tutorials/), including bla and bla and bla.
+<CardGroup cols={3}>
+    <Card
+        title="Prometheus"
+        icon="image"
+        href="https://mintlify.com/docs/quickstart"
+    >
     </Card>
+    <Card
+        title="Grafana"
+        icon="image"
+        href="https://mintlify.com/docs/development"
+    >
+    </Card>
+    <Card
+        title="Tableau"
+        icon="image"
+        href="https://mintlify.com/docs/development"
+    >
+    </Card>
+</CardGroup>
+<Card  icon="globe" href="/integrations/integrations">
+    See the BAZILLIONS of products you can easily [integrate with Tiger Cloud]().
+</Card>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Migrate and ingest data</Heading>
+
+<CardGroup cols={3}>
+    <Card
+        title="Live migration"
+        icon="image"
+        href="https://mintlify.com/docs/quickstart"
+    >
+    </Card>
+    <Card
+        title="Livesync from Postgres"
+        icon="image"
+        href="https://mintlify.com/docs/development"
+    >
+    </Card>
+    <Card
+        title="Livesync from S3"
+        icon="image"
+        href="https://mintlify.com/docs/development"
+    >
+    </Card>
+</CardGroup>
+<CardGroup cols={3}>
+    <Card
+    title="Import from CSV"
+    icon="image"
+    href="https://mintlify.com/docs/quickstart"
+>
+</Card>
+    <Card
+    title="Import from Mysql"
+    icon="image"
+    href="https://mintlify.com/docs/development"
+>
+</Card>
+    <Card
+    title="Import from Parquet"
+    icon="image"
+    href="https://mintlify.com/docs/development"
+>
+</Card>
+</CardGroup>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Tutorials</Heading>
+
+
+<CardGroup cols={3}>
+    <Card
+        title="Analytics on transport and geospatial data"
+        icon="image"
+        href="https://mintlify.com/docs/quickstart"
+    >
+    </Card>
+    <Card
+        title="Analytics on energy consumption"
+        icon="image"
+        href="https://mintlify.com/docs/development"
+    >
+    </Card>
+    <Card
+        title="Query the Bitcoin blockchain"
+        icon="image"
+        href="https://mintlify.com/docs/development"
+    >
+    </Card>
+</CardGroup>
+
+<Card  icon="globe" href="/tutorials/tutorials">
+    See the other tutorials in our [tutorials section](/tutorials/), including bla and bla and bla.
+</Card>
 </div>
