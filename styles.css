@@ -11,6 +11,16 @@ h1 {
   font-weight: normal;
 }
 
+#sidebar {
+  border-right: 1px solid #f1f0f5;
+}
+
+#pagination {
+  border: 3px solid #F6F8F7;
+  border-radius: 12px;
+  padding: 16px;
+}
+
 [data-component-part="card-icon"] {
   background-color: #F8F8F8;
   width: 50px;
@@ -44,5 +54,13 @@ h1 {
   /* Topbar CTA button */
   #topbar-cta-button a > span {
     border: 1px solid #fff;
+  }
+
+  #pagination {
+    border-color: #ffffff1a;
+  }
+  
+  #sidebar {
+    border-color: #ffffff1a;
   }
 }
