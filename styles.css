@@ -2,6 +2,15 @@ h1 {
   font-size: 32px;
 }
 
+.link.nav-tabs-item {
+  font-weight: 600;
+}
+
+.link {
+  border-bottom-color: #000;
+  font-weight: normal;
+}
+
 [data-component-part="card-icon"] {
   background-color: #F8F8F8;
   width: 50px;
@@ -16,10 +25,24 @@ h1 {
   }
 }
 
+[data-component-part="card-title"] {
+  font-size: 18px;
+}
+
+/* dark mode styles */
 .dark {
+  .link {
+    border-bottom-color: #fff;
+  }
+
   [data-component-part="card-icon"] {
     svg {
       background-color: #333333;
     }
+  }
+
+  /* Topbar CTA button */
+  #topbar-cta-button a > span {
+    border: 1px solid #fff;
   }
 }

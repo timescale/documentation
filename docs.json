@@ -5,7 +5,7 @@
   "colors": {
     "primary": "#6447FB",
     "light": "#6447FB",
-    "dark": "#6447FB"
+    "dark": "#000"
   },
   "seo": {
     "metatags": {
