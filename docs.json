@@ -1,12 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
+  "theme": "mint",
   "name": "Tiger Data",
-  "page": "index",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#6447FB",
+    "light": "#6447FB",
+    "dark": "#000"
   },
   "seo": {
     "metatags": {
@@ -19,6 +18,10 @@
       {
         "version": "v2.x",
         "tabs": [
+          {
+            "tab": "Welcome",
+            "pages": ["index"]
+          },
           {
             "tab": "Cloud management",
             "dropdowns": [
@@ -528,10 +531,10 @@
     ]
   },
   "contextual": {
-    "options": [
-      "claude",
-      "chatgpt"
-    ]
+    "options": ["claude", "chatgpt"]
+  },
+  "fonts": {
+    "family": "Geist"
   },
   "logo": {
     "light": "https://assets.timescale.com/timescale-web/shared/logo/tigerdata-logo-black.svg",
@@ -541,7 +544,7 @@
     "links": [
       {
         "label": "TigerData",
-        "href": "https://www.tiger.com"
+        "href": "https://www.tigerdata.com"
       }
     ],
     "primary": {
