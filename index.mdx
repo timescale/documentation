@@ -6,7 +6,7 @@ mode: "custom"
 import {CardComponent} from "/snippets/card.jsx"
 import { CTALink } from "/snippets/cta-link.jsx"
 
-<div className="px-6 md:px-12 md:py-8 prose">
+<div className="px-6 md:px-12 md:py-8 prose  max-w-8xl mx-auto relative">
 
 <Heading level={1} noAnchor className="font-bold text-4xl mb-4 dark:text-white">TigerData documentation</Heading>
 
@@ -16,7 +16,7 @@ for your real-time analytics and AI workloads.</p>
 <Columns cols={2}>
 <CardComponent
     title={<>Get started with<br />Tiger Cloud</>}
-    icon="rocket" 
+    bgImage="/images/card-bg-purple.png"
     href="/cloud/tiger/get-started/get-started-with-tiger-cloud" 
     cta={<CTALink text="Learn how" href="/cloud/tiger/get-started/get-started-with-tiger-cloud" />}>
     Tiger Cloud is the fastest Postgres cloud, powered by Tiger Postgres. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.
@@ -24,7 +24,7 @@ for your real-time analytics and AI workloads.</p>
 
 <CardComponent
     title={<>Get started with<br />TimescaleDB</>}
-    icon="play" 
+    bgImage="/images/card-bg-yellow.png"
     href="/manage-data/timescaledb/get-started/get-started-with-timescaledb" 
     cta={<CTALink text="Learn how" href="/manage-data/timescaledb/get-started/get-started-with-timescaledb" />}>
     TimescaleDB is an open-source Postgres extension designed for running real-time analytics on time-series data. It is engineered up from Postgres and maintains full SQL support.
