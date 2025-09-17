@@ -470,6 +470,89 @@
                     "pages": [
                       "api-reference/timescaledb/hypertables/show_chunks"
                     ]
+                  },
+                  {
+                    "group": "Hyperfunctions",
+                    "pages": [
+                      "api-reference/timescaledb/hyperfunctions/hyperfunctions",
+                      "api-reference/timescaledb/hyperfunctions/approximate_row_count",
+                      "api-reference/timescaledb/hyperfunctions/first",
+                      "api-reference/timescaledb/hyperfunctions/last",
+                      "api-reference/timescaledb/hyperfunctions/histogram",
+                      "api-reference/timescaledb/hyperfunctions/time_bucket",
+                      "api-reference/timescaledb/hyperfunctions/time_bucket_ng",
+                      "api-reference/timescaledb/hyperfunctions/days_in_month",
+                      "api-reference/timescaledb/hyperfunctions/month_normalize",
+                      {
+                        "group": "Approximate count distinct",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/hyperloglog"
+                        ]
+                      },
+                      {
+                        "group": "Statistical and regression analysis", 
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/stats_agg-one-variable",
+                          "api-reference/timescaledb/hyperfunctions/stats_agg-two-variables"
+                        ]
+                      },
+                      {
+                        "group": "Minimum and maximum",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/min_n",
+                          "api-reference/timescaledb/hyperfunctions/max_n",
+                          "api-reference/timescaledb/hyperfunctions/min_n_by",
+                          "api-reference/timescaledb/hyperfunctions/max_n_by"
+                        ]
+                      },
+                      {
+                        "group": "Financial analysis",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg"
+                        ]
+                      },
+                      {
+                        "group": "Gapfilling",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill"
+                        ]
+                      },
+                      {
+                        "group": "Percentile approximation",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/uddsketch",
+                          "api-reference/timescaledb/hyperfunctions/tdigest"
+                        ]
+                      },
+                      {
+                        "group": "Counters and gauges",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/counter_agg",
+                          "api-reference/timescaledb/hyperfunctions/gauge_agg"
+                        ]
+                      },
+                      {
+                        "group": "Time-weighted calculations",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/time_weight"
+                        ]
+                      },
+                      {
+                        "group": "Frequency analysis",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/freq_agg",
+                          "api-reference/timescaledb/hyperfunctions/count_min_sketch"
+                        ]
+                      },
+                      {
+                        "group": "State tracking",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/compact_state_agg",
+                          "api-reference/timescaledb/hyperfunctions/state_agg",
+                          "api-reference/timescaledb/hyperfunctions/heartbeat_agg"
+                        ]
+                      }
+                    ]
                   }
                 ]
               },

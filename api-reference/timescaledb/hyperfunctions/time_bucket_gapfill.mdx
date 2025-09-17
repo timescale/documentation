@@ -1,0 +1,31 @@
+---
+title: time_bucket_gapfill()
+description: Bucket rows by time interval while filling gaps in data
+topics: [hyperfunctions]
+license: community
+type: function
+hyperfunction:
+  family: gapfilling
+  type: bucket
+  bucket_function: time_bucket_gapfill()
+products: [cloud, mst, self_hosted]
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.2.0
+
+Group data into buckets based on time interval, while filling in gaps of missing data.
+If you don't provide a gapfilling algorithm, such as `locf` or `interpolate`, gaps are left as `NULL` in the returned data.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|--|--|--|--|--|
+| `bucket_width` | INTERVAL \| INTEGER | - | ✔ | A Postgres time interval to specify the length of each bucket. For example, use `1 day` to get daily buckets. Use `INTEGER` only if your time column is integer-based. |
+| `time` | TIMESTAMPTZ \| INTEGER | - | ✔ | The timestamp on which to base the bucket |
+| `timezone` | TEXT | - | ❌ | The timezone to use for bucketing. For example, `Europe/Berlin`. Available in TimescaleDB 2.9 or later. Does not work for integer-based time. If you have an untyped `start` or `finish` argument and a `timezone` argument, you might run into a problem where you are not passing your arguments for the parameter that you expect. To solve this, either name your arguments or explicitly type cast them. |
+| `start` | TIMESTAMPTZ \| INTEGER | - | ❌ | The start of the period to gapfill. Values before `start` are passed through, but no gapfilling is performed. Use `INTEGER` only if your time column is integer-based. Best practice is to use the `WHERE` clause. Specifying `start` is legacy. The `WHERE` is more performant, because the query planner can filter out chunks by constraint exclusion. |
+| `finish` | TIMESTAMPTZ \| INTEGER | - | ❌ | The end of the period to gapfill. Values after `finish` are passed through, but no gapfilling is performed. Use `INTEGER` only if your time column is integer-based. Best practice is to use the `WHERE` clause. Specifying `finish` is legacy. The `WHERE` is more performant, because the query planner can filter out chunks by constraint exclusion. |
+
+## Returns
+
+The start time of the time bucket.

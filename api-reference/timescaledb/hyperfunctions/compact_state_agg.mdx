@@ -1,0 +1,38 @@
+---
+title: compact_state_agg()
+description: Aggregate state data into a state aggregate for further analysis
+topics: [hyperfunctions]
+license: community
+type: function
+toolkit: true
+experimental: true
+hyperfunction:
+  family: state tracking
+  type: aggregate
+  aggregates:
+    - compact_state_agg()
+products: [cloud, mst, self_hosted]
+---
+
+<Icon icon="flask" /> Early access 1.5.0
+
+Aggregate a dataset containing state data into a state aggregate to track the time spent in each state.
+
+## Samples
+
+Create a state aggregate to track the status of some devices.
+
+```sql
+SELECT toolkit_experimental.compact_state_agg(time, status) FROM devices;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|--|--|--|--|--|
+| `ts` | TIMESTAMPTZ | - | ✔ | Timestamps associated with each state reading |
+| `value` | TEXT \| BIGINT | - | ✔ | The state at that time |
+
+## Returns
+
+An object storing the total time spent in each state

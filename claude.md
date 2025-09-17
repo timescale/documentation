@@ -48,3 +48,28 @@
 - Use absolute URLs for internal links
 - Include untested code examples
 - Make assumptions - always ask for clarification
+
+# Migration
+
+- Check the directory that the files are to move into
+- Update all ${VARIABLES} to use the mintlify variables (reference snippets/vars.mdx for mappings)
+- replace references to import since`<version>` with `<Icon icon="circle-play" iconType="duotone" />` Since `<version>` on its own line after the frontmatter, followed by a newline before content begins
+- replace references to import deprecated`<version>` with `<Icon icon="circle-pause" iconType="duotone" />` Deprecated `<version>` on its own line after the frontmatter, followed by a newline before content begins
+- replace references to import DeprecationNotice with `<Icon icon="circle-pause" iconType="duotone" />` Deprecated on its own line after the frontmatter, followed by a newline before content begins
+- replace references to import sunsetted`<version>` with `<Icon icon="sunset" iconType="duotone" />` Sunsetted `<version>` on its own line after the frontmatter, followed by a newline before content begins
+- replace references to import EarlyAccess`<version>` with `<Icon icon="flask" />` Early access `<version>` on its own line after the frontmatter, followed by a newline before content begins. if there is no version number, don't add one
+- replace references to import Experimental with `<Icon icon="flask" />` Early access on its own line after the frontmatter, followed by a newline before content begins. if there is no version number, don't add one
+- Ask where the other imported files should go in the snippets directory (initially manual, but track patterns to automate over time)
+- Update the metadata in each file, rename the excerpt metadata name as description, and api_name as title
+- Remove api: and version: metadata sections, indent license and type under root level
+- Put the value of stable in a since icon (e.gple., if stable: 1.0.0, add Since 1.0.0 icon), then remove the stable metadata item
+- Remove the first # header from the content (title is handled by frontmatter)
+- Replace `<Highlight>` blocks with `<Info>` blocks (with newlines between tags and text)
+- Change ### Required arguments to ## Arguments with new table format: | Name | Type | Default | Required | Description |
+- Required arguments get ✔ in Required column, - in Default column (unless default specified)
+- Merge Optional arguments section into the same table with ✔ in Required column for optional args
+- Change ### Samples to ## Samples
+- Change **Returns:** to ## Returns with newline before text
+- Update internal links to use the correct Mintlify repository structure
+- Check all content so it will render correctly in Mintlify
+- Update the docs.json to include the files in the structure. The docs.json structure reflects the folder structure - initially ask for placement, but learn patterns over time

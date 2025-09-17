@@ -1,9 +1,23 @@
 ---
-name: CREATE TABLE
+title: CREATE TABLE
 description: Create a table or a hypertable
+version: "v2.x"
 ---
 
+<Icon icon="circle-play" iconType="duotone" /> Since version
+
+<Icon icon="circle-pause" iconType="duotone" /> Deprecated version
+
+<Icon icon="sunset" iconType="duotone" /> Sunsetted version
+
+<Icon icon="flask"  /> Early access version
+
+
+
+
 import { HYPERTABLE, COLUMNSTORE, TIMESCALE_DB, HYPERCORE, PG  }  from '/snippets/vars.mdx';
+
+
 
 Create a [{HYPERTABLE}][hypertable-docs] partitioned on a single dimension with [{COLUMNSTORE}][hypercore] enabled, or 
 create a standard {PG} relational table. 
