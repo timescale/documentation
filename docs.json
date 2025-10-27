@@ -531,7 +531,7 @@
     ]
   },
   "contextual": {
-    "options": ["claude", "chatgpt"]
+    "options": ["copy", "claude", "chatgpt"]
   },
   "fonts": {
     "family": "Geist"
@@ -559,5 +559,14 @@
       "github": "https://github.com/timescale",
       "linkedin": "https://www.linkedin.com/company/tigerdata"
     }
+  },
+  "integrations": {
+    "gtm": {
+      "tagId": "GTM-PFLX3HP"
+    },
+    "segment": {
+      "key": "V3cSFkEsLhg3pWRAdedDOpBZq7OW7sUX"
+    },
+    "osano": "https://cmp.osano.com/AzZddaT60OPzDMhS/ecab821a-f266-44a2-b472-c69ded89555c/osano.js"
   }
 }
