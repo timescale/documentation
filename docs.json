@@ -565,8 +565,10 @@
       "tagId": "GTM-PFLX3HP"
     },
     "segment": {
-      "key": "V3cSFkEsLhg3pWRAdedDOpBZq7OW7sUX"
+      "key": "CF77jkjlE82B4PhIHbbMDiSmOJsDYMqF"
     },
-    "osano": "https://cmp.osano.com/AzZddaT60OPzDMhS/ecab821a-f266-44a2-b472-c69ded89555c/osano.js"
+    "osano": {
+      "scriptSource": "https://cmp.osano.com/AzZddaT60OPzDMhS/ecab821a-f266-44a2-b472-c69ded89555c/osano.js"
+    }
   }
 }
