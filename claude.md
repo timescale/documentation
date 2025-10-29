@@ -1,4 +1,4 @@
-# TigerData documentation
+# Tiger Data documentation
 
 ## Working relationship
 - You can push back on ideas-this can lead to better documentation. Cite sources and explain your reasoning when you do so
@@ -8,7 +8,7 @@
 ## Project context
 - Format: MDX files with YAML frontmatter
 - Config: docs.json for navigation, theme, settings
-- Components: TigerData Cloud, TigerData console, TimescaleDB
+- Components: Tiger Cloud, Tiger console, TimescaleDB
 
 ## Content strategy
 - Document just enough for user success - not too much, not too little

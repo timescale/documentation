@@ -1,12 +1,12 @@
-# Contribute to TigerData documentation
+# Contribute to Tiger Data documentation
 
-TigerData documentation is open for contribution from all community members. The current source is in this repository.
+Tiger Data documentation is open for contribution from all community members. The current source is in this repository.
 
-This page explains the structure and language guidelines for contributing to TigerData documentation. See the [README][readme] for how to contribute. 
+This page explains the structure and language guidelines for contributing to Tiger Data documentation. See the [README][readme] for how to contribute. 
 
 ## Language
 
-Write in a clear, concise, and actionable manner. TigerData documentation uses the [Google Developer Documentation Style Guide][google-style] with the following exceptions:
+Write in a clear, concise, and actionable manner. Tiger Data documentation uses the [Google Developer Documentation Style Guide][google-style] with the following exceptions:
 
 - Do not capitalize the first word after a colon.
 - Use code font (back ticks) for UI elements instead of semi-bold.
@@ -100,7 +100,7 @@ live in the `_partials` top-level directory. To make a new partial, create a new
 
 ## Formatting
 
-In addition to all the [regular Markdown formatting][markdown-syntax], the following elements are available for TigerData docs:
+In addition to all the [regular Markdown formatting][markdown-syntax], the following elements are available for Tiger Data docs:
 
 - Procedure blocks 
 - Highlight blocks
@@ -113,7 +113,7 @@ See [Formatting examples][formatting] for how to use them.
 
 ## Variables
 
-TigerData documentation uses variables for its product names, features, and UI elements in Tiger Cloud Console with the following syntax: `$VARIABLE_NAME`. Variables do not work inside the following: 
+Tiger Data documentation uses variables for its product names, features, and UI elements in Tiger Cloud Console with the following syntax: `$VARIABLE_NAME`. Variables do not work inside the following: 
 
 - Front matter on each page
 - HTML tables and tabs 
