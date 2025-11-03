@@ -537,8 +537,8 @@
     "family": "Geist"
   },
   "logo": {
-    "light": "https://assets.timescale.com/timescale-web/shared/logo/tigerdata-logo-black.svg",
-    "dark": "https://assets.timescale.com/timescale-web/shared/logo/tigerdata-logo-white.svg"
+    "light": "https://assets.timescale.com/timescale-web/brand/show/horizontal-black.svg",
+    "dark": "https://assets.timescale.com/timescale-web/brand/show/horizontal-white.svg"
   },
   "navbar": {
     "links": [
