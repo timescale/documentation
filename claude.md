@@ -24,7 +24,7 @@
 
 ## Frontmatter requirements for pages
 - title: Clear, descriptive page title (meta title max 60 characters for SEO)
-- description: Concise summary for SEO/navigation (under 200 characters)
+- description: Concise summary for SEO/navigation/search (under 200 characters)
 
 ## Page structure requirements
 
