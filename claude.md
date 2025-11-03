@@ -8,7 +8,7 @@
 ## Project context
 - Format: MDX files with YAML frontmatter
 - Config: docs.json for navigation, theme, settings
-- Components: Tiger Cloud, Tiger console, TimescaleDB
+- Components: Tiger Cloud, Tiger Console, TimescaleDB
 
 ## Content strategy
 - Document just enough for user success - not too much, not too little

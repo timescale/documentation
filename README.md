@@ -9,10 +9,11 @@
 <div align="center">
 <h3>Tiger Cloud is the modern Postgres data platform for all your applications. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.</h3>
 
-[![Docs](https://img.shields.io/badge/Read_the_Tiger Data_docs-black?style=for-the-badge&logo=readthedocs&logoColor=white)](https://docs.Tiger Data.com/)
-[![SLACK](https://img.shields.io/badge/Ask_the_Tiger Data_community-black?style=for-the-badge&logo=slack&logoColor=white)](https://timescaledb.slack.com/archives/C4GT3N90X)
+[![Docs](https://img.shields.io/badge/Read_the_Tiger_Data_docs-black?style=for-the-badge&logo=readthedocs&logoColor=white)](https://docs.TigerData.com/)
+[![SLACK](https://img.shields.io/badge/Ask_the_Tiger_Data_community-black?style=for-the-badge&logo=slack&logoColor=white)](https://timescaledb.slack.com/archives/C4GT3N90X)
 [![Try Tiger Cloud for free](https://img.shields.io/badge/Try_Tiger_Cloud_for_free-black?style=for-the-badge&logo=timescale&logoColor=white)](https://console.cloud.timescale.com/signup)
 
+</div> 
 
 This repository contains the current source for Tiger Data documentation available at https://docs.tigerdata.com/.
 
@@ -30,8 +31,19 @@ To make the contribution yourself:
     - No write access? [Fork this repository][github-fork].
     - Already have a write access? [Clone this repository][github-clone].
 
-2. Create a branch from `latest`, make your changes, and raise a pull request back to `latest`.
+2. Create a branch from `main`, make your changes, and raise a pull request back to `latest`.
 
+   To view the docs locally:
+   1. Install the Mintlify CLI:
+      ```shell
+      npm i -g mint
+      ```
+   2. Preview locally.
+   
+      In the root directory, run the following command. 
+      ```shell
+      mint dev
+      ```
 3. Sign a Contributor License Agreement (CLA).
 
    You have to sign the CLA only the first time you raise a PR. This helps to ensure that the community is free to use your contributions.
