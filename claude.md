@@ -1,4 +1,4 @@
-# TigerData documentation
+# Tiger Data documentation
 
 ## Working relationship
 - You can push back on ideas-this can lead to better documentation. Cite sources and explain your reasoning when you do so
@@ -8,7 +8,7 @@
 ## Project context
 - Format: MDX files with YAML frontmatter
 - Config: docs.json for navigation, theme, settings
-- Components: Tiger, Tiger Console, TimescaleDB
+- Components: Tiger Cloud, Tiger Console, TimescaleDB, Agentic Postgres
 
 ## Content strategy
 - Document just enough for user success - not too much, not too little
@@ -50,7 +50,7 @@
 ## Writing standards
 - Follow the Google Developer Documentation Style Guide with exceptions:
   - Do not capitalize the first word after a colon
-  - Use code font (backticks) for UI elements instead of semi-bold
+  - Use semi-bold for UI elements
 - Write clear, concise, and actionable documentation
 - Second-person voice ("you")
 - Prerequisites at start of procedural content
@@ -69,7 +69,7 @@
 - Internal links don't require full domain - use relative paths
 - External links input as-is with full URLs
 
-### Supported formatting elements
+### Supported formatting
 - Tabs for organizing related content
 - Code blocks with language tags
 - Multi-tab code blocks for multiple language examples
