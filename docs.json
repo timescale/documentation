@@ -328,7 +328,10 @@
             "groups": [
               {
                 "group": " ",
-                "pages": ["integrations/integrations"]
+                "pages": [
+                  "integrations/integrations",
+                  "integrations/find-connection-details"
+                ]
               },
               {
                 "group": "Destination connectors",
@@ -338,12 +341,20 @@
                 "group": "Source connectors",
                 "pages": [
                   "integrations/connectors/source/sync-from-postgres",
-                  "integrations/connectors/source/sync-from-s3"
+                  "integrations/connectors/source/sync-from-s3",
+                  "integrations/connectors/source/stream-from-kafka"
                 ]
               },
               {
                 "group": "Coding",
                 "pages": ["integrations/code/start-coding-with-tigerdata"]
+              },
+              {
+                "group": "Business intelligence and data visualization",
+                "pages": [
+                  "integrations/integrate/power-bi",
+                  "integrations/integrate/tableau"
+                ]
               },
               {
                 "group": "Configuration and deployment",
@@ -374,7 +385,7 @@
                   "integrations/integrate/datadog",
                   "integrations/integrate/grafana",
                   "integrations/integrate/prometheus",
-                  "integrations/integrate/tableau"
+                  "integrations/integrate/telegraf"
                 ]
               },
               {
@@ -385,7 +396,8 @@
                   "integrations/integrate/pgadmin",
                   "integrations/integrate/postgresql",
                   "integrations/integrate/psql",
-                  "integrations/integrate/qstudio"
+                  "integrations/integrate/qstudio",
+                  "integrations/integrate/supabase"
                 ]
               },
               {
@@ -396,6 +408,10 @@
                   "integrations/integrate/google-cloud",
                   "integrations/integrate/microsoft-azure"
                 ]
+              },
+              {
+                "group": " ",
+                "pages": ["integrations/troubleshooting"]
               }
             ]
           },

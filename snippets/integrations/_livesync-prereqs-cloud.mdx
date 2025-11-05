@@ -1,0 +1,14 @@
+import { SERVICE_LONG, PG, PG_CONNECTOR } from '/snippets/vars.mdx';
+
+To follow the steps on this page:
+
+* Create a target {SERVICE_LONG} with real-time analytics enabled.
+
+  You need your [connection details](/integrations/find-connection-details).
+
+- Install the [{PG} client tools](/integrations/integrate/psql) on your sync machine.
+
+- Ensure that the source {PG} instance and the target {SERVICE_LONG} have the same extensions installed.
+
+  The {PG_CONNECTOR} does not create extensions on the target. If the table uses column types from an extension,
+    first create the extension on the target {SERVICE_LONG} before syncing the table.

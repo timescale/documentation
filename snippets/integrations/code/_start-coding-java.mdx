@@ -1,12 +1,12 @@
 import { SERVICE_SHORT, TIMESCALE_DB } from '/snippets/vars.mdx';
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
+import IntegrationPrereqs from '/snippets/integrations/_integration-prereqs-cloud-only.mdx';
 
 ## Prerequisites
 
 <IntegrationPrereqs />
 
-*   Install the [Java Development Kit (JDK)][jdk].
-*   Install the [PostgreSQL JDBC driver][pg-jdbc-driver].
+*   Install the [Java Development Kit (JDK)](https://openjdk.java.net).
+*   Install the [PostgreSQL JDBC driver](https://jdbc.postgresql.org).
 
 All code in this quick start is for Java 16 and later. If you are working
 with older JDK versions, use legacy coding techniques.
@@ -16,8 +16,6 @@ with older JDK versions, use legacy coding techniques.
 In this section, you create a connection to your {SERVICE_SHORT} using an application in
 a single file. You can use any of your favorite build tools, including `gradle`
 or `maven`.
-
-<procedure>
 
 1.  Create a directory containing a text file called `Main.java`, with this content:
 
@@ -32,7 +30,7 @@ or `maven`.
     }
     ```
 
-1.  From the command line in the current directory, run the application:
+2.  From the command line in the current directory, run the application:
 
     ```bash
     java Main.java
@@ -41,14 +39,14 @@ or `maven`.
     If the command is successful, `Hello, World!` line output is printed
     to your console.
 
-1.  Import the PostgreSQL JDBC driver. If you are using a dependency manager,
-   include the [PostgreSQL JDBC Driver][pg-jdbc-driver-dependency] as a
+3.  Import the PostgreSQL JDBC driver. If you are using a dependency manager,
+   include the [PostgreSQL JDBC Driver](https://mvnrepository.com/artifact/org.postgresql/postgresql) as a
    dependency.
 
-1.  Download the [JAR artifact of the JDBC Driver][pg-jdbc-driver-artifact] and
+4.  Download the [JAR artifact of the JDBC Driver](https://jdbc.postgresql.org/download/) and
    save it with the `Main.java` file.
 
-1.  Import the `JDBC Driver` into the Java application and display a list of
+5.  Import the `JDBC Driver` into the Java application and display a list of
    available drivers for the check:
 
     ```java
@@ -64,7 +62,7 @@ or `maven`.
     }
     ```
 
-1.  Run all the examples:
+6.  Run all the examples:
 
     ```bash
     java -cp *.jar Main.java
@@ -74,7 +72,7 @@ or `maven`.
    `org.postgresql.Driver@7f77e91b` is printed to your console. This means that you
    are ready to connect to {TIMESCALE_DB} from Java.
 
-1.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
+7.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
    string for JDBC.
 
     You'll need:
@@ -85,21 +83,19 @@ or `maven`.
       *   port
       *   database name
 
-1.  Compose your connection string variable, using this format:
+8.  Compose your connection string variable, using this format:
 
     ```java
     var connUrl = "jdbc:postgresql://<HOSTNAME>:<PORT>/<DATABASE_NAME>?user=<USERNAME>&password=<PASSWORD>";
     ```
 
-    For more information about creating connection strings, see the [JDBC documentation][pg-jdbc-driver-conn-docs].
+    For more information about creating connection strings, see the [JDBC documentation](https://jdbc.postgresql.org/documentation/datasource/).
 
-    <Highlight type="warning">
-    
+    <Warning>
     This method of composing a connection string is for test or development
     purposes only. For production, use environment variables for sensitive
     details like your password, hostname, and port number.
-    
-    </Highlight>
+    </Warning>
 
     ```java
     package com.timescale.java;
@@ -117,7 +113,7 @@ or `maven`.
     }
     ```
 
-1.  Run the code:
+9.  Run the code:
 
     ```bash
     java -cp *.jar Main.java
@@ -126,8 +122,6 @@ or `maven`.
     If the command is successful, a string similar to
     `{ApplicationName=PostgreSQL JDBC Driver}` is printed to your console.
 
-</procedure>
-
 ## Create a relational table
 
 In this section, you create a table called `sensors` which holds the ID, type,
@@ -135,8 +129,6 @@ and location of your fictional sensors. Additionally, you create a hypertable
 called `sensor_data` which holds the measurements of those sensors. The
 measurements contain the time, sensor_id, temperature reading, and CPU
 percentage of the sensors.
-
-<procedure>
 
 1.  Compose a string which contains the SQL statement to create a relational
     table. This example creates a table called `sensors`, with columns `id`,
@@ -150,7 +142,7 @@ percentage of the sensors.
     );
     ```
 
-1.  Create a statement, execute the query you created in the previous step, and
+2.  Create a statement, execute the query you created in the previous step, and
     check that the table was created successfully:
 
     ```java
@@ -187,16 +179,12 @@ percentage of the sensors.
         }
     }
     ```
-    
-</procedure>
 
 ## Create a hypertable
 
 When you have created the relational table, you can create a hypertable.
 Creating tables and indexes, altering tables, inserting data, selecting data,
 and most other tasks are executed on the hypertable.
-
-<procedure>
 
 1.  Create a `CREATE TABLE` SQL statement for
     your hypertable. Notice how the hypertable has the compulsory time column:
@@ -209,19 +197,17 @@ and most other tasks are executed on the hypertable.
     );
     ```
 
-1.  Create a statement, execute the query you created in the previous step:
+2.  Create a statement, execute the query you created in the previous step:
 
     ```sql
     SELECT create_hypertable('sensor_data', by_range('time'));
     ```
 
-	<Highlight type="note">
-    
+	<Note>
 	The `by_range` and `by_hash` dimension builder is an addition to {TIMESCALE_DB} 2.13.
- 
-	</Highlight>
+	</Note>
 
-1.  Execute the two statements you created, and commit your changes to the
+3.  Execute the two statements you created, and commit your changes to the
     database:
 
     ```java
@@ -272,14 +258,10 @@ and most other tasks are executed on the hypertable.
     }
     ```
 
-</procedure>
-
 ## Insert data
 
 You can insert data into your hypertables in several different ways. In this
 section, you can insert single rows, or insert by batches of rows.
-
-<procedure>
 
 1.  Open a connection to the database, use prepared statements to formulate the
     `INSERT` SQL statement, then execute the statement:
@@ -300,13 +282,9 @@ section, you can insert single rows, or insert by batches of rows.
     }
     ```
 
-</procedure>
-
 If you want to insert a batch of rows by using a batching mechanism. In this
 example, you generate some sample time-series data to insert into the
 `sensor_data` hypertable:
-
-<procedure>
 
 1.  Insert batches of rows:
 
@@ -331,13 +309,9 @@ example, you generate some sample time-series data to insert into the
     }
     ```
 
-</procedure>
-
 ## Execute a query
 
 This section covers how to execute queries against your database.
-
-<procedure>
 
 ## Execute queries on {TIMESCALE_DB}
 
@@ -354,7 +328,7 @@ This section covers how to execute queries against your database.
     ORDER BY bucket DESC;
     ```
 
-1.  Execute the query with the prepared statement and read out the result set for
+2.  Execute the query with the prepared statement and read out the result set for
    all `a`-type sensors located on the `floor`:
 
     ```java
@@ -388,8 +362,6 @@ This section covers how to execute queries against your database.
     ...
     ```
 
-</procedure>
-
 ## Next steps
 
 Now that you're able to connect, read, and write to a {TIMESCALE_DB} instance from
@@ -397,8 +369,8 @@ your Java application, and generate the scaffolding necessary to build a new
 application from an existing {TIMESCALE_DB} instance, be sure to check out these
 advanced {TIMESCALE_DB} tutorials:
 
-*   [Continuous Aggregates][continuous-aggregates]
-*   [Migrate Your own Data][migrate]
+*   [Continuous Aggregates](/use-timescale/continuous-aggregates)
+*   [Migrate Your own Data](/migrate)
 
 ## Complete code samples
 
@@ -600,17 +572,3 @@ public class Main {
     }
 }
 ```
-
-[jdk]: https://openjdk.java.net
-[pg-jdbc-driver-artifact]: https://jdbc.postgresql.org/download/
-[pg-jdbc-driver-conn-docs]: https://jdbc.postgresql.org/documentation/datasource/
-[pg-jdbc-driver-dependency]: https://mvnrepository.com/artifact/org.postgresql/postgresql
-[pg-jdbc-driver]: https://jdbc.postgresql.org
-[connect]: #connect-java-to-timescaledb
-[create-table]: #create-a-relational-table
-[create-a-hypertable]: #create-a-hypertable
-[insert]: #insert-a-batch-of-rows-into-timescaledb
-[query]: #execute-queries-on-timescaledb
-[install]: /getting-started/latest/
-[continuous-aggregates]: /use-timescale/continuous-aggregates/
-[migrate]: /migrate/

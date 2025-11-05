@@ -1,14 +1,14 @@
-import { PG, TIMESCALE_DB } from '/snippets/vars.mdx';
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
+import { TIMESCALE_DB, PG } from '/snippets/vars.mdx';
+import IntegrationPrereqs from '/snippets/integrations/_integration-prereqs-cloud-only.mdx';
 
 ## Prerequisites
 
 <IntegrationPrereqs />
 
-*   Install the `psycopg2` library. 
+*   Install the `psycopg2` library.
 
-   For more information, see the [psycopg2 documentation][psycopg2-docs].
-*   Create a [Python virtual environment][virtual-env]. [](#)(optional)
+   For more information, see the [psycopg2 documentation](https://pypi.org/project/psycopg2/).
+*   Create a [Python virtual environment](https://docs.python.org/3/library/venv.html). (Optional)
 
 ## Connect to TimescaleDB
 
@@ -17,15 +17,13 @@ library. This library is one of the most popular {PG} libraries for
 Python. It allows you to execute raw SQL queries efficiently and safely, and
 prevents common attacks such as SQL injection.
 
-<Procedure>
-
 1.  Import the psycogpg2 library:
 
     ```python
     import psycopg2
     ```
 
-1.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
+2.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
    string for `psycopg2`.
 
     You'll need:
@@ -36,8 +34,8 @@ prevents common attacks such as SQL injection.
       *   port
       *   database name
 
-1.  Compose your connection string variable as a
-    [libpq connection string][pg-libpq-string], using this format:
+3.  Compose your connection string variable as a
+    [libpq connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING), using this format:
 
     ```python
     CONNECTION = "postgres://username:password@host:port/dbname"
@@ -56,16 +54,14 @@ prevents common attacks such as SQL injection.
     CONNECTION = "dbname=tsdb user=tsdbadmin password=secret host=host.com port=5432 sslmode=require"
     ```
 
-    <Highlight type="warning">
-    
+    <Warning>
     This method of composing a connection string is for test or development
     purposes only. For production, use environment variables for sensitive
     details like your password, hostname, and port number.
+    </Warning>
 
-    </Highlight>
-
-1.  Use the `psycopg2` [connect function][psycopg2-connect] to create a new
-    database session and create a new [cursor object][psycopg2-cursor] to
+4.  Use the `psycopg2` [connect function](https://www.psycopg.org/docs/module.html?highlight=connect#psycopg2.connect) to create a new
+    database session and create a new [cursor object](https://www.psycopg.org/docs/connection.html?highlight=cursor#connection.cursor) to
     interact with the database.
 
     In your `main` function, add these lines:
@@ -90,8 +86,6 @@ prevents common attacks such as SQL injection.
     print(cursor.fetchone())
     ```
 
-</Procedure>
-
 ## Create a relational table
 
 In this section, you create a table called `sensors` which holds the ID, type,
@@ -99,8 +93,6 @@ and location of your fictional sensors. Additionally, you create a hypertable
 called `sensor_data` which holds the measurements of those sensors. The
 measurements contain the time, sensor_id, temperature reading, and CPU
 percentage of the sensors.
-
-<Procedure>
 
 1.  Compose a string which contains the SQL statement to create a relational
     table. This example creates a table called `sensors`, with columns `id`,
@@ -115,7 +107,7 @@ percentage of the sensors.
                                     """
     ```
 
-1.  Open a cursor, execute the query you created in the previous step, and
+2.  Open a cursor, execute the query you created in the previous step, and
     commit the query to make the changes persistent. Afterward, close the cursor
     to clean up:
 
@@ -127,15 +119,11 @@ percentage of the sensors.
     cursor.close()
     ```
 
-</Procedure>
-
 ## Create a hypertable
 
 When you have created the relational table, you can create a hypertable.
 Creating tables and indexes, altering tables, inserting data, selecting data,
 and most other tasks are executed on the hypertable.
-
-<Procedure>
 
 1.  Create a string variable that contains the `CREATE TABLE` SQL statement for
     your hypertable. Notice how the hypertable has the compulsory time column:
@@ -155,17 +143,15 @@ and most other tasks are executed on the hypertable.
 2.  Formulate a `SELECT` statement that converts the `sensor_data` table to a
     hypertable. You must specify the table name to convert to a hypertable, and
     the name of the time column as the two arguments. For more information, see
-    the [`create_hypertable` docs][create-hypertable-docs]:
+    the [`create_hypertable` docs](/api/hypertable/create_hypertable):
 
     ```python
     query_create_sensordata_hypertable = "SELECT create_hypertable('sensor_data', by_range('time'));"
     ```
 
-	<Highlight type="note">
-    
+	<Note>
 	The `by_range` dimension builder is an addition to {TIMESCALE_DB} 2.13.
-
-	</Highlight>
+	</Note>
 
 3.  Open a cursor with the connection, execute the statements from the previous
     steps, commit your changes, and close the cursor:
@@ -178,16 +164,12 @@ and most other tasks are executed on the hypertable.
     conn.commit()
     cursor.close()
     ```
-    
-</Procedure>
 
 ## Insert rows of data
 
 You can insert data into your hypertables in several different ways. In this
 section, you can use `psycopg2` with prepared statements, or you can use
 `pgcopy` for a faster insert.
-
-<Procedure>
 
 1.  This example inserts a list of tuples, or relational data, called `sensors`,
     into the relational table named `sensors`. Open a cursor with a connection
@@ -206,7 +188,7 @@ section, you can use `psycopg2` with prepared statements, or you can use
     conn.commit()
     ```
 
-1.  [](#)(optional)Alternatively, you can pass variables to the `cursor.execute`
+2.  (Optional) Alternatively, you can pass variables to the `cursor.execute`
     function and separate the formulation of the SQL statement, `SQL`, from the
     data being passed with it into the prepared statement, `data`:
 
@@ -223,17 +205,13 @@ section, you can use `psycopg2` with prepared statements, or you can use
     conn.commit()
     ```
 
-</Procedure>
-
 If you choose to use `pgcopy` instead, install the `pgcopy` package
-[using pip][pgcopy-install], and then add this line to your list of
+[using pip](https://pypi.org/project/pgcopy/), and then add this line to your list of
 `import` statements:
 
 ```python
 from pgcopy import CopyManager
 ```
-
-<Procedure>
 
 1.  Generate some random sensor data using the `generate_series` function
     provided by {PG}. This example inserts a total of 480 rows of data (4
@@ -254,7 +232,7 @@ from pgcopy import CopyManager
         values = cursor.fetchall()
     ```
 
-1.  Define the column names of the table you want to insert data into. This
+2.  Define the column names of the table you want to insert data into. This
     example uses the `sensor_data` hypertable created earlier. This hypertable
     consists of columns named `time`, `sensor_id`, `temperature` and `cpu`. The
     column names are defined in a list of strings called `cols`:
@@ -263,7 +241,7 @@ from pgcopy import CopyManager
     cols = ['time', 'sensor_id', 'temperature', 'cpu']
     ```
 
-1.  Create an instance of the `pgcopy` CopyManager, `mgr`, and pass the
+3.  Create an instance of the `pgcopy` CopyManager, `mgr`, and pass the
     connection variable, hypertable name, and list of column names. Then use the
     `copy` function of the CopyManager to insert the data into the database
     quickly using `pgcopy`.
@@ -273,13 +251,13 @@ from pgcopy import CopyManager
     mgr.copy(values)
     ```
 
-1.  Commit to persist changes:
+4.  Commit to persist changes:
 
     ```python
     conn.commit()
     ```
 
-1.  [](#)<Optional/>The full sample code to insert data into {TIMESCALE_DB} using
+5.  (Optional) The full sample code to insert data into {TIMESCALE_DB} using
     `pgcopy`, using the example of sensor data from four sensors:
 
     ```python
@@ -311,14 +289,12 @@ from pgcopy import CopyManager
         conn.commit()
     ```
 
-1.  [](#)(optional)You can also check if the insertion worked:
+6.  (Optional) You can also check if the insertion worked:
 
     ```python
     cursor.execute("SELECT * FROM sensor_data LIMIT 5;")
     print(cursor.fetchall())
     ```
-
-</Procedure>
 
 ## Execute a query
 
@@ -329,13 +305,11 @@ you can use prepared statements to ensure queries are executed safely against
 the database.
 
 For more information about properly using placeholders in `psycopg2`, see the
-[basic module usage document][psycopg2-docs-basics].
+[basic module usage document](https://www.psycopg.org/docs/usage.html).
 For more information about how to execute more complex queries in `psycopg2`,
-see the [psycopg2 documentation][psycopg2-docs-basics].
+see the [psycopg2 documentation](https://www.psycopg.org/docs/usage.html).
 
 ### Execute a query
-
-<Procedure>
 
 1.  Define the SQL query you'd like to run on the database. This example is a
     simple `SELECT` statement querying each row from the previously created
@@ -345,7 +319,7 @@ see the [psycopg2 documentation][psycopg2-docs-basics].
     query = "SELECT * FROM sensor_data;"
     ```
 
-1.  Open a cursor from the existing database connection, `conn`, and then execute
+2.  Open a cursor from the existing database connection, `conn`, and then execute
    the query you defined:
 
     ```python
@@ -354,8 +328,8 @@ see the [psycopg2 documentation][psycopg2-docs-basics].
     cursor.execute(query)
     ```
 
-1.  To access all resulting rows returned by your query, use one of `pyscopg2`'s
-    [results retrieval methods][results-retrieval-methods],
+3.  To access all resulting rows returned by your query, use one of `pyscopg2`'s
+    [results retrieval methods](https://www.psycopg.org/docs/cursor.html),
     such as `fetchall()` or `fetchmany()`. This example prints the results of
     the query, row by row. Note that the result of `fetchall()` is a list of
     tuples, so you can handle them accordingly:
@@ -369,8 +343,8 @@ see the [psycopg2 documentation][psycopg2-docs-basics].
     cursor.close()
     ```
 
-1.  [](#)(optional)If you want a list of dictionaries instead, you can define the
-    cursor using [`DictCursor`][dictcursor-docs]:
+4.  (Optional) If you want a list of dictionaries instead, you can define the
+    cursor using [`DictCursor`](https://www.psycopg.org/docs/extras.html#dictionary-like-cursor):
 
     ```python
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -378,14 +352,10 @@ see the [psycopg2 documentation][psycopg2-docs-basics].
 
     Using this cursor, `cursor.fetchall()` returns a list of dictionary-like objects.
 
-</Procedure>
-
 For more complex queries, you can use prepared statements to ensure queries are
 executed safely against the database.
 
 ### Execute queries using prepared statements
-
-<Procedure>
 
 1.  Write the query using prepared statements:
 
@@ -406,22 +376,3 @@ executed safely against the database.
     cursor.execute(query, data)
     results = cursor.fetchall()
     ```
-    
-</Procedure>
-
-[install]: /getting-started/latest/
-[create-hypertable-docs]: /api/hypertable/create_hypertable
-[dictcursor-docs]: https://www.psycopg.org/docs/extras.html#dictionary-like-cursor
-[pg-libpq-string]: https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
-[pgcopy-install]: https://pypi.org/project/pgcopy/
-[psycopg2-connect]: https://www.psycopg.org/docs/module.html?highlight=connect#psycopg2.connect
-[psycopg2-cursor]: https://www.psycopg.org/docs/connection.html?highlight=cursor#connection.cursor
-[psycopg2-docs-basics]: https://www.psycopg.org/docs/usage.html
-[psycopg2-docs]: https://pypi.org/project/psycopg2/
-[results-retrieval-methods]:https://www.psycopg.org/docs/cursor.html
-[virtual-env]: https://docs.python.org/3/library/venv.html
-[connect]: #connect-to-timescaledb
-[create-table]: #create-a-relational-table
-[create-a-hypertable]: #create-a-hypertable
-[insert]: #insert-rows-of-data
-[query]: #execute-a-query

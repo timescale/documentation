@@ -1,8 +1,566 @@
 ---
-title: Connect data in Postgres to your service
-description: Simulate and analyze a transport dataset in your Tiger Cloud service
-products: [cloud, mst, self_hosted]
-keywords: [IoT, simulate]
+title: Sync from Postgres
+description: Sync updates to your primary Postgres database with your Tiger Cloud service in real time
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+import { HYPERTABLE, CONSOLE } from '/snippets/vars.mdx';
+import LivesyncPrereqsCloud from '/snippets/integrations/_livesync-prereqs-cloud.mdx';
+import LivesyncPrereqsTerminal from '/snippets/integrations/_livesync-prereqs-terminal.mdx';
+import LivesyncLimitations from '/snippets/integrations/_livesync-limitations.mdx';
+
+<Icon icon="flask" /> Early access
+
+You use the {PG} connector to synchronize all data or specific tables from a {PG} database instance to your
+{SERVICE_SHORT}, in real time. You run the connector continuously, turning {PG} into a primary database with your
+{SERVICE_SHORT} as a logical replica. This enables you to leverage real-time analytics capabilities on
+your replica data.
+
+![Connectors overview](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-connector-overview.png)
+
+The {PG} connector leverages the well-established {PG} logical replication protocol. By relying on this protocol,
+it ensures compatibility, familiarity, and a broader knowledge base—making it easier for you to adopt the connector
+and integrate your data.
+
+You use the {PG} connector for data synchronization, rather than migration. This includes:
+
+* Copy existing data from a {PG} instance:
+  - Copy data at up to 150 GB/hr.
+
+    You need at least a 4 CPU/16 GB source database, and a 4 CPU/16 GB target {SERVICE_SHORT}.
+  - Copy the publication tables in parallel.
+
+    Large tables are still copied using a single connection. Parallel copying is in the backlog.
+  - Forget foreign key relationships.
+
+    The connector disables foreign key validation during the sync. For example, if a `metrics` table refers to
+    the `id` column on the `tags` table, you can still sync only the `metrics` table without worrying about their
+    foreign key relationships.
+  - Track progress.
+
+    {PG} exposes `COPY` progress under `pg_stat_progress_copy`.
+
+* Synchronize real-time changes from a {PG} instance.
+* Add and remove tables on demand using the [{PG} PUBLICATION interface](https://www.postgresql.org/docs/current/sql-createpublication.html).
+* Enable features such as hypertables, columnstore, and continuous aggregates on your logical replica.
+
+<Info>
+This source Postgres connector is not yet supported for production use. If you have any questions or feedback, talk to us in [#livesync in the Tiger Community](https://app.slack.com/client/T4GT3N2JK/C086NU9EZ88).
+</Info>
+
+<Tabs>
+
+<Tab title="Tiger Cloud Console">
+
+## Prerequisites
+
+<LivesyncPrereqsCloud />
+
+## Limitations
+
+* The source {PG} instance must be accessible from the Internet.
+
+  Services hosted behind a firewall or VPC are not supported. This functionality is on the roadmap.
+
+* Indexes, including the primary key and unique constraints, are not migrated to the target.
+
+  We recommend that, depending on your query patterns, you create only the necessary indexes on the target.
+
+<LivesyncLimitations />
+
+## Set your connection string
+
+This variable holds the connection information for the source database. In the terminal on your migration machine,
+set the following:
+
+```bash
+export SOURCE="postgres://<user>:<password>@<source host>:<source port>/<db_name>"
+```
+
+<Warning>
+Avoid using connection strings that route through connection poolers like PgBouncer or similar tools. This tool
+requires a direct connection to the database to function properly.
+</Warning>
+
+## Tune your source database
+
+<Tabs>
+
+<Tab title="From AWS RDS/Aurora">
+
+1. **Set the `rds.logical_replication` parameter to `1`**
+
+   In the AWS console, navigate to your RDS instance parameter group and set `rds.logical_replication` to `1`. This enables logical replication on the RDS instance.
+
+   After changing this parameter, restart your RDS instance for the changes to take effect.
+
+2. **Create a user for the connector and assign permissions**
+
+   1. Create `<pg connector username>`:
+
+      ```sql
+      psql $SOURCE -c "CREATE USER <pg connector username> PASSWORD '<password>'"
+      ```
+
+      You can use an existing user. However, you must ensure that the user has the following permissions.
+
+   2. Grant permissions to create a replication slot:
+
+      ```sql
+      psql $SOURCE -c "ALTER ROLE <pg connector username> REPLICATION"
+      ```
+
+   3. Grant permissions to create a publication:
+
+      ```sql
+      psql $SOURCE -c "GRANT CREATE ON DATABASE <database name> TO <pg connector username>"
+      ```
+
+   4. Assign the user permissions on the source database:
+
+      ```sql
+      psql $SOURCE <<EOF
+      GRANT USAGE ON SCHEMA "public" TO <pg connector username>;
+      GRANT SELECT ON ALL TABLES IN SCHEMA "public" TO <pg connector username>;
+      ALTER DEFAULT PRIVILEGES IN SCHEMA "public" GRANT SELECT ON TABLES TO <pg connector username>;
+      EOF
+      ```
+
+      If the tables you are syncing are not in the `public` schema, grant the user permissions for each schema you are syncing:
+      ```sql
+      psql $SOURCE <<EOF
+      GRANT USAGE ON SCHEMA <schema> TO <pg connector username>;
+      GRANT SELECT ON ALL TABLES IN SCHEMA <schema> TO <pg connector username>;
+      ALTER DEFAULT PRIVILEGES IN SCHEMA <schema> GRANT SELECT ON TABLES TO <pg connector username>;
+      EOF
+      ```
+
+   5. On each table you want to sync, make `<pg connector username>` the owner:
+
+      ```sql
+      psql $SOURCE -c 'ALTER TABLE <table name> OWNER TO <pg connector username>;'
+      ```
+      You can skip this step if the replicating user is already the owner of the tables.
+
+3. **Enable replication `DELETE` and `UPDATE` operations**
+
+   For the connector to replicate `DELETE` and `UPDATE` operations, enable `REPLICA IDENTITY` on each table:
+
+   ```sql
+   psql $SOURCE -c 'ALTER TABLE <table name> REPLICA IDENTITY FULL;'
+   ```
+
+</Tab>
+
+<Tab title="From Postgres">
+
+1. **Tune the Write Ahead Log (WAL) on the {PG} source database**
+
+   ```sql
+   psql $SOURCE <<EOF
+   ALTER SYSTEM SET wal_level='logical';
+   ALTER SYSTEM SET max_wal_senders=10;
+   ALTER SYSTEM SET wal_sender_timeout=0;
+   EOF
+   ```
+
+   This will require a restart of the {PG} source database.
+
+2. **Create a user for the connector and assign permissions**
+
+   1. Create `<pg connector username>`:
+
+      ```sql
+      psql $SOURCE -c "CREATE USER <pg connector username> PASSWORD '<password>'"
+      ```
+
+      You can use an existing user. However, you must ensure that the user has the following permissions.
+
+   2. Grant permissions to create a replication slot:
+
+      ```sql
+      psql $SOURCE -c "ALTER ROLE <pg connector username> REPLICATION"
+      ```
+
+   3. Grant permissions to create a publication:
+
+      ```sql
+      psql $SOURCE -c "GRANT CREATE ON DATABASE <database name> TO <pg connector username>"
+      ```
+
+   4. Assign the user permissions on the source database:
+
+      ```sql
+      psql $SOURCE <<EOF
+      GRANT USAGE ON SCHEMA "public" TO <pg connector username>;
+      GRANT SELECT ON ALL TABLES IN SCHEMA "public" TO <pg connector username>;
+      ALTER DEFAULT PRIVILEGES IN SCHEMA "public" GRANT SELECT ON TABLES TO <pg connector username>;
+      EOF
+      ```
+
+      If the tables you are syncing are not in the `public` schema, grant the user permissions for each schema you are syncing:
+      ```sql
+      psql $SOURCE <<EOF
+      GRANT USAGE ON SCHEMA <schema> TO <pg connector username>;
+      GRANT SELECT ON ALL TABLES IN SCHEMA <schema> TO <pg connector username>;
+      ALTER DEFAULT PRIVILEGES IN SCHEMA <schema> GRANT SELECT ON TABLES TO <pg connector username>;
+      EOF
+      ```
+
+   5. On each table you want to sync, make `<pg connector username>` the owner:
+
+      ```sql
+      psql $SOURCE -c 'ALTER TABLE <table name> OWNER TO <pg connector username>;'
+      ```
+      You can skip this step if the replicating user is already the owner of the tables.
+
+3. **Enable replication `DELETE` and `UPDATE` operations**
+
+   For the connector to replicate `DELETE` and `UPDATE` operations, enable `REPLICA IDENTITY` on each table:
+
+   ```sql
+   psql $SOURCE -c 'ALTER TABLE <table name> REPLICA IDENTITY FULL;'
+   ```
+
+</Tab>
+
+</Tabs>
+
+## Synchronize data
+
+To sync data from your {PG} database using {CONSOLE}:
+
+1. **Connect to your {SERVICE_SHORT}**
+
+   In [{CONSOLE}](https://console.cloud.timescale.com/dashboard/services), select the {SERVICE_SHORT} to sync live data to.
+
+2. **Connect the source database and the target {SERVICE_SHORT}**
+
+   ![Postgres connector wizard](https://assets.timescale.com/docs/images/tiger-on-azure/pg-connector-wizard-tiger-console.png)
+
+   1. Click `Connectors` > `PostgreSQL`.
+   2. Set the name for the new connector by clicking the pencil icon.
+   3. Check the boxes for `Set wal_level to logical` and `Update your credentials`, then click `Continue`.
+   4. Enter your database credentials or a {PG} connection string, then click `Connect to database`.
+      This is the connection string for `<pg connector username>`. The console connects to the source database and retrieves the schema information.
+
+3. **Optimize the data to synchronize in hypertables**
+
+   ![Postgres connector start](https://assets.timescale.com/docs/images/tiger-on-azure/pg-connector-start-tiger-console.png)
+
+   1. In the `Select table` dropdown, select the tables to sync.
+   2. Click `Select tables +`.
+
+      The console checks the table schema and, if possible, suggests the column to use as the time dimension in a {HYPERTABLE}.
+   3. Click `Create Connector`.
+
+      The console starts the connector between the source database and the target {SERVICE_SHORT} and displays the progress.
+
+4. **Monitor synchronization**
+
+   ![Connectors overview](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-connector-overview.png)
+
+    1. To view the amount of data replicated, click `Connectors`. The diagram in `Connector data flow` gives you an overview of the connectors you have created, their status, and how much data has been replicated.
+
+    2. To review the syncing progress for each table, click `Connectors` > `Source connectors`, then select the name of your connector in the table.
+
+5. **Manage the connector**
+
+   ![Edit a Postgres connector](https://assets.timescale.com/docs/images/tiger-on-azure/edit-pg-connector-tiger-console.png)
+
+   1. To edit the connector, click `Connectors` > `Source connectors`, then select the name of your connector in the table. You can rename the connector, delete or add new tables for syncing.
+
+   2. To pause a connector, click `Connectors` > `Source connectors`, then open the three-dot menu on the right and select `Pause`.
+
+   3. To delete a connector, click `Connectors` > `Source connectors`, then open the three-dot menu on the right and select `Delete`. You must pause the connector before deleting it.
+
+And that is it, you are using the connector to synchronize all the data, or specific tables, from a {PG} database
+instance in real time.
+
+</Tab>
+
+<Tab title="Self-hosted Postgres connector">
+
+## Prerequisites
+
+<LivesyncPrereqsTerminal />
+
+## Limitations
+
+- The schema is not migrated by the connector, you use `pg_dump`/`pg_restore` to migrate it.
+
+<LivesyncLimitations />
+
+## Set your connection strings
+
+The `<user>` in the `SOURCE` connection must have the replication role granted in order to create a replication slot.
+
+These variables hold the connection information for the source database and target. In Terminal on your migration machine, set the following:
+
+```bash
+export SOURCE="postgres://<user>:<password>@<source host>:<source port>/<db_name>"
+export TARGET="postgres://tsdbadmin:<PASSWORD>@<HOST>:<PORT>/tsdb?sslmode=require"
+```
+
+You find the connection information in the configuration file you
+downloaded when you created the service.
+
+<Warning>
+Avoid using connection strings that route through connection poolers like PgBouncer or similar tools. This tool requires a direct connection to the database to function properly.
+</Warning>
+
+## Tune your source database
+
+Follow the same tuning steps from the Console tab above.
+
+## Migrate the table schema
+
+Use `pg_dump` to:
+
+1. **Download the schema from the source database**
+
+  ```bash
+  pg_dump $SOURCE \
+  --no-privileges \
+  --no-owner \
+  --no-publications \
+  --no-subscriptions \
+  --no-table-access-method \
+  --no-tablespaces \
+  --schema-only \
+  --file=schema.sql
+  ```
+
+2. **Apply the schema on the target {SERVICE_SHORT}**
+  ```bash
+  psql $TARGET -f schema.sql
+  ```
+
+## Convert partitions and tables with time-series data into hypertables
+
+For efficient querying and analysis, you can convert tables which contain time-series or
+events data, and tables that are already partitioned using {PG} declarative partition into
+hypertables.
+
+1. **Convert tables to hypertables**
+
+   Run the following on each table in the target to convert it to a hypertable:
+
+   ```bash
+   psql -X -d $TARGET -c "SELECT public.create_hypertable('<table>', by_range('<partition column>', '<chunk interval>'::interval));"
+   ```
+
+   For example, to convert the *metrics* table into a hypertable with *time* as a partition column and
+   *1 day* as a partition interval:
+
+   ```bash
+   psql -X -d $TARGET -c "SELECT public.create_hypertable('public.metrics', by_range('time', '1 day'::interval));"
+   ```
+
+2. **Convert {PG} partitions to hypertables**
+
+   Rename the partition and create a new regular table with the same name as the partitioned table, then
+   convert to a hypertable:
+
+   ```bash
+   psql $TARGET -f - <<'EOF'
+      BEGIN;
+      ALTER TABLE public.events RENAME TO events_part;
+      CREATE TABLE public.events(LIKE public.events_part INCLUDING ALL);
+      SELECT create_hypertable('public.events', by_range('time', '1 day'::interval));
+      COMMIT;
+EOF
+   ```
+
+## Specify the tables to synchronize
+
+After the schema is migrated, you [`CREATE PUBLICATION`](https://www.postgresql.org/docs/current/sql-createpublication.html) on the source database that
+specifies the tables to synchronize.
+
+1. **Create a publication that specifies the table to synchronize**
+
+   A `PUBLICATION` enables you to synchronize some or all the tables in the schema or database.
+
+   ```sql
+   CREATE PUBLICATION <publication_name> FOR TABLE <table_name>, <table_name>;
+   ```
+
+    To add tables after to an existing publication, use [ALTER PUBLICATION](https://www.postgresql.org/docs/current/sql-alterpublication.html)
+
+   ```sql
+   ALTER PUBLICATION <publication_name> ADD TABLE <table_name>;
+   ```
+
+2. **Publish the {PG} declarative partitioned table**
+
+   ```sql
+   ALTER PUBLICATION <publication_name> SET(publish_via_partition_root=true);
+   ```
+
+3. **Stop syncing a table in the `PUBLICATION`, use `DROP TABLE`**
+
+   ```sql
+   ALTER PUBLICATION <publication_name> DROP TABLE <table_name>;
+   ```
+
+## Synchronize data
+
+You use the connector docker image to synchronize changes in real time from a {PG} database
+instance:
+
+1. **Start the connector**
+
+   As you run the connector continuously, best practice is to run it as a Docker daemon.
+
+   ```bash
+   docker run -d --rm --name livesync timescale/live-sync:v0.1.25 run \
+      --publication <publication_name> --subscription <subscription_name> \
+      --source $SOURCE --target $TARGET --table-map <table_map_as_json>
+   ```
+
+   `--publication`: The name of the publication as you created in the previous step. To use multiple publications, repeat the `--publication` flag.
+
+   `--subscription`: The name that identifies the subscription on the target.
+
+   `--source`: The connection string to the source {PG} database.
+
+   `--target`: The connection string to the target.
+
+   `--table-map`: (Optional) A JSON string that maps source tables to target tables. If not provided, the source and target table names are assumed to be the same.
+   For example, to map the source table `metrics` to the target table `metrics_data`:
+
+   ```
+   --table-map '{"source": {"schema": "public", "table": "metrics"}, "target": {"schema": "public", "table": "metrics_data"}}'
+   ```
+   To map only the schema, use:
+
+   ```
+   --table-map '{"source": {"schema": "public"}, "target": {"schema": "analytics"}}'
+   ```
+   This flag can be repeated for multiple table mappings.
+
+2. **Capture logs**
+
+   Once the connector is running as a docker daemon, you can also capture the logs:
+   ```bash
+   docker logs -f livesync
+   ```
+
+3. **View the progress of tables being synchronized**
+
+   List the tables being synchronized by the connector using the `_ts_live_sync.subscription_rel` table in the target:
+
+   ```bash
+   psql $TARGET -c "SELECT * FROM _ts_live_sync.subscription_rel"
+   ```
+
+   The `state` column indicates the current state of the table synchronization.
+   Possible values for `state` are:
+
+   | state | description |
+   |-------|-------------|
+   | d | initial table data sync |
+   | f | initial table data sync completed |
+   | s | catching up with the latest changes |
+   | r | table is ready, syncing live changes |
+
+   To see the replication lag, run the following against the SOURCE database:
+
+   ```bash
+   psql $SOURCE -f - <<'EOF'
+   SELECT
+      slot_name,
+      pg_size_pretty(pg_current_wal_flush_lsn() - confirmed_flush_lsn) AS lag
+   FROM pg_replication_slots
+   WHERE slot_name LIKE 'live_sync_%' AND slot_type = 'logical'
+EOF
+   ```
+
+4. **Add or remove tables from the publication**
+
+   To add tables, use [ALTER PUBLICATION .. ADD TABLE](https://www.postgresql.org/docs/current/sql-alterpublication.html)
+
+   ```sql
+   ALTER PUBLICATION <publication_name> ADD TABLE <table_name>;
+   ```
+
+   To remove tables, use [ALTER PUBLICATION .. DROP TABLE](https://www.postgresql.org/docs/current/sql-alterpublication.html)
+
+   ```sql
+   ALTER PUBLICATION <publication_name> DROP TABLE <table_name>;
+   ```
+
+5. **Update table statistics**
+
+   If you have a large table, you can run `ANALYZE` on the target
+   to update the table statistics after the initial sync is complete.
+
+   This helps the query planner make better decisions for query execution plans.
+
+   ```bash
+   vacuumdb --analyze --verbose --dbname=$TARGET
+   ```
+
+6. **Stop the connector**
+
+   ```bash
+   docker stop live-sync
+   ```
+
+7. **(Optional) Reset sequence nextval on the target**
+
+   The connector does not automatically reset the sequence nextval on the target.
+
+   Run the following script to reset the sequence for all tables that have a
+   serial or identity column in the target:
+
+   ```bash
+   psql $TARGET -f - <<'EOF'
+      DO $$
+   DECLARE
+     rec RECORD;
+   BEGIN
+     FOR rec IN (
+       SELECT
+         sr.target_schema  AS table_schema,
+         sr.target_table   AS table_name,
+         col.column_name,
+         pg_get_serial_sequence(
+           sr.target_schema || '.' || sr.target_table,
+           col.column_name
+         ) AS seqname
+       FROM _ts_live_sync.subscription_rel AS sr
+       JOIN information_schema.columns AS col
+         ON col.table_schema = sr.target_schema
+        AND col.table_name   = sr.target_table
+       WHERE col.column_default LIKE 'nextval(%'  -- only serial/identity columns
+     ) LOOP
+       EXECUTE format(
+         'SELECT setval(%L,
+            COALESCE((SELECT MAX(%I) FROM %I.%I), 0) + 1,
+            false
+          );',
+         rec.seqname,       -- the sequence identifier
+         rec.column_name,   -- the column to MAX()
+         rec.table_schema,  -- schema for MAX()
+         rec.table_name     -- table for MAX()
+       );
+     END LOOP;
+   END;
+   $$ LANGUAGE plpgsql;
+EOF
+   ```
+
+8. **Clean up**
+
+   Use the `--drop` flag to remove the replication slots created by the connector on the source database.
+
+   ```bash
+   docker run -it --rm --name livesync timescale/live-sync:v0.1.25 run \
+      --publication <publication_name> --subscription <subscription_name> \
+      --source $SOURCE --target $TARGET \
+      --drop
+   ```
+
+</Tab>
+
+</Tabs>
