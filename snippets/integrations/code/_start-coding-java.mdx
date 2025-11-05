@@ -1,17 +1,17 @@
 import { SERVICE_SHORT, TIMESCALE_DB } from '/snippets/vars.mdx';
-import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
+import IntegrationPrereqs from '/snippets/integrations/_integration-prereqs-cloud-only.mdx';
 
 ## Prerequisites
 
 <IntegrationPrereqs />
 
-*   Install the [Java Development Kit (JDK)][install-jdk].
-*   Install the [PostgreSQL JDBC driver][jdbc-driver].
+*   Install the [Java Development Kit (JDK)](https://openjdk.java.net).
+*   Install the [PostgreSQL JDBC driver](https://jdbc.postgresql.org).
 
 All code in this quick start is for Java 16 and later. If you are working
 with older JDK versions, use legacy coding techniques.
 
-## Connect to your Tiger Cloud service
+## Connect to your {SERVICE_LONG}
 
 In this section, you create a connection to your {SERVICE_SHORT} using an application in
 a single file. You can use any of your favorite build tools, including `gradle`
@@ -30,22 +30,23 @@ or `maven`.
     }
     ```
 
-1.  From the command line in the current directory, run the application:
+2.  From the command line in the current directory, run the application:
 
     ```bash
     java Main.java
     ```
 
-    `Hello, World!` is printed to your console.
+    If the command is successful, `Hello, World!` line output is printed
+    to your console.
 
-1.  Import the PostgreSQL JDBC driver. If you are using a dependency manager,
-   include the [PostgreSQL JDBC Driver][jdbc-maven] as a
+3.  Import the PostgreSQL JDBC driver. If you are using a dependency manager,
+   include the [PostgreSQL JDBC Driver](https://mvnrepository.com/artifact/org.postgresql/postgresql) as a
    dependency.
 
-1.  Download the [JAR artifact of the JDBC Driver][jdbc-download] and
+4.  Download the [JAR artifact of the JDBC Driver](https://jdbc.postgresql.org/download/) and
    save it with the `Main.java` file.
 
-1.  Import the `JDBC Driver` into the Java application and display a list of
+5.  Import the `JDBC Driver` into the Java application and display a list of
    available drivers for the check:
 
     ```java
@@ -61,23 +62,34 @@ or `maven`.
     }
     ```
 
-1.  Run all the examples:
+6.  Run all the examples:
 
     ```bash
     java -cp *.jar Main.java
     ```
 
-    A string similar to `org.postgresql.Driver@7f77e91b` is printed to the terminal. This means that you are ready to
-    connect to {TIMESCALE_DB} from Java.
+   If the command is successful, a string similar to
+   `org.postgresql.Driver@7f77e91b` is printed to your console. This means that you
+   are ready to connect to {TIMESCALE_DB} from Java.
 
-1.  [Locate your {TIMESCALE_DB} credentials][connection-info] and compose a connection string for JDBC in the
-    following format:
+7.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
+   string for JDBC.
+
+    You'll need:
+
+      *   password
+      *   username
+      *   host URL
+      *   port
+      *   database name
+
+8.  Compose your connection string variable, using this format:
 
     ```java
     var connUrl = "jdbc:postgresql://<HOSTNAME>:<PORT>/<DATABASE_NAME>?user=<USERNAME>&password=<PASSWORD>";
     ```
 
-    For more information about creating connection strings, see the [JDBC documentation][jdbc-docs].
+    For more information about creating connection strings, see the [JDBC documentation](https://jdbc.postgresql.org/documentation/datasource/).
 
     <Warning>
     This method of composing a connection string is for test or development
@@ -101,13 +113,14 @@ or `maven`.
     }
     ```
 
-1.  Run the code:
+9.  Run the code:
 
     ```bash
     java -cp *.jar Main.java
     ```
 
-    A string similar to `{ApplicationName=PostgreSQL JDBC Driver}` is printed to your console.
+    If the command is successful, a string similar to
+    `{ApplicationName=PostgreSQL JDBC Driver}` is printed to your console.
 
 ## Create a relational table
 
@@ -129,7 +142,7 @@ percentage of the sensors.
     );
     ```
 
-1.  Create a statement, execute the query you created in the previous step, and
+2.  Create a statement, execute the query you created in the previous step, and
     check that the table was created successfully:
 
     ```java
@@ -184,7 +197,7 @@ and most other tasks are executed on the hypertable.
     );
     ```
 
-1.  Create a statement, execute the query you created in the previous step:
+2.  Create a statement, execute the query you created in the previous step:
 
     ```sql
     SELECT create_hypertable('sensor_data', by_range('time'));
@@ -194,7 +207,7 @@ and most other tasks are executed on the hypertable.
 	The `by_range` and `by_hash` dimension builder is an addition to {TIMESCALE_DB} 2.13.
 	</Note>
 
-1.  Execute the two statements you created, and commit your changes to the
+3.  Execute the two statements you created, and commit your changes to the
     database:
 
     ```java
@@ -269,8 +282,6 @@ section, you can insert single rows, or insert by batches of rows.
     }
     ```
 
-## Batch insert data
-
 If you want to insert a batch of rows by using a batching mechanism. In this
 example, you generate some sample time-series data to insert into the
 `sensor_data` hypertable:
@@ -302,6 +313,8 @@ example, you generate some sample time-series data to insert into the
 
 This section covers how to execute queries against your database.
 
+## Execute queries on {TIMESCALE_DB}
+
 1.  Define the SQL query you'd like to run on the database. This example
     combines time-series and relational data. It returns the average values for
     every 15 minute interval for sensors with specific type and location.
@@ -315,7 +328,7 @@ This section covers how to execute queries against your database.
     ORDER BY bucket DESC;
     ```
 
-1.  Execute the query with the prepared statement and read out the result set for
+2.  Execute the query with the prepared statement and read out the result set for
    all `a`-type sensors located on the `floor`:
 
     ```java
@@ -338,7 +351,7 @@ This section covers how to execute queries against your database.
     }
     ```
 
-    You see output like this:
+    If the command is successful, you'll see output like this:
 
     ```bash
     2021-05-12 23:30:00.0: 0,508649
@@ -451,12 +464,6 @@ public class Main {
 }
 ```
 
-[install-jdk]: https://openjdk.java.net
-[jdbc-driver]: https://jdbc.postgresql.org
-[jdbc-maven]: https://mvnrepository.com/artifact/org.postgresql/postgresql
-[jdbc-download]: https://jdbc.postgresql.org/download/
-[jdbc-docs]: https://jdbc.postgresql.org/documentation/datasource/
-
 ### Execute more complex queries
 
 ```java
@@ -565,10 +572,3 @@ public class Main {
     }
 }
 ```
-
-[install-jdk]: https://openjdk.java.net
-[jdbc-driver]: https://jdbc.postgresql.org
-[jdbc-maven]: https://mvnrepository.com/artifact/org.postgresql/postgresql
-[jdbc-download]: https://jdbc.postgresql.org/download/
-[jdbc-docs]: https://jdbc.postgresql.org/documentation/datasource/
-[connection-info]: /integrations/find-connection-details/

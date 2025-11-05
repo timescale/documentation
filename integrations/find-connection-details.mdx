@@ -1,7 +1,6 @@
 ---
 title: Find your connection details
 description: You connect to Tiger Cloud, self-hosted TimescaleDB, or MST using your connection details
-keywords: [connection, credentials, hostname, port, username, password, database, authentication, connection string, service ID]
 ---
 
 import { SERVICE_LONG, SELF_LONG, SELF_LONG_CAP, SERVICE_SHORT, CONSOLE, PROJECT_LONG, PROJECT_SHORT, PROJECT_SHORT_CAP, CLOUD_LONG, PG, MST_CONSOLE_LONG, MST_LONG, MST_SERVICE_SHORT } from '/snippets/vars.mdx';
@@ -20,7 +19,7 @@ Find the connection details based on your deployment type:
 
 <Tab title={`${CLOUD_LONG}`}>
 
-## Connect to your service
+## Connect to your {SERVICE_SHORT}
 
 Retrieve the connection details for your {SERVICE_LONG}:
 
@@ -34,7 +33,7 @@ Retrieve the connection details for your {SERVICE_LONG}:
 
    ![{SERVICE_LONG} connection details](https://assets.timescale.com/docs/images/tiger-cloud-console/tiger-service-connection-details.png)
 
-## Find your project and service ID
+## Find your {PROJECT_SHORT} and {SERVICE_SHORT} ID
 
 To retrieve the connection details for your {PROJECT_LONG} and {SERVICE_LONG}:
 
@@ -46,7 +45,7 @@ To retrieve the connection details for your {PROJECT_LONG} and {SERVICE_LONG}:
 2. **Retrieve your {SERVICE_SHORT} ID**:
 
    Click the dots next to the {SERVICE_SHORT}, then click `Copy` next to the {SERVICE_SHORT} ID.
-   ![Retrieve the {SERVICE_SHORT} id in {CONSOLE}](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-service-id.png)
+   ![Retrive the {SERVICE_SHORT} id in {CONSOLE}](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-service-id.png)
 
 ## Create client credentials
 
@@ -57,7 +56,7 @@ such as Terraform or the [{CLOUD_LONG} REST API][api-reference]:
 
 1. **Open the settings for your {PROJECT_SHORT}**:
 
-   In [{CONSOLE}][console-services], click your {PROJECT_SHORT} name in the upper left corner, then click <code>{PROJECT_SHORT_CAP} settings</code>.
+   In [{CONSOLE}][console-services], click your {PROJECT_SHORT} name in the upper left corner, then click `{PROJECT_SHORT_CAP} settings`.
 
 2. **Create client credentials**:
 
