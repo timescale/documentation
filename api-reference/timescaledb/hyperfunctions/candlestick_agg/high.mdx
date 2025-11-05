@@ -1,0 +1,35 @@
+---
+title: high()
+description: Get the high price from a candlestick aggregate
+topics: [hyperfunctions]
+tags: [hyperfunctions, finance, candlestick, high]
+license: community
+type: function
+experimental: false
+toolkit: true
+hyperfunction:
+  family: financial analysis
+  type: accessor
+  aggregates:
+    - candlestick_agg()
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.14.0
+
+Get the high price from a candlestick aggregate.
+
+```sql
+high(
+    candlestick Candlestick
+) RETURNS DOUBLE PRECISION
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| candlestick | Candlestick | - | ✔ | Candlestick aggregate |
+
+## Returns
+
+The high price

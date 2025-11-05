@@ -466,12 +466,6 @@
                     ]
                   },
                   {
-                    "group": "Hypercore",
-                    "pages": [
-                      "api-reference/timescaledb/hypertables/show_chunks"
-                    ]
-                  },
-                  {
                     "group": "Hyperfunctions",
                     "pages": [
                       "api-reference/timescaledb/hyperfunctions/hyperfunctions",
@@ -486,70 +480,123 @@
                       {
                         "group": "Approximate count distinct",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/hyperloglog"
+                          "api-reference/timescaledb/hyperfunctions/hyperloglog/index",
+                          "api-reference/timescaledb/hyperfunctions/hyperloglog/hyperloglog",
+                          "api-reference/timescaledb/hyperfunctions/hyperloglog/approx_count_distinct",
+                          "api-reference/timescaledb/hyperfunctions/hyperloglog/distinct_count",
+                          "api-reference/timescaledb/hyperfunctions/hyperloglog/stderror",
+                          "api-reference/timescaledb/hyperfunctions/hyperloglog/rollup"
                         ]
                       },
                       {
-                        "group": "Statistical and regression analysis", 
+                        "group": "Statistical and regression analysis",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/stats_agg-one-variable",
-                          "api-reference/timescaledb/hyperfunctions/stats_agg-two-variables"
+                          "api-reference/timescaledb/hyperfunctions/stats_agg-one-variable/stats_agg-one-variable",
+                          "api-reference/timescaledb/hyperfunctions/stats_agg-two-variables/stats_agg-two-variables"
                         ]
                       },
                       {
                         "group": "Minimum and maximum",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/min_n",
-                          "api-reference/timescaledb/hyperfunctions/max_n",
-                          "api-reference/timescaledb/hyperfunctions/min_n_by",
-                          "api-reference/timescaledb/hyperfunctions/max_n_by"
+                          "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/index",
+                          {
+                            "group": "Minimum values",
+                            "pages": [
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n/index",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n/min_n",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n/into_values",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n/into_array",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n/rollup"
+                            ]
+                          },
+                          {
+                            "group": "Maximum values",
+                            "pages": [
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n/index",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n/max_n",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n/into_values",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n/into_array",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n/rollup"
+                            ]
+                          },
+                          {
+                            "group": "Minimum values by",
+                            "pages": [
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n_by/index",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n_by/min_n_by",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n_by/into_values",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/min_n_by/rollup"
+                            ]
+                          },
+                          {
+                            "group": "Maximum values by",
+                            "pages": [
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n_by/index",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n_by/max_n_by",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n_by/into_values",
+                              "api-reference/timescaledb/hyperfunctions/minimum-and-maximum/max_n_by/rollup"
+                            ]
+                          }
                         ]
                       },
                       {
                         "group": "Financial analysis",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/candlestick_agg"
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/index",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/candlestick_agg",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/candlestick",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/open",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/open_time",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/high",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/high_time",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/low",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/low_time",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/close",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/close_time",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/volume",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/vwap",
+                          "api-reference/timescaledb/hyperfunctions/candlestick_agg/rollup"
                         ]
                       },
                       {
                         "group": "Gapfilling",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill"
+                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill"
                         ]
                       },
                       {
                         "group": "Percentile approximation",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/uddsketch",
-                          "api-reference/timescaledb/hyperfunctions/tdigest"
+                          "api-reference/timescaledb/hyperfunctions/uddsketch/uddsketch",
+                          "api-reference/timescaledb/hyperfunctions/tdigest/tdigest"
                         ]
                       },
                       {
                         "group": "Counters and gauges",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/counter_agg",
-                          "api-reference/timescaledb/hyperfunctions/gauge_agg"
+                          "api-reference/timescaledb/hyperfunctions/counter_agg/counter_agg",
+                          "api-reference/timescaledb/hyperfunctions/gauge_agg/gauge_agg"
                         ]
                       },
                       {
                         "group": "Time-weighted calculations",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/time_weight"
+                          "api-reference/timescaledb/hyperfunctions/time_weight/time_weight"
                         ]
                       },
                       {
                         "group": "Frequency analysis",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/freq_agg",
-                          "api-reference/timescaledb/hyperfunctions/count_min_sketch"
+                          "api-reference/timescaledb/hyperfunctions/freq_agg/freq_agg",
+                          "api-reference/timescaledb/hyperfunctions/count_min_sketch/count_min_sketch"
                         ]
                       },
                       {
                         "group": "State tracking",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/compact_state_agg",
-                          "api-reference/timescaledb/hyperfunctions/state_agg",
-                          "api-reference/timescaledb/hyperfunctions/heartbeat_agg"
+                          "api-reference/timescaledb/hyperfunctions/compact_state_agg/compact_state_agg",
+                          "api-reference/timescaledb/hyperfunctions/state_agg/state_agg",
+                          "api-reference/timescaledb/hyperfunctions/heartbeat_agg/heartbeat_agg"
                         ]
                       }
                     ]
