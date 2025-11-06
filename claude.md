@@ -122,7 +122,8 @@
 - replace references to import sunsetted`<version>` with `<Icon icon="sunset" iconType="duotone" />` Sunsetted `<version>` on its own line after the frontmatter, followed by a newline before content begins
 - replace references to import EarlyAccess`<version>` with `<Icon icon="flask" />` Early access `<version>` on its own line after the frontmatter, followed by a newline before content begins. if there is no version number, don't add one
 - replace references to import Experimental with `<Icon icon="flask" />` Early access on its own line after the frontmatter, followed by a newline before content begins. if there is no version number, don't add one
-- Ask where the other imported files should go in the snippets directory (initially manual, but track patterns to automate over time)
+- **ALWAYS keep imported partials as snippets**: When migrating files that import other MDX files (partials), ALWAYS migrate those partials to the snippets/ directory and import them as snippets in the new file. NEVER inline the content directly.
+- Ask where the other imported files should go in the snippets directory (initially manual, but track patterns to automate over time). For manage-data content, use snippets/manage-data/; for API reference content, use snippets/api-reference/[component]/
 - Update the metadata in each file, rename the excerpt metadata name as description, and api_name as title
 - Remove api: and version: metadata sections, indent license and type under root level
 - Put the value of stable in a since icon (e.gple., if stable: 1.0.0, add Since 1.0.0 icon), then remove the stable metadata item
@@ -158,6 +159,18 @@
 
      <TwoStepAggregation />
      ```
+- **Variable imports in snippets**: Snippets should NOT include their own variable import statements when used as components. The parent file must import all variables needed by both itself and any snippets it includes. This prevents duplicate variable declarations which cause SyntaxError.
+  - ❌ BAD: Snippet has `import { VARIABLE } from '/snippets/vars.mdx';`
+  - ✅ GOOD: Snippet uses `{VARIABLE}` directly, parent file imports all variables
+  - Example:
+    ```mdx
+    // Parent file (index.mdx)
+    import { VAR1, VAR2, VAR3 } from '/snippets/vars.mdx';  // All vars for parent AND snippets
+    import MySnippet from '/snippets/my-snippet.mdx';
+
+    // Snippet file (my-snippet.mdx)
+    // No import statement - uses {VAR2} and {VAR3} from parent scope
+    ```
 - When a snippet is used, remove any duplicate reference links from the parent page that are defined in the snippet
 
 ## Migrating hyperfunction groups
