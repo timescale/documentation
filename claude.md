@@ -66,6 +66,19 @@
 
 ### Variables and links
 - Use `{VARIABLE_NAME}` syntax for variables (reference snippets/vars.mdx for mappings)
+- **IMPORTANT**: Variables do NOT work in frontmatter/metadata - only use them in the page content after the `---` closing tag
+- **Variables must be imported**: Add `import { VARIABLE_NAME, OTHER_VAR } from '/snippets/vars.mdx';` after the frontmatter to use variables in the page
+- Variables are NOT automatically available - each file must import the specific variables it needs
+- Example:
+  ```mdx
+  ---
+  title: My Page
+  ---
+
+  import { TOOLKIT_LONG, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+  {TOOLKIT_LONG} extends {TIMESCALE_DB} with additional functionality.
+  ```
 - Internal links don't require full domain - use relative paths
 - External links input as-is with full URLs
 

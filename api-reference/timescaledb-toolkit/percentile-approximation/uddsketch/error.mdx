@@ -1,0 +1,50 @@
+---
+title: error()
+description: Get the maximum relative error for a `uddsketch`
+topics: [hyperfunctions]
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: percentile approximation
+  type: accessor
+  aggregates:
+    - uddsketch()
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
+
+Get the maximum relative error of a `uddsketch`. The correct (non-estimated) percentile falls within the range defined by `approx_percentile(sketch) +/- (approx_percentile(sketch) * error(sketch))`.
+
+```sql
+error(
+  sketch UddSketch
+) RETURNS DOUBLE PRECISION
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| sketch | UddSketch | - |  | The `uddsketch` to determine the error of |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| error | DOUBLE PRECISION | The maximum relative error of any percentile estimate |
+
+## Samples
+
+Calculate the maximum relative error when estimating percentiles using `uddsketch`.
+
+```sql
+SELECT error(uddsketch(data))
+FROM generate_series(0, 100) data;
+```
+
+```
+error
+-------
+0.001
+```

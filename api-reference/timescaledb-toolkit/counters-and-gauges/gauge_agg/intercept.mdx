@@ -1,0 +1,48 @@
+---
+title: intercept()
+description: Calculate the y-intercept from a gauge aggregate
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: counters and gauges
+  type: accessor
+  aggregates:
+  - gauge_agg()
+topics:
+- hyperfunctions
+---
+
+<Icon icon="flask" /> Early access 1.6.0
+
+Calculate the y-intercept of a linear least-squares fit between gauge value and time. This corresponds to the projected value at the Postgres epoch `(2000-01-01 00:00:00+00)`. You can use the y-intercept with the slope to plot a best-fit line.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The y-intercept of the linear least-squares fit
+
+## Samples
+
+Calculate the y-intercept of the linear fit for each 15-minute gauge aggregate.
+
+```sql
+SELECT
+    id,
+    bucket,
+    intercept(summary)
+FROM (
+    SELECT
+        id,
+        time_bucket('15 min'::interval, ts) AS bucket,
+        gauge_agg(ts, val) AS summary
+    FROM foo
+    GROUP BY id, time_bucket('15 min'::interval, ts)
+) t
+```

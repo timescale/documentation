@@ -1,0 +1,29 @@
+---
+title: TimescaleDB API Reference
+description: Complete API reference for TimescaleDB functions, SQL commands, and time-series data management
+products: [cloud, mst, self_hosted]
+keywords: [API, reference, SQL, functions, hypertables]
+mode: "wide"
+---
+
+import { TIMESCALE_DB, HYPERTABLE_CAP, HYPERFUNC_CAP } from '/snippets/vars.mdx';
+
+{TIMESCALE_DB} provides SQL commands and functions for managing time-series data efficiently.
+
+<CardGroup cols={2}>
+  <Card
+    title="Hypertables"
+    icon="table"
+    href="/api-reference/timescaledb/hypertables/create_table"
+  >
+    Functions and commands for creating and managing hypertables
+  </Card>
+
+  <Card
+    title="Hyperfunctions"
+    icon="function"
+    href="/api-reference/timescaledb/hyperfunctions/index"
+  >
+    Functions for analyzing time-series data including time bucketing, gapfilling, and distribution analysis
+  </Card>
+</CardGroup>
