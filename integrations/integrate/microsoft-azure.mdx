@@ -1,4 +1,38 @@
 ---
-title: Microsoft Azure
-description: TBD
+title: Integrate Microsoft Azure with Tiger Cloud
+sidebarTitle: Microsoft Azure
+description: Microsoft Azure enables you to build, deploy, and manage applications across cloud, hybrid, and edge environments. Integrate Microsoft Azure with Tiger Cloud using AWS Transit Gateway
 ---
+
+import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
+import TransitGateway from '/snippets/integrations/_transit-gateway.mdx';
+import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
+
+[Microsoft Azure][azure] is a cloud computing platform and services suite, offering infrastructure, AI, analytics, security, and developer tools to help businesses build, deploy, and manage applications.
+
+This page explains how to integrate your Microsoft Azure infrastructure with {CLOUD_LONG} using [AWS Transit Gateway][aws-transit-gateway].
+
+## Prerequisites
+
+<IntegrationPrereqsCloud />
+
+- Set up [AWS Transit Gateway][gtw-setup].
+
+<NotSupportedAzure />
+
+## Connect your Microsoft Azure infrastructure to your {SERVICE_LONG}s
+
+To connect to {CLOUD_LONG}:
+
+1. **Connect your infrastructure to AWS Transit Gateway**
+
+   Establish connectivity between Azure and AWS. See the [AWS architectural documentation][azure-aws] for details.
+
+<TransitGateway />
+
+You have successfully integrated your Microsoft Azure infrastructure with {CLOUD_LONG}.
+
+[aws-transit-gateway]: https://aws.amazon.com/transit-gateway/
+[gtw-setup]: https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html
+[azure]: https://azure.microsoft.com/en-gb/
+[azure-aws]: https://aws.amazon.com/blogs/modernizing-with-aws/designing-private-network-connectivity-aws-azure/
