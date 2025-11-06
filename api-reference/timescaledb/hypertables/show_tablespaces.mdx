@@ -1,0 +1,29 @@
+---
+title: show_tablespaces()
+description: Show the tablespaces attached to a hypertable
+topics: [hypertables]
+keywords: [tablespaces, hypertables]
+tags: [show, get]
+license: apache
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+Show the tablespaces attached to a hypertable.
+
+## Samples
+
+```sql
+SELECT * FROM show_tablespaces('conditions');
+
+ show_tablespaces
+------------------
+ disk1
+ disk2
+```
+
+## Arguments
+
+|Name|Type| Default | Required | Description|
+|---|---|---|---|---|
+| `hypertable` | REGCLASS | - | ✔ | Hypertable to show attached tablespaces for.|

@@ -1,0 +1,29 @@
+---
+title: remove_reorder_policy()
+description: Remove a reorder policy from a hypertable
+topics: [hypertables, jobs]
+keywords: [reorder, policies, remove]
+tags: [delete, drop]
+license: community
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+<Tag>Community</Tag>
+
+Remove a policy to reorder a particular hypertable.
+
+## Samples
+
+```sql
+SELECT remove_reorder_policy('conditions', if_exists => true);
+```
+
+removes the existing reorder policy for the `conditions` table if it exists.
+
+## Arguments
+
+|Name|Type| Default | Required | Description|
+|---|---|---|---|---|
+| `hypertable` | REGCLASS | - | ✔ | Name of the hypertable from which to remove the policy. |
+| `if_exists` | BOOLEAN | `FALSE` | ✖ |  Set to true to avoid throwing an error if the reorder_policy does not exist. A notice is issued instead. |

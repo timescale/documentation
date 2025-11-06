@@ -1,0 +1,67 @@
+---
+title: hypertable_index_size()
+description: Get the disk space used by a hypertable index
+topics: [hypertables]
+keywords: [hypertables, indexes, information]
+tags: [disk space, size]
+license: apache
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+Get the disk space used by an index on a hypertable, including the
+disk space needed to provide the index on all chunks. The size is
+reported in bytes.
+
+For more information about using hypertables, including chunk size partitioning,
+see the [hypertable section][hypertable-docs].
+
+## Samples
+
+Get size of a specific index on a hypertable.
+
+```sql
+\d conditions_table
+                     Table "public.conditions_table"
+ Column |           Type           | Collation | Nullable | Default
+--------+--------------------------+-----------+----------+---------
+ time   | timestamp with time zone |           | not null |
+ device | integer                  |           |          |
+ volume | integer                  |           |          |
+Indexes:
+    "second_index" btree ("time")
+    "test_table_time_idx" btree ("time" DESC)
+    "third_index" btree ("time")
+
+SELECT hypertable_index_size('second_index');
+
+ hypertable_index_size
+-----------------------
+                163840
+
+SELECT pg_size_pretty(hypertable_index_size('second_index'));
+
+ pg_size_pretty
+----------------
+ 160 kB
+
+```
+
+## Arguments
+
+|Name|Type| Default | Required | Description|
+|-|-|-|-|-|
+|`index_name`|REGCLASS| - | ✔ |Name of the index on a hypertable|
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+|hypertable_index_size|BIGINT|Returns the disk space used by the index|
+
+If the function is executed on a non-hypertable relation, `NULL` is returned.
+
+
+
+
+[hypertable-docs]: /use-timescale/hypertables/
