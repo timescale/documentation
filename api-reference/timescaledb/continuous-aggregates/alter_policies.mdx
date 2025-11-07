@@ -1,0 +1,60 @@
+---
+title: alter_policies()
+description: Alter refresh, compression, or data retention policies on a continuous aggregate
+topics: [continuous aggregates, jobs, compression, data retention]
+keywords: [continuous aggregates, policies, alter, compress, data retention]
+tags: [change]
+license: community
+type: function
+experimental: true
+products: [cloud, self_hosted, mst]
+---
+
+<Icon icon="flask" /> Early access
+
+Alter refresh, columnstore, or data retention policies on a continuous
+aggregate. The altered columnstore and retention policies apply to the
+continuous aggregate, _not_ to the original hypertable.
+
+```sql
+timescaledb_experimental.alter_policies(
+     relation REGCLASS,
+     if_exists BOOL = false,
+     refresh_start_offset "any" = NULL,
+     refresh_end_offset "any" = NULL,
+     compress_after "any" = NULL,
+     drop_after "any" = NULL
+) RETURNS BOOL
+```
+
+## Samples
+
+Given a continuous aggregate named `example_continuous_aggregate` with an
+existing columnstore policy, alter the columnstore policy to compress data older
+than 16 days:
+
+```sql
+SELECT timescaledb_experimental.alter_policies(
+    'continuous_agg_max_mat_date',
+    compress_after => '16 days'::interval
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `relation` | `REGCLASS` | - | ✔ | The continuous aggregate that you want to alter policies for |
+| `if_not_exists` | `BOOL` | false | - | When true, prints a warning instead of erroring if the policy doesn't exist. |
+| `refresh_start_offset` | `INTERVAL` or `INTEGER` | - | - | The start of the continuous aggregate refresh window, expressed as an offset from the policy run time. |
+| `refresh_end_offset` | `INTERVAL` or `INTEGER` | - | - | The end of the continuous aggregate refresh window, expressed as an offset from the policy run time. Must be greater than `refresh_start_offset`. |
+| `compress_after` | `INTERVAL` or `INTEGER` | - | - | Continuous aggregate chunks are compressed into the columnstore if they exclusively contain data older than this interval. |
+| `drop_after` | `INTERVAL` or `INTEGER` | - | - | Continuous aggregate chunks are dropped if they exclusively contain data older than this interval. |
+
+For arguments that could be either an `INTERVAL` or an `INTEGER`, use an
+`INTERVAL` if your time bucket is based on timestamps. Use an `INTEGER` if your
+time bucket is based on integers.
+
+## Returns
+
+Returns true if successful.

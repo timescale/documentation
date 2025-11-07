@@ -10,11 +10,13 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.20.0
 
-import { HYPERTABLE, HYPERTABLE_CAP, COLUMNSTORE, ROWSTORE, TIMESCALE_DB, HYPERCORE, PG, CLOUD_LONG, CHUNK } from '/snippets/vars.mdx';
+
 import OldApiCreateHypertable from '/snippets/manage-data/old-api-create-hypertable.mdx';
 import CreateHypertableColumnstorePolicyNote from '/snippets/manage-data/create-hypertable-columnstore-policy-note.mdx';
 import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/dimensions-info.mdx';
 import HypercoreDirectCompress from '/snippets/api-reference/timescaledb/hypercore/hypercore-direct-compress.mdx';
+
+import { HYPERTABLE, HYPERTABLE_CAP, COLUMNSTORE, ROWSTORE, TIMESCALE_DB, HYPERCORE, PG, CLOUD_LONG, CHUNK } from '/snippets/vars.mdx';
 
 Create a {HYPERTABLE} partitioned on a single dimension with {COLUMNSTORE} enabled, or
 create a standard {PG} relational table.

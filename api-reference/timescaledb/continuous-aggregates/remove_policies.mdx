@@ -1,0 +1,58 @@
+---
+title: remove_policies()
+description: Remove refresh, compression, or data retention policies from a continuous aggregate
+topics: [continuous aggregates, jobs, compression, data retention]
+keywords: [continuous aggregates, policies, remove, compress, data retention]
+license: community
+type: function
+experimental: true
+products: [cloud, self_hosted, mst]
+---
+
+<Icon icon="flask" /> Early access
+
+Remove refresh, columnstore, and data retention policies from a continuous
+aggregate. The removed columnstore and retention policies apply to the
+continuous aggregate, _not_ to the original hypertable.
+
+```sql
+timescaledb_experimental.remove_policies(
+     relation REGCLASS,
+     if_exists BOOL = false,
+     VARIADIC policy_names TEXT[] = NULL
+) RETURNS BOOL
+```
+
+To remove all policies on a continuous aggregate, see
+[`remove_all_policies()`][remove-all-policies].
+
+## Samples
+
+Given a continuous aggregate named `example_continuous_aggregate` with a refresh
+policy and a data retention policy, remove both policies.
+
+Throw an error if either policy doesn't exist. If the continuous aggregate has a
+columnstore policy, leave it unchanged:
+
+```sql
+SELECT timescaledb_experimental.remove_policies(
+    'example_continuous_aggregate',
+    false,
+    'policy_refresh_continuous_aggregate',
+    'policy_retention'
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `relation` | `REGCLASS` | - | ✔ | The continuous aggregate to remove policies from |
+| `if_exists` | `BOOL` | false | - | When true, prints a warning instead of erroring if the policy doesn't exist. |
+| `policy_names` | `TEXT` | - | - | The policies to remove. You can list multiple policies, separated by a comma. Allowed policy names are `policy_refresh_continuous_aggregate`, `policy_compression`, and `policy_retention`. |
+
+## Returns
+
+Returns true if successful.
+
+[remove-all-policies]: /api-reference/timescaledb/continuous-aggregates/remove_all_policies

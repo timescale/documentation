@@ -1,0 +1,139 @@
+---
+title: Informational views overview
+sidebarTitle: Overview
+description: The full list of informational views available in TimescaleDB. Informational views provide detailed information about the state of your data, hypertables, chunks, and any jobs or policies you have in place
+keywords: [information]
+tags: [statistics, background jobs, scheduled jobs, hypertables, continuous aggregates, compression]
+---
+
+TimescaleDB makes complex database features like partitioning and data retention
+easy to use with our comprehensive APIs. TimescaleDB works hard to provide
+detailed information about the state of your data, hypertables, chunks, and any
+jobs or policies you have in place.
+
+These views provide the data and statistics you need to keep track of your
+database.
+
+## Samples
+
+### Get all hypertables in your database
+
+View all hypertables with their size and compression status:
+
+```sql
+SELECT hypertable_name,
+       num_dimensions,
+       num_chunks,
+       compression_enabled,
+       is_distributed
+FROM timescaledb_information.hypertables;
+```
+
+### Check chunk information for a hypertable
+
+View all chunks for a specific hypertable:
+
+```sql
+SELECT chunk_name,
+       range_start,
+       range_end,
+       is_compressed
+FROM timescaledb_information.chunks
+WHERE hypertable_name = 'conditions'
+ORDER BY range_start DESC;
+```
+
+### Monitor background jobs
+
+View all scheduled jobs and their status:
+
+```sql
+SELECT job_id,
+       application_name,
+       schedule_interval,
+       last_run_status,
+       next_start
+FROM timescaledb_information.jobs
+ORDER BY next_start;
+```
+
+### Check job execution history
+
+View recent job runs and their success/failure status:
+
+```sql
+SELECT job_id,
+       execution_start,
+       execution_finish,
+       succeeded,
+       total_runs,
+       total_failures
+FROM timescaledb_information.job_stats
+ORDER BY last_finish DESC
+LIMIT 10;
+```
+
+### View continuous aggregate details
+
+Get information about all continuous aggregates:
+
+```sql
+SELECT view_name,
+       view_definition,
+       materialized_only,
+       compression_enabled,
+       finalized
+FROM timescaledb_information.continuous_aggregates;
+```
+
+### Check compression settings
+
+View compression settings for all hypertables:
+
+```sql
+SELECT hypertable_name,
+       attname AS column_name,
+       orderby_column_index,
+       segmentby_column_index
+FROM timescaledb_information.hypertable_compression_settings
+ORDER BY hypertable_name, orderby_column_index;
+```
+
+## Available views
+
+### Hypertable and chunk information
+- [`timescaledb_information.chunks`][chunks]: get metadata about hypertable chunks
+- [`timescaledb_information.dimensions`][dimensions]: get information on the dimensions of hypertables
+- [`timescaledb_information.hypertables`][hypertables]: get metadata about hypertables
+
+### Compression information
+- [`timescaledb_information.chunk_compression_settings`][chunk_compression_settings]: get information about compression settings for all chunks
+- [`timescaledb_information.compression_settings`][compression_settings]: get information about compression settings for hypertables (deprecated)
+- [`timescaledb_information.hypertable_compression_settings`][hypertable_compression_settings]: get information about compression settings for all hypertables
+
+### Continuous aggregates
+- [`timescaledb_information.continuous_aggregates`][continuous_aggregates]: get metadata and settings information for continuous aggregates
+
+### Jobs and policies
+- [`timescaledb_information.job_errors`][job_errors]: get information about background job errors
+- [`timescaledb_information.job_history`][job_history]: get information about background job execution
+- [`timescaledb_information.job_stats`][job_stats]: get information and statistics about automatically run jobs
+- [`timescaledb_information.jobs`][jobs]: get information about all jobs registered with the automatic scheduler
+- [`timescaledb_experimental.policies`][policies]: get information about all policies set on continuous aggregates
+
+### Multi-node (sunsetted)
+- [`timescaledb_information.data_nodes`][data_nodes]: get information on data nodes in a multi-node cluster
+
+[chunk_compression_settings]: /api-reference/timescaledb/informational-views/chunk_compression_settings
+[chunks]: /api-reference/timescaledb/informational-views/chunks
+[compression_settings]: /api-reference/timescaledb/informational-views/compression_settings
+[continuous_aggregates]: /api-reference/timescaledb/informational-views/continuous_aggregates
+[data_nodes]: /api-reference/timescaledb/informational-views/data_nodes
+[dimensions]: /api-reference/timescaledb/informational-views/dimensions
+[hypertable_compression_settings]: /api-reference/timescaledb/informational-views/hypertable_compression_settings
+[hypertables]: /api-reference/timescaledb/informational-views/hypertables
+[job_errors]: /api-reference/timescaledb/informational-views/job_errors
+[job_history]: /api-reference/timescaledb/informational-views/job_history
+[job_stats]: /api-reference/timescaledb/informational-views/job_stats
+[jobs]: /api-reference/timescaledb/informational-views/jobs
+[policies]: /api-reference/timescaledb/informational-views/policies

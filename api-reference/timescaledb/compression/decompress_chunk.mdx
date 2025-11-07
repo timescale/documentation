@@ -1,0 +1,46 @@
+---
+title: decompress_chunk()
+description: Decompress a compressed chunk
+topics: [compression]
+keywords: [compression, decompression, chunks, backfilling]
+license: community
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [convert_to_rowstore()][convert-to-rowstore].
+
+<Warning>
+Before decompressing {CHUNK}s, stop any compression policy on the {HYPERTABLE} you are decompressing. You can use `SELECT alter_job(JOB_ID, scheduled => false);` to prevent scheduled execution.
+</Warning>
+
+## Samples
+
+Decompress a single {CHUNK}:
+
+```sql
+SELECT decompress_chunk('_timescaledb_internal._hyper_2_2_chunk');
+```
+
+Decompress all compressed {CHUNK}s in a {HYPERTABLE} named `metrics`:
+
+```sql
+SELECT decompress_chunk(c, true) FROM show_chunks('metrics') c;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `chunk_name` | REGCLASS | - | ✔ | Name of the {CHUNK} to be decompressed. |
+| `if_compressed` | BOOLEAN | true | - | Disabling this will make the function error out on {CHUNK}s that are not compressed. |
+
+## Returns
+
+| Column | Type | Description |
+|-|-|-|
+| `decompress_chunk` | REGCLASS | Name of the {CHUNK} that was decompressed. |
+
+[convert-to-rowstore]: /api-reference/timescaledb/hypercore/convert_to_rowstore

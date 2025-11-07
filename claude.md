@@ -65,11 +65,14 @@
 ## Content reuse and formatting
 
 ### Variables and links
+
+**Variables:**
 - Use `{VARIABLE_NAME}` syntax for variables (reference snippets/vars.mdx for mappings)
 - **IMPORTANT**: Variables do NOT work in frontmatter/metadata - only use them in the page content after the `---` closing tag
 - **Variables must be imported**: Add `import { VARIABLE_NAME, OTHER_VAR } from '/snippets/vars.mdx';` after the frontmatter to use variables in the page
 - Variables are NOT automatically available - each file must import the specific variables it needs
-- Example:
+- **Import order**: Place snippet/component imports BEFORE variable imports
+- Basic example:
   ```mdx
   ---
   title: My Page
@@ -79,6 +82,34 @@
 
   {TOOLKIT_LONG} extends {TIMESCALE_DB} with additional functionality.
   ```
+
+**Variable scoping with snippets:**
+- In Mintlify, imported snippets render in their own scope and do NOT have access to the parent's variable imports
+- ✅ REQUIRED: Each snippet file must import the specific variables it uses
+- ✅ REQUIRED: Parent files must import ONLY the variables they use in their own content (not variables used only in snippets)
+- ⚠️ CRITICAL: Do NOT import variables in the parent that are only used by imported snippets - this causes duplicate declarations and rendering failures
+- Example with snippets:
+  ```mdx
+  ---
+  title: My Page
+  ---
+
+  import MySnippet from '/snippets/my-snippet.mdx';
+  import { VAR1, VAR2 } from '/snippets/vars.mdx';  // ONLY vars used directly in parent content
+
+  Content using {VAR1} and {VAR2}...
+  <MySnippet />
+  ```
+
+  Snippet file (my-snippet.mdx):
+  ```mdx
+  import { VAR3, VAR4 } from '/snippets/vars.mdx';  // ONLY vars used in this snippet
+
+  Content using {VAR3} and {VAR4}...
+  ```
+- To check which variables are used: `grep -o "{[A-Z_]*}" file.mdx | sort -u` (this shows variables in the file's own content, excluding imported snippets)
+
+**Links:**
 - Internal links don't require full domain - use relative paths
 - External links input as-is with full URLs
 
@@ -153,24 +184,13 @@
      title: My Page
      ---
 
-     import TwoStepAggregation from '/snippets/api-reference/hyperfunctions/two-step-aggregation.mdx';
+     import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 
      ## Two-step aggregation
 
      <TwoStepAggregation />
      ```
-- **Variable imports in snippets**: Snippets should NOT include their own variable import statements when used as components. The parent file must import all variables needed by both itself and any snippets it includes. This prevents duplicate variable declarations which cause SyntaxError.
-  - ❌ BAD: Snippet has `import { VARIABLE } from '/snippets/vars.mdx';`
-  - ✅ GOOD: Snippet uses `{VARIABLE}` directly, parent file imports all variables
-  - Example:
-    ```mdx
-    // Parent file (index.mdx)
-    import { VAR1, VAR2, VAR3 } from '/snippets/vars.mdx';  // All vars for parent AND snippets
-    import MySnippet from '/snippets/my-snippet.mdx';
-
-    // Snippet file (my-snippet.mdx)
-    // No import statement - uses {VAR2} and {VAR3} from parent scope
-    ```
+- **Important**: Remember that snippets must import their own variables - see the "Variables and links" section above for details on variable scoping with snippets
 - When a snippet is used, remove any duplicate reference links from the parent page that are defined in the snippet
 
 ## Migrating hyperfunction groups
@@ -195,7 +215,7 @@ When migrating a hyperfunction group (e.g., candlestick_agg, state_agg, time_wei
 For hyperfunction groups that use the two-step aggregation pattern, add these sections to index.mdx in this order:
 
 1. **Two-step aggregation section**:
-   - Import the snippet after the frontmatter: `import TwoStepAggregation from '/snippets/api-reference/hyperfunctions/two-step-aggregation.mdx';`
+   - Import the snippet after the frontmatter: `import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';`
    - Add `## Two-step aggregation` heading followed by `<TwoStepAggregation />`
 
 2. **Samples section**: Add `## Samples` with subsections for each example (e.g., `### Get candlestick values from tick data`)
