@@ -689,129 +689,6 @@
                 ]
               },
               {
-                "dropdown": "Tiger Cloud REST API",
-                "groups": [
-                  {
-                    "group": " ",
-                    "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml"
-                  }
-                ]
-              },
-              {
-                "dropdown": "pgai ",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "api-reference/pgai/index"
-                    ]
-                  },
-                  {
-                    "group": "OpenAI",
-                    "pages": [
-                      "api-reference/pgai/model-calling/openai/index",
-                      "api-reference/pgai/model-calling/openai/openai_embed",
-                      "api-reference/pgai/model-calling/openai/openai_embed_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_chat_complete",
-                      "api-reference/pgai/model-calling/openai/openai_chat_complete_simple",
-                      "api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_tokenize",
-                      "api-reference/pgai/model-calling/openai/openai_detokenize",
-                      "api-reference/pgai/model-calling/openai/openai_list_models",
-                      "api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_moderate",
-                      "api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_client_config"
-                    ]
-                  },
-                  {
-                    "group": "Ollama",
-                    "pages": [
-                      "api-reference/pgai/model-calling/ollama/index",
-                      "api-reference/pgai/model-calling/ollama/ollama_embed",
-                      "api-reference/pgai/model-calling/ollama/ollama_generate",
-                      "api-reference/pgai/model-calling/ollama/ollama_chat_complete",
-                      "api-reference/pgai/model-calling/ollama/ollama_list_models",
-                      "api-reference/pgai/model-calling/ollama/ollama_ps"
-                    ]
-                  },
-                  {
-                    "group": "Anthropic",
-                    "pages": [
-                      "api-reference/pgai/model-calling/anthropic/index",
-                      "api-reference/pgai/model-calling/anthropic/anthropic_generate",
-                      "api-reference/pgai/model-calling/anthropic/anthropic_list_models"
-                    ]
-                  },
-                  {
-                    "group": "Cohere",
-                    "pages": [
-                      "api-reference/pgai/model-calling/cohere/index",
-                      "api-reference/pgai/model-calling/cohere/cohere_embed",
-                      "api-reference/pgai/model-calling/cohere/cohere_rerank",
-                      "api-reference/pgai/model-calling/cohere/cohere_rerank_simple",
-                      "api-reference/pgai/model-calling/cohere/cohere_classify",
-                      "api-reference/pgai/model-calling/cohere/cohere_classify_simple",
-                      "api-reference/pgai/model-calling/cohere/cohere_chat_complete",
-                      "api-reference/pgai/model-calling/cohere/cohere_tokenize",
-                      "api-reference/pgai/model-calling/cohere/cohere_detokenize",
-                      "api-reference/pgai/model-calling/cohere/cohere_list_models"
-                    ]
-                  },
-                  {
-                    "group": "Voyage AI",
-                    "pages": [
-                      "api-reference/pgai/model-calling/voyageai/index",
-                      "api-reference/pgai/model-calling/voyageai/voyageai_embed"
-                    ]
-                  },
-                  {
-                    "group": "LiteLLM",
-                    "pages": [
-                      "api-reference/pgai/model-calling/litellm/index",
-                      "api-reference/pgai/model-calling/litellm/litellm_embed"
-                    ]
-                  },
-                  {
-                    "group": "Vectorizer",
-                    "pages": [
-                      "api-reference/pgai/vectorizer/index",
-                      "api-reference/pgai/vectorizer/create_vectorizer",
-                      "api-reference/pgai/vectorizer/drop_vectorizer",
-                      "api-reference/pgai/vectorizer/destination_table",
-                      "api-reference/pgai/vectorizer/destination_column",
-                      "api-reference/pgai/vectorizer/loading_column",
-                      "api-reference/pgai/vectorizer/parsing_auto",
-                      "api-reference/pgai/vectorizer/parsing_none",
-                      "api-reference/pgai/vectorizer/chunking_character_text_splitter",
-                      "api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter",
-                      "api-reference/pgai/vectorizer/chunking_none",
-                      "api-reference/pgai/vectorizer/embedding_openai",
-                      "api-reference/pgai/vectorizer/embedding_ollama",
-                      "api-reference/pgai/vectorizer/embedding_litellm",
-                      "api-reference/pgai/vectorizer/embedding_voyageai"
-                    ]
-                  }
-                ]
-              },
-              {
-                "dropdown": "pgvectorscale ",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "api-reference/pgvectorscale/pgvectorscale-api-reference-landing"
-                    ]
-                  },
-                  {
-                    "group": "API Reference",
-                    "pages": [
-                      "api-reference/pgvectorscale/pgvectorscale-api-reference"
-                    ]
-                  }
-                ]
-              },
-              {
                 "dropdown": "TimescaleDB toolkit",
                 "groups": [
                   {
@@ -1149,6 +1026,131 @@
                       "api-reference/timescaledb-toolkit/saturating-math/saturating_sub",
                       "api-reference/timescaledb-toolkit/saturating-math/saturating_sub_pos",
                       "api-reference/timescaledb-toolkit/saturating-math/saturating_mul"
+                    ]
+                  }
+                ]
+              },
+              {
+                "dropdown": "Tiger Cloud REST API",
+                "groups": [
+                  {
+                    "group": " ",
+                    "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml"
+                  }
+                ]
+              },
+              {
+                "dropdown": "pgai ",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "api-reference/pgai/index"
+                    ]
+                  },
+                  {
+                    "group": "OpenAI",
+                    "pages": [
+                      "api-reference/pgai/model-calling/openai/index",
+                      "api-reference/pgai/model-calling/openai/openai_embed",
+                      "api-reference/pgai/model-calling/openai/openai_embed_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_chat_complete",
+                      "api-reference/pgai/model-calling/openai/openai_chat_complete_simple",
+                      "api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_tokenize",
+                      "api-reference/pgai/model-calling/openai/openai_detokenize",
+                      "api-reference/pgai/model-calling/openai/openai_list_models",
+                      "api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_moderate",
+                      "api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_client_config"
+                    ]
+                  },
+                  {
+                    "group": "Ollama",
+                    "pages": [
+                      "api-reference/pgai/model-calling/ollama/index",
+                      "api-reference/pgai/model-calling/ollama/ollama_embed",
+                      "api-reference/pgai/model-calling/ollama/ollama_generate",
+                      "api-reference/pgai/model-calling/ollama/ollama_chat_complete",
+                      "api-reference/pgai/model-calling/ollama/ollama_list_models",
+                      "api-reference/pgai/model-calling/ollama/ollama_ps"
+                    ]
+                  },
+                  {
+                    "group": "Anthropic",
+                    "pages": [
+                      "api-reference/pgai/model-calling/anthropic/index",
+                      "api-reference/pgai/model-calling/anthropic/anthropic_generate",
+                      "api-reference/pgai/model-calling/anthropic/anthropic_list_models"
+                    ]
+                  },
+                  {
+                    "group": "Cohere",
+                    "pages": [
+                      "api-reference/pgai/model-calling/cohere/index",
+                      "api-reference/pgai/model-calling/cohere/cohere_embed",
+                      "api-reference/pgai/model-calling/cohere/cohere_rerank",
+                      "api-reference/pgai/model-calling/cohere/cohere_rerank_simple",
+                      "api-reference/pgai/model-calling/cohere/cohere_classify",
+                      "api-reference/pgai/model-calling/cohere/cohere_classify_simple",
+                      "api-reference/pgai/model-calling/cohere/cohere_chat_complete",
+                      "api-reference/pgai/model-calling/cohere/cohere_tokenize",
+                      "api-reference/pgai/model-calling/cohere/cohere_detokenize",
+                      "api-reference/pgai/model-calling/cohere/cohere_list_models"
+                    ]
+                  },
+                  {
+                    "group": "Voyage AI",
+                    "pages": [
+                      "api-reference/pgai/model-calling/voyageai/index",
+                      "api-reference/pgai/model-calling/voyageai/voyageai_embed"
+                    ]
+                  },
+                  {
+                    "group": "LiteLLM",
+                    "pages": [
+                      "api-reference/pgai/model-calling/litellm/index",
+                      "api-reference/pgai/model-calling/litellm/litellm_embed"
+                    ]
+                  },
+                  {
+                    "group": "Vectorizer",
+                    "pages": [
+                      "api-reference/pgai/vectorizer/index",
+                      "api-reference/pgai/vectorizer/create_vectorizer",
+                      "api-reference/pgai/vectorizer/drop_vectorizer",
+                      "api-reference/pgai/vectorizer/destination_table",
+                      "api-reference/pgai/vectorizer/destination_column",
+                      "api-reference/pgai/vectorizer/loading_column",
+                      "api-reference/pgai/vectorizer/parsing_auto",
+                      "api-reference/pgai/vectorizer/parsing_none",
+                      "api-reference/pgai/vectorizer/chunking_character_text_splitter",
+                      "api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter",
+                      "api-reference/pgai/vectorizer/chunking_none",
+                      "api-reference/pgai/vectorizer/embedding_openai",
+                      "api-reference/pgai/vectorizer/embedding_ollama",
+                      "api-reference/pgai/vectorizer/embedding_litellm",
+                      "api-reference/pgai/vectorizer/embedding_voyageai"
+                    ]
+                  }
+                ]
+              },
+              {
+                "dropdown": "pgvectorscale ",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "api-reference/pgvectorscale/index"
+                    ]
+                  },
+                  {
+                    "group": "Indexes and configuration",
+                    "pages": [
+                      "api-reference/pgvectorscale/create_index",
+                      "api-reference/pgvectorscale/index_parameters",
+                      "api-reference/pgvectorscale/query_parameters"
                     ]
                   }
                 ]
