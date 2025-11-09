@@ -6,37 +6,44 @@ keywords: [hypertables, chunks]
 products: [cloud, self_hosted, mst]
 ---
 
+import { HYPERTABLE, CAGG, TIMESCALE_DB, PG, ROWSTORE, COLUMNSTORE } from '/snippets/vars.mdx';
+
 In modern applications, data usually grows very quickly. This means that aggregating
-it into useful summaries can become very slow. If you are collecting data very frequently, you might want to aggregate your
+it into useful summaries can become very slow. If you are collecting data very frequently, you might want to aggregate
+your
 data into minutes or hours instead. For example, if an IoT device takes
 temperature readings every second, you might want to find the average temperature
 for each hour. Every time you run this query, the database needs to scan the
-entire table and recalculate the average. TimescaleDB makes aggregating data lightning fast, accurate, and easy with continuous aggregates.
+entire table and recalculate the average. {TIMESCALE_DB} makes aggregating data lightning fast, accurate, and easy with
+{CAGG}s.
 
 ![Reduced data calls with continuous aggregates](https://assets.timescale.com/docs/images/continuous-aggregate.png)
 
-Continuous aggregates in TimescaleDB are a kind of hypertable that is refreshed automatically
+{CAGG}s in {TIMESCALE_DB} are a kind of {HYPERTABLE} that is refreshed automatically
 in the background as new data is added, or old data is modified. Changes to your
-dataset are tracked, and the hypertable behind the continuous aggregate is
+dataset are tracked, and the {HYPERTABLE} behind the {CAGG} is
 automatically updated in the background.
 
-Continuous aggregates have a much lower maintenance burden than regular PostgreSQL materialized
+{CAGG}s have a much lower maintenance burden than regular {PG} materialized
 views, because the whole view is not created from scratch on each refresh. This
 means that you can get on with working your data instead of maintaining your
 database.
 
-Because continuous aggregates are based on hypertables, you can query them in exactly the same way as your other tables. This includes continuous aggregates in the rowstore, compressed into the [columnstore][hypercore],
-or [tiered to object storage][data-tiering]. You can even create [continuous aggregates on top of your continuous aggregates][hierarchical-caggs], for an even more fine-tuned aggregation.
+Because {CAGG}s are based on {HYPERTABLE}s, you can query them in exactly the same way as your other tables. This
+includes {CAGG}s in the {ROWSTORE}, compressed into the [{COLUMNSTORE}][hypercore],
+or [tiered to object storage][data-tiering]. You can even create [{CAGG}s on top of your {CAGG}s][hierarchical-caggs],
+for an even more fine-tuned aggregation.
 
-[Real-time aggregation][real-time-aggregation] enables you to combine pre-aggregated data from the materialized view with the most recent raw data. This gives you up-to-date results on every query.
+[Real-time aggregation][real-time-aggregation] enables you to combine pre-aggregated data from the materialized view
+with the most recent raw data. This gives you up-to-date results on every query.
 
-For more information about using continuous aggregates, see the documentation in [Use TimescaleDB products][cagg-docs].
+For more information about using {CAGG}s, see the documentation in [Use {TIMESCALE_DB} products][cagg-docs].
 
 ## Samples
 
-### Create a continuous aggregate
+### Create a {CAGG}
 
-Create a continuous aggregate that calculates hourly average temperature:
+Create a {CAGG} that calculates hourly average temperature:
 
 ```sql
 CREATE MATERIALIZED VIEW conditions_hourly
@@ -53,7 +60,7 @@ GROUP BY bucket, location;
 
 ### Add a refresh policy
 
-Automatically refresh the continuous aggregate to keep it up to date:
+Automatically refresh the {CAGG} to keep it up to date:
 
 ```sql
 SELECT add_continuous_aggregate_policy('conditions_hourly',
@@ -62,18 +69,18 @@ SELECT add_continuous_aggregate_policy('conditions_hourly',
   schedule_interval => INTERVAL '1 hour');
 ```
 
-### Manually refresh a continuous aggregate
+### Manually refresh a {CAGG}
 
-Refresh a specific time range in the continuous aggregate:
+Refresh a specific time range in the {CAGG}:
 
 ```sql
 CALL refresh_continuous_aggregate('conditions_hourly',
   '2024-01-01', '2024-02-01');
 ```
 
-### Query a continuous aggregate
+### Query a {CAGG}
 
-Query the continuous aggregate just like a regular table:
+Query the {CAGG} just like a regular table:
 
 ```sql
 SELECT bucket, location, avg_temp
@@ -85,29 +92,32 @@ ORDER BY bucket DESC;
 
 ## Available functions
 
-### Create and modify continuous aggregates
+### Create and modify {CAGG}s
 
-- [`CREATE MATERIALIZED VIEW (Continuous Aggregate)`][create_materialized_view]: create a continuous aggregate on a hypertable or another continuous aggregate
-- [`ALTER MATERIALIZED VIEW (Continuous Aggregate)`][alter_materialized_view]: change an existing continuous aggregate
-- [`DROP MATERIALIZED VIEW (Continuous Aggregate)`][drop_materialized_view]: drop a continuous aggregate view
-- [`cagg_migrate()`][cagg_migrate]: migrate a continuous aggregate from the old format to the new format introduced in TimescaleDB 2.7
+-  [`CREATE MATERIALIZED VIEW (Continuous Aggregate)`][create_materialized_view]: create a {CAGG} on a {HYPERTABLE} or
+  another {CAGG}
+- [`ALTER MATERIALIZED VIEW (Continuous Aggregate)`][alter_materialized_view]: change an existing {CAGG}
+- [`DROP MATERIALIZED VIEW (Continuous Aggregate)`][drop_materialized_view]: drop a {CAGG} view
+-  [`cagg_migrate()`][cagg_migrate]: migrate a {CAGG} from the old format to the new format introduced in {TIMESCALE_DB}
+  2.7
 
-### Refresh continuous aggregates
+### Refresh {CAGG}s
 
-- [`refresh_continuous_aggregate()`][refresh_continuous_aggregate]: manually refresh a continuous aggregate
+- [`refresh_continuous_aggregate()`][refresh_continuous_aggregate]: manually refresh a {CAGG}
 
 ### Manage policies
 
-- [`add_continuous_aggregate_policy()`][add_continuous_aggregate_policy]: add policy to schedule automatic refresh of a continuous aggregate
-- [`remove_continuous_aggregate_policy()`][remove_continuous_aggregate_policy]: remove a refresh policy from a continuous aggregate
+-  [`add_continuous_aggregate_policy()`][add_continuous_aggregate_policy]: add policy to schedule automatic refresh of a
+  {CAGG}
+- [`remove_continuous_aggregate_policy()`][remove_continuous_aggregate_policy]: remove a refresh policy from a {CAGG}
 
 ### Experimental policy management
 
-- [`add_policies()`][add_policies]: add refresh, compression, and data retention policies on a continuous aggregate
-- [`alter_policies()`][alter_policies]: alter refresh, compression, or data retention policies on a continuous aggregate
-- [`remove_policies()`][remove_policies]: remove refresh, compression, or data retention policies from a continuous aggregate
-- [`remove_all_policies()`][remove_all_policies]: remove all policies from a continuous aggregate
-- [`show_policies()`][show_policies]: show all policies that are currently set on a continuous aggregate
+- [`add_policies()`][add_policies]: add refresh, compression, and data retention policies on a {CAGG}
+- [`alter_policies()`][alter_policies]: alter refresh, compression, or data retention policies on a {CAGG}
+- [`remove_policies()`][remove_policies]: remove refresh, compression, or data retention policies from a {CAGG}
+- [`remove_all_policies()`][remove_all_policies]: remove all policies from a {CAGG}
+- [`show_policies()`][show_policies]: show all policies that are currently set on a {CAGG}
 
 [cagg-docs]: /use-timescale/latest/continuous-aggregates/
 [hypercore]: /use-timescale/latest/hypercore/

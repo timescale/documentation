@@ -1,7 +1,6 @@
 ---
 title: time_delta()
-description: Calculate the difference between the first and last times from a counter
-  aggregate
+description: Calculate the difference between the first and last times from a counter aggregate
 license: community
 type: function
 toolkit: true
@@ -31,7 +30,9 @@ Get the number of seconds between the first and last measurements in a counter a
 
 ## Samples
 
-Get the time difference between the first and last counter readings for each 15-minute interval. Note this difference isn't necessarily equal to `15 minutes * 60 seconds / minute`, because the first and last readings might not fall exactly on the interval boundaries.
+Get the time difference between the first and last counter readings for each 15-minute interval. Note this difference
+isn't necessarily equal to `15 minutes * 60 seconds / minute`, because the first and last readings might not fall
+exactly on the interval boundaries.
 
 ```sql
 SELECT

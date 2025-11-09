@@ -12,7 +12,8 @@ products: [cloud, mst, self_hosted]
 import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/dimensions-info.mdx';
 import { TIMESCALE_DB, CLOUD_LONG, HYPERTABLE, HYPERTABLE_CAP, CHUNK, PG } from '/snippets/vars.mdx';
 
-Add an additional partitioning dimension to a {TIMESCALE_DB} {HYPERTABLE}. You can only execute this `add_dimension` command
+Add an additional partitioning dimension to a {TIMESCALE_DB} {HYPERTABLE}. You can only execute this `add_dimension`
+command
 on an empty {HYPERTABLE}. To convert a normal table to a {HYPERTABLE}, call [create hypertable][create_hypertable].
 
 The column you select as the dimension can use either:

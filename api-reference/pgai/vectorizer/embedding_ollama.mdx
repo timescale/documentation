@@ -1,0 +1,88 @@
+---
+title: embedding_ollama()
+description: Use local Ollama models to generate embeddings
+keywords: [vectorizer, embedding, Ollama, local, configuration]
+tags: [vectorizer, configuration, embeddings, Ollama]
+license: community
+type: function
+---
+
+Use a local Ollama model to generate embeddings for your vectorizer. Ollama allows you to run open-source models
+locally for complete data privacy and control.
+
+## Purpose
+
+- Define which Ollama model to use
+- Specify the dimensionality of the embeddings
+- Configure how the Ollama API is accessed
+- Configure the model's truncation behavior and keep alive settings
+- Configure optional, model-specific parameters like temperature
+
+## Samples
+
+### Basic Ollama embedding
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_ollama('nomic-embed-text', 768),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### With custom Ollama server
+
+```sql
+SELECT ai.create_vectorizer(
+    'documents'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_ollama(
+        'nomic-embed-text',
+        768,
+        base_url => 'http://my.ollama.server:11434'
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### With model options and keep alive
+
+```sql
+SELECT ai.create_vectorizer(
+    'text_data'::regclass,
+    loading => ai.loading_column('text'),
+    embedding => ai.embedding_ollama(
+        'nomic-embed-text',
+        768,
+        options => '{"num_ctx": 1024, "temperature": 0.5}'::jsonb,
+        keep_alive => '10m'
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `text` | - | ✔ | Name of the Ollama model to use (e.g., `nomic-embed-text`). The model must already be pulled on your Ollama server |
+| `dimensions` | `int` | - | ✔ | Number of dimensions for the embedding vectors |
+| `base_url` | `text` | - | ✖ | Base URL of the Ollama API. If not provided, uses `OLLAMA_HOST` environment variable |
+| `options` | `jsonb` | - | ✖ | Additional model parameters such as `temperature` or `num_ctx` |
+| `keep_alive` | `text` | - | ✖ | How long the model stays loaded in memory after the request (e.g., `5m`, `1h`) |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`embedding_openai()`][embedding_openai]: use OpenAI models
+- [`embedding_litellm()`][embedding_litellm]: use any provider through LiteLLM
+- [`embedding_voyageai()`][embedding_voyageai]: use Voyage AI models
+
+[embedding_openai]: /api-reference/pgai/vectorizer/embedding_openai
+[embedding_litellm]: /api-reference/pgai/vectorizer/embedding_litellm
+[embedding_voyageai]: /api-reference/pgai/vectorizer/embedding_voyageai
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

@@ -10,11 +10,14 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="flask" /> Early access 1.5.0
 
-Analyze the frequency of values in time-series data using memory-efficient probabilistic data structures. These functions help you identify the most common elements and estimate occurrence counts without storing every individual value.
+Analyze the frequency of values in time-series data using memory-efficient probabilistic data structures. These
+functions help you identify the most common elements and estimate occurrence counts without storing every individual
+value.
 
 TimescaleDB Toolkit provides two approaches to frequency analysis:
 - **freq_agg**: Get the most common elements and their relative frequency using the SpaceSaving algorithm
-- **count_min_sketch**: Estimate the absolute number of times a specific value appears using the count-min sketch data structure
+-  **count_min_sketch**: Estimate the absolute number of times a specific value appears using the count-min sketch data
+  structure
 
 import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 

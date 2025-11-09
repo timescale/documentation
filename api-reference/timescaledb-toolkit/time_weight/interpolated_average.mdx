@@ -17,9 +17,12 @@ hyperfunction:
 
 Calculate the time-weighted average over an interval, while interpolating the interval bounds.
 
-Similar to [`average`][average], but allows an accurate calculation across interval bounds when data has been bucketed into separate time intervals, and there is no data point precisely at the interval bound. For example, this is useful in a window function.
+Similar to [`average`][average], but allows an accurate calculation across interval bounds when data has been bucketed
+into separate time intervals, and there is no data point precisely at the interval bound. For example, this is useful in
+a window function.
 
-Values from the previous and next buckets are used to interpolate the values at the bounds, using the same interpolation method used within the TimeWeightSummary itself.
+Values from the previous and next buckets are used to interpolate the values at the bounds, using the same interpolation
+method used within the TimeWeightSummary itself.
 
 Equal to [`interpolated_integral`][interpolated_integral] divided by the elapsed time.
 
@@ -41,7 +44,8 @@ Equal to [`interpolated_integral`][interpolated_integral] divided by the elapsed
 
 ## Samples
 
-Calculate the time-weighted daily average of the column `val`, interpolating over bucket bounds using the 'last observation carried forward' method:
+Calculate the time-weighted daily average of the column `val`, interpolating over bucket bounds using the 'last
+observation carried forward' method:
 
 ```sql
 SELECT

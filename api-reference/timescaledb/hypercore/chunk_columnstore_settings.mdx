@@ -9,17 +9,17 @@ tags: [chunk, columnstore settings]
 products: [cloud, mst, self_hosted]
 ---
 
-import Vars from '/snippets/vars.mdx';
+import { COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
 
-Retrieve the compression settings for each chunk in the {COLUMNSTORE}.
+Retrieve the compression settings for each {CHUNK} in the {COLUMNSTORE}.
 
 ## Samples
 
 To retrieve information about settings:
 
-- **Show settings for all chunks in the {COLUMNSTORE}**:
+- **Show settings for all {CHUNK}s in the {COLUMNSTORE}**:
 
   ```sql
   SELECT * FROM timescaledb_information.chunk_columnstore_settings
@@ -32,7 +32,7 @@ To retrieve information about settings:
   measurements | _timescaledb_internal._hyper_1_1_chunk| | "time" DESC
   ```
 
-* **Find all chunk {COLUMNSTORE} settings for a specific hypertable**:
+* **Find all {CHUNK} {COLUMNSTORE} settings for a specific {HYPERTABLE}**:
 
   ```sql
   SELECT *
@@ -51,8 +51,8 @@ To retrieve information about settings:
 
 | Name | Type | Description |
 |--|--|--|
-|`hypertable`|`REGCLASS`| The name of the hypertable in the {COLUMNSTORE}. |
-|`chunk`|`REGCLASS`| The name of the chunk in the `hypertable`.  |
+|`hypertable`|`REGCLASS`| The name of the {HYPERTABLE} in the {COLUMNSTORE}. |
+|`chunk`|`REGCLASS`| The name of the {CHUNK} in the `hypertable`.  |
 |`segmentby`|`TEXT`| The list of columns used to segment the `hypertable`. |
 |`orderby`|`TEXT`| The list of columns used to order the data in the `hypertable`, along with the ordering and `NULL` ordering information. |
 |`index`| `TEXT` | The sparse index details.  |

@@ -10,13 +10,19 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
 
-Estimate the value at a given percentile, or the percentile rank of a given value, using the t-digest algorithm. This estimation is more memory- and CPU-efficient than an exact calculation using PostgreSQL's `percentile_cont` and `percentile_disc` functions.
+Estimate the value at a given percentile, or the percentile rank of a given value, using the t-digest algorithm. This
+estimation is more memory- and CPU-efficient than an exact calculation using PostgreSQL's `percentile_cont` and
+`percentile_disc` functions.
 
-`tdigest` is one of two advanced percentile approximation aggregates provided in TimescaleDB Toolkit. It is a space-efficient aggregation, and it provides more accurate estimates at extreme quantiles than traditional methods.
+`tdigest` is one of two advanced percentile approximation aggregates provided in TimescaleDB Toolkit. It is a
+space-efficient aggregation, and it provides more accurate estimates at extreme quantiles than traditional methods.
 
-`tdigest` is somewhat dependent on input order. If `tdigest` is run on the same data arranged in different order, the results should be nearly equal, but they are unlikely to be exact.
+`tdigest` is somewhat dependent on input order. If `tdigest` is run on the same data arranged in different order, the
+results should be nearly equal, but they are unlikely to be exact.
 
-The other advanced percentile approximation aggregate is [`uddsketch`][uddsketch], which produces stable estimates within a guaranteed relative error. If you aren't sure which to use, try the default percentile estimation method, [`percentile_agg`][percentile_agg]. It uses the `uddsketch` algorithm with some sensible defaults.
+The other advanced percentile approximation aggregate is [`uddsketch`][uddsketch], which produces stable estimates
+within a guaranteed relative error. If you aren't sure which to use, try the default percentile estimation method,
+[`percentile_agg`][percentile_agg]. It uses the `uddsketch` algorithm with some sensible defaults.
 
 import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 
@@ -40,7 +46,8 @@ FROM foo
 GROUP BY 1;
 ```
 
-Use accessors to query directly from the continuous aggregate for hourly data. You can also roll the hourly data up into daily buckets, then calculate approximate percentiles:
+Use accessors to query directly from the continuous aggregate for hourly data. You can also roll the hourly data up into
+daily buckets, then calculate approximate percentiles:
 
 ```sql
 SELECT

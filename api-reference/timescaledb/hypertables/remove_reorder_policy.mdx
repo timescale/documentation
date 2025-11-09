@@ -9,9 +9,11 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
 <Tag>Community</Tag>
 
-Remove a policy to reorder a particular hypertable.
+Remove a policy to reorder a particular {HYPERTABLE}.
 
 ## Samples
 
@@ -25,5 +27,5 @@ removes the existing reorder policy for the `conditions` table if it exists.
 
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
-| `hypertable` | REGCLASS | - | ✔ | Name of the hypertable from which to remove the policy. |
+| `hypertable` | REGCLASS | - | ✔ | Name of the {HYPERTABLE} from which to remove the policy. |
 | `if_exists` | BOOLEAN | `FALSE` | ✖ |  Set to true to avoid throwing an error if the reorder_policy does not exist. A notice is issued instead. |

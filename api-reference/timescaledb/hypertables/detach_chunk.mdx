@@ -8,22 +8,25 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
+
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
 <Icon icon="circle-play" iconType="duotone" /> Since 2.21.0
 
 <Tag>Community</Tag>
 
-Separate a chunk from a [hypertable][hypertables-section].
+Separate a {CHUNK} from a [{HYPERTABLE}][hypertables-section].
 
 ![Hypertable structure](https://assets.timescale.com/docs/images/hypertable-structure.png)
 
-`chunk` becomes a standalone hypertable with the same name and schema. All existing constraints and
-indexes on `chunk` are preserved after detaching. Foreign keys are dropped.
+The {CHUNK} becomes a standalone {HYPERTABLE} with the same name and schema. All existing constraints and
+indexes on the {CHUNK} are preserved after detaching. Foreign keys are dropped.
 
-In this initial release, you cannot detach a chunk that has been [converted to the {COLUMNSTORE}][setup-hypercore].
+In this initial release, you cannot detach a {CHUNK} that has been [converted to the {COLUMNSTORE}][setup-hypercore].
 
 ## Samples
 
-Detach a chunk from a hypertable:
+Detach a {CHUNK} from a {HYPERTABLE}:
 
 ```sql
 CALL detach_chunk('_timescaledb_internal._hyper_1_2_chunk');
@@ -34,7 +37,7 @@ CALL detach_chunk('_timescaledb_internal._hyper_1_2_chunk');
 
 |Name|Type| Description                  |
 |---|---|------------------------------|
-| `chunk` | REGCLASS | Name of the chunk to detach. |
+| `chunk` | REGCLASS | Name of the {CHUNK} to detach. |
 
 
 ## Returns

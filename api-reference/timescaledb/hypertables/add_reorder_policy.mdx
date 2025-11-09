@@ -13,7 +13,9 @@ import { HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
 <Tag>Community</Tag>
 
-Create a policy to reorder the rows of a {HYPERTABLE}'s {CHUNK}s on a specific index. The policy reorders the rows for all {CHUNK}s except the two most recent ones, because these are still getting writes. By default, the policy runs every 24 hours. To change the schedule, call [alter_job][alter_job] and adjust `schedule_interval`.
+Create a policy to reorder the rows of a {HYPERTABLE}'s {CHUNK}s on a specific index. The policy reorders the rows for
+all {CHUNK}s except the two most recent ones, because these are still getting writes. By default, the policy runs every
+24 hours. To change the schedule, call [alter_job][alter_job] and adjust `schedule_interval`.
 
 You can have only one reorder policy on each {HYPERTABLE}.
 
@@ -22,7 +24,8 @@ For manual reordering of individual {CHUNK}s, see [reorder_chunk][reorder_chunk]
 <Note>
 When a {CHUNK}'s rows have been reordered by a policy, they are not reordered
 by subsequent runs of the same policy. If you write significant amounts of data into older {CHUNK}s that have
-already been reordered, re-run [reorder_chunk][reorder_chunk] on them. If you have changed a lot of older {CHUNK}s, it is better to drop and recreate the policy.
+already been reordered, re-run [reorder_chunk][reorder_chunk] on them. If you have changed a lot of older {CHUNK}s, it
+is better to drop and recreate the policy.
 </Note>
 
 ## Samples

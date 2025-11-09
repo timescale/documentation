@@ -6,9 +6,11 @@ keywords: [information]
 tags: [statistics, background jobs, scheduled jobs, hypertables, continuous aggregates, compression]
 ---
 
-TimescaleDB makes complex database features like partitioning and data retention
-easy to use with our comprehensive APIs. TimescaleDB works hard to provide
-detailed information about the state of your data, hypertables, chunks, and any
+import { HYPERTABLE, CHUNK, CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+{TIMESCALE_DB} makes complex database features like partitioning and data retention
+easy to use with our comprehensive APIs. {TIMESCALE_DB} works hard to provide
+detailed information about the state of your data, {HYPERTABLE}s, {CHUNK}s, and any
 jobs or policies you have in place.
 
 These views provide the data and statistics you need to keep track of your
@@ -16,9 +18,9 @@ database.
 
 ## Samples
 
-### Get all hypertables in your database
+### Get all {HYPERTABLE}s in your database
 
-View all hypertables with their size and compression status:
+View all {HYPERTABLE}s with their size and compression status:
 
 ```sql
 SELECT hypertable_name,
@@ -29,9 +31,9 @@ SELECT hypertable_name,
 FROM timescaledb_information.hypertables;
 ```
 
-### Check chunk information for a hypertable
+### Check {CHUNK} information for a {HYPERTABLE}
 
-View all chunks for a specific hypertable:
+View all {CHUNK}s for a specific {HYPERTABLE}:
 
 ```sql
 SELECT chunk_name,
@@ -73,9 +75,9 @@ ORDER BY last_finish DESC
 LIMIT 10;
 ```
 
-### View continuous aggregate details
+### View {CAGG} details
 
-Get information about all continuous aggregates:
+Get information about all {CAGG}s:
 
 ```sql
 SELECT view_name,
@@ -88,7 +90,7 @@ FROM timescaledb_information.continuous_aggregates;
 
 ### Check compression settings
 
-View compression settings for all hypertables:
+View compression settings for all {HYPERTABLE}s:
 
 ```sql
 SELECT hypertable_name,
@@ -101,25 +103,29 @@ ORDER BY hypertable_name, orderby_column_index;
 
 ## Available views
 
-### Hypertable and chunk information
-- [`timescaledb_information.chunks`][chunks]: get metadata about hypertable chunks
-- [`timescaledb_information.dimensions`][dimensions]: get information on the dimensions of hypertables
-- [`timescaledb_information.hypertables`][hypertables]: get metadata about hypertables
+### {HYPERTABLE} and {CHUNK} information
+- [`timescaledb_information.chunks`][chunks]: get metadata about {HYPERTABLE} {CHUNK}s
+- [`timescaledb_information.dimensions`][dimensions]: get information on the dimensions of {HYPERTABLE}s
+- [`timescaledb_information.hypertables`][hypertables]: get metadata about {HYPERTABLE}s
 
 ### Compression information
-- [`timescaledb_information.chunk_compression_settings`][chunk_compression_settings]: get information about compression settings for all chunks
-- [`timescaledb_information.compression_settings`][compression_settings]: get information about compression settings for hypertables (deprecated)
-- [`timescaledb_information.hypertable_compression_settings`][hypertable_compression_settings]: get information about compression settings for all hypertables
+-  [`timescaledb_information.chunk_compression_settings`][chunk_compression_settings]: get information about compression
+  settings for all {CHUNK}s
+-  [`timescaledb_information.compression_settings`][compression_settings]: get information about compression settings
+  for {HYPERTABLE}s (deprecated)
+-  [`timescaledb_information.hypertable_compression_settings`][hypertable_compression_settings]: get information about
+  compression settings for all {HYPERTABLE}s
 
-### Continuous aggregates
-- [`timescaledb_information.continuous_aggregates`][continuous_aggregates]: get metadata and settings information for continuous aggregates
+### {CAGG}s
+-  [`timescaledb_information.continuous_aggregates`][continuous_aggregates]: get metadata and settings information for
+  {CAGG}s
 
 ### Jobs and policies
 - [`timescaledb_information.job_errors`][job_errors]: get information about background job errors
 - [`timescaledb_information.job_history`][job_history]: get information about background job execution
 - [`timescaledb_information.job_stats`][job_stats]: get information and statistics about automatically run jobs
 - [`timescaledb_information.jobs`][jobs]: get information about all jobs registered with the automatic scheduler
-- [`timescaledb_experimental.policies`][policies]: get information about all policies set on continuous aggregates
+- [`timescaledb_experimental.policies`][policies]: get information about all policies set on {CAGG}s
 
 ### Multi-node (sunsetted)
 - [`timescaledb_information.data_nodes`][data_nodes]: get information on data nodes in a multi-node cluster

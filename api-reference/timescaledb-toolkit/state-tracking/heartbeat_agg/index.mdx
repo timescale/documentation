@@ -6,24 +6,32 @@ description: Determine system liveness from timestamped heartbeats with heartbea
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Determine the overall liveness of a system from a series of timestamped heartbeats and a liveness interval. This aggregate can be used to report total uptime or downtime as well as report the time ranges where the system was live or dead.
+Determine the overall liveness of a system from a series of timestamped heartbeats and a liveness interval. This
+aggregate can be used to report total uptime or downtime as well as report the time ranges where the system was live or
+dead.
 
-You can combine multiple heartbeat aggregates to determine the overall health of a service. For example, the heartbeat aggregates from a primary and standby server could be combined to see if there was ever a window where both machines were down at the same time.
+You can combine multiple heartbeat aggregates to determine the overall health of a service. For example, the heartbeat
+aggregates from a primary and standby server could be combined to see if there was ever a window where both machines
+were down at the same time.
 
 ## Two-step aggregation
 
 This group of functions uses the two-step aggregation pattern.
 
-Rather than calculating the final result in one step, you first create an intermediate aggregate by using the aggregate function.
+Rather than calculating the final result in one step, you first create an intermediate aggregate by using the aggregate
+function.
 
-Then, use any of the accessors on the intermediate aggregate to calculate a final result. You can also roll up multiple intermediate aggregates with the rollup functions.
+Then, use any of the accessors on the intermediate aggregate to calculate a final result. You can also roll up multiple
+intermediate aggregates with the rollup functions.
 
 The two-step aggregation pattern has several advantages:
 
 1.  More efficient because multiple accessors can reuse the same aggregate
 1.  Easier to reason about performance, because aggregation is separate from final computation
-1.  Easier to understand when calculations can be rolled up into larger intervals, especially in window functions and [continuous aggregates][caggs]
-1.  Can perform retrospective analysis even when underlying data is dropped, because the intermediate aggregate stores extra information not available in the final result
+1. Easier to understand when calculations can be rolled up into larger intervals, especially in window functions and
+[continuous aggregates][caggs]
+1. Can perform retrospective analysis even when underlying data is dropped, because the intermediate aggregate stores
+extra information not available in the final result
 
 To learn more, see the [blog post on two-step aggregates][blog-two-step-aggregates].
 

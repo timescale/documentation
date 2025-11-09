@@ -9,16 +9,18 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-Get the disk space used by an index on a hypertable, including the
-disk space needed to provide the index on all chunks. The size is
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
+Get the disk space used by an index on a {HYPERTABLE}, including the
+disk space needed to provide the index on all {CHUNK}s. The size is
 reported in bytes.
 
-For more information about using hypertables, including chunk size partitioning,
+For more information about using {HYPERTABLE}s, including {CHUNK} size partitioning,
 see the [hypertable section][hypertable-docs].
 
 ## Samples
 
-Get size of a specific index on a hypertable.
+Get size of a specific index on a {HYPERTABLE}.
 
 ```sql
 \d conditions_table
@@ -59,7 +61,7 @@ SELECT pg_size_pretty(hypertable_index_size('second_index'));
 |-|-|-|
 |hypertable_index_size|BIGINT|Returns the disk space used by the index|
 
-If the function is executed on a non-hypertable relation, `NULL` is returned.
+If the function is executed on a non-{HYPERTABLE} relation, `NULL` is returned.
 
 
 

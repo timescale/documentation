@@ -10,6 +10,8 @@ seo:
 products: [cloud, mst, self_hosted]
 ---
 
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, PG } from '/snippets/vars.mdx';
+
 <Tag>Community</Tag>
 
 TimescaleDB allows you to move data and indexes to different tablespaces. This
@@ -19,7 +21,7 @@ The `move_chunk` function acts like a combination of the
 [{PG} CLUSTER command][postgres-cluster] and
 [{PG} ALTER TABLE...SET TABLESPACE][postgres-altertable] commands. Unlike
 these {PG} commands, however, the `move_chunk` function uses lower lock
-levels so that the chunk and hypertable are able to be read for most of the
+levels so that the {CHUNK} and {HYPERTABLE} are able to be read for most of the
 process. This comes at a cost of slightly higher disk usage during the
 operation. For a more detailed discussion of this capability, see the
 documentation on [managing storage with tablespaces][manage-storage].
@@ -45,10 +47,10 @@ SELECT move_chunk(
 
 |Name|Type| Default | Required | Description|
 |-|-|-|-|-|
-|`chunk`|REGCLASS| - | ✔ |Name of chunk to be moved|
-|`destination_tablespace`|NAME| - | ✔ |Target tablespace for chunk being moved|
-|`index_destination_tablespace`|NAME| - | ✔ |Target tablespace for index associated with the chunk you are moving|
-|`reorder_index`|REGCLASS| - | ✖ |The name of the index (on either the hypertable or chunk) to order by|
+|`chunk`|REGCLASS| - | ✔ |Name of {CHUNK} to be moved|
+|`destination_tablespace`|NAME| - | ✔ |Target tablespace for {CHUNK} being moved|
+|`index_destination_tablespace`|NAME| - | ✔ |Target tablespace for index associated with the {CHUNK} you are moving|
+|`reorder_index`|REGCLASS| - | ✖ |The name of the index (on either the {HYPERTABLE} or {CHUNK}) to order by|
 |`verbose`|BOOLEAN| `FALSE` | ✖ |Setting to true displays messages about the progress of the move_chunk command.|
 
 [manage-storage]: /use-timescale/schema-management/about-tablespaces/

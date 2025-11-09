@@ -9,15 +9,15 @@ tags: [delete, drop]
 products: [cloud, mst, self_hosted]
 ---
 
-import Vars from '/snippets/vars.mdx';
+import { COLUMNSTORE, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
 
 <Tag>Community</Tag>
 
-Remove a {COLUMNSTORE} policy from a hypertable or continuous aggregate.
+Remove a {COLUMNSTORE} policy from a {HYPERTABLE} or {CAGG}.
 
-To restart automatic chunk migration to the {COLUMNSTORE}, you need to call
+To restart automatic {CHUNK} migration to the {COLUMNSTORE}, you need to call
 [add_columnstore_policy][add_columnstore_policy] again.
 
 ## Samples
@@ -30,7 +30,7 @@ You see the {COLUMNSTORE} policies in the [informational views][informational-vi
    CALL remove_columnstore_policy('cpu');
    ```
 
-- **Remove the {COLUMNSTORE} policy from the `cpu_weekly` continuous aggregate**:
+- **Remove the {COLUMNSTORE} policy from the `cpu_weekly` {CAGG}**:
 
    ``` sql
    CALL remove_columnstore_policy('cpu_weekly');
@@ -40,7 +40,7 @@ You see the {COLUMNSTORE} policies in the [informational views][informational-vi
 
 | Name | Type | Default | Required | Description |
 |--|--|--|--|-|
-|`hypertable`|REGCLASS|-|✔| Name of the hypertable or continuous aggregate to remove the policy from|
+|`hypertable`|REGCLASS|-|✔| Name of the {HYPERTABLE} or {CAGG} to remove the policy from|
 | `if_exists` | BOOLEAN | `false` |✖| Set to `true` so this job fails with a warning rather than an error if a {COLUMNSTORE} policy does not exist on `hypertable` |
 
 

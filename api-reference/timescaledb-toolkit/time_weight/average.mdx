@@ -15,7 +15,9 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
 
-Calculate the time-weighted average. Equal to [`integral`][integral] divided by the elapsed time. Note that there is a key difference to `avg()`: If there is exactly one value, `avg()` would return that value, but `average()` returns `NULL`.
+Calculate the time-weighted average. Equal to [`integral`][integral] divided by the elapsed time. Note that there is a
+key difference to `avg()`: If there is exactly one value, `avg()` would return that value, but `average()` returns
+`NULL`.
 
 ## Arguments
 
@@ -31,7 +33,8 @@ Calculate the time-weighted average. Equal to [`integral`][integral] divided by 
 
 ## Samples
 
-Calculate the time-weighted average of the column `val`, using the 'last observation carried forward' interpolation method:
+Calculate the time-weighted average of the column `val`, using the 'last observation carried forward' interpolation
+method:
 
 ```sql
 SELECT

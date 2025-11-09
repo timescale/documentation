@@ -9,23 +9,23 @@ tags: [chunks, hypercore]
 products: [cloud, mst, self_hosted]
 ---
 
-import Vars from '/snippets/vars.mdx';
+import { ROWSTORE, COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
 
 <Tag>Community</Tag>
 
-Manually convert a specific chunk in the hypertable {ROWSTORE} to the {COLUMNSTORE}.
+Manually convert a specific {CHUNK} in the {HYPERTABLE} {ROWSTORE} to the {COLUMNSTORE}.
 
 Although `convert_to_columnstore` gives you more fine-grained control, best practice is to use
-[`add_columnstore_policy`][add_columnstore_policy]. You can also add chunks to the {COLUMNSTORE} at a specific time
+[`add_columnstore_policy`][add_columnstore_policy]. You can also add {CHUNK}s to the {COLUMNSTORE} at a specific time
 [running the job associated with your {COLUMNSTORE} policy][run-job] manually.
 
-To move a chunk from the {COLUMNSTORE} back to the {ROWSTORE}, use [`convert_to_rowstore`][convert_to_rowstore].
+To move a {CHUNK} from the {COLUMNSTORE} back to the {ROWSTORE}, use [`convert_to_rowstore`][convert_to_rowstore].
 
 ## Samples
 
-To convert a single chunk to {COLUMNSTORE}:
+To convert a single {CHUNK} to {COLUMNSTORE}:
 
 ``` sql
 CALL convert_to_columnstore('_timescaledb_internal._hyper_1_2_chunk');
@@ -35,9 +35,9 @@ CALL convert_to_columnstore('_timescaledb_internal._hyper_1_2_chunk');
 
 | Name                 | Type | Default | Required | Description                                                                                                                                        |
 |----------------------|--|---------|--|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `chunk`         | REGCLASS | -       |✔| Name of the chunk to add to the {COLUMNSTORE}.                                                                                                      |
+| `chunk`         | REGCLASS | -       |✔| Name of the {CHUNK} to add to the {COLUMNSTORE}.                                                                                                      |
 | `if_not_columnstore` | BOOLEAN | `true`  |✖| Set to `false` so this job fails with an error rather than a warning if `chunk` is already in the {COLUMNSTORE}.                                    |
-| `recompress`         | BOOLEAN | `false` |✖| Set to `true` to add a chunk that had more data inserted after being added to the {COLUMNSTORE}.                                                    |
+| `recompress`         | BOOLEAN | `false` |✖| Set to `true` to add a {CHUNK} that had more data inserted after being added to the {COLUMNSTORE}.                                                    |
 
 ## Returns
 
@@ -45,7 +45,7 @@ Calls to `convert_to_columnstore` return:
 
 | Column            | Type               | Description                                                                                        |
 |-------------------|--------------------|----------------------------------------------------------------------------------------------------|
-| `chunk name` or `table` | REGCLASS or String | The name of the chunk added to the {COLUMNSTORE}, or a table-like result set with zero or more rows. |
+| `chunk name` or `table` | REGCLASS or String | The name of the {CHUNK} added to the {COLUMNSTORE}, or a table-like result set with zero or more rows. |
 
 
 [add_columnstore_policy]: /api/:currentVersion:/hypercore/add_columnstore_policy/

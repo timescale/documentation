@@ -1,0 +1,169 @@
+---
+title: Vectorizer API reference
+sidebarTitle: Overview
+description: Automate embedding generation and synchronization for your PostgreSQL data
+keywords: [vectorizer, embeddings, automation, pgai]
+tags: [AI, vectorizer, embeddings, automation]
+---
+
+A vectorizer provides a powerful and automated way to generate and manage LLM embeddings for your PostgreSQL data,
+keeping them synchronized with your source data automatically.
+
+## What is a vectorizer?
+
+A vectorizer automates the entire embedding workflow:
+
+- **Automated embedding generation**: Create embeddings for table data automatically
+- **Automatic synchronization**: Triggers keep embeddings in sync with source data
+- **Background processing**: Async processing minimizes impact on database operations
+- **Scalability**: Batch processing handles large datasets efficiently
+- **Highly configurable**: Customize embedding models, chunking, formatting, indexing, and scheduling
+
+## Key features
+
+- **Multiple AI providers**: OpenAI, Ollama, Cohere, Voyage AI, and LiteLLM support
+- **Efficient storage**: Separate tables with appropriate indexing for similarity searches
+- **View creation**: Automatic views join source data with embeddings
+- **Access control**: Fine-grained permissions for vectorizer objects
+- **Monitoring**: Built-in tools to track queue status and performance
+
+## Quick start
+
+### Create a basic vectorizer
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog.posts'::regclass,
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### Table destination (separate embeddings table)
+
+```sql
+SELECT ai.create_vectorizer(
+    'website.blog'::regclass,
+    destination => ai.destination_table(
+        target_table => 'blog_embeddings_store',
+        view_name => 'blog_embeddings'
+    ),
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_ollama('nomic-embed-text', 768),
+    chunking => ai.chunking_character_text_splitter(128, 10)
+);
+```
+
+### Column destination (embedding in source table)
+
+```sql
+SELECT ai.create_vectorizer(
+    'products'::regclass,
+    destination => ai.destination_column('description_embedding'),
+    loading => ai.loading_column('description'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_none()  -- Required for column destination
+);
+```
+
+## Configuration functions
+
+### Core functions
+
+- [`create_vectorizer()`][create_vectorizer]: create and configure a new vectorizer
+- [`drop_vectorizer()`][drop_vectorizer]: remove a vectorizer and clean up resources
+
+### Destination configuration
+
+- [`destination_table()`][destination_table]: store embeddings in a separate table (default)
+- [`destination_column()`][destination_column]: store embeddings in the source table
+
+### Loading configuration
+
+- [`loading_column()`][loading_column]: load data from a column
+- [`loading_uri()`][loading_uri]: load data from a file URI
+
+### Parsing configuration
+
+- [`parsing_auto()`][parsing_auto]: auto-detect document format (default)
+- [`parsing_none()`][parsing_none]: no parsing for text data
+- [`parsing_docling()`][parsing_docling]: parse documents with Docling
+- [`parsing_pymupdf()`][parsing_pymupdf]: parse PDFs with PyMuPDF
+
+### Chunking configuration
+
+- [`chunking_character_text_splitter()`][chunking_character]: split by character count
+- [`chunking_recursive_character_text_splitter()`][chunking_recursive]: recursive splitting (default)
+
+### Embedding configuration
+
+- [`embedding_openai()`][embedding_openai]: OpenAI embedding models
+- [`embedding_ollama()`][embedding_ollama]: local Ollama models
+- [`embedding_litellm()`][embedding_litellm]: unified API for 100+ providers
+- [`embedding_voyageai()`][embedding_voyageai]: Voyage AI models
+
+### Formatting configuration
+
+- [`formatting_python_template()`][formatting_python_template]: format with Python templates
+
+### Indexing configuration
+
+- [`indexing_default()`][indexing_default]: default HNSW indexing
+- [`indexing_diskann()`][indexing_diskann]: DiskANN indexing
+- [`indexing_hnsw()`][indexing_hnsw]: HNSW indexing with options
+- [`indexing_none()`][indexing_none]: no automatic indexing
+
+### Scheduling configuration
+
+- [`scheduling_default()`][scheduling_default]: run every 5 minutes
+- [`scheduling_timescaledb()`][scheduling_timescaledb]: use TimescaleDB job scheduling
+- [`scheduling_none()`][scheduling_none]: disable automatic scheduling
+
+### Processing configuration
+
+- [`processing_default()`][processing_default]: default processing settings
+
+### Access control
+
+- [`grant_to()`][grant_to]: specify user permissions
+
+## Management functions
+
+- [`enable_vectorizer_schedule()`][enable_vectorizer_schedule]: resume automatic processing
+- [`disable_vectorizer_schedule()`][disable_vectorizer_schedule]: pause automatic processing
+
+## Monitoring
+
+- [`vectorizer_status`][vectorizer_status]: view vectorizer status and statistics
+- [`vectorizer_queue_pending()`][vectorizer_queue_pending]: check pending work items
+
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer
+[drop_vectorizer]: /api-reference/pgai/vectorizer/drop_vectorizer
+[destination_table]: /api-reference/pgai/vectorizer/destination_table
+[destination_column]: /api-reference/pgai/vectorizer/destination_column
+[loading_column]: /api-reference/pgai/vectorizer/loading_column
+[loading_uri]: /api-reference/pgai/vectorizer/loading_uri
+[parsing_auto]: /api-reference/pgai/vectorizer/parsing_auto
+[parsing_none]: /api-reference/pgai/vectorizer/parsing_none
+[parsing_docling]: /api-reference/pgai/vectorizer/parsing_docling
+[parsing_pymupdf]: /api-reference/pgai/vectorizer/parsing_pymupdf
+[chunking_character]: /api-reference/pgai/vectorizer/chunking_character_text_splitter
+[chunking_recursive]: /api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter
+[embedding_openai]: /api-reference/pgai/vectorizer/embedding_openai
+[embedding_ollama]: /api-reference/pgai/vectorizer/embedding_ollama
+[embedding_litellm]: /api-reference/pgai/vectorizer/embedding_litellm
+[embedding_voyageai]: /api-reference/pgai/vectorizer/embedding_voyageai
+[formatting_python_template]: /api-reference/pgai/vectorizer/formatting_python_template
+[indexing_default]: /api-reference/pgai/vectorizer/indexing_default
+[indexing_diskann]: /api-reference/pgai/vectorizer/indexing_diskann
+[indexing_hnsw]: /api-reference/pgai/vectorizer/indexing_hnsw
+[indexing_none]: /api-reference/pgai/vectorizer/indexing_none
+[scheduling_default]: /api-reference/pgai/vectorizer/scheduling_default
+[scheduling_timescaledb]: /api-reference/pgai/vectorizer/scheduling_timescaledb
+[scheduling_none]: /api-reference/pgai/vectorizer/scheduling_none
+[processing_default]: /api-reference/pgai/vectorizer/processing_default
+[grant_to]: /api-reference/pgai/vectorizer/grant_to
+[enable_vectorizer_schedule]: /api-reference/pgai/vectorizer/enable_vectorizer_schedule
+[disable_vectorizer_schedule]: /api-reference/pgai/vectorizer/disable_vectorizer_schedule
+[vectorizer_status]: /api-reference/pgai/vectorizer/vectorizer_status
+[vectorizer_queue_pending]: /api-reference/pgai/vectorizer/vectorizer_queue_pending

@@ -9,7 +9,7 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="tag" iconType="duotone" /> Community
 
-import { JOB_CAP, JOB } from '/snippets/vars.mdx';
+import { JOB_CAP, JOB, TIMESCALE_DB, CAGG } from '/snippets/vars.mdx';
 
 {JOB_CAP}s allow you to run functions and procedures implemented in a
 language of your choice on a schedule within Timescale. This allows
@@ -17,8 +17,8 @@ automatic periodic tasks that are not covered by existing policies and
 even enhancing existing policies with additional functionality.
 
 The following APIs and views allow you to manage the {JOB}s that you create and
-get details around automatic {JOB}s used by other TimescaleDB functions like
-continuous aggregation refresh policies and data retention policies. To view the
+get details around automatic {JOB}s used by other {TIMESCALE_DB} functions like
+{CAGG} refresh policies and data retention policies. To view the
 policies that you set or the policies that already exist, see
 [informational views][informational-views].
 

@@ -14,11 +14,13 @@ import { HYPERTABLE, CHUNK, TIMESCALE_DB, HYPERCORE, COLUMNSTORE } from '/snippe
 
 <HypertableIntro />
 
-For more information about using {HYPERTABLE}s, including {CHUNK} size partitioning, see the [hypertable documentation][hypertable-docs].
+For more information about using {HYPERTABLE}s, including {CHUNK} size partitioning, see the [hypertable
+documentation][hypertable-docs].
 
 ## Create a hypertable
 
-To create a {HYPERTABLE} for your time-series data, use [`CREATE TABLE`][create_table]. For efficient queries on data in the {COLUMNSTORE}, remember to `segmentby` the column you will use most often to filter your data. For example:
+To create a {HYPERTABLE} for your time-series data, use [`CREATE TABLE`][create_table]. For efficient queries on data in
+the {COLUMNSTORE}, remember to `segmentby` the column you will use most often to filter your data. For example:
 
 ```sql
 CREATE TABLE conditions (
@@ -113,7 +115,8 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
 - [`hypertable_detailed_size()`][hypertable_detailed_size]: get detailed disk space usage for a {HYPERTABLE}
 - [`hypertable_index_size()`][hypertable_index_size]: get the total size of indexes on a {HYPERTABLE}
 - [`hypertable_approximate_size()`][hypertable_approximate_size]: get an approximate total size of a {HYPERTABLE}
-- [`hypertable_approximate_detailed_size()`][hypertable_approximate_detailed_size]: get approximate detailed size information
+-  [`hypertable_approximate_detailed_size()`][hypertable_approximate_detailed_size]: get approximate detailed size
+  information
 - [`chunks_detailed_size()`][chunks_detailed_size]: get detailed size information for {CHUNK}s
 
 ### [Tablespace management][tablespace-section]
@@ -135,7 +138,8 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
 
 ## Legacy functions
 
-For backward compatibility, {TIMESCALE_DB} also provides [`create_hypertable()`][create_hypertable], which was the original function for creating {HYPERTABLE}s. Use [`CREATE TABLE`][create_table] for new {HYPERTABLE}s.
+For backward compatibility, {TIMESCALE_DB} also provides [`create_hypertable()`][create_hypertable], which was the
+original function for creating {HYPERTABLE}s. Use [`CREATE TABLE`][create_table] for new {HYPERTABLE}s.
 
 [hypertable-docs]: /manage-data/timescaledb/data-management/hypertables/understand-hypertables
 

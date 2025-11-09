@@ -36,7 +36,8 @@ num_live_ranges(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use this query to see how many intervals the system was up in a given week:
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use this query to see how many intervals the system was up in a given week:
 
 ```sql
 SELECT num_live_ranges(health)

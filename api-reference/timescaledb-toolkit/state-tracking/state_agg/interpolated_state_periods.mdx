@@ -14,9 +14,11 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-List the periods when the system is in a specific state from a state aggregate. Periods are defined by the start time and end time.
+List the periods when the system is in a specific state from a state aggregate. Periods are defined by the start time
+and end time.
 
-Unlike [`state_periods`][state_periods], you can use this function across multiple state aggregates that cover different time buckets. Any missing values at the time bucket boundaries are interpolated from adjacent state aggregates.
+Unlike [`state_periods`][state_periods], you can use this function across multiple state aggregates that cover different
+time buckets. Any missing values at the time bucket boundaries are interpolated from adjacent state aggregates.
 
 ```sql
 interpolated_state_periods(
@@ -47,7 +49,8 @@ interpolated_state_periods(
 
 ## Samples
 
-Given state aggregates bucketed by 1-minute intervals, interpolate the states at the bucket boundaries and list all time periods corresponding to the state `OK`.
+Given state aggregates bucketed by 1-minute intervals, interpolate the states at the bucket boundaries and list all time
+periods corresponding to the state `OK`.
 
 To perform the interpolation, the `LAG` and `LEAD` functions are used to get the previous and next state aggregates.
 

@@ -17,7 +17,9 @@ The `time_bucket` function is similar to the standard {PG} `date_bin`
 function. Unlike `date_bin`, it allows for arbitrary time intervals of months or
 longer. The return value is the bucket's start time.
 
-Buckets are aligned to start at midnight in UTC+0. The time bucket size (`bucket_width`) can be set as INTERVAL or INTEGER. For INTERVAL-type `bucket_width`, you can change the time zone with the optional `timezone` parameter. In this case, the buckets are realigned to start at midnight in the time zone you specify.
+Buckets are aligned to start at midnight in UTC+0. The time bucket size (`bucket_width`) can be set as INTERVAL or
+INTEGER. For INTERVAL-type `bucket_width`, you can change the time zone with the optional `timezone` parameter. In this
+case, the buckets are realigned to start at midnight in the time zone you specify.
 
 Note that during shifts to and from daylight savings, the amount of data
 aggregated into the corresponding buckets can be irregular. For example, if the

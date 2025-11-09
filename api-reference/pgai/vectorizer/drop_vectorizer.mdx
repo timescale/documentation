@@ -1,0 +1,91 @@
+---
+title: drop_vectorizer()
+description: Remove a vectorizer and clean up associated resources
+keywords: [vectorizer, drop, remove, cleanup]
+tags: [vectorizer, management, cleanup]
+license: community
+type: function
+---
+
+Remove a vectorizer that you created previously and clean up the associated resources. This provides a controlled way
+to delete a vectorizer when it's no longer needed or when you want to reconfigure it from scratch.
+
+## Purpose
+
+- Remove a specific vectorizer configuration from the system
+- Clean up associated database objects and scheduled jobs
+- Safely undo the creation of a vectorizer
+
+## What gets dropped
+
+By default, `drop_vectorizer` removes:
+- Scheduled job associated with the vectorizer (if one exists)
+- Trigger from the source table used to queue changes
+- Trigger function that backed the source table trigger
+- Queue table used to manage updates to be processed
+- Vectorizer row from the `ai.vectorizer` table
+
+By default, `drop_vectorizer` does NOT remove:
+- Target table containing the embeddings
+- View joining the target and source tables
+
+This allows you to keep generated embeddings and the view even after dropping the vectorizer, useful when you want to
+stop automatic updates but still use existing embeddings.
+
+## Samples
+
+### Drop by name (recommended)
+
+```sql
+SELECT ai.drop_vectorizer('public_blog_embeddings');
+```
+
+### Drop by ID
+
+```sql
+SELECT ai.drop_vectorizer(1);
+```
+
+### Drop everything including embeddings
+
+Drop the vectorizer and also remove the target table and view:
+
+```sql
+SELECT ai.drop_vectorizer('public_blog_embeddings', drop_all => true);
+```
+
+## Arguments
+
+You can call `drop_vectorizer` in two ways:
+
+### By name (recommended)
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `name` | `text` | - | ✔ | The name of the vectorizer to drop |
+| `drop_all` | `bool` | `false` | ✖ | Set to `true` to also drop the target table and view |
+
+### By ID
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `vectorizer_id` | `int` | - | ✔ | The identifier of the vectorizer to drop |
+| `drop_all` | `bool` | `false` | ✖ | Set to `true` to also drop the target table and view |
+
+## Returns
+
+This function does not return a value, but it performs several cleanup operations.
+
+## Best practices
+
+- Before dropping a vectorizer, ensure you will not need the automatic embedding updates it provides
+- After dropping a vectorizer, manually clean up the target table and view if they're no longer needed
+- Reference vectorizers by name (recommended) rather than ID for better readability
+
+## Related functions
+
+- [`create_vectorizer()`][create_vectorizer]: create a new vectorizer
+- [`disable_vectorizer_schedule()`][disable_vectorizer_schedule]: temporarily pause without dropping
+
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer
+[disable_vectorizer_schedule]: /api-reference/pgai/vectorizer/disable_vectorizer_schedule

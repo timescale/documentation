@@ -9,11 +9,13 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-Disable range tracking for a specific column in a hypertable **in the columnstore**.
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, COLUMNSTORE } from '/snippets/vars.mdx';
+
+Disable range tracking for a specific column in a {HYPERTABLE} **in the {COLUMNSTORE}**.
 
 ## Samples
 
-In this sample, you convert the `conditions` table to a hypertable with
+In this sample, you convert the `conditions` table to a {HYPERTABLE} with
 partitioning on the `time` column. You then specify and enable additional
 columns to track ranges for. You then disable range tracking:
 

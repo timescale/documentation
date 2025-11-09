@@ -9,29 +9,32 @@ tags: [disk space, schemas, size]
 products: [cloud, mst, self_hosted]
 ---
 
-import Vars from '/snippets/vars.mdx';
+import { COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
 
 <Tag>Community</Tag>
 
-Retrieve statistics about the chunks in the {COLUMNSTORE}
+Retrieve statistics about the {CHUNK}s in the {COLUMNSTORE}
 
-`chunk_columnstore_stats` returns the size of chunks in the {COLUMNSTORE}, these values are computed when you call either:
-- [CREATE TABLE][hypertable-create-table]: create a hypertable with a default [job][job] that automatically
-  moves chunks in a hypertable to the {COLUMNSTORE} at a specific time interval.
-- [add_columnstore_policy][add_columnstore_policy]: create a [job][job] on an existing hypertable that automatically
-  moves chunks in a hypertable to the {COLUMNSTORE} at a specific time interval.
-- [convert_to_columnstore][convert_to_columnstore]: manually add a specific chunk in a hypertable to the {COLUMNSTORE}.
+`chunk_columnstore_stats` returns the size of {CHUNK}s in the {COLUMNSTORE}, these values are computed when you call
+either:
+- [CREATE TABLE][hypertable-create-table]: create a {HYPERTABLE} with a default [job][job] that automatically
+  moves {CHUNK}s in a {HYPERTABLE} to the {COLUMNSTORE} at a specific time interval.
+- [add_columnstore_policy][add_columnstore_policy]: create a [job][job] on an existing {HYPERTABLE} that automatically
+  moves {CHUNK}s in a {HYPERTABLE} to the {COLUMNSTORE} at a specific time interval.
+-  [convert_to_columnstore][convert_to_columnstore]: manually add a specific {CHUNK} in a {HYPERTABLE} to the
+  {COLUMNSTORE}.
 
-Inserting into a chunk in the {COLUMNSTORE} does not change the chunk size. For more information about how to compute
-chunk sizes, see [chunks_detailed_size][chunks_detailed_size].
+Inserting into a {CHUNK} in the {COLUMNSTORE} does not change the {CHUNK} size. For more information about how to
+compute
+{CHUNK} sizes, see [chunks_detailed_size][chunks_detailed_size].
 
 ## Samples
 
-To retrieve statistics about chunks:
+To retrieve statistics about {CHUNK}s:
 
-- **Show the status of the first two chunks in the `conditions` hypertable**:
+- **Show the status of the first two {CHUNK}s in the `conditions` {HYPERTABLE}**:
    ```sql
    SELECT * FROM chunk_columnstore_stats('conditions')
      ORDER BY chunk_name LIMIT 2;
@@ -84,16 +87,16 @@ To retrieve statistics about chunks:
 
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
-|`hypertable`|`REGCLASS`|-|✖| The name of a hypertable |
+|`hypertable`|`REGCLASS`|-|✖| The name of a {HYPERTABLE} |
 
 
 ## Returns
 
 |Column|Type| Description                                                                                                                                                                                                      |
 |-|-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|`chunk_schema`|TEXT| Schema name of the chunk.                                                                                                                                                                                        |
-|`chunk_name`|TEXT| Name of the chunk.                                                                                                                                                                                               |
-|`compression_status`|TEXT| Current compression status of the chunk.                                                                                                                                                                         |
+|`chunk_schema`|TEXT| Schema name of the {CHUNK}.                                                                                                                                                                                        |
+|`chunk_name`|TEXT| Name of the {CHUNK}.                                                                                                                                                                                               |
+|`compression_status`|TEXT| Current compression status of the {CHUNK}.                                                                                                                                                                         |
 |`before_compression_table_bytes`|BIGINT| Size of the heap before compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                                   |
 |`before_compression_index_bytes`|BIGINT| Size of all the indexes before compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                            |
 |`before_compression_toast_bytes`|BIGINT| Size the TOAST table before compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                               |
@@ -101,8 +104,8 @@ To retrieve statistics about chunks:
 |`after_compression_table_bytes`|BIGINT| Size of the heap after compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                                    |
 |`after_compression_index_bytes`|BIGINT| Size of all the indexes after compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                             |
 |`after_compression_toast_bytes`|BIGINT| Size the TOAST table after compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                                |
-|`after_compression_total_bytes`|BIGINT| Size of the entire chunk table (`after_compression_table_bytes` + `after_compression_index_bytes `+ `after_compression_toast_bytes`) after compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
-|`node_name`|TEXT| **DEPRECATED**: nodes the chunk is located on, applicable only to distributed hypertables.                                                                                                                       |
+|`after_compression_total_bytes`|BIGINT| Size of the entire {CHUNK} table (`after_compression_table_bytes` + `after_compression_index_bytes `+ `after_compression_toast_bytes`) after compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
+|`node_name`|TEXT| **DEPRECATED**: nodes the {CHUNK} is located on, applicable only to distributed {HYPERTABLE}s.                                                                                                                       |
 
 
 [add_columnstore_policy]: /api/:currentVersion:/hypercore/add_columnstore_policy/

@@ -14,7 +14,10 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Calculate downtime from a heartbeat aggregate, taking the heartbeat aggregate from the preceding interval to interpolate values at the boundary. This checks when the last heartbeat in the predecessor was received and makes sure not to consider the heartbeat interval after that time as unhealthy, even if it extends into the current aggregate prior to the first heartbeat.
+Calculate downtime from a heartbeat aggregate, taking the heartbeat aggregate from the preceding interval to interpolate
+values at the boundary. This checks when the last heartbeat in the predecessor was received and makes sure not to
+consider the heartbeat interval after that time as unhealthy, even if it extends into the current aggregate prior to the
+first heartbeat.
 
 ```sql
 interpolated_downtime(
@@ -38,7 +41,8 @@ interpolated_downtime(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use this command to get the total interpolated downtime of the system during the week of Jan 9, 2022.
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use this command to get the total interpolated downtime of the system during the week of Jan 9, 2022.
 
 ```sql
 SELECT interpolated_downtime(

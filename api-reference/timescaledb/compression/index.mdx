@@ -13,22 +13,27 @@ Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/
 
 Compression functionality is included in {HYPERCORE}.
 
-Before you set up compression, you need to [configure the {HYPERTABLE} for compression][configure-compression] and then [set up a compression policy][add-compression-policy].
+Before you set up compression, you need to [configure the {HYPERTABLE} for compression][configure-compression] and then
+[set up a compression policy][add-compression-policy].
 
 <Note>
-Before you set up compression for the first time, read the compression [blog post][compression-blog] and [documentation][compression-docs].
+Before you set up compression for the first time, read the compression [blog post][compression-blog] and
+[documentation][compression-docs].
 </Note>
 
-You can also [compress {CHUNK}s manually][compress-chunk], instead of using an automated compression policy to compress {CHUNK}s as they age.
+You can also [compress {CHUNK}s manually][compress-chunk], instead of using an automated compression policy to compress
+{CHUNK}s as they age.
 
 Compressed {CHUNK}s have the following limitations:
 
 - `ROW LEVEL SECURITY` is not supported on compressed {CHUNK}s.
-- Creation of unique constraints on compressed {CHUNK}s is not supported. You can add them by disabling compression on the {HYPERTABLE} and re-enabling after constraint creation.
+-  Creation of unique constraints on compressed {CHUNK}s is not supported. You can add them by disabling compression on
+  the {HYPERTABLE} and re-enabling after constraint creation.
 
 ## Restrictions
 
-In general, compressing a {HYPERTABLE} imposes some limitations on the types of data modifications that you can perform on data inside a compressed {CHUNK}.
+In general, compressing a {HYPERTABLE} imposes some limitations on the types of data modifications that you can perform
+on data inside a compressed {CHUNK}.
 
 This table shows changes to the compression feature, added in different versions of {TIMESCALE_DB}:
 
@@ -39,11 +44,14 @@ This table shows changes to the compression feature, added in different versions
 | 2.3 | Schema modifications and basic insert of new data is allowed. Deleting, updating and some advanced insert statements are not supported. |
 | 2.11 | Deleting, updating and advanced insert statements are supported. |
 
-In {TIMESCALE_DB} 2.1 and later, you can modify the schema of {HYPERTABLE}s that have compressed {CHUNK}s. Specifically, you can add columns to and rename existing columns of compressed {HYPERTABLE}s.
+In {TIMESCALE_DB} 2.1 and later, you can modify the schema of {HYPERTABLE}s that have compressed {CHUNK}s. Specifically,
+you can add columns to and rename existing columns of compressed {HYPERTABLE}s.
 
-In {TIMESCALE_DB} v2.3 and later, you can insert data into compressed {CHUNK}s and to enable compression policies on distributed {HYPERTABLE}s.
+In {TIMESCALE_DB} v2.3 and later, you can insert data into compressed {CHUNK}s and to enable compression policies on
+distributed {HYPERTABLE}s.
 
-In {TIMESCALE_DB} v2.11 and later, you can update and delete compressed data. You can also use advanced insert statements like `ON CONFLICT` and `RETURNING`.
+In {TIMESCALE_DB} v2.11 and later, you can update and delete compressed data. You can also use advanced insert
+statements like `ON CONFLICT` and `RETURNING`.
 
 ## Available functions
 

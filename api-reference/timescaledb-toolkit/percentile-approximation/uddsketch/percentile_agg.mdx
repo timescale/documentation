@@ -14,9 +14,12 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
 
-Aggregate data in a UddSketch, using reasonable default values, for further calculation of percentile estimates. This is an alternate first step for calculating approximate percentiles. It provides added convenience by using sensible defaults to create a `UddSketch`. Internally, it calls `uddsketch` with 200 buckets and a maximum error rate of 0.001.
+Aggregate data in a UddSketch, using reasonable default values, for further calculation of percentile estimates. This is
+an alternate first step for calculating approximate percentiles. It provides added convenience by using sensible
+defaults to create a `UddSketch`. Internally, it calls `uddsketch` with 200 buckets and a maximum error rate of 0.001.
 
-Use `percentile_agg` to create an intermediate aggregate from your raw data. This intermediate form can then be used by one or more accessors in this group to compute final results.
+Use `percentile_agg` to create an intermediate aggregate from your raw data. This intermediate form can then be used by
+one or more accessors in this group to compute final results.
 
 Optionally, multiple such intermediate aggregate objects can be combined using [`rollup()`](#rollup) before an accessor is applied.
 
@@ -40,7 +43,8 @@ percentile_agg(
 
 ## Samples
 
-Create a continuous aggregate that stores percentile aggregate objects. These objects can later be used with multiple accessors for retrospective analysis.
+Create a continuous aggregate that stores percentile aggregate objects. These objects can later be used with multiple
+accessors for retrospective analysis.
 
 ```sql
 CREATE MATERIALIZED VIEW foo_hourly

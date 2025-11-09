@@ -13,9 +13,13 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
 
-Translate a metric to a standard month. A standard month is calculated as the exact number of days in a year divided by the number of months in a year, so 365.25/12 = 30.4375. `month_normalize()` divides a metric by the number of days in the corresponding calendar month and multiplies it by 30.4375. 
+Translate a metric to a standard month. A standard month is calculated as the exact number of days in a year divided by
+the number of months in a year, so 365.25/12 = 30.4375. `month_normalize()` divides a metric by the number of days in
+the corresponding calendar month and multiplies it by 30.4375.
 
-This enables you to compare metrics for different months and decide which one performed better, objectively. For example, in the following table that summarizes the number of sales for three months, January has the highest number of total sales:
+This enables you to compare metrics for different months and decide which one performed better, objectively. For
+example, in the following table that summarizes the number of sales for three months, January has the highest number of
+total sales:
 
 | Month | Sales |
 |-------|-------|

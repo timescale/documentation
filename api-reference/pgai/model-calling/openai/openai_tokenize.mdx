@@ -1,0 +1,87 @@
+---
+title: openai_tokenize()
+description: Convert text into tokens for token counting and API cost estimation
+keywords: [OpenAI, tokens, tokenize, tiktoken]
+tags: [AI, tokens, utilities]
+license: community
+type: function
+---
+
+Convert text into an array of token IDs using OpenAI's tokenization algorithm. This is useful for counting tokens to
+estimate API costs, stay within model limits, and understand how your text is processed.
+
+## Samples
+
+### Tokenize text
+
+Convert a string into tokens:
+
+```sql
+SELECT ai.openai_tokenize(
+    'text-embedding-ada-002',
+    'Timescale is Postgres made Powerful'
+);
+```
+
+Returns:
+
+```text
+          openai_tokenize
+----------------------------------------
+ {19422,2296,374,3962,18297,1903,75458}
+```
+
+### Count tokens
+
+Determine how many tokens a text will use:
+
+```sql
+SELECT array_length(
+    ai.openai_tokenize(
+        'text-embedding-ada-002',
+        'Timescale is Postgres made Powerful'
+    ),
+    1
+) AS token_count;
+```
+
+Returns:
+
+```text
+ token_count
+-------------
+           7
+```
+
+### Check token count before API call
+
+Ensure your text fits within model limits:
+
+```sql
+SELECT
+    content,
+    array_length(ai.openai_tokenize('gpt-4o-mini', content), 1) AS tokens
+FROM documents
+WHERE array_length(ai.openai_tokenize('gpt-4o-mini', content), 1) > 8000;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The OpenAI model to tokenize for (e.g., `text-embedding-ada-002`, `gpt-4o`) |
+| `text_input` | `TEXT` | - | ✔ | The text to convert into tokens |
+
+## Returns
+
+`INT[]`: An array of token IDs representing the input text.
+
+## Related functions
+
+- [`openai_detokenize()`][openai_detokenize]: convert tokens back into text
+- [`openai_embed()`][openai_embed]: generate embeddings from text or tokens
+- [`openai_chat_complete()`][openai_chat_complete]: use tokens for completion
+
+[openai_detokenize]: /api-reference/pgai/model-calling/openai/openai_detokenize
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed
+[openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete

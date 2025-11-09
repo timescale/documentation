@@ -14,7 +14,9 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
 
-Aggregate data in a `uddsketch` for further calculation of percentile estimates. This is the first step for calculating approximate percentiles with the `uddsketch` algorithm. Use `uddsketch` to create an intermediate aggregate from your raw data. This intermediate form can then be used by one or more accessors in this group to compute final results.
+Aggregate data in a `uddsketch` for further calculation of percentile estimates. This is the first step for calculating
+approximate percentiles with the `uddsketch` algorithm. Use `uddsketch` to create an intermediate aggregate from your
+raw data. This intermediate form can then be used by one or more accessors in this group to compute final results.
 
 Optionally, multiple such intermediate aggregate objects can be combined using [`rollup()`](#rollup) before an accessor is applied.
 
@@ -44,7 +46,8 @@ uddsketch(
 
 ## Samples
 
-Build a `uddsketch` using a column called `data` from a table called `samples`. Use a maximum of 100 buckets and a relative error of 0.01.
+Build a `uddsketch` using a column called `data` from a table called `samples`. Use a maximum of 100 buckets and a
+relative error of 0.01.
 
 ```sql
 SELECT uddsketch(100, 0.01, data) FROM samples;

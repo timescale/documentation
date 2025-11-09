@@ -1,0 +1,84 @@
+---
+title: embedding_voyageai()
+description: Use Voyage AI models for retrieval-optimized embeddings
+keywords: [vectorizer, embedding, Voyage AI, retrieval, configuration]
+tags: [vectorizer, configuration, embeddings, VoyageAI]
+license: community
+type: function
+---
+
+Use a Voyage AI model to generate retrieval-optimized embeddings for your vectorizer.
+
+## Purpose
+
+- Define which Voyage AI model to use
+- Specify the dimensionality of the embeddings
+- Configure the model's truncation behavior and API key name
+- Configure the input type (query vs document)
+
+## Samples
+
+### Basic Voyage AI embedding
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_voyageai('voyage-3-lite', 512),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### With custom API key name
+
+```sql
+SELECT ai.create_vectorizer(
+    'documents'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_voyageai(
+        'voyage-3',
+        1024,
+        api_key_name => 'MY_VOYAGE_API_KEY'
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### With input type
+
+```sql
+SELECT ai.create_vectorizer(
+    'search_content'::regclass,
+    loading => ai.loading_column('text'),
+    embedding => ai.embedding_voyageai(
+        'voyage-3',
+        1024,
+        input_type => 'document'
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `text` | - | ✔ | Name of the Voyage AI model to use (e.g., `voyage-3-lite`, `voyage-3`) |
+| `dimensions` | `int` | - | ✔ | Number of dimensions for the embedding vectors |
+| `input_type` | `text` | `'document'` | ✖ | Type of input text: `null`, `'query'`, or `'document'` |
+| `api_key_name` | `text` | `VOYAGE_API_KEY` | ✖ | Name of the environment variable containing the Voyage AI API key |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`embedding_openai()`][embedding_openai]: use OpenAI models
+- [`embedding_ollama()`][embedding_ollama]: use local Ollama models
+- [`embedding_litellm()`][embedding_litellm]: use any provider through LiteLLM
+
+[embedding_openai]: /api-reference/pgai/vectorizer/embedding_openai
+[embedding_ollama]: /api-reference/pgai/vectorizer/embedding_ollama
+[embedding_litellm]: /api-reference/pgai/vectorizer/embedding_litellm
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

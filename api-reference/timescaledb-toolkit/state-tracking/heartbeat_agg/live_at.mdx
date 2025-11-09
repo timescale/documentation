@@ -40,7 +40,8 @@ live_at(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use the following to see if the system was live at a particular time.
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use the following to see if the system was live at a particular time.
 
 ```sql
 SELECT live_at(health, '2022-01-12 15:30:00+00')

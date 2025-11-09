@@ -8,15 +8,31 @@ mode: "wide"
 
 import { TIMESCALE_DB, HYPERTABLE_CAP, HYPERFUNC_CAP } from '/snippets/vars.mdx';
 
-{TIMESCALE_DB} provides SQL commands and functions for managing time-series data efficiently.
+{TIMESCALE_DB} provides SQL commands and functions for managing time-series data efficiently. For additional {HYPERFUNC_CAP} for advanced time-series analysis, see the [TimescaleDB Toolkit API reference](/api-reference/timescaledb-toolkit/index).
 
 <CardGroup cols={2}>
   <Card
-    title="Hypertables"
+    title="Hypertables and chunks"
     icon="table"
-    href="/api-reference/timescaledb/hypertables/create_table"
+    href="/api-reference/timescaledb/hypertables/index"
   >
-    Functions and commands for creating and managing hypertables
+    Create and manage hypertables, chunks, dimensions, and indexes for time-series data
+  </Card>
+
+  <Card
+    title="Hypercore"
+    icon="database"
+    href="/api-reference/timescaledb/hypercore/index"
+  >
+    Manage columnstore tables for analytical workloads with hybrid row and column storage
+  </Card>
+
+  <Card
+    title="Continuous aggregates"
+    icon="chart-simple"
+    href="/api-reference/timescaledb/continuous-aggregates/index"
+  >
+    Create and manage automatically refreshed materialized views for time-series data
   </Card>
 
   <Card
@@ -24,6 +40,62 @@ import { TIMESCALE_DB, HYPERTABLE_CAP, HYPERFUNC_CAP } from '/snippets/vars.mdx'
     icon="function"
     href="/api-reference/timescaledb/hyperfunctions/index"
   >
-    Functions for analyzing time-series data including time bucketing, gapfilling, and distribution analysis
+    Analyze time-series data with time bucketing, gapfilling, and distribution analysis
+  </Card>
+
+  <Card
+    title="Data retention"
+    icon="clock-rotate-left"
+    href="/api-reference/timescaledb/data-retention/index"
+  >
+    Automatically drop old data with retention policies
+  </Card>
+
+  <Card
+    title="Compression"
+    icon="file-zipper"
+    href="/api-reference/timescaledb/compression/index"
+  >
+    Compress chunks to reduce storage requirements and improve query performance
+  </Card>
+
+  <Card
+    title="Jobs and automation"
+    icon="robot"
+    href="/api-reference/timescaledb/jobs-automation/index"
+  >
+    Schedule and manage automated background jobs
+  </Card>
+
+  <Card
+    title="UUIDv7 functions"
+    icon="fingerprint"
+    href="/api-reference/timescaledb/uuid-functions/index"
+  >
+    Generate and manipulate UUIDv7 identifiers with built-in timestamp ordering
+  </Card>
+
+  <Card
+    title="Informational views"
+    icon="eye"
+    href="/api-reference/timescaledb/informational-views/index"
+  >
+    Query metadata about hypertables, chunks, jobs, and system configuration
+  </Card>
+
+  <Card
+    title="Configuration"
+    icon="gear"
+    href="/api-reference/timescaledb/configuration/index"
+  >
+    Configure TimescaleDB settings and parameters
+  </Card>
+
+  <Card
+    title="Administration"
+    icon="screwdriver-wrench"
+    href="/api-reference/timescaledb/administration/index"
+  >
+    Administrative functions for backup, restore, and system management
   </Card>
 </CardGroup>

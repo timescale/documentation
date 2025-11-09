@@ -10,9 +10,14 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
 
-Perform linear regression analysis, for example to calculate correlation coefficient and covariance, on two-dimensional data. You can also calculate common statistics, such as average and standard deviation, on each dimension separately. These functions are similar to the PostgreSQL statistical aggregates, but they include more features and are easier to use in continuous aggregates and window functions. The linear regressions are based on the standard least-squares fitting method.
+Perform linear regression analysis, for example to calculate correlation coefficient and covariance, on two-dimensional
+data. You can also calculate common statistics, such as average and standard deviation, on each dimension separately.
+These functions are similar to the PostgreSQL statistical aggregates, but they include more features and are easier to
+use in continuous aggregates and window functions. The linear regressions are based on the standard least-squares
+fitting method.
 
-These functions work on two-dimensional data. To work with one-dimensional data, for example to calculate the average and standard deviation of a single variable, see [the one-dimensional `stats_agg` functions][stats_agg-1d].
+These functions work on two-dimensional data. To work with one-dimensional data, for example to calculate the average
+and standard deviation of a single variable, see [the one-dimensional `stats_agg` functions][stats_agg-1d].
 
 import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 
@@ -24,7 +29,9 @@ import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctio
 
 ### Calculate regression and statistical properties
 
-Create a statistical aggregate that summarizes daily statistical data about two variables, `val2` and `val1`, where `val2` is the dependent variable and `val1` is the independent variable. Use the statistical aggregate to calculate the average of the dependent variable and the slope of the linear-regression fit:
+Create a statistical aggregate that summarizes daily statistical data about two variables, `val2` and `val1`, where
+`val2` is the dependent variable and `val1` is the independent variable. Use the statistical aggregate to calculate the
+average of the dependent variable and the slope of the linear-regression fit:
 
 ```sql
 WITH t AS (
@@ -57,7 +64,8 @@ FROM t;
 ### Accessors for regression analysis
 - [`corr()`][corr]: calculate the correlation coefficient from a statistical aggregate
 - [`covariance()`][covariance]: calculate the covariance from a statistical aggregate
-- [`determination_coeff()`][determination_coeff]: calculate the coefficient of determination (R²) from a statistical aggregate
+-  [`determination_coeff()`][determination_coeff]: calculate the coefficient of determination (R²) from a statistical
+  aggregate
 - [`slope()`][slope]: calculate the slope of the linear regression line from a statistical aggregate
 - [`intercept()`][intercept]: calculate the y-intercept of the linear regression line from a statistical aggregate
 - [`x_intercept()`][x_intercept]: calculate the x-intercept of the linear regression line from a statistical aggregate

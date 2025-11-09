@@ -1,0 +1,109 @@
+---
+title: embedding_litellm()
+description: Use LiteLLM to access 100+ embedding providers with a unified interface
+keywords: [vectorizer, embedding, LiteLLM, multi-provider, configuration]
+tags: [vectorizer, configuration, embeddings, LiteLLM]
+license: community
+type: function
+---
+
+Use LiteLLM to generate embeddings from models across multiple providers with a unified interface. LiteLLM supports
+OpenAI, Azure, AWS Bedrock, Google Vertex AI, Hugging Face, and 100+ other providers.
+
+## Purpose
+
+- Define the embedding model to use (from any supported provider)
+- Specify the dimensionality of the embeddings
+- Configure optional, provider-specific parameters
+- Set the name of the environment variable that holds your API key
+
+## Samples
+
+### Hugging Face model
+
+```sql
+SELECT ai.create_vectorizer(
+    'code_snippets'::regclass,
+    loading => ai.loading_column('code'),
+    embedding => ai.embedding_litellm(
+        'huggingface/microsoft/codebert-base',
+        768,
+        api_key_name => 'HUGGINGFACE_API_KEY',
+        extra_options => '{"wait_for_model": true}'::jsonb
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### Azure OpenAI
+
+```sql
+SELECT ai.create_vectorizer(
+    'documents'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_litellm(
+        'azure/my-embedding-deployment',
+        1536,
+        api_key_name => 'AZURE_API_KEY',
+        extra_options => '{
+            "api_base": "https://my-resource.openai.azure.com/",
+            "api_version": "2023-05-15"
+        }'::jsonb
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### AWS Bedrock
+
+```sql
+SELECT ai.create_vectorizer(
+    'text_data'::regclass,
+    loading => ai.loading_column('text'),
+    embedding => ai.embedding_litellm(
+        'bedrock/amazon.titan-embed-text-v1',
+        1536,
+        extra_options => '{
+            "aws_region_name": "us-east-1"
+        }'::jsonb
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `text` | - | ✔ | Name of the embedding model with optional provider prefix (e.g., `huggingface/model-name`, `azure/deployment-name`) |
+| `dimensions` | `int` | - | ✔ | Number of dimensions for the embedding vectors |
+| `api_key_name` | `text` | - | ✖ | Name of the environment variable containing the API key |
+| `extra_options` | `jsonb` | - | ✖ | Provider-specific configuration options (API base URL, region, etc.) |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Supported providers
+
+LiteLLM supports 100+ providers including:
+- OpenAI and Azure OpenAI
+- AWS Bedrock
+- Google Vertex AI
+- Hugging Face
+- Cohere
+- Anthropic
+- And many more
+
+See the [LiteLLM documentation](https://docs.litellm.ai/docs/embedding/supported_embedding) for the complete list.
+
+## Related functions
+
+- [`embedding_openai()`][embedding_openai]: direct OpenAI integration
+- [`embedding_ollama()`][embedding_ollama]: local Ollama models
+- [`embedding_voyageai()`][embedding_voyageai]: Voyage AI models
+
+[embedding_openai]: /api-reference/pgai/vectorizer/embedding_openai
+[embedding_ollama]: /api-reference/pgai/vectorizer/embedding_ollama
+[embedding_voyageai]: /api-reference/pgai/vectorizer/embedding_voyageai
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

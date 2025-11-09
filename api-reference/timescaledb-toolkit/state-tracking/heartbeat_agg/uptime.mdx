@@ -16,7 +16,9 @@ hyperfunction:
 
 Sum all the ranges where the system was live and return the total from a heartbeat aggregate.
 
-There may appear to be some downtime between the start of the aggregate and the first heartbeat. If there is a heartbeat aggregate covering the previous period, you can use its last heartbeat to correct for this using [`interpolated_uptime()`][interpolated_uptime].
+There may appear to be some downtime between the start of the aggregate and the first heartbeat. If there is a heartbeat
+aggregate covering the previous period, you can use its last heartbeat to correct for this using
+[`interpolated_uptime()`][interpolated_uptime].
 
 ```sql
 uptime(
@@ -38,7 +40,8 @@ uptime(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use this command to get the total uptime of the system during the week of Jan 9, 2022.
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use this command to get the total uptime of the system during the week of Jan 9, 2022.
 
 ```sql
 SELECT uptime(health)

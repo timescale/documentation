@@ -9,7 +9,9 @@ type: function
 products: [cloud, self_hosted, mst]
 ---
 
-Create a policy that automatically refreshes a continuous aggregate. To view the
+import { CAGG, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Create a policy that automatically refreshes a {CAGG}. To view the
 policies that you set or the policies that already exist, see
 [informational views][informational-views].
 
@@ -30,9 +32,9 @@ SELECT add_continuous_aggregate_policy('conditions_summary',
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `continuous_aggregate` | REGCLASS | - | ✔ | The continuous aggregate to add the policy for |
-| `start_offset` | INTERVAL or integer | - | ✔ | Start of the refresh window as an interval relative to the time when the policy is executed. `NULL` is equivalent to `MIN(timestamp)` of the hypertable. |
-| `end_offset` | INTERVAL or integer | - | ✔ | End of the refresh window as an interval relative to the time when the policy is executed. `NULL` is equivalent to `MAX(timestamp)` of the hypertable. |
+| `continuous_aggregate` | REGCLASS | - | ✔ | The {CAGG} to add the policy for |
+| `start_offset` | INTERVAL or integer | - | ✔ | Start of the refresh window as an interval relative to the time when the policy is executed. `NULL` is equivalent to `MIN(timestamp)` of the {HYPERTABLE}. |
+| `end_offset` | INTERVAL or integer | - | ✔ | End of the refresh window as an interval relative to the time when the policy is executed. `NULL` is equivalent to `MAX(timestamp)` of the {HYPERTABLE}. |
 | `schedule_interval` | INTERVAL | 24 hours | ✔ | Interval between refresh executions in wall-clock time. |
 | `initial_start` | TIMESTAMPTZ | NULL | ✔ | Time the policy is first run. Defaults to NULL. If omitted, then the schedule interval is the interval between the finish time of the last execution and the next start. If provided, it serves as the origin with respect to which the next_start is calculated |
 | `if_not_exists` | BOOLEAN | false | - | Set to `true` to issue a notice instead of an error if the job already exists. |
@@ -45,11 +47,11 @@ SELECT add_continuous_aggregate_policy('conditions_summary',
 The `start_offset` should be greater than `end_offset`.
 
 You must specify the `start_offset` and `end_offset` parameters differently,
-depending on the type of the time column of the hypertable:
+depending on the type of the time column of the {HYPERTABLE}:
 
-*   For hypertables with `TIMESTAMP`, `TIMESTAMPTZ`, and `DATE` time columns,
+*   For {HYPERTABLE}s with `TIMESTAMP`, `TIMESTAMPTZ`, and `DATE` time columns,
     set the offset as an `INTERVAL` type.
-*   For hypertables with integer-based timestamps, set the offset as an
+*   For {HYPERTABLE}s with integer-based timestamps, set the offset as an
     `INTEGER` type.
 
 <Info>
@@ -57,17 +59,20 @@ While setting `end_offset` to `NULL` is possible, it is not recommended. To incl
 the current time in queries, enable [real-time aggregation](/use-timescale/latest/continuous-aggregates/real-time-aggregates/).
 </Info>
 
-You can add [concurrent refresh policies](/use-timescale/latest/continuous-aggregates/refresh-policies/) on each continuous aggregate, as long as the `start_offset` and `end_offset` does not overlap with another policy on the same continuous aggregate.
+You can add [concurrent refresh policies](/use-timescale/latest/continuous-aggregates/refresh-policies/) on each {CAGG}, as long as the `start_offset` and `end_offset` does not overlap with another policy on the same {CAGG}.
 
 <Info>
-Setting `buckets_per_batch` greater than zero means that the refresh window is split in batches of `bucket width` * `buckets per batch`. For example, a given Continuous Aggregate with `bucket width` of `1 day` and `buckets_per_batch` of 10 has a batch size of `10 days` to process the refresh.
-Because each `batch` is an individual transaction, executing a policy in batches make the data visible for the users before the entire job is executed. Batches are processed from the most recent data to the oldest.
+Setting `buckets_per_batch` greater than zero means that the refresh window is split in batches of `bucket width` *
+`buckets per batch`. For example, a given {CAGG} with `bucket width` of `1 day` and `buckets_per_batch` of 10 has a
+batch size of `10 days` to process the refresh.
+Because each `batch` is an individual transaction, executing a policy in batches make the data visible for the users
+before the entire job is executed. Batches are processed from the most recent data to the oldest.
 </Info>
 
 ## Returns
 
 | Column | Type | Description |
 |-|-|-|
-| `job_id` | INTEGER | TimescaleDB background job ID created to implement this policy |
+| `job_id` | INTEGER | {TIMESCALE_DB} background job ID created to implement this policy |
 
 [informational-views]: /api-reference/timescaledb/informational-views/jobs

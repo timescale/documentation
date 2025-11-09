@@ -7,14 +7,16 @@ license: community
 type: view
 ---
 
-Returns information about the dimensions of a hypertable. Hypertables can be
-partitioned on a range of different dimensions. By default, all hypertables are
+import { HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Returns information about the dimensions of a {HYPERTABLE}. {HYPERTABLE}s can be
+partitioned on a range of different dimensions. By default, all {HYPERTABLE}s are
 partitioned on time, but it is also possible to partition on other dimensions in
 addition to time.
 
-For hypertables that are partitioned solely on time,
+For {HYPERTABLE}s that are partitioned solely on time,
 `timescaledb_information.dimensions` returns a single row of metadata. For
-hypertables that are partitioned on more than one dimension, the call returns a
+{HYPERTABLE}s that are partitioned on more than one dimension, the call returns a
 row for each dimension.
 
 For time-based dimensions, the metadata returned indicates the integer datatype,
@@ -22,13 +24,13 @@ such as BIGINT, INTEGER, or SMALLINT, and the time-related datatype, such as
 TIMESTAMPTZ, TIMESTAMP, or DATE. For space-based dimension, the metadata
 returned specifies the number of `num_partitions`.
 
-If the hypertable uses time data types, the `time_interval` column is defined.
-Alternatively, if the hypertable uses integer data types, the `integer_interval`
+If the {HYPERTABLE} uses time data types, the `time_interval` column is defined.
+Alternatively, if the {HYPERTABLE} uses integer data types, the `integer_interval`
 and `integer_now_func` columns are defined.
 
 ## Samples
 
-Get information about the dimensions of hypertables.
+Get information about the dimensions of {HYPERTABLE}s.
 
 ```sql
 -- Create a range and hash partitioned hypertable
@@ -64,10 +66,10 @@ num_partitions    | 2
 ```
 
 <Info>
-The `by_range` and `by_hash` dimension builders are an addition to TimescaleDB 2.13.
+The `by_range` and `by_hash` dimension builders are an addition to {TIMESCALE_DB} 2.13.
 </Info>
 
-Get information about dimensions of a hypertable that has two time-based dimensions.
+Get information about dimensions of a {HYPERTABLE} that has two time-based dimensions.
 
 ``` sql
 CREATE TABLE hyper_2dim (a_col date, b_col timestamp, c_col integer);

@@ -9,9 +9,11 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
+import { PG } from '/snippets/vars.mdx';
+
 <Icon icon="circle-play" iconType="duotone" /> Community
 
-Create a UUIDv7 object from a Postgres timestamp and random bits.
+Create a UUIDv7 object from a {PG} timestamp and random bits.
 
 `ts` is converted to a UNIX timestamp split into millisecond and sub-millisecond parts.
 

@@ -14,7 +14,9 @@ hyperfunction:
 
 <Icon icon="flask" /> Early access 1.8.0
 
-Calculate the total duration in the given state. Unlike [`duration_in`][duration_in], you can use this function across multiple state aggregates that cover multiple time buckets. Any missing values at the time bucket boundaries are interpolated from adjacent state aggregates.
+Calculate the total duration in the given state. Unlike [`duration_in`][duration_in], you can use this function across
+multiple state aggregates that cover multiple time buckets. Any missing values at the time bucket boundaries are
+interpolated from adjacent state aggregates.
 
 ```sql
 interpolated_duration_in(
@@ -44,7 +46,9 @@ interpolated_duration_in(
 
 ## Samples
 
-Create a test table that tracks when a system switches between `starting`, `running`, and `error` states. Query the table for the time spent in the `running` state. Use `LAG` and `LEAD` to get the neighboring aggregates for interpolation.
+Create a test table that tracks when a system switches between `starting`, `running`, and `error` states. Query the
+table for the time spent in the `running` state. Use `LAG` and `LEAD` to get the neighboring aggregates for
+interpolation.
 
 If you prefer to see the result in seconds, [`EXTRACT`](https://www.postgresql.org/docs/current/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT) the epoch from the returned result.
 

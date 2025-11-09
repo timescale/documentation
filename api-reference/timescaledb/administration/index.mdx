@@ -10,7 +10,8 @@ license: apache
 
 import { TIMESCALE_DB } from '/snippets/vars.mdx';
 
-Administrative APIs help you prepare a database before and after a restore event. They also help you keep track of your {TIMESCALE_DB} setup data.
+Administrative APIs help you prepare a database before and after a restore event. They also help you keep track of your
+{TIMESCALE_DB} setup data.
 
 ## Samples
 
@@ -77,7 +78,8 @@ WHERE extname = 'timescaledb';
 
 ## Dump TimescaleDB meta data
 
-To help when asking for support and reporting bugs, {TIMESCALE_DB} includes an SQL dump script. It outputs metadata from the internal {TIMESCALE_DB} tables, along with version information.
+To help when asking for support and reporting bugs, {TIMESCALE_DB} includes an SQL dump script. It outputs metadata from
+the internal {TIMESCALE_DB} tables, along with version information.
 
 This script is available in the source distribution in `scripts/`. To use it, run:
 
@@ -90,7 +92,8 @@ Inspect `dumpfile.txt` before sending it together with a bug report or support q
 ## Available functions
 
 - [`get_telemetry_report()`][get_telemetry_report]: view the background telemetry string sent to Timescale
-- [`timescaledb_post_restore()`][timescaledb_post_restore]: perform required operations after finishing a database restore
+-  [`timescaledb_post_restore()`][timescaledb_post_restore]: perform required operations after finishing a database
+  restore
 - [`timescaledb_pre_restore()`][timescaledb_pre_restore]: prepare the database for a restore operation
 
 [get_telemetry_report]: /api-reference/timescaledb/administration/get_telemetry_report

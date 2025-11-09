@@ -14,9 +14,13 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
 
-Combine multiple aggregates created with `freq_agg` or `mcv_agg` functions. This function requires that the source aggregates have been created with the same parameters (same `min_freq` for `freq_agg`, same n-factor and `skew`, if used, for a `mcv_agg`).
+Combine multiple aggregates created with `freq_agg` or `mcv_agg` functions. This function requires that the source
+aggregates have been created with the same parameters (same `min_freq` for `freq_agg`, same n-factor and `skew`, if
+used, for a `mcv_agg`).
 
-This produces a very similar aggregate to running the same aggregate function over all the source data. In most cases, any difference is no more than what you might get from simply reordering the input. However, if the source data for the different aggregates is very differently distributed, the rollup result may have looser frequency bounds.
+This produces a very similar aggregate to running the same aggregate function over all the source data. In most cases,
+any difference is no more than what you might get from simply reordering the input. However, if the source data for the
+different aggregates is very differently distributed, the rollup result may have looser frequency bounds.
 
 ```sql
 rollup(

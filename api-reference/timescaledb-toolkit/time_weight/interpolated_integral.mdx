@@ -17,9 +17,12 @@ hyperfunction:
 
 Calculate the integral over an interval, while interpolating the interval bounds.
 
-Similar to [`integral`][integral], but allows an accurate calculation across interval bounds when data has been bucketed into separate time intervals, and there is no data point precisely at the interval bound. For example, this is useful in a window function.
+Similar to [`integral`][integral], but allows an accurate calculation across interval bounds when data has been bucketed
+into separate time intervals, and there is no data point precisely at the interval bound. For example, this is useful in
+a window function.
 
-Values from the previous and next buckets are used to interpolate the values at the bounds, using the same interpolation method used within the TimeWeightSummary itself.
+Values from the previous and next buckets are used to interpolate the values at the bounds, using the same interpolation
+method used within the TimeWeightSummary itself.
 
 Equal to [`interpolated_average`][interpolated_average] multiplied by the elapsed time.
 
@@ -42,7 +45,8 @@ Equal to [`interpolated_average`][interpolated_average] multiplied by the elapse
 
 ## Samples
 
-Create a table to track irregularly sampled storage usage in bytes, and get the total storage used in byte-hours between January 1 and January 6. Use the 'last observation carried forward' interpolation method:
+Create a table to track irregularly sampled storage usage in bytes, and get the total storage used in byte-hours between
+January 1 and January 6. Use the 'last observation carried forward' interpolation method:
 
 ```sql
 -- Create a table to track irregularly sampled storage usage

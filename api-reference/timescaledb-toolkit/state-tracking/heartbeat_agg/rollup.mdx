@@ -14,9 +14,13 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Combine multiple heartbeat aggregates into one. This can be used to combine aggregates into adjacent intervals into one larger interval, such as rolling daily aggregates into a weekly or monthly aggregate.
+Combine multiple heartbeat aggregates into one. This can be used to combine aggregates into adjacent intervals into one
+larger interval, such as rolling daily aggregates into a weekly or monthly aggregate.
 
-Another use for this is to combine heartbeat aggregates for redundant systems to determine if there were any overlapping failures. For instance, a master and standby system can have their heartbeats combined to see if there were any intervals where both systems were down at the same time. The result of rolling overlapping heartbeats together like this is a heartbeat aggregate which considers a time live if any of its component aggregates were live.
+Another use for this is to combine heartbeat aggregates for redundant systems to determine if there were any overlapping
+failures. For instance, a master and standby system can have their heartbeats combined to see if there were any
+intervals where both systems were down at the same time. The result of rolling overlapping heartbeats together like this
+is a heartbeat aggregate which considers a time live if any of its component aggregates were live.
 
 ```sql
 rollup(

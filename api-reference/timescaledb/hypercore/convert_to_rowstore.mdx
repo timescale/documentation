@@ -9,22 +9,22 @@ products: [cloud, mst, self_hosted]
 ---
 
 import HypercoreManualWorkflow from '/snippets/api-reference/timescaledb/hypercore/hypercore-manual-workflow.mdx';
-import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB } from '/snippets/vars.mdx';
+import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
 
 <Tag>Community</Tag>
 
-Manually convert a specific chunk in the hypertable {COLUMNSTORE} to the {ROWSTORE}.
+Manually convert a specific {CHUNK} in the {HYPERTABLE} {COLUMNSTORE} to the {ROWSTORE}.
 
-If you need to modify or add a lot of data to a chunk in the {COLUMNSTORE}, best practice is to stop
-any [jobs][job] moving chunks to the {COLUMNSTORE}, convert the chunk back to the {ROWSTORE}, then modify the
-data. After the update, [convert the chunk to the {COLUMNSTORE}][convert_to_columnstore] and restart the jobs.
+If you need to modify or add a lot of data to a {CHUNK} in the {COLUMNSTORE}, best practice is to stop
+any [jobs][job] moving {CHUNK}s to the {COLUMNSTORE}, convert the {CHUNK} back to the {ROWSTORE}, then modify the
+data. After the update, [convert the {CHUNK} to the {COLUMNSTORE}][convert_to_columnstore] and restart the jobs.
 This workflow is especially useful if you need to backfill old data.
 
 ## Samples
 
-To modify or add a lot of data to a chunk:
+To modify or add a lot of data to a {CHUNK}:
 
 <HypercoreManualWorkflow />
 
@@ -32,7 +32,7 @@ To modify or add a lot of data to a chunk:
 
 | Name | Type     | Default | Required | Description|
 |--|----------|---------|----------|-|
-|`chunk`| REGCLASS | -       | ✖        | Name of the chunk to be moved to the {ROWSTORE}. |
+|`chunk`| REGCLASS | -       | ✖        | Name of the {CHUNK} to be moved to the {ROWSTORE}. |
 |`if_compressed`| BOOLEAN  | `true`  | ✔        | Set to `false` so this job fails with an error rather than an warning if `chunk` is not in the {COLUMNSTORE} |
 
 [job]: /api/:currentVersion:/jobs-automation/

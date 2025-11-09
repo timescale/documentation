@@ -14,7 +14,8 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Unpack the state aggregate into a set of rows with two columns, displaying the duration of each state. By default, the columns are named `state` and `duration`. You can rename them using the same method as renaming a table.
+Unpack the state aggregate into a set of rows with two columns, displaying the duration of each state. By default, the
+columns are named `state` and `duration`. You can rename them using the same method as renaming a table.
 
 ```sql
 into_values(
@@ -41,7 +42,9 @@ into_int_values(
 
 ## Samples
 
-Create a state aggregate from the table `states_test`. The time column is named `time`, and the `state` column contains text values corresponding to different states of a system. Use `into_values` to display the data from the state aggregate.
+Create a state aggregate from the table `states_test`. The time column is named `time`, and the `state` column contains
+text values corresponding to different states of a system. Use `into_values` to display the data from the state
+aggregate.
 
 ```sql
 SELECT state, duration FROM into_values(

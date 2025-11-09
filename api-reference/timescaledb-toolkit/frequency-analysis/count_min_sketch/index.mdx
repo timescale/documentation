@@ -10,9 +10,12 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="flask" /> Early access 1.8.0
 
-Count the number of times a value appears in a column, using the probabilistic count-min sketch data structure and its associated algorithms. For applications where a small error rate is tolerable, this can result in huge savings in both CPU time and memory, especially for large datasets.
+Count the number of times a value appears in a column, using the probabilistic count-min sketch data structure and its
+associated algorithms. For applications where a small error rate is tolerable, this can result in huge savings in both
+CPU time and memory, especially for large datasets.
 
-The count-min sketch produces a biased estimator of frequency. It might overestimate the item count, but it can't underestimate. You can control the relative error and the probability that the estimate falls outside the error bounds.
+The count-min sketch produces a biased estimator of frequency. It might overestimate the item count, but it can't
+underestimate. You can control the relative error and the probability that the estimate falls outside the error bounds.
 
 import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 

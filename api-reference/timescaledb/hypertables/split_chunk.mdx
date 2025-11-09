@@ -8,9 +8,12 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
+
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
 <Tag>Community</Tag>
 
-Split a large chunk at a specific point in time. If you do not specify the timestamp to split at, `chunk`
+Split a large {CHUNK} at a specific point in time. If you do not specify the timestamp to split at, the {CHUNK}
 is split equally.
 
 ## Samples
@@ -21,10 +24,10 @@ is split equally.
     CALL split_chunk('chunk_1', split_at => '2025-03-01 00:00');
     ```
 
-* Split a chunk in two:
+* Split a {CHUNK} in two:
 
-  For example, If the chunk duration is, 24 hours, the following command splits `chunk_1` into
-  two chunks of 12 hours each.
+  For example, If the {CHUNK} duration is, 24 hours, the following command splits `chunk_1` into
+  two {CHUNK}s of 12 hours each.
     ```sql
     CALL split_chunk('chunk_1');
     ```
@@ -33,8 +36,8 @@ is split equally.
 
 |Name|Type| Default | Required | Description                      |
 |---|---|---|---|----------------------------------|
-| `chunk` | REGCLASS | - | ✔ | Name of the chunk to split.      |
-| `split_at` | `TIMESTAMPTZ`| - | ✖ |Timestamp to split the chunk at. |
+| `chunk` | REGCLASS | - | ✔ | Name of the {CHUNK} to split.      |
+| `split_at` | `TIMESTAMPTZ`| - | ✖ |Timestamp to split the {CHUNK} at. |
 
 
 ## Returns

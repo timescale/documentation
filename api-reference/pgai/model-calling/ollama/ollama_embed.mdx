@@ -1,0 +1,88 @@
+---
+title: ollama_embed()
+description: Generate vector embeddings using local Ollama models
+keywords: [Ollama, embeddings, vectors, local LLM]
+tags: [AI, embeddings, Ollama, local]
+license: community
+type: function
+---
+
+Generate vector embeddings from text using locally hosted Ollama models. Embeddings are numerical representations of
+text that capture semantic meaning, ideal for semantic search, recommendations, and clustering without sending data to
+external APIs.
+
+## Samples
+
+### Generate an embedding
+
+Create a vector embedding using a local model:
+
+```sql
+SELECT ai.ollama_embed(
+    'llama2',
+    'PostgreSQL is a powerful database'
+);
+```
+
+### Specify Ollama host
+
+Connect to a specific Ollama server:
+
+```sql
+SELECT ai.ollama_embed(
+    'llama2',
+    'PostgreSQL is a powerful database',
+    host => 'http://ollama-server:11434'
+);
+```
+
+### Configure model options
+
+Customize the embedding generation:
+
+```sql
+SELECT ai.ollama_embed(
+    'llama2',
+    'PostgreSQL is a powerful database',
+    embedding_options => '{"temperature": 0.5}'::jsonb
+);
+```
+
+### Store embeddings in a table
+
+Generate and store embeddings for your data:
+
+```sql
+UPDATE documents
+SET embedding = ai.ollama_embed(
+    'llama2',
+    content,
+    host => 'http://localhost:11434'
+)
+WHERE embedding IS NULL;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The Ollama model to use (e.g., `llama2`, `mistral`, `nomic-embed-text`) |
+| `input_text` | `TEXT` | - | ✔ | Text input to embed |
+| `host` | `TEXT` | `NULL` | ✖ | Ollama server URL (defaults to `http://localhost:11434`) |
+| `keep_alive` | `TEXT` | `NULL` | ✖ | How long to keep the model loaded (e.g., `5m`, `1h`) |
+| `embedding_options` | `JSONB` | `NULL` | ✖ | Model-specific options as JSON |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`vector`: A pgvector compatible vector containing the embedding.
+
+## Related functions
+
+- [`ollama_generate()`][ollama_generate]: generate text completions
+- [`ollama_chat_complete()`][ollama_chat_complete]: chat with local models
+- [`ollama_list_models()`][ollama_list_models]: see available models
+
+[ollama_generate]: /api-reference/pgai/model-calling/ollama/ollama_generate
+[ollama_chat_complete]: /api-reference/pgai/model-calling/ollama/ollama_chat_complete
+[ollama_list_models]: /api-reference/pgai/model-calling/ollama/ollama_list_models

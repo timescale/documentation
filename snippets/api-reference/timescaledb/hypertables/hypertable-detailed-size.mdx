@@ -1,27 +1,29 @@
-Get detailed information about disk space used by a hypertable or
-continuous aggregate, returning size information for the table
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, CAGG } from '/snippets/vars.mdx';
+
+Get detailed information about disk space used by a {HYPERTABLE} or
+{CAGG}, returning size information for the table
 itself, any indexes on the table, any toast tables, and the total
 size of all. All sizes are reported in bytes. If the function is
-executed on a distributed hypertable, it returns size information
+executed on a distributed {HYPERTABLE}, it returns size information
 as a separate row per node, including the access node.
 
 <Note>
 
-When a continuous aggregate name is provided, the function
-transparently looks up the backing hypertable and returns its statistics
+When a {CAGG} name is provided, the function
+transparently looks up the backing {HYPERTABLE} and returns its statistics
 instead.
 
 </Note>
 
-For more information about using hypertables, including chunk size partitioning,
+For more information about using {HYPERTABLE}s, including {CHUNK} size partitioning,
 see the [hypertable section][hypertable-docs].
 
 ## Samples
 
-Get the size information for a hypertable.
+Get the size information for a {HYPERTABLE}.
 
 ```sql
--- disttable is a distributed hypertable --
+-- disttable is a distributed {HYPERTABLE} --
 SELECT * FROM hypertable_detailed_size('disttable') ORDER BY node_name;
 
  table_bytes | index_bytes | toast_bytes | total_bytes |  node_name
@@ -50,10 +52,10 @@ information that occupies a small amount of disk space.
 |index_bytes|BIGINT|Disk space used by indexes|
 |toast_bytes|BIGINT|Disk space of toast tables|
 |total_bytes|BIGINT|Total disk space used by the specified table, including all indexes and TOAST data|
-|node_name|TEXT|For distributed hypertables, this is the user-given name of the node for which the size is reported. `NULL` is returned for the access node and non-distributed hypertables.|
+|node_name|TEXT|For distributed {HYPERTABLE}s, this is the user-given name of the node for which the size is reported. `NULL` is returned for the access node and non-distributed {HYPERTABLE}s.|
 
 <Note>
-If executed on a relation that is not a hypertable, the function
+If executed on a relation that is not a {HYPERTABLE}, the function
 returns `NULL`.
 </Note>
 

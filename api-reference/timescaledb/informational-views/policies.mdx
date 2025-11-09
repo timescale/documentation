@@ -7,14 +7,15 @@ license: community
 type: view
 ---
 
+import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
+
 <Icon icon="flask" /> Early access
 
-The `policies` view provides information on all policies set on continuous
-aggregates.
+The `policies` view provides information on all policies set on {CAGG}s.
 
 <Info>
-Only policies applying to continuous aggregates are shown in this view. Policies
-applying to regular hypertables or regular materialized views are not displayed.
+Only policies applying to {CAGG}s are shown in this view. Policies
+applying to regular {HYPERTABLE}s or regular materialized views are not displayed.
 </Info>
 
 ## Samples
@@ -61,11 +62,11 @@ hypertable_name   | _materialized_hypertable_2
 
 | Column | Type | Description |
 |--------|------|-------------|
-| `relation_name` | TEXT | Name of the continuous aggregate |
-| `relation_schema` | TEXT | Schema of the continuous aggregate |
+| `relation_name` | TEXT | Name of the {CAGG} |
+| `relation_schema` | TEXT | Schema of the {CAGG} |
 | `schedule_interval` | INTERVAL | How often the policy job runs |
 | `proc_schema` | TEXT | Schema of the policy job |
 | `proc_name` | TEXT | Name of the policy job |
 | `config` | JSONB | Configuration details for the policy job |
-| `hypertable_schema` | TEXT | Schema of the hypertable that contains the actual data for the continuous aggregate view |
-| `hypertable_name` | TEXT | Name of the hypertable that contains the actual data for the continuous aggregate view |
+| `hypertable_schema` | TEXT | Schema of the {HYPERTABLE} that contains the actual data for the {CAGG} view |
+| `hypertable_name` | TEXT | Name of the {HYPERTABLE} that contains the actual data for the {CAGG} view |

@@ -7,23 +7,25 @@ license: apache
 type: view
 ---
 
-Get metadata about the chunks of hypertables.
+import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-This view shows metadata for the chunk's primary time-based dimension.
-For information about a hypertable's secondary dimensions,
+Get metadata about the {CHUNK}s of {HYPERTABLE}s.
+
+This view shows metadata for the {CHUNK}'s primary time-based dimension.
+For information about a {HYPERTABLE}'s secondary dimensions,
 the [dimensions view][dimensions] should be used instead.
 
-If the chunk's primary dimension is of a time datatype, `range_start` and
+If the {CHUNK}'s primary dimension is of a time datatype, `range_start` and
 `range_end` are set. Otherwise, if the primary dimension type is integer based,
 `range_start_integer` and `range_end_integer` are set.
 
 ## Samples
 
-Get information about the chunks of a hypertable.
+Get information about the {CHUNK}s of a {HYPERTABLE}.
 
 <Info>
-Dimension builder `by_range` was introduced in TimescaleDB 2.13.
-The `chunk_creation_time` metadata was introduced in TimescaleDB 2.13.
+Dimension builder `by_range` was introduced in {TIMESCALE_DB} 2.13.
+The `chunk_creation_time` metadata was introduced in {TIMESCALE_DB} 2.13.
 </Info>
 
 ```sql
@@ -81,13 +83,13 @@ data_nodes             |
 | `chunk_name` | TEXT | Name of the chunk |
 | `primary_dimension` | TEXT | Name of the column that is the primary dimension |
 | `primary_dimension_type` | REGTYPE | Type of the column that is the primary dimension |
-| `range_start` | TIMESTAMP WITH TIME ZONE | Start of the range for the chunk's dimension |
-| `range_end` | TIMESTAMP WITH TIME ZONE | End of the range for the chunk's dimension |
-| `range_start_integer` | BIGINT | Start of the range for the chunk's dimension, if the dimension type is integer based |
-| `range_end_integer` | BIGINT | End of the range for the chunk's dimension, if the dimension type is integer based |
-| `is_compressed` | BOOLEAN | Is the data in the chunk compressed? <br/><br/> Note that for distributed hypertables, this is the cached compression status of the chunk on the access node. The cached status on the access node and data node is not in sync in some scenarios. For example, if a user compresses or decompresses the chunk on the data node instead of the access node, or sets up compression policies directly on data nodes. <br/><br/> Use `chunk_compression_stats()` function to get real-time compression status for distributed chunks. |
-| `chunk_tablespace` | TEXT | Tablespace used by the chunk |
-| `data_nodes` | ARRAY | Nodes on which the chunk is replicated. This is applicable only to chunks for distributed hypertables |
-| `chunk_creation_time` | TIMESTAMP WITH TIME ZONE | The time when this chunk was created for data addition |
+| `range_start` | TIMESTAMP WITH TIME ZONE | Start of the range for the {CHUNK}'s dimension |
+| `range_end` | TIMESTAMP WITH TIME ZONE | End of the range for the {CHUNK}'s dimension |
+| `range_start_integer` | BIGINT | Start of the range for the {CHUNK}'s dimension, if the dimension type is integer based |
+| `range_end_integer` | BIGINT | End of the range for the {CHUNK}'s dimension, if the dimension type is integer based |
+| `is_compressed` | BOOLEAN | Is the data in the {CHUNK} compressed? <br/><br/> Note that for distributed {HYPERTABLE}s, this is the cached compression status of the {CHUNK} on the access node. The cached status on the access node and data node is not in sync in some scenarios. For example, if a user compresses or decompresses the {CHUNK} on the data node instead of the access node, or sets up compression policies directly on data nodes. <br/><br/> Use `chunk_compression_stats()` function to get real-time compression status for distributed {CHUNK}s. |
+| `chunk_tablespace` | TEXT | Tablespace used by the {CHUNK} |
+| `data_nodes` | ARRAY | Nodes on which the {CHUNK} is replicated. This is applicable only to {CHUNK}s for distributed {HYPERTABLE}s |
+| `chunk_creation_time` | TIMESTAMP WITH TIME ZONE | The time when this {CHUNK} was created for data addition |
 
 [dimensions]: /api-reference/timescaledb/informational-views/dimensions

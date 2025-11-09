@@ -9,11 +9,13 @@ experimental: true
 products: [cloud, self_hosted, mst]
 ---
 
+import { CAGG, HYPERTABLE, COLUMNSTORE } from '/snippets/vars.mdx';
+
 <Icon icon="flask" /> Early access
 
-Remove all policies from a continuous aggregate. The removed columnstore and
-retention policies apply to the continuous aggregate, _not_ to the original
-hypertable.
+Remove all policies from a {CAGG}. The removed {COLUMNSTORE} and
+retention policies apply to the {CAGG}, _not_ to the original
+{HYPERTABLE}.
 
 ```sql
 timescaledb_experimental.remove_all_policies(
@@ -24,8 +26,8 @@ timescaledb_experimental.remove_all_policies(
 
 ## Samples
 
-Remove all policies from a continuous aggregate named
-`example_continuous_aggregate`. This includes refresh policies, columnstore
+Remove all policies from a {CAGG} named
+`example_continuous_aggregate`. This includes refresh policies, {COLUMNSTORE}
 policies, and data retention policies. It doesn't include custom jobs:
 
 ```sql
@@ -36,7 +38,7 @@ SELECT timescaledb_experimental.remove_all_policies('example_continuous_aggregat
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `relation` | `REGCLASS` | - | ✔ | The continuous aggregate to remove all policies from |
+| `relation` | `REGCLASS` | - | ✔ | The {CAGG} to remove all policies from |
 | `if_exists` | `BOOL` | false | - | When true, prints a warning instead of erroring if any policies are missing. |
 
 ## Returns

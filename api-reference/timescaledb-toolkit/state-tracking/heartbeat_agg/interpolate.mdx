@@ -14,7 +14,9 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Update a heartbeat aggregate to include any live ranges that should have been carried over from the last heartbeat in the predecessor, even if there aren't heartbeats for that range in the interval covered by this aggregate. Return the updated aggregate, which can then be used with any of the heartbeat aggregate accessors.
+Update a heartbeat aggregate to include any live ranges that should have been carried over from the last heartbeat in
+the predecessor, even if there aren't heartbeats for that range in the interval covered by this aggregate. Return the
+updated aggregate, which can then be used with any of the heartbeat aggregate accessors.
 
 ```sql
 interpolate(
@@ -38,7 +40,9 @@ interpolate(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use the following to get the intervals where the system was unhealthy during the week of Jan 9, 2022. This correctly excludes any ranges covered by a heartbeat at the end of the Jan 2 week.
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use the following to get the intervals where the system was unhealthy during the week of Jan 9, 2022. This correctly
+excludes any ranges covered by a heartbeat at the end of the Jan 2 week.
 
 ```sql
 SELECT dead_ranges(

@@ -13,9 +13,12 @@ import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [convert_to_columnstore()][convert-to-columnstore].
 
-The `compress_chunk` function is used for synchronous compression (or recompression, if necessary) of a specific {CHUNK}. This is most often used instead of the [`add_compression_policy`][add-compression-policy] function, when a user wants more control over the scheduling of compression. For most users, we suggest using the policy framework instead.
+The `compress_chunk` function is used for synchronous compression (or recompression, if necessary) of a specific
+{CHUNK}. This is most often used instead of the [`add_compression_policy`][add-compression-policy] function, when a user
+wants more control over the scheduling of compression. For most users, we suggest using the policy framework instead.
 
-You can also compress {CHUNK}s by [running the job associated with your compression policy][run-job]. `compress_chunk` gives you more fine-grained control by allowing you to target a specific {CHUNK} that needs compressing.
+You can also compress {CHUNK}s by [running the job associated with your compression policy][run-job]. `compress_chunk`
+gives you more fine-grained control by allowing you to target a specific {CHUNK} that needs compressing.
 
 <Tip>
 You can get a list of {CHUNK}s belonging to a {HYPERTABLE} using the [`show_chunks` function][show-chunks].

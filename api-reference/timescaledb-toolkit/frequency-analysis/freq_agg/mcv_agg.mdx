@@ -14,7 +14,8 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
 
-Aggregate data into a space-saving aggregate, which stores frequency information in an intermediate form. You can then use any of the accessors in this group to return estimated frequencies or the most common elements.
+Aggregate data into a space-saving aggregate, which stores frequency information in an intermediate form. You can then
+use any of the accessors in this group to return estimated frequencies or the most common elements.
 
 This differs from [`freq_agg`](#freq_agg) in that you can specify a target number of values to keep, rather than a frequency cutoff.
 
@@ -48,7 +49,8 @@ Create a topN aggregate over the `country` column of the `users` table. Targets 
 SELECT mcv_agg(10, country) FROM users;
 ```
 
-Create a topN aggregate over the `type` column of the `devices` table. Estimates the skew of the data to be 1.05, and targets the 5 most-frequent values:
+Create a topN aggregate over the `type` column of the `devices` table. Estimates the skew of the data to be 1.05, and
+targets the 5 most-frequent values:
 
 ```sql
 SELECT mcv_agg(5, 1.05, type) FROM devices;

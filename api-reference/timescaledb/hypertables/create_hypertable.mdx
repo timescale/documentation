@@ -10,11 +10,13 @@ products: [cloud, mst, self_hosted]
 
 import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/dimensions-info.mdx';
 
-Replace a standard {PG} relational table with a [hypertable][hypertable-docs] that is partitioned on a single
-dimension. To create a new hypertable, best practice is to call <a href="https://docs.tigerdata.com/api/latest/hypertable/create_table/">CREATE TABLE</a>.
+import { HYPERTABLE, CHUNK, PG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-A hypertable is a {PG} table that automatically partitions your data by time. A dimension defines the way your
-data is partitioned.  All actions work on the resulting hypertable. For example, `ALTER TABLE`, and `SELECT`.
+Replace a standard {PG} relational table with a [{HYPERTABLE}][hypertable-docs] that is partitioned on a single
+dimension. To create a new {HYPERTABLE}, best practice is to call <a href="https://docs.tigerdata.com/api/latest/hypertable/create_table/">CREATE TABLE</a>.
+
+A {HYPERTABLE} is a {PG} table that automatically partitions your data by time. A dimension defines the way your
+data is partitioned.  All actions work on the resulting {HYPERTABLE}. For example, `ALTER TABLE`, and `SELECT`.
 
 If the table to convert already contains data, set [migrate_data][migrate-data] to `TRUE`.
 However, this may take a long time and there are limitations when the table contains foreign
@@ -25,7 +27,7 @@ You cannot run `create_hypertable()` on a table that is already partitioned usin
 as `NOT NULL`. If this is not already specified on table creation, `create_hypertable` automatically adds
 this constraint on the table when it is executed.
 
-This page describes the generalized hypertable API introduced in TimescaleDB v2.13.
+This page describes the generalized {HYPERTABLE} API introduced in {TIMESCALE_DB} v2.13.
 The [old interface for `create_hypertable` is also available](/api-reference/timescaledb/hypertables/create_hypertable_old/).
 
 ## Samples
@@ -40,17 +42,17 @@ CREATE TABLE conditions (
 );
 ```
 
-The following examples show you how to create a hypertable from an existing table or a function:
+The following examples show you how to create a {HYPERTABLE} from an existing table or a function:
 
-- [Time partition a hypertable by time range][sample-time-range]
-- [Time partition a hypertable using composite columns and immutable functions][sample-composite-columns]
-- [Time partition a hypertable using ISO formatting][sample-iso-formatting]
-- [Time partition a hypertable using UUIDv7][sample-uuidv7]
+- [Time partition a {HYPERTABLE} by time range][sample-time-range]
+- [Time partition a {HYPERTABLE} using composite columns and immutable functions][sample-composite-columns]
+- [Time partition a {HYPERTABLE} using ISO formatting][sample-iso-formatting]
+- [Time partition a {HYPERTABLE} using UUIDv7][sample-uuidv7]
 
 
-### Time partition a hypertable by time range
+### Time partition a {HYPERTABLE} by time range
 
-The following examples show different ways to create a hypertable:
+The following examples show different ways to create a {HYPERTABLE}:
 
 - Convert with range partitioning on the `time` column:
 

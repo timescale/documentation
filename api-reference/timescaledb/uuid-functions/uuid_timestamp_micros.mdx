@@ -9,15 +9,17 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
+import { PG } from '/snippets/vars.mdx';
+
 <Icon icon="circle-play" iconType="duotone" /> Community
 
-Extract a [Postgres timestamp with time zone][pg-timestamp-timezone] from a UUIDv7 object.
+Extract a [{PG} timestamp with time zone][pg-timestamp-timezone] from a UUIDv7 object.
 `uuid` contains a millisecond unix timestamp and an optional sub-millisecond fraction.
 
 ![UUIDv7 microseconds](https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg)
 
 Unlike [`uuid_timestamp`][uuid_timestamp], the microsecond part of `uuid` is used to construct a
-Postgres timestamp with microsecond precision.
+{PG} timestamp with microsecond precision.
 
 Unless `uuid` is known to encode a valid sub-millisecond fraction, use [`uuid_timestamp`][uuid_timestamp].
 

@@ -8,39 +8,41 @@ type: function
 products: [cloud, self_hosted, mst]
 ---
 
-Refresh all buckets of a continuous aggregate in the refresh window given by
+import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
+
+Refresh all buckets of a {CAGG} in the refresh window given by
 `window_start` and `window_end`.
 
-A continuous aggregate materializes aggregates in time buckets. For example,
+A {CAGG} materializes aggregates in time buckets. For example,
 min, max, average over 1 day worth of data, and is determined by the `time_bucket`
 interval. Therefore, when
-refreshing the continuous aggregate, only buckets that completely fit within the
+refreshing the {CAGG}, only buckets that completely fit within the
 refresh window are refreshed. In other words, it is not possible to compute the
 aggregate over, for an incomplete bucket. Therefore, any buckets that do not
 fit within the given refresh window are excluded.
 
 The function expects the window parameter values to have a time type that is
-compatible with the continuous aggregate's time bucket expression&mdash;for
+compatible with the {CAGG}'s time bucket expression&mdash;for
 example, if the time bucket is specified in `TIMESTAMP WITH TIME ZONE`, then the
-start and end time should be a date or timestamp type. Note that a continuous
-aggregate using the `TIMESTAMP WITH TIME ZONE` type aligns with the UTC time
+start and end time should be a date or timestamp type. Note that a {CAGG} using the `TIMESTAMP WITH TIME ZONE` type
+aligns with the UTC time
 zone, so, if `window_start` and `window_end` is specified in the local time
 zone, any time zone shift relative UTC needs to be accounted for when refreshing
 to align with bucket boundaries.
 
-To improve performance for continuous aggregate refresh, see
+To improve performance for {CAGG} refresh, see
 [CREATE MATERIALIZED VIEW][create_materialized_view].
 
 ## Samples
 
-Refresh the continuous aggregate `conditions` between `2020-01-01` and
+Refresh the {CAGG} `conditions` between `2020-01-01` and
 `2020-02-01` exclusive.
 
 ```sql
 CALL refresh_continuous_aggregate('conditions', '2020-01-01', '2020-02-01');
 ```
 
-Alternatively, incrementally refresh the continuous aggregate `conditions`
+Alternatively, incrementally refresh the {CAGG} `conditions`
 between `2020-01-01` and `2020-02-01` exclusive, working in `12h` intervals:
 
 ```sql
@@ -62,7 +64,7 @@ END
 $$;
 ```
 
-Force the  `conditions` continuous aggregate to refresh between `2020-01-01` and
+Force the  `conditions` {CAGG} to refresh between `2020-01-01` and
 `2020-02-01` exclusive, even if the data has already been refreshed.
 
 ```sql
@@ -73,16 +75,16 @@ CALL refresh_continuous_aggregate('conditions', '2020-01-01', '2020-02-01', forc
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `continuous_aggregate` | REGCLASS | - | ✔ | The continuous aggregate to refresh. |
+| `continuous_aggregate` | REGCLASS | - | ✔ | The {CAGG} to refresh. |
 | `window_start` | INTERVAL, TIMESTAMPTZ, INTEGER | - | ✔ | Start of the window to refresh, has to be before `window_end`. |
 | `window_end` | INTERVAL, TIMESTAMPTZ, INTEGER | - | ✔ | End of the window to refresh, has to be after `window_start`. |
 | `force` | BOOLEAN | `FALSE` | - | Force refresh every bucket in the time range between `window_start` and `window_end`, even when the bucket has already been refreshed. This can be very expensive when a lot of data is refreshed. |
 | `refresh_newest_first` | BOOLEAN | `TRUE` | - | Set to `FALSE` to refresh the oldest data first. |
 
 You must specify the `window_start` and `window_end` parameters differently,
-depending on the type of the time column of the hypertable. For hypertables with
+depending on the type of the time column of the {HYPERTABLE}. For {HYPERTABLE}s with
 `TIMESTAMP`, `TIMESTAMPTZ`, and `DATE` time columns, set the refresh window as
-an `INTERVAL` type. For hypertables with integer-based timestamps, set the
+an `INTERVAL` type. For {HYPERTABLE}s with integer-based timestamps, set the
 refresh window as an `INTEGER` type.
 
 <Note>

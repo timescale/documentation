@@ -8,14 +8,17 @@ license: apache
 type: function
 ---
 
-Detach all tablespaces from a hypertable. After issuing this command
-on a hypertable, it no longer has any tablespaces attached to
-it. New chunks are instead placed in the database's default
+
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
+Detach all tablespaces from a {HYPERTABLE}. After issuing this command
+on a {HYPERTABLE}, it no longer has any tablespaces attached to
+it. New {CHUNK}s are instead placed in the database's default
 tablespace.
 
 ## Samples
 
-Detach all tablespaces from the hypertable `conditions`:
+Detach all tablespaces from the {HYPERTABLE} `conditions`:
 
 ```sql
 SELECT detach_tablespaces('conditions');

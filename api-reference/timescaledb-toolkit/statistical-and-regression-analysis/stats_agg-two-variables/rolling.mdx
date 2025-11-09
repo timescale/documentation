@@ -15,12 +15,17 @@ keywords: [statistics, hyperfunctions, Toolkit]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
 
-Combine multiple intermediate two-dimensional statistical aggregate (`StatsSummary2D`) objects into a single `StatsSummary2D` object. It is optimized for use in a window function context for computing tumbling window statistical aggregates.
+Combine multiple intermediate two-dimensional statistical aggregate (`StatsSummary2D`) objects into a single
+`StatsSummary2D` object. It is optimized for use in a window function context for computing tumbling window statistical
+aggregates.
 
 <Info>
-This is especially useful for computing tumbling window aggregates from a continuous aggregate. It can be orders of magnitude faster because it uses inverse transition and combine functions, with the possibility that bigger floating point errors can occur in unusual scenarios.
+This is especially useful for computing tumbling window aggregates from a continuous aggregate. It can be orders of
+magnitude faster because it uses inverse transition and combine functions, with the possibility that bigger floating
+point errors can occur in unusual scenarios.
 
-For re-aggregation in a non-window function context, such as combining hourly buckets into daily buckets, see `rollup()`.
+For re-aggregation in a non-window function context, such as combining hourly buckets into daily buckets, see
+`rollup()`.
 </Info>
 
 ```sql

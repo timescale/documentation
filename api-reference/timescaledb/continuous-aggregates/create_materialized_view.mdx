@@ -10,11 +10,12 @@ type: command
 products: [cloud, self_hosted, mst]
 ---
 
+import { CAGG, HYPERTABLE, TIMESCALE_DB, PG, CHUNK } from '/snippets/vars.mdx';
+
 <Icon icon="circle-play" iconType="duotone" /> Since 2.22.0
 
-You use the `CREATE MATERIALIZED VIEW` statement to create continuous
-aggregates. To learn more, see the
-[continuous aggregate how-to guides][cagg-how-tos].
+You use the `CREATE MATERIALIZED VIEW` statement to create {CAGG}s. To learn more, see the
+[{CAGG} how-to guides][cagg-how-tos].
 
 The syntax is:
 
@@ -37,30 +38,30 @@ GROUP BY time_bucket( <const_value>, <partition_col_of_hypertable> ),
 [HAVING ...]
 ```
 
-The continuous aggregate view defaults to `WITH DATA`. This means that when the
+The {CAGG} view defaults to `WITH DATA`. This means that when the
 view is created, it refreshes using all the current data in the underlying
-hypertable or continuous aggregate. This occurs once when the view is created.
+{HYPERTABLE} or {CAGG}. This occurs once when the view is created.
 If you want the view to be refreshed regularly, you can use a refresh policy. If
 you do not want the view to update when it is first created, use the
 `WITH NO DATA` parameter. For more information, see
 [`refresh_continuous_aggregate`][refresh-cagg].
 
-Continuous aggregates have some limitations of what types of queries they can
+{CAGG}s have some limitations of what types of queries they can
 support. For more information, see the
-[continuous aggregates section][cagg-how-tos].
+[{CAGG}s section][cagg-how-tos].
 
-TimescaleDB v2.17.1 and greater dramatically decrease the amount
-of data written on a continuous aggregate in the presence of a small number of changes,
-reduce the i/o cost of refreshing a continuous aggregate, and generate fewer Write-Ahead
+{TIMESCALE_DB} v2.17.1 and greater dramatically decrease the amount
+of data written on a {CAGG} in the presence of a small number of changes,
+reduce the i/o cost of refreshing a {CAGG}, and generate fewer Write-Ahead
 Logs (WAL), set the`timescaledb.enable_merge_on_cagg_refresh`
-configuration parameter to `TRUE`. This enables continuous aggregate
-refresh to use merge instead of deleting old materialized data and re-inserting.
+configuration parameter to `TRUE`. This enables {CAGG} refresh to use merge instead of deleting old materialized data
+and re-inserting.
 
-For more settings for continuous aggregates, see [timescaledb_information.continuous_aggregates][info-views].
+For more settings for {CAGG}s, see [timescaledb_information.continuous_aggregates][info-views].
 
 ## Samples
 
-Create a daily continuous aggregate view:
+Create a daily {CAGG} view:
 
 ```sql
 CREATE MATERIALIZED VIEW continuous_aggregate_daily( timec, minl, sumt, sumh )
@@ -70,7 +71,7 @@ WITH (timescaledb.continuous) AS
     GROUP BY time_bucket('1day', timec)
 ```
 
-Add a thirty day continuous aggregate on top of the same raw hypertable:
+Add a thirty day {CAGG} on top of the same raw {HYPERTABLE}:
 
 ```sql
 CREATE MATERIALIZED VIEW continuous_aggregate_thirty_day( timec, minl, sumt, sumh )
@@ -80,7 +81,7 @@ WITH (timescaledb.continuous) AS
     GROUP BY time_bucket('30day', timec);
 ```
 
-Add an hourly continuous aggregate on top of the same raw hypertable:
+Add an hourly {CAGG} on top of the same raw {HYPERTABLE}:
 
 ```sql
 CREATE MATERIALIZED VIEW continuous_aggregate_hourly( timec, minl, sumt, sumh )
@@ -94,26 +95,26 @@ WITH (timescaledb.continuous) AS
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `<view_name>` | TEXT | - | ✔ | Name (optionally schema-qualified) of continuous aggregate view to create |
+| `<view_name>` | TEXT | - | ✔ | Name (optionally schema-qualified) of {CAGG} view to create |
 | `<column_name>` | TEXT | - | - | Optional list of names to be used for columns of the view. If not given, the column names are calculated from the query |
-| `WITH` clause | TEXT | - | ✔ | Specifies options for the continuous aggregate view |
+| `WITH` clause | TEXT | - | ✔ | Specifies options for the {CAGG} view |
 | `<select_query>` | TEXT | - | ✔ | A `SELECT` query that uses the specified syntax |
 
 Required `WITH` clause options:
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `timescaledb.continuous` | BOOLEAN | - | ✔ | If `timescaledb.continuous` is not specified, this is a regular PostgreSQL materialized view |
+| `timescaledb.continuous` | BOOLEAN | - | ✔ | If `timescaledb.continuous` is not specified, this is a regular {PG} materialized view |
 
 Optional `WITH` clause options:
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `timescaledb.chunk_interval` | INTERVAL | 10x the original hypertable | - | Set the chunk interval. The default value is 10x the original hypertable. |
-| `timescaledb.create_group_indexes` | BOOLEAN | `TRUE` | - | Create indexes on the continuous aggregate for columns in its `GROUP BY` clause. Indexes are in the form `(<GROUP_BY_COLUMN>, time_bucket)` |
-| `timescaledb.finalized` | BOOLEAN | `TRUE` | - | In TimescaleDB 2.7 and above, use the new version of continuous aggregates, which stores finalized results for aggregate functions. Supports all aggregate functions, including ones that use `FILTER`, `ORDER BY`, and `DISTINCT` clauses. |
-| `timescaledb.materialized_only` | BOOLEAN | `TRUE` | - | Return only materialized data when querying the continuous aggregate view |
-| `timescaledb.invalidate_using` | TEXT | `trigger` | - | Set to `wal` to read changes from the WAL using logical decoding, then update the materialization invalidations for continuous aggregates using this information. This reduces the I/O and CPU needed to manage the hypertable invalidation log. Set to `trigger` to collect invalidations whenever there are inserts, updates, or deletes to a hypertable. This default behaviour uses more resources than `wal`. |
+| `timescaledb.chunk_interval` | INTERVAL | 10x the original {HYPERTABLE} | - | Set the {CHUNK} interval. The default value is 10x the original {HYPERTABLE}. |
+| `timescaledb.create_group_indexes` | BOOLEAN | `TRUE` | - | Create indexes on the {CAGG} for columns in its `GROUP BY` clause. Indexes are in the form `(<GROUP_BY_COLUMN>, time_bucket)` |
+| `timescaledb.finalized` | BOOLEAN | `TRUE` | - | In {TIMESCALE_DB} 2.7 and above, use the new version of {CAGG}s, which stores finalized results for aggregate functions. Supports all aggregate functions, including ones that use `FILTER`, `ORDER BY`, and `DISTINCT` clauses. |
+| `timescaledb.materialized_only` | BOOLEAN | `TRUE` | - | Return only materialized data when querying the {CAGG} view |
+| `timescaledb.invalidate_using` | TEXT | `trigger` | - | Set to `wal` to read changes from the WAL using logical decoding, then update the materialization invalidations for {CAGG}s using this information. This reduces the I/O and CPU needed to manage the {HYPERTABLE} invalidation log. Set to `trigger` to collect invalidations whenever there are inserts, updates, or deletes to a {HYPERTABLE}. This default behaviour uses more resources than `wal`. |
 
 For more information, see the [real-time aggregates][real-time-aggregates] section.
 

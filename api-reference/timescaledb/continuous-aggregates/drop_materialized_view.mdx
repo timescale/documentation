@@ -10,14 +10,16 @@ type: command
 products: [cloud, self_hosted, mst]
 ---
 
-Continuous aggregate views can be dropped using the `DROP MATERIALIZED VIEW` statement.
+import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
 
-This statement deletes the continuous aggregate and all its internal
+{CAGG} views can be dropped using the `DROP MATERIALIZED VIEW` statement.
+
+This statement deletes the {CAGG} and all its internal
 objects. It also removes refresh policies for that
 aggregate. To delete other dependent objects, such as a view
-defined on the continuous aggregate, add the `CASCADE`
-option. Dropping a continuous aggregate does not affect the data in
-the underlying hypertable from which the continuous aggregate is
+defined on the {CAGG}, add the `CASCADE`
+option. Dropping a {CAGG} does not affect the data in
+the underlying {HYPERTABLE} from which the {CAGG} is
 derived.
 
 ```sql
@@ -26,7 +28,7 @@ DROP MATERIALIZED VIEW <view_name>;
 
 ## Samples
 
-Drop existing continuous aggregate.
+Drop existing {CAGG}.
 
 ```sql
 DROP MATERIALIZED VIEW contagg_view;
@@ -36,4 +38,4 @@ DROP MATERIALIZED VIEW contagg_view;
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `<view_name>` | TEXT | - | ✔ | Name (optionally schema-qualified) of continuous aggregate view to be dropped. |
+| `<view_name>` | TEXT | - | ✔ | Name (optionally schema-qualified) of {CAGG} view to be dropped. |

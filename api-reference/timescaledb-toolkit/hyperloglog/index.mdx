@@ -17,7 +17,8 @@ reasonable default values.
 This function group uses the [two-step aggregation][two-step-aggregation]
 pattern. In addition to the usual aggregate function,
 [`hyperloglog`][hyperloglog], it also includes the alternate aggregate function
-[`approx_count_distinct`][approx_count_distinct]. Both produce a hyperloglog aggregate, which can then be used with the accessor and rollup functions in
+[`approx_count_distinct`][approx_count_distinct]. Both produce a hyperloglog aggregate, which can then be used with the
+accessor and rollup functions in
 this group.
 
 ## Two-step aggregation
@@ -81,7 +82,8 @@ These are the approximate errors for each bucket size:
 - [`hyperloglog()`][hyperloglog]: aggregate data into a hyperloglog for approximate counting
 
 ### Alternate aggregate
-- [`approx_count_distinct()`][approx_count_distinct]: aggregate data into a hyperloglog without specifying the number of buckets
+-  [`approx_count_distinct()`][approx_count_distinct]: aggregate data into a hyperloglog without specifying the number
+  of buckets
 
 ### Accessors
 - [`distinct_count()`][distinct_count]: estimate the number of distinct values from a hyperloglog

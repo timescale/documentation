@@ -9,7 +9,9 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-Show the tablespaces attached to a hypertable.
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
+Show the tablespaces attached to a {HYPERTABLE}.
 
 ## Samples
 
@@ -26,4 +28,4 @@ SELECT * FROM show_tablespaces('conditions');
 
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
-| `hypertable` | REGCLASS | - | ✔ | Hypertable to show attached tablespaces for.|
+| `hypertable` | REGCLASS | - | ✔ | {HYPERTABLE} to show attached tablespaces for.|

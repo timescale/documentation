@@ -14,7 +14,8 @@ hyperfunction:
 
 <Icon icon="flask" /> Early access 1.5.0
 
-Aggregate data into a space-saving aggregate object, which stores frequency information in an intermediate form. You can then use any of the accessors in this group to return estimated frequencies or the most common elements.
+Aggregate data into a space-saving aggregate object, which stores frequency information in an intermediate form. You can
+then use any of the accessors in this group to return estimated frequencies or the most common elements.
 
 ```sql
 freq_agg(
@@ -38,7 +39,8 @@ freq_agg(
 
 ## Samples
 
-Create a space-saving aggregate over a field `ZIP` in a `HomeSales` table. This aggregate tracks any `ZIP` value that occurs in at least 5% of rows:
+Create a space-saving aggregate over a field `ZIP` in a `HomeSales` table. This aggregate tracks any `ZIP` value that
+occurs in at least 5% of rows:
 
 ```sql
 SELECT toolkit_experimental.freq_agg(0.05, ZIP) FROM HomeSales;

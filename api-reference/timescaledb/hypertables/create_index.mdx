@@ -8,29 +8,32 @@ type: command
 products: [cloud, mst, self_hosted]
 ---
 
+
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
 ```SQL
 CREATE INDEX ... WITH (timescaledb.transaction_per_chunk, ...);
 ```
 
 This option extends [`CREATE INDEX`][postgres-createindex] with the ability to
-use a separate transaction for each chunk it creates an index on, instead of
-using a single transaction for the entire hypertable. This allows `INSERT`s, and
+use a separate transaction for each {CHUNK} it creates an index on, instead of
+using a single transaction for the entire {HYPERTABLE}. This allows `INSERT`s, and
 other operations to be performed concurrently during most of the duration of the
-`CREATE INDEX` command. While the index is being created on an individual chunk,
-it functions as if a regular `CREATE INDEX` were called on that chunk, however
-other chunks are completely unblocked.
+`CREATE INDEX` command. While the index is being created on an individual {CHUNK},
+it functions as if a regular `CREATE INDEX` were called on that {CHUNK}, however
+other {CHUNK}s are completely unblocked.
 
 This version of `CREATE INDEX` can be used as an alternative to
-`CREATE INDEX CONCURRENTLY`, which is not currently supported on hypertables.
+`CREATE INDEX CONCURRENTLY`, which is not currently supported on {HYPERTABLE}s.
 
 <Warning>
 
 - Not supported for `CREATE UNIQUE INDEX`.
 - If the operation fails partway through, indexes might not be created on all
-hypertable chunks. If this occurs, the index on the root table of the hypertable
-is marked as invalid. You can check this by running `\d+` on the hypertable. The
-index still works, and is created on new chunks, but if you want to ensure all
-chunks have a copy of the index, drop and recreate it.
+{HYPERTABLE} {CHUNK}s. If this occurs, the index on the root table of the {HYPERTABLE}
+is marked as invalid. You can check this by running `\d+` on the {HYPERTABLE}. The
+index still works, and is created on new {CHUNK}s, but if you want to ensure all
+{CHUNK}s have a copy of the index, drop and recreate it.
 
    You can also use the following query to find all invalid indexes:
 

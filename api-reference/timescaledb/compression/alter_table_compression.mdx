@@ -15,7 +15,9 @@ Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/
 
 'ALTER TABLE' statement is used to turn on compression and set compression options.
 
-By itself, this `ALTER` statement alone does not compress a {HYPERTABLE}. To do so, either create a compression policy using the [add_compression_policy][add-compression-policy] function or manually compress a specific {HYPERTABLE} {CHUNK} using the [compress_chunk][compress-chunk] function.
+By itself, this `ALTER` statement alone does not compress a {HYPERTABLE}. To do so, either create a compression policy
+using the [add_compression_policy][add-compression-policy] function or manually compress a specific {HYPERTABLE} {CHUNK}
+using the [compress_chunk][compress-chunk] function.
 
 The syntax is:
 
@@ -29,7 +31,8 @@ ALTER TABLE <table_name> SET (timescaledb.compress,
 
 ## Samples
 
-Configure a {HYPERTABLE} that ingests device data to use compression. Here, if the {HYPERTABLE} is often queried about a specific device or set of devices, the compression should be segmented using the `device_id` for greater performance.
+Configure a {HYPERTABLE} that ingests device data to use compression. Here, if the {HYPERTABLE} is often queried about a
+specific device or set of devices, the compression should be segmented using the `device_id` for greater performance.
 
 ```sql
 ALTER TABLE metrics SET (timescaledb.compress, timescaledb.compress_orderby = 'time DESC', timescaledb.compress_segmentby = 'device_id');

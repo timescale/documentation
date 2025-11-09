@@ -22,18 +22,22 @@ recompress_chunk(
 )
 ```
 
-You can also recompress {CHUNK}s by [running the job associated with your compression policy][run-job]. `recompress_chunk` gives you more fine-grained control by allowing you to target a specific {CHUNK}.
+You can also recompress {CHUNK}s by [running the job associated with your compression policy][run-job].
+`recompress_chunk` gives you more fine-grained control by allowing you to target a specific {CHUNK}.
 
 <Warning>
-`recompress_chunk` is deprecated since {TIMESCALE_DB} v2.14 and will be removed in the future. The procedure is now a wrapper which calls [`compress_chunk`][compress-chunk] instead of it.
+`recompress_chunk` is deprecated since {TIMESCALE_DB} v2.14 and will be removed in the future. The procedure is now a
+wrapper which calls [`compress_chunk`][compress-chunk] instead of it.
 </Warning>
 
 <Warning>
-`recompress_chunk` is implemented as an SQL procedure and not a function. Call the procedure with `CALL`. Don't use a `SELECT` statement.
+`recompress_chunk` is implemented as an SQL procedure and not a function. Call the procedure with `CALL`. Don't use a
+`SELECT` statement.
 </Warning>
 
 <Note>
-`recompress_chunk` only works on {CHUNK}s that have previously been compressed. To compress a {CHUNK} for the first time, use [`compress_chunk`][compress-chunk].
+`recompress_chunk` only works on {CHUNK}s that have previously been compressed. To compress a {CHUNK} for the first
+time, use [`compress_chunk`][compress-chunk].
 </Note>
 
 ## Samples
@@ -53,13 +57,16 @@ CALL recompress_chunk('_timescaledb_internal._hyper_1_2_chunk');
 
 ## Troubleshooting
 
-In TimescaleDB 2.6.0 and above, `recompress_chunk` is implemented as a procedure. Previously, it was implemented as a function. If you are upgrading to TimescaleDB 2.6.0 or above, the`recompress_chunk` function could cause an error. For example, trying to run `SELECT recompress_chunk(i.show_chunks, true) FROM...` gives the following error:
+In TimescaleDB 2.6.0 and above, `recompress_chunk` is implemented as a procedure. Previously, it was implemented as a
+function. If you are upgrading to TimescaleDB 2.6.0 or above, the`recompress_chunk` function could cause an error. For
+example, trying to run `SELECT recompress_chunk(i.show_chunks, true) FROM...` gives the following error:
 
 ```sql
 ERROR:  recompress_chunk(regclass, boolean) is a procedure
 ```
 
-To fix the error, use `CALL` instead of `SELECT`. You might also need to write a procedure to replace the full functionality in your `SELECT` statement. For example:
+To fix the error, use `CALL` instead of `SELECT`. You might also need to write a procedure to replace the full
+functionality in your `SELECT` statement. For example:
 
 ```sql
 DO $$

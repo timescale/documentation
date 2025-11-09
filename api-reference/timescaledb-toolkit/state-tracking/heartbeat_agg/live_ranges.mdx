@@ -14,7 +14,8 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Return a set of (start_time, end_time) pairs representing when the underlying system was live during the interval of the aggregate.
+Return a set of (start_time, end_time) pairs representing when the underlying system was live during the interval of the
+aggregate.
 
 ```sql
 live_ranges(
@@ -39,7 +40,8 @@ live_ranges(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use the following to get the intervals where the system was live during the week of Jan 9, 2022.
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use the following to get the intervals where the system was live during the week of Jan 9, 2022.
 
 ```sql
 SELECT live_ranges(health)

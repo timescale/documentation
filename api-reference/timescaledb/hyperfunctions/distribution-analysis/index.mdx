@@ -7,7 +7,10 @@ license: apache
 products: [cloud, mst, self_hosted]
 ---
 
-Distribution analysis functions help you understand how data is distributed across your datasets and perform fast approximate row counting on large tables.
+import { HYPERTABLE } from '/snippets/vars.mdx';
+
+Distribution analysis functions help you understand how data is distributed across your datasets and perform fast
+approximate row counting on large tables.
 
 ## Samples
 
@@ -22,11 +25,12 @@ GROUP BY device_id
 LIMIT 10;
 ```
 
-The histogram partitions values into buckets between 20 and 60, with 5 equal-width buckets. The result includes an underflow bucket (values < 20) and an overflow bucket (values >= 60).
+The histogram partitions values into buckets between 20 and 60, with 5 equal-width buckets. The result includes an
+underflow bucket (values < 20) and an overflow bucket (values >= 60).
 
 ### Approximate row count
 
-Get a fast approximate count of rows in a hypertable without a full table scan:
+Get a fast approximate count of rows in a {HYPERTABLE} without a full table scan:
 
 ```sql
 ANALYZE conditions;
@@ -34,7 +38,8 @@ ANALYZE conditions;
 SELECT * FROM approximate_row_count('conditions');
 ```
 
-This uses database statistics to provide a quick estimate, which is particularly useful for very large tables where exact counts would be expensive.
+This uses database statistics to provide a quick estimate, which is particularly useful for very large tables where
+exact counts would be expensive.
 
 ## Available functions
 

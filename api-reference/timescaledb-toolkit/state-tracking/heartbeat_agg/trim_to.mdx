@@ -14,7 +14,8 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
 
-Reduce the time range covered by a heartbeat aggregate. This can only be used to narrow the covered interval, passing arguments that would extend beyond the range covered by the initial aggregate gives an error.
+Reduce the time range covered by a heartbeat aggregate. This can only be used to narrow the covered interval, passing
+arguments that would extend beyond the range covered by the initial aggregate gives an error.
 
 ```sql
 trim_to(
@@ -40,7 +41,8 @@ trim_to(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use this query to roll up several weeks and trim the result to an exact month:
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use this query to roll up several weeks and trim the result to an exact month:
 
 ```sql
 SELECT trim_to(rollup(health), '03-1-2022 UTC', '1 month')

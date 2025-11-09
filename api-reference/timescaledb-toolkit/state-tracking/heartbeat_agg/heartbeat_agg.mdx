@@ -14,7 +14,8 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Aggregate a set of heartbeat timestamps to track the liveness state of the underlying system for the specified time range.
+Aggregate a set of heartbeat timestamps to track the liveness state of the underlying system for the specified time
+range.
 
 ```sql
 heartbeat_agg(
@@ -42,7 +43,8 @@ heartbeat_agg(
 
 ## Samples
 
-Given a table called `system_health` with a `ping_time` column, construct an aggregate of system liveness for 10 days starting from Jan 1, 2022. This assumes a system is unhealthy if it hasn't been heard from in a 5 minute window.
+Given a table called `system_health` with a `ping_time` column, construct an aggregate of system liveness for 10 days
+starting from Jan 1, 2022. This assumes a system is unhealthy if it hasn't been heard from in a 5 minute window.
 
 ```sql
 SELECT heartbeat_agg(

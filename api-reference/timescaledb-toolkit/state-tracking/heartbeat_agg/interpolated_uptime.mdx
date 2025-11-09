@@ -14,7 +14,10 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Calculate uptime from a heartbeat aggregate, taking the heartbeat aggregate from the preceding interval to interpolate values at the boundary. This checks when the last heartbeat in the predecessor was received and makes sure that the entire heartbeat interval after that is considered live. This addresses the issue where `uptime` would consider the interval between the start of the interval and the first heartbeat as dead.
+Calculate uptime from a heartbeat aggregate, taking the heartbeat aggregate from the preceding interval to interpolate
+values at the boundary. This checks when the last heartbeat in the predecessor was received and makes sure that the
+entire heartbeat interval after that is considered live. This addresses the issue where `uptime` would consider the
+interval between the start of the interval and the first heartbeat as dead.
 
 ```sql
 interpolated_uptime(
@@ -38,7 +41,8 @@ interpolated_uptime(
 
 ## Samples
 
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`, use this command to get the total interpolated uptime of the system during the week of Jan 9, 2022.
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use this command to get the total interpolated uptime of the system during the week of Jan 9, 2022.
 
 ```sql
 SELECT interpolated_uptime(

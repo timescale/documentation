@@ -16,13 +16,15 @@ import CreateHypertableColumnstorePolicyNote from '/snippets/manage-data/create-
 import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/dimensions-info.mdx';
 import HypercoreDirectCompress from '/snippets/api-reference/timescaledb/hypercore/hypercore-direct-compress.mdx';
 
-import { HYPERTABLE, HYPERTABLE_CAP, COLUMNSTORE, ROWSTORE, TIMESCALE_DB, HYPERCORE, PG, CLOUD_LONG, CHUNK } from '/snippets/vars.mdx';
+import { HYPERTABLE, HYPERTABLE_CAP, COLUMNSTORE, ROWSTORE, TIMESCALE_DB, HYPERCORE, PG, CLOUD_LONG, CHUNK } from
+'/snippets/vars.mdx';
 
 Create a {HYPERTABLE} partitioned on a single dimension with {COLUMNSTORE} enabled, or
 create a standard {PG} relational table.
 
 A {HYPERTABLE} is a specialized {PG} table that automatically partitions your data by time. All actions that work on a
-{PG} table, work on {HYPERTABLE}s. For example, [ALTER TABLE][alter_table_hypercore] and [SELECT][sql-select]. By default,
+{PG} table, work on {HYPERTABLE}s. For example, [ALTER TABLE][alter_table_hypercore] and [SELECT][sql-select]. By
+default,
 a {HYPERTABLE} is partitioned on the time dimension. To add secondary dimensions to a {HYPERTABLE}, call
 [add_dimension][add-dimension]. To convert an existing relational table into a {HYPERTABLE}, call
 [create_hypertable][create_hypertable].
@@ -33,12 +35,16 @@ a {HYPERTABLE} is partitioned on the time dimension. To add secondary dimensions
 
 The {COLUMNSTORE} settings are applied on a per-{CHUNK} basis. You can change the settings by calling
 [ALTER TABLE][alter_table_hypercore] without first converting the entire {HYPERTABLE} back to the {ROWSTORE}.
-The new settings apply only to the {CHUNK}s that have not yet been converted to {COLUMNSTORE}, the existing {CHUNK}s in the
-{COLUMNSTORE} do not change. Similarly, if you [remove an existing columnstore policy][remove_columnstore_policy] and then
-[add a new one][add_columnstore_policy], the new policy applies only to the unconverted {CHUNK}s. This means that {CHUNK}s
+The new settings apply only to the {CHUNK}s that have not yet been converted to {COLUMNSTORE}, the existing {CHUNK}s in
+the
+{COLUMNSTORE} do not change. Similarly, if you [remove an existing columnstore policy][remove_columnstore_policy] and
+then
+[add a new one][add_columnstore_policy], the new policy applies only to the unconverted {CHUNK}s. This means that
+{CHUNK}s
 with different {COLUMNSTORE} settings can co-exist in the same {HYPERTABLE}.
 
-{TIMESCALE_DB} calculates default {COLUMNSTORE} settings for each {CHUNK} when it is created. These settings apply to each
+{TIMESCALE_DB} calculates default {COLUMNSTORE} settings for each {CHUNK} when it is created. These settings apply to
+each
 {CHUNK}, and not the entire {HYPERTABLE}. To explicitly disable the defaults, set a setting to an empty string.
 
 `CREATE TABLE` extends the standard {PG} [CREATE TABLE][pg-create-table]. This page explains the features and
@@ -66,7 +72,8 @@ arguments specific to {TIMESCALE_DB}.
    ```
 
    When you create a {HYPERTABLE} using `CREATE TABLE WITH`, {TIMESCALE_DB} automatically creates a
-   [columnstore policy][add_columnstore_policy] that uses the {CHUNK} interval as the compression interval, with a default
+   [columnstore policy][add_columnstore_policy] that uses the {CHUNK} interval as the compression interval, with a
+   default
    schedule interval of 1 day. The default partitioning column is automatically selected as the first column with a
    timestamp or timestampz data type.
 

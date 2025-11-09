@@ -9,11 +9,11 @@ tags: [scheduled jobs, automation framework, background jobs, alter, change]
 products: [cloud, mst, self_hosted]
 ---
 
-import { JOB_CAP, JOB, HYPERTABLE } from '/snippets/vars.mdx';
+import { JOB_CAP, JOB, HYPERTABLE, TIMESCALE_DB, CAGG, COLUMNSTORE, CHUNK } from '/snippets/vars.mdx';
 
 <Icon icon="tag" iconType="duotone" /> Community
 
-{JOB_CAP}s scheduled using the TimescaleDB automation framework run periodically in
+{JOB_CAP}s scheduled using the {TIMESCALE_DB} automation framework run periodically in
 a background worker. You can change the schedule of these {JOB}s with the
 `alter_job` function. To alter an existing {JOB}, refer to it by `job_id`. The
 `job_id` runs a given {JOB}, and its current schedule can be found in the
@@ -24,21 +24,27 @@ other useful statistics for deciding what the new schedule should be.
 
 ### Calculate the next start on failure
 
-When a {JOB} run results in a runtime failure, the next start of the {JOB} is calculated taking into account both its `retry_period` and `schedule_interval`.
+When a {JOB} run results in a runtime failure, the next start of the {JOB} is calculated taking into account both its
+`retry_period` and `schedule_interval`.
 The `next_start` time is calculated using the following formula:
 ```
 next_start = finish_time + consecutive_failures * retry_period ± jitter
 ```
 where jitter (± 13%) is added to avoid the "thundering herds" effect.
 
-To ensure that the `next_start` time is not put off indefinitely or produce timestamps so large they end up out of range, it is capped at 5*`schedule_interval`.
-Also, more than 20 consecutive failures are not considered, so if the number of consecutive failures is higher, then it multiplies by 20.
+To ensure that the `next_start` time is not put off indefinitely or produce timestamps so large they end up out of
+range, it is capped at 5*`schedule_interval`.
+Also, more than 20 consecutive failures are not considered, so if the number of consecutive failures is higher, then it
+multiplies by 20.
 
-Additionally, for {JOB}s with fixed schedules, the system ensures that if the next start ( calculated as specified), surpasses the next scheduled execution, the {JOB} is executed again at the next scheduled slot and not after that. This ensures that the {JOB} does not miss scheduled executions.
+Additionally, for {JOB}s with fixed schedules, the system ensures that if the next start ( calculated as specified),
+surpasses the next scheduled execution, the {JOB} is executed again at the next scheduled slot and not after that. This
+ensures that the {JOB} does not miss scheduled executions.
 
 There is a distinction between runtime failures that do not cause the {JOB} to crash and {JOB} crashes.
 In the event of a {JOB} crash, the next start calculation follows the same formula,
-but it is always at least 5 minutes after the {JOB}'s last finish, to give an operator enough time to disable it before another crash.
+but it is always at least 5 minutes after the {JOB}'s last finish, to give an operator enough time to disable it before
+another crash.
 
 
 
@@ -50,7 +56,7 @@ but it is always at least 5 minutes after the {JOB}'s last finish, to give an op
     SELECT alter_job(1000, schedule_interval => INTERVAL '2 days');
     ```
 
-- **Disable scheduling of the compression policy on the `conditions` hypertable**:
+- **Disable scheduling of the compression policy on the `conditions` {HYPERTABLE}**:
 
     ```sql
     SELECT alter_job(job_id, scheduled => false)
@@ -58,18 +64,18 @@ but it is always at least 5 minutes after the {JOB}'s last finish, to give an op
     WHERE proc_name = 'policy_compression' AND hypertable_name = 'conditions'
     ```
 
-- **Reschedule continuous aggregate {JOB} ID `1000` so that it next runs at 9:00:00 on 15 March, 2020**:
+- **Reschedule {CAGG} {JOB} ID `1000` so that it next runs at 9:00:00 on 15 March, 2020**:
 
     ```sql
     SELECT alter_job(1000, next_start => '2020-03-15 09:00:00.0+00');
     ```
 
-- **Alter a columnstore_policy**:
+- **Alter a {COLUMNSTORE} policy**:
 
-  You can pause and restart a columnstore policy, change how often the policy runs and the job scheduling.
+  You can pause and restart a {COLUMNSTORE} policy, change how often the policy runs and the {JOB} scheduling.
   To do this:
 
-  1. Find the job ID for the columnstore policy:
+  1. Find the {JOB} ID for the {COLUMNSTORE} policy:
      ```sql
      SELECT job_id, hypertable_name, config
      FROM timescaledb_information.jobs
@@ -81,8 +87,8 @@ but it is always at least 5 minutes after the {JOB}'s last finish, to give an op
      ```sql
      SELECT alter_job(1000, config => '{"compress_after": "30 days"}');
      ```
-  However, to change the `after` or `created_before`, the compression settings, or the <HYPERTABLE />
-  the policy is acting on, you must [remove the columnstore policy][remove_columnstore_policy] and
+  However, to change the `after` or `created_before`, the compression settings, or the {HYPERTABLE}
+  the policy is acting on, you must [remove the {COLUMNSTORE} policy][remove_columnstore_policy] and
   [add a new one][add_columnstore_policy].
 
 
@@ -97,7 +103,7 @@ but it is always at least 5 minutes after the {JOB}'s last finish, to give an op
 | `max_retries`                  | INTEGER | -                                                                                                                                                                                                                            | ✖                                                           | The number of times the job is retried if it fails.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `retry_period`                 |INTERVAL| -                                                                                                                                                                                                                           |  ✖  | The amount of time the scheduler waits between retries of the job on failure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `scheduled`                    |BOOLEAN| `true`                                                                                                                                                                                                                          | ✖  | Set to `false` to exclude this job from being run as a background job.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `config`                       |JSONB| -                                                                                                                                                                                                              | ✖| {JOB_CAP}-specific configuration, passed to the function when it runs. This includes: <ul><li>`verbose_log`: boolean, defaults to `false`. Enable verbose logging output when running the compression policy.</li><li>`maxchunks_to_compress`: integer, defaults to `0` (no limit). The maximum number of chunks to compress during a policy run.</li><li>`recompress`: boolean, defaults to `true`. Recompress partially compressed chunks.</li><li>`compress_after`: see [`add_compression_policy`][add-policy].</li><li>`compress_created_before`: see [`add_compression_policy`][add-policy].</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `config`                       |JSONB| -                                                                                                                                                                                                              | ✖| {JOB_CAP}-specific configuration, passed to the function when it runs. This includes: <ul><li>`verbose_log`: boolean, defaults to `false`. Enable verbose logging output when running the compression policy.</li><li>`maxchunks_to_compress`: integer, defaults to `0` (no limit). The maximum number of {CHUNK}s to compress during a policy run.</li><li>`recompress`: boolean, defaults to `true`. Recompress partially compressed {CHUNK}s.</li><li>`compress_after`: see [`add_compression_policy`][add-policy].</li><li>`compress_created_before`: see [`add_compression_policy`][add-policy].</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `next_start`               |TIMESTAMPTZ| -                                                         | ✖ | The next time at which to run the job. The job can be paused by setting this value to `infinity`, and restarted with a value of `now()`. |
 | `if_exists`              |BOOLEAN| `false`                                                                                                                         | ✖        | Set to `true` to issue a notice instead of an error if the job does not exist.                                                                                                                                                                                                                                                                                                                                                                  |
 | `check_config`                  | REGPROC | -                                                         | ✖ | A function that takes a single argument, the `JSONB` `config` structure. The function is expected to raise an error if the configuration is not valid, and return nothing otherwise. Can be used to validate the configuration when updating a job. Only functions, not procedures, are allowed as values for `check_config`. |
@@ -123,7 +129,7 @@ automatically return to the schedule.
 |`max_runtime`                   |INTERVAL          | The maximum amount of time the {JOB} is allowed to run by the background worker scheduler before it is stopped |
 |`max_retries`                   |INTEGER           | The number of times the {JOB} is retried if it fails                                                           |
 |`retry_period`                  |INTERVAL          | The amount of time the scheduler waits between retries of the {JOB} on failure                                 |
-|`scheduled`                     |BOOLEAN           | Returns `true` if the {JOB} is executed by the TimescaleDB scheduler                                           |
+|`scheduled`                     |BOOLEAN           | Returns `true` if the {JOB} is executed by the {TIMESCALE_DB} scheduler                                           |
 |`config`                        |JSONB             | {JOB_CAP}-specific configuration, passed to the function when it runs                                         |
 |`next_start`                    |TIMESTAMPTZ       | The next time to run the {JOB}                                                                                  |
 |`check_config`                  |TEXT              | The function used to validate updated {JOB} configurations                                                      |

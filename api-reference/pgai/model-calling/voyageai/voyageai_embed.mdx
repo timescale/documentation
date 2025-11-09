@@ -1,0 +1,127 @@
+---
+title: voyageai_embed()
+description: Generate retrieval-optimized embeddings using Voyage AI models
+keywords: [Voyage AI, embeddings, retrieval, vectors]
+tags: [AI, VoyageAI, embeddings, vectors]
+license: community
+type: function
+---
+
+Generate vector embeddings from text using Voyage AI's retrieval-optimized models. Voyage embeddings excel at semantic
+search, retrieval augmented generation (RAG), and clustering tasks.
+
+## Samples
+
+### Generate a single embedding
+
+Create a vector embedding:
+
+```sql
+SELECT ai.voyageai_embed(
+    'voyage-3',
+    'PostgreSQL is a powerful database'
+);
+```
+
+### Specify input type for queries
+
+Optimize embeddings for search queries:
+
+```sql
+SELECT ai.voyageai_embed(
+    'voyage-3',
+    'best time-series database',
+    input_type => 'query'
+);
+```
+
+### Specify input type for documents
+
+Optimize embeddings for documents:
+
+```sql
+SELECT ai.voyageai_embed(
+    'voyage-3',
+    'TimescaleDB is an extension for PostgreSQL that adds time-series capabilities.',
+    input_type => 'document'
+);
+```
+
+### Generate embeddings for multiple texts
+
+Process multiple texts in one API call:
+
+```sql
+SELECT index, embedding
+FROM ai.voyageai_embed(
+    'voyage-3',
+    ARRAY[
+        'PostgreSQL is a powerful database',
+        'TimescaleDB extends PostgreSQL',
+        'pgai brings AI to PostgreSQL'
+    ],
+    input_type => 'document'
+);
+```
+
+### Store embeddings in a table
+
+Generate and store embeddings for your data:
+
+```sql
+UPDATE documents
+SET embedding = ai.voyageai_embed(
+    'voyage-3',
+    content,
+    input_type => 'document'
+)
+WHERE embedding IS NULL;
+```
+
+### Use domain-specific models
+
+Use specialized models for your domain:
+
+```sql
+-- For code search
+SELECT ai.voyageai_embed(
+    'voyage-code-3',
+    'def calculate_sum(a, b): return a + b',
+    input_type => 'document'
+);
+
+-- For financial documents
+SELECT ai.voyageai_embed(
+    'voyage-finance-2',
+    'Q3 revenue increased by 15% year-over-year',
+    input_type => 'document'
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | Voyage AI model (e.g., `voyage-3`, `voyage-code-3`) |
+| `input_text` | `TEXT` | - | ✔ | Single text input to embed (use this OR `input_texts`) |
+| `input_texts` | `TEXT[]` | - | ✔ | Array of text inputs to embed in a batch |
+| `input_type` | `TEXT` | `NULL` | ✖ | Type of input: `query` for search queries, `document` for documents to search |
+| `api_key` | `TEXT` | `NULL` | ✖ | Voyage AI API key. If not provided, uses configured secret |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+**For single text input:**
+- `vector`: A pgvector compatible vector containing the embedding
+
+**For array input:**
+- `TABLE(index INT, embedding vector)`: A table with an index and embedding for each input text
+
+## Related functions
+
+- [`cohere_embed()`][cohere_embed]: alternative with Cohere models
+- [`openai_embed()`][openai_embed]: alternative with OpenAI models
+
+[cohere_embed]: /api-reference/pgai/model-calling/cohere/cohere_embed
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed

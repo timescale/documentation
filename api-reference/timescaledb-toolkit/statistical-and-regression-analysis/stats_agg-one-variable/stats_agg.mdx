@@ -15,9 +15,15 @@ keywords: [statistics, hyperfunctions, Toolkit]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
 
-Aggregate data into an intermediate statistical aggregate form for further calculation. This is the first step for performing any statistical aggregate calculations on one-dimensional data. Use `stats_agg` to create an intermediate aggregate (`StatsSummary1D`) from your data. This intermediate form can then be used by one or more accessors in this group to compute final results. Optionally, multiple such intermediate aggregate objects can be combined using `rollup()` or `rolling()` before an accessor is applied.
+Aggregate data into an intermediate statistical aggregate form for further calculation. This is the first step for
+performing any statistical aggregate calculations on one-dimensional data. Use `stats_agg` to create an intermediate
+aggregate (`StatsSummary1D`) from your data. This intermediate form can then be used by one or more accessors in this
+group to compute final results. Optionally, multiple such intermediate aggregate objects can be combined using
+`rollup()` or `rolling()` before an accessor is applied.
 
-`stats_agg` is well suited for creating a continuous aggregate that can serve multiple purposes later. For example, you can create a continuous aggregate using `stats_agg` to calculate average and sum. Later, you can reuse the same `StatsSummary1D` objects to calculate standard deviation from the same continuous aggregate.
+`stats_agg` is well suited for creating a continuous aggregate that can serve multiple purposes later. For example, you
+can create a continuous aggregate using `stats_agg` to calculate average and sum. Later, you can reuse the same
+`StatsSummary1D` objects to calculate standard deviation from the same continuous aggregate.
 
 ```sql
 stats_agg(

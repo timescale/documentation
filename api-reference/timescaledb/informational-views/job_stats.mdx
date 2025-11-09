@@ -7,9 +7,11 @@ license: community
 type: view
 ---
 
+import { CAGG, COLUMNSTORE, HYPERTABLE } from '/snippets/vars.mdx';
+
 Shows information and statistics about jobs run by the automation framework.
 This includes jobs set up for user defined actions and jobs run by policies
-created to manage data retention, continuous aggregates, columnstore, and
+created to manage data retention, {CAGG}s, {COLUMNSTORE}, and
 other automation policies. (See [policies][actions]).
 The statistics include information useful for administering jobs and determining
 whether they ought be rescheduled, such as: when and whether the background job
@@ -17,7 +19,7 @@ used to implement the policy succeeded and when it is scheduled to run next.
 
 ## Samples
 
-Get job success/failure information for a specific hypertable.
+Get job success/failure information for a specific {HYPERTABLE}.
 
 ```sql
 SELECT job_id, total_runs, total_failures, total_successes
@@ -32,9 +34,9 @@ SELECT job_id, total_runs, total_failures, total_successes
 
 ```
 
-Get information about continuous aggregate policy related statistics
+Get information about {CAGG} policy related statistics
 
-``` sql
+```sql
 SELECT  js.* FROM
   timescaledb_information.job_stats js, timescaledb_information.continuous_aggregates cagg
   WHERE cagg.view_name = 'max_mat_view_timestamp'

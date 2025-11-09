@@ -13,9 +13,14 @@ import { CHUNK, HYPERTABLE, CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [add_columnstore_policy()][add-columnstore-policy].
 
-Allows you to set a policy by which the system compresses a {CHUNK} automatically in the background after it reaches a given age.
+Allows you to set a policy by which the system compresses a {CHUNK} automatically in the background after it reaches a
+given age.
 
-Compression policies can only be created on {HYPERTABLE}s or {CAGG}s that already have compression enabled. To set `timescaledb.compress` and other configuration parameters for {HYPERTABLE}s, use the [`ALTER TABLE`][compression-alter-table] command. To enable compression on {CAGG}s, use the [`ALTER MATERIALIZED VIEW`][compression-continuous-aggregate] command. To view the policies that you set or the policies that already exist, see [informational views][informational-views].
+Compression policies can only be created on {HYPERTABLE}s or {CAGG}s that already have compression enabled. To set
+`timescaledb.compress` and other configuration parameters for {HYPERTABLE}s, use the [`ALTER
+TABLE`][compression-alter-table] command. To enable compression on {CAGG}s, use the [`ALTER MATERIALIZED
+VIEW`][compression-continuous-aggregate] command. To view the policies that you set or the policies that already exist,
+see [informational views][informational-views].
 
 ## Samples
 
@@ -31,7 +36,9 @@ Add a policy to compress {CHUNK}s created 3 months before on the 'cpu' {HYPERTAB
 SELECT add_compression_policy('cpu', compress_created_before => INTERVAL '3 months');
 ```
 
-Note above that when `compress_after` is used then the time data range present in the partitioning time column is used to select the target {CHUNK}s. Whereas, when `compress_created_before` is used then the {CHUNK}s which were created 3 months ago are selected.
+Note above that when `compress_after` is used then the time data range present in the partitioning time column is used
+to select the target {CHUNK}s. Whereas, when `compress_created_before` is used then the {CHUNK}s which were created 3
+months ago are selected.
 
 Add a compress {CHUNK}s policy to a {HYPERTABLE} with an integer-based time column:
 
@@ -57,10 +64,12 @@ SELECT add_compression_policy('cpu_weekly', INTERVAL '8 weeks');
 | `timezone` | TEXT | NULL | - | A valid time zone. If `initial_start` is also specified, subsequent executions of the compression policy are aligned on its initial start. However, daylight savings time (DST) changes may shift this alignment. Set to a valid time zone if this is an issue you want to mitigate. If omitted, UTC bucketing is performed. |
 | `if_not_exists` | BOOLEAN | false | - | Setting to `true` causes the command to fail with a warning instead of an error if a compression policy already exists on the {HYPERTABLE}. |
 
-The `compress_after` parameter should be specified differently depending on the type of the time column of the {HYPERTABLE} or {CAGG}:
+The `compress_after` parameter should be specified differently depending on the type of the time column of the
+{HYPERTABLE} or {CAGG}:
 
 - For {HYPERTABLE}s with TIMESTAMP, TIMESTAMPTZ, and DATE time columns: the time interval should be an INTERVAL type.
-- For {HYPERTABLE}s with integer-based timestamps: the time interval should be an integer type (this requires the [integer_now_func][set-integer-now-func] to be set).
+-  For {HYPERTABLE}s with integer-based timestamps: the time interval should be an integer type (this requires the
+  [integer_now_func][set-integer-now-func] to be set).
 
 [add-columnstore-policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy
 [compression-alter-table]: /api-reference/timescaledb/compression/alter_table_compression

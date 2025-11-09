@@ -7,6 +7,8 @@ license: community
 type: view
 ---
 
+import { HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
+
 <Icon icon="circle-pause" iconType="duotone" /> Deprecated
 
 This view exists for backwards compatibility. The supported views to retrieve information about compression are:
@@ -14,7 +16,7 @@ This view exists for backwards compatibility. The supported views to retrieve in
 - [timescaledb_information.hypertable_compression_settings][hypertable_compression_settings]
 - [timescaledb_information.chunk_compression_settings][chunk_compression_settings].
 
-Get information about compression-related settings for hypertables.
+Get information about compression-related settings for {HYPERTABLE}s.
 Each row of the view provides information about individual `orderby`
 and `segmentby` columns used by compression.
 
@@ -68,7 +70,7 @@ orderby_nullsfirst     | f
 ```
 
 <Info>
-The `by_range` dimension builder is an addition to TimescaleDB 2.13.
+The `by_range` dimension builder is an addition to {TIMESCALE_DB} 2.13.
 </Info>
 
 ## Available columns

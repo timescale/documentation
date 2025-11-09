@@ -9,17 +9,17 @@ tags: [hypertable columnstore, columnstore settings]
 products: [cloud, mst, self_hosted]
 ---
 
-import Vars from '/snippets/vars.mdx';
+import { COLUMNSTORE, HYPERTABLE } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
 
-Retrieve information about the settings for all hypertables in the {COLUMNSTORE}.
+Retrieve information about the settings for all {HYPERTABLE}s in the {COLUMNSTORE}.
 
 ## Samples
 
 To retrieve information about settings:
 
-- **Show {COLUMNSTORE} settings for all hypertables**:
+- **Show {COLUMNSTORE} settings for all {HYPERTABLE}s**:
 
    ```sql
    SELECT * FROM timescaledb_information.hypertable_columnstore_settings;
@@ -32,7 +32,7 @@ To retrieve information about settings:
    compress_interval_length |
    ```
 
-- **Retrieve {COLUMNSTORE} settings for a specific hypertable**:
+- **Retrieve {COLUMNSTORE} settings for a specific {HYPERTABLE}**:
 
    ```sql
    SELECT * FROM timescaledb_information.hypertable_columnstore_settings WHERE hypertable::TEXT LIKE 'metrics';
@@ -49,10 +49,10 @@ To retrieve information about settings:
 
 |Name|Type| Description   |
 |-|-|-------------------------------------------------------------------------------------------|
-|`hypertable`|`REGCLASS`| A hypertable which has the [{COLUMNSTORE} enabled][compression_alter-table].|
+|`hypertable`|`REGCLASS`| A {HYPERTABLE} which has the [{COLUMNSTORE} enabled][compression_alter-table].|
 |`segmentby`|`TEXT`| The list of columns used to segment data. |
 |`orderby`|`TEXT`| List of columns used to order the data, along with ordering and NULL ordering information. |
-|`compress_interval_length`|`TEXT`| Interval used for [rolling up chunks during compression][rollup-compression]. |
+|`compress_interval_length`|`TEXT`| Interval used for [rolling up {CHUNK}s during compression][rollup-compression]. |
 |`index`| `TEXT` | The sparse index details.  |
 
 

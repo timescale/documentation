@@ -13,7 +13,8 @@ import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [convert_to_rowstore()][convert-to-rowstore].
 
 <Warning>
-Before decompressing {CHUNK}s, stop any compression policy on the {HYPERTABLE} you are decompressing. You can use `SELECT alter_job(JOB_ID, scheduled => false);` to prevent scheduled execution.
+Before decompressing {CHUNK}s, stop any compression policy on the {HYPERTABLE} you are decompressing. You can use
+`SELECT alter_job(JOB_ID, scheduled => false);` to prevent scheduled execution.
 </Warning>
 
 ## Samples

@@ -10,10 +10,13 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.10.1
 
-Downsample your data to visualize trends while preserving fewer data points. Downsampling replaces a set of values with a much smaller set that is highly representative of the original data. This is particularly useful for graphing applications where displaying millions of points would be inefficient and visually overwhelming.
+Downsample your data to visualize trends while preserving fewer data points. Downsampling replaces a set of values with
+a much smaller set that is highly representative of the original data. This is particularly useful for graphing
+applications where displaying millions of points would be inefficient and visually overwhelming.
 
 TimescaleDB Toolkit provides two downsampling algorithms:
-- **LTTB (Largest Triangle Three Buckets)**: Retains visual similarity between the downsampled data and the original dataset by selecting points that form the largest triangles
+-  **LTTB (Largest Triangle Three Buckets)**: Retains visual similarity between the downsampled data and the original
+  dataset by selecting points that form the largest triangles
 - **ASAP smooth**: Preserves the approximate shape and larger trends while minimizing local variance between points
 
 ## Samples

@@ -14,7 +14,8 @@ hyperfunction:
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
 
-Calculate the total time spent in a state from a state aggregate. If you need to interpolate missing values across time bucket boundaries, use [`interpolated_duration_in`][interpolated_duration_in].
+Calculate the total time spent in a state from a state aggregate. If you need to interpolate missing values across time
+bucket boundaries, use [`interpolated_duration_in`][interpolated_duration_in].
 
 ```sql
 duration_in(
@@ -42,7 +43,8 @@ duration_in(
 
 ## Samples
 
-Create a test table that tracks when a system switches between `starting`, `running`, and `error` states. Query the table for the time spent in the `running` state.
+Create a test table that tracks when a system switches between `starting`, `running`, and `error` states. Query the
+table for the time spent in the `running` state.
 
 If you prefer to see the result in seconds, [`EXTRACT`](https://www.postgresql.org/docs/current/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT) the epoch from the returned result.
 

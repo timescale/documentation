@@ -20,14 +20,14 @@ import { COLUMNSTORE, HYPERCORE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 Best practice for using {HYPERCORE} is to:
 
-1. **Enable {COLUMNSTORE} on a hypertable**
+1. **Enable {COLUMNSTORE} on a {HYPERTABLE}**
 
    For [efficient queries][secondary-indexes], remember to `segmentby` the column you will
    use most often to filter your data. For example:
 
-    * **Hypertables**:
+    * **{HYPERTABLE}s**:
 
-      [Use `CREATE TABLE` for a hypertable][hypertable-create-table]
+      [Use `CREATE TABLE` for a {HYPERTABLE}][hypertable-create-table]
 
        ```sql
        CREATE TABLE crypto_ticks (
@@ -43,18 +43,19 @@ Best practice for using {HYPERCORE} is to:
        ```
        <CreateHypertableProcedure />
 
-    * **Continuous aggregates**
-        1.  [Use `ALTER MATERIALIZED VIEW` for a continuous aggregate][compression_continuous-aggregate]:
+    * **{CAGG}s**
+        1.  [Use `ALTER MATERIALIZED VIEW` for a {CAGG}][compression_continuous-aggregate]:
              ```sql
              ALTER MATERIALIZED VIEW assets_candlestick_daily set (
                 timescaledb.enable_columnstore = true,
                 timescaledb.segmentby = 'symbol');
              ```
-         Before you say `huh`, a continuous aggregate is a specialized hypertable.
+         Before you say `huh`, a {CAGG} is a specialized {HYPERTABLE}.
 
-        1. Add a policy to convert chunks to the {COLUMNSTORE} at a specific time interval:
+        1. Add a policy to convert {CHUNK}s to the {COLUMNSTORE} at a specific time interval:
 
-           Create a [columnstore_policy][add_columnstore_policy] that automatically converts chunks in a hypertable to
+           Create a [columnstore_policy][add_columnstore_policy] that automatically converts {CHUNK}s in a {HYPERTABLE}
+           to
            the {COLUMNSTORE} at a specific time interval. For example:
            ``` sql
            CALL add_columnstore_policy('assets_candlestick_daily', after => INTERVAL '1d');
@@ -76,32 +77,36 @@ for more fine-grained control over your data.
 
 ## Limitations
 
-Chunks in the {COLUMNSTORE} have the following limitations:
+{CHUNK}s in the {COLUMNSTORE} have the following limitations:
 
-*   `ROW LEVEL SECURITY` is not supported on chunks in the columnstore.
+*   `ROW LEVEL SECURITY` is not supported on {CHUNK}s in the {COLUMNSTORE}.
 
 ## Available functions
 
 ### Policies
 
-- [`add_columnstore_policy()`][add_columnstore_policy]: set a policy to automatically move chunks in a hypertable to the columnstore when they reach a given age
-- [`remove_columnstore_policy()`][remove_columnstore_policy]: remove a columnstore policy from a hypertable
+-  [`add_columnstore_policy()`][add_columnstore_policy]: set a policy to automatically move {CHUNK}s in a {HYPERTABLE}
+  to the {COLUMNSTORE} when they reach a given age
+- [`remove_columnstore_policy()`][remove_columnstore_policy]: remove a {COLUMNSTORE} policy from a {HYPERTABLE}
 
 ### Configuration
 
-- [`ALTER TABLE (hypercore)`][alter_table_hypercore]: enable the columnstore for a hypertable
+- [`ALTER TABLE (hypercore)`][alter_table_hypercore]: enable the {COLUMNSTORE} for a {HYPERTABLE}
 
 ### Manual conversion
 
-- [`convert_to_columnstore()`][convert_to_columnstore]: manually add a chunk to the columnstore
-- [`convert_to_rowstore()`][convert_to_rowstore]: move a chunk from the columnstore to the rowstore
+- [`convert_to_columnstore()`][convert_to_columnstore]: manually add a {CHUNK} to the {COLUMNSTORE}
+- [`convert_to_rowstore()`][convert_to_rowstore]: move a {CHUNK} from the {COLUMNSTORE} to the {ROWSTORE}
 
 ### Statistics and information
 
-- [`chunk_columnstore_stats()`][chunk_columnstore_stats]: get statistics about chunks in the columnstore
-- [`hypertable_columnstore_stats()`][hypertable_columnstore_stats]: get columnstore statistics related to the columnstore
-- [`timescaledb_information.chunk_columnstore_settings`][chunk_columnstore_settings]: get information about settings on each chunk in the columnstore
-- [`timescaledb_information.hypertable_columnstore_settings`][hypertable_columnstore_settings]: get information about columnstore settings for all hypertables
+- [`chunk_columnstore_stats()`][chunk_columnstore_stats]: get statistics about {CHUNK}s in the {COLUMNSTORE}
+-  [`hypertable_columnstore_stats()`][hypertable_columnstore_stats]: get {COLUMNSTORE} statistics related to the
+  {COLUMNSTORE}
+-  [`timescaledb_information.chunk_columnstore_settings`][chunk_columnstore_settings]: get information about settings on
+  each {CHUNK} in the {COLUMNSTORE}
+-  [`timescaledb_information.hypertable_columnstore_settings`][hypertable_columnstore_settings]: get information about
+  {COLUMNSTORE} settings for all {HYPERTABLE}s
 
 [alter_table_hypercore]: /api/:currentVersion:/hypercore/alter_table/
 [compression_continuous-aggregate]: /api/:currentVersion:/continuous-aggregates/alter_materialized_view/

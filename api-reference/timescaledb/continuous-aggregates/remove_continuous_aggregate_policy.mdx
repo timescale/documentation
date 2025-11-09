@@ -9,7 +9,9 @@ type: function
 products: [cloud, self_hosted, mst]
 ---
 
-Remove all refresh policies from a continuous aggregate.
+import { CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Remove all refresh policies from a {CAGG}.
 
 ```sql
 remove_continuous_aggregate_policy(
@@ -19,12 +21,12 @@ remove_continuous_aggregate_policy(
 ```
 
 <Note>
-To view the existing continuous aggregate policies, see the [policies informational view](/api-reference/timescaledb/informational-views/policies/).
+To view the existing {CAGG} policies, see the [policies informational view](/api-reference/timescaledb/informational-views/policies/).
 </Note>
 
 ## Samples
 
-Remove all refresh policies from the `cpu_view` continuous aggregate:
+Remove all refresh policies from the `cpu_view` {CAGG}:
 
 ```sql
 SELECT remove_continuous_aggregate_policy('cpu_view');
@@ -34,5 +36,5 @@ SELECT remove_continuous_aggregate_policy('cpu_view');
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `continuous_aggregate` | `REGCLASS` | - | ✔ | Name of the continuous aggregate the policies should be removed from |
-| `if_exists` (formerly `if_not_exists`) | `BOOL` | false | - | When true, prints a warning instead of erroring if the policy doesn't exist. Renamed in TimescaleDB 2.8. |
+| `continuous_aggregate` | `REGCLASS` | - | ✔ | Name of the {CAGG} the policies should be removed from |
+| `if_exists` (formerly `if_not_exists`) | `BOOL` | false | - | When true, prints a warning instead of erroring if the policy doesn't exist. Renamed in {TIMESCALE_DB} 2.8. |

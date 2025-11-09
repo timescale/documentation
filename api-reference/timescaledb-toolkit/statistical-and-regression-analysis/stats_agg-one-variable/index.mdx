@@ -10,9 +10,12 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
 
-Perform common statistical analyses, such as calculating averages and standard deviations, using this group of functions. These functions are similar to the PostgreSQL statistical aggregates, but they include more features and are easier to use in continuous aggregates and window functions.
+Perform common statistical analyses, such as calculating averages and standard deviations, using this group of
+functions. These functions are similar to the PostgreSQL statistical aggregates, but they include more features and are
+easier to use in continuous aggregates and window functions.
 
-These functions work on one-dimensional data. To work with two-dimensional data, for example to perform linear regression, see [the two-dimensional `stats_agg` functions][stats_agg-2d].
+These functions work on one-dimensional data. To work with two-dimensional data, for example to perform linear
+regression, see [the two-dimensional `stats_agg` functions][stats_agg-2d].
 
 import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 
@@ -24,7 +27,8 @@ import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctio
 
 ### Calculate statistical properties
 
-Create a statistical aggregate to summarize daily statistical data about the variable `val1`. Use the statistical aggregate to calculate average, standard deviation, and skewness of the variable:
+Create a statistical aggregate to summarize daily statistical data about the variable `val1`. Use the statistical
+aggregate to calculate average, standard deviation, and skewness of the variable:
 
 ```sql
 WITH t AS (

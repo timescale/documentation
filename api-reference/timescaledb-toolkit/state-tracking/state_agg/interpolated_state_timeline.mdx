@@ -16,7 +16,9 @@ hyperfunction:
 
 Get a timeline of all states, showing each time a state is entered and exited.
 
-Unlike [`state_timeline`][state_timeline], you can use this function across multiple state aggregates that cover different time buckets. Any missing values at the time bucket boundaries are interpolated from adjacent state aggregates.
+Unlike [`state_timeline`][state_timeline], you can use this function across multiple state aggregates that cover
+different time buckets. Any missing values at the time bucket boundaries are interpolated from adjacent state
+aggregates.
 
 ```sql
 interpolated_state_timeline(
@@ -53,7 +55,8 @@ interpolated_state_int_timeline(
 
 ## Samples
 
-Given state aggregates bucketed by 1-minute intervals, interpolate the states at the bucket boundaries and get the history of all states.
+Given state aggregates bucketed by 1-minute intervals, interpolate the states at the bucket boundaries and get the
+history of all states.
 
 To perform the interpolation, the `LAG` and `LEAD` functions are used to get the previous and next state aggregates.
 

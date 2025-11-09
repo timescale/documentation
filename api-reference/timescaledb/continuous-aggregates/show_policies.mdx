@@ -9,9 +9,11 @@ experimental: true
 products: [cloud, self_hosted, mst]
 ---
 
+import { CAGG } from '/snippets/vars.mdx';
+
 <Icon icon="flask" /> Early access
 
-Show all policies that are currently set on a continuous aggregate.
+Show all policies that are currently set on a {CAGG}.
 
 ```sql
 timescaledb_experimental.show_policies(
@@ -21,7 +23,7 @@ timescaledb_experimental.show_policies(
 
 ## Samples
 
-Given a continuous aggregate named `example_continuous_aggregate`, show all the
+Given a {CAGG} named `example_continuous_aggregate`, show all the
 policies set on it:
 
 ```sql
@@ -42,10 +44,10 @@ show_policies
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
-| `relation` | `REGCLASS` | - | ✔ | The continuous aggregate to display policies for |
+| `relation` | `REGCLASS` | - | ✔ | The {CAGG} to display policies for |
 
 ## Returns
 
 | Column | Type | Description |
 |-|-|-|
-| `show_policies` | `JSONB` | Details for each policy set on the continuous aggregate |
+| `show_policies` | `JSONB` | Details for each policy set on the {CAGG} |

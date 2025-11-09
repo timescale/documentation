@@ -10,9 +10,14 @@ products: [cloud, mst, self_hosted]
 
 <Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
 
-Calculate time-weighted summary statistics, such as averages (means) and integrals. Time weighting is used when data is unevenly sampled over time. In that case, a straight average gives misleading results, as it biases towards more frequently sampled values.
+Calculate time-weighted summary statistics, such as averages (means) and integrals. Time weighting is used when data is
+unevenly sampled over time. In that case, a straight average gives misleading results, as it biases towards more
+frequently sampled values.
 
-For example, a sensor might silently spend long periods of time in a steady state, and send data only when a significant change occurs. The regular mean counts the steady-state reading as only a single point, whereas a time-weighted mean accounts for the long period of time spent in the steady state. In essence, the time-weighted mean takes an integral over time, then divides by the elapsed time.
+For example, a sensor might silently spend long periods of time in a steady state, and send data only when a significant
+change occurs. The regular mean counts the steady-state reading as only a single point, whereas a time-weighted mean
+accounts for the long period of time spent in the steady state. In essence, the time-weighted mean takes an integral
+over time, then divides by the elapsed time.
 
 import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 
@@ -24,7 +29,8 @@ import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctio
 
 ### Aggregate data into a TimeWeightSummary and calculate the average
 
-Given a table `foo` with data in a column `val`, aggregate data into a daily `TimeWeightSummary`. Use that to calculate the average for column `val`:
+Given a table `foo` with data in a column `val`, aggregate data into a daily `TimeWeightSummary`. Use that to calculate
+the average for column `val`:
 
 ```sql
 WITH t as (
@@ -45,13 +51,19 @@ FROM t;
 
 #### Parallelism and ordering
 
-Time-weighted average calculations are not strictly parallelizable, as defined by PostgreSQL. These calculations require inputs to be strictly ordered, but in general, PostgreSQL parallelizes by assigning rows randomly to workers.
+Time-weighted average calculations are not strictly parallelizable, as defined by PostgreSQL. These calculations require
+inputs to be strictly ordered, but in general, PostgreSQL parallelizes by assigning rows randomly to workers.
 
-However, the algorithm can be parallelized if it is guaranteed that all rows within some time range go to the same worker. This is the case for both continuous aggregates and distributed hypertables. (Note that the partitioning keys of the distributed hypertable must be within the `GROUP BY` clause, but this is usually the case.)
+However, the algorithm can be parallelized if it is guaranteed that all rows within some time range go to the same
+worker. This is the case for both continuous aggregates and distributed hypertables. (Note that the partitioning keys of
+the distributed hypertable must be within the `GROUP BY` clause, but this is usually the case.)
 
 #### Combining aggregates across measurement series
 
-If you try to combine overlapping `TimeWeightSummaries`, an error is thrown. For example, you might create a `TimeWeightSummary` for `device_1` and a separate `TimeWeightSummary` for `device_2`, both covering the same period of time. You can't combine these because the interpolation techniques only make sense when restricted to a single measurement series.
+If you try to combine overlapping `TimeWeightSummaries`, an error is thrown. For example, you might create a
+`TimeWeightSummary` for `device_1` and a separate `TimeWeightSummary` for `device_2`, both covering the same period of
+time. You can't combine these because the interpolation techniques only make sense when restricted to a single
+measurement series.
 
 If you want to calculate a single summary statistic across all devices, use a simple average, like this:
 
@@ -68,11 +80,15 @@ FROM t;
 
 #### Parallelism in multi-node
 
-The time-weighted average functions are not strictly parallelizable in the PostgreSQL sense. PostgreSQL requires that parallelizable functions accept potentially overlapping input. As explained above, the time-weighted functions do not. However, they do support partial aggregation and partition-wise aggregation in multi-node setups.
+The time-weighted average functions are not strictly parallelizable in the PostgreSQL sense. PostgreSQL requires that
+parallelizable functions accept potentially overlapping input. As explained above, the time-weighted functions do not.
+However, they do support partial aggregation and partition-wise aggregation in multi-node setups.
 
 #### Reducing memory usage
 
-Because the time-weighted aggregates require ordered sets, they build up a buffer of input data, sort it, and then perform the aggregation steps. When memory is too small to build up a buffer of points, you might see Out of Memory failures or other issues. In these cases, try using a multi-level aggregate. For example:
+Because the time-weighted aggregates require ordered sets, they build up a buffer of input data, sort it, and then
+perform the aggregation steps. When memory is too small to build up a buffer of points, you might see Out of Memory
+failures or other issues. In these cases, try using a multi-level aggregate. For example:
 
 ```sql
 WITH t as (SELECT measure_id,
@@ -92,7 +108,8 @@ GROUP BY measure_id;
 ## Functions in this group
 
 ### Aggregate
-- [`time_weight()`][time_weight]: aggregate data into an intermediate time-weighted aggregate form for further calculation
+-  [`time_weight()`][time_weight]: aggregate data into an intermediate time-weighted aggregate form for further
+  calculation
 
 ### Accessors
 - [`average()`][average]: calculate the time-weighted average of values in a TimeWeightSummary

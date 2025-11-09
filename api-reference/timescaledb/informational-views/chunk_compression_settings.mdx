@@ -7,11 +7,13 @@ license: community
 type: view
 ---
 
-Shows information about compression settings for each chunk that has compression enabled on it.
+import { CHUNK, HYPERTABLE } from '/snippets/vars.mdx';
+
+Shows information about compression settings for each {CHUNK} that has compression enabled on it.
 
 ## Samples
 
-Show compression settings for all chunks:
+Show compression settings for all {CHUNK}s:
 
 ```sql
 SELECT * FROM timescaledb_information.chunk_compression_settings'
@@ -21,7 +23,7 @@ segmentby                |
 orderby                  | "time" DESC
 ```
 
-Find all chunk compression settings for a specific hypertable:
+Find all {CHUNK} compression settings for a specific {HYPERTABLE}:
 
 ```sql
 SELECT * FROM timescaledb_information.chunk_compression_settings WHERE hypertable::TEXT LIKE 'metrics';
