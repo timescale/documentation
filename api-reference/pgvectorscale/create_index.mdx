@@ -7,6 +7,8 @@ license: community
 type: function
 ---
 
+import { PG } from '/snippets/vars.mdx';
+
 Create a StreamingDiskANN index on a vector column for high-performance similarity search with optional label-based filtering.
 
 - Create indexes for fast approximate nearest neighbor search
@@ -21,7 +23,7 @@ Note that:
   SET maintenance_work_mem = '2GB';
   ```
 
-- Label values must be within Postgre `smallint` range (-32768 to 32767)
+- Label values must be within {PG} `smallint` range (-32768 to 32767)
 
 - Creating indexes on UNLOGGED tables is not currently supported
 

@@ -7,6 +7,8 @@ license: community
 type: configuration
 ---
 
+import { COMPANY } from '/snippets/vars.mdx';
+
 Configure StreamingDiskANN index behavior at build time to optimize for your specific workload, accuracy requirements, and resource constraints.
 
 - Control index build performance and memory usage
@@ -91,7 +93,7 @@ The default `maintenance_work_mem` is typically 64MB, which may be too low for b
 
 Controls how vector data is stored:
 
-- **memory_optimized** (default): Uses Statistical Binary Quantization (SBQ) developed by Timescale researchers to compress vectors. Provides excellent performance with reduced memory footprint.
+- **memory_optimized** (default): Uses Statistical Binary Quantization (SBQ) developed by {COMPANY}researchers to compress vectors. Provides excellent performance with reduced memory footprint.
 
 - **plain**: Stores vectors uncompressed. Uses more memory but may provide slightly higher accuracy. Required for certain distance operators.
 

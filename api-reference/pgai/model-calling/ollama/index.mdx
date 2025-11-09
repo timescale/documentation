@@ -8,6 +8,8 @@ license: community
 type: function
 ---
 
+import { PG } from '/snippets/vars.mdx';
+
 Call Ollama's local LLM API directly from SQL to generate embeddings, completions, and chat responses using open-source
 models running on your infrastructure.
 
@@ -31,7 +33,7 @@ Before using Ollama functions, you need to:
 
 1. Install and run Ollama on your infrastructure
 2. Pull the models you want to use
-3. Ensure your PostgreSQL database can access the Ollama host
+3. Ensure your {PG} database can access the Ollama host
 
 For installation instructions, visit [ollama.com](https://ollama.com).
 
