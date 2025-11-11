@@ -33,7 +33,7 @@ import { SERVICE_LONG, CONSOLE, HYPERTABLE, PG } from '/snippets/vars.mdx';
     CREATE INDEX ix_symbol_time ON stocks_real_time (symbol, time DESC);
     ```
 
-## Create standard {PG} tables for relational data
+## Create standard Postgres tables for relational data
 
 When you have other relational data that enhances your time-series data, you can
 create standard {PG} tables just as you would normally. For this dataset,

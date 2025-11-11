@@ -8,7 +8,7 @@ import GrafanaConnect from "/snippets/integrations/_grafana-connect.mdx";
 import ImportEnergyData from "/snippets/tutorials/_import-energy-data.mdx";
 import CreateCaggsOnIOTData from "/snippets/tutorials/_use-case-iot-create-cagg.mdx";
 import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
-import { TIMESCALE_DB, COLUMNSTORE, CAGG_CAP, CAGG, HYPERTABLE } from '/snippets/vars.mdx';
+import { TIMESCALE_DB, CAGG_CAP, CAGG } from '/snippets/vars.mdx';
 
 
 Energy providers understand that customers tend to lose patience when there is not enough power for them
@@ -41,7 +41,7 @@ data optimized for size and speed in the {COLUMNSTORE}.
 
 When {TIMESCALE_DB} converts a chunk to the {COLUMNSTORE}, it automatically creates a different schema for your
 data. {TIMESCALE_DB} creates and uses custom indexes to incorporate the `segmentby` and `orderby` parameters when
-you write to and read from the columstore.
+you write to and read from the {COLUMNSTORE}.
 
 To increase the speed of your analytical queries by a factor of 10 and reduce storage costs by up to 90%, convert data
 to the {COLUMNSTORE}:

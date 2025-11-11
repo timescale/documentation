@@ -20,14 +20,6 @@ on the Bitcoin blockchain.
 {TIMESCALE_DB} to query transactions on a blockchain, in exactly the same way as you
 might query time-series transactions in any other database.
 
-## Prerequisites
-
-Before you begin, make sure you have:
-
-*   Signed up for a free {CLOUD_LONG}.
-
-## Steps in this tutorial
-
 This tutorial covers:
 
 1.  **Ingest data into a {SERVICE_SHORT}**: set up and connect to a {SERVICE_LONG}, create tables and {HYPERTABLE}s, and ingest data.
@@ -38,6 +30,10 @@ This tutorial covers:
 
 When you've completed this tutorial, you can use the same dataset to [Analyze the Bitcoin blockchain][analyze-blockchain],
 using {TIMESCALE_DB} hyperfunctions.
+
+## Prerequisites
+
+<IntegrationPrereqs />
 
 <SetupBlockchainDataset />
 
@@ -165,11 +161,11 @@ US Dollars.
     (5 rows)
     ```
 
-## Compress your data using {HYPERCORE}
+## Compress your data using hypercore
 
 <TutorialsHypercoreIntro />
 
-### Optimize your data in the {COLUMNSTORE}
+### Optimize your data in the columnstore
 
 To compress the data in the `transactions` table, do the following:
 
