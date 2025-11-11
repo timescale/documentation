@@ -306,12 +306,12 @@
               {
                 "group": "Time-series",
                 "pages": [
-                  "tutorials/time-series/analyze-energy-consumption",
-                  "tutorials/time-series/analyze-transport-geospatial-data",
-                  "tutorials/time-series/analyze-financial-tick-data",
                   "tutorials/time-series/analyze-blockchain",
-                  "tutorials/time-series/query-blockchain",
+                  "tutorials/time-series/analyze-energy-consumption",
+                  "tutorials/time-series/analyze-financial-tick-data",
+                  "tutorials/time-series/analyze-transport-geospatial-data",
                   "tutorials/time-series/ingest-real-time-financial-data",
+                  "tutorials/time-series/query-blockchain",
                   "tutorials/time-series/simulate-iot-sensor-data"
                 ]
               },

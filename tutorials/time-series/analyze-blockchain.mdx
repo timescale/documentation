@@ -20,15 +20,6 @@ on the Bitcoin blockchain.
 {TIMESCALE_DB} to query transactions on a blockchain, in exactly the same way as you
 might query time-series transactions in any other database.
 
-## Prerequisites
-
-Before you begin, make sure you have:
-
-*   Signed up for a [free {ACCOUNT_LONG}][cloud-install].
-*   Signed up for a [Grafana account][grafana-setup] to graph your queries (optional).
-
-## About analyzing the Bitcoin blockchain
-
 This tutorial uses a sample Bitcoin dataset to show you how to aggregate
 blockchain transaction data, and construct queries to analyze information from
 the aggregations. The queries in this tutorial help you
@@ -43,39 +34,42 @@ hyperfunctions. It walks you through creating a series of {CAGG}s,
 and querying the aggregates to analyze the data. You can also use those queries
 to graph the output in Grafana.
 
+## Prerequisites
+
+<IntegrationPrereqs />
+- Sign up for a [Grafana account][grafana-setup] to graph your queries (optional).
+
 <SetupBlockchainDataset />
 
 <GrafanaConnect />
 
 ## Analyze the data
 
-When you have your dataset loaded, you can create some {CAGG}s,
+When you have your dataset loaded, you can create some {CAGG}s
 and start constructing queries to discover what your data tells you. This
 tutorial uses [{TIMESCALE_DB} hyperfunctions][about-hyperfunctions] to construct
 queries that are not possible in standard {PG}.
 
 In this section, you learn how to write queries that answer these questions:
 
-*   [Is there any connection between the number of transactions and the transaction fees?](#is-there-any-connection-between-the-number-of-transactions-and-the-transaction-fees)
-*   [Does the transaction volume affect the BTC-USD rate?](#does-the-transaction-volume-affect-the-btc-usd-rate)
-*   [Do more transactions in a block mean the block is more expensive to mine?](#do-more-transactions-in-a-block-mean-the-block-is-more-expensive-to-mine)
-*   [What percentage of the average miner's revenue comes from fees compared to block rewards?](#what-percentage-of-the-average-miners-revenue-comes-from-fees-compared-to-block-rewards)
-*   [How does block weight affect miner fees?](#how-does-block-weight-affect-miner-fees)
-*   [What's the average miner revenue per block?](#whats-the-average-miner-revenue-per-block)
+*   Is there any connection between the number of transactions and the transaction fees?
+*   Does the transaction volume affect the BTC-USD rate?
+*   Do more transactions in a block mean the block is more expensive to mine?
+*   What percentage of the average miner's revenue comes from fees compared to block rewards?
+*   How does block weight affect miner fees?
+*   What's the average miner revenue per block?
 
-## Create continuous aggregates
+### Create a continuous aggregate
 
 You can use [{CAGG}s][docs-cagg] to simplify and speed up your
-queries. For this tutorial, you need three {CAGG}s, focusing on
+queries. For this tutorial, you need three {CAGG}s focusing on
 three aspects of the dataset: Bitcoin transactions, blocks, and coinbase
 transactions. In each {CAGG} definition, the `time_bucket()`
 function controls how large the time buckets are. The examples all use 1-hour
 time buckets.
 
-### Continuous aggregate: transactions
-
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
-1.  At the psql prompt, create a {CAGG} called
+1.  Create a {CAGG} called
     `one_hour_transactions`. This view holds aggregated data about each hour of
     transactions:
 
@@ -133,7 +127,7 @@ time buckets.
     GROUP BY bucket, block_id;
     ```
 
-1.  Add a refresh policy to keep the {CAGG} up-to-date:
+1.  Add a refresh policy to keep the {CAGG} up to date:
 
     ```sql
     SELECT add_continuous_aggregate_policy('one_hour_blocks',
@@ -159,7 +153,7 @@ time buckets.
     GROUP BY bucket;
     ```
 
-1.  Add a refresh policy to keep the {CAGG} up-to-date:
+1.  Add a refresh policy to keep the {CAGG} up to date:
 
     ```sql
     SELECT add_continuous_aggregate_policy('one_hour_coinbase',
@@ -168,9 +162,9 @@ time buckets.
        schedule_interval => INTERVAL '1 hour');
     ```
 
-* **Is there any connection between the number of transactions and the transaction fees?**
+### Is there any connection between the number of transactions and the transaction fees?
 
-  Transaction fees are a major concern for blockchain users. If a blockchain is
+Transaction fees are a major concern for blockchain users. If a blockchain is
   too expensive, you might not want to use it. This query shows you whether
   there's any correlation between the number of Bitcoin transactions and the fees.
   The time range for this analysis is the last 2 days.
@@ -179,8 +173,6 @@ If you choose to visualize the query in Grafana, you can see the average
 transaction volume and the average fee per transaction, over time. These trends
 might help you decide whether to submit a transaction now or wait a few days for
 fees to decrease.
-
-**Finding a connection between the number of transactions and the transaction fees**
 
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
 1.  At the psql prompt, use this query to average transaction volume and the
@@ -215,7 +207,7 @@ fees to decrease.
 
     ![Visualizing number of transactions and fees](https://assets.timescale.com/docs/images/grafana-transactions-fees.webp)
 
-#### Does the transaction volume affect the BTC-USD rate?
+### Does the transaction volume affect the BTC-USD rate?
 
 In cryptocurrency trading, there's a lot of speculation. You can adopt a
 data-based trading strategy by looking at correlations between blockchain
@@ -224,8 +216,6 @@ Bitcoin and US Dollars.
 
 If you choose to visualize the query in Grafana, you can see the average
 transaction volume, along with the BTC to US Dollar conversion rate.
-
-**Finding the transaction volume and the BTC-USD rate**
 
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
 1.  At the psql prompt, use this query to return the trading volume and the BTC
@@ -263,7 +253,7 @@ transaction volume, along with the BTC to US Dollar conversion rate.
 
     ![Visualizing transaction volume and BTC-USD conversion rate](https://assets.timescale.com/docs/images/grafana-volume-rate.webp)
 
-#### Do more transactions in a block mean the block is more expensive to mine?
+### Do more transactions in a block mean the block is more expensive to mine?
 
 The number of transactions in a block can influence the overall block mining
 fee. For this analysis, a larger time frame is required, so increase the
@@ -272,7 +262,7 @@ analyzed time range to 5 days.
 If you choose to visualize the query in Grafana, you can see that the more
 transactions in a block, the higher the mining fee becomes.
 
-**Finding if more transactions in a block mean the block is more expensive to mine**
+To find if more transactions in a block mean the block is more expensive to yours:
 
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
 1.  At the psql prompt, use this query to return the number of transactions in a
@@ -320,7 +310,7 @@ high correlation between block weight and mining fee. The relationship weakens
 when the block weight gets close to its maximum value, which is 4 million weight
 units, in which case it's impossible for a block to include more transactions.
 
-**Finding if higher block weight means the block is more expensive to mine**
+To find if higher block weight means the block is more expensive to yours:
 
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
 1.  At the psql prompt, use this query to return the block weight, compared to
@@ -359,7 +349,7 @@ units, in which case it's impossible for a block to include more transactions.
 
     ![Visualizing blockweight and the mining fee](https://assets.timescale.com/docs/images/grafana-blockweight-miningfee.webp)
 
-#### What percentage of the average miner's revenue comes from fees compared to block rewards?
+### What percentage of the average miner's revenue comes from fees compared to block rewards?
 
 In the previous queries, you saw that mining fees are higher when block weights
 and transaction volumes are higher. This query analyzes the data from a
@@ -371,8 +361,6 @@ miner's revenue comes from fees, compares to block rewards.
 If you choose to visualize the query in Grafana, you can see that most miner
 revenue actually comes from block rewards. Fees never account for more than a
 few percentage points of overall revenue.
-
-**Finding what percentage of the average miner's revenue comes from fees compared to block rewards**
 
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
 1.  At the psql prompt, use this query to return coinbase transactions, along
@@ -415,7 +403,7 @@ few percentage points of overall revenue.
 
     ![Visualizing coinbase revenue sources](https://assets.timescale.com/docs/images/grafana-coinbase-revenue.webp)
 
-#### How does block weight affect miner fees?
+### How does block weight affect miner fees?
 
 You've already found that more transactions in a block mean it's more expensive
 to mine. In this query, you ask if the same is true for block weights? The more
@@ -427,8 +415,6 @@ If you choose to visualize the query in Grafana, you can see that the block
 weight and block mining fee are tightly connected. In practice, you can also see
 the four million weight units size limit. This means that there's still room to
 grow for individual blocks, and they could include even more transactions.
-
-**Finding how block weight affects miner fees**
 
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
 1.  At the psql prompt, use this query to return block weight, along with the
@@ -473,14 +459,12 @@ grow for individual blocks, and they could include even more transactions.
 
     ![Visualizing block weight and mining fees](https://assets.timescale.com/docs/images/grafana-blockweight-rewards.webp)
 
-#### What's the average miner revenue per block?
+### What's the average miner revenue per block?
 
 In this final query, you analyze how much revenue miners actually generate by
 mining a new block on the blockchain, including fees and block rewards. To make
 the analysis more interesting, add the Bitcoin to US Dollar exchange rate, and
 increase the time range.
-
-**Finding the average miner revenue per block**
 
 1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
 1.  At the psql prompt, use this query to return the average miner revenue per

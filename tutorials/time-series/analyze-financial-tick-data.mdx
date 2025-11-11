@@ -1,5 +1,5 @@
 ---
-title: Analyze financial tick data with TimescaleDB
+title: Analyze financial tick data
 description: Use Tiger Cloud to store financial tick data and create candlestick views to perform real-time analysis of price changes
 keywords: [tutorials, finance, beginner, candlestick charts, OHLCV, financial data, tick data, time-series, crypto trading, stock analysis, hypercore, compression]
 ---
@@ -26,6 +26,18 @@ In this tutorial, you use real raw financial data provided by
 [Twelve Data][twelve-data], create an aggregated candlestick view, query the
 aggregated data, and visualize the data in Grafana.
 
+This tutorial shows you how to ingest real-time time-series data into a {SERVICE_LONG}:
+
+1.  **Ingest data into a {SERVICE_SHORT}**: load data from
+    [Twelve Data][twelve-data] into your {TIMESCALE_DB} database.
+1.  **Query your dataset**: create candlestick views, query
+    the aggregated data, and visualize the data in Grafana.
+1.  **Compress your data using {HYPERCORE}**: learn how to store and query
+your financial tick data more efficiently using compression feature of {TIMESCALE_DB}.
+
+To create candlestick views, query the aggregated data, and visualize the data in Grafana, see the
+[ingest real-time websocket data section][advanced-websocket].
+
 ## OHLCV data and candlestick charts
 
 <CandlestickIntro />
@@ -40,29 +52,14 @@ these stories from some {COMPANY} community members:
 *   [How Messari uses data to open the cryptoeconomy to everyone][messari]
 *   [How I power a (successful) crypto trading bot with {TIMESCALE_DB}][bot]
 
-## Steps in this tutorial
-
-This tutorial shows you how to ingest real-time time-series data into a {SERVICE_LONG}:
-
-1.  **Ingest data into a {SERVICE_SHORT}**: load data from
-    [Twelve Data][twelve-data] into your {TIMESCALE_DB} database.
-1.  **Query your dataset**: create candlestick views, query
-    the aggregated data, and visualize the data in Grafana.
-1.  **Compress your data using {HYPERCORE}**: learn how to store and query
-your financial tick data more efficiently using compression feature of {TIMESCALE_DB}.
-
-
-To create candlestick views, query the aggregated data, and visualize the data in Grafana, see the
-[ingest real-time websocket data section][advanced-websocket].
-
 ## Prerequisites
 
 <IntegrationPrereqs />
 
-## Ingest data into a {SERVICE_LONG}
+## Ingest data into a service
 
 This tutorial uses a dataset that contains second-by-second trade data for
-the most-traded crypto-assets. You optimize this time-series data in a hypertable called `crypto_ticks`.
+the most-traded crypto-assets. You optimize this time-series data in a {HYPERTABLE} called `crypto_ticks`.
 You also create a separate table of asset symbols in a regular {PG} table named `crypto_assets`.
 
 The dataset is updated on a nightly basis and contains data from the last four
@@ -131,7 +128,7 @@ the last two days' worth of data.
     When you create the continuous aggregate, it refreshes by default.
 
 1.  Set a refresh policy to update the continuous aggregate every day,
-    if there is new data available in the hypertable for the last two days:
+    if there is new data available in the {HYPERTABLE} for the last two days:
 
     ```sql
     SELECT add_continuous_aggregate_policy('one_day_candle',
@@ -171,11 +168,11 @@ OHLCV values.
 
 <GraphOhlcv />
 
-## Compress your data using {HYPERCORE}
+## Compress your data using hypercore
 
 <TutorialsHypercoreIntro />
 
-### Optimize your data in the {COLUMNSTORE}
+### Optimize your data in the columnstore
 
 To compress the data in the `crypto_ticks` table, do the following:
 

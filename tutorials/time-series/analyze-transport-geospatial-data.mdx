@@ -8,7 +8,7 @@ import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx
 import GrafanaConnect from "/snippets/integrations/_grafana-connect.mdx";
 import ImportTransportData from "/snippets/tutorials/_import-transport-data.mdx";
 import GeolocationAnalytics from "/snippets/tutorials/_use-case-transport-geolocation.mdx";
-import { COLUMNSTORE } from '/snippets/vars.mdx';
+import { TIMESCALE_DB } from '/snippets/vars.mdx';
 
 Real-time analytics refers to the process of collecting, analyzing, and interpreting data instantly as it
 is generated. This approach enables you track and monitor activity, and make decisions based on real-time
@@ -33,7 +33,7 @@ of data optimized for size and speed in the {COLUMNSTORE}.
 
 When {TIMESCALE_DB} converts a chunk to the {COLUMNSTORE}, it automatically creates a different schema for your
 data. {TIMESCALE_DB} creates and uses custom indexes to incorporate the `segmentby` and `orderby` parameters when
-you write to and read from the columstore.
+you write to and read from the {COLUMNSTORE}.
 
 To increase the speed of your analytical queries by a factor of 10 and reduce storage costs by up to 90%, convert data
 to the {COLUMNSTORE}:
@@ -45,7 +45,7 @@ to the {COLUMNSTORE}:
 
 1. **Add a policy to convert chunks to the {COLUMNSTORE} at a specific time interval**
 
-   For example, convert data older than 8 days old to the columstore:
+   For example, convert data older than 8 days old to the {COLUMNSTORE}:
    ``` sql
    CALL add_columnstore_policy('rides', INTERVAL '8 days');
    ```
