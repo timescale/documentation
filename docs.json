@@ -7,6 +7,9 @@
     "light": "#6447FB",
     "dark": "#000"
   },
+  "styling": {
+    "codeblocks": "dark"
+  },
   "seo": {
     "metatags": {
       "robots": "noindex"

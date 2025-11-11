@@ -8,7 +8,7 @@
 ## Project context
 - Format: MDX files with YAML frontmatter
 - Config: docs.json for navigation, theme, settings
-- Components: TigerData Cloud, TigerData console, TimescaleDB
+- Components: Tiger, Tiger Console, TimescaleDB
 
 ## Content strategy
 - Document just enough for user success - not too much, not too little
@@ -23,10 +23,35 @@
 - Refer to the [docs.json schema](https://mintlify.com/docs.json) when building the docs.json file and site navigation
 
 ## Frontmatter requirements for pages
-- title: Clear, descriptive page title
-- description: Concise summary for SEO/navigation
+- title: Clear, descriptive page title (meta title max 60 characters for SEO)
+- description: Concise summary for SEO/navigation (under 200 characters)
+
+## Page structure requirements
+
+### Regular pages should include:
+- Short intro paragraph that summarizes content in first sentence
+- Visual illustration when helpful
+- Descriptive headers using keywords
+- Step-by-step procedures for actionable content
+- Relevant internal and external links
+
+### API pages should include:
+- Function name as title
+- Brief description
+- Usage samples with code blocks
+- Arguments table with format: | Name | Type | Default | Required | Description |
+- Returns section
+
+### Troubleshooting pages should include:
+- Specific frontmatter fields (title, section, products/topics)
+- Clear problem identification
+- Step-by-step resolution procedures
 
 ## Writing standards
+- Follow the Google Developer Documentation Style Guide with exceptions:
+  - Do not capitalize the first word after a colon
+  - Use code font (backticks) for UI elements instead of semi-bold
+- Write clear, concise, and actionable documentation
 - Second-person voice ("you")
 - Prerequisites at start of procedural content
 - Test all code examples before publishing
@@ -35,6 +60,26 @@
 - Language tags on all code blocks
 - Alt text on all images
 - Relative paths for internal links
+- If a product or concept is missing from the glossary, add it
+
+## Content reuse and formatting
+
+### Variables and links
+- Use `{VARIABLE_NAME}` syntax for variables (reference snippets/vars.mdx for mappings)
+- Internal links don't require full domain - use relative paths
+- External links input as-is with full URLs
+
+### Supported formatting elements
+- Tabs for organizing related content
+- Code blocks with language tags
+- Multi-tab code blocks for multiple language examples
+- Tags for categorization
+
+### SEO optimization
+- Use keywords in titles, headers, and intro paragraphs
+- Summarize paragraph contents in first sentence
+- Keep meta descriptions under 200 characters
+- Keep meta titles under 60 characters
 
 ## Git workflow
 - NEVER use --no-verify when committing
@@ -42,6 +87,11 @@
 - Create a new branch when no clear branch exists for changes
 - Commit frequently throughout development
 - NEVER skip or disable pre-commit hooks
+
+## Templates 
+
+- For a new procedural page, use  .github/templates/procedure.md as a template
+- For a new integration page, use .github/templates/integration.md as a template
 
 ## Do not
 - Skip frontmatter on any MDX file
