@@ -4,25 +4,26 @@ description: Synchronize updates to your primary Postgres database with the corr
 keywords: [PostgreSQL, source connector, logical replication, synchronization, real-time replication, data sync, migration, CDC, change data capture]
 ---
 
-import { HYPERTABLE, CONSOLE } from '/snippets/vars.mdx';
+
 import LivesyncPrereqsCloud from '/snippets/prerequisites/_livesync-prereqs-cloud.mdx';
 import LivesyncPrereqsTerminal from '/snippets/prerequisites/_livesync-prereqs-terminal.mdx';
 import LivesyncLimitations from '/snippets/integrations/_livesync-limitations.mdx';
+import { HYPERTABLE, CONSOLE, PG_CONNECTOR, SERVICE_SHORT } from '/snippets/vars.mdx';
 
 <Icon icon="flask" /> Early access
 
-You use the {PG} connector to synchronize all data or specific tables from a {PG} database instance to your
+You use the {PG_CONNECTOR} to synchronize all data or specific tables from a {PG} database instance to your
 {SERVICE_SHORT}, in real time. You run the connector continuously, turning {PG} into a primary database with your
 {SERVICE_SHORT} as a logical replica. This enables you to leverage real-time analytics capabilities on
 your replica data.
 
 ![Connectors overview](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-connector-overview.png)
 
-The {PG} connector leverages the well-established {PG} logical replication protocol. By relying on this protocol,
+The {PG_CONNECTOR} leverages the well-established {PG} logical replication protocol. By relying on this protocol,
 it ensures compatibility, familiarity, and a broader knowledge base—making it easier for you to adopt the connector
 and integrate your data.
 
-You use the {PG} connector for data synchronization, rather than migration. This includes:
+You use the {PG_CONNECTOR} for data synchronization, rather than migration. This includes:
 
 * Copy existing data from a {PG} instance:
   - Copy data at up to 150 GB/hr.
