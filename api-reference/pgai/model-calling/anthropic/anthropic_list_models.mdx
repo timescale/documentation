@@ -1,0 +1,90 @@
+---
+title: anthropic_list_models()
+description: List available Anthropic Claude models
+keywords: [Anthropic, Claude, models, list]
+tags: [AI, Anthropic, models, management]
+license: community
+type: function
+---
+
+List all Claude models available through the Anthropic API. This function returns basic information about each model
+including its ID, name, and creation date.
+
+## Samples
+
+### List all models
+
+See all available Claude models:
+
+```sql
+SELECT * FROM ai.anthropic_list_models();
+```
+
+Returns:
+
+```text
+              id                    |          name           |      created
+------------------------------------+-------------------------+-------------------
+ claude-3-5-sonnet-20241022         | Claude 3.5 Sonnet       | 2024-10-22 ...
+ claude-3-opus-20240229             | Claude 3 Opus           | 2024-02-29 ...
+ claude-3-sonnet-20240229           | Claude 3 Sonnet         | 2024-02-29 ...
+ claude-3-haiku-20240307            | Claude 3 Haiku          | 2024-03-07 ...
+```
+
+### Use with API key name
+
+Reference a stored API key:
+
+```sql
+SELECT * FROM ai.anthropic_list_models(
+    api_key_name => 'ANTHROPIC_API_KEY'
+);
+```
+
+### Filter by model name
+
+Find specific models:
+
+```sql
+SELECT id, name
+FROM ai.anthropic_list_models()
+WHERE name LIKE '%Sonnet%';
+```
+
+### Get the latest model
+
+Find the most recently released model:
+
+```sql
+SELECT id, name, created
+FROM ai.anthropic_list_models()
+ORDER BY created DESC
+LIMIT 1;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `api_key` | `TEXT` | `NULL` | ✖ | Anthropic API key. If not provided, uses configured secret |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `base_url` | `TEXT` | `NULL` | ✖ | Custom API base URL |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`TABLE`: A table with the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | `TEXT` | Model identifier (e.g., `claude-3-5-sonnet-20241022`) |
+| `name` | `TEXT` | Human-readable model name (e.g., `Claude 3.5 Sonnet`) |
+| `created` | `TIMESTAMPTZ` | When the model was released |
+
+## Related functions
+
+- [`anthropic_generate()`][anthropic_generate]: generate text with Claude models
+- [`openai_list_models()`][openai_list_models]: list OpenAI models
+
+[anthropic_generate]: /api-reference/pgai/model-calling/anthropic/anthropic_generate
+[openai_list_models]: /api-reference/pgai/model-calling/openai/openai_list_models

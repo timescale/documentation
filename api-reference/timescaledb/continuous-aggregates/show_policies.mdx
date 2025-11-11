@@ -1,0 +1,53 @@
+---
+title: show_policies()
+description: Show all policies that are currently set on a continuous aggregate
+topics: [continuous aggregates, jobs, compression, data retention, information]
+keywords: [continuous aggregates, policies, show, compress, data retention]
+license: community
+type: function
+experimental: true
+products: [cloud, self_hosted, mst]
+---
+
+import { CAGG } from '/snippets/vars.mdx';
+
+<Icon icon="flask" /> Early access
+
+Show all policies that are currently set on a {CAGG}.
+
+```sql
+timescaledb_experimental.show_policies(
+     relation REGCLASS
+) RETURNS SETOF JSONB
+```
+
+## Samples
+
+Given a {CAGG} named `example_continuous_aggregate`, show all the
+policies set on it:
+
+```sql
+SELECT timescaledb_experimental.show_policies('example_continuous_aggregate');
+```
+
+Example of returned data:
+
+```bash
+show_policies
+--------------------------------------------------------------------------------
+{"policy_name": "policy_compression", "compress_after": 11, "compress_interval": "@ 1 day"}
+{"policy_name": "policy_refresh_continuous_aggregate", "refresh_interval": "@ 1 hour", "refresh_end_offset": 1, "refresh_start_offset": 10}
+{"drop_after": 20, "policy_name": "policy_retention", "retention_interval": "@ 1 day"}
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `relation` | `REGCLASS` | - | ✔ | The {CAGG} to display policies for |
+
+## Returns
+
+| Column | Type | Description |
+|-|-|-|
+| `show_policies` | `JSONB` | Details for each policy set on the {CAGG} |

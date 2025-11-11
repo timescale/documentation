@@ -1,0 +1,52 @@
+---
+title: cohere_detokenize()
+description: Convert token IDs back into text
+keywords: [Cohere, detokenize, decode]
+tags: [AI, Cohere, tokens]
+license: community
+type: function
+---
+
+Convert an array of token IDs back into readable text. This is the inverse operation of `cohere_tokenize()`.
+
+## Samples
+
+### Detokenize tokens
+
+```sql
+SELECT ai.cohere_detokenize(
+    'embed-english-v3.0',
+    ARRAY[5432, 8754, 389, 264, 8147, 4729]
+);
+```
+
+Returns: `'PostgreSQL is a powerful database'`
+
+### Round-trip tokenization
+
+```sql
+SELECT ai.cohere_detokenize(
+    'embed-english-v3.0',
+    ai.cohere_tokenize('embed-english-v3.0', 'Hello, world!')
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | Cohere model for detokenization |
+| `tokens` | `INT[]` | - | ✔ | Array of token IDs to convert |
+| `api_key` | `TEXT` | `NULL` | ✖ | Cohere API key |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of secret containing the API key |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging |
+
+## Returns
+
+`TEXT`: The reconstructed text from the token IDs.
+
+## Related functions
+
+- [`cohere_tokenize()`][cohere_tokenize]: convert text into tokens
+
+[cohere_tokenize]: /api-reference/pgai/model-calling/cohere/cohere_tokenize

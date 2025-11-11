@@ -1,0 +1,139 @@
+---
+title: Index build-time parameters
+description: Configure StreamingDiskANN index build-time behavior for optimal performance
+keywords: [pgvectorscale, parameters, index, build, configuration]
+tags: [indexes, configuration, performance]
+license: community
+type: configuration
+---
+
+import { COMPANY } from '/snippets/vars.mdx';
+
+Configure StreamingDiskANN index behavior at build time to optimize for your specific workload, accuracy requirements, and resource constraints.
+
+- Control index build performance and memory usage
+- Tune accuracy vs performance trade-offs
+- Configure storage layout and compression
+- Enable Matryoshka embedding support
+
+## Samples
+
+### Memory-optimized storage with custom neighbors
+
+```sql
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops)
+WITH (
+    storage_layout = 'memory_optimized',
+    num_neighbors = 75
+);
+```
+
+### Plain storage for maximum accuracy
+
+```sql
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops)
+WITH (
+    storage_layout = 'plain',
+    num_neighbors = 100,
+    search_list_size = 200
+);
+```
+
+### Matryoshka embeddings
+
+```sql
+-- Index only first 256 dimensions of a 1536-dimension embedding
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops)
+WITH (num_dimensions = 256);
+```
+
+### High-accuracy build configuration
+
+```sql
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops)
+WITH (
+    num_neighbors = 100,
+    search_list_size = 200,
+    max_alpha = 1.5
+);
+```
+
+### Build performance considerations
+
+Index builds can be memory-intensive. To improve build performance:
+
+```sql
+-- Increase maintenance work memory
+SET maintenance_work_mem = '2GB';
+
+-- Then create the index
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops)
+WITH (num_neighbors = 50);
+```
+
+The default `maintenance_work_mem` is typically 64MB, which may be too low for building indexes on large datasets.
+
+## Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `storage_layout` | `text` | `memory_optimized` | Storage format: `memory_optimized` uses Statistical Binary Quantization; `plain` stores uncompressed vectors |
+| `num_neighbors` | `int` | 50 | Maximum number of neighbors per node. Higher values increase accuracy but slow graph traversal |
+| `search_list_size` | `int` | 100 | Search list size during construction (S parameter). Higher values improve graph quality at the cost of slower builds |
+| `max_alpha` | `float` | 1.2 | Alpha parameter in the DiskANN algorithm. Higher values improve graph quality but slow index builds |
+| `num_dimensions` | `int` | 0 (all dimensions) | Number of dimensions to index. Enables Matryoshka embeddings by indexing fewer dimensions |
+| `num_bits_per_dimension` | `int` | 2 (if less than 900 dims), 1 otherwise | Bits per dimension for Statistical Binary Quantization encoding |
+
+### storage_layout
+
+Controls how vector data is stored:
+
+- **memory_optimized** (default): Uses Statistical Binary Quantization (SBQ) developed by {COMPANY}researchers to compress vectors. Provides excellent performance with reduced memory footprint.
+
+- **plain**: Stores vectors uncompressed. Uses more memory but may provide slightly higher accuracy. Required for certain distance operators.
+
+### num_neighbors
+
+The maximum number of neighbors per node in the graph. This is a key parameter for balancing accuracy and performance:
+
+- Lower values (20-50): Faster queries, lower memory, slightly reduced accuracy
+- Higher values (50-100): Better accuracy, slower queries, more memory
+
+### search_list_size
+
+The size of the candidate list during graph construction (S parameter in DiskANN). Affects index build quality:
+
+- Lower values (50-100): Faster index builds, slightly lower quality
+- Higher values (100-200): Slower builds, higher quality graph structure
+
+### max_alpha
+
+The alpha parameter controls pruning during graph construction:
+
+- Lower values (1.0-1.2): More aggressive pruning, faster builds
+- Higher values (1.2-2.0): Less aggressive pruning, higher quality graph
+
+### num_dimensions
+
+Enables Matryoshka embedding support by indexing only the first N dimensions:
+
+- 0 (default): Index all dimensions
+- Positive integer: Index only first N dimensions
+
+Useful for embeddings trained with Matryoshka representation learning, where information is organized hierarchically across dimensions.
+
+### num_bits_per_dimension
+
+Controls the precision of Statistical Binary Quantization:
+
+- 1 bit: Maximum compression, fastest queries, lower accuracy
+- 2 bits: Balanced compression and accuracy (default for \<900 dimensions)
+
+
+[create_index]: /api-reference/pgvectorscale/create_index
+[query_parameters]: /api-reference/pgvectorscale/query_parameters

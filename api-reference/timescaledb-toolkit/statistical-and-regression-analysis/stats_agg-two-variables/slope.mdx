@@ -1,0 +1,51 @@
+---
+title: slope()
+description: Calculate the slope from a two-dimensional statistical aggregate
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: statistical and regression analysis
+  type: accessor
+  aggregates:
+    - stats_agg() (two variables)
+topics: [hyperfunctions]
+keywords: [statistics, hyperfunctions, Toolkit]
+tags: [least squares, linear regression]
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
+
+Calculate the slope of the linear fitting line from a two-dimensional statistical aggregate. The calculation uses the
+standard least-squares fitting for linear regression.
+
+```sql
+slope(
+    summary StatsSummary2D
+) RETURNS DOUBLE PRECISION
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| slope | DOUBLE PRECISION | The slope of the least-squares fit line |
+
+## Samples
+
+Calculate the slope from independent variable `y` and dependent variable `x` for each 15-minute time bucket:
+
+```sql
+SELECT
+    id,
+    time_bucket('15 min'::interval, ts) AS bucket,
+    slope(stats_agg(y, x)) AS summary
+FROM foo
+GROUP BY id, time_bucket('15 min'::interval, ts)
+```

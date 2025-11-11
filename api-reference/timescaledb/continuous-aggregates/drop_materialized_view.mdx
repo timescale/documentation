@@ -1,0 +1,41 @@
+---
+title: DROP MATERIALIZED VIEW (Continuous Aggregate)
+sidebarTitle: DROP MATERIALIZED VIEW
+description: Drop a continuous aggregate view
+topics: [continuous aggregates]
+keywords: [continuous aggregates, delete]
+tags: [materialized views, drop]
+license: community
+type: command
+products: [cloud, self_hosted, mst]
+---
+
+import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
+
+{CAGG} views can be dropped using the `DROP MATERIALIZED VIEW` statement.
+
+This statement deletes the {CAGG} and all its internal
+objects. It also removes refresh policies for that
+aggregate. To delete other dependent objects, such as a view
+defined on the {CAGG}, add the `CASCADE`
+option. Dropping a {CAGG} does not affect the data in
+the underlying {HYPERTABLE} from which the {CAGG} is
+derived.
+
+```sql
+DROP MATERIALIZED VIEW <view_name>;
+```
+
+## Samples
+
+Drop existing {CAGG}.
+
+```sql
+DROP MATERIALIZED VIEW contagg_view;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `<view_name>` | TEXT | - | ✔ | Name (optionally schema-qualified) of {CAGG} view to be dropped. |

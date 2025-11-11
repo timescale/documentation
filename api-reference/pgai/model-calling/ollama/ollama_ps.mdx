@@ -1,0 +1,113 @@
+---
+title: ollama_ps()
+description: List currently running Ollama models and their resource usage
+keywords: [Ollama, models, running, monitoring, VRAM]
+tags: [AI, Ollama, monitoring, performance]
+license: community
+type: function
+---
+
+List all models currently loaded and running on your Ollama server. This function shows active models, when they will
+expire from memory, and how much VRAM they are using.
+
+## Samples
+
+### List running models
+
+See which models are currently loaded:
+
+```sql
+SELECT * FROM ai.ollama_ps();
+```
+
+Returns:
+
+```text
+    name     |    model     |    size    | expires_at          | size_vram
+-------------+--------------+------------+---------------------+-----------
+ llama2      | llama2:latest| 3825819519 | 2024-01-15 14:30:00 | 4096000000
+```
+
+### Monitor model expiration
+
+Check when models will unload from memory:
+
+```sql
+SELECT
+    name,
+    expires_at,
+    expires_at - now() AS time_until_unload
+FROM ai.ollama_ps()
+WHERE expires_at IS NOT NULL
+ORDER BY expires_at;
+```
+
+### Check VRAM usage
+
+See how much video memory models are consuming:
+
+```sql
+SELECT
+    name,
+    pg_size_pretty(size_vram) AS vram_usage,
+    pg_size_pretty(size) AS total_size
+FROM ai.ollama_ps()
+ORDER BY size_vram DESC;
+```
+
+### Connect to specific host
+
+Monitor models on a remote Ollama server:
+
+```sql
+SELECT * FROM ai.ollama_ps(
+    host => 'http://ollama-server:11434'
+);
+```
+
+### Total resource usage
+
+Calculate total VRAM used by all running models:
+
+```sql
+SELECT
+    count(*) AS running_models,
+    pg_size_pretty(sum(size_vram)) AS total_vram
+FROM ai.ollama_ps();
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `host` | `TEXT` | `NULL` | ✖ | Ollama server URL (defaults to `http://localhost:11434`) |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`TABLE`: A table with the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `name` | `TEXT` | Model name (e.g., `llama2`, `mistral:7b`) |
+| `model` | `TEXT` | Full model identifier |
+| `size` | `BIGINT` | Model size in bytes |
+| `digest` | `TEXT` | SHA256 digest of the model |
+| `parent_model` | `TEXT` | Parent model if this is a derivative |
+| `format` | `TEXT` | Model format (typically `gguf`) |
+| `family` | `TEXT` | Model family (e.g., `llama`, `mistral`) |
+| `families` | `JSONB` | Array of model families |
+| `parameter_size` | `TEXT` | Number of parameters (e.g., `7B`, `13B`) |
+| `quantization_level` | `TEXT` | Quantization level (e.g., `Q4_0`, `Q5_K_M`) |
+| `expires_at` | `TIMESTAMPTZ` | When the model will unload from memory |
+| `size_vram` | `BIGINT` | VRAM usage in bytes |
+
+## Related functions
+
+- [`ollama_list_models()`][ollama_list_models]: see all installed models
+- [`ollama_embed()`][ollama_embed]: generate embeddings with a model
+- [`ollama_chat_complete()`][ollama_chat_complete]: chat with a model
+
+[ollama_list_models]: /api-reference/pgai/model-calling/ollama/ollama_list_models
+[ollama_embed]: /api-reference/pgai/model-calling/ollama/ollama_embed
+[ollama_chat_complete]: /api-reference/pgai/model-calling/ollama/ollama_chat_complete

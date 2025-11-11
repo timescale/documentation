@@ -1,0 +1,80 @@
+---
+title: hypertable_compression_stats()
+description: Get hypertable statistics related to compression
+topics: [compression]
+keywords: [compression, hypertables, information]
+tags: [statistics, size]
+license: community
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+import { HYPERTABLE, CHUNK, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [hypertable_columnstore_stats()][hypertable-columnstore-stats].
+
+Get statistics related to {HYPERTABLE} compression. All sizes are in bytes.
+
+For more information about using {HYPERTABLE}s, including {CHUNK} size partitioning, see the [hypertable
+section][hypertable-docs].
+
+For more information about compression, see the [compression section][compression-docs].
+
+## Samples
+
+```sql
+SELECT * FROM hypertable_compression_stats('conditions');
+
+-[ RECORD 1 ]------------------+------
+total_chunks                   | 4
+number_compressed_chunks       | 1
+before_compression_table_bytes | 8192
+before_compression_index_bytes | 32768
+before_compression_toast_bytes | 0
+before_compression_total_bytes | 40960
+after_compression_table_bytes  | 8192
+after_compression_index_bytes  | 32768
+after_compression_toast_bytes  | 8192
+after_compression_total_bytes  | 49152
+node_name                      |
+```
+
+Use `pg_size_pretty` get the output in a more human friendly format.
+
+```sql
+SELECT pg_size_pretty(after_compression_total_bytes) as total
+  FROM hypertable_compression_stats('conditions');
+
+-[ RECORD 1 ]--+------
+total | 48 kB
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `hypertable` | REGCLASS | - | ✔ | {HYPERTABLE} to show statistics for |
+
+## Returns
+
+| Column | Type | Description |
+|-|-|-|
+| `total_chunks` | BIGINT | The number of {CHUNK}s used by the {HYPERTABLE} |
+| `number_compressed_chunks` | BIGINT | The number of {CHUNK}s used by the {HYPERTABLE} that are currently compressed |
+| `before_compression_table_bytes` | BIGINT | Size of the heap before compression |
+| `before_compression_index_bytes` | BIGINT | Size of all the indexes before compression |
+| `before_compression_toast_bytes` | BIGINT | Size the TOAST table before compression |
+| `before_compression_total_bytes` | BIGINT | Size of the entire table (table+indexes+toast) before compression |
+| `after_compression_table_bytes` | BIGINT | Size of the heap after compression |
+| `after_compression_index_bytes` | BIGINT | Size of all the indexes after compression |
+| `after_compression_toast_bytes` | BIGINT | Size the TOAST table after compression |
+| `after_compression_total_bytes` | BIGINT | Size of the entire table (table+indexes+toast) after compression |
+| `node_name` | TEXT | nodes on which the {HYPERTABLE} is located, applicable only to distributed {HYPERTABLE}s |
+
+<Note>
+Returns show `NULL` if the data is currently uncompressed.
+</Note>
+
+[hypertable-columnstore-stats]: /api-reference/timescaledb/hypercore/hypertable_columnstore_stats
+[hypertable-docs]: /use-timescale/hypertables
+[compression-docs]: /use-timescale/compression

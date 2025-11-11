@@ -1,0 +1,114 @@
+---
+title: ollama_generate()
+description: Generate text completions using local Ollama models
+keywords: [Ollama, completion, generation, local LLM]
+tags: [AI, generation, Ollama, local]
+license: community
+type: function
+---
+
+Generate text completions using locally hosted Ollama models. Unlike chat completion, this function is designed for
+single-turn text generation with optional system prompts, images, and custom templates.
+
+## Samples
+
+### Generate a completion
+
+Get a text completion from a local model:
+
+```sql
+SELECT ai.ollama_generate(
+    'llama2',
+    'Explain what PostgreSQL is in one sentence'
+)->'response';
+```
+
+### Use a system prompt
+
+Set a system prompt to control the model's behavior:
+
+```sql
+SELECT ai.ollama_generate(
+    'llama2',
+    'What is a database?',
+    system_prompt => 'You are a helpful database expert. Give concise answers.'
+)->'response';
+```
+
+### Add context for continuation
+
+Continue a previous generation using context:
+
+```sql
+-- First generation
+WITH first_gen AS (
+    SELECT ai.ollama_generate('llama2', 'Tell me about databases') AS result
+)
+-- Continue with context
+SELECT ai.ollama_generate(
+    'llama2',
+    'Tell me more about PostgreSQL specifically',
+    context => (SELECT (result->'context')::text::int[] FROM first_gen)
+)->'response';
+```
+
+### Generate with images
+
+Analyze images with vision-capable models:
+
+```sql
+SELECT ai.ollama_generate(
+    'llava',
+    'What do you see in this image?',
+    images => ARRAY[(SELECT content FROM images WHERE id = 1)]
+)->'response';
+```
+
+### Configure model options
+
+Customize the generation parameters:
+
+```sql
+SELECT ai.ollama_generate(
+    'llama2',
+    'Write a creative story',
+    embedding_options => '{"temperature": 0.9, "top_p": 0.9}'::jsonb
+)->'response';
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The Ollama model to use (e.g., `llama2`, `mistral`, `codellama`) |
+| `prompt` | `TEXT` | - | ✔ | The prompt to generate a response for |
+| `host` | `TEXT` | `NULL` | ✖ | Ollama server URL (defaults to `http://localhost:11434`) |
+| `images` | `BYTEA[]` | `NULL` | ✖ | Array of images for multimodal models |
+| `keep_alive` | `TEXT` | `NULL` | ✖ | How long to keep the model loaded (e.g., `5m`, `1h`) |
+| `embedding_options` | `JSONB` | `NULL` | ✖ | Model-specific options like temperature, top_p |
+| `system_prompt` | `TEXT` | `NULL` | ✖ | System prompt to set model behavior |
+| `template` | `TEXT` | `NULL` | ✖ | Custom prompt template |
+| `context` | `INT[]` | `NULL` | ✖ | Context from a previous generation for continuation |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`JSONB`: The complete API response including:
+- `model`: Model used for generation
+- `response`: The generated text
+- `context`: Context array for continuation
+- `created_at`: Generation timestamp
+- `done`: Whether generation is complete
+- `total_duration`: Total time taken
+- `prompt_eval_count`: Number of tokens in prompt
+- `eval_count`: Number of tokens generated
+
+## Related functions
+
+- [`ollama_chat_complete()`][ollama_chat_complete]: multi-turn conversations
+- [`ollama_embed()`][ollama_embed]: generate embeddings
+- [`ollama_list_models()`][ollama_list_models]: see available models
+
+[ollama_chat_complete]: /api-reference/pgai/model-calling/ollama/ollama_chat_complete
+[ollama_embed]: /api-reference/pgai/model-calling/ollama/ollama_embed
+[ollama_list_models]: /api-reference/pgai/model-calling/ollama/ollama_list_models

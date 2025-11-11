@@ -1,0 +1,56 @@
+---
+title: extrapolated_rate()
+description: Calculate the extrapolated rate of change from a gauge aggregate
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: counters and gauges
+  type: accessor
+  aggregates:
+  - gauge_agg()
+topics:
+- hyperfunctions
+---
+
+<Icon icon="flask" /> Early access 1.6.0
+
+Calculate the rate of change of a gauge during the time period specified by the bounds
+in the gauge aggregate. The bounds must be specified for the `extrapolated_rate`
+function to work. You can provide them as part of the original [`gauge_agg`](#gauge_agg)
+call, or by using the [`with_bounds`](#with_bounds) function on an existing
+gauge aggregate.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+| `method` | `TEXT` | - | ✔ | The extrapolation method to use. Not case-sensitive. The only allowed value is `prometheus`, for the Prometheus extrapolation protocol. |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The extrapolated rate of change of the gauge over the timer period of the gauge aggregate.
+
+## Samples
+
+```sql
+SELECT
+    id,
+    bucket,
+    extrapolated_rate(
+        with_bounds(
+            summary,
+            toolkit_experimental.time_bucket_range('15 min'::interval, bucket)
+        ),'prometheus'
+    )
+FROM (
+    SELECT
+        id,
+        time_bucket('15 min'::interval, ts) AS bucket,
+        gauge_agg(ts, val) AS summary
+    FROM foo
+    GROUP BY id, time_bucket('15 min'::interval, ts)
+) t;
+```

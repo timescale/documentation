@@ -23,7 +23,9 @@
         "tabs": [
           {
             "tab": "Welcome",
-            "pages": ["index"]
+            "pages": [
+              "index"
+            ]
           },
           {
             "tab": "Cloud management",
@@ -33,7 +35,9 @@
                 "groups": [
                   {
                     "group": " ",
-                    "pages": ["cloud/cloud"]
+                    "pages": [
+                      "cloud/cloud"
+                    ]
                   },
                   {
                     "group": "Get started",
@@ -112,11 +116,15 @@
                   },
                   {
                     "group": "Configuration",
-                    "pages": ["cloud/tiger/configuration/tune-your-service"]
+                    "pages": [
+                      "cloud/tiger/configuration/tune-your-service"
+                    ]
                   },
                   {
                     "group": "Troubleshooting",
-                    "pages": ["cloud/tiger/troubleshooting/troubleshooting"]
+                    "pages": [
+                      "cloud/tiger/troubleshooting/troubleshooting"
+                    ]
                   },
                   {
                     "group": "Reference",
@@ -134,7 +142,9 @@
                 "groups": [
                   {
                     "group": " ",
-                    "pages": ["cloud/mst/mst"]
+                    "pages": [
+                      "cloud/mst/mst"
+                    ]
                   },
                   {
                     "group": "Get started",
@@ -158,7 +168,9 @@
                   },
                   {
                     "group": "Storage",
-                    "pages": ["cloud/mst/storage/storage"]
+                    "pages": [
+                      "cloud/mst/storage/storage"
+                    ]
                   },
                   {
                     "group": "Monitor your services",
@@ -173,23 +185,33 @@
                   },
                   {
                     "group": "Manage data security",
-                    "pages": ["cloud/mst/data-security/data-security"]
+                    "pages": [
+                      "cloud/mst/data-security/data-security"
+                    ]
                   },
                   {
                     "group": "Secure access to cloud",
-                    "pages": ["cloud/mst/secure-access/secure-access"]
+                    "pages": [
+                      "cloud/mst/secure-access/secure-access"
+                    ]
                   },
                   {
                     "group": "Configuration",
-                    "pages": ["cloud/mst/configuration/configuration"]
+                    "pages": [
+                      "cloud/mst/configuration/configuration"
+                    ]
                   },
                   {
                     "group": "Troubleshooting",
-                    "pages": ["cloud/mst/troubleshooting/troubleshooting"]
+                    "pages": [
+                      "cloud/mst/troubleshooting/troubleshooting"
+                    ]
                   },
                   {
                     "group": "Reference",
-                    "pages": ["cloud/mst/reference/reference"]
+                    "pages": [
+                      "cloud/mst/reference/reference"
+                    ]
                   }
                 ]
               }
@@ -203,7 +225,9 @@
                 "groups": [
                   {
                     "group": "  ",
-                    "pages": ["manage-data/manage-data"]
+                    "pages": [
+                      "manage-data/manage-data"
+                    ]
                   },
                   {
                     "group": "Get started",
@@ -286,12 +310,14 @@
                 "groups": [
                   {
                     "group": " ",
-                    "pages": ["manage-data/pgai/pgai"]
+                    "pages": [
+                      "manage-data/pgai/pgai"
+                    ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/pgai/pgvector-get-started",
+                      "manage-data/pgai/pgai-get-started",
                       "manage-data/pgai/vectorizer-automate-ai-embeddings"
                     ]
                   }
@@ -304,7 +330,9 @@
             "groups": [
               {
                 "group": " ",
-                "pages": ["tutorials/tutorials"]
+                "pages": [
+                  "tutorials/tutorials"
+                ]
               },
               {
                 "group": "Time-series",
@@ -331,11 +359,15 @@
             "groups": [
               {
                 "group": " ",
-                "pages": ["integrations/integrations"]
+                "pages": [
+                  "integrations/integrations"
+                ]
               },
               {
                 "group": "Destination connectors",
-                "pages": ["integrations/connectors/destination/tigerlake"]
+                "pages": [
+                  "integrations/connectors/destination/tigerlake"
+                ]
               },
               {
                 "group": "Source connectors",
@@ -346,7 +378,9 @@
               },
               {
                 "group": "Coding",
-                "pages": ["integrations/code/start-coding-with-tigerdata"]
+                "pages": [
+                  "integrations/code/start-coding-with-tigerdata"
+                ]
               },
               {
                 "group": "Configuration and deployment",
@@ -368,7 +402,9 @@
               },
               {
                 "group": "Data ingestion and streaming",
-                "pages": ["integrations/integrate/fivetran"]
+                "pages": [
+                  "integrations/integrate/fivetran"
+                ]
               },
               {
                 "group": "Observability and alerting",
@@ -407,7 +443,9 @@
             "groups": [
               {
                 "group": " ",
-                "pages": ["self-host/self-host"]
+                "pages": [
+                  "self-host/self-host"
+                ]
               },
               {
                 "group": "Install and update",
@@ -458,133 +496,197 @@
                   {
                     "group": " ",
                     "pages": [
-                      "api-reference/timescaledb/timescaledb-api-reference"
+                      "api-reference/timescaledb/index"
                     ]
                   },
                   {
-                    "group": "Hypertables",
+                    "group": "Hypertables and chunks",
                     "pages": [
+                      "api-reference/timescaledb/hypertables/index",
                       "api-reference/timescaledb/hypertables/create_table",
-                      "api-reference/timescaledb/hypertables/show_chunks"
+                      "api-reference/timescaledb/hypertables/create_hypertable",
+                      "api-reference/timescaledb/hypertables/create_hypertable_old",
+                      "api-reference/timescaledb/hypertables/show_chunks",
+                      "api-reference/timescaledb/hypertables/drop_chunks",
+                      "api-reference/timescaledb/hypertables/reorder_chunk",
+                      "api-reference/timescaledb/hypertables/split_chunk",
+                      "api-reference/timescaledb/hypertables/merge_chunks",
+                      "api-reference/timescaledb/hypertables/move_chunk",
+                      "api-reference/timescaledb/hypertables/detach_chunk",
+                      "api-reference/timescaledb/hypertables/attach_chunk",
+                      "api-reference/timescaledb/hypertables/add_reorder_policy",
+                      "api-reference/timescaledb/hypertables/remove_reorder_policy",
+                      "api-reference/timescaledb/hypertables/attach_tablespace",
+                      "api-reference/timescaledb/hypertables/detach_tablespace",
+                      "api-reference/timescaledb/hypertables/detach_tablespaces",
+                      "api-reference/timescaledb/hypertables/show_tablespaces",
+                      "api-reference/timescaledb/hypertables/set_chunk_time_interval",
+                      "api-reference/timescaledb/hypertables/set_integer_now_func",
+                      "api-reference/timescaledb/hypertables/add_dimension",
+                      "api-reference/timescaledb/hypertables/add_dimension_old",
+                      "api-reference/timescaledb/hypertables/enable_chunk_skipping",
+                      "api-reference/timescaledb/hypertables/disable_chunk_skipping",
+                      "api-reference/timescaledb/hypertables/create_index",
+                      "api-reference/timescaledb/hypertables/hypertable_size",
+                      "api-reference/timescaledb/hypertables/hypertable_approximate_size",
+                      "api-reference/timescaledb/hypertables/hypertable_detailed_size",
+                      "api-reference/timescaledb/hypertables/hypertable_approximate_detailed_size",
+                      "api-reference/timescaledb/hypertables/hypertable_index_size",
+                      "api-reference/timescaledb/hypertables/chunks_detailed_size"
                     ]
                   },
                   {
                     "group": "Hypercore",
                     "pages": [
-                      "api-reference/timescaledb/hypertables/show_chunks"
+                      "api-reference/timescaledb/hypercore/index",
+                      "api-reference/timescaledb/hypercore/alter_table",
+                      "api-reference/timescaledb/hypercore/add_columnstore_policy",
+                      "api-reference/timescaledb/hypercore/remove_columnstore_policy",
+                      "api-reference/timescaledb/hypercore/convert_to_columnstore",
+                      "api-reference/timescaledb/hypercore/convert_to_rowstore",
+                      "api-reference/timescaledb/hypercore/hypertable_columnstore_settings",
+                      "api-reference/timescaledb/hypercore/hypertable_columnstore_stats",
+                      "api-reference/timescaledb/hypercore/chunk_columnstore_settings",
+                      "api-reference/timescaledb/hypercore/chunk_columnstore_stats"
+                    ]
+                  },
+                  {
+                    "group": "Continuous aggregates",
+                    "pages": [
+                      "api-reference/timescaledb/continuous-aggregates/index",
+                      "api-reference/timescaledb/continuous-aggregates/create_materialized_view",
+                      "api-reference/timescaledb/continuous-aggregates/alter_materialized_view",
+                      "api-reference/timescaledb/continuous-aggregates/drop_materialized_view",
+                      "api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate",
+                      "api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy",
+                      "api-reference/timescaledb/continuous-aggregates/add_policies",
+                      "api-reference/timescaledb/continuous-aggregates/alter_policies",
+                      "api-reference/timescaledb/continuous-aggregates/show_policies",
+                      "api-reference/timescaledb/continuous-aggregates/remove_continuous_aggregate_policy",
+                      "api-reference/timescaledb/continuous-aggregates/cagg_migrate",
+                      "api-reference/timescaledb/continuous-aggregates/remove_policies",
+                      "api-reference/timescaledb/continuous-aggregates/remove_all_policies"
+                    ]
+                  },
+                  {
+                    "group": "Data retention",
+                    "pages": [
+                      "api-reference/timescaledb/data-retention/index",
+                      "api-reference/timescaledb/data-retention/add_retention_policy",
+                      "api-reference/timescaledb/data-retention/remove_retention_policy"
+                    ]
+                  },
+                  {
+                    "group": "Jobs and automation",
+                    "pages": [
+                      "api-reference/timescaledb/jobs-automation/index",
+                      "api-reference/timescaledb/jobs-automation/add_job",
+                      "api-reference/timescaledb/jobs-automation/alter_job",
+                      "api-reference/timescaledb/jobs-automation/delete_job",
+                      "api-reference/timescaledb/jobs-automation/run_job"
+                    ]
+                  },
+                  {
+                    "group": "UUIDv7 functions",
+                    "pages": [
+                      "api-reference/timescaledb/uuid-functions/index",
+                      "api-reference/timescaledb/uuid-functions/generate_uuidv7",
+                      "api-reference/timescaledb/uuid-functions/to_uuidv7",
+                      "api-reference/timescaledb/uuid-functions/to_uuidv7_boundary",
+                      "api-reference/timescaledb/uuid-functions/uuid_timestamp",
+                      "api-reference/timescaledb/uuid-functions/uuid_timestamp_micros",
+                      "api-reference/timescaledb/uuid-functions/uuid_version"
                     ]
                   },
                   {
                     "group": "Hyperfunctions",
                     "pages": [
-                      "api-reference/timescaledb/hyperfunctions/hyperfunctions",
-                      "api-reference/timescaledb/hyperfunctions/approximate_row_count",
-                      "api-reference/timescaledb/hyperfunctions/first",
-                      "api-reference/timescaledb/hyperfunctions/last",
-                      "api-reference/timescaledb/hyperfunctions/histogram",
-                      "api-reference/timescaledb/hyperfunctions/time_bucket",
-                      "api-reference/timescaledb/hyperfunctions/time_bucket_ng",
-                      "api-reference/timescaledb/hyperfunctions/days_in_month",
-                      "api-reference/timescaledb/hyperfunctions/month_normalize",
+                      "api-reference/timescaledb/hyperfunctions/index",
                       {
-                        "group": "Approximate count distinct",
+                        "group": "Time series utilities",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/hyperloglog"
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/index",
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket",
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng",
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/first",
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/last",
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month",
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize"
                         ]
                       },
                       {
-                        "group": "Statistical and regression analysis", 
+                        "group": "Distribution analysis",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/stats_agg-one-variable",
-                          "api-reference/timescaledb/hyperfunctions/stats_agg-two-variables"
-                        ]
-                      },
-                      {
-                        "group": "Minimum and maximum",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/min_n",
-                          "api-reference/timescaledb/hyperfunctions/max_n",
-                          "api-reference/timescaledb/hyperfunctions/min_n_by",
-                          "api-reference/timescaledb/hyperfunctions/max_n_by"
-                        ]
-                      },
-                      {
-                        "group": "Financial analysis",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/candlestick_agg"
+                          "api-reference/timescaledb/hyperfunctions/distribution-analysis/index",
+                          "api-reference/timescaledb/hyperfunctions/distribution-analysis/histogram",
+                          "api-reference/timescaledb/hyperfunctions/distribution-analysis/approximate_row_count"
                         ]
                       },
                       {
                         "group": "Gapfilling",
                         "pages": [
-                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill"
-                        ]
-                      },
-                      {
-                        "group": "Percentile approximation",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/uddsketch",
-                          "api-reference/timescaledb/hyperfunctions/tdigest"
-                        ]
-                      },
-                      {
-                        "group": "Counters and gauges",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/counter_agg",
-                          "api-reference/timescaledb/hyperfunctions/gauge_agg"
-                        ]
-                      },
-                      {
-                        "group": "Time-weighted calculations",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/time_weight"
-                        ]
-                      },
-                      {
-                        "group": "Frequency analysis",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/freq_agg",
-                          "api-reference/timescaledb/hyperfunctions/count_min_sketch"
-                        ]
-                      },
-                      {
-                        "group": "State tracking",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/compact_state_agg",
-                          "api-reference/timescaledb/hyperfunctions/state_agg",
-                          "api-reference/timescaledb/hyperfunctions/heartbeat_agg"
+                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/index",
+                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill",
+                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/locf",
+                          "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/interpolate"
                         ]
                       }
                     ]
-                  }
-                ]
-              },
-              {
-                "dropdown": "pgai ",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": ["api-reference/pgai/pgai-api-reference"]
                   },
                   {
-                    "group": "API Reference",
-                    "pages": ["api-reference/pgai/vectorizer-api-reference"]
-                  }
-                ]
-              },
-              {
-                "dropdown": "pgvectorscale ",
-                "groups": [
-                  {
-                    "group": " ",
+                    "group": "Informational views",
                     "pages": [
-                      "api-reference/pgvectorscale/pgvectorscale-api-reference-landing"
+                      "api-reference/timescaledb/informational-views/index",
+                      "api-reference/timescaledb/informational-views/chunks",
+                      "api-reference/timescaledb/informational-views/chunk_compression_settings",
+                      "api-reference/timescaledb/informational-views/continuous_aggregates",
+                      "api-reference/timescaledb/informational-views/compression_settings",
+                      "api-reference/timescaledb/informational-views/data_nodes",
+                      "api-reference/timescaledb/informational-views/dimensions",
+                      "api-reference/timescaledb/informational-views/hypertables",
+                      "api-reference/timescaledb/informational-views/hypertable_compression_settings",
+                      "api-reference/timescaledb/informational-views/jobs",
+                      "api-reference/timescaledb/informational-views/job_stats",
+                      "api-reference/timescaledb/informational-views/job_errors",
+                      "api-reference/timescaledb/informational-views/job_history",
+                      "api-reference/timescaledb/informational-views/policies"
                     ]
                   },
                   {
-                    "group": "API Reference",
+                    "group": "Configuration",
                     "pages": [
-                      "api-reference/pgvectorscale/pgvectorscale-api-reference"
+                      "api-reference/timescaledb/configuration/index",
+                      "api-reference/timescaledb/configuration/tiger-postgres",
+                      "api-reference/timescaledb/configuration/gucs"
+                    ]
+                  },
+                  {
+                    "group": "Administration",
+                    "pages": [
+                      "api-reference/timescaledb/administration/index",
+                      "api-reference/timescaledb/administration/get_telemetry_report",
+                      "api-reference/timescaledb/administration/timescaledb_post_restore",
+                      "api-reference/timescaledb/administration/timescaledb_pre_restore"
+                    ]
+                  },
+                  {
+                    "group": "Tag overview",
+                    "pages": [
+                      "api-reference/timescaledb/tag-overview"
+                    ]
+                  },
+                  {
+                    "group": "Compression (Old API, replaced by Hypercore)",
+                    "pages": [
+                      "api-reference/timescaledb/compression/index",
+                      "api-reference/timescaledb/compression/alter_table_compression",
+                      "api-reference/timescaledb/compression/add_compression_policy",
+                      "api-reference/timescaledb/compression/remove_compression_policy",
+                      "api-reference/timescaledb/compression/compress_chunk",
+                      "api-reference/timescaledb/compression/decompress_chunk",
+                      "api-reference/timescaledb/compression/recompress_chunk",
+                      "api-reference/timescaledb/compression/hypertable_compression_stats",
+                      "api-reference/timescaledb/compression/chunk_compression_stats"
                     ]
                   }
                 ]
@@ -595,13 +697,463 @@
                   {
                     "group": " ",
                     "pages": [
-                      "api-reference/timescaledb-toolkit/timescaledb-toolkit-api-reference-landing"
+                      "api-reference/timescaledb-toolkit/index"
                     ]
                   },
                   {
-                    "group": "API Reference",
+                    "group": "Approximate count distinct",
                     "pages": [
-                      "api-reference/timescaledb-toolkit/timescaledb-toolkit-api-reference"
+                      "api-reference/timescaledb-toolkit/hyperloglog/index",
+                      "api-reference/timescaledb-toolkit/hyperloglog/hyperloglog",
+                      "api-reference/timescaledb-toolkit/hyperloglog/approx_count_distinct",
+                      "api-reference/timescaledb-toolkit/hyperloglog/distinct_count",
+                      "api-reference/timescaledb-toolkit/hyperloglog/stderror",
+                      "api-reference/timescaledb-toolkit/hyperloglog/rollup"
+                    ]
+                  },
+                  {
+                    "group": "Statistical and regression analysis",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/index",
+                      {
+                        "group": "One variable",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/index",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/stats_agg",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/average",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/stddev",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/variance",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/skewness",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/kurtosis",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/sum",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/num_vals",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/rollup",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/rolling"
+                        ]
+                      },
+                      {
+                        "group": "Two variables",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/index",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/stats_agg",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/average_y_x",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/stddev_y_x",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/variance_y_x",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/skewness_y_x",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/kurtosis_y_x",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/sum_y_x",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/corr",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/covariance",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/determination_coeff",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/slope",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/intercept",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/x_intercept",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/num_vals",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/rollup",
+                          "api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/rolling"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Minimum and maximum",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/minimum-and-maximum/index",
+                      {
+                        "group": "Minimum values",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/index",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/min_n",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/into_values",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/into_array",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/rollup"
+                        ]
+                      },
+                      {
+                        "group": "Maximum values",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/index",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/max_n",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/into_values",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/into_array",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/rollup"
+                        ]
+                      },
+                      {
+                        "group": "Minimum values by",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/index",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/min_n_by",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/into_values",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/rollup"
+                        ]
+                      },
+                      {
+                        "group": "Maximum values by",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/index",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/max_n_by",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/into_values",
+                          "api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/rollup"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Financial analysis",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/candlestick_agg/index",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/candlestick_agg",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/candlestick",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/open",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/open_time",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/high",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/high_time",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/low",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/low_time",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/close",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/close_time",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/volume",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/vwap",
+                      "api-reference/timescaledb-toolkit/candlestick_agg/rollup"
+                    ]
+                  },
+                  {
+                    "group": "Percentile approximation",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/percentile-approximation/index",
+                      {
+                        "group": "UddSketch",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/index",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/uddsketch",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/percentile_agg",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile_array",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile_rank",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/error",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/mean",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/num_vals",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/rollup"
+                        ]
+                      },
+                      {
+                        "group": "t-digest",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/index",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/tdigest",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/approx_percentile",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/approx_percentile_rank",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/max_val",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/mean",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/min_val",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/num_vals",
+                          "api-reference/timescaledb-toolkit/percentile-approximation/tdigest/rollup"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Counters and gauges",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/counters-and-gauges/index",
+                      {
+                        "group": "Counter aggregation",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/index",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/corr",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_zero_time",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/extrapolated_delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/extrapolated_rate",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/first_time",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/first_val",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/idelta_left",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/idelta_right",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/intercept",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/interpolated_delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/interpolated_rate",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/irate_left",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/irate_right",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/last_time",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/last_val",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_changes",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_elements",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_resets",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/rate",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/rollup",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/slope",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/time_delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/with_bounds"
+                        ]
+                      },
+                      {
+                        "group": "Gauge aggregation",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/index",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/corr",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_rate",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_zero_time",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_left",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_right",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/intercept",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_rate",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_left",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_right",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_changes",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_elements",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rate",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rollup",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/slope",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/time_delta",
+                          "api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/with_bounds"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Time-weighted calculations",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/time_weight/index",
+                      "api-reference/timescaledb-toolkit/time_weight/time_weight",
+                      "api-reference/timescaledb-toolkit/time_weight/average",
+                      "api-reference/timescaledb-toolkit/time_weight/first_time",
+                      "api-reference/timescaledb-toolkit/time_weight/first_val",
+                      "api-reference/timescaledb-toolkit/time_weight/integral",
+                      "api-reference/timescaledb-toolkit/time_weight/interpolated_average",
+                      "api-reference/timescaledb-toolkit/time_weight/interpolated_integral",
+                      "api-reference/timescaledb-toolkit/time_weight/last_time",
+                      "api-reference/timescaledb-toolkit/time_weight/last_val",
+                      "api-reference/timescaledb-toolkit/time_weight/rollup"
+                    ]
+                  },
+                  {
+                    "group": "Downsampling",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/downsampling/index",
+                      "api-reference/timescaledb-toolkit/downsampling/lttb",
+                      "api-reference/timescaledb-toolkit/downsampling/gp_lttb",
+                      "api-reference/timescaledb-toolkit/downsampling/asap_smooth"
+                    ]
+                  },
+                  {
+                    "group": "Frequency analysis",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/frequency-analysis/index",
+                      {
+                        "group": "Frequency aggregation",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/index",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/freq_agg",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/mcv_agg",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/into_values",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/max_frequency",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/min_frequency",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/topn",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/rollup"
+                        ]
+                      },
+                      {
+                        "group": "Count-min sketch",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/index",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/count_min_sketch",
+                          "api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/approx_count"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "State tracking",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/state-tracking/index",
+                      {
+                        "group": "Compact state aggregation",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/index",
+                          "api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/compact_state_agg",
+                          "api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/duration_in",
+                          "api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/interpolated_duration_in",
+                          "api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/into_values",
+                          "api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/rollup"
+                        ]
+                      },
+                      {
+                        "group": "State aggregation",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/index",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/state_agg",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/state_at",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/duration_in",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_duration_in",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/state_periods",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/state_timeline",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_state_periods",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_state_timeline",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/into_values",
+                          "api-reference/timescaledb-toolkit/state-tracking/state_agg/rollup"
+                        ]
+                      },
+                      {
+                        "group": "Heartbeat aggregation",
+                        "pages": [
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/index",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/heartbeat_agg",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/uptime",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/downtime",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolated_uptime",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolated_downtime",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/live_at",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/live_ranges",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/dead_ranges",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/num_live_ranges",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/num_gaps",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/trim_to",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolate",
+                          "api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/rollup"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Saturating math",
+                    "pages": [
+                      "api-reference/timescaledb-toolkit/saturating-math/index",
+                      "api-reference/timescaledb-toolkit/saturating-math/saturating_add",
+                      "api-reference/timescaledb-toolkit/saturating-math/saturating_add_pos",
+                      "api-reference/timescaledb-toolkit/saturating-math/saturating_sub",
+                      "api-reference/timescaledb-toolkit/saturating-math/saturating_sub_pos",
+                      "api-reference/timescaledb-toolkit/saturating-math/saturating_mul"
+                    ]
+                  }
+                ]
+              },
+              {
+                "dropdown": "Tiger Cloud REST API",
+                "groups": [
+                  {
+                    "group": " ",
+                    "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml"
+                  }
+                ]
+              },
+              {
+                "dropdown": "pgai ",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "api-reference/pgai/index"
+                    ]
+                  },
+                  {
+                    "group": "OpenAI",
+                    "pages": [
+                      "api-reference/pgai/model-calling/openai/index",
+                      "api-reference/pgai/model-calling/openai/openai_embed",
+                      "api-reference/pgai/model-calling/openai/openai_embed_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_chat_complete",
+                      "api-reference/pgai/model-calling/openai/openai_chat_complete_simple",
+                      "api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_tokenize",
+                      "api-reference/pgai/model-calling/openai/openai_detokenize",
+                      "api-reference/pgai/model-calling/openai/openai_list_models",
+                      "api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_moderate",
+                      "api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response",
+                      "api-reference/pgai/model-calling/openai/openai_client_config"
+                    ]
+                  },
+                  {
+                    "group": "Ollama",
+                    "pages": [
+                      "api-reference/pgai/model-calling/ollama/index",
+                      "api-reference/pgai/model-calling/ollama/ollama_embed",
+                      "api-reference/pgai/model-calling/ollama/ollama_generate",
+                      "api-reference/pgai/model-calling/ollama/ollama_chat_complete",
+                      "api-reference/pgai/model-calling/ollama/ollama_list_models",
+                      "api-reference/pgai/model-calling/ollama/ollama_ps"
+                    ]
+                  },
+                  {
+                    "group": "Anthropic",
+                    "pages": [
+                      "api-reference/pgai/model-calling/anthropic/index",
+                      "api-reference/pgai/model-calling/anthropic/anthropic_generate",
+                      "api-reference/pgai/model-calling/anthropic/anthropic_list_models"
+                    ]
+                  },
+                  {
+                    "group": "Cohere",
+                    "pages": [
+                      "api-reference/pgai/model-calling/cohere/index",
+                      "api-reference/pgai/model-calling/cohere/cohere_embed",
+                      "api-reference/pgai/model-calling/cohere/cohere_rerank",
+                      "api-reference/pgai/model-calling/cohere/cohere_rerank_simple",
+                      "api-reference/pgai/model-calling/cohere/cohere_classify",
+                      "api-reference/pgai/model-calling/cohere/cohere_classify_simple",
+                      "api-reference/pgai/model-calling/cohere/cohere_chat_complete",
+                      "api-reference/pgai/model-calling/cohere/cohere_tokenize",
+                      "api-reference/pgai/model-calling/cohere/cohere_detokenize",
+                      "api-reference/pgai/model-calling/cohere/cohere_list_models"
+                    ]
+                  },
+                  {
+                    "group": "Voyage AI",
+                    "pages": [
+                      "api-reference/pgai/model-calling/voyageai/index",
+                      "api-reference/pgai/model-calling/voyageai/voyageai_embed"
+                    ]
+                  },
+                  {
+                    "group": "LiteLLM",
+                    "pages": [
+                      "api-reference/pgai/model-calling/litellm/index",
+                      "api-reference/pgai/model-calling/litellm/litellm_embed"
+                    ]
+                  },
+                  {
+                    "group": "Vectorizer",
+                    "pages": [
+                      "api-reference/pgai/vectorizer/index",
+                      "api-reference/pgai/vectorizer/create_vectorizer",
+                      "api-reference/pgai/vectorizer/drop_vectorizer",
+                      "api-reference/pgai/vectorizer/destination_table",
+                      "api-reference/pgai/vectorizer/destination_column",
+                      "api-reference/pgai/vectorizer/loading_column",
+                      "api-reference/pgai/vectorizer/parsing_auto",
+                      "api-reference/pgai/vectorizer/parsing_none",
+                      "api-reference/pgai/vectorizer/chunking_character_text_splitter",
+                      "api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter",
+                      "api-reference/pgai/vectorizer/chunking_none",
+                      "api-reference/pgai/vectorizer/embedding_openai",
+                      "api-reference/pgai/vectorizer/embedding_ollama",
+                      "api-reference/pgai/vectorizer/embedding_litellm",
+                      "api-reference/pgai/vectorizer/embedding_voyageai"
+                    ]
+                  }
+                ]
+              },
+              {
+                "dropdown": "pgvectorscale ",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "api-reference/pgvectorscale/index"
+                    ]
+                  },
+                  {
+                    "group": "Indexes and configuration",
+                    "pages": [
+                      "api-reference/pgvectorscale/create_index",
+                      "api-reference/pgvectorscale/index_parameters",
+                      "api-reference/pgvectorscale/query_parameters"
                     ]
                   }
                 ]
@@ -617,19 +1169,22 @@
     ]
   },
   "contextual": {
-    "options": ["claude", "chatgpt"]
+    "options": [
+      "claude",
+      "chatgpt"
+    ]
   },
   "fonts": {
     "family": "Geist"
   },
   "logo": {
-    "light": "https://assets.timescale.com/timescale-web/shared/logo/tigerdata-logo-black.svg",
-    "dark": "https://assets.timescale.com/timescale-web/shared/logo/tigerdata-logo-white.svg"
+    "light": "https://assets.timescale.com/timescale-web/brand/show/horizontal-black.svg",
+    "dark": "https://assets.timescale.com/timescale-web/brand/show/horizontal-white.svg"
   },
   "navbar": {
     "links": [
       {
-        "label": "TigerData",
+        "label": "Tiger Data",
         "href": "https://www.tigerdata.com"
       }
     ],
@@ -645,5 +1200,67 @@
       "github": "https://github.com/timescale",
       "linkedin": "https://www.linkedin.com/company/tigerdata"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/candlestick_agg/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/counters-and-gauges/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/downsampling/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/downsampling/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/frequency-analysis/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/hyperloglog/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/hyperloglog/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/minimum-and-maximum/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/percentile-approximation/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/saturating-math/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/saturating-math/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/state-tracking/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/statistical-and-regression-analysis/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/time_weight/:slug*",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/statistical-analysis/:slug*",
+      "destination": "/api-reference/timescaledb/hyperfunctions/distribution-analysis/:slug*"
+    },
+    {
+      "source": "/api-reference/timescaledb-toolkit/timescaledb-toolkit-api-reference-landing",
+      "destination": "/api-reference/timescaledb-toolkit/index"
+    },
+    {
+      "source": "/api-reference/timescaledb/hyperfunctions/hyperfunctions",
+      "destination": "/api-reference/timescaledb/hyperfunctions/index"
+    },
+    {
+      "source": "/api-reference/timescaledb/timescaledb-api-reference",
+      "destination": "/api-reference/timescaledb/index"
+    }
+  ]
 }

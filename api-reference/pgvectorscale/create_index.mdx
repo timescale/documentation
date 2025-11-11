@@ -1,0 +1,94 @@
+---
+title: CREATE INDEX with diskann
+description: Create a StreamingDiskANN index for high-performance vector search
+keywords: [pgvectorscale, index, diskann, vector search, create index]
+tags: [indexes, vector, performance]
+license: community
+type: function
+---
+
+import { PG } from '/snippets/vars.mdx';
+
+Create a StreamingDiskANN index on a vector column for high-performance similarity search with optional label-based filtering.
+
+- Create indexes for fast approximate nearest neighbor search
+- Configure index build-time parameters for optimal performance
+- Enable label-based filtering for precise vector search
+- Choose storage layouts for memory optimization or plain storage
+
+Note that:
+
+- The index build process can be memory-intensive. Consider increasing `maintenance_work_mem`:
+  ```sql
+  SET maintenance_work_mem = '2GB';
+  ```
+
+- Label values must be within {PG} `smallint` range (-32768 to 32767)
+
+- Creating indexes on UNLOGGED tables is not currently supported
+
+- Null vectors are not indexed; null labels are treated as empty arrays
+
+## Samples
+
+### Basic index creation
+
+```sql
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops);
+```
+
+### With custom parameters
+
+```sql
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops)
+WITH (num_neighbors = 50, search_list_size = 100);
+```
+
+### With label-based filtering
+
+```sql
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops, labels);
+```
+
+### With storage layout
+
+```sql
+CREATE INDEX document_embedding_idx ON document_embedding
+USING diskann (embedding vector_cosine_ops)
+WITH (storage_layout = 'memory_optimized');
+```
+
+## Syntax
+
+```sql
+CREATE INDEX index_name ON table_name
+USING diskann (embedding_column distance_ops [, labels_column])
+[WITH (parameter = value, ...)];
+```
+
+## Distance operators
+
+| Operator | Description | Use with |
+|----------|-------------|----------|
+| `vector_cosine_ops` | Cosine distance (`<=>`) | Normalized embeddings |
+| `vector_l2_ops` | L2 distance (`<->`) | Euclidean distance |
+| `vector_ip_ops` | Inner product (`<#>`) | Dot product (not compatible with plain storage) |
+
+## Build-time parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `storage_layout` | `text` | `memory_optimized` | `memory_optimized` uses Statistical Binary Quantization; `plain` stores uncompressed data |
+| `num_neighbors` | `int` | 50 | Maximum number of neighbors per node. Higher values increase accuracy but slow graph traversal |
+| `search_list_size` | `int` | 100 | Search parameter during construction. Higher values improve graph quality but slow index builds |
+| `max_alpha` | `float` | 1.2 | Alpha parameter in the algorithm. Higher values improve graph quality but slow index builds |
+| `num_dimensions` | `int` | 0 (all dimensions) | Number of dimensions to index. Useful for Matryoshka embeddings |
+| `num_bits_per_dimension` | `int` | 2 (if less than 900 dims), 1 otherwise | Bits per dimension when using Statistical Binary Quantization |
+
+
+
+[index_parameters]: /api-reference/pgvectorscale/index_parameters
+[query_parameters]: /api-reference/pgvectorscale/query_parameters

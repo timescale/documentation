@@ -1,0 +1,30 @@
+---
+title: saturating_sub_pos()
+description: Subtract one number from another, saturating at 0 for the minimum bound
+topics: [hyperfunctions]
+license: community
+type: function
+toolkit: true
+products: [cloud, mst, self_hosted]
+hyperfunction:
+  family: saturating math
+  type: function
+---
+
+<Icon icon="flask" /> Early access
+
+The `saturating_sub_pos` function subtracts the second number from the first, saturating at 0 and 2,147,483,647 instead
+of overflowing.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| x | INT | - | ✔ | An integer for `y` to subtract from |
+| y | INT | - | ✔ | An integer to subtract from `x` |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| saturating_sub_pos | INT | The result of `x - y`, saturating at 0 for the minimum bound |

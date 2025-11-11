@@ -1,0 +1,88 @@
+---
+title: recompress_chunk()
+description: Recompress a chunk that had new data inserted after compression
+topics: [compression]
+keywords: [compression, recompression, chunks]
+tags: [hypertables]
+license: community
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+import { CHUNK, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [convert_to_columnstore()][convert-to-columnstore].
+
+Recompresses a compressed {CHUNK} that had more data inserted after compression.
+
+```sql
+recompress_chunk(
+    chunk REGCLASS,
+    if_not_compressed BOOLEAN = false
+)
+```
+
+You can also recompress {CHUNK}s by [running the job associated with your compression policy][run-job].
+`recompress_chunk` gives you more fine-grained control by allowing you to target a specific {CHUNK}.
+
+<Warning>
+`recompress_chunk` is deprecated since {TIMESCALE_DB} v2.14 and will be removed in the future. The procedure is now a
+wrapper which calls [`compress_chunk`][compress-chunk] instead of it.
+</Warning>
+
+<Warning>
+`recompress_chunk` is implemented as an SQL procedure and not a function. Call the procedure with `CALL`. Don't use a
+`SELECT` statement.
+</Warning>
+
+<Note>
+`recompress_chunk` only works on {CHUNK}s that have previously been compressed. To compress a {CHUNK} for the first
+time, use [`compress_chunk`][compress-chunk].
+</Note>
+
+## Samples
+
+Recompress the {CHUNK} `timescaledb_internal._hyper_1_2_chunk`:
+
+```sql
+CALL recompress_chunk('_timescaledb_internal._hyper_1_2_chunk');
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `chunk` | REGCLASS | - | ✔ | The {CHUNK} to be recompressed. Must include the schema, for example `_timescaledb_internal`, if it is not in the search path. |
+| `if_not_compressed` | BOOLEAN | false | - | If `true`, prints a notice instead of erroring if the {CHUNK} is already compressed. |
+
+## Troubleshooting
+
+In TimescaleDB 2.6.0 and above, `recompress_chunk` is implemented as a procedure. Previously, it was implemented as a
+function. If you are upgrading to TimescaleDB 2.6.0 or above, the`recompress_chunk` function could cause an error. For
+example, trying to run `SELECT recompress_chunk(i.show_chunks, true) FROM...` gives the following error:
+
+```sql
+ERROR:  recompress_chunk(regclass, boolean) is a procedure
+```
+
+To fix the error, use `CALL` instead of `SELECT`. You might also need to write a procedure to replace the full
+functionality in your `SELECT` statement. For example:
+
+```sql
+DO $$
+DECLARE chunk regclass;
+BEGIN
+  FOR chunk IN SELECT format('%I.%I', chunk_schema, chunk_name)::regclass
+  FROM timescaledb_information.chunks
+  WHERE is_compressed = true
+  LOOP
+    RAISE NOTICE 'Recompressing %', chunk::text;
+    CALL recompress_chunk(chunk, true);
+  END LOOP;
+END
+$$;
+```
+
+[convert-to-columnstore]: /api-reference/timescaledb/hypercore/convert_to_columnstore
+[run-job]: /api-reference/timescaledb/jobs-automation/run_job
+[compress-chunk]: /api-reference/timescaledb/compression/compress_chunk

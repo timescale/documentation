@@ -1,0 +1,52 @@
+---
+title: average()
+description: Calculate the time-weighted average of values in a TimeWeightSummary
+topics: [hyperfunctions]
+license: community
+type: function
+toolkit: true
+products: [cloud, mst, self_hosted]
+hyperfunction:
+  family: time-weighted calculations
+  type: accessor
+  aggregates:
+    - time_weight()
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
+
+Calculate the time-weighted average. Equal to [`integral`][integral] divided by the elapsed time. Note that there is a
+key difference to `avg()`: If there is exactly one value, `avg()` would return that value, but `average()` returns
+`NULL`.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| average | DOUBLE PRECISION | The time-weighted average |
+
+## Samples
+
+Calculate the time-weighted average of the column `val`, using the 'last observation carried forward' interpolation
+method:
+
+```sql
+SELECT
+    id,
+    average(tws)
+FROM (
+    SELECT
+        id,
+        time_weight('LOCF', ts, val) AS tws
+    FROM foo
+    GROUP BY id
+) t
+```
+
+[integral]: /api-reference/timescaledb/hyperfunctions/time_weight/integral

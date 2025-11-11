@@ -64,3 +64,73 @@ h1 {
     border-color: #ffffff1a;
   }
 }
+
+/* API Reference table styling - applies to all tables with 5 columns under Arguments heading */
+.api-ref-table table,
+h2#arguments + * table,
+h2#arguments ~ * table {
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+
+/* Description column - 50% width */
+.api-ref-table table td:nth-child(5),
+.api-ref-table table th:nth-child(5),
+h2#arguments + * table td:nth-child(5),
+h2#arguments + * table th:nth-child(5),
+h2#arguments ~ * table td:nth-child(5),
+h2#arguments ~ * table th:nth-child(5) {
+  width: 50% !important;
+  min-width: 50% !important;
+  max-width: 50% !important;
+}
+
+/* Name column - 15% width */
+.api-ref-table table td:nth-child(1),
+.api-ref-table table th:nth-child(1),
+h2#arguments + * table td:nth-child(1),
+h2#arguments + * table th:nth-child(1),
+h2#arguments ~ * table td:nth-child(1),
+h2#arguments ~ * table th:nth-child(1) {
+  width: 15% !important;
+  min-width: 15% !important;
+  max-width: 15% !important;
+}
+
+/* Type column - 15% width */
+.api-ref-table table td:nth-child(2),
+.api-ref-table table th:nth-child(2),
+h2#arguments + * table td:nth-child(2),
+h2#arguments + * table th:nth-child(2),
+h2#arguments ~ * table td:nth-child(2),
+h2#arguments ~ * table th:nth-child(2) {
+  width: 15% !important;
+  min-width: 15% !important;
+  max-width: 15% !important;
+}
+
+/* Default column - 10% width, centered */
+.api-ref-table table td:nth-child(3),
+.api-ref-table table th:nth-child(3),
+h2#arguments + * table td:nth-child(3),
+h2#arguments + * table th:nth-child(3),
+h2#arguments ~ * table td:nth-child(3),
+h2#arguments ~ * table th:nth-child(3) {
+  width: 10% !important;
+  min-width: 10% !important;
+  max-width: 10% !important;
+  text-align: center !important;
+}
+
+/* Required column - 10% width, centered */
+.api-ref-table table td:nth-child(4),
+.api-ref-table table th:nth-child(4),
+h2#arguments + * table td:nth-child(4),
+h2#arguments + * table th:nth-child(4),
+h2#arguments ~ * table td:nth-child(4),
+h2#arguments ~ * table th:nth-child(4) {
+  width: 10% !important;
+  min-width: 10% !important;
+  max-width: 10% !important;
+  text-align: center !important;
+}

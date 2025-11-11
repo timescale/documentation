@@ -1,0 +1,119 @@
+---
+title: Anthropic functions
+sidebarTitle: Overview
+description: Generate completions with Claude models for advanced reasoning and analysis
+keywords: [Anthropic, Claude, AI, reasoning, analysis]
+tags: [AI, Anthropic, Claude, generation]
+license: community
+type: function
+---
+
+import { PG } from '/snippets/vars.mdx';
+
+Call Anthropic's Claude API directly from SQL to generate sophisticated text responses, analyze content, and perform
+complex reasoning tasks using state-of-the-art language models.
+
+## What is Anthropic Claude?
+
+Claude is Anthropic's family of large language models known for sophisticated reasoning, nuanced analysis, and helpful,
+harmless, and honest responses. Claude models excel at complex tasks like analysis, summarization, creative writing,
+and detailed explanations.
+
+## Key features
+
+- **Advanced reasoning**: Superior performance on complex analytical tasks
+- **Long context**: Support for extended conversations and large documents
+- **Tool use**: Built-in function calling capabilities
+- **Safety-focused**: Designed to be helpful, harmless, and honest
+- **Vision support**: Analyze images with Claude 3 models
+
+## Prerequisites
+
+To use Anthropic functions, you need:
+
+1. An Anthropic API key from [console.anthropic.com](https://console.anthropic.com)
+2. API key configured in your database (see configuration section below)
+
+## Quick start
+
+### Generate a completion
+
+Generate text with Claude:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Explain PostgreSQL in one sentence')
+    )
+)->'content'->0->>'text';
+```
+
+### Use a system prompt
+
+Guide Claude's behavior with a system prompt:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is a database?')
+    ),
+    system_prompt => 'You are a helpful database expert. Give concise, technical answers.'
+)->'content'->0->>'text';
+```
+
+### List available models
+
+See which Claude models you can use:
+
+```sql
+SELECT * FROM ai.anthropic_list_models();
+```
+
+## Configuration
+
+Store your Anthropic API key securely in the database:
+
+```sql
+-- Store API key as a secret
+SELECT ai.create_secret('ANTHROPIC_API_KEY', 'your-api-key-here');
+
+-- Use the secret by name
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Hello, Claude!')
+    ),
+    api_key_name => 'ANTHROPIC_API_KEY'
+);
+```
+
+## Available functions
+
+### Generation
+
+- [`anthropic_generate()`][anthropic_generate]: generate text with Claude models
+
+### Model management
+
+- [`anthropic_list_models()`][anthropic_list_models]: list available Claude models
+
+## Available models
+
+Anthropic offers several Claude model families:
+
+- **Claude 3.5 Sonnet** (`claude-3-5-sonnet-20241022`): Best balance of intelligence and speed
+- **Claude 3 Opus** (`claude-3-opus-20240229`): Most powerful for complex tasks
+- **Claude 3 Sonnet** (`claude-3-sonnet-20240229`): Balance of intelligence and speed
+- **Claude 3 Haiku** (`claude-3-haiku-20240307`): Fast and cost-effective
+
+## Resources
+
+- [Anthropic documentation](https://docs.anthropic.com)
+- [Claude models overview](https://docs.anthropic.com/en/docs/models-overview)
+- [Claude API reference](https://docs.anthropic.com/en/api)
+- [Anthropic console](https://console.anthropic.com)
+
+[anthropic_generate]: /api-reference/pgai/model-calling/anthropic/anthropic_generate
+[anthropic_list_models]: /api-reference/pgai/model-calling/anthropic/anthropic_list_models
