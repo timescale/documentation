@@ -306,19 +306,19 @@
               {
                 "group": "Time-series",
                 "pages": [
-                  "tutorials/real-time-analytics/energy-consumption",
-                  "tutorials/real-time-analytics/transport",
-                  "tutorials/time-series/query-bitcoin-blockchain",
-                  "tutorials/time-series/health-biometical-analysis",
-                  "tutorials/time-series/anomaly-detection-in-streaming-data"
+                  "tutorials/time-series/analyze-energy-consumption",
+                  "tutorials/time-series/analyze-transport-geospatial-data",
+                  "tutorials/time-series/analyze-financial-tick-data",
+                  "tutorials/time-series/analyze-blockchain",
+                  "tutorials/time-series/query-blockchain",
+                  "tutorials/time-series/ingest-real-time-financial-data",
+                  "tutorials/time-series/simulate-iot-sensor-data"
                 ]
               },
               {
                 "group": "AI",
                 "pages": [
-                  "tutorials/ai/financial-forcasting",
-                  "tutorials/ai/powered-observability",
-                  "tutorials/ai/real-time-predictive-maintenence"
+                  "tutorials/ai/build-semantic-search-application"
                 ]
               }
             ]

@@ -1,16 +1,16 @@
 ---
 title: Simulate an IoT sensor dataset
-description: It is often necessary to simulate IoT datasets, for example, when testing a new system. Simulate an IOT dataset in your Tiger Cloud service
-products: [cloud, self_hosted, mst]
-keywords: [IoT, simulate]
+description: Simulate an IoT dataset in your Tiger Cloud service for testing and development
+keywords: [IoT, simulate, sensor data, hypertables, time-series, testing, tutorial]
 ---
 
-import { SERVICE_LONG } from '/snippets/vars.mdx';
-
+import OldCreateHypertable from "/snippets/changes/_old-api-create-hypertable.mdx";
+import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
+import { HYPERTABLE } from '/snippets/vars.mdx';
 
 The Internet of Things (IoT) describes a trend where computing capabilities are embedded into IoT devices. That is, physical objects, ranging from light bulbs to oil wells. Many IoT devices collect sensor data about their environment and generate time-series datasets with relational metadata.
 
-It is often necessary to simulate IoT datasets. For example, when you are 
+It is often necessary to simulate IoT datasets. For example, when you are
 testing a new system. This tutorial shows how to simulate a basic dataset in your {SERVICE_LONG}, and then run simple queries on it.
 
 To simulate a more advanced dataset, see [Time-series Benchmarking Suite (TSBS)][tsbs].
@@ -20,8 +20,6 @@ To simulate a more advanced dataset, see [Time-series Benchmarking Suite (TSBS)]
 <IntegrationPrereqs />
 
 ## Simulate a dataset
-
-<Procedure>
 
 To simulate a dataset, run the following queries:
 
@@ -35,8 +33,8 @@ To simulate a dataset, run the following queries:
     );
     ```
 
-1. **Create the `sensor_data` hypertable**
-    
+1. **Create the `sensor_data` {HYPERTABLE}**
+
     ```sql
     CREATE TABLE sensor_data (
       time TIMESTAMPTZ NOT NULL,
@@ -50,7 +48,7 @@ To simulate a dataset, run the following queries:
     );
     ```
     <OldCreateHypertable />
-   
+
 1. **Populate the `sensors` table**:
 
     ```sql
@@ -100,7 +98,7 @@ To simulate a dataset, run the following queries:
     Sample output:
 
     ```
-                 time              | sensor_id |    temperature     |         cpu         
+                 time              | sensor_id |    temperature     |         cpu
     -------------------------------+-----------+--------------------+---------------------
      2020-03-31 15:56:25.843575+00 |         1 |   6.86688972637057 |   0.682070567272604
      2020-03-31 15:56:40.244287+00 |         2 |    26.589260622859 |   0.229583469685167
@@ -113,9 +111,7 @@ To simulate a dataset, run the following queries:
     ...
     ```
 
-</Procedure>
-
-## Run basic queries 
+## Run basic queries
 
 After you simulate a dataset, you can run some basic queries on it. For example:
 
@@ -129,11 +125,11 @@ After you simulate a dataset, you can run some basic queries on it. For example:
    FROM sensor_data
    GROUP BY period;
    ```
-   
+
    Sample output:
-   
+
    ```
-            period         |     avg_temp     |      avg_cpu      
+            period         |     avg_temp     |      avg_cpu
    ------------------------+------------------+-------------------
     2020-03-31 19:00:00+00 | 49.6615830013373 | 0.477344429974134
     2020-03-31 22:00:00+00 | 58.8521540844037 | 0.503637770501276
@@ -154,11 +150,11 @@ After you simulate a dataset, you can run some basic queries on it. For example:
    FROM sensor_data
    GROUP BY period;
    ```
-   
+
    Sample output:
-   
+
    ```
-            period         |     avg_temp     |    last_temp     |      avg_cpu      
+            period         |     avg_temp     |    last_temp     |      avg_cpu
    ------------------------+------------------+------------------+-------------------
     2020-03-31 19:00:00+00 | 49.6615830013373 | 84.3963081017137 | 0.477344429974134
     2020-03-31 22:00:00+00 | 58.8521540844037 | 76.5528806950897 | 0.503637770501276
@@ -180,11 +176,11 @@ After you simulate a dataset, you can run some basic queries on it. For example:
    FROM sensor_data JOIN sensors on sensor_data.sensor_id = sensors.id
    GROUP BY period, sensors.location;
    ```
-   
+
    Sample output:
-   
+
    ```
-    location |         period         |     avg_temp     |     last_temp     |      avg_cpu      
+    location |         period         |     avg_temp     |     last_temp     |      avg_cpu
    ----------+------------------------+------------------+-------------------+-------------------
     ceiling  | 20120-03-31 15:30:00+00 | 25.4546818090603 |  24.3201029952615 | 0.435734559316188
     floor    | 2020-03-31 15:30:00+00 | 43.4297036845237 |  79.9925176426768 |  0.56992522883229
@@ -199,6 +195,4 @@ After you simulate a dataset, you can run some basic queries on it. For example:
 
 You have now successfully simulated and run queries on an IoT dataset.
 
-[create-a-service]: /getting-started/:currentVersion:/services/#create-a-timescale-cloud-service
-[connect-to-service]: /getting-started/:currentVersion:/run-queries-from-console/
 [tsbs]: https://github.com/timescale/tsbs
