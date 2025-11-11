@@ -218,6 +218,7 @@ NOT:
 - Check the directory that the files are to move into
 - Update all ${VARIABLES} to use the mintlify variables (reference snippets/vars.mdx for mappings)
 - **CRITICAL**: After migration, check that variables are not imported twice (see "Variables and snippets" section)
+- **Remove all unsupported tags** - Delete tags like `<Tag>`, `<Procedure>`, and other custom components that are not supported in Mintlify
 - replace references to import since`<version>` with `<Icon icon="circle-play" iconType="duotone" />` Since `<version>` on its own line after the frontmatter, followed by a newline before content begins
 - replace references to import deprecated`<version>` with `<Icon icon="circle-pause" iconType="duotone" />` Deprecated `<version>` on its own line after the frontmatter, followed by a newline before content begins
 - replace references to import DeprecationNotice with `<Icon icon="circle-pause" iconType="duotone" />` Deprecated on its own line after the frontmatter, followed by a newline before content begins

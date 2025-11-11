@@ -1,0 +1,57 @@
+import HypertableIntro from "/snippets/tutorials/_tutorials-hypertable-intro.mdx";
+import OldCreateHypertable from "/snippets/changes/_old-api-create-hypertable.mdx";
+import { SERVICE_LONG, CONSOLE, HYPERTABLE, COLUMNSTORE, PG } from '/snippets/vars.mdx';
+
+## Optimize time-series data in a hypertable
+
+<HypertableIntro />
+
+1. **Connect to your {SERVICE_LONG}**
+
+   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. You can also connect to your service using [psql][connect-using-psql].
+
+1. **Create a {HYPERTABLE} to store the real-time cryptocurrency data**
+
+   Create a [{HYPERTABLE}][hypertables-section] for your time-series data using [CREATE TABLE][hypertable-create-table].
+   For [efficient queries][secondary-indexes] on data in the {COLUMNSTORE}, remember to `segmentby` the column you will
+   use most often to filter your data:
+
+    ```sql
+    CREATE TABLE crypto_ticks (
+        "time" TIMESTAMPTZ,
+        symbol TEXT,
+        price DOUBLE PRECISION,
+        day_volume NUMERIC
+    ) WITH (
+       tsdb.hypertable,
+       tsdb.partition_column='time',
+       tsdb.segmentby='symbol',
+       tsdb.orderby='time DESC'
+    );
+    ```
+   <OldCreateHypertable />
+
+## Create a standard {PG} table for relational data
+
+When you have relational data that enhances your time-series data, store that data in
+standard {PG} relational tables.
+
+1.  **Add a table to store the asset symbol and name in a relational table**
+
+    ```sql
+    CREATE TABLE crypto_assets (
+        symbol TEXT UNIQUE,
+        "name" TEXT
+    );
+    ```
+
+You now have two tables within your {SERVICE_LONG}. A hypertable named `crypto_ticks`, and a normal
+{PG} table named `crypto_assets`.
+
+[in-console-editors]: /getting-started/run-queries-from-console/
+[services-portal]: https://console.cloud.timescale.com/dashboard/services
+[connect-using-psql]: /integrations/psql#connect-to-your-service
+[hypertable-create-table]: /api/hypertable/create_table/
+[hypertables-section]: /use-timescale/hypertables/
+[hypercore]: /use-timescale/hypercore/
+[secondary-indexes]: /use-timescale/hypercore/secondary-indexes/

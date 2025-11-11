@@ -1,0 +1,115 @@
+import HypertableIntro from "/snippets/tutorials/_tutorials-hypertable-intro.mdx";
+import OldCreateHypertable from "/snippets/changes/_old-api-create-hypertable.mdx";
+import { SERVICE_LONG, SERVICE_SHORT, CONSOLE, HYPERTABLE, TIMESCALE_DB, COLUMNSTORE } from '/snippets/vars.mdx';
+
+## Ingest data into a {SERVICE_LONG}
+
+This tutorial uses a dataset that contains Bitcoin blockchain data for
+the past five days, in a {HYPERTABLE} named `transactions`.
+
+### Optimize time-series data using hypertables
+
+<HypertableIntro />
+
+1. Connect to your {SERVICE_LONG}
+
+   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. The in-Console editors display the query speed.
+   You can also connect to your service using [psql][connect-using-psql].
+
+1. Create a [{HYPERTABLE}][hypertables-section] for your time-series data using [CREATE TABLE][hypertable-create-table].
+   For [efficient queries][secondary-indexes] on data in the {COLUMNSTORE}, remember to `segmentby` the column you will
+   use most often to filter your data:
+
+    ```sql
+    CREATE TABLE transactions (
+       time TIMESTAMPTZ NOT NULL,
+       block_id INT,
+       hash TEXT,
+       size INT,
+       weight INT,
+       is_coinbase BOOLEAN,
+       output_total BIGINT,
+       output_total_usd DOUBLE PRECISION,
+       fee BIGINT,
+       fee_usd DOUBLE PRECISION,
+       details JSONB
+    ) WITH (
+       tsdb.hypertable,
+       tsdb.partition_column='time',
+       tsdb.segmentby='block_id',
+       tsdb.orderby='time DESC'
+    );
+    ```
+
+    <OldCreateHypertable />
+
+1.  Create an index on the `hash` column to make queries for individual
+    transactions faster:
+
+    ```sql
+    CREATE INDEX hash_idx ON public.transactions USING HASH (hash);
+    ```
+
+1.  Create an index on the `block_id` column to make block-level queries faster:
+
+   When you create a {HYPERTABLE}, it is partitioned on the time column. {TIMESCALE_DB}
+   automatically creates an index on the time column. However, you'll often filter
+   your time-series data on other columns as well. You use [indexes][indexing] to improve
+   query performance.
+
+    ```sql
+    CREATE INDEX block_idx ON public.transactions (block_id);
+    ```
+
+1.  Create a unique index on the `time` and `hash` columns to make sure you
+    don't accidentally insert duplicate records:
+
+    ```sql
+    CREATE UNIQUE INDEX time_hash_idx ON public.transactions (time, hash);
+    ```
+
+### Load financial data
+
+The dataset contains around 1.5 million Bitcoin transactions, the trades for five days. It includes
+information about each transaction, along with the value in [satoshi][satoshi-def]. It also states if a
+trade is a [coinbase][coinbase-def] transaction, and the reward a coin miner receives for mining the coin.
+
+To ingest data into the tables that you created, you need to download the
+dataset and copy the data to your database.
+
+1.  Download the `bitcoin_sample.zip` file. The file contains a `.csv`
+    file that contains Bitcoin transactions for the past five days:
+
+    [bitcoin_sample.zip](https://assets.timescale.com/docs/downloads/bitcoin-blockchain/bitcoin_sample.zip)
+
+1.  In a new terminal window, run this command to unzip the `.csv` files:
+
+    ```bash
+    unzip bitcoin_sample.zip
+    ```
+
+1. In Terminal, navigate to the folder where you unzipped the Bitcoin transactions, then
+   connect to your {SERVICE_SHORT} using [psql][connect-using-psql].
+
+1.  At the `psql` prompt, use the `COPY` command to transfer data into your
+    {SERVICE_LONG}. If the `.csv` files aren't in your current directory,
+    specify the file paths in these commands:
+
+    ```sql
+    \COPY transactions FROM 'tutorial_bitcoin_sample.csv' CSV HEADER;
+    ```
+
+    Because there is over a million rows of data, the `COPY` process could take
+    a few minutes depending on your internet connection and local client
+    resources.
+
+[hypertable-create-table]: /api/hypertable/create_table/
+[indexing]: /use-timescale/schema-management/indexing/
+[in-console-editors]: /getting-started/run-queries-from-console/
+[services-portal]: https://console.cloud.timescale.com/dashboard/services
+[connect-using-psql]: /integrations/psql#connect-to-your-service
+[hypertables-section]: /use-timescale/hypertables/
+[hypercore]: /use-timescale/hypercore/
+[secondary-indexes]: /use-timescale/hypercore/secondary-indexes/
+[satoshi-def]: https://www.pcmag.com/encyclopedia/term/satoshi
+[coinbase-def]: https://www.pcmag.com/encyclopedia/term/coinbase-transaction
