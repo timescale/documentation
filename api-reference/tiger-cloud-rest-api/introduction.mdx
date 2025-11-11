@@ -1,0 +1,93 @@
+---
+title: Tiger Cloud REST API
+sidebarTitle: Overview
+description: A comprehensive RESTful API for managing Tiger Cloud resources including VPCs, services, and read replicas
+---
+
+- **API Version:** 1.0.0
+- **Base URL:** `https://console.cloud.timescale.com/public/api/v1`
+
+## Authentication
+
+The Tiger Cloud REST API uses HTTP Basic Authentication. Include your access key and secret key in the Authorization header.
+
+### Basic Authentication
+```http
+Authorization: Basic <base64(access_key:secret_key)>
+```
+
+### Example
+```bash
+# Using cURL
+curl -X GET "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
+  -H "Authorization: Basic $(echo -n 'your_access_key:your_secret_key' | base64)"
+```
+
+## Service Management
+
+You use this endpoint to create a Tiger Cloud service with one or more of the following addons:
+
+- `time-series`: a Tiger Cloud service optimized for real-time analytics. For time-stamped data like events, prices, metrics, sensor readings, or any information that changes over time.
+- `ai`: a Tiger Cloud service instance with vector extensions.
+
+To have multiple addons when you create a new service, set `"addons": ["time-series", "ai"]`. To create a vanilla Postgres instance, set `addons` to an empty list `[]`.
+
+## API Endpoints
+
+The REST API is organized around three main resource types:
+
+### Service Management
+
+Manage Tiger Cloud database services:
+
+- [**List All Services**](/api-reference/services/list-all-services) - `GET /projects/{project_id}/services`
+- [**Create a Service**](/api-reference/services/create-a-service) - `POST /projects/{project_id}/services`
+- [**Get a Service**](/api-reference/services/get-a-service) - `GET /projects/{project_id}/services/{service_id}`
+- [**Delete a Service**](/api-reference/services/delete-a-service) - `DELETE /projects/{project_id}/services/{service_id}`
+- [**Resize a Service**](/api-reference/services/resize-a-service) - `POST /projects/{project_id}/services/{service_id}/resize`
+- [**Update Service Password**](/api-reference/services/update-service-password) - `POST /projects/{project_id}/services/{service_id}/updatePassword`
+- [**Set Environment for a Service**](/api-reference/services/set-environment-for-a-service) - `POST /projects/{project_id}/services/{service_id}/setEnvironment`
+- [**Change HA Configuration for a Service**](/api-reference/services/change-ha-configuration-for-a-service) - `POST /projects/{project_id}/services/{service_id}/setHA`
+- [**Enable Connection Pooler for a Service**](/api-reference/services/enable-connection-pooler-for-a-service) - `POST /projects/{project_id}/services/{service_id}/enablePooler`
+- [**Disable Connection Pooler for a Service**](/api-reference/services/disable-connection-pooler-for-a-service) - `POST /projects/{project_id}/services/{service_id}/disablePooler`
+- [**Fork a Service**](/api-reference/services/fork-a-service) - `POST /projects/{project_id}/services/{service_id}/forkService`
+- [**Attach Service to VPC**](/api-reference/services/attach-service-to-vpc) - `POST /projects/{project_id}/services/{service_id}/attachToVPC`
+- [**Detach Service from VPC**](/api-reference/services/detach-service-from-vpc) - `POST /projects/{project_id}/services/{service_id}/detachFromVPC`
+
+### Read Replica Sets
+
+Manage read replicas for improved read performance:
+
+- [**Get Read Replica Sets**](/api-reference/services/get-read-replica-sets) - `GET /projects/{project_id}/services/{service_id}/replicaSets`
+- [**Create a Read Replica Set**](/api-reference/services/create-a-read-replica-set) - `POST /projects/{project_id}/services/{service_id}/replicaSets`
+- [**Delete a Read Replica Set**](/api-reference/services/delete-a-read-replica-set) - `DELETE /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}`
+- [**Resize a Read Replica Set**](/api-reference/services/resize-a-read-replica-set) - `POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/resize`
+- [**Enable Connection Pooler for a Read Replica**](/api-reference/services/enable-connection-pooler-for-a-read-replica) - `POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/enablePooler`
+- [**Disable Connection Pooler for a Read Replica**](/api-reference/services/disable-connection-pooler-for-a-read-replica) - `POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/disablePooler`
+- [**Set Environment for a Read Replica**](/api-reference/services/set-environment-for-a-read-replica) - `POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/setEnvironment`
+
+### VPC Management
+
+Manage Virtual Private Clouds for network isolation:
+
+- [**List All VPCs**](/api-reference/vpcs/list-all-vpcs) - `GET /projects/{project_id}/vpcs`
+- [**Create a VPC**](/api-reference/vpcs/create-a-vpc) - `POST /projects/{project_id}/vpcs`
+- [**Get a VPC**](/api-reference/vpcs/get-a-vpc) - `GET /projects/{project_id}/vpcs/{vpc_id}`
+- [**Delete a VPC**](/api-reference/vpcs/delete-a-vpc) - `DELETE /projects/{project_id}/vpcs/{vpc_id}`
+- [**Rename a VPC**](/api-reference/vpcs/rename-a-vpc) - `POST /projects/{project_id}/vpcs/{vpc_id}/rename`
+
+### VPC Peering
+
+Manage peering connections between VPCs:
+
+- [**List VPC Peerings**](/api-reference/vpcs/list-vpc-peerings) - `GET /projects/{project_id}/vpcs/{vpc_id}/peerings`
+- [**Create a VPC Peering**](/api-reference/vpcs/create-a-vpc-peering) - `POST /projects/{project_id}/vpcs/{vpc_id}/peerings`
+- [**Get a VPC Peering**](/api-reference/vpcs/get-a-vpc-peering) - `GET /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}`
+- [**Delete a VPC Peering**](/api-reference/vpcs/delete-a-vpc-peering) - `DELETE /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}`
+
+### Analytics
+
+Track usage and events for analytics purposes:
+
+- [**Identify a User**](/api-reference/analytics/identify-a-user) - `POST /analytics/identify`
+- [**Track an Analytics Event**](/api-reference/analytics/track-an-analytics-event) - `POST /analytics/track`

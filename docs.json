@@ -489,6 +489,7 @@
           },
           {
             "tab": "API reference",
+            "url": "api-reference/api-reference",
             "dropdowns": [
               {
                 "dropdown": "TimescaleDB ",
@@ -1160,6 +1161,12 @@
               {
                 "dropdown": "Tiger Cloud REST API",
                 "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "api-reference/tiger-cloud-rest-api/introduction"
+                    ]
+                  },
                   {
                     "group": " ",
                     "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml"

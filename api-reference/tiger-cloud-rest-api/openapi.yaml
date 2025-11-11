@@ -1,8 +1,33 @@
 openapi: 3.0.3
 info:
-  title: Tiger Cloud API
+  title: Tiger Cloud REST API
   description: |
-    A RESTful API for Tiger Cloud platform.
+    A comprehensive RESTful API for managing Tiger Cloud resources including VPCs, services, and read replicas.
+
+    ## Authentication
+
+    The Tiger Cloud REST API uses HTTP Basic Authentication. Include your access key and secret key in the Authorization header.
+
+    ### Basic Authentication
+    ```http
+    Authorization: Basic <base64(access_key:secret_key)>
+    ```
+
+    ### Example
+    ```bash
+    # Using cURL
+    curl -X GET "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
+      -H "Authorization: Basic $(echo -n 'your_access_key:your_secret_key' | base64)"
+    ```
+
+    ## Service Management
+
+    You use this endpoint to create a Tiger Cloud service with one or more of the following addons:
+
+    - `time-series`: a Tiger Cloud service optimized for real-time analytics. For time-stamped data like events, prices, metrics, sensor readings, or any information that changes over time.
+    - `ai`: a Tiger Cloud service instance with vector extensions.
+
+    To have multiple addons when you create a new service, set `"addons": ["time-series", "ai"]`. To create a vanilla Postgres instance, set `addons` to an empty list `[]`.
   version: 1.0.0
   license:
     name: Proprietary
@@ -11,254 +36,21 @@ info:
     name: Tiger Data Support
     url: https://www.tigerdata.com/contact
 servers:
+  - url: https://console.cloud.timescale.com/public/api/v1
+    description: Tiger Cloud API server
   - url: http://localhost:8080
     description: Local development server
-  - url: https://api.tigerdata.com/public/v1
-    description: API server for Tiger Cloud
 
 tags:
-  - name: VPCs
-    description: Manage VPCs and their peering connections.
   - name: Services
     description: Manage services, read replicas, and their associated actions.
+  - name: VPCs
+    description: Manage VPCs and their peering connections.
   - name: Analytics
     description: Track analytics events.
 
+
 paths:
-  /analytics/identify:
-    post:
-      tags:
-        - Analytics
-      summary: Identify a user
-      description: Identifies a user with optional properties for analytics tracking.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                properties:
-                  type: object
-                  additionalProperties: true
-                  description: Optional map of arbitrary properties associated with the user
-                  example:
-                    email: "user@example.com"
-                    name: "John Doe"
-      responses:
-        '200':
-          $ref: '#/components/responses/AnalyticsResponse'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-
-  /analytics/track:
-    post:
-      tags:
-        - Analytics
-      summary: Track an analytics event
-      description: Tracks an analytics event with optional properties.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - event
-              properties:
-                event:
-                  type: string
-                  description: The name of the event to track
-                  example: service_created
-                properties:
-                  type: object
-                  additionalProperties: true
-                  description: Optional map of arbitrary properties associated with the event
-                  example:
-                    region: "us-east-1"
-      responses:
-        '200':
-          $ref: '#/components/responses/AnalyticsResponse'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-
-  /projects/{project_id}/vpcs:
-    get:
-      tags:
-        - VPCs
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-      summary: List All VPCs
-      description: Retrieves a list of all Virtual Private Clouds (VPCs).
-      responses:
-        '200':
-          description: A list of VPCs.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VPC'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-    post:
-      tags:
-        - VPCs
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-      summary: Create a VPC
-      description: Creates a new Virtual Private Cloud (VPC).
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VPCCreate'
-      responses:
-        '201':
-          description: VPC created successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VPC'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-
-  /projects/{project_id}/vpcs/{vpc_id}:
-    get:
-      tags:
-        - VPCs
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/VPCId'
-      summary: Get a VPC
-      description: Retrieves the details of a specific VPC by its ID.
-      responses:
-        '200':
-          description: VPC details.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VPC'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-    delete:
-      tags:
-        - VPCs
-      summary: Delete a VPC
-      description: Deletes a specific VPC.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/VPCId'
-      responses:
-        '204':
-          description: VPC deleted successfully.
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-
-  /projects/{project_id}/vpcs/{vpc_id}/rename:
-    post:
-      tags:
-        - VPCs
-      summary: Rename a VPC
-      description: Updates the name of a specific VPC.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/VPCId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VPCRename'
-      responses:
-        '200':
-          description: VPC renamed successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VPC'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-
-  /projects/{project_id}/vpcs/{vpc_id}/peerings:
-    get:
-      tags:
-        - VPCs
-      summary: List VPC Peerings
-      description: Retrieves a list of all VPC peering connections for a given VPC.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/VPCId'
-      responses:
-        '200':
-          description: A list of VPC peering connections.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Peering'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-    post:
-      tags:
-        - VPCs
-      summary: Create a VPC Peering
-      description: Creates a new VPC peering connection.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/VPCId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PeeringCreate'
-      responses:
-        '201':
-          description: VPC peering created successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Peering'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-
-  /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}:
-    get:
-      tags:
-        - VPCs
-      summary: Get a VPC Peering
-      description: Retrieves the details of a specific VPC peering connection.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/VPCId'
-        - $ref: '#/components/parameters/PeeringId'
-      responses:
-        '200':
-          description: VPC peering details.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Peering'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-    delete:
-      tags:
-        - VPCs
-      summary: Delete a VPC Peering
-      description: Deletes a specific VPC peering connection.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/VPCId'
-        - $ref: '#/components/parameters/PeeringId'
-      responses:
-        '204':
-          description: VPC peering deleted successfully.
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services:
     get:
       tags:
@@ -300,7 +92,6 @@ paths:
                 $ref: '#/components/schemas/Service'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}:
     get:
       tags:
@@ -332,7 +123,6 @@ paths:
           description: Deletion request has been accepted.
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/attachToVPC:
     post:
       tags:
@@ -353,7 +143,6 @@ paths:
           $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/detachFromVPC:
     post:
       tags:
@@ -374,7 +163,6 @@ paths:
           $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/resize:
     post:
       tags:
@@ -395,7 +183,6 @@ paths:
           description: Resize request has been accepted and is in progress.
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/enablePooler:
     post:
       tags:
@@ -410,7 +197,6 @@ paths:
           $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/disablePooler:
     post:
       tags:
@@ -425,7 +211,6 @@ paths:
           $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/forkService:
     post:
       tags:
@@ -450,7 +235,6 @@ paths:
                 $ref: '#/components/schemas/Service'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/updatePassword:
     post:
       tags:
@@ -471,7 +255,6 @@ paths:
           description: Password updated successfully. No content returned.
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/setEnvironment:
     post:
       tags:
@@ -492,7 +275,6 @@ paths:
           $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/setHA:
     post:
       tags:
@@ -517,7 +299,6 @@ paths:
                 $ref: '#/components/schemas/Service'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/replicaSets:
     get:
       tags:
@@ -561,7 +342,6 @@ paths:
                 $ref: '#/components/schemas/ReadReplicaSet'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}:
     delete:
       tags:
@@ -577,7 +357,6 @@ paths:
           description: Deletion request has been accepted.
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/resize:
     post:
       tags:
@@ -599,7 +378,6 @@ paths:
           description: Resize request has been accepted and is in progress.
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/enablePooler:
     post:
       tags:
@@ -615,7 +393,6 @@ paths:
           $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/disablePooler:
     post:
       tags:
@@ -631,7 +408,6 @@ paths:
           $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
-
   /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/setEnvironment:
     post:
       tags:
@@ -651,6 +427,233 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+  /projects/{project_id}/vpcs:
+    get:
+      tags:
+        - VPCs
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      summary: List All VPCs
+      description: Retrieves a list of all Virtual Private Clouds (VPCs).
+      responses:
+        '200':
+          description: A list of VPCs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VPC'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+    post:
+      tags:
+        - VPCs
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+      summary: Create a VPC
+      description: Creates a new Virtual Private Cloud (VPC).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VPCCreate'
+      responses:
+        '201':
+          description: VPC created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VPC'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+  /projects/{project_id}/vpcs/{vpc_id}:
+    get:
+      tags:
+        - VPCs
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/VPCId'
+      summary: Get a VPC
+      description: Retrieves the details of a specific VPC by its ID.
+      responses:
+        '200':
+          description: VPC details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VPC'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+    delete:
+      tags:
+        - VPCs
+      summary: Delete a VPC
+      description: Deletes a specific VPC.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/VPCId'
+      responses:
+        '204':
+          description: VPC deleted successfully.
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+  /projects/{project_id}/vpcs/{vpc_id}/rename:
+    post:
+      tags:
+        - VPCs
+      summary: Rename a VPC
+      description: Updates the name of a specific VPC.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/VPCId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VPCRename'
+      responses:
+        '200':
+          description: VPC renamed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VPC'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+  /projects/{project_id}/vpcs/{vpc_id}/peerings:
+    get:
+      tags:
+        - VPCs
+      summary: List VPC Peerings
+      description: Retrieves a list of all VPC peering connections for a given VPC.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/VPCId'
+      responses:
+        '200':
+          description: A list of VPC peering connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Peering'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+    post:
+      tags:
+        - VPCs
+      summary: Create a VPC Peering
+      description: Creates a new VPC peering connection.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/VPCId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeeringCreate'
+      responses:
+        '201':
+          description: VPC peering created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Peering'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+  /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}:
+    get:
+      tags:
+        - VPCs
+      summary: Get a VPC Peering
+      description: Retrieves the details of a specific VPC peering connection.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/VPCId'
+        - $ref: '#/components/parameters/PeeringId'
+      responses:
+        '200':
+          description: VPC peering details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Peering'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+    delete:
+      tags:
+        - VPCs
+      summary: Delete a VPC Peering
+      description: Deletes a specific VPC peering connection.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/VPCId'
+        - $ref: '#/components/parameters/PeeringId'
+      responses:
+        '204':
+          description: VPC peering deleted successfully.
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+  /analytics/identify:
+    post:
+      tags:
+        - Analytics
+      summary: Identify a user
+      description: Identifies a user with optional properties for analytics tracking.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                properties:
+                  type: object
+                  additionalProperties: true
+                  description: Optional map of arbitrary properties associated with the user
+                  example:
+                    email: "user@example.com"
+                    name: "John Doe"
+      responses:
+        '200':
+          $ref: '#/components/responses/AnalyticsResponse'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+  /analytics/track:
+    post:
+      tags:
+        - Analytics
+      summary: Track an analytics event
+      description: Tracks an analytics event with optional properties.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - event
+              properties:
+                event:
+                  type: string
+                  description: The name of the event to track
+                  example: service_created
+                properties:
+                  type: object
+                  additionalProperties: true
+                  description: Optional map of arbitrary properties associated with the event
+                  example:
+                    region: "us-east-1"
+      responses:
+        '200':
+          $ref: '#/components/responses/AnalyticsResponse'
         '4XX':
           $ref: '#/components/responses/ClientError'
 

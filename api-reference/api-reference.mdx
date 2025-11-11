@@ -1,31 +1,47 @@
 ---
 title: Tiger Data APIs
-description: Simulate and analyze a transport dataset in your Tiger Cloud service
+description: Complete API reference for TimescaleDB, pgai, pgvectorscale, and Tiger Cloud
 products: [cloud, mst, self_hosted]
-keywords: [IoT, simulate]
+keywords: [API, reference, TimescaleDB, pgai, pgvectorscale]
 mode: "wide"
 ---
 
-<CardGroup cols={3}>
+Comprehensive API documentation for all Tiger Data components. Choose your area of interest:
+
+<CardGroup cols={2}>
   <Card
     title="TimescaleDB"
-    icon="pen-to-square"
-    href="/api-reference/timescaledb/hypertables/create_table"
+    icon="database"
+    href="/api-reference/timescaledb/index"
   >
-  Postgres tables in TimescaleDB that automatically partition your time-series data by time.
+    Core time-series database functions including hypertables, continuous aggregates, compression, and data retention policies.
+  </Card>
+  <Card
+    title="TimescaleDB Toolkit"
+    icon="toolbox"
+    href="/api-reference/timescaledb-toolkit/index"
+  >
+    Advanced hyperfunctions for time-series analysis: statistical aggregates, percentile approximation, financial analysis, and more.
   </Card>
   <Card
     title="pgai"
-    icon="table-cells-row-unlock"
-    href="/api-reference/pgai/vectorizer-api-reference"
+    icon="brain-circuit"
+    href="/api-reference/pgai/index"
   >
-  The hybrid row-columnar storage engine in TimescaleDB used by hypertables.
+    AI model integration functions for OpenAI, Ollama, Anthropic, Cohere, and automated vectorization.
   </Card>
   <Card
-      title="pgvectorscale"
-      icon="squirrel"
-      href="/api-reference/pgai/vectorizer-api-reference"
+    title="pgvectorscale"
+    icon="vector-square"
+    href="/api-reference/pgvectorscale/index"
   >
-  Incrementally refresh aggregation queies in the background.
+    High-performance vector similarity search with StreamingDiskANN indexes for AI/ML applications.
+  </Card>
+  <Card
+    title="Tiger Cloud REST API"
+    icon="cloud"
+    href="/api-reference/tiger-cloud-rest-api/openapi.yaml"
+  >
+    Programmatic service management and operations for Tiger Cloud.
   </Card>
 </CardGroup>
