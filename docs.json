@@ -503,99 +503,154 @@
                     "group": "Hypertables and chunks",
                     "pages": [
                       "api-reference/timescaledb/hypertables/index",
-                      "api-reference/timescaledb/hypertables/create_table",
-                      "api-reference/timescaledb/hypertables/create_hypertable",
-                      "api-reference/timescaledb/hypertables/create_hypertable_old",
-                      "api-reference/timescaledb/hypertables/show_chunks",
-                      "api-reference/timescaledb/hypertables/drop_chunks",
-                      "api-reference/timescaledb/hypertables/reorder_chunk",
-                      "api-reference/timescaledb/hypertables/split_chunk",
-                      "api-reference/timescaledb/hypertables/merge_chunks",
-                      "api-reference/timescaledb/hypertables/move_chunk",
-                      "api-reference/timescaledb/hypertables/detach_chunk",
-                      "api-reference/timescaledb/hypertables/attach_chunk",
-                      "api-reference/timescaledb/hypertables/add_reorder_policy",
-                      "api-reference/timescaledb/hypertables/remove_reorder_policy",
-                      "api-reference/timescaledb/hypertables/attach_tablespace",
-                      "api-reference/timescaledb/hypertables/detach_tablespace",
-                      "api-reference/timescaledb/hypertables/detach_tablespaces",
-                      "api-reference/timescaledb/hypertables/show_tablespaces",
-                      "api-reference/timescaledb/hypertables/set_chunk_time_interval",
-                      "api-reference/timescaledb/hypertables/set_integer_now_func",
-                      "api-reference/timescaledb/hypertables/add_dimension",
-                      "api-reference/timescaledb/hypertables/add_dimension_old",
-                      "api-reference/timescaledb/hypertables/enable_chunk_skipping",
-                      "api-reference/timescaledb/hypertables/disable_chunk_skipping",
-                      "api-reference/timescaledb/hypertables/create_index",
-                      "api-reference/timescaledb/hypertables/hypertable_size",
-                      "api-reference/timescaledb/hypertables/hypertable_approximate_size",
-                      "api-reference/timescaledb/hypertables/hypertable_detailed_size",
-                      "api-reference/timescaledb/hypertables/hypertable_approximate_detailed_size",
-                      "api-reference/timescaledb/hypertables/hypertable_index_size",
-                      "api-reference/timescaledb/hypertables/chunks_detailed_size"
+                      {
+                        "group": "Table creation",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/create_table",
+                          "api-reference/timescaledb/hypertables/create_hypertable"
+                        ]
+                      },
+                      {
+                        "group": "Chunk management",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/show_chunks",
+                          "api-reference/timescaledb/hypertables/drop_chunks",
+                          "api-reference/timescaledb/hypertables/move_chunk",
+                          "api-reference/timescaledb/hypertables/reorder_chunk",
+                          "api-reference/timescaledb/hypertables/merge_chunks",
+                          "api-reference/timescaledb/hypertables/split_chunk",
+                          "api-reference/timescaledb/hypertables/attach_chunk",
+                          "api-reference/timescaledb/hypertables/detach_chunk"
+                        ]
+                      },
+                      {
+                        "group": "Dimension management",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/add_dimension",
+                          "api-reference/timescaledb/hypertables/set_chunk_time_interval",
+                          "api-reference/timescaledb/hypertables/set_integer_now_func"
+                        ]
+                      },
+                      {
+                        "group": "Size and statistics",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/hypertable_size",
+                          "api-reference/timescaledb/hypertables/hypertable_detailed_size",
+                          "api-reference/timescaledb/hypertables/hypertable_index_size",
+                          "api-reference/timescaledb/hypertables/hypertable_approximate_size",
+                          "api-reference/timescaledb/hypertables/hypertable_approximate_detailed_size",
+                          "api-reference/timescaledb/hypertables/chunks_detailed_size"
+                        ]
+                      },
+                      {
+                        "group": "Tablespace management",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/attach_tablespace",
+                          "api-reference/timescaledb/hypertables/detach_tablespace",
+                          "api-reference/timescaledb/hypertables/detach_tablespaces",
+                          "api-reference/timescaledb/hypertables/show_tablespaces"
+                        ]
+                      },
+                      {
+                        "group": "Reordering and policies",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/add_reorder_policy",
+                          "api-reference/timescaledb/hypertables/remove_reorder_policy"
+                        ]
+                      },
+                      {
+                        "group": "Query optimization",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/enable_chunk_skipping",
+                          "api-reference/timescaledb/hypertables/disable_chunk_skipping"
+                        ]
+                      },
+                      {
+                        "group": "Indexes",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/create_index"
+                        ]
+                      },
+                      {
+                        "group": "Legacy functions",
+                        "pages": [
+                          "api-reference/timescaledb/hypertables/create_hypertable_old",
+                          "api-reference/timescaledb/hypertables/add_dimension_old"
+                        ]
+                      }
                     ]
                   },
                   {
                     "group": "Hypercore",
                     "pages": [
                       "api-reference/timescaledb/hypercore/index",
-                      "api-reference/timescaledb/hypercore/alter_table",
-                      "api-reference/timescaledb/hypercore/add_columnstore_policy",
-                      "api-reference/timescaledb/hypercore/remove_columnstore_policy",
-                      "api-reference/timescaledb/hypercore/convert_to_columnstore",
-                      "api-reference/timescaledb/hypercore/convert_to_rowstore",
-                      "api-reference/timescaledb/hypercore/hypertable_columnstore_settings",
-                      "api-reference/timescaledb/hypercore/hypertable_columnstore_stats",
-                      "api-reference/timescaledb/hypercore/chunk_columnstore_settings",
-                      "api-reference/timescaledb/hypercore/chunk_columnstore_stats"
+                      {
+                        "group": "Policies",
+                        "pages": [
+                          "api-reference/timescaledb/hypercore/add_columnstore_policy",
+                          "api-reference/timescaledb/hypercore/remove_columnstore_policy"
+                        ]
+                      },
+                      {
+                        "group": "Configuration",
+                        "pages": [
+                          "api-reference/timescaledb/hypercore/alter_table"
+                        ]
+                      },
+                      {
+                        "group": "Manual conversion",
+                        "pages": [
+                          "api-reference/timescaledb/hypercore/convert_to_columnstore",
+                          "api-reference/timescaledb/hypercore/convert_to_rowstore"
+                        ]
+                      },
+                      {
+                        "group": "Statistics and information",
+                        "pages": [
+                          "api-reference/timescaledb/hypercore/chunk_columnstore_stats",
+                          "api-reference/timescaledb/hypercore/hypertable_columnstore_stats",
+                          "api-reference/timescaledb/hypercore/chunk_columnstore_settings",
+                          "api-reference/timescaledb/hypercore/hypertable_columnstore_settings"
+                        ]
+                      }
                     ]
                   },
                   {
                     "group": "Continuous aggregates",
                     "pages": [
                       "api-reference/timescaledb/continuous-aggregates/index",
-                      "api-reference/timescaledb/continuous-aggregates/create_materialized_view",
-                      "api-reference/timescaledb/continuous-aggregates/alter_materialized_view",
-                      "api-reference/timescaledb/continuous-aggregates/drop_materialized_view",
-                      "api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate",
-                      "api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy",
-                      "api-reference/timescaledb/continuous-aggregates/add_policies",
-                      "api-reference/timescaledb/continuous-aggregates/alter_policies",
-                      "api-reference/timescaledb/continuous-aggregates/show_policies",
-                      "api-reference/timescaledb/continuous-aggregates/remove_continuous_aggregate_policy",
-                      "api-reference/timescaledb/continuous-aggregates/cagg_migrate",
-                      "api-reference/timescaledb/continuous-aggregates/remove_policies",
-                      "api-reference/timescaledb/continuous-aggregates/remove_all_policies"
-                    ]
-                  },
-                  {
-                    "group": "Data retention",
-                    "pages": [
-                      "api-reference/timescaledb/data-retention/index",
-                      "api-reference/timescaledb/data-retention/add_retention_policy",
-                      "api-reference/timescaledb/data-retention/remove_retention_policy"
-                    ]
-                  },
-                  {
-                    "group": "Jobs and automation",
-                    "pages": [
-                      "api-reference/timescaledb/jobs-automation/index",
-                      "api-reference/timescaledb/jobs-automation/add_job",
-                      "api-reference/timescaledb/jobs-automation/alter_job",
-                      "api-reference/timescaledb/jobs-automation/delete_job",
-                      "api-reference/timescaledb/jobs-automation/run_job"
-                    ]
-                  },
-                  {
-                    "group": "UUIDv7 functions",
-                    "pages": [
-                      "api-reference/timescaledb/uuid-functions/index",
-                      "api-reference/timescaledb/uuid-functions/generate_uuidv7",
-                      "api-reference/timescaledb/uuid-functions/to_uuidv7",
-                      "api-reference/timescaledb/uuid-functions/to_uuidv7_boundary",
-                      "api-reference/timescaledb/uuid-functions/uuid_timestamp",
-                      "api-reference/timescaledb/uuid-functions/uuid_timestamp_micros",
-                      "api-reference/timescaledb/uuid-functions/uuid_version"
+                      {
+                        "group": "Create and modify CAGGs",
+                        "pages": [
+                          "api-reference/timescaledb/continuous-aggregates/create_materialized_view",
+                          "api-reference/timescaledb/continuous-aggregates/alter_materialized_view",
+                          "api-reference/timescaledb/continuous-aggregates/drop_materialized_view",
+                          "api-reference/timescaledb/continuous-aggregates/cagg_migrate"
+                        ]
+                      },
+                      {
+                        "group": "Refresh CAGGs",
+                        "pages": [
+                          "api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate"
+                        ]
+                      },
+                      {
+                        "group": "Manage policies",
+                        "pages": [
+                          "api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy",
+                          "api-reference/timescaledb/continuous-aggregates/remove_continuous_aggregate_policy"
+                        ]
+                      },
+                      {
+                        "group": "Experimental policy management",
+                        "pages": [
+                          "api-reference/timescaledb/continuous-aggregates/add_policies",
+                          "api-reference/timescaledb/continuous-aggregates/alter_policies",
+                          "api-reference/timescaledb/continuous-aggregates/remove_policies",
+                          "api-reference/timescaledb/continuous-aggregates/remove_all_policies",
+                          "api-reference/timescaledb/continuous-aggregates/show_policies"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -634,22 +689,71 @@
                     ]
                   },
                   {
+                    "group": "Data retention",
+                    "pages": [
+                      "api-reference/timescaledb/data-retention/index",
+                      "api-reference/timescaledb/data-retention/add_retention_policy",
+                      "api-reference/timescaledb/data-retention/remove_retention_policy"
+                    ]
+                  },
+                  {
+                    "group": "Jobs and automation",
+                    "pages": [
+                      "api-reference/timescaledb/jobs-automation/index",
+                      "api-reference/timescaledb/jobs-automation/add_job",
+                      "api-reference/timescaledb/jobs-automation/alter_job",
+                      "api-reference/timescaledb/jobs-automation/delete_job",
+                      "api-reference/timescaledb/jobs-automation/run_job"
+                    ]
+                  },
+                  {
+                    "group": "UUIDv7 functions",
+                    "pages": [
+                      "api-reference/timescaledb/uuid-functions/index",
+                      "api-reference/timescaledb/uuid-functions/generate_uuidv7",
+                      "api-reference/timescaledb/uuid-functions/to_uuidv7",
+                      "api-reference/timescaledb/uuid-functions/to_uuidv7_boundary",
+                      "api-reference/timescaledb/uuid-functions/uuid_timestamp",
+                      "api-reference/timescaledb/uuid-functions/uuid_timestamp_micros",
+                      "api-reference/timescaledb/uuid-functions/uuid_version"
+                    ]
+                  },
+                  {
                     "group": "Informational views",
                     "pages": [
                       "api-reference/timescaledb/informational-views/index",
-                      "api-reference/timescaledb/informational-views/chunks",
-                      "api-reference/timescaledb/informational-views/chunk_compression_settings",
-                      "api-reference/timescaledb/informational-views/continuous_aggregates",
-                      "api-reference/timescaledb/informational-views/compression_settings",
-                      "api-reference/timescaledb/informational-views/data_nodes",
-                      "api-reference/timescaledb/informational-views/dimensions",
-                      "api-reference/timescaledb/informational-views/hypertables",
-                      "api-reference/timescaledb/informational-views/hypertable_compression_settings",
-                      "api-reference/timescaledb/informational-views/jobs",
-                      "api-reference/timescaledb/informational-views/job_stats",
-                      "api-reference/timescaledb/informational-views/job_errors",
-                      "api-reference/timescaledb/informational-views/job_history",
-                      "api-reference/timescaledb/informational-views/policies"
+                      {
+                        "group": "Hypertable and chunk information",
+                        "pages": [
+                          "api-reference/timescaledb/informational-views/chunks",
+                          "api-reference/timescaledb/informational-views/dimensions",
+                          "api-reference/timescaledb/informational-views/hypertables"
+                        ]
+                      },
+                      {
+                        "group": "Compression information",
+                        "pages": [
+                          "api-reference/timescaledb/informational-views/chunk_compression_settings",
+                          "api-reference/timescaledb/informational-views/compression_settings",
+                          "api-reference/timescaledb/informational-views/hypertable_compression_settings"
+                        ]
+                      },
+                      {
+                        "group": "CAGGs",
+                        "pages": [
+                          "api-reference/timescaledb/informational-views/continuous_aggregates"
+                        ]
+                      },
+                      {
+                        "group": "Jobs and policies",
+                        "pages": [
+                          "api-reference/timescaledb/informational-views/job_errors",
+                          "api-reference/timescaledb/informational-views/job_history",
+                          "api-reference/timescaledb/informational-views/job_stats",
+                          "api-reference/timescaledb/informational-views/jobs",
+                          "api-reference/timescaledb/informational-views/policies"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -679,14 +783,34 @@
                     "group": "Compression (Old API, replaced by Hypercore)",
                     "pages": [
                       "api-reference/timescaledb/compression/index",
-                      "api-reference/timescaledb/compression/alter_table_compression",
-                      "api-reference/timescaledb/compression/add_compression_policy",
-                      "api-reference/timescaledb/compression/remove_compression_policy",
-                      "api-reference/timescaledb/compression/compress_chunk",
-                      "api-reference/timescaledb/compression/decompress_chunk",
-                      "api-reference/timescaledb/compression/recompress_chunk",
-                      "api-reference/timescaledb/compression/hypertable_compression_stats",
-                      "api-reference/timescaledb/compression/chunk_compression_stats"
+                      {
+                        "group": "Configuration",
+                        "pages": [
+                          "api-reference/timescaledb/compression/alter_table_compression"
+                        ]
+                      },
+                      {
+                        "group": "Policies",
+                        "pages": [
+                          "api-reference/timescaledb/compression/add_compression_policy",
+                          "api-reference/timescaledb/compression/remove_compression_policy"
+                        ]
+                      },
+                      {
+                        "group": "Manual compression",
+                        "pages": [
+                          "api-reference/timescaledb/compression/compress_chunk",
+                          "api-reference/timescaledb/compression/decompress_chunk",
+                          "api-reference/timescaledb/compression/recompress_chunk"
+                        ]
+                      },
+                      {
+                        "group": "Statistics",
+                        "pages": [
+                          "api-reference/timescaledb/compression/chunk_compression_stats",
+                          "api-reference/timescaledb/compression/hypertable_compression_stats"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -1055,52 +1179,137 @@
                     "group": "OpenAI",
                     "pages": [
                       "api-reference/pgai/model-calling/openai/index",
-                      "api-reference/pgai/model-calling/openai/openai_embed",
-                      "api-reference/pgai/model-calling/openai/openai_embed_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_chat_complete",
-                      "api-reference/pgai/model-calling/openai/openai_chat_complete_simple",
-                      "api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_tokenize",
-                      "api-reference/pgai/model-calling/openai/openai_detokenize",
-                      "api-reference/pgai/model-calling/openai/openai_list_models",
-                      "api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_moderate",
-                      "api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response",
-                      "api-reference/pgai/model-calling/openai/openai_client_config"
+                      {
+                        "group": "Model management",
+                        "pages": [
+                          "api-reference/pgai/model-calling/openai/openai_list_models"
+                        ]
+                      },
+                      {
+                        "group": "Embeddings",
+                        "pages": [
+                          "api-reference/pgai/model-calling/openai/openai_embed"
+                        ]
+                      },
+                      {
+                        "group": "Chat completion",
+                        "pages": [
+                          "api-reference/pgai/model-calling/openai/openai_chat_complete",
+                          "api-reference/pgai/model-calling/openai/openai_chat_complete_simple"
+                        ]
+                      },
+                      {
+                        "group": "Content moderation",
+                        "pages": [
+                          "api-reference/pgai/model-calling/openai/openai_moderate"
+                        ]
+                      },
+                      {
+                        "group": "Token management",
+                        "pages": [
+                          "api-reference/pgai/model-calling/openai/openai_tokenize",
+                          "api-reference/pgai/model-calling/openai/openai_detokenize"
+                        ]
+                      },
+                      {
+                        "group": "Advanced usage",
+                        "pages": [
+                          "api-reference/pgai/model-calling/openai/openai_embed_with_raw_response",
+                          "api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response",
+                          "api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response",
+                          "api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response",
+                          "api-reference/pgai/model-calling/openai/openai_client_config"
+                        ]
+                      }
                     ]
                   },
                   {
                     "group": "Ollama",
                     "pages": [
                       "api-reference/pgai/model-calling/ollama/index",
-                      "api-reference/pgai/model-calling/ollama/ollama_embed",
-                      "api-reference/pgai/model-calling/ollama/ollama_generate",
-                      "api-reference/pgai/model-calling/ollama/ollama_chat_complete",
-                      "api-reference/pgai/model-calling/ollama/ollama_list_models",
-                      "api-reference/pgai/model-calling/ollama/ollama_ps"
+                      {
+                        "group": "Embeddings",
+                        "pages": [
+                          "api-reference/pgai/model-calling/ollama/ollama_embed"
+                        ]
+                      },
+                      {
+                        "group": "Completions and chat",
+                        "pages": [
+                          "api-reference/pgai/model-calling/ollama/ollama_generate",
+                          "api-reference/pgai/model-calling/ollama/ollama_chat_complete"
+                        ]
+                      },
+                      {
+                        "group": "Model management",
+                        "pages": [
+                          "api-reference/pgai/model-calling/ollama/ollama_list_models",
+                          "api-reference/pgai/model-calling/ollama/ollama_ps"
+                        ]
+                      }
                     ]
                   },
                   {
                     "group": "Anthropic",
                     "pages": [
                       "api-reference/pgai/model-calling/anthropic/index",
-                      "api-reference/pgai/model-calling/anthropic/anthropic_generate",
-                      "api-reference/pgai/model-calling/anthropic/anthropic_list_models"
+                      {
+                        "group": "Generation",
+                        "pages": [
+                          "api-reference/pgai/model-calling/anthropic/anthropic_generate"
+                        ]
+                      },
+                      {
+                        "group": "Model management",
+                        "pages": [
+                          "api-reference/pgai/model-calling/anthropic/anthropic_list_models"
+                        ]
+                      }
                     ]
                   },
                   {
                     "group": "Cohere",
                     "pages": [
                       "api-reference/pgai/model-calling/cohere/index",
-                      "api-reference/pgai/model-calling/cohere/cohere_embed",
-                      "api-reference/pgai/model-calling/cohere/cohere_rerank",
-                      "api-reference/pgai/model-calling/cohere/cohere_rerank_simple",
-                      "api-reference/pgai/model-calling/cohere/cohere_classify",
-                      "api-reference/pgai/model-calling/cohere/cohere_classify_simple",
-                      "api-reference/pgai/model-calling/cohere/cohere_chat_complete",
-                      "api-reference/pgai/model-calling/cohere/cohere_tokenize",
-                      "api-reference/pgai/model-calling/cohere/cohere_detokenize",
-                      "api-reference/pgai/model-calling/cohere/cohere_list_models"
+                      {
+                        "group": "Embeddings",
+                        "pages": [
+                          "api-reference/pgai/model-calling/cohere/cohere_embed"
+                        ]
+                      },
+                      {
+                        "group": "Classification",
+                        "pages": [
+                          "api-reference/pgai/model-calling/cohere/cohere_classify",
+                          "api-reference/pgai/model-calling/cohere/cohere_classify_simple"
+                        ]
+                      },
+                      {
+                        "group": "Reranking",
+                        "pages": [
+                          "api-reference/pgai/model-calling/cohere/cohere_rerank",
+                          "api-reference/pgai/model-calling/cohere/cohere_rerank_simple"
+                        ]
+                      },
+                      {
+                        "group": "Chat",
+                        "pages": [
+                          "api-reference/pgai/model-calling/cohere/cohere_chat_complete"
+                        ]
+                      },
+                      {
+                        "group": "Tokenization",
+                        "pages": [
+                          "api-reference/pgai/model-calling/cohere/cohere_tokenize",
+                          "api-reference/pgai/model-calling/cohere/cohere_detokenize"
+                        ]
+                      },
+                      {
+                        "group": "Model management",
+                        "pages": [
+                          "api-reference/pgai/model-calling/cohere/cohere_list_models"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -1121,20 +1330,50 @@
                     "group": "Vectorizer",
                     "pages": [
                       "api-reference/pgai/vectorizer/index",
-                      "api-reference/pgai/vectorizer/create_vectorizer",
-                      "api-reference/pgai/vectorizer/drop_vectorizer",
-                      "api-reference/pgai/vectorizer/destination_table",
-                      "api-reference/pgai/vectorizer/destination_column",
-                      "api-reference/pgai/vectorizer/loading_column",
-                      "api-reference/pgai/vectorizer/parsing_auto",
-                      "api-reference/pgai/vectorizer/parsing_none",
-                      "api-reference/pgai/vectorizer/chunking_character_text_splitter",
-                      "api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter",
-                      "api-reference/pgai/vectorizer/chunking_none",
-                      "api-reference/pgai/vectorizer/embedding_openai",
-                      "api-reference/pgai/vectorizer/embedding_ollama",
-                      "api-reference/pgai/vectorizer/embedding_litellm",
-                      "api-reference/pgai/vectorizer/embedding_voyageai"
+                      {
+                        "group": "Core functions",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/create_vectorizer",
+                          "api-reference/pgai/vectorizer/drop_vectorizer"
+                        ]
+                      },
+                      {
+                        "group": "Destination configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/destination_table",
+                          "api-reference/pgai/vectorizer/destination_column"
+                        ]
+                      },
+                      {
+                        "group": "Loading configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/loading_column"
+                        ]
+                      },
+                      {
+                        "group": "Parsing configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/parsing_auto",
+                          "api-reference/pgai/vectorizer/parsing_none"
+                        ]
+                      },
+                      {
+                        "group": "Chunking configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/chunking_character_text_splitter",
+                          "api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter",
+                          "api-reference/pgai/vectorizer/chunking_none"
+                        ]
+                      },
+                      {
+                        "group": "Embedding configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/embedding_openai",
+                          "api-reference/pgai/vectorizer/embedding_ollama",
+                          "api-reference/pgai/vectorizer/embedding_litellm",
+                          "api-reference/pgai/vectorizer/embedding_voyageai"
+                        ]
+                      }
                     ]
                   }
                 ]

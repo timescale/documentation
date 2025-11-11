@@ -56,7 +56,7 @@ arguments specific to {TIMESCALE_DB}.
 
 ## Samples
 
-- **Create a {HYPERTABLE} partitioned on the time dimension and enable {COLUMNSTORE}**:
+### Create a hypertable partitioned on the time dimension and enable columnstore
 
    ```sql
    CREATE TABLE crypto_ticks (
@@ -77,7 +77,7 @@ arguments specific to {TIMESCALE_DB}.
    schedule interval of 1 day. The default partitioning column is automatically selected as the first column with a
    timestamp or timestampz data type.
 
-- **Create a {HYPERTABLE} partitioned on the time with fewer {CHUNK}s based on time interval**:
+### Create a hypertable partitioned on the time with fewer chunks based on time interval
 
    ```sql
    CREATE TABLE IF NOT EXISTS hypertable_control_chunk_interval(
@@ -90,7 +90,7 @@ arguments specific to {TIMESCALE_DB}.
    );
    ```
 
-- **Create a {HYPERTABLE} partitioned using [UUIDv7][uuidv7_functions]**:
+### Create a hypertable partitioned using UUIDv7
 
    <Tabs>
     <Tab title="Postgres 17 and lower">
@@ -114,7 +114,7 @@ arguments specific to {TIMESCALE_DB}.
     </Tab>
    </Tabs>
 
-- **Enable data compression during ingestion**:
+### Enable data compression during ingestion
 
     <HypercoreDirectCompress />
 
@@ -128,7 +128,8 @@ arguments specific to {TIMESCALE_DB}.
      COPY t FROM '/tmp/t.binary' WITH (format binary);
      ```
 
-- **Create a {PG} relational table**:
+### Create a Postgres relational table
+
    ```sql
    CREATE TABLE IF NOT EXISTS relational_table(
     device text,

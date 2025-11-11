@@ -41,7 +41,7 @@ For more information about using {CAGG}s, see the documentation in [Use {TIMESCA
 
 ## Samples
 
-### Create a {CAGG}
+### Create a continuous aggregate
 
 Create a {CAGG} that calculates hourly average temperature:
 
@@ -69,7 +69,7 @@ SELECT add_continuous_aggregate_policy('conditions_hourly',
   schedule_interval => INTERVAL '1 hour');
 ```
 
-### Manually refresh a {CAGG}
+### Manually refresh a continuous aggregate
 
 Refresh a specific time range in the {CAGG}:
 
@@ -78,7 +78,7 @@ CALL refresh_continuous_aggregate('conditions_hourly',
   '2024-01-01', '2024-02-01');
 ```
 
-### Query a {CAGG}
+### Query a continuous aggregate
 
 Query the {CAGG} just like a regular table:
 
@@ -92,7 +92,7 @@ ORDER BY bucket DESC;
 
 ## Available functions
 
-### Create and modify {CAGG}s
+### Create and modify continuous aggregates
 
 -  [`CREATE MATERIALIZED VIEW (Continuous Aggregate)`][create_materialized_view]: create a {CAGG} on a {HYPERTABLE} or
   another {CAGG}
@@ -101,7 +101,7 @@ ORDER BY bucket DESC;
 -  [`cagg_migrate()`][cagg_migrate]: migrate a {CAGG} from the old format to the new format introduced in {TIMESCALE_DB}
   2.7
 
-### Refresh {CAGG}s
+### Refresh continuous aggregates
 
 - [`refresh_continuous_aggregate()`][refresh_continuous_aggregate]: manually refresh a {CAGG}
 

@@ -18,7 +18,7 @@ database.
 
 ## Samples
 
-### Get all {HYPERTABLE}s in your database
+### Get all hypertables in your database
 
 View all {HYPERTABLE}s with their size and compression status:
 
@@ -31,7 +31,7 @@ SELECT hypertable_name,
 FROM timescaledb_information.hypertables;
 ```
 
-### Check {CHUNK} information for a {HYPERTABLE}
+### Check chunk information for a hypertable
 
 View all {CHUNK}s for a specific {HYPERTABLE}:
 
@@ -75,7 +75,7 @@ ORDER BY last_finish DESC
 LIMIT 10;
 ```
 
-### View {CAGG} details
+### View continuous aggregate details
 
 Get information about all {CAGG}s:
 
@@ -103,7 +103,7 @@ ORDER BY hypertable_name, orderby_column_index;
 
 ## Available views
 
-### {HYPERTABLE} and {CHUNK} information
+### Hypertable and chunk information
 - [`timescaledb_information.chunks`][chunks]: get metadata about {HYPERTABLE} {CHUNK}s
 - [`timescaledb_information.dimensions`][dimensions]: get information on the dimensions of {HYPERTABLE}s
 - [`timescaledb_information.hypertables`][hypertables]: get metadata about {HYPERTABLE}s
@@ -116,7 +116,7 @@ ORDER BY hypertable_name, orderby_column_index;
 -  [`timescaledb_information.hypertable_compression_settings`][hypertable_compression_settings]: get information about
   compression settings for all {HYPERTABLE}s
 
-### {CAGG}s
+### Continuous aggregates
 -  [`timescaledb_information.continuous_aggregates`][continuous_aggregates]: get metadata and settings information for
   {CAGG}s
 
