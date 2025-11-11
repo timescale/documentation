@@ -119,14 +119,14 @@ arguments specific to {TIMESCALE_DB}.
     <HypercoreDirectCompress />
 
     1. Create a {HYPERTABLE}:
-     ```sql
-     CREATE TABLE t(time timestamptz, device text, value float) WITH (tsdb.hypertable);
-     ```
+         ```sql
+         CREATE TABLE t(time timestamptz, device text, value float) WITH (tsdb.hypertable);
+         ```
    1. Copy data into the {HYPERTABLE}:
      You achieve the highest insert rate using binary format. CSV and text format are also supported.
-     ```sql
-     COPY t FROM '/tmp/t.binary' WITH (format binary);
-     ```
+         ```sql
+         COPY t FROM '/tmp/t.binary' WITH (format binary);
+         ```
 
 ### Create a Postgres relational table
 
