@@ -5,10 +5,11 @@ description: Integrate Debezium with Tiger Cloud to enable change data capture i
 keywords: [Debezium, change data capture, CDC, data replication, streaming, real-time sync, database events, Kafka, log-based replication]
 ---
 
-import { CLOUD_LONG, TIMESCALE_DB, SELF_LONG_CAP, SERVICE_LONG, HYPERTABLE_CAP, HYPERCORE_CAP, COLUMNSTORE, ROWSTORE } from '/snippets/vars.mdx';
+
 import IntegrationPrereqsSelfOnly from '/snippets/prerequisites/_integration-prereqs-self-only.mdx';
 import IntegrationDebeziumDocker from '/snippets/integrations/_integration-debezium-docker.mdx';
 import IntegrationDebeziumSelfHostedConfig from '/snippets/integrations/_integration-debezium-self-hosted-config-database.mdx';
+import { CLOUD_LONG, TIMESCALE_DB, SELF_LONG_CAP, SERVICE_LONG, HYPERTABLE_CAP, HYPERCORE_CAP, COLUMNSTORE, ROWSTORE } from '/snippets/vars.mdx';
 
 [Debezium][debezium] is an open-source distributed platform for change data capture (CDC).
 It enables you to capture changes in a {SELF_LONG} instance and stream them to other systems in real time.
