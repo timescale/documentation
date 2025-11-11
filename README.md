@@ -62,4 +62,3 @@ Tiger Data is Postgres made powerful. To learn more about the company and its pr
 [github-fork]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
 [github-clone]: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
 [gatsby]: https://www.gatsbyjs.com/
-</div>
