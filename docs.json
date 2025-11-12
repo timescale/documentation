@@ -546,6 +546,40 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/tutorials/latest/real-time-analytics-energy-consumption/:slug*",
+      "destination": "/tutorials/time-series/analyze-energy-consumption"
+    },
+    {
+      "source": "/tutorials/latest/blockchain-analyze/:slug*",
+      "destination": "/tutorials/time-series/analyze-blockchain"
+    },
+    {
+      "source": "/tutorials/latest/blockchain-query/:slug*",
+      "destination": "/tutorials/time-series/query-blockchain"
+    },
+    {
+      "source": "/tutorials/latest/simulate-iot-sensor-data/:slug*",
+      "destination": "/tutorials/time-series/simulate-iot-sensor-data"
+    },
+    {
+      "source": "/tutorials/latest/real-time-analytics-transport/:slug*",
+      "destination": "/tutorials/time-series/analyze-transport-geospatial-data"
+    },
+    {
+      "source": "/tutorials/latest/financial-tick-data/:slug*",
+      "destination": "/tutorials/time-series/analyze-financial-tick-data"
+    },
+    {
+      "source": "/tutorials/latest/financial-ingest-real-time/:slug*",
+      "destination": "/tutorials/time-series/ingest-real-time-financial-data"
+    },
+    {
+      "source": "/tutorials/latest/:slug*",
+      "destination": "/tutorials/tutorials"
+    }
+  ],
   "contextual": {
     "options": ["claude", "chatgpt"]
   },
