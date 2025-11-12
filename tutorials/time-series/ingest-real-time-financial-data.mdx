@@ -1,14 +1,16 @@
 ---
-title: Ingest real-time financial data using WebSocket
+title: Ingest real-time financial data
 description: Set up a data pipeline to get data from different financial APIs
-products: [cloud, mst, self_hosted]
-keywords: [finance, analytics, websockets, data pipeline]
+keywords: [finance, analytics, websockets, data pipeline, real-time data ingestion, Twelve Data, stocks, cryptocurrency, Python]
 ---
 
-import { CLOUD_LONG, ACCOUNT_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
+import CreateHypertableStocks from "/snippets/tutorials/_create-hypertable-twelvedata-stocks.mdx";
+import GraphOhlcv from "/snippets/tutorials/_graphing-ohlcv-data.mdx";
+import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
+import { CLOUD_LONG, ACCOUNT_LONG, CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 This tutorial shows you how to ingest real-time time-series data into
-TimescaleDB using a websocket connection. The tutorial sets up a data pipeline
+{TIMESCALE_DB} using a websocket connection. The tutorial sets up a data pipeline
 to ingest real-time data from our data partner, [Twelve Data][twelve-data].
 Twelve Data provides a number of different financial APIs, including stock,
 cryptocurrencies, foreign exchanges, and ETFs. It also supports websocket
@@ -24,32 +26,23 @@ This tutorial uses Python and the API
 
 ## Prerequisites
 
-Before you begin, make sure you have:
-
-*   Signed up for a [free {ACCOUNT_LONG}][cloud-install].
-*   Downloaded the file that contains your {SERVICE_LONG} credentials such as
-    `<HOST>`, `<PORT>`, and `<PASSWORD>`. Alternatively, you can find these
-    details in the `Connection Info` section for your service.
-*   Installed Python 3
-*   Signed up for [Twelve Data][twelve-signup]. The free tier is
+<IntegrationPrereqs />
+*   Install Python 3
+*   Sign up for [Twelve Data][twelve-signup]. The free tier is
     perfect for this tutorial.
 *   Made a note of your Twelve Data [API key](https://twelvedata.com/account/api-keys).
 
-<Collapsible heading="Connect to the websocket server" defaultExpanded={false}>
+## Connect to the websocket server
 
 When you connect to the Twelve Data API through a websocket, you create a
-persistent connection between your computer and the websocket server. 
+persistent connection between your computer and the websocket server.
 You set up a Python environment, and pass two arguments to create a
 websocket object and establish the connection.
 
-## Set up a new Python environment
+### Set up a new Python environment
 
 Create a new Python virtual environment for this project and activate it. All
 the packages you need to complete for this tutorial are installed in this environment.
-
-<Procedure>
-
-### Setting up a new Python environment
 
 1.  Create and activate a Python virtual environment:
 
@@ -68,21 +61,19 @@ the packages you need to complete for this tutorial are installed in this enviro
     ```
 
 1.  Install [Psycopg2][psycopg2] so that you can connect the
-    TimescaleDB from your Python script:
+    {TIMESCALE_DB} from your Python script:
 
     ```bash
     pip install psycopg2-binary
     ```
 
-</Procedure>
-
-## Create the websocket connection
+### Create the websocket connection
 
 A persistent connection between your computer and the websocket server is used
 to receive data for as long as the connection is maintained. You need to pass
 two arguments to create a websocket object and establish connection.
 
-### Websocket arguments
+**Websocket arguments**
 
 *   `on_event`
 
@@ -106,9 +97,7 @@ two arguments to create a websocket object and establish connection.
     connection is already created you can also use the `subscribe()` function to
     get data for additional symbols.
 
-<Procedure>
-
-### Connecting to the websocket server
+**Connecting to the websocket server**
 
 1.  Create a new Python file called `websocket_test.py` and connect to the
     Twelve Data servers using the `<YOUR_API_KEY>`:
@@ -170,38 +159,34 @@ two arguments to create a websocket object and establish connection.
     the health of the connection over time.
     At this point the websocket connection is working successfully to pass data.
 
-</Procedure>
+## The real-time dataset
 
-</Collapsible>
-
-<Collapsible heading="The real-time dataset" headingLevel={2} defaultExpanded={false}>
-    
 To ingest the data into your {SERVICE_LONG}, you need to implement the
 `on_event` function.
-    
+
 After the websocket connection is set up, you can use the `on_event` function
-to ingest data into the database. This is a data pipeline that ingests real-time 
+to ingest data into the database. This is a data pipeline that ingests real-time
 financial data into your {SERVICE_LONG}.
 
 Stock trades are ingested in real-time Monday through Friday, typically during
-normal trading hours of the New York Stock Exchange (9:30&nbsp;AM to 
+normal trading hours of the New York Stock Exchange (9:30&nbsp;AM to
 4:00&nbsp;PM&nbsp;EST).
 
 <CreateHypertableStocks />
 
-When you ingest data into a transactional database like Timescale, it is more
+When you ingest data into a transactional database like {TIMESCALE_DB}, it is more
 efficient to insert data in batches rather than inserting data row-by-row. Using
 one transaction to insert multiple rows can significantly increase the overall
 ingest capacity and speed of your {SERVICE_LONG}.
 
-## Batching in memory
+### Batching in memory
 
 A common practice to implement batching is to store new records in memory
 first, then after the batch reaches a certain size, insert all the records
 from memory into the database in one transaction. The perfect batch size isn't
 universal, but you can experiment with different batch sizes
 (for example, 100, 1000, 10000, and so on) and see which one fits your use case better.
-Using batching is a fairly common pattern when ingesting data into TimescaleDB
+Using batching is a fairly common pattern when ingesting data into {TIMESCALE_DB}
 from Kafka, Kinesis, or websocket connections.
 
 You can implement a batching solution in Python with Psycopg2.
@@ -216,9 +201,7 @@ This function needs to:
 1.  Add it to the in-memory batch, which is a list in Python.
 1.  If the batch reaches a certain size, insert the data, and reset or empty the list.
 
-## Ingesting data in real-time
-
-<Procedure>
+### Ingesting data in real-time
 
 1.  Update the Python script that prints out the current batch size, so you can
     follow when data gets ingested from memory into your database. Use
@@ -258,7 +241,7 @@ This function needs to:
             if self.conn is not None:
                 cursor = self.conn.cursor()
                 sql = f"""
-                INSERT INTO {self.DB_TABLE} ({','.join(self.DB_COLUMNS)}) 
+                INSERT INTO {self.DB_TABLE} ({','.join(self.DB_COLUMNS)})
                 VALUES %s;"""
                 execute_values(cursor, sql, data)
                 self.conn.commit()
@@ -286,7 +269,7 @@ This function needs to:
                     print(f"Batch insert #{self.insert_counter}")
                     self.current_batch = []
             def start(self, symbols):
-                """Connect to the web socket server and start streaming real-time data 
+                """Connect to the web socket server and start streaming real-time data
                 into the database.
 
                 Args:
@@ -299,12 +282,12 @@ This function needs to:
                 while True:
                    ws.heartbeat()
                    time.sleep(10)
-        onn = psycopg2.connect(database="tsdb", 
-                            host="<HOST>", 
-                            user="tsdbadmin", 
+        onn = psycopg2.connect(database="tsdb",
+                            host="<HOST>",
+                            user="tsdbadmin",
                             password="<PASSWORD>",
                             port="<PORT>")
-    
+
         symbols = ["BTC/USD", "ETH/USD", "MSFT", "AAPL"]
         websocket = WebsocketPipeline(conn)
         websocket.start(symbols=symbols)
@@ -316,13 +299,11 @@ This function needs to:
     python websocket_test.py
     ```
 
-</Procedure>
-
 You can even create separate Python scripts to start multiple websocket
 connections for different types of symbols, for example, one for stock, and
 another one for cryptocurrency prices.
 
-### Troubleshooting
+**Troubleshooting**
 
 If you see an error message similar to this:
 
@@ -332,23 +313,18 @@ If you see an error message similar to this:
 
 Then check that you use a proper API key received from Twelve Data.
 
-</Collapsible>
+## Query the data
 
-<Collapsible heading="Query the data" defaultExpanded={false}>
-
-To look at OHLCV values, the most effective way is to create a continuous
-aggregate. You can create a continuous aggregate to aggregate data
+To look at OHLCV values, the most effective way is to create a {CAGG}. You can create a {CAGG} to aggregate data
 for each hour, then set the aggregate to refresh every hour, and aggregate
 the last two hours' worth of data.
-
-<Procedure>
 
 ### Creating a continuous aggregate
 
 1.  Connect to the {SERVICE_LONG} `tsdb` that contains the Twelve Data
     stocks dataset.
 
-1.  At the psql prompt, create the continuous aggregate to aggregate data every
+1.  At the psql prompt, create the {CAGG} to aggregate data every
     minute:
 
     ```sql
@@ -366,10 +342,10 @@ the last two hours' worth of data.
         GROUP BY bucket, symbol;
     ```
 
-    When you create the continuous aggregate, it refreshes by default.
+    When you create the {CAGG}, it refreshes by default.
 
-1.  Set a refresh policy to update the continuous aggregate every hour,
-    if there is new data available in the hypertable for the last two hours:
+1.  Set a refresh policy to update the {CAGG} every hour,
+    if there is new data available in the {HYPERTABLE} for the last two hours:
 
     ```sql
     SELECT add_continuous_aggregate_policy('one_hour_candle',
@@ -378,16 +354,10 @@ the last two hours' worth of data.
         schedule_interval => INTERVAL '1 hour');
     ```
 
-</Procedure>
+### Query the continuous aggregate
 
-## Query the continuous aggregate
-
-When you have your continuous aggregate set up, you can query it to get the
+When you have your {CAGG} set up, you can query it to get the
 OHLCV values.
-
-<Procedure>
-
-### Querying the continuous aggregate
 
 1.  Connect to the {SERVICE_LONG} that contains the Twelve Data
     stocks dataset.
@@ -406,33 +376,25 @@ OHLCV values.
     ```sql
              bucket         | symbol  |  open   |  high   |   low   |  close  | day_volume
     ------------------------+---------+---------+---------+---------+---------+------------
-     2023-05-30 08:00:00+00 | AAPL   | 176.31 | 176.31 |    176 | 176.01 |           
-     2023-05-30 08:01:00+00 | AAPL   | 176.27 | 176.27 | 176.02 |  176.2 |           
-     2023-05-30 08:06:00+00 | AAPL   | 176.03 | 176.04 | 175.95 |    176 |           
-     2023-05-30 08:07:00+00 | AAPL   | 175.95 |    176 | 175.82 | 175.91 |           
-     2023-05-30 08:08:00+00 | AAPL   | 175.92 | 176.02 |  175.8 | 176.02 |           
-     2023-05-30 08:09:00+00 | AAPL   | 176.02 | 176.02 |  175.9 | 175.98 |           
-     2023-05-30 08:10:00+00 | AAPL   | 175.98 | 175.98 | 175.94 | 175.94 |           
-     2023-05-30 08:11:00+00 | AAPL   | 175.94 | 175.94 | 175.91 | 175.91 |           
+     2023-05-30 08:00:00+00 | AAPL   | 176.31 | 176.31 |    176 | 176.01 |
+     2023-05-30 08:01:00+00 | AAPL   | 176.27 | 176.27 | 176.02 |  176.2 |
+     2023-05-30 08:06:00+00 | AAPL   | 176.03 | 176.04 | 175.95 |    176 |
+     2023-05-30 08:07:00+00 | AAPL   | 175.95 |    176 | 175.82 | 175.91 |
+     2023-05-30 08:08:00+00 | AAPL   | 175.92 | 176.02 |  175.8 | 176.02 |
+     2023-05-30 08:09:00+00 | AAPL   | 176.02 | 176.02 |  175.9 | 175.98 |
+     2023-05-30 08:10:00+00 | AAPL   | 175.98 | 175.98 | 175.94 | 175.94 |
+     2023-05-30 08:11:00+00 | AAPL   | 175.94 | 175.94 | 175.91 | 175.91 |
      2023-05-30 08:12:00+00 | AAPL   |  175.9 | 175.94 |  175.9 | 175.94 |
     ```
 
-</Procedure>
-
-</Collapsible>
-
-<Collapsible heading="Visualize the OHLCV data in Grafana" defaultExpanded={false}>
+## Visualize the OHLCV data in Grafana
 
 You can visualize the OHLCV data that you created using the queries in Grafana.
+
 <GraphOhlcv />
 
-</Collapsible>
-
-[candlestick-tutorial]: /tutorials/:currentVersion:/financial-tick-data/
-[get-started]: /getting-started/:currentVersion:/
-[install-ts]: /getting-started/latest/
 [psycopg2]: https://www.psycopg.org/docs/
 [twelve-data]: https://twelvedata.com
 [twelve-signup]: https://twelvedata.com/pricing
 [twelve-wrapper]: https://github.com/twelvedata/twelvedata-python
-[cloud-install]: /getting-started/:currentVersion:/#create-your-timescale-account
+[cloud-install]: /getting-started/#create-your-timescale-account

@@ -2,14 +2,15 @@
 title: Integrate Datadog with Tiger Cloud
 sidebarTitle: Datadog
 description: Datadog is a cloud-based monitoring and analytics platform. Export telemetry data from your Tiger Cloud service with time-series and analytics capability to Datadog
-products: [cloud]
-price_plans: [scale, enterprise]
-keywords: [integrate]
+keywords: [Datadog, monitoring, observability, APM, metrics, logs, traces, dashboards, alerting, infrastructure monitoring]
 ---
 
-import IntegrationPrereqsCloud from "/snippets/prerequisites/_integration-prereqs-cloud-only.mdx";
-import DataDogExporter from "/snippets/integrations/_datadog-data-exporter.mdx";
-import ManageDataExporter from "/snippets/integrations/_manage-a-data-exporter.mdx";
+
+import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
+import DataDogExporter from '/snippets/integrations/_datadog-data-exporter.mdx';
+import ManageDataExporter from '/snippets/integrations/_manage-a-data-exporter.mdx';
+import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
+import { PG, SELF_LONG, SCALE, ENTERPRISE, PRICING_PLAN } from '/snippets/vars.mdx';
 
 [Datadog][datadog] is a cloud-based monitoring and analytics platform that provides comprehensive visibility into
 applications, infrastructure, and systems through real-time monitoring, logging, and analytics.
@@ -18,11 +19,11 @@ This page explains how to:
 
 - [Monitor {SERVICE_LONG} metrics with Datadog][datadog-monitor-cloud]
 
-  This integration is available for [Scale and Enterprise][pricing-plan-features] pricing plans.
+  This integration is available for [{SCALE} and {ENTERPRISE}][pricing-plan-features] {PRICING_PLAN}s.
 
 - Configure Datadog Agent to collect metrics for your {SERVICE_LONG}
 
-   This integration is available for all pricing plans.
+   This integration is available for all {PRICING_PLAN}s.
 
 
 ## Prerequisites
@@ -34,6 +35,8 @@ This page explains how to:
   You need your [Datadog API key][datadog-api-key] to follow this procedure.
 
 - Install [Datadog Agent][datadog-agent-install].
+
+<NotSupportedAzure />
 
 ## Monitor {SERVICE_LONG} metrics with Datadog
 
@@ -89,14 +92,14 @@ metrics about your {SERVICE_LONG}s.
 
 1. **Connect Datadog to your {SERVICE_LONG}**
 
-   1. Open the datadog agent {PG} configuration file, usually located at:
+   1. Configure the [Datadog Agent {PG} configuration file][datadog-config]; it is usually located on the Datadog Agent host at:
       - **Linux**: `/etc/datadog-agent/conf.d/postgres.d/conf.yaml`
       - **MacOS**: `/opt/datadog-agent/etc/conf.d/postgres.d/conf.yaml`
       - **Windows**: `C:\ProgramData\Datadog\conf.d\postgres.d\conf.yaml`
 
-   1. Integrate Datadog Agent with your {SERVICE_LONG}
+   1. Integrate Datadog Agent with your {SERVICE_LONG}:
 
-      Use your [connection details][connection-info] to update the following and add it to the datadog agent {PG}
+      Use your [connection details][connection-info] to update the following and add it to the Datadog Agent {PG}
       configuration file:
 
       ```yaml
@@ -137,13 +140,14 @@ comprehensive list of [metrics][datadog-postgres-metrics] collected.
 [datadog-postgres-metrics]:https://docs.datadoghq.com/integrations/postgres/?tab=host#metrics
 [datadog-postgres-setup]: https://docs.datadoghq.com/integrations/postgres/?tab=host#configuration
 [datadog-signup]: https://www.datadoghq.com/
-[datadog-monitor-cloud]: /integrations/:currentVersion:/datadog/#monitor-timescale-cloud-service-metrics-with-datadog
-[datadog-agent]: /integrations/:currentVersion:/datadog/#configure-datadog-agent-to-collect-metrics-for-your-timescale-cloud-services
+[datadog-monitor-cloud]: #monitor-tiger-cloud-service-metrics-with-datadog
+[datadog-agent]: #configure-datadog-agent-to-collect-metrics-for-your-tiger-cloud-services
 [datadog-agent-restart]: https://docs.datadoghq.com/agent/configuration/agent-commands/#start-stop-and-restart-the-agent
-[projects]: /use-timescale/:currentVersion:/members/
+[projects]: /use-timescale/security/members
 [datadog-api-key]: https://docs.datadoghq.com/account_management/api-app-keys/#add-an-api-key-or-client-token
-[pricing-plan-features]: /about/:currentVersion:/pricing-and-account-management/#features-included-in-each-plan
-[run-queries]: /getting-started/:currentVersion:/run-queries-from-console/
+[pricing-plan-features]: /about/pricing-and-account-management/#features-included-in-each-pricing-plan
+[run-queries]: /getting-started/run-queries-from-console
 [open-console]: https://console.cloud.timescale.com/dashboard/services
-[psql]: /integrations/:currentVersion:/psql/
-[connection-info]: /integrations/:currentVersion:/find-connection-details/
+[psql]: /integrations/psql
+[connection-info]: /integrations/find-connection-details
+[datadog-config]: https://docs.datadoghq.com/database_monitoring/setup_postgres/selfhosted?tab=postgres15

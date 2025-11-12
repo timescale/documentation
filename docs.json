@@ -306,19 +306,19 @@
               {
                 "group": "Time-series",
                 "pages": [
-                  "tutorials/real-time-analytics/energy-consumption",
-                  "tutorials/real-time-analytics/transport",
-                  "tutorials/time-series/query-bitcoin-blockchain",
-                  "tutorials/time-series/health-biometical-analysis",
-                  "tutorials/time-series/anomaly-detection-in-streaming-data"
+                  "tutorials/time-series/analyze-blockchain",
+                  "tutorials/time-series/analyze-energy-consumption",
+                  "tutorials/time-series/analyze-financial-tick-data",
+                  "tutorials/time-series/analyze-transport-geospatial-data",
+                  "tutorials/time-series/ingest-real-time-financial-data",
+                  "tutorials/time-series/query-blockchain",
+                  "tutorials/time-series/simulate-iot-sensor-data"
                 ]
               },
               {
                 "group": "AI",
                 "pages": [
-                  "tutorials/ai/financial-forcasting",
-                  "tutorials/ai/powered-observability",
-                  "tutorials/ai/real-time-predictive-maintenence"
+                  "tutorials/ai/build-semantic-search-application"
                 ]
               }
             ]
@@ -328,7 +328,10 @@
             "groups": [
               {
                 "group": " ",
-                "pages": ["integrations/integrations"]
+                "pages": [
+                  "integrations/integrations",
+                  "integrations/find-connection-details"
+                ]
               },
               {
                 "group": "Destination connectors",
@@ -338,12 +341,20 @@
                 "group": "Source connectors",
                 "pages": [
                   "integrations/connectors/source/sync-from-postgres",
-                  "integrations/connectors/source/sync-from-s3"
+                  "integrations/connectors/source/sync-from-s3",
+                  "integrations/connectors/source/stream-from-kafka"
                 ]
               },
               {
                 "group": "Coding",
                 "pages": ["integrations/code/start-coding-with-tigerdata"]
+              },
+              {
+                "group": "Business intelligence and data visualization",
+                "pages": [
+                  "integrations/integrate/power-bi",
+                  "integrations/integrate/tableau"
+                ]
               },
               {
                 "group": "Configuration and deployment",
@@ -374,7 +385,7 @@
                   "integrations/integrate/datadog",
                   "integrations/integrate/grafana",
                   "integrations/integrate/prometheus",
-                  "integrations/integrate/tableau"
+                  "integrations/integrate/telegraf"
                 ]
               },
               {
@@ -385,7 +396,8 @@
                   "integrations/integrate/pgadmin",
                   "integrations/integrate/postgresql",
                   "integrations/integrate/psql",
-                  "integrations/integrate/qstudio"
+                  "integrations/integrate/qstudio",
+                  "integrations/integrate/supabase"
                 ]
               },
               {
@@ -396,6 +408,10 @@
                   "integrations/integrate/google-cloud",
                   "integrations/integrate/microsoft-azure"
                 ]
+              },
+              {
+                "group": " ",
+                "pages": ["integrations/troubleshooting"]
               }
             ]
           },
@@ -530,6 +546,40 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/tutorials/latest/real-time-analytics-energy-consumption/:slug*",
+      "destination": "/tutorials/time-series/analyze-energy-consumption"
+    },
+    {
+      "source": "/tutorials/latest/blockchain-analyze/:slug*",
+      "destination": "/tutorials/time-series/analyze-blockchain"
+    },
+    {
+      "source": "/tutorials/latest/blockchain-query/:slug*",
+      "destination": "/tutorials/time-series/query-blockchain"
+    },
+    {
+      "source": "/tutorials/latest/simulate-iot-sensor-data/:slug*",
+      "destination": "/tutorials/time-series/simulate-iot-sensor-data"
+    },
+    {
+      "source": "/tutorials/latest/real-time-analytics-transport/:slug*",
+      "destination": "/tutorials/time-series/analyze-transport-geospatial-data"
+    },
+    {
+      "source": "/tutorials/latest/financial-tick-data/:slug*",
+      "destination": "/tutorials/time-series/analyze-financial-tick-data"
+    },
+    {
+      "source": "/tutorials/latest/financial-ingest-real-time/:slug*",
+      "destination": "/tutorials/time-series/ingest-real-time-financial-data"
+    },
+    {
+      "source": "/tutorials/latest/:slug*",
+      "destination": "/tutorials/tutorials"
+    }
+  ],
   "contextual": {
     "options": ["claude", "chatgpt"]
   },

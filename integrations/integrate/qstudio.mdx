@@ -2,12 +2,12 @@
 title: Integrate qStudio with Tiger Cloud
 sidebarTitle: qStudio
 description: qStudio is a modern free SQL editor that provides syntax highlighting, code-completion, excel export, charting, and much more. Integrate qStudio with Tiger Cloud
-products: [cloud, self_hosted]
-keywords: [integrate]
+keywords: [qStudio, SQL editor, query tool, syntax highlighting, code completion, charting, data visualization, database client]
 ---
 
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
 
+import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs.mdx';
+import { CLOUD_LONG } from '/snippets/vars.mdx';
 
 [qStudio][qstudio] is a modern free SQL editor that provides syntax highlighting, code-completion, excel export, charting, and much more. You can use it to run queries, browse tables, and create charts for your {SERVICE_LONG}.
 
@@ -23,8 +23,6 @@ This page explains how to integrate qStudio with {CLOUD_LONG}.
 
 To connect to {CLOUD_LONG}:
 
-<Procedure>
-
 1. **Start qStudio**
 1. **Click `Server` > `Add Server`**
 1. **Configure the connection**
@@ -38,16 +36,14 @@ To connect to {CLOUD_LONG}:
 
 1.  **Click `Test`**
 
-    qStudio indicates whether the connection works. 
+    qStudio indicates whether the connection works.
 
 1.  **Click `Add`**
-    
-    The server is listed in the `Server Tree`.
 
-</Procedure>
+    The server is listed in the `Server Tree`.
 
 You have successfully integrated qStudio with {CLOUD_LONG}.
 
 [qstudio]: https://www.timestored.com/qstudio/
 [qstudio-downloads]: https://www.timestored.com/qstudio/download
-[connection-info]: /integrations/:currentVersion:/find-connection-details/
+[connection-info]: /integrations/find-connection-details

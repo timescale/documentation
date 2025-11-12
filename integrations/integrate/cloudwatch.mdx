@@ -2,11 +2,13 @@
 title: Integrate Amazon CloudWatch with Tiger Cloud
 sidebarTitle: Amazon CloudWatch
 description: Amazon CloudWatch is a monitoring and observability service. Export telemetry data from your Tiger Cloud service with time-series and analytics capability to Amazon CloudWatch
+keywords: [Amazon CloudWatch, monitoring, observability, metrics, AWS, telemetry, logs, alarms, dashboards, resource monitoring]
 ---
 
-import IntegrationPrereqsCloud from "/snippets/prerequisites/_integration-prereqs-cloud-only.mdx";
-import CloudWatchExporter from "/snippets/integrations/_cloudwatch-data-exporter.mdx";
-import ManageDataExporter from "/snippets/integrations/_manage-a-data-exporter.mdx";
+import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
+import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
+import CloudWatchExporter from '/snippets/integrations/_cloudwatch-data-exporter.mdx';
+import ManageDataExporter from '/snippets/integrations/_manage-a-data-exporter.mdx';
 
 [Amazon CloudWatch][cloudwatch] is a monitoring and observability service designed to help collect, analyze, and act on data from applications, infrastructure, and services running in AWS and on-premises environments.
 
@@ -20,6 +22,8 @@ This pages explains how to export telemetry data from your {SERVICE_LONG} into C
 
 - Sign up for [Amazon CloudWatch][cloudwatch-signup].
 
+<NotSupportedAzure />
+
 ## Create a data exporter
 
 A {CLOUD_LONG} data exporter sends telemetry data from a {SERVICE_LONG} to a third-party monitoring
@@ -29,8 +33,7 @@ tool. You create an exporter on the [project level][projects], in the same AWS r
 
 <ManageDataExporter />
 
-[projects]: /use-timescale/:currentVersion:/members/
-[pricing-plan-features]: /about/:currentVersion:/pricing-and-account-management/#features-included-in-each-plan
 [cloudwatch]: https://aws.amazon.com/cloudwatch/
 [cloudwatch-signup]: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GettingSetup.html
-
+[pricing-plan-features]: /about/pricing-and-account-management/#features-included-in-each-pricing-plan
+[projects]: /use-timescale/security/members

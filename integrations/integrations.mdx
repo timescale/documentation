@@ -1,14 +1,15 @@
 ---
 title: Integrations
-description: You can integrate your Tiger Cloud service with third-party solutions to expand and extend what you can do with your data.
-products: [cloud, mst, self_hosted]
-keywords: [IoT, simulate]
+description: You can integrate your {SERVICE_LONG} with third-party solutions to expand and extend what you can do with your data.
+keywords: [integrations, connectors, third-party, PostgreSQL, tools, data engineering, ETL, observability, BI, visualization]
 mode: "wide"
 ---
 
+import { SERVICE_LONG, PG, COMPANY, CLOUD_LONG } from '/snippets/vars.mdx';
 
-<Card title="Integrates with Postgres? Integrates with your service!" icon="https://assets.timescale.com/docs/icons/postgresql-logo.png" href="https://slashdot.org/software/p/PostgreSQL/integrations/">
-    A Tiger Cloud service is a Postgres database instance extended by Tiger Data with custom capabilities. This means that any third-party solution that you can integrate with Postgres, you can also integrate with Tiger Cloud. See the full list of Postgres integrations here.
+
+<Card title={`Integrates with ${PG}? Integrates with your service!`} icon="https://assets.timescale.com/docs/icons/postgresql-logo.png" href="https://slashdot.org/software/p/PostgreSQL/integrations/">
+    A {SERVICE_LONG} is a {PG} database instance extended by {COMPANY} with custom capabilities. This means that any third-party solution that you can integrate with {PG}, you can also integrate with {CLOUD_LONG}. See the full list of available {PG} integrations.
 </Card>
 
 
@@ -16,30 +17,37 @@ mode: "wide"
 
 <CardGroup cols={1}>
   <Card
-    title="Connect data in your service to your data lake"
+    title="Integrate with data lakes"
     icon="upload"
     href="/integrations/connectors/destination/tigerlake"
   >
-  Synchronization all the data, or specific tables in your Tiger Cloud service to Iceberg tables running in Amazon S3 Tables in real time.
+  Synchronize data from your {SERVICE_LONG} to Iceberg tables in Amazon S3 in real time.
   </Card>
 </CardGroup>
 
 ## Source connectors
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card
-    title="Connect data in S3 to your service"
+    title="Sync from S3"
     icon="download"
     href="/integrations/connectors/source/sync-from-s3"
   >
-  Synchronization all the data, or specific tables in your Tiger Cloud service to Iceberg tables running in Amazon S3 Tables in real time.
+  Synchronize data from Amazon S3 to your {SERVICE_LONG} in real time.
   </Card>
   <Card
-    title="Connect data in Postgres to your service"
+    title="Sync from Postgres"
     icon="download"
     href="/integrations/connectors/source/sync-from-postgres"
   >
-  Synchronize all the data, or specific tables, from a Postgres database instance to your Tiger Cloud service in real time.
+  Synchronize data from a {PG} database to your {SERVICE_LONG} in real time.
+  </Card>
+  <Card
+    title="Stream from Kafka"
+    icon="download"
+    href="/integrations/connectors/source/stream-from-kafka"
+  >
+  Stream data from Apache Kafka topics to your {SERVICE_LONG} in real time.
   </Card>
 </CardGroup>
 
@@ -47,214 +55,15 @@ mode: "wide"
 
 <CardGroup cols={1}>
   <Card
-    title="Start coding with Tiger Data"
+    title={`Start coding with ${COMPANY}`}
     icon="code"
     href="/integrations/code/start-coding-with-tigerdata"
   >
-  Get started with coding examples and SDKs for Tiger Data .
+  Get started with {COMPANY} using coding examples and SDKs.
   </Card>
 </CardGroup>
 
-## Configuration and deployment
-
-<CardGroup cols={2}>
-  <Card
-    title="Terraform"
-    icon="settings"
-    href="/integrations/integrate/terraform"
-  >
-  Infrastructure as code for your Tiger Data deployment.
-  </Card>
-  <Card
-    title="Kubernetes"
-    icon="cube"
-    href="/integrations/integrate/kubernetes"
-  >
-  Deploy and manage Tiger Data on Kubernetes.
-  </Card>
-</CardGroup>
-
-## Data engineering and extract, transform, load
-
-<CardGroup cols={3}>
-  <Card
-    title="Amazon SageMaker"
-    icon="brain"
-    href="/integrations/integrate/amazon-sagemaker"
-  >
-  Machine learning integration with Amazon SageMaker.
-  </Card>
-  <Card
-    title="Apache Airflow"
-    icon="workflow"
-    href="/integrations/integrate/apache-airflow"
-  >
-  Workflow orchestration with Apache Airflow.
-  </Card>
-  <Card
-    title="Apache Kafka"
-    icon="stream"
-    href="/integrations/integrate/apache-kafka"
-  >
-  Real-time data streaming with Apache Kafka.
-  </Card>
-  <Card
-    title="AWS Lambda"
-    icon="bolt"
-    href="/integrations/integrate/aws-lambda"
-  >
-  Serverless computing with AWS Lambda.
-  </Card>
-  <Card
-    title="Debezium"
-    icon="database"
-    href="/integrations/integrate/debezium"
-  >
-  Change data capture with Debezium.
-  </Card>
-  <Card
-    title="Decodable"
-    icon="stream"
-    href="/integrations/integrate/decodable"
-  >
-  Real-time stream processing with Decodable.
-  </Card>
-</CardGroup>
-
-## Data ingestion and streaming
-
-<CardGroup cols={1}>
-  <Card
-    title="Fivetran"
-    icon="download"
-    href="/integrations/integrate/fivetran"
-  >
-  Automated data integration with Fivetran.
-  </Card>
-</CardGroup>
-
-## Observability and alerting
-
-<CardGroup cols={3}>
-  <Card
-    title="CloudWatch"
-    icon="eye"
-    href="/integrations/integrate/cloudwatch"
-  >
-  AWS monitoring and logging with CloudWatch.
-  </Card>
-  <Card
-    title="Datadog"
-    icon="chart-line"
-    href="/integrations/integrate/datadog"
-  >
-  Application performance monitoring with Datadog.
-  </Card>
-  <Card
-    title="Grafana"
-    icon="chart-bar"
-    href="/integrations/integrate/grafana"
-  >
-  Data visualization and monitoring with Grafana.
-  </Card>
-  <Card
-    title="Prometheus"
-    icon="chart-line"
-    href="/integrations/integrate/prometheus"
-  >
-  Metrics collection and alerting with Prometheus.
-  </Card>
-  <Card
-    title="Tableau"
-    icon="chart-pie"
-    href="/integrations/integrate/tableau"
-  >
-  Business intelligence with Tableau.
-  </Card>
-</CardGroup>
-
-## Query and administration
-
-<CardGroup cols={3}>
-  <Card
-    title="Azure Data Studio"
-    icon="database"
-    href="/integrations/integrate/azure-data-studio"
-  >
-  Cross-platform database tool from Microsoft.
-  </Card>
-  <Card
-    title="DBeaver"
-    icon="database"
-    href="/integrations/integrate/dbeaver"
-  >
-  Universal database tool for developers.
-  </Card>
-  <Card
-    title="pgAdmin"
-    icon="database"
-    href="/integrations/integrate/pgadmin"
-  >
-  Web-based PostgreSQL administration tool.
-  </Card>
-  <Card
-    title="PostgreSQL"
-    icon="database"
-    href="/integrations/integrate/postgresql"
-  >
-  Native PostgreSQL client tools.
-  </Card>
-  <Card
-    title="psql"
-    icon="terminal"
-    href="/integrations/integrate/psql"
-  >
-  Command-line interface for PostgreSQL.
-  </Card>
-  <Card
-    title="QStudio"
-    icon="chart-bar"
-    href="/integrations/integrate/qstudio"
-  >
-  SQL analytics and visualization tool.
-  </Card>
-</CardGroup>
-
-## Secure connectivity to Tiger Cloud
-
-<CardGroup cols={2}>
-  <Card
-    title="AWS"
-    icon="cloud"
-    href="/integrations/integrate/aws"
-  >
-  Secure connectivity from AWS environments.
-  </Card>
-  <Card
-    title="Corporate Data Center"
-    icon="building"
-    href="/integrations/integrate/corporate-data-center"
-  >
-  Connect from your corporate network.
-  </Card>
-  <Card
-    title="Google Cloud"
-    icon="cloud"
-    href="/integrations/integrate/google-cloud"
-  >
-  Secure connectivity from Google Cloud Platform.
-  </Card>
-  <Card
-    title="Microsoft Azure"
-    icon="cloud"
-    href="/integrations/integrate/microsoft-azure"
-  >
-  Secure connectivity from Microsoft Azure.
-  </Card>
-</CardGroup>
-
-
-### Authentication and security
+## Authentication and security
 
 <CardGroup cols={3}>
     <Card
@@ -276,29 +85,677 @@ mode: "wide"
         icon="https://assets.timescale.com/docs/icons/okta-logo.png"
         href="https://help.okta.com/oag/en-us/content/topics/access-gateway/integrate-app-datastores.htm"
     >
-        Secure authentication and user identity management for applications.
+        Manage authentication and user identity securely for applications.
     </Card>
 </CardGroup>
 
-### Business intelligence and data visualization
+## Business intelligence and data visualization
 
 <CardGroup cols={3}>
     <Card
-        title="Prometheus"
-        icon="image"
-        href="https://mintlify.com/docs/quickstart"
+        title="Cube.js"
+        icon="https://assets.timescale.com/docs/icons/cube-js-logo.png"
+        href="https://cube.dev/integrations/Timescale-API"
     >
+        Build and optimize data APIs for analytics applications.
     </Card>
     <Card
-        title="Grafana"
-        icon="image"
-        href="https://mintlify.com/docs/development"
+        title="Looker"
+        icon="https://assets.timescale.com/docs/icons/looker-logo.png"
+        href="https://cloud.google.com/looker/docs/db-config-postgresql"
     >
+        Explore, analyze, and share business insights with a BI platform.
+    </Card>
+    <Card
+        title="Metabase"
+        icon="https://assets.timescale.com/docs/icons/metabase-logo.png"
+        href="https://www.metabase.com/data_sources/postgresql"
+    >
+        Create dashboards and visualize business data without SQL expertise.
+    </Card>
+    <Card
+        title="Power BI"
+        icon="https://assets.timescale.com/docs/icons/power-bi-logo.png"
+        href="/integrations/integrate/power-bi"
+    >
+        Visualize data, build interactive dashboards, and share insights.
+    </Card>
+    <Card
+        title="Superset"
+        icon="https://assets.timescale.com/docs/icons/superset-logo.png"
+        href="https://superset.apache.org/docs/configuration/databases#timescaledb"
+    >
+        Create and explore data visualizations and dashboards.
     </Card>
     <Card
         title="Tableau"
-        icon="image"
-        href="https://mintlify.com/docs/development"
+        icon="https://assets.timescale.com/docs/icons/tableau-logo.png"
+        href="/integrations/integrate/tableau"
     >
+        Connect to data sources, analyze data, and create interactive visualizations and dashboards.
+    </Card>
+</CardGroup>
+
+## Configuration and deployment
+
+<CardGroup cols={3}>
+  <Card
+    title="Azure Functions"
+    icon="https://assets.timescale.com/docs/icons/azure-functions-logo.png"
+    href="https://github.com/Azure/azure-functions-postgresql-extension"
+  >
+  Run event-driven serverless code in the cloud without managing infrastructure.
+  </Card>
+  <Card
+    title="Deno Deploy"
+    icon="https://assets.timescale.com/docs/icons/deno-deploy-logo.png"
+    href="https://docs.deno.com/deploy/manual/postgres/"
+  >
+  Deploy and run JavaScript and TypeScript applications at the edge.
+  </Card>
+  <Card
+    title="Flyway"
+    icon="https://assets.timescale.com/docs/icons/flyway-logo.png"
+    href="https://documentation.red-gate.com/flyway/reference/database-driver-reference/timescaledb"
+  >
+  Manage and automate database migrations using version control.
+  </Card>
+  <Card
+    title="Kubernetes"
+    icon="https://assets.timescale.com/docs/icons/kubernets-logo.png"
+    href="/integrations/integrate/kubernetes"
+  >
+  Deploy, scale, and manage containerized applications automatically.
+  </Card>
+  <Card
+    title="Liquibase"
+    icon="https://assets.timescale.com/docs/icons/liquibase-logo.png"
+    href="https://docs.liquibase.com/start/tutorials/postgresql/postgresql.html"
+  >
+  Track, version, and automate database schema changes.
+  </Card>
+  <Card
+    title="Pulumi"
+    icon="https://assets.timescale.com/docs/icons/pulimi-logo.png"
+    href="https://www.pulumi.com/registry/packages/timescale/"
+  >
+  Define and manage cloud infrastructure using code in multiple languages.
+  </Card>
+  <Card
+    title="Render"
+    icon="https://assets.timescale.com/docs/icons/render-logo.png"
+    href="https://render.com/docs/postgresql"
+  >
+  Deploy and scale web applications, databases, and services easily.
+  </Card>
+  <Card
+    title="Terraform"
+    icon="https://assets.timescale.com/docs/icons/terraform-logo.png"
+    href="/integrations/integrate/terraform"
+  >
+  Safely and predictably provision and manage infrastructure in any cloud.
+  </Card>
+</CardGroup>
+
+## Data engineering and extract, transform, load
+
+<CardGroup cols={3}>
+  <Card
+    title="Airbyte"
+    icon="https://assets.timescale.com/docs/icons/airbyte-logo.png"
+    href="https://docs.airbyte.com/integrations/sources/postgres"
+  >
+  Sync data between various sources and destinations.
+  </Card>
+  <Card
+    title="Amazon SageMaker"
+    icon="https://assets.timescale.com/docs/icons/amazon-sagemaker-logo.png"
+    href="/integrations/integrate/amazon-sagemaker"
+  >
+  Build, train, and deploy ML models into a production-ready hosted environment.
+  </Card>
+  <Card
+    title="Apache Airflow"
+    icon="https://assets.timescale.com/docs/icons/airflow-logo.png"
+    href="/integrations/integrate/apache-airflow"
+  >
+  Programmatically author, schedule, and monitor workflows.
+  </Card>
+  <Card
+    title="Apache Beam"
+    icon="https://assets.timescale.com/docs/icons/beam-logo.png"
+    href="https://beam.apache.org/releases/javadoc/current/org/apache/beam/sdk/io/jdbc/JdbcIO.html"
+  >
+  Build and execute batch and streaming data pipelines across multiple processing engines.
+  </Card>
+  <Card
+    title="Apache Kafka"
+    icon="https://assets.timescale.com/docs/icons/kafka-logo.png"
+    href="/integrations/integrate/apache-kafka"
+  >
+  Stream high-performance data pipelines, analytics, and data integration.
+  </Card>
+  <Card
+    title="AWS Lambda"
+    icon="https://assets.timescale.com/docs/icons/lambda-logo.png"
+    href="/integrations/integrate/aws-lambda"
+  >
+  Run code without provisioning or managing servers, scaling automatically as needed.
+  </Card>
+  <Card
+    title="dbt"
+    icon="https://assets.timescale.com/docs/icons/dbt-logo.png"
+    href="https://dbt-timescaledb.debruyn.dev/"
+  >
+  Transform and model data in your warehouse using SQL-based workflows.
+  </Card>
+  <Card
+    title="Debezium"
+    icon="https://assets.timescale.com/docs/icons/debezium-logo.png"
+    href="/integrations/integrate/debezium"
+  >
+  Capture and stream real-time changes from databases.
+  </Card>
+  <Card
+    title="Decodable"
+    icon="https://assets.timescale.com/docs/icons/decodable-logo.png"
+    href="/integrations/integrate/decodable"
+  >
+  Build, run, and manage data pipelines effortlessly.
+  </Card>
+  <Card
+    title="DeltaLake"
+    icon="https://assets.timescale.com/docs/icons/delta-lake-logo.png"
+    href="https://github.com/delta-io/delta/blob/master/connectors/sql-delta-import/readme.md"
+  >
+  Enhance data lakes with ACID transactions and schema enforcement.
+  </Card>
+  <Card
+    title="Firebase Wrapper"
+    icon="https://assets.timescale.com/docs/icons/firebase-logo.png"
+    href="https://firebase.google.com/products/data-connect"
+  >
+  Simplify interactions with Firebase services through an abstraction layer.
+  </Card>
+  <Card
+    title="Stitch"
+    icon="https://assets.timescale.com/docs/icons/stitch-logo.png"
+    href="https://stitch-docs.netlify.app/docs/integrations/databases/postgresql"
+  >
+  Extract, load, and transform data from various sources to data warehouses.
+  </Card>
+</CardGroup>
+
+## Data ingestion and streaming
+
+<CardGroup cols={3}>
+  <Card
+    title="Apache Spark"
+    icon="https://assets.timescale.com/docs/icons/spark-logo.png"
+    href="https://spark.apache.org/docs/3.5.4/sql-data-sources-jdbc.html"
+  >
+  Process large-scale data workloads quickly using distributed computing.
+  </Card>
+  <Card
+    title="Confluent"
+    icon="https://assets.timescale.com/docs/icons/confluent-logo.png"
+    href="https://docs.confluent.io/cloud/current/connectors/cc-postgresql-sink.html"
+  >
+  Manage and scale Apache Kafka-based event streaming applications.
+  </Card>
+  <Card
+    title="ElectricSQL"
+    icon="https://assets.timescale.com/docs/icons/electric-sql-logo.png"
+    href="https://electric-sql.com/docs/intro"
+  >
+  Enable real-time synchronization between databases and frontend applications.
+  </Card>
+  <Card
+    title="EMQX"
+    icon="https://assets.timescale.com/docs/icons/emqx-logo.png"
+    href="https://docs.emqx.com/en/emqx/latest/data-integration/data-bridge-timescale.html"
+  >
+  Deploy an enterprise-grade MQTT broker for IoT messaging.
+  </Card>
+  <Card
+    title="Estuary"
+    icon="https://assets.timescale.com/docs/icons/estuary-logo.png"
+    href="https://docs.estuary.dev/reference/Connectors/materialization-connectors/timescaledb/"
+  >
+  Stream and synchronize data in real time between different systems.
+  </Card>
+  <Card
+    title="Flink"
+    icon="https://assets.timescale.com/docs/icons/flink-logo.png"
+    href="https://nightlies.apache.org/flink/flink-cdc-docs-release-3.1/docs/connectors/flink-sources/postgres-cdc/"
+  >
+  Process real-time data streams with fault-tolerant distributed computing.
+  </Card>
+  <Card
+    title="Fivetran"
+    icon="https://assets.timescale.com/docs/icons/fivetran-logo.png"
+    href="/integrations/integrate/fivetran"
+  >
+  Sync data from multiple sources to your data warehouse.
+  </Card>
+  <Card
+    title="HighByte"
+    icon="https://assets.timescale.com/docs/icons/highbyte-logo.svg"
+    href="https://guide.highbyte.com/configuration/connect/connections/historians/timescaledb/"
+  >
+  Connect operational technology sources, model the data, and stream it into Postgres.
+  </Card>
+  <Card
+    title="Redpanda"
+    icon="https://assets.timescale.com/docs/icons/red-panda-logo.png"
+    href="https://www.redpanda.com/blog/build-data-stream-detect-anomalies-timescale-kafka-connect"
+  >
+  Stream and process real-time data as a Kafka-compatible platform.
+  </Card>
+  <Card
+    title="Striim"
+    icon="https://assets.timescale.com/docs/icons/striim-logo.png"
+    href="https://www.striim.com/connectors/postgresql/"
+  >
+  Ingest, process, and analyze real-time data streams.
+  </Card>
+</CardGroup>
+
+## Development tools
+
+<CardGroup cols={3}>
+    <Card
+        title="Deepnote"
+        icon="https://assets.timescale.com/docs/icons/deepnote-logo.png"
+        href="https://deepnote.com/docs/postgresql"
+    >
+        Collaborate on data science projects with a cloud-based notebook platform.
+    </Card>
+    <Card
+        title="Django"
+        icon="https://assets.timescale.com/docs/icons/django-logo.png"
+        href="https://docs.djangoproject.com/en/5.1/ref/databases/#postgresql-notes"
+    >
+        Develop scalable and secure web applications using a Python framework.
+    </Card>
+    <Card
+        title="LangChain"
+        icon="https://assets.timescale.com/docs/icons/long-chain-logo.png"
+        href="https://api.python.langchain.com/en/latest/postgres/index.html#"
+    >
+        Build applications that integrate with language models like GPT.
+    </Card>
+    <Card
+        title="Rust"
+        icon="https://assets.timescale.com/docs/icons/rust-logo.png"
+        href="https://github.com/sfackler/rust-postgres"
+    >
+        Build high-performance, memory-safe applications with a modern programming language.
+    </Card>
+    <Card
+        title="Streamlit"
+        icon="https://assets.timescale.com/docs/icons/streamlit-logo.png"
+        href="https://docs.streamlit.io/develop/tutorials/databases/postgresql"
+    >
+        Create interactive data applications and dashboards using Python.
+    </Card>
+</CardGroup>
+
+## Language-specific integrations
+
+<CardGroup cols={3}>
+    <Card
+        title="Golang"
+        icon="https://assets.timescale.com/docs/icons/golang-logo.png"
+        href="/integrations/code/start-coding-with-tigerdata"
+    >
+        Integrate {CLOUD_LONG} with a Golang application.
+    </Card>
+    <Card
+        title="Java"
+        icon="https://assets.timescale.com/docs/icons/java-logo.png"
+        href="/integrations/code/start-coding-with-tigerdata"
+    >
+        Integrate {CLOUD_LONG} with a Java application.
+    </Card>
+    <Card
+        title="Node.js"
+        icon="https://assets.timescale.com/docs/icons/node-logo.png"
+        href="/integrations/code/start-coding-with-tigerdata"
+    >
+        Integrate {CLOUD_LONG} with a Node.js application.
+    </Card>
+    <Card
+        title="Python"
+        icon="https://assets.timescale.com/docs/icons/python-logo.png"
+        href="/integrations/code/start-coding-with-tigerdata"
+    >
+        Integrate {CLOUD_LONG} with a Python application.
+    </Card>
+    <Card
+        title="Ruby"
+        icon="https://assets.timescale.com/docs/icons/ruby-logo.png"
+        href="/integrations/code/start-coding-with-tigerdata"
+    >
+        Integrate {CLOUD_LONG} with a Ruby application.
+    </Card>
+</CardGroup>
+
+## Logging and system administration
+
+<CardGroup cols={2}>
+    <Card
+        title="RSyslog"
+        icon="https://assets.timescale.com/docs/icons/rsyslog-logo.png"
+        href="https://www.rsyslog.com/doc/configuration/modules/ompgsql.html"
+    >
+        Collect, filter, and forward system logs for centralized logging.
+    </Card>
+    <Card
+        title="SchemaSpy"
+        icon="https://assets.timescale.com/docs/icons/schemaspy-logo.png"
+        href="https://wiki.postgresql.org/wiki/SchemaSpy"
+    >
+        Generate database schema documentation and visualization.
+    </Card>
+</CardGroup>
+
+## Observability and alerting
+
+<CardGroup cols={3}>
+  <Card
+    title="Amazon Cloudwatch"
+    icon="https://assets.timescale.com/docs/icons/cloudwatch-logo.png"
+    href="/integrations/integrate/cloudwatch"
+  >
+  Collect, analyze, and act on data from applications, infrastructure, and services running in AWS and on-premises environments.
+  </Card>
+  <Card
+    title="Apache SkyWalking"
+    icon="https://assets.timescale.com/docs/icons/skywalking-logo.png"
+    href="https://skywalking.apache.org/docs/main/next/en/setup/backend/backend-postgresql-monitoring/"
+  >
+  Monitor, trace, and diagnose distributed applications for improved observability.
+  </Card>
+  <Card
+    title="Azure Monitor"
+    icon="https://assets.timescale.com/docs/icons/azure-monitor-logo.png"
+    href="https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-monitoring"
+  >
+  Collect and analyze telemetry data from cloud and on-premises environments.
+  </Card>
+  <Card
+    title="Dash0"
+    icon="https://assets.timescale.com/docs/icons/dash0-logo.png"
+    href="https://www.dash0.com/hub/integrations/int_tiger_service/overview"
+  >
+  Monitor applications with OpenTelemetry-native observability built on CNCF Open Standards like PromQL, Perses, and OTLP.
+  </Card>
+  <Card
+    title="Datadog"
+    icon="https://assets.timescale.com/docs/icons/datadog-logo.png"
+    href="/integrations/integrate/datadog"
+  >
+  Gain comprehensive visibility into applications, infrastructure, and systems through real-time monitoring, logging, and analytics.
+  </Card>
+  <Card
+    title="Grafana"
+    icon="https://assets.timescale.com/docs/icons/grafana-logo.png"
+    href="/integrations/integrate/grafana"
+  >
+  Query, visualize, alert on, and explore your metrics and logs.
+  </Card>
+  <Card
+    title="IBM Instana"
+    icon="https://assets.timescale.com/docs/icons/instana-logo.png"
+    href="https://www.ibm.com/docs/en/instana-observability/current?topic=technologies-monitoring-postgresql"
+  >
+  Monitor application performance and detect issues in real-time.
+  </Card>
+  <Card
+    title="Jaeger"
+    icon="https://assets.timescale.com/docs/icons/jaeger-logo.png"
+    href="https://www.jaegertracing.io/docs/2.0/storage/"
+  >
+  Trace and diagnose distributed transactions for observability.
+  </Card>
+  <Card
+    title="New Relic"
+    icon="https://assets.timescale.com/docs/icons/new-relic-logo.png"
+    href="https://docs.newrelic.com/docs/infrastructure/host-integrations/host-integrations-list/postgresql/postgresql-integration/"
+  >
+  Monitor applications, infrastructure, and logs for performance insights.
+  </Card>
+  <Card
+    title="OpenTelemetry Beta"
+    icon="https://assets.timescale.com/docs/icons/open-telemetery-logo.png"
+    href="https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/postgresqlreceiver"
+  >
+  Collect and analyze telemetry data for observability across systems.
+  </Card>
+  <Card
+    title="Prometheus"
+    icon="https://assets.timescale.com/docs/icons/prometheus-logo.png"
+    href="/integrations/integrate/prometheus"
+  >
+  Track the performance and health of systems, applications, and infrastructure.
+  </Card>
+  <Card
+    title="SigNoz"
+    icon="https://assets.timescale.com/docs/icons/signoz-logo.png"
+    href="https://signoz.io/docs/integrations/postgresql/"
+  >
+  Monitor application performance with an open-source observability tool.
+  </Card>
+  <Card
+    title="Telegraf"
+    icon="https://assets.timescale.com/docs/icons/Influx-telegraf.svg"
+    href="https://github.com/influxdata/telegraf/tree/master/plugins/inputs/postgresql"
+  >
+  Collect, process, and ship metrics and events into databases or monitoring platforms.
+  </Card>
+</CardGroup>
+
+## Query and administration
+
+<CardGroup cols={3}>
+  <Card
+    title="Azure Data Studio"
+    icon="https://assets.timescale.com/docs/icons/azure-data-studio-logo.png"
+    href="/integrations/integrate/azure-data-studio"
+  >
+  Query, manage, visualize, and develop databases across SQL Server, Azure SQL, and Postgres.
+  </Card>
+  <Card
+    title="DBeaver"
+    icon="https://assets.timescale.com/docs/icons/dbeaver-logo.png"
+    href="/integrations/integrate/dbeaver"
+  >
+  Connect to, manage, query, and analyze multiple databases in a single interface with SQL editing, visualization, and administration tools.
+  </Card>
+  <Card
+    title="Forest Admin"
+    icon="https://assets.timescale.com/docs/icons/forest-admin-logo.png"
+    href="https://www.forestadmin.com/integrations/postgresql"
+  >
+  Create admin panels and dashboards for business applications.
+  </Card>
+  <Card
+    title="Hasura"
+    icon="https://assets.timescale.com/docs/icons/hasura-logo.png"
+    href="https://hasura.io/docs/2.0/databases/postgres/timescale-cloud/"
+  >
+  Instantly generate GraphQL APIs from databases with access control.
+  </Card>
+  <Card
+    title="Mode Analytics"
+    icon="https://assets.timescale.com/docs/icons/mode-logo.png"
+    href="https://mode.com/integrations/postgresql/"
+  >
+  Analyze data, create reports, and share insights with teams.
+  </Card>
+  <Card
+    title="Neon"
+    icon="https://assets.timescale.com/docs/icons/neon-logo.png"
+    href="https://neon.com/docs/extensions/timescaledb"
+  >
+  Run a cloud-native, serverless Postgres database with automatic scaling.
+  </Card>
+  <Card
+    title="pgAdmin"
+    icon="https://assets.timescale.com/docs/icons/pgadmin-logo.png"
+    href="/integrations/integrate/pgadmin"
+  >
+  Manage, query, and administer Postgres databases through a graphical interface.
+  </Card>
+  <Card
+    title="PostgreSQL"
+    icon="https://assets.timescale.com/docs/icons/postgresql-logo.png"
+    href="/integrations/integrate/postgresql"
+  >
+  Access and query data from external sources as if they were regular Postgres tables.
+  </Card>
+  <Card
+    title="Prisma"
+    icon="https://assets.timescale.com/docs/icons/prisma-logo.png"
+    href="https://www.prisma.io/docs/orm/overview/databases/postgresql"
+  >
+  Simplify database access with an open-source ORM for Node.js.
+  </Card>
+  <Card
+    title="psql"
+    icon="https://assets.timescale.com/docs/icons/psql-logo.png"
+    href="/integrations/integrate/psql"
+  >
+  Run SQL queries, manage databases, automate tasks, and interact directly with Postgres.
+  </Card>
+  <Card
+    title="Qlik Replicate"
+    icon="https://assets.timescale.com/docs/icons/qlik-logo.png"
+    href="https://help.qlik.com/en-US/replicate/November2024/Content/Replicate/Main/PostgreSQL/postgresql.htm#ar_postgresds_802412600_1325150"
+  >
+  Move and synchronize data across multiple database platforms.
+  </Card>
+  <Card
+    title="qStudio"
+    icon="https://assets.timescale.com/docs/icons/qstudio-logo.png"
+    href="/integrations/integrate/qstudio"
+  >
+  Write and execute SQL queries, manage database objects, and analyze data in a user-friendly interface.
+  </Card>
+  <Card
+    title="Redash"
+    icon="https://assets.timescale.com/docs/icons/redash-logo.png"
+    href="https://redash.io/data-sources/postgresql/"
+  >
+  Query, visualize, and share data from multiple sources.
+  </Card>
+  <Card
+    title="SQLalchemy"
+    icon="https://assets.timescale.com/docs/icons/sql-alchemy-logo.png"
+    href="https://docs.sqlalchemy.org/en/20/dialects/postgresql.html"
+  >
+  Manage database operations using a Python SQL toolkit and ORM.
+  </Card>
+  <Card
+    title="Sequelize"
+    icon="https://assets.timescale.com/docs/icons/sequelize-logo.png"
+    href="https://sequelize.org/docs/v7/databases/postgres/"
+  >
+  Interact with SQL databases in Node.js using an ORM.
+  </Card>
+  <Card
+    title="StepZen"
+    icon="https://assets.timescale.com/docs/icons/stepzen-logo.png"
+    href="https://www.ibm.com/docs/en/api-connect-graphql/saas?topic=apis-tutorial-create-graphql-api-postgresql-database"
+  >
+  Build and deploy GraphQL APIs with data from multiple sources.
+  </Card>
+  <Card
+    title="Supabase"
+    icon="https://assets.timescale.com/docs/icons/supabase-logo.svg"
+    href="/integrations/integrate/supabase"
+  >
+  Build applications with an open-source Firebase alternative powered by Postgres.
+  </Card>
+  <Card
+    title="TypeORM"
+    icon="https://assets.timescale.com/docs/icons/typeorm-logo.png"
+    href="https://typeorm.biunav.com/en/connection-options.html#postgres-cockroachdb-connection-options"
+  >
+  Work with databases in TypeScript and JavaScript using an ORM.
+  </Card>
+</CardGroup>
+
+## Secure connectivity to {CLOUD_LONG}
+
+<CardGroup cols={2}>
+  <Card
+    title="AWS"
+    icon="https://assets.timescale.com/docs/icons/aws-logo.png"
+    href="/integrations/integrate/aws"
+  >
+  Establish secure connectivity from AWS environments.
+  </Card>
+  <Card
+    title="Corporate Data Center"
+    icon="https://assets.timescale.com/docs/icons/corporate-data-center-logo.png"
+    href="/integrations/integrate/corporate-data-center"
+  >
+  Connect from your corporate network.
+  </Card>
+  <Card
+    title="Google Cloud"
+    icon="https://assets.timescale.com/docs/icons/google-cloud-logo.png"
+    href="/integrations/integrate/google-cloud"
+  >
+  Establish secure connectivity from Google Cloud Platform.
+  </Card>
+  <Card
+    title="Microsoft Azure"
+    icon="https://assets.timescale.com/docs/icons/azure-logo.png"
+    href="/integrations/integrate/microsoft-azure"
+  >
+  Establish secure connectivity from Microsoft Azure.
+  </Card>
+</CardGroup>
+
+## Workflow automation and no-code tools
+
+<CardGroup cols={3}>
+    <Card
+        title="Appsmith"
+        icon="https://assets.timescale.com/docs/icons/appsmith-logo.png"
+        href="https://docs.appsmith.com/connect-data/reference/querying-postgres"
+    >
+        Create internal business applications with a low-code platform.
+    </Card>
+    <Card
+        title="n8n"
+        icon="https://assets.timescale.com/docs/icons/n8n-logo.png"
+        href="https://n8n.io/integrations/redis/and/timescaledb/"
+    >
+        Automate workflows and integrate services with a no-code platform.
+    </Card>
+    <Card
+        title="Retool"
+        icon="https://assets.timescale.com/docs/icons/retool-logo.png"
+        href="https://retool.com/integrations/postgresql"
+    >
+        Build custom internal tools quickly using a drag-and-drop interface.
+    </Card>
+    <Card
+        title="Tooljet"
+        icon="https://assets.timescale.com/docs/icons/tooljet-logo.png"
+        href="https://docs.tooljet.ai/docs/data-sources/postgresql/"
+    >
+        Develop internal tools and business applications with a low-code builder.
+    </Card>
+    <Card
+        title="Zapier"
+        icon="https://assets.timescale.com/docs/icons/zapier-logo.png"
+        href="https://zapier.com/apps/postgresql/integrations"
+    >
+        Automate workflows by connecting different applications and services.
     </Card>
 </CardGroup>

@@ -1,3 +1,4 @@
+import { PG, SELF_LONG } from '/snippets/vars.mdx';
 
 1. **Run Zookeeper in Docker**
 
@@ -7,7 +8,7 @@
    ```
    Check the output log to see that zookeeper is running.
    
-1. **Run Kafka in Docker**
+2. **Run Kafka in Docker**
 
    In another Terminal window, run the following command:
    ```bash
@@ -16,7 +17,7 @@
    Check the output log to see that Kafka is running.
 
 
-1. **Run Kafka Connect in Docker**
+3. **Run Kafka Connect in Docker**
 
    In another Terminal window, run the following command:
    ```bash
@@ -33,9 +34,9 @@
    Check the output log to see that Kafka Connect is running.
 
 
-1. **Register the Debezium {PG} source connector**
+4. **Register the Debezium {PG} source connector**
 
-   Update the `<properties>` for the `<debezium-user>` you created in your {SELF_LONG} instance in the following command. 
+   Update the `properties` for the `debezium-user` you created in your {SELF_LONG} instance in the following command. 
    Then run the command in another Terminal window:
    ```bash
    curl -X POST http://localhost:8083/connectors \
@@ -63,7 +64,7 @@
    }'
    ```
 
-1. **Verify `timescaledb-source-connector` is included in the connector list**
+5. **Verify `timescaledb-source-connector` is included in the connector list**
 
    1. Check the tasks associated with `timescaledb-connector`: 
       ```bash
@@ -84,7 +85,7 @@
       "name":"timescaledb-connector"},"tasks":[{"connector":"timescaledb-connector","task":0}],"type":"source"}
       ```
 
-1. **Verify `timescaledb-connector` is running**
+6. **Verify `timescaledb-connector` is running**
 
    1. Open the Terminal window running Kafka Connect. When the connector is active, you see something like the following: 
 
@@ -109,7 +110,7 @@
       2025-04-30 10:40:15,219 INFO   Postgres|accounts|streaming  Processing messages   [io.debezium.connector.postgresql.PostgresStreamingChangeEventSource]
       ```
 
-   1. Watch the events in the accounts topic on your {SELF_LONG} instance. 
+   2. Watch the events in the accounts topic on your {SELF_LONG} instance. 
    
       In another Terminal instance, run the following command:  
 
