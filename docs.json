@@ -203,7 +203,7 @@
             ]
           },
           {
-            "tab": "TimescaleDB",
+            "tab": "Data",
             "groups": [
               {
                 "group": "  ",
