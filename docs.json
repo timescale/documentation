@@ -67,13 +67,6 @@
                     ]
                   },
                   {
-                    "group": "AI and vector",
-                    "pages": [
-                      "cloud/tiger/ai-vector/add-rag-to-your-service",
-                      "cloud/tiger/ai-vector/speed-up-search"
-                    ]
-                  },
-                  {
                     "group": "Monitor your services",
                     "pages": [
                       "cloud/tiger/monitoring/monitor-using-console",
