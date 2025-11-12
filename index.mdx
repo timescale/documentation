@@ -60,118 +60,135 @@ Incrementally refresh aggregation queries in the background.
 </Card>
 </CardGroup>
 
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Integrations</Heading>
-
-See the BAZILLIONS of products you can easily [integrate with Tiger Cloud]().
+<Heading level={2} noAnchor className="font-semibold dark:text-white">What you can build</Heading>
 
 <CardGroup cols={3}>
-    <Card
-        title="Amazon Web Services (AWS)"
-        icon="image"
-        href="https://mintlify.com/docs/quickstart"
-    >
-    </Card>
-    <Card
-        title="DataDog"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
-    <Card
-        title="Terraform"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
-</CardGroup>
-
-<CardGroup cols={3}>
-    <Card
-        title="Prometheus"
-        icon="image"
-        href="https://mintlify.com/docs/quickstart"
-    >
-    </Card>
-    <Card
-        title="Grafana"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
-    <Card
-        title="Tableau"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
-</CardGroup>
-
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Migrate and ingest data</Heading>
-
-<CardGroup cols={3}>
-    <Card
-        title="Live migration"
-        icon="image"
-        href="https://mintlify.com/docs/quickstart"
-    >
-    </Card>
-    <Card
-        title="Livesync from Postgres"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
-    <Card
-        title="Livesync from S3"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
-</CardGroup>
-<CardGroup cols={3}>
-    <Card
-    title="Import from CSV"
-    icon="image"
-    href="https://mintlify.com/docs/quickstart"
+<Card
+    title="Time-series analytics"
+    icon="chart-line"
+    href="/manage-data/timescaledb/get-started/get-started-with-timescaledb"
 >
+Build real-time analytics on events, metrics, and IoT data with hypertables and continuous aggregates.
 </Card>
-    <Card
-    title="Import from Mysql"
-    icon="image"
-    href="https://mintlify.com/docs/development"
+<Card
+    title="AI and vector search"
+    icon="brain-circuit"
+    href="/agentic-postgres/index"
 >
+Power RAG applications and semantic search with pgvector, pgai, and StreamingDiskANN indexing.
 </Card>
-    <Card
-    title="Import from Parquet"
-    icon="image"
-    href="https://mintlify.com/docs/development"
+<Card
+    title="Agentic workflows"
+    icon="user-robot"
+    href="/agentic-postgres/agents/tiger-eon"
 >
+Build AI assistants that understand and act on your organizational data with Tiger Eon and Tiger Agents.
 </Card>
 </CardGroup>
 
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Tutorials</Heading>
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Popular integrations</Heading>
 
-See the other tutorials in our [tutorials section](/tutorials/), including bla and bla and bla.
+Tiger Cloud works with any tool that integrates with Postgres. Explore our [integrations](/integrations/index).
 
 <CardGroup cols={3}>
-    <Card
-        title="Analytics on transport and geospatial data"
-        icon="image"
-        href="https://mintlify.com/docs/quickstart"
-    >
-    </Card>
-    <Card
-        title="Analytics on energy consumption"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
-    <Card
-        title="Query the Bitcoin blockchain"
-        icon="image"
-        href="https://mintlify.com/docs/development"
-    >
-    </Card>
+<Card
+    title="Grafana"
+    icon="chart-line"
+    href="/integrations/integrate/grafana"
+>
+Visualize time-series data with powerful dashboards and alerts.
+</Card>
+<Card
+    title="Kafka"
+    icon="diagram-project"
+    href="/integrations/integrate/apache-kafka"
+>
+Stream data from Kafka topics into your database in real time.
+</Card>
+<Card
+    title="LangChain"
+    icon="link"
+    href="/agentic-postgres/integrations/langchain-integration"
+>
+Build RAG applications with LangChain and vector search.
+</Card>
+<Card
+    title="Datadog"
+    icon="chart-simple"
+    href="/integrations/integrate/datadog"
+>
+Monitor service metrics and send logs to Datadog.
+</Card>
+<Card
+    title="Terraform"
+    icon="code"
+    href="/integrations/integrate/terraform"
+>
+Manage Tiger Cloud infrastructure as code.
+</Card>
+<Card
+    title="AWS"
+    icon="aws"
+    href="/integrations/integrate/aws"
+>
+Connect securely from AWS with VPC peering and PrivateLink.
+</Card>
+</CardGroup>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Learn with tutorials</Heading>
+
+Step-by-step guides for common use cases. See all [tutorials](/tutorials/index).
+
+<CardGroup cols={3}>
+<Card
+    title="Transport & geolocation"
+    icon="location-dot"
+    href="/tutorials/real-time-analytics/transport"
+>
+Analyze real-time transport data with geospatial queries.
+</Card>
+<Card
+    title="Energy consumption"
+    icon="bolt"
+    href="/tutorials/real-time-analytics/energy-consumption"
+>
+Track and analyze energy usage patterns over time.
+</Card>
+<Card
+    title="Financial forecasting"
+    icon="chart-line-up"
+    href="/tutorials/ai/financial-forcasting"
+>
+Build AI-powered financial prediction models.
+</Card>
+</CardGroup>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">API reference</Heading>
+
+Complete function and endpoint documentation for all Tiger Data products.
+
+<CardGroup cols={3}>
+<Card
+    title="TimescaleDB API"
+    icon="database"
+    href="/api-reference/timescaledb/index"
+>
+SQL functions for hypertables, continuous aggregates, compression, and data retention.
+</Card>
+<Card
+    title="Toolkit API"
+    icon="toolbox"
+    href="/api-reference/timescaledb-toolkit/index"
+>
+Hyperfunctions for time-series analysis including statistical aggregates and time-weighted calculations.
+</Card>
+<Card
+    title="REST API"
+    icon="code"
+    href="/api-reference/tiger-cloud-rest-api/introduction"
+>
+Manage Tiger Cloud services, VPCs, and resources programmatically via REST endpoints.
+</Card>
 </CardGroup>
 
 </div>
