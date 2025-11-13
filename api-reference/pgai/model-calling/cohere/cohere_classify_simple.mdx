@@ -1,0 +1,109 @@
+---
+title: cohere_classify_simple()
+description: Classify text into categories with a simplified response
+keywords: [Cohere, classification, categorization, sentiment]
+tags: [AI, Cohere, classification, categorization]
+license: community
+type: function
+---
+
+Classify text into categories using Cohere's models with custom examples. This function returns a simplified table
+format with the input text, predicted label, and confidence score.
+
+## Samples
+
+### Classify sentiment
+
+Categorize text as positive or negative:
+
+```sql
+SELECT *
+FROM ai.cohere_classify_simple(
+    'embed-english-v3.0',
+    ARRAY['I love this product', 'This is terrible', 'Pretty good overall'],
+    examples => '[
+        {"text": "This is amazing", "label": "positive"},
+        {"text": "Absolutely wonderful", "label": "positive"},
+        {"text": "This is awful", "label": "negative"},
+        {"text": "Terrible experience", "label": "negative"}
+    ]'::jsonb
+);
+```
+
+Returns:
+
+```text
+       input        | prediction | confidence
+--------------------+------------+------------
+ I love this product| positive   |       0.98
+ This is terrible   | negative   |       0.95
+ Pretty good overall| positive   |       0.72
+```
+
+### Classify support tickets
+
+Categorize customer inquiries:
+
+```sql
+SELECT *
+FROM ai.cohere_classify_simple(
+    'embed-english-v3.0',
+    ARRAY[
+        'My password is not working',
+        'When will my order arrive?',
+        'I want to cancel my subscription'
+    ],
+    examples => '[
+        {"text": "Cannot log in", "label": "technical"},
+        {"text": "Forgot my password", "label": "technical"},
+        {"text": "Where is my package", "label": "shipping"},
+        {"text": "Delivery status", "label": "shipping"},
+        {"text": "Cancel my account", "label": "billing"},
+        {"text": "Refund request", "label": "billing"}
+    ]'::jsonb
+);
+```
+
+### Batch classification
+
+Classify multiple texts at once:
+
+```sql
+INSERT INTO classified_feedback (feedback_text, category, confidence)
+SELECT input, prediction, confidence
+FROM ai.cohere_classify_simple(
+    'embed-english-v3.0',
+    ARRAY(SELECT feedback FROM pending_feedback LIMIT 100),
+    examples => (SELECT classification_examples FROM model_config WHERE model = 'feedback')
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The Cohere model to use (e.g., `embed-english-v3.0`) |
+| `inputs` | `TEXT[]` | - | ✔ | Array of texts to classify |
+| `api_key` | `TEXT` | `NULL` | ✖ | Cohere API key. If not provided, uses configured secret |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `examples` | `JSONB` | `NULL` | ✖ | Training examples as array of `{"text": "...", "label": "..."}` objects |
+| `truncate_long_inputs` | `TEXT` | `NULL` | ✖ | How to handle long inputs: `START`, `END`, `NONE` |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`TABLE`: A table with the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `input` | `TEXT` | The input text that was classified |
+| `prediction` | `TEXT` | The predicted category label |
+| `confidence` | `FLOAT8` | Confidence score (0.0 to 1.0) for the prediction |
+
+## Related functions
+
+- [`cohere_classify()`][cohere_classify]: full API response with additional metadata
+- [`cohere_embed()`][cohere_embed]: generate embeddings for custom classification
+
+[cohere_classify]: /api-reference/pgai/model-calling/cohere/cohere_classify
+[cohere_embed]: /api-reference/pgai/model-calling/cohere/cohere_embed

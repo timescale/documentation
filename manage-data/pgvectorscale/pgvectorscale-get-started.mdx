@@ -5,13 +5,15 @@ products: [cloud, self_hosted, mst]
 content_group: Getting started
 ---
 
-pgvectorscale complements [pgvector][pgvector], the open-source vector data extension for PostgreSQL, and introduces the following key innovations for pgvector data:
+import { PG, PGVECTORSCALE, TIMESCALE_DB, CLOUD_LONG } from '/snippets/vars.mdx';
+
+{PGVECTORSCALE} complements [pgvector][pgvector], the open-source vector data extension for {PG}, and introduces the following key innovations for pgvector data:
 - A new index type called StreamingDiskANN, inspired by the [DiskANN](https://github.com/microsoft/DiskANN) algorithm, based on research from Microsoft.
 - Statistical Binary Quantization: developed by Timescale researchers, This compression method improves on standard Binary Quantization.
 - Label-based filtered vector search: based on Microsoft's Filtered DiskANN research, this allows you to combine vector similarity search with label filtering for more precise and efficient results.
 
 On a benchmark dataset of 50 million Cohere embeddings with 768 dimensions
-each, PostgreSQL with `pgvector` and `pgvectorscale` achieves **28x lower p95
+each, {PG} with `pgvector` and `pgvectorscale` achieves **28x lower p95
 latency** and **16x higher query throughput** compared to Pinecone's storage
 optimized (s1) index for approximate nearest neighbor queries at 99% recall,
 all at 75% less cost when self-hosted on AWS EC2.
@@ -23,20 +25,20 @@ all at 75% less cost when self-hosted on AWS EC2.
 
 To learn more about the performance impact of pgvectorscale, and details about benchmark methodology and results, see the [pgvector vs Pinecone comparison blog post](http://www.timescale.com/blog/pgvector-vs-pinecone).
 
-In contrast to pgvector, which is written in C, pgvectorscale is developed in [Rust][rust-language] using the [PGRX framework](https://github.com/pgcentralfoundation/pgrx),
-offering the PostgreSQL community a new avenue for contributing to vector support.
+In contrast to pgvector, which is written in C, {PGVECTORSCALE} is developed in [Rust][rust-language] using the [PGRX framework](https://github.com/pgcentralfoundation/pgrx),
+offering the {PG} community a new avenue for contributing to vector support.
 
-**Application developers or DBAs** can use pgvectorscale with their PostgreSQL databases.
+**Application developers or DBAs** can use {PGVECTORSCALE} with their {PG} databases.
    * [Install pgvectorscale](#installation)
    * [Get started using pgvectorscale](#get-started-with-pgvectorscale)
 
 If you **want to contribute** to this extension, see how to [build pgvectorscale from source in a developer environment](./DEVELOPMENT.md) and our [testing guide](./TESTING.md).
 
-For production vector workloads, get **private beta access to vector-optimized databases** with pgvector and pgvectorscale on Timescale. [Sign up here for priority access](https://timescale.typeform.com/to/H7lQ10eQ).
+For production vector workloads, get **private beta access to vector-optimized databases** with pgvector and {PGVECTORSCALE} on Timescale. [Sign up here for priority access](https://timescale.typeform.com/to/H7lQ10eQ).
 
 ## Installation
 
-The fastest ways to run PostgreSQL with pgvectorscale are:
+The fastest ways to run {PG} with {PGVECTORSCALE} are:
 
 * [Using a pre-built Docker container](#using-a-pre-built-docker-container)
 * [Installing from source](#installing-from-source)
@@ -44,7 +46,7 @@ The fastest ways to run PostgreSQL with pgvectorscale are:
 
 ### Using a pre-built Docker container
 
-1.  [Run the TimescaleDB Docker image](https://docs.timescale.com/self-hosted/latest/install/installation-docker/).
+1.  [Run the {TIMESCALE_DB} Docker image](https://docs.timescale.com/self-hosted/latest/install/installation-docker/).
 
 1. Connect to your database:
 ```bash
@@ -61,7 +63,7 @@ The `CASCADE` automatically installs `pgvector`.
 
 ### Installing from source
 
-You can install pgvectorscale from source and install it in an existing PostgreSQL server
+You can install {PGVECTORSCALE} from source and install it in an existing {PG} server
 
 > [!WARNING]
 > Building pgvectorscale on macOS X86 (Intel) machines is currently not
@@ -116,16 +118,16 @@ instructions][pgvector-install].
 
 The `CASCADE` automatically installs `pgvector`.
 
-### Enable pgvectorscale in a Timescale Cloud service
+### Enable pgvectorscale in a Tiger Cloud service
 
-Note: the instructions below are for Timescale's standard compute instance. For production vector workloads, we're offering **private beta access to vector-optimized databases** with pgvector and pgvectorscale on Timescale. [Sign up here for priority access](https://timescale.typeform.com/to/H7lQ10eQ).
+Note: the instructions below are for Timescale's standard compute instance. For production vector workloads, we're offering **private beta access to vector-optimized databases** with pgvector and {PGVECTORSCALE} on Timescale. [Sign up here for priority access](https://timescale.typeform.com/to/H7lQ10eQ).
 
-To enable pgvectorscale:
+To enable {PGVECTORSCALE}:
 
 1. Create a new [Timescale Service](https://console.cloud.timescale.com/signup?utm_campaign=vectorlaunch).
 
-If you want to use an existing service, pgvectorscale is added as an available extension on the first maintenance window
-after the pgvectorscale release date.
+If you want to use an existing service, {PGVECTORSCALE} is added as an available extension on the first maintenance window
+after the {PGVECTORSCALE} release date.
 
 1. Connect to your Timescale service:
 ```bash
@@ -176,7 +178,7 @@ Note: pgvectorscale currently supports: cosine distance (`<=>`) queries, for ind
 
 ## Filtered Vector Search
 
-pgvectorscale supports combining vector similarity search with metadata filtering. There are two basic kinds of filtering, which can be combined in a single query:
+{PGVECTORSCALE} supports combining vector similarity search with metadata filtering. There are two basic kinds of filtering, which can be combined in a single query:
 
 1. **Label-based filtering with the diskann index**: This provides optimized performance for filtering by labels.
 2. **Arbitrary WHERE clause filtering**: This uses post-filtering after the vector search.
@@ -207,9 +209,9 @@ For optimal performance with label filtering, you must specify the label column 
  CREATE INDEX ON documents USING diskann (embedding vector_cosine_ops, labels);
     ```
 
-> **Note**: Label values must be within the PostgreSQL `smallint` range (-32768 to 32767). Using `smallint[]` for labels ensures that PostgreSQL's type system will automatically enforce these bounds.
+> **Note**: Label values must be within the {PG} `smallint` range (-32768 to 32767). Using `smallint[]` for labels ensures that {PG}'s type system will automatically enforce these bounds.
 >
-> pgvectorscale includes an implementation of the `&&` overlap operator for `smallint[]` arrays, which is used for efficient label-based filtering.
+> {PGVECTORSCALE} includes an implementation of the `&&` overlap operator for `smallint[]` arrays, which is used for efficient label-based filtering.
 
 3. Perform label-filtered vector searches using the `&&` operator (array overlap):
 
@@ -284,7 +286,7 @@ This approach gives you the performance benefits of integer-based label filterin
 
 ### Arbitrary WHERE Clause Filtering
 
-You can also use any PostgreSQL WHERE clause with vector search, but these conditions will be applied as post-filtering:
+You can also use any {PG} WHERE clause with vector search, but these conditions will be applied as post-filtering:
 
 ```postgresql
 -- Find similar documents with specific status and date range
@@ -401,16 +403,16 @@ ERROR:  ambuildempty: not yet implemented
 
 ## Get involved
 
-pgvectorscale is still at an early stage. Now is a great time to help shape the
+{PGVECTORSCALE} is still at an early stage. Now is a great time to help shape the
 direction of this project; we are currently deciding priorities. Have a look at the
 list of features we're thinking of working on. Feel free to comment, expand
 the list, or hop on the Discussions forum.
 
 ## About Timescale
 
-Timescale is a PostgreSQL cloud company. To learn more visit the [timescale.com](https://www.timescale.com).
+Timescale is a {PG} cloud company. To learn more visit the [timescale.com](https://www.timescale.com).
 
-[Timescale Cloud](https://console.cloud.timescale.com/signup?utm_campaign=vectorlaunch) is a high-performance, developer focused, cloud platform that provides PostgreSQL services for the most demanding AI, time-series, analytics, and event workloads. Timescale Cloud is ideal for production applications and provides high availability, streaming backups, upgrades over time, roles and permissions, and great security.
+[{CLOUD_LONG}](https://console.cloud.timescale.com/signup?utm_campaign=vectorlaunch) is a high-performance, developer focused, cloud platform that provides {PG} services for the most demanding AI, time-series, analytics, and event workloads. {CLOUD_LONG} is ideal for production applications and provides high availability, streaming backups, upgrades over time, roles and permissions, and great security.
 
 [pgvector]: https://github.com/pgvector/pgvector/blob/master/README.md
 [rust-language]: https://www.rust-lang.org/

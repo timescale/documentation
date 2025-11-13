@@ -1,0 +1,116 @@
+---
+title: Ollama functions
+sidebarTitle: Overview
+description: Run local LLMs with embeddings, chat completion, and model management
+keywords: [Ollama, local LLM, embeddings, chat, open source]
+tags: [AI, Ollama, local, embeddings, chat]
+license: community
+type: function
+---
+
+import { PG } from '/snippets/vars.mdx';
+
+Call Ollama's local LLM API directly from SQL to generate embeddings, completions, and chat responses using open-source
+models running on your infrastructure.
+
+## What is Ollama?
+
+Ollama is a tool for running large language models locally on your own hardware. Unlike cloud-based APIs, Ollama
+provides complete control over your models, data privacy, and costs. It supports popular open-source models like Llama,
+Mistral, and CodeLlama.
+
+## Key features
+
+- **Privacy-first**: All data stays on your infrastructure
+- **Cost-effective**: No per-token API costs
+- **Offline operation**: Works without internet connectivity
+- **Open-source models**: Access to Llama 2, Mistral, CodeLlama, and more
+- **Full control**: Manage model versions and configurations
+
+## Prerequisites
+
+Before using Ollama functions, you need to:
+
+1. Install and run Ollama on your infrastructure
+2. Pull the models you want to use
+3. Ensure your {PG} database can access the Ollama host
+
+For installation instructions, visit [ollama.com](https://ollama.com).
+
+## Quick start
+
+### Generate embeddings
+
+Create vector embeddings using a local model:
+
+```sql
+SELECT ai.ollama_embed(
+    'llama2',
+    'PostgreSQL is a powerful database',
+    host => 'http://localhost:11434'
+);
+```
+
+### Generate completions
+
+Get text completions from a local model:
+
+```sql
+SELECT ai.ollama_generate(
+    'llama2',
+    'Explain what PostgreSQL is in one sentence'
+)->'response';
+```
+
+### Chat completion
+
+Have a conversation with a local model:
+
+```sql
+SELECT ai.ollama_chat_complete(
+    'llama2',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?')
+    )
+)->'message'->>'content';
+```
+
+## Available functions
+
+### Embeddings
+
+- [`ollama_embed()`][ollama_embed]: generate vector embeddings from text
+
+### Completions and chat
+
+- [`ollama_generate()`][ollama_generate]: generate text completions with optional images
+- [`ollama_chat_complete()`][ollama_chat_complete]: multi-turn conversations with tool support
+
+### Model management
+
+- [`ollama_list_models()`][ollama_list_models]: list all locally installed models
+- [`ollama_ps()`][ollama_ps]: show currently running models and their resource usage
+
+## Configuration
+
+All Ollama functions accept a `host` parameter to specify the Ollama server location:
+
+```sql
+-- Use default host (http://localhost:11434)
+SELECT ai.ollama_embed('llama2', 'sample text');
+
+-- Specify custom host
+SELECT ai.ollama_embed('llama2', 'sample text', host => 'http://ollama-server:11434');
+```
+
+## Resources
+
+- [Ollama documentation](https://github.com/ollama/ollama/tree/main/docs)
+- [Ollama models library](https://ollama.com/library)
+- [Ollama API reference](https://github.com/ollama/ollama/blob/main/docs/api.md)
+
+[ollama_embed]: /api-reference/pgai/model-calling/ollama/ollama_embed
+[ollama_generate]: /api-reference/pgai/model-calling/ollama/ollama_generate
+[ollama_chat_complete]: /api-reference/pgai/model-calling/ollama/ollama_chat_complete
+[ollama_list_models]: /api-reference/pgai/model-calling/ollama/ollama_list_models
+[ollama_ps]: /api-reference/pgai/model-calling/ollama/ollama_ps

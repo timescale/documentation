@@ -1,0 +1,62 @@
+---
+title: chunking_none()
+description: Disable chunking for one-to-one embedding relationships
+keywords: [vectorizer, chunking, none, column destination]
+tags: [vectorizer, configuration, chunking]
+license: community
+type: function
+---
+
+Disable chunking to maintain a one-to-one relationship between source rows and embeddings. This is required when using
+column destination, where embeddings are stored directly in the source table.
+
+## When to use
+
+Use `chunking_none()` when:
+- Using `destination_column()` (required)
+- Source text is already chunked or naturally short (< 512 tokens)
+- You need exactly one embedding per source row
+
+## Samples
+
+### With column destination (required)
+
+```sql
+SELECT ai.create_vectorizer(
+    'products'::regclass,
+    destination => ai.destination_column('description_embedding'),
+    loading => ai.loading_column('description'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_none()  -- Required for column destination
+);
+```
+
+### With pre-chunked data
+
+```sql
+SELECT ai.create_vectorizer(
+    'pre_chunked_text'::regclass,
+    loading => ai.loading_column('chunk'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_none()
+);
+```
+
+## Arguments
+
+This function takes no parameters.
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`destination_column()`][destination_column]: requires chunking_none()
+- [`chunking_character_text_splitter()`][chunking_character]: split by character count
+- [`chunking_recursive_character_text_splitter()`][chunking_recursive]: recursive splitting
+
+[destination_column]: /api-reference/pgai/vectorizer/destination_column
+[chunking_character]: /api-reference/pgai/vectorizer/chunking_character_text_splitter
+[chunking_recursive]: /api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

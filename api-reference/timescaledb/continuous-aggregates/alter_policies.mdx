@@ -1,0 +1,62 @@
+---
+title: alter_policies()
+description: Alter refresh, compression, or data retention policies on a continuous aggregate
+topics: [continuous aggregates, jobs, compression, data retention]
+keywords: [continuous aggregates, policies, alter, compress, data retention]
+tags: [change]
+license: community
+type: function
+experimental: true
+products: [cloud, self_hosted, mst]
+---
+
+import { CAGG, HYPERTABLE, COLUMNSTORE, CHUNK } from '/snippets/vars.mdx';
+
+<Icon icon="flask" /> Early access
+
+Alter refresh, {COLUMNSTORE}, or data retention policies on a {CAGG}. The altered {COLUMNSTORE} and retention policies
+apply to the
+{CAGG}, _not_ to the original {HYPERTABLE}.
+
+```sql
+timescaledb_experimental.alter_policies(
+     relation REGCLASS,
+     if_exists BOOL = false,
+     refresh_start_offset "any" = NULL,
+     refresh_end_offset "any" = NULL,
+     compress_after "any" = NULL,
+     drop_after "any" = NULL
+) RETURNS BOOL
+```
+
+## Samples
+
+Given a {CAGG} named `example_continuous_aggregate` with an
+existing {COLUMNSTORE} policy, alter the {COLUMNSTORE} policy to compress data older
+than 16 days:
+
+```sql
+SELECT timescaledb_experimental.alter_policies(
+    'continuous_agg_max_mat_date',
+    compress_after => '16 days'::interval
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `relation` | `REGCLASS` | - | ✔ | The {CAGG} that you want to alter policies for |
+| `if_not_exists` | `BOOL` | false | - | When true, prints a warning instead of erroring if the policy doesn't exist. |
+| `refresh_start_offset` | `INTERVAL` or `INTEGER` | - | - | The start of the {CAGG} refresh window, expressed as an offset from the policy run time. |
+| `refresh_end_offset` | `INTERVAL` or `INTEGER` | - | - | The end of the {CAGG} refresh window, expressed as an offset from the policy run time. Must be greater than `refresh_start_offset`. |
+| `compress_after` | `INTERVAL` or `INTEGER` | - | - | {CAGG} {CHUNK}s are compressed into the {COLUMNSTORE} if they exclusively contain data older than this interval. |
+| `drop_after` | `INTERVAL` or `INTEGER` | - | - | {CAGG} {CHUNK}s are dropped if they exclusively contain data older than this interval. |
+
+For arguments that could be either an `INTERVAL` or an `INTEGER`, use an
+`INTERVAL` if your time bucket is based on timestamps. Use an `INTEGER` if your
+time bucket is based on integers.
+
+## Returns
+
+Returns true if successful.

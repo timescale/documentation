@@ -1,0 +1,81 @@
+---
+title: destination_column()
+description: Store embeddings directly in the source table as a new column
+keywords: [vectorizer, destination, embeddings, column]
+tags: [vectorizer, configuration, embeddings]
+license: community
+type: function
+---
+
+Store embeddings directly in the source table as a new column. This approach requires a one-to-one relationship
+between source data and embeddings, so chunking must be disabled. Ideal when source text is short or chunking is done
+upstream.
+
+## Key features
+
+- Adds vector column directly to source table
+- No separate view created
+- Requires `chunking_none()` (no chunking)
+- Exactly one embedding per row
+- Simpler schema with fewer objects
+
+## Workflow
+
+1. Application inserts data with NULL in embedding column
+2. Vectorizer detects the NULL value
+3. Vectorizer generates embedding
+4. Vectorizer updates row with embedding value
+
+## Samples
+
+### Basic usage
+
+Store embeddings in a column for pre-chunked data:
+
+```sql
+SELECT ai.create_vectorizer(
+    'product_descriptions'::regclass,
+    destination => ai.destination_column('description_embedding'),
+    loading => ai.loading_column('description'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_none()  -- Required for column destination
+);
+```
+
+### With specific embedding model
+
+```sql
+SELECT ai.create_vectorizer(
+    'short_text_data'::regclass,
+    destination => ai.destination_column('text_embedding'),
+    loading => ai.loading_column('text'),
+    embedding => ai.embedding_ollama('nomic-embed-text', 768),
+    chunking => ai.chunking_none()
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `embedding_column` | `NAME` | - | ✔ | Name of the column to add to the source table for storing embeddings |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Important notes
+
+- **Chunking must be disabled**: Use `chunking => ai.chunking_none()` when using column destination
+- **One embedding per row**: This approach cannot handle multiple chunks per source row
+- **Best for short text**: Ideal when text is already chunked or naturally short (< 512 tokens)
+
+## Related functions
+
+- [`destination_table()`][destination_table]: alternative approach with separate embeddings table
+- [`chunking_none()`][chunking_none]: required chunking configuration for column destination
+- [`create_vectorizer()`][create_vectorizer]: main function using this configuration
+
+[destination_table]: /api-reference/pgai/vectorizer/destination_table
+[chunking_none]: /api-reference/pgai/vectorizer/chunking_none
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

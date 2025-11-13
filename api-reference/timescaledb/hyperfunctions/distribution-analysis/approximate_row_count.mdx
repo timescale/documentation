@@ -1,0 +1,53 @@
+---
+title: approximate_row_count()
+description: Estimate the number of rows in a table
+topics: [hyperfunctions]
+keywords: [count, hyperfunctions]
+tags: [approximate, rows]
+license: apache
+type: function
+hyperfunction:
+  type: one-step aggregate
+products: [cloud, mst, self_hosted]
+---
+
+import { PG, HYPERTABLE } from '/snippets/vars.mdx';
+
+<Icon icon="circle-play" iconType="duotone" /> Since 0.10.0
+
+Get approximate row count for {HYPERTABLE}, distributed {HYPERTABLE}, or regular {PG} table based on catalog estimates.
+This function supports tables with nested inheritance and declarative partitioning.
+
+The accuracy of `approximate_row_count` depends on the database having up-to-date statistics about the table or
+{HYPERTABLE}, which are updated by `VACUUM`, `ANALYZE`, and a few DDL commands. If you have auto-vacuum configured on
+your table or {HYPERTABLE}, or changes to the table are relatively infrequent, you might not need to explicitly
+`ANALYZE` your table as shown below. Otherwise, if your table statistics are too out-of-date, running this command
+updates your statistics and yields more accurate approximation results.
+
+## Samples
+
+Get the approximate row count for a single {HYPERTABLE}.
+
+```sql
+ANALYZE conditions;
+
+SELECT * FROM approximate_row_count('conditions');
+```
+
+The expected output:
+
+```
+approximate_row_count
+---------------------
+               240000
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|--|--|--|--|--|
+| `relation` | REGCLASS | - | ✔ | {HYPERTABLE} or regular {PG} table to get row count for. |
+
+## Returns
+
+A numeric estimate of the number of rows in the specified table or {HYPERTABLE}.

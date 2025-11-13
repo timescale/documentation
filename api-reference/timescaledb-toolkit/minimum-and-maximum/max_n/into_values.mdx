@@ -1,0 +1,29 @@
+---
+title: into_values()
+description: Returns the highest values from a MaxN aggregate
+topics: [hyperfunctions]
+tags: [hyperfunctions, toolkit, maximum]
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: minimum and maximum
+  type: accessor
+  aggregates:
+    - max_n()
+products: [cloud, mst, self_hosted]
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+
+Return the N highest values seen by the aggregate.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|--|--|--|--|--|
+| `agg` | MaxN | - | ✔ | The aggregate to return the results from. Note that the exact type here varies based on the type of data stored. |
+
+## Returns
+
+The highest values seen while creating this aggregate.

@@ -1,0 +1,59 @@
+---
+title: with_bounds()
+description: Add bounds to a counter aggregate
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: counters and gauges
+  type: mutator
+  aggregates:
+    - counter_agg()
+topics:
+  - hyperfunctions
+products:
+  - cloud
+  - mst
+  - self_hosted
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
+
+Add time bounds to an already-computed counter aggregate. Bounds are necessary to use extrapolation accessors on the
+aggregate.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `cs` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+| `bounds` | `TSTZRANGE` | - | ✔ | A range of `timestamptz` giving the smallest and largest allowed times in the counter aggregate |
+
+## Returns
+
+`CounterSummary`: A new counter aggregate with the bounds applied
+
+## Samples
+
+Create a counter aggregate for each `id` and each 15-minute interval. Then add bounds to the counter aggregate, so you
+can calculate the extrapolated rate.
+
+```sql
+SELECT
+    id,
+    bucket,
+    extrapolated_rate(
+        with_bounds(
+            summary,
+            time_bucket_range('15 min'::interval, bucket)
+        )
+    )
+FROM (
+    SELECT
+        id,
+        time_bucket('15 min'::interval, ts) AS bucket,
+        counter_agg(ts, val) AS summary
+    FROM foo
+    GROUP BY id, time_bucket('15 min'::interval, ts)
+) t
+```

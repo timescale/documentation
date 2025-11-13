@@ -1,0 +1,25 @@
+---
+title: cohere_classify()
+description: Classify text into categories with complete API response
+keywords: [Cohere, classification, API response]
+tags: [AI, Cohere, classification]
+license: community
+type: function
+---
+
+Classify text into categories and get the complete API response including confidence scores, labels, and additional
+metadata. For a simpler response format, use [`cohere_classify_simple()`][cohere_classify_simple].
+
+## Arguments
+
+This function accepts the same arguments as [`cohere_classify_simple()`][cohere_classify_simple].
+
+## Returns
+
+`JSONB`: The complete API response including classifications array with predictions, confidences, and metadata.
+
+## Related functions
+
+- [`cohere_classify_simple()`][cohere_classify_simple]: simplified response format
+
+[cohere_classify_simple]: /api-reference/pgai/model-calling/cohere/cohere_classify_simple

@@ -11,14 +11,14 @@ import OldCreateHypertable from "/snippets/changes/_old-api-create-hypertable.md
 import HypercoreIntroShort from "/snippets/intros/_hypercore-intro-short.mdx";
 
 import { CAGG, CLOUD_LONG, COMPANY, CONSOLE, ENTERPRISE, HA_REPLICA,  PRICING_PLAN, SCALE,
-    TIGER_POSTGRES, TIME_BUCKET, TIME_BUCKET_CAP } from '/snippets/vars.mdx';
+    TIMESCALE_DB, TIME_BUCKET, TIME_BUCKET_CAP } from '/snippets/vars.mdx';
 
 
 {CLOUD_LONG} offers managed database services that provide a stable and reliable environment for your
-applications. Each {SERVICE_SHORT} is an instance of {TIGER_POSTGRES}, a radically faster {PG} for
+applications. Each {SERVICE_SHORT} is an instance of {TIMESCALE_DB}, a radically faster {PG} for
 transactional, analytical and agentic workloads at scale.
 
-{CLOUD_LONG} scales {TIGER_POSTGRES} to ingest and query vast amounts of live data. {CLOUD_LONG} 
+{CLOUD_LONG} scales {TIMESCALE_DB} to ingest and query vast amounts of live data. {CLOUD_LONG}
 provides a range of features and optimizations that supercharge your queries while keeping the 
 costs down. For example: 
 * The {HYPERCORE} row-columnar engine in {TIMESCALE_DB} makes queries up to 350x faster, ingests 44% faster, and reduces 
@@ -37,7 +37,7 @@ ingest and query data faster while keeping the costs low.
 
 <IntegrationPrereqs />
 
-## Optimize time-series data in {HYPERTABLE}s with {HYPERCORE} 
+## Optimize time-series data in hypertables with hypercore 
 
 Time-series data represents the way a system, process, or behavior changes over time. {HYPERTABLE}_CAPs are {PG} tables 
 that help you improve insert and query performance by automatically partitioning your data by time. Each {HYPERTABLE} 

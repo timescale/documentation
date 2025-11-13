@@ -1,0 +1,86 @@
+---
+title: openai_list_models()
+description: List all models available from OpenAI
+keywords: [OpenAI, models, GPT, list]
+tags: [AI, models]
+license: community
+type: function
+---
+
+Retrieve a list of all models available from OpenAI, including their creation dates and ownership information. This is
+useful for discovering available models and verifying access to specific models.
+
+## Samples
+
+### List all models
+
+Get all available OpenAI models:
+
+```sql
+SELECT *
+FROM ai.openai_list_models()
+ORDER BY created DESC;
+```
+
+Returns:
+
+```text
+           id              |        created         |    owned_by
+---------------------------+------------------------+-----------------
+ gpt-4o                    | 2024-05-10 13:50:49-05 | system
+ gpt-4o-mini               | 2024-07-17 09:33:20-05 | system
+ gpt-4-turbo               | 2024-04-05 18:57:21-05 | system
+ text-embedding-ada-002    | 2022-12-16 12:48:49-06 | openai-internal
+ ...
+```
+
+### Find specific models
+
+Search for models matching a pattern:
+
+```sql
+SELECT *
+FROM ai.openai_list_models()
+WHERE id LIKE '%gpt-4o%'
+ORDER BY created DESC;
+```
+
+### Check model availability
+
+Verify a specific model is available:
+
+```sql
+SELECT EXISTS (
+    SELECT 1
+    FROM ai.openai_list_models()
+    WHERE id = 'gpt-4o-mini'
+) AS model_available;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `api_key` | `TEXT` | `NULL` | ✖ | OpenAI API key. If not provided, uses `ai.openai_api_key` setting |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `extra_headers` | `JSONB` | `NULL` | ✖ | Additional HTTP headers to include in the API request |
+| `extra_query` | `JSONB` | `NULL` | ✖ | Additional query parameters for the API request |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+| `client_config` | `JSONB` | `NULL` | ✖ | Advanced client configuration options |
+
+## Returns
+
+`TABLE(id TEXT, created TIMESTAMPTZ, owned_by TEXT)`: A table with one row per model containing:
+- `id`: The model identifier (e.g., `gpt-4o-mini`)
+- `created`: When the model was created
+- `owned_by`: The organization that owns the model
+
+## Related functions
+
+- [`openai_list_models_with_raw_response()`][openai_list_models_with_raw_response]: get the full API response
+- [`openai_chat_complete()`][openai_chat_complete]: use models for chat completion
+- [`openai_embed()`][openai_embed]: use models for embeddings
+
+[openai_list_models_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response
+[openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed

@@ -1,0 +1,37 @@
+---
+title: rollup()
+description: Roll up multiple Candlestick aggregates
+topics: [hyperfunctions]
+tags: [hyperfunctions, finance, candlestick]
+license: community
+type: function
+experimental: false
+toolkit: true
+hyperfunction:
+  family: financial analysis
+  type: rollup
+  aggregates:
+    - candlestick_agg()
+---
+
+<Icon icon="flask" /> Early access 1.12.0
+
+Combine multiple intermediate candlestick aggregates, produced by `candlestick_agg` or `candlestick`, into a single
+intermediate candlestick aggregate. For example, you can use `rollup` to combine candlestick aggregates from 15-minute
+buckets into daily buckets.
+
+```sql
+rollup(
+  candlestick Candlestick
+) RETURNS Candlestick
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| candlestick | Candlestick | - | ✔ | The aggregate produced by a `candlestick` or `candlestick_agg` call |
+
+## Returns
+
+A new candlestick aggregate produced by combining the input candlestick aggregates

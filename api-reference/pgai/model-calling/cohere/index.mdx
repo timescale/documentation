@@ -1,0 +1,163 @@
+---
+title: Cohere functions
+sidebarTitle: Overview
+description: Generate embeddings, classify text, rerank results, and chat with Cohere's enterprise AI models
+keywords: [Cohere, embeddings, classification, reranking, chat]
+tags: [AI, Cohere, embeddings, classification, reranking]
+license: community
+type: function
+---
+
+import { PG } from '/snippets/vars.mdx';
+
+Call Cohere's API directly from SQL to access enterprise-grade embeddings, text classification, semantic reranking,
+and chat capabilities optimized for production use.
+
+## What is Cohere?
+
+Cohere provides production-ready AI models for enterprises, specializing in embeddings, classification, and retrieval
+augmented generation (RAG). Cohere's models excel at semantic search, text classification, and reranking results for
+improved relevance.
+
+## Key features
+
+- **Enterprise embeddings**: High-quality multilingual embeddings for semantic search
+- **Text classification**: Classify text into categories with custom examples
+- **Semantic reranking**: Improve search relevance by reordering results
+- **Chat with RAG**: Ground responses in your documents
+- **Production-ready**: Built for scale with enterprise support
+
+## Prerequisites
+
+To use Cohere functions, you need:
+
+1. A Cohere API key from [dashboard.cohere.com](https://dashboard.cohere.com)
+2. API key configured in your database (see configuration section below)
+
+## Quick start
+
+### Generate embeddings
+
+Create vector embeddings for semantic search:
+
+```sql
+SELECT ai.cohere_embed(
+    'embed-english-v3.0',
+    'PostgreSQL is a powerful database'
+);
+```
+
+### Classify text
+
+Categorize text using custom examples:
+
+```sql
+SELECT * FROM ai.cohere_classify_simple(
+    'embed-english-v3.0',
+    ARRAY['I love this product', 'This is terrible'],
+    examples => '[
+        {"text": "This is amazing", "label": "positive"},
+        {"text": "This is awful", "label": "negative"}
+    ]'::jsonb
+);
+```
+
+### Rerank search results
+
+Improve search relevance by reordering results:
+
+```sql
+SELECT * FROM ai.cohere_rerank_simple(
+    'rerank-english-v3.0',
+    'What is a database?',
+    ARRAY[
+        'PostgreSQL is a relational database',
+        'Python is a programming language',
+        'A database stores and manages data'
+    ]
+)
+ORDER BY relevance_score DESC;
+```
+
+### Chat completion
+
+Have conversations grounded in your documents:
+
+```sql
+SELECT ai.cohere_chat_complete(
+    'command-r-plus',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?')
+    )
+)->'message'->>'content';
+```
+
+## Configuration
+
+Store your Cohere API key securely in the database:
+
+```sql
+-- Store API key as a secret
+SELECT ai.create_secret('COHERE_API_KEY', 'your-api-key-here');
+
+-- Use the secret by name
+SELECT ai.cohere_embed(
+    'embed-english-v3.0',
+    'sample text',
+    api_key_name => 'COHERE_API_KEY'
+);
+```
+
+## Available functions
+
+### Embeddings
+
+- [`cohere_embed()`][cohere_embed]: generate vector embeddings from text
+
+### Classification
+
+- [`cohere_classify()`][cohere_classify]: classify text with full API response
+- [`cohere_classify_simple()`][cohere_classify_simple]: classify text with simplified response
+
+### Reranking
+
+- [`cohere_rerank()`][cohere_rerank]: rerank documents with full API response
+- [`cohere_rerank_simple()`][cohere_rerank_simple]: rerank documents with simplified response
+
+### Chat
+
+- [`cohere_chat_complete()`][cohere_chat_complete]: chat with RAG support
+
+### Tokenization
+
+- [`cohere_tokenize()`][cohere_tokenize]: convert text to tokens
+- [`cohere_detokenize()`][cohere_detokenize]: convert tokens back to text
+
+### Model management
+
+- [`cohere_list_models()`][cohere_list_models]: list available Cohere models
+
+## Available models
+
+Cohere offers specialized models for different tasks:
+
+- **Embeddings**: `embed-english-v3.0`, `embed-multilingual-v3.0`
+- **Reranking**: `rerank-english-v3.0`, `rerank-multilingual-v3.0`
+- **Chat**: `command-r-plus`, `command-r`
+
+## Resources
+
+- [Cohere documentation](https://docs.cohere.com)
+- [Cohere models overview](https://docs.cohere.com/docs/models)
+- [Cohere API reference](https://docs.cohere.com/reference)
+- [Cohere dashboard](https://dashboard.cohere.com)
+
+[cohere_embed]: /api-reference/pgai/model-calling/cohere/cohere_embed
+[cohere_classify]: /api-reference/pgai/model-calling/cohere/cohere_classify
+[cohere_classify_simple]: /api-reference/pgai/model-calling/cohere/cohere_classify_simple
+[cohere_rerank]: /api-reference/pgai/model-calling/cohere/cohere_rerank
+[cohere_rerank_simple]: /api-reference/pgai/model-calling/cohere/cohere_rerank_simple
+[cohere_chat_complete]: /api-reference/pgai/model-calling/cohere/cohere_chat_complete
+[cohere_tokenize]: /api-reference/pgai/model-calling/cohere/cohere_tokenize
+[cohere_detokenize]: /api-reference/pgai/model-calling/cohere/cohere_detokenize
+[cohere_list_models]: /api-reference/pgai/model-calling/cohere/cohere_list_models

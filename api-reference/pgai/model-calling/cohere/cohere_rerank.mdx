@@ -1,0 +1,25 @@
+---
+title: cohere_rerank()
+description: Rerank documents by relevance with complete API response
+keywords: [Cohere, rerank, API response]
+tags: [AI, Cohere, reranking]
+license: community
+type: function
+---
+
+Rerank documents by semantic relevance and get the complete API response including relevance scores and metadata. For a
+simpler response format, use [`cohere_rerank_simple()`][cohere_rerank_simple].
+
+## Arguments
+
+This function accepts the same arguments as [`cohere_rerank_simple()`][cohere_rerank_simple].
+
+## Returns
+
+`JSONB`: The complete API response including results array with indexes, relevance scores, and document metadata.
+
+## Related functions
+
+- [`cohere_rerank_simple()`][cohere_rerank_simple]: simplified response format
+
+[cohere_rerank_simple]: /api-reference/pgai/model-calling/cohere/cohere_rerank_simple

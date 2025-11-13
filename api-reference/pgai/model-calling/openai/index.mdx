@@ -1,0 +1,114 @@
+---
+title: OpenAI functions overview
+sidebarTitle: Overview
+description: Call OpenAI models directly from PostgreSQL for embeddings, chat completion, moderation, and tokenization
+keywords: [OpenAI, AI, LLM, embeddings, chat, moderation]
+tags: [AI, embeddings, chat, GPT]
+---
+
+import { PG, PGAI_SHORT } from '/snippets/vars.mdx';
+
+Use OpenAI's powerful language models directly from {PG} with {PGAI_SHORT}. These functions enable you to generate
+embeddings, complete chat conversations, moderate content, and work with tokens without leaving your database.
+
+## Prerequisites
+
+To use OpenAI functions, you need an [OpenAI API key](https://platform.openai.com/docs/quickstart/step-2-set-up-your-api-key).
+
+Set your API key as an environment variable and configure it when connecting:
+
+```bash
+export OPENAI_API_KEY="your-api-key"
+PGOPTIONS="-c ai.openai_api_key=$OPENAI_API_KEY" psql -d "postgres://..."
+```
+
+For more configuration options, see [handling API keys](/api-reference/pgai/utilities/api-keys).
+
+## Samples
+
+### Generate embeddings for semantic search
+
+Create embeddings from text for vector similarity search:
+
+```sql
+SELECT ai.openai_embed(
+    'text-embedding-ada-002',
+    'PostgreSQL is a powerful database'
+);
+```
+
+### Complete a chat conversation
+
+Use GPT models for natural language responses:
+
+```sql
+SELECT ai.openai_chat_complete(
+    'gpt-4o-mini',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?')
+    )
+)->'choices'->0->'message'->>'content';
+```
+
+### Moderate content
+
+Check if content violates OpenAI's usage policies:
+
+```sql
+SELECT ai.openai_moderate(
+    'text-moderation-latest',
+    'some text to check'
+);
+```
+
+### Tokenize text
+
+Count tokens to manage API costs and limits:
+
+```sql
+SELECT array_length(
+    ai.openai_tokenize('text-embedding-ada-002', 'Hello world'),
+    1
+) as token_count;
+```
+
+## Available functions
+
+### Model management
+- [`openai_list_models()`][openai_list_models]: list available OpenAI models
+
+### Embeddings
+- [`openai_embed()`][openai_embed]: generate vector embeddings from text, text arrays, or tokens
+
+### Chat completion
+- [`openai_chat_complete()`][openai_chat_complete]: generate chat completions with full control over parameters
+- [`openai_chat_complete_simple()`][openai_chat_complete_simple]: simplified chat completion for quick queries
+
+### Content moderation
+- [`openai_moderate()`][openai_moderate]: check content for policy violations
+
+### Token management
+- [`openai_tokenize()`][openai_tokenize]: convert text into tokens
+- [`openai_detokenize()`][openai_detokenize]: convert tokens back into text
+
+### Advanced usage
+- [`openai_embed_with_raw_response()`][openai_embed_with_raw_response]: get raw API response for embeddings
+- [`openai_chat_complete_with_raw_response()`][openai_chat_complete_with_raw_response]: get raw API response for
+  chat completion
+- [`openai_moderate_with_raw_response()`][openai_moderate_with_raw_response]: get raw API response for moderation
+- [`openai_list_models_with_raw_response()`][openai_list_models_with_raw_response]: get raw API response for model
+  list
+- [`openai_client_config()`][openai_client_config]: configure OpenAI client settings
+
+[openai_list_models]: /api-reference/pgai/model-calling/openai/openai_list_models
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed
+[openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete
+[openai_chat_complete_simple]: /api-reference/pgai/model-calling/openai/openai_chat_complete_simple
+[openai_moderate]: /api-reference/pgai/model-calling/openai/openai_moderate
+[openai_tokenize]: /api-reference/pgai/model-calling/openai/openai_tokenize
+[openai_detokenize]: /api-reference/pgai/model-calling/openai/openai_detokenize
+[openai_embed_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_embed_with_raw_response
+[openai_chat_complete_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response
+[openai_moderate_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response
+[openai_list_models_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response
+[openai_client_config]: /api-reference/pgai/model-calling/openai/openai_client_config

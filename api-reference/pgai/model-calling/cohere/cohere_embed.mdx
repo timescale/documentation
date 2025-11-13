@@ -1,0 +1,94 @@
+---
+title: cohere_embed()
+description: Generate vector embeddings using Cohere's multilingual models
+keywords: [Cohere, embeddings, vectors, semantic search]
+tags: [AI, embeddings, Cohere, vectors]
+license: community
+type: function
+---
+
+Generate vector embeddings from text using Cohere's enterprise-grade embedding models. Cohere embeddings excel at
+multilingual semantic search, clustering, and classification tasks.
+
+## Samples
+
+### Generate an embedding
+
+Create a vector embedding:
+
+```sql
+SELECT ai.cohere_embed(
+    'embed-english-v3.0',
+    'PostgreSQL is a powerful database'
+);
+```
+
+### Specify input type
+
+Optimize embeddings for your use case:
+
+```sql
+-- For search queries
+SELECT ai.cohere_embed(
+    'embed-english-v3.0',
+    'best database for time-series',
+    input_type => 'search_query'
+);
+
+-- For documents to be searched
+SELECT ai.cohere_embed(
+    'embed-english-v3.0',
+    'PostgreSQL is a relational database',
+    input_type => 'search_document'
+);
+```
+
+### Store embeddings in a table
+
+Generate and store embeddings for your data:
+
+```sql
+UPDATE documents
+SET embedding = ai.cohere_embed(
+    'embed-english-v3.0',
+    content,
+    input_type => 'search_document'
+)
+WHERE embedding IS NULL;
+```
+
+### Multilingual embeddings
+
+Use multilingual models for non-English content:
+
+```sql
+SELECT ai.cohere_embed(
+    'embed-multilingual-v3.0',
+    'La base de datos PostgreSQL es poderosa',
+    input_type => 'search_document'
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The Cohere embedding model to use (e.g., `embed-english-v3.0`) |
+| `input_text` | `TEXT` | - | ✔ | Text to embed |
+| `api_key` | `TEXT` | `NULL` | ✖ | Cohere API key. If not provided, uses configured secret |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `input_type` | `TEXT` | `NULL` | ✖ | Type of input: `search_query`, `search_document`, `classification`, `clustering` |
+| `truncate_long_inputs` | `TEXT` | `NULL` | ✖ | How to handle long inputs: `START`, `END`, `NONE` |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`vector`: A pgvector compatible vector containing the embedding.
+
+## Related functions
+
+- [`cohere_rerank()`][cohere_rerank]: rerank search results for better relevance
+- [`openai_embed()`][openai_embed]: alternative with OpenAI models
+
+[cohere_rerank]: /api-reference/pgai/model-calling/cohere/cohere_rerank
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed

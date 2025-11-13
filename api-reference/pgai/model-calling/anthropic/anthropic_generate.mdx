@@ -1,0 +1,169 @@
+---
+title: anthropic_generate()
+description: Generate text completions using Claude models for sophisticated reasoning and analysis
+keywords: [Anthropic, Claude, generation, reasoning, AI]
+tags: [AI, Anthropic, Claude, generation]
+license: community
+type: function
+---
+
+Generate text completions using Anthropic's Claude models. This function supports multi-turn conversations, system
+prompts, tool use, and vision capabilities for sophisticated reasoning and analysis tasks.
+
+## Samples
+
+### Basic text generation
+
+Generate a simple response:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Explain PostgreSQL in one sentence')
+    )
+)->'content'->0->>'text';
+```
+
+### Multi-turn conversation
+
+Continue a conversation with message history:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?'),
+        jsonb_build_object('role', 'assistant', 'content', 'PostgreSQL is a powerful open-source relational database.'),
+        jsonb_build_object('role', 'user', 'content', 'What makes it different from MySQL?')
+    )
+)->'content'->0->>'text';
+```
+
+### Use a system prompt
+
+Guide Claude's behavior:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Explain databases')
+    ),
+    system_prompt => 'You are a helpful database expert. Give concise, technical answers with code examples.'
+)->'content'->0->>'text';
+```
+
+### Control creativity with temperature
+
+Adjust the randomness of responses:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Write a creative story about databases')
+    ),
+    temperature => 0.9,
+    max_tokens => 2000
+)->'content'->0->>'text';
+```
+
+### Use tools (function calling)
+
+Enable Claude to call functions:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is the weather in Paris?')
+    ),
+    tools => '[
+        {
+            "name": "get_weather",
+            "description": "Get current weather for a location",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "City name"
+                    }
+                },
+                "required": ["location"]
+            }
+        }
+    ]'::jsonb,
+    tool_choice => '{"type": "auto"}'::jsonb
+);
+```
+
+### Control stop sequences
+
+Stop generation at specific sequences:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'List three database types')
+    ),
+    stop_sequences => ARRAY['4.', 'Fourth']
+)->'content'->0->>'text';
+```
+
+### Use with API key name
+
+Reference a stored API key:
+
+```sql
+SELECT ai.anthropic_generate(
+    'claude-3-5-sonnet-20241022',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Hello, Claude!')
+    ),
+    api_key_name => 'ANTHROPIC_API_KEY'
+)->'content'->0->>'text';
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The Claude model to use (e.g., `claude-3-5-sonnet-20241022`) |
+| `messages` | `JSONB` | - | ✔ | Array of message objects with `role` and `content` |
+| `max_tokens` | `INT` | `1024` | ✖ | Maximum tokens to generate (required by Anthropic API) |
+| `api_key` | `TEXT` | `NULL` | ✖ | Anthropic API key. If not provided, uses configured secret |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `base_url` | `TEXT` | `NULL` | ✖ | Custom API base URL |
+| `timeout` | `FLOAT8` | `NULL` | ✖ | Request timeout in seconds |
+| `max_retries` | `INT` | `NULL` | ✖ | Maximum number of retry attempts |
+| `system_prompt` | `TEXT` | `NULL` | ✖ | System prompt to guide model behavior |
+| `user_id` | `TEXT` | `NULL` | ✖ | Unique identifier for the end user |
+| `stop_sequences` | `TEXT[]` | `NULL` | ✖ | Sequences that stop generation |
+| `temperature` | `FLOAT8` | `NULL` | ✖ | Sampling temperature (0.0 to 1.0) |
+| `tool_choice` | `JSONB` | `NULL` | ✖ | How the model should use tools (e.g., `{"type": "auto"}`) |
+| `tools` | `JSONB` | `NULL` | ✖ | Function definitions for tool use |
+| `top_k` | `INT` | `NULL` | ✖ | Only sample from top K options |
+| `top_p` | `FLOAT8` | `NULL` | ✖ | Nucleus sampling threshold (0.0 to 1.0) |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`JSONB`: The complete API response including:
+- `id`: Unique message identifier
+- `type`: Response type (always `"message"`)
+- `role`: Role of the responder (always `"assistant"`)
+- `content`: Array of content blocks (text, tool use, etc.)
+- `model`: Model used for generation
+- `stop_reason`: Why generation stopped (e.g., `"end_turn"`, `"max_tokens"`)
+- `usage`: Token usage statistics
+
+## Related functions
+
+- [`anthropic_list_models()`][anthropic_list_models]: list available Claude models
+- [`openai_chat_complete()`][openai_chat_complete]: alternative with OpenAI models
+
+[anthropic_list_models]: /api-reference/pgai/model-calling/anthropic/anthropic_list_models
+[openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete

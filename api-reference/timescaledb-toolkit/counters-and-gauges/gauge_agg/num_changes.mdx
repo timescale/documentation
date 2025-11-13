@@ -1,0 +1,48 @@
+---
+title: num_changes()
+description: Get the number of times a gauge changed from a gauge aggregate
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: counters and gauges
+  type: accessor
+  aggregates:
+  - gauge_agg()
+topics:
+- hyperfunctions
+---
+
+<Icon icon="flask" /> Early access 1.6.0
+
+Get the number of times the gauge changed during the period summarized by the gauge aggregate.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge summary created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`BIGINT`: The number of times the gauge changed
+
+## Samples
+
+Get the number of times the gauge changed over each 15-minute interval.
+
+```sql
+SELECT
+    id,
+    bucket,
+    num_changes(summary)
+FROM (
+    SELECT
+        id,
+        time_bucket('15 min'::interval, ts) AS bucket,
+        gauge_agg(ts, val) AS summary
+    FROM foo
+    GROUP BY id, time_bucket('15 min'::interval, ts)
+) t
+```

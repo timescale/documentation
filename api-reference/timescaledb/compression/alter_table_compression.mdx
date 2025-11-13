@@ -1,0 +1,72 @@
+---
+title: ALTER TABLE (Compression)
+description: Change compression settings on a compressed hypertable
+topics: [compression]
+keywords: [compression]
+tags: [settings, hypertables, alter, change]
+license: community
+type: command
+products: [cloud, mst, self_hosted]
+---
+
+import { HYPERTABLE, CHUNK, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [ALTER TABLE (Hypercore)][alter-table-hypercore].
+
+'ALTER TABLE' statement is used to turn on compression and set compression options.
+
+By itself, this `ALTER` statement alone does not compress a {HYPERTABLE}. To do so, either create a compression policy
+using the [add_compression_policy][add-compression-policy] function or manually compress a specific {HYPERTABLE} {CHUNK}
+using the [compress_chunk][compress-chunk] function.
+
+The syntax is:
+
+```sql
+ALTER TABLE <table_name> SET (timescaledb.compress,
+   timescaledb.compress_orderby = '<column_name> [ASC | DESC] [ NULLS { FIRST | LAST } ] [, ...]',
+   timescaledb.compress_segmentby = '<column_name> [, ...]',
+   timescaledb.compress_chunk_time_interval='interval'
+);
+```
+
+## Samples
+
+Configure a {HYPERTABLE} that ingests device data to use compression. Here, if the {HYPERTABLE} is often queried about a
+specific device or set of devices, the compression should be segmented using the `device_id` for greater performance.
+
+```sql
+ALTER TABLE metrics SET (timescaledb.compress, timescaledb.compress_orderby = 'time DESC', timescaledb.compress_segmentby = 'device_id');
+```
+
+You can also specify compressed {CHUNK} interval without changing other compression settings:
+
+```sql
+ALTER TABLE metrics SET (timescaledb.compress_chunk_time_interval = '24 hours');
+```
+
+To disable the previously set option, set the interval to 0:
+
+```sql
+ALTER TABLE metrics SET (timescaledb.compress_chunk_time_interval = '0');
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `timescaledb.compress` | BOOLEAN | - | ✔ | Enable or disable compression |
+| `timescaledb.compress_orderby` | TEXT | Descending order of the {HYPERTABLE}'s time column | - | Order used by compression, specified in the same way as the ORDER BY clause in a SELECT query. |
+| `timescaledb.compress_segmentby` | TEXT | No segment by columns | - | Column list on which to key the compressed segments. An identifier representing the source of the data such as `device_id` or `tags_id` is usually a good candidate. |
+| `timescaledb.compress_chunk_time_interval` | TEXT | - | - | EXPERIMENTAL: Set compressed {CHUNK} time interval used to roll {CHUNK}s into. This parameter compresses every {CHUNK}, and then irreversibly merges it into a previous adjacent {CHUNK} if possible, to reduce the total number of {CHUNK}s in the {HYPERTABLE}. Note that {CHUNK}s will not be split up during decompression. It should be set to a multiple of the current {CHUNK} interval. This option can be changed independently of other compression settings and does not require the `timescaledb.compress` argument. |
+
+## Parameters
+
+| Name | Type | Description |
+|-|-|-|
+| `table_name` | TEXT | {HYPERTABLE} that supports compression |
+| `column_name` | TEXT | Column used to order by or segment by |
+| `interval` | TEXT | Time interval used to roll compressed {CHUNK}s into |
+
+[alter-table-hypercore]: /api-reference/timescaledb/hypercore/alter_table
+[add-compression-policy]: /api-reference/timescaledb/compression/add_compression_policy
+[compress-chunk]: /api-reference/timescaledb/compression/compress_chunk

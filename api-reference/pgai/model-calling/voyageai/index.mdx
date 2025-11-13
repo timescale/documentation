@@ -1,0 +1,122 @@
+---
+title: Voyage AI functions
+sidebarTitle: Overview
+description: Generate specialized embeddings optimized for retrieval and semantic search
+keywords: [Voyage AI, embeddings, retrieval, semantic search]
+tags: [AI, VoyageAI, embeddings, search]
+license: community
+type: function
+---
+
+import { PG, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Call Voyage AI's API directly from SQL to generate high-quality embeddings optimized for retrieval and semantic search
+tasks.
+
+## What is Voyage AI?
+
+Voyage AI provides state-of-the-art embedding models specifically optimized for retrieval tasks. Their models excel at
+capturing semantic relationships and delivering superior performance on retrieval and reranking benchmarks.
+
+## Key features
+
+- **Retrieval-optimized**: Embeddings designed specifically for search and retrieval
+- **High quality**: State-of-the-art performance on embedding benchmarks
+- **Flexible input types**: Support for queries, documents, and general use
+- **Cost-effective**: Competitive pricing for production use
+
+## Prerequisites
+
+To use Voyage AI functions, you need:
+
+1. A Voyage AI API key from [dash.voyageai.com](https://dash.voyageai.com)
+2. API key configured in your database (see configuration section below)
+
+## Quick start
+
+### Generate an embedding
+
+Create a vector embedding for semantic search:
+
+```sql
+SELECT ai.voyageai_embed(
+    'voyage-3',
+    'PostgreSQL is a powerful database'
+);
+```
+
+### Specify input type
+
+Optimize embeddings for your use case:
+
+```sql
+-- For search queries
+SELECT ai.voyageai_embed(
+    'voyage-3',
+    'best database for time-series',
+    input_type => 'query'
+);
+
+-- For documents
+SELECT ai.voyageai_embed(
+    'voyage-3',
+    'PostgreSQL is a relational database',
+    input_type => 'document'
+);
+```
+
+### Batch embeddings
+
+Process multiple texts efficiently:
+
+```sql
+SELECT * FROM ai.voyageai_embed(
+    'voyage-3',
+    ARRAY[
+        'PostgreSQL is a powerful database',
+        'TimescaleDB extends PostgreSQL for time-series',
+        'pgai brings AI capabilities to PostgreSQL'
+    ],
+    input_type => 'document'
+);
+```
+
+## Configuration
+
+Store your Voyage AI API key securely in the database:
+
+```sql
+-- Store API key as a secret
+SELECT ai.create_secret('VOYAGE_API_KEY', 'your-api-key-here');
+
+-- Use the secret by name
+SELECT ai.voyageai_embed(
+    'voyage-3',
+    'sample text',
+    api_key_name => 'VOYAGE_API_KEY'
+);
+```
+
+## Available functions
+
+### Embeddings
+
+- [`voyageai_embed()`][voyageai_embed]: generate vector embeddings from text
+
+## Available models
+
+Voyage AI offers several specialized embedding models:
+
+- **voyage-3**: Latest model with best overall performance
+- **voyage-3-lite**: Faster and more cost-effective option
+- **voyage-code-3**: Optimized for code search and understanding
+- **voyage-finance-2**: Specialized for financial documents
+- **voyage-law-2**: Specialized for legal documents
+
+## Resources
+
+- [Voyage AI documentation](https://docs.voyageai.com)
+- [Voyage AI models overview](https://docs.voyageai.com/docs/embeddings)
+- [Voyage AI dashboard](https://dash.voyageai.com)
+
+[voyageai_embed]: /api-reference/pgai/model-calling/voyageai/voyageai_embed

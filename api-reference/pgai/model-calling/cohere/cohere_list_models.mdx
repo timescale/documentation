@@ -1,0 +1,64 @@
+---
+title: cohere_list_models()
+description: List available Cohere models
+keywords: [Cohere, models, list]
+tags: [AI, Cohere, models]
+license: community
+type: function
+---
+
+List all models available through the Cohere API, including embedding models, reranking models, and chat models.
+
+## Samples
+
+### List all models
+
+```sql
+SELECT * FROM ai.cohere_list_models();
+```
+
+### Filter embedding models
+
+```sql
+SELECT name, context_length
+FROM ai.cohere_list_models()
+WHERE 'embed' = ANY(endpoints);
+```
+
+### Find default models
+
+```sql
+SELECT name, endpoints
+FROM ai.cohere_list_models(default_only => true);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `api_key` | `TEXT` | `NULL` | ✖ | Cohere API key |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of secret containing the API key |
+| `endpoint` | `TEXT` | `NULL` | ✖ | Filter by endpoint type (e.g., `embed`, `rerank`, `chat`) |
+| `default_only` | `BOOL` | `NULL` | ✖ | Show only default models |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging |
+
+## Returns
+
+`TABLE`: A table with the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `name` | `TEXT` | Model name |
+| `endpoints` | `TEXT[]` | Supported endpoints (embed, rerank, chat, etc.) |
+| `finetuned` | `BOOL` | Whether the model is fine-tuned |
+| `context_length` | `INT` | Maximum context length in tokens |
+| `tokenizer_url` | `TEXT` | URL to the tokenizer |
+| `default_endpoints` | `TEXT[]` | Endpoints where this is the default model |
+
+## Related functions
+
+- [`cohere_embed()`][cohere_embed]: generate embeddings
+- [`cohere_chat_complete()`][cohere_chat_complete]: chat with Cohere models
+
+[cohere_embed]: /api-reference/pgai/model-calling/cohere/cohere_embed
+[cohere_chat_complete]: /api-reference/pgai/model-calling/cohere/cohere_chat_complete

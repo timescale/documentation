@@ -1,0 +1,59 @@
+---
+title: with_bounds()
+description: Add bounds to a gauge aggregate
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: counters and gauges
+  type: mutator
+  aggregates:
+    - gauge_agg()
+topics:
+  - hyperfunctions
+products:
+  - cloud
+  - mst
+  - self_hosted
+---
+
+<Icon icon="flask" /> Early access 1.6.0
+
+Add time bounds to an already-computed gauge aggregate. Bounds are necessary to use extrapolation accessors on the
+aggregate.
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `cs` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+| `bounds` | `TSTZRANGE` | - | ✔ | A range of `timestamptz` giving the smallest and largest allowed times in the gauge aggregate |
+
+## Returns
+
+`GaugeSummary`: A new gauge aggregate with the bounds applied
+
+## Samples
+
+Create a gauge aggregate for each `id` and each 15-minute interval. Then add bounds to the gauge aggregate, so you can
+calculate the extrapolated rate.
+
+```sql
+SELECT
+    id,
+    bucket,
+    extrapolated_rate(
+        with_bounds(
+            summary,
+            time_bucket_range('15 min'::interval, bucket)
+        )
+    )
+FROM (
+    SELECT
+        id,
+        time_bucket('15 min'::interval, ts) AS bucket,
+        gauge_agg(ts, val) AS summary
+    FROM foo
+    GROUP BY id, time_bucket('15 min'::interval, ts)
+) t
+```

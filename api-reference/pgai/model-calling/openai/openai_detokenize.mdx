@@ -1,0 +1,70 @@
+---
+title: openai_detokenize()
+description: Convert tokens back into readable text
+keywords: [OpenAI, tokens, detokenize, decode]
+tags: [AI, tokens, utilities]
+license: community
+type: function
+---
+
+Convert an array of token IDs back into readable text. This is the inverse operation of `openai_tokenize()` and is
+useful for debugging tokenization or reconstructing text from tokens.
+
+## Samples
+
+### Detokenize tokens
+
+Convert token IDs back into text:
+
+```sql
+SELECT ai.openai_detokenize(
+    'text-embedding-ada-002',
+    array[1820, 25977, 46840, 23874, 389, 264, 2579, 58466]
+);
+```
+
+Returns:
+
+```text
+           openai_detokenize
+--------------------------------------------
+ the purple elephant sits on a red mushroom
+```
+
+### Round-trip tokenization
+
+Verify tokenization is reversible:
+
+```sql
+SELECT ai.openai_detokenize(
+    'text-embedding-ada-002',
+    ai.openai_tokenize('text-embedding-ada-002', 'Hello, world!')
+);
+```
+
+Returns:
+
+```text
+ openai_detokenize
+-------------------
+ Hello, world!
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The OpenAI model to detokenize for (e.g., `text-embedding-ada-002`, `gpt-4o`) |
+| `tokens` | `INT[]` | - | ✔ | Array of token IDs to convert back into text |
+
+## Returns
+
+`TEXT`: The reconstructed text from the token IDs.
+
+## Related functions
+
+- [`openai_tokenize()`][openai_tokenize]: convert text into tokens
+- [`openai_embed()`][openai_embed]: generate embeddings from tokens
+
+[openai_tokenize]: /api-reference/pgai/model-calling/openai/openai_tokenize
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed

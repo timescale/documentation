@@ -1,0 +1,52 @@
+---
+title: parsing_auto()
+description: Automatically select an appropriate parser based on detected file types
+keywords: [vectorizer, parsing, automatic, documents]
+tags: [vectorizer, configuration, parsing]
+license: community
+type: function
+---
+
+Automatically select an appropriate parser based on detected file types. Documents with unrecognizable formats won't
+be processed and will generate an error in the `ai.vectorizer_errors` table.
+
+## Parser selection
+
+The parser selection examines file extensions and content types:
+- **PDF files, images, Office documents** (DOCX, XLSX, etc.): Uses Docling
+- **EPUB and MOBI** (e-book formats): Uses PyMuPDF
+- **Text formats** (TXT, MD, etc.): No parser used (content read directly)
+
+## Samples
+
+### Use automatic parser selection
+
+```sql
+SELECT ai.create_vectorizer(
+    'documents'::regclass,
+    loading => ai.loading_uri('file_path'),
+    parsing => ai.parsing_auto(),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768)
+);
+```
+
+## Arguments
+
+This function takes no parameters.
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`parsing_none()`][parsing_none]: skip parsing for textual data
+- [`parsing_docling()`][parsing_docling]: explicitly use Docling parser
+- [`parsing_pymupdf()`][parsing_pymupdf]: explicitly use PyMuPDF parser
+- [`loading_uri()`][loading_uri]: load data from file URIs
+
+[parsing_none]: /api-reference/pgai/vectorizer/parsing_none
+[parsing_docling]: /api-reference/pgai/vectorizer/parsing_docling
+[parsing_pymupdf]: /api-reference/pgai/vectorizer/parsing_pymupdf
+[loading_uri]: /api-reference/pgai/vectorizer/loading_uri
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer
