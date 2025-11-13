@@ -28,15 +28,15 @@
             ]
           },
           {
-            "tab": "Cloud management",
-            "dropdowns": [
+            "tab": "Cloud",
+            "menu": [
               {
-                "dropdown": "Tiger Cloud",
+                "item": "Tiger Cloud",
                 "groups": [
                   {
                     "group": " ",
                     "pages": [
-                      "cloud/cloud"
+                      "cloud/index"
                     ]
                   },
                   {
@@ -58,27 +58,12 @@
                     ]
                   },
                   {
-                    "group": "Data management",
-                    "pages": [
-                      "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                      "manage-data/timescaledb/data-management/hypercore/understand-hypercore",
-                      "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
-                    ]
-                  },
-                  {
                     "group": "Storage",
                     "pages": [
                       "cloud/tiger/storage/manage-storage-tiers",
                       "cloud/tiger/storage/query-tiered-data",
                       "cloud/tiger/storage/replicas-and-forks-with-tiered-data",
                       "cloud/tiger/storage/query-another-data-source-fdw"
-                    ]
-                  },
-                  {
-                    "group": "AI and vector",
-                    "pages": [
-                      "cloud/tiger/ai-vector/add-rag-to-your-service",
-                      "cloud/tiger/ai-vector/speed-up-search"
                     ]
                   },
                   {
@@ -138,12 +123,12 @@
                 ]
               },
               {
-                "dropdown": "MST",
+                "item": "MST",
                 "groups": [
                   {
                     "group": " ",
                     "pages": [
-                      "cloud/mst/mst"
+                      "cloud/mst/index"
                     ]
                   },
                   {
@@ -218,109 +203,131 @@
             ]
           },
           {
-            "tab": "Data management",
-            "dropdowns": [
+            "tab": "Data",
+            "groups": [
               {
-                "dropdown": "Time-series",
-                "groups": [
+                "group": "  ",
+                "pages": [
+                  "manage-data/index"
+                ]
+              },
+              {
+                "group": "Get started",
+                "pages": [
+                  "manage-data/timescaledb/get-started/get-started-with-timescaledb",
+                  "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                ]
+              },
+              {
+                "group": "Understand",
+                "pages": [
+                  "manage-data/timescaledb/understand/timescaledb-architecture",
+                  "manage-data/timescaledb/understand/design-your-data-model"
+                ]
+              },
+              {
+                "group": "Data management",
+                "pages": [
                   {
-                    "group": "  ",
+                    "group": "Hypertables",
                     "pages": [
-                      "manage-data/manage-data"
+                      "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
+                      "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
                     ]
                   },
                   {
-                    "group": "Get started",
+                    "group": "Hypercore",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
                     ]
                   },
                   {
-                    "group": "Understand",
+                    "group": "Continuous aggregates",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
                     ]
                   },
                   {
-                    "group": "Data management",
+                    "group": "Optimize your schema",
                     "pages": [
-                      {
-                        "group": "Hypertables",
-                        "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
-                        ]
-                      },
-                      {
-                        "group": "Hypercore",
-                        "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
-                        ]
-                      },
-                      {
-                        "group": "Continuous aggregates",
-                        "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
-                        ]
-                      },
-                      {
-                        "group": "Optimize your schema",
-                        "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
-                        ]
-                      },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
-                        ]
-                      }
+                      "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
                     ]
                   },
                   {
-                    "group": "Import and ingest data",
+                    "group": "Jobs",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshooting",
-                    "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Reference",
-                    "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/timescaledb/data-management/jobs/understand-jobs"
                     ]
                   }
                 ]
               },
               {
-                "dropdown": "AI",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "manage-data/pgai/pgai"
-                    ]
-                  },
-                  {
-                    "group": "Get started",
-                    "pages": [
-                      "manage-data/pgai/pgai-get-started",
-                      "manage-data/pgai/vectorizer-automate-ai-embeddings"
-                    ]
-                  }
+                "group": "Import and ingest data",
+                "pages": [
+                  "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
+                  "manage-data/timescaledb/data-management/import-and-ingest/import-console",
+                  "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
+                  "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                ]
+              },
+              {
+                "group": "Troubleshooting",
+                "pages": [
+                  "manage-data/timescaledb/troubleshooting/troubleshooting"
+                ]
+              },
+              {
+                "group": "Reference",
+                "pages": [
+                  "manage-data/timescaledb/reference/timescaledb-editions",
+                  "manage-data/timescaledb/reference/configuration-parameters",
+                  "manage-data/timescaledb/reference/limitations",
+                  "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Agentic Postgres",
+            "groups": [
+              {
+                "group": " ",
+                "pages": [
+                  "agentic-postgres/index"
+                ]
+              },
+              {
+                "group": "Agent frameworks",
+                "pages": [
+                  "agentic-postgres/agents/tiger-eon",
+                  "agentic-postgres/agents/tiger-agents-for-work",
+                  "agentic-postgres/agents/mcp-server"
+                ]
+              },
+              {
+                "group": "pgai",
+                "pages": [
+                  "agentic-postgres/pgai/pgai",
+                  "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
+                ]
+              },
+              {
+                "group": "pgvectorscale",
+                "pages": [
+                  "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
+                ]
+              },
+              {
+                "group": "Interfaces",
+                "pages": [
+                  "agentic-postgres/interfaces/python-interface",
+                  "agentic-postgres/interfaces/sql-interface"
+                ]
+              },
+              {
+                "group": "Concepts",
+                "pages": [
+                  "agentic-postgres/key-vector-database-concepts"
                 ]
               }
             ]
@@ -331,7 +338,7 @@
               {
                 "group": " ",
                 "pages": [
-                  "tutorials/tutorials"
+                  "tutorials/index"
                 ]
               },
               {
@@ -355,12 +362,12 @@
             ]
           },
           {
-            "tab": "Integration",
+            "tab": "Integrations",
             "groups": [
               {
                 "group": " ",
                 "pages": [
-                  "integrations/integrations"
+                  "integrations/index"
                 ]
               },
               {
@@ -444,7 +451,7 @@
               {
                 "group": " ",
                 "pages": [
-                  "self-host/self-host"
+                  "self-host/index"
                 ]
               },
               {
@@ -488,11 +495,10 @@
             ]
           },
           {
-            "tab": "API reference",
-            "url": "api-reference/api-reference",
-            "dropdowns": [
+            "tab": "API",
+            "menu": [
               {
-                "dropdown": "TimescaleDB ",
+                "item": "TimescaleDB API",
                 "groups": [
                   {
                     "group": " ",
@@ -817,7 +823,7 @@
                 ]
               },
               {
-                "dropdown": "TimescaleDB toolkit",
+                "item": "TimescaleDB Toolkit API",
                 "groups": [
                   {
                     "group": " ",
@@ -1159,7 +1165,7 @@
                 ]
               },
               {
-                "dropdown": "Tiger Cloud REST API",
+                "item": "Tiger Cloud REST API",
                 "groups": [
                   {
                     "group": " ",
@@ -1174,7 +1180,7 @@
                 ]
               },
               {
-                "dropdown": "pgai ",
+                "item": "pgai API",
                 "groups": [
                   {
                     "group": " ",
@@ -1386,7 +1392,7 @@
                 ]
               },
               {
-                "dropdown": "pgvectorscale ",
+                "item": "pgvectorscale API",
                 "groups": [
                   {
                     "group": " ",
