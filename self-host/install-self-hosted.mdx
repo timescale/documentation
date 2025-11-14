@@ -1,0 +1,1431 @@
+---
+title: Install self-hosted TimescaleDB
+description: Deploy TimescaleDB on your own hardware with Docker, Kubernetes, Linux, macOS, Windows, or build from source
+---
+
+import DevProdEnvironments from '/snippets/self-host/_dev-prod-environments.mdx';
+import SupportedPlatformsLinux from '/snippets/self-host/_supported-platforms-linux.mdx';
+import SupportedPlatformsMacOS from '/snippets/self-host/_supported-platforms-macos.mdx';
+import SupportedPlatformsWindows from '/snippets/self-host/_supported-platforms-windows.mdx';
+import { TIMESCALE_DB, PG, CLOUD_LONG, COMPANY, SELF_LONG, SELF_SHORT, TOOLKIT_LONG, TDB_APACHE, TDB_COMMUNITY } from '/snippets/vars.mdx';
+
+{TIMESCALE_DB} is an open-source {PG} extension that powers {CLOUD_LONG}. Designed for running real-time analytics on time-series data, it supercharges ingest, query, storage, and analytics performance.
+
+You can install {SELF_LONG} from source, with a pre-built Docker container, or on one of the supported platforms.
+
+<DevProdEnvironments />
+
+<Tabs>
+  <Tab title="Docker">
+    ## Install TimescaleDB on Docker
+
+    {TIMESCALE_DB} is a [{PG} extension][pg-extension] for time series and demanding workloads that ingest and query high volumes of data. You can install a {TIMESCALE_DB} instance on any local system from a pre-built Docker container.
+
+    ### Prerequisites
+
+    To run and connect to a {PG} installation on Docker, you need to install:
+
+    - [Docker][docker-install]
+    - [psql][psql-install]
+
+    ### Install and configure TimescaleDB on Postgres
+
+    <Tabs>
+      <Tab title={`TimescaleDB-HA`}>
+        The [TimescaleDB HA][timescaledb-ha] Docker image offers the most complete {TIMESCALE_DB} experience. It uses [Ubuntu][ubuntu], includes [{TOOLKIT_LONG}][toolkit], and support for PostGIS and Patroni.
+
+        1. **Run the {TIMESCALE_DB} Docker image**
+
+            To install the latest release based on {PG} 17:
+
+            ```bash
+            docker pull timescale/timescaledb-ha:pg17
+            ```
+
+            {TIMESCALE_DB} is pre-created in the default {PG} database and is added by default to any new database you create in this image.
+
+        2. **Run the container**
+
+            Replace `</a/local/data/folder>` with the path to the folder you want to keep your data in the following command.
+
+            ```bash
+            docker run -d --name timescaledb -p 5432:5432 -v </a/local/data/folder>:/pgdata -e PGDATA=/pgdata -e POSTGRES_PASSWORD=password timescale/timescaledb-ha:pg17
+            ```
+
+            If you are running multiple container instances, change the port each Docker instance runs on.
+
+            <Info>
+            On UNIX-based systems, Docker modifies Linux IP tables to bind the container. If your system uses Linux Uncomplicated Firewall (UFW), Docker may [override your UFW port binding settings][ufw-docker]. To prevent this, add `DOCKER_OPTS="--iptables=false"` to `/etc/default/docker`.
+            </Info>
+
+        3. **Connect to a database on your {PG} instance**
+
+            The default user and database are both `postgres`. You set the password in `POSTGRES_PASSWORD` in the previous step. The default command to connect to {PG} is:
+
+            ```bash
+            psql -d "postgres://postgres:password@localhost/postgres"
+            ```
+
+        4. **Check that {TIMESCALE_DB} is installed**
+
+            ```sql
+            \dx
+            ```
+
+            You see the list of installed extensions:
+
+            ```sql
+            Name                | Version |   Schema   | Description
+            --------------------+---------+------------+---------------------------------------------------------------------------------------
+            plpgsql            | 1.0     | pg_catalog | PL/pgSQL procedural language
+            timescaledb        | 2.20.3  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)
+            timescaledb_toolkit| 1.21.0  | public     | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities
+            (3 rows)
+            ```
+
+            Press `q` to exit the list of extensions.
+
+        ### More Docker options
+
+        If you want to access the container from the host but avoid exposing it to the outside world, you can bind to `127.0.0.1` instead of the public interface:
+
+        ```bash
+        docker run -d --name timescaledb -p 127.0.0.1:5432:5432 \
+        -v </a/local/data/folder>:/pgdata -e PGDATA=/pgdata -e POSTGRES_PASSWORD=password timescale/timescaledb-ha:pg17
+        ```
+
+        If you don't want to install `psql` and other {PG} client tools locally, or if you are using a Microsoft Windows host system, you can connect using the version of `psql` that is bundled within the container:
+
+        ```bash
+        docker exec -it timescaledb psql -U postgres
+        ```
+
+        When you install {TIMESCALE_DB} using a Docker container, the {PG} settings are inherited from the container. In most cases, you do not need to adjust them. However, if you need to change a setting, you can add `-c setting=value` to your Docker `run` command. For more information, see the [Docker documentation][docker-docs].
+
+        ### View logs in Docker
+
+        If you have {TIMESCALE_DB} installed in a Docker container, you can view your logs using Docker, instead of looking in `/var/lib/logs` or `/var/logs`. For more information, see the [Docker documentation on logs][docker-logs].
+      </Tab>
+
+      <Tab title={`TimescaleDB light`}>
+        The light-weight [TimescaleDB][timescaledb-light] Docker image uses [Alpine][alpine] and does not contain [{TOOLKIT_LONG}][toolkit] or support for PostGIS and Patroni.
+
+        1. **Run the {TIMESCALE_DB} Docker image**
+
+            To install the latest release based on {PG} 17:
+
+            ```bash
+            docker pull timescale/timescaledb:latest-pg17
+            ```
+
+            {TIMESCALE_DB} is pre-created in the default {PG} database and added by default to any new database you create in this image.
+
+        2. **Run the container**
+
+            ```bash
+            docker run -v </a/local/data/folder>:/pgdata -e PGDATA=/pgdata \
+                -d --name timescaledb -p 5432:5432 -e POSTGRES_PASSWORD=password timescale/timescaledb:latest-pg17
+            ```
+
+            If you are running multiple container instances, change the port each Docker instance runs on.
+
+            <Info>
+            On UNIX-based systems, Docker modifies Linux IP tables to bind the container. If your system uses Linux Uncomplicated Firewall (UFW), Docker may [override your UFW port binding settings][ufw-docker]. To prevent this, add `DOCKER_OPTS="--iptables=false"` to `/etc/default/docker`.
+            </Info>
+
+        3. **Connect to a database on your {PG} instance**
+
+            The default user and database are both `postgres`. You set the password in `POSTGRES_PASSWORD` in the previous step. The default command to connect to {PG} in this image is:
+
+            ```bash
+            psql -d "postgres://postgres:password@localhost/postgres"
+            ```
+
+        4. **Check that {TIMESCALE_DB} is installed**
+
+            ```sql
+            \dx
+            ```
+
+            You see the list of installed extensions:
+
+            ```sql
+            Name        | Version |   Schema   | Description
+            ------------+---------+------------+---------------------------------------------------------------------------------------
+            plpgsql    | 1.0     | pg_catalog | PL/pgSQL procedural language
+            timescaledb| 2.20.3  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)
+            ```
+
+            Press `q` to exit the list of extensions.
+
+        ### More Docker options
+
+        If you want to access the container from the host but avoid exposing it to the outside world, you can bind to `127.0.0.1` instead of the public interface:
+
+        ```bash
+        docker run -v </a/local/data/folder>:/pgdata -e PGDATA=/pgdata \
+          -d --name timescaledb -p 127.0.0.1:5432:5432 \
+          -e POSTGRES_PASSWORD=password timescale/timescaledb:latest-pg17
+        ```
+
+        If you don't want to install `psql` and other {PG} client tools locally, or if you are using a Microsoft Windows host system, you can connect using the version of `psql` that is bundled within the container:
+
+        ```bash
+        docker exec -it timescaledb psql -U postgres
+        ```
+
+        Existing containers can be stopped using `docker stop` and started again with `docker start` while retaining their volumes and data. When you create a new container using the `docker run` command, by default you also create a new data volume. When you remove a Docker container with `docker rm`, the data volume persists on disk until you explicitly delete it. You can use the `docker volume ls` command to list existing docker volumes. If you want to store the data from your Docker container in a host directory, or you want to run the Docker image on top of an existing data directory, you can specify the directory to mount a data volume using the `-v` flag:
+
+        ```bash
+        docker run -d --name timescaledb -p 5432:5432 \
+        -v </your/data/dir>:/pgdata -e PGDATA=/pgdata \
+        -e POSTGRES_PASSWORD=password timescale/timescaledb:latest-pg17
+        ```
+
+        When you install {TIMESCALE_DB} using a Docker container, the {PG} settings are inherited from the container. In most cases, you do not need to adjust them. However, if you need to change a setting, you can add `-c setting=value` to your Docker `run` command. For more information, see the [Docker documentation][docker-docs].
+
+        ### View logs in Docker
+
+        If you have {TIMESCALE_DB} installed in a Docker container, you can view your logs using Docker, instead of looking in `/var/log`. For more information, see the [Docker documentation on logs][docker-logs].
+      </Tab>
+    </Tabs>
+
+    ### Add the TimescaleDB extension to your database
+
+    For improved performance, you enable {TIMESCALE_DB} on each database on your {SELF_SHORT} {PG} instance. This section shows you how to enable {TIMESCALE_DB} for a new database in {PG} using `psql` from the command line.
+
+    1. **Connect to a database on your {PG} instance**
+
+        In {PG}, the default user and database are both `postgres`. To use a different database, set `<database-name>` to the name of that database:
+
+        ```bash
+        psql -d "postgres://<username>:<password>@<host>:<port>/<database-name>"
+        ```
+
+    2. **Add {TIMESCALE_DB} to the database**
+
+        ```sql
+        CREATE EXTENSION IF NOT EXISTS timescaledb;
+        ```
+
+    3. **Check that {TIMESCALE_DB} is installed**
+
+        ```sql
+        \dx
+        ```
+
+        You see the list of installed extensions:
+
+        ```sql
+        List of installed extensions
+        Name        | Version |   Schema   | Description
+        ------------+---------+------------+---------------------------------------------------------------------------------------
+        plpgsql    | 1.0     | pg_catalog | PL/pgSQL procedural language
+        timescaledb| 2.17.2  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)
+        ```
+
+        Press `q` to exit the list of extensions.
+  </Tab>
+
+  <Tab title="Linux">
+    ## Install TimescaleDB on Linux
+
+    {TIMESCALE_DB} is a [{PG} extension][pg-extension] for time series and demanding workloads that ingest and query high volumes of data.
+
+    <Info>
+    If you have previously installed {PG} without a package manager, you may encounter errors following these install instructions. Best practice is to fully remove any existing {PG} installations before you begin.
+
+    To keep your current {PG} installation, install from source.
+    </Info>
+
+    ### Install and configure TimescaleDB on Postgres
+
+    <Tabs>
+      <Tab title="Debian">
+        1. **Install the latest {PG} packages**
+
+            ```bash
+            sudo apt install gnupg postgresql-common apt-transport-https lsb-release wget
+            ```
+
+        2. **Run the {PG} package setup script**
+
+            ```bash
+            sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+            ```
+
+        3. **Add the {TIMESCALE_DB} package**
+
+            ```bash
+            echo "deb https://packagecloud.io/timescale/timescaledb/debian/ $(lsb_release -c -s) main" | sudo tee /etc/apt/sources.list.d/timescaledb.list
+            ```
+
+        4. **Install the {TIMESCALE_DB} GPG key**
+
+            ```bash
+            wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/timescaledb.gpg
+            ```
+
+        5. **Update your local repository list**
+
+            ```bash
+            sudo apt update
+            ```
+
+        6. **Install {TIMESCALE_DB}**
+
+            ```bash
+            sudo apt install timescaledb-2-postgresql-17 postgresql-client-17
+            ```
+
+            To install a specific {TIMESCALE_DB} [release][packagecloud], set the version. For example:
+
+            `sudo apt-get install timescaledb-2-postgresql-14='2.6.0*' timescaledb-2-loader-postgresql-14='2.6.0*'`
+
+            Older versions of {TIMESCALE_DB} may not support all the OS versions listed on this page.
+
+        7. **Tune your {PG} instance for {TIMESCALE_DB}**
+
+            ```bash
+            sudo timescaledb-tune
+            ```
+
+            By default, this script is included with the `timescaledb-tools` package when you install {TIMESCALE_DB}. Use the prompts to tune your development or production environment. If you have an issue, run `sudo apt install timescaledb-tools`.
+
+        8. **Restart {PG}**
+
+            ```bash
+            sudo systemctl restart postgresql
+            ```
+
+        9. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are in the psql shell.
+
+        10. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+
+      <Tab title="Ubuntu">
+        1. **Install the latest {PG} packages**
+
+            ```bash
+            sudo apt install gnupg postgresql-common apt-transport-https lsb-release wget
+            ```
+
+        2. **Run the {PG} package setup script**
+
+            ```bash
+            sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+            ```
+
+        3. **Add the {TIMESCALE_DB} package**
+
+            ```bash
+            echo "deb https://packagecloud.io/timescale/timescaledb/ubuntu/ $(lsb_release -c -s) main" | sudo tee /etc/apt/sources.list.d/timescaledb.list
+            ```
+
+        4. **Install the {TIMESCALE_DB} GPG key**
+
+            ```bash
+            wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/timescaledb.gpg
+            ```
+
+            For Ubuntu 21.10 and earlier use the following command:
+
+            `wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | sudo apt-key add -`
+
+        5. **Update your local repository list**
+
+            ```bash
+            sudo apt update
+            ```
+
+        6. **Install {TIMESCALE_DB}**
+
+            ```bash
+            sudo apt install timescaledb-2-postgresql-17 postgresql-client-17
+            ```
+
+            To install a specific {TIMESCALE_DB} [release][packagecloud], set the version. For example:
+
+            `sudo apt-get install timescaledb-2-postgresql-14='2.6.0*' timescaledb-2-loader-postgresql-14='2.6.0*'`
+
+            Older versions of {TIMESCALE_DB} may not support all the OS versions listed on this page.
+
+        7. **Tune your {PG} instance for {TIMESCALE_DB}**
+
+            ```bash
+            sudo timescaledb-tune
+            ```
+
+            By default, this script is included with the `timescaledb-tools` package when you install {TIMESCALE_DB}. Use the prompts to tune your development or production environment. If you have an issue, run `sudo apt install timescaledb-tools`.
+
+        8. **Restart {PG}**
+
+            ```bash
+            sudo systemctl restart postgresql
+            ```
+
+        9. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are in the psql shell.
+
+        10. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+
+      <Tab title="Red Hat">
+        1. **Install the latest {PG} packages**
+
+            ```bash
+            sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-$(rpm -E %{rhel})-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+            ```
+
+        2. **Add the {TIMESCALE_DB} repository**
+
+            ```bash
+            sudo tee /etc/yum.repos.d/timescale_timescaledb.repo <<EOL
+            [timescale_timescaledb]
+            name=timescale_timescaledb
+            baseurl=https://packagecloud.io/timescale/timescaledb/el/$(rpm -E %{rhel})/\$basearch
+            repo_gpgcheck=1
+            gpgcheck=0
+            enabled=1
+            gpgkey=https://packagecloud.io/timescale/timescaledb/gpgkey
+            sslverify=1
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+            metadata_expire=300
+            EOL
+            ```
+
+        3. **Update your local repository list**
+
+            ```bash
+            sudo yum update
+            ```
+
+        4. **Install {TIMESCALE_DB}**
+
+            To avoid errors, **do not** install {TDB_APACHE} and {TDB_COMMUNITY} at the same time.
+
+            ```bash
+            sudo yum install timescaledb-2-postgresql-17 postgresql17
+            ```
+
+            <Info>
+            On Red Hat Enterprise Linux 8 and later, disable the built-in {PG} module:
+
+            `sudo dnf -qy module disable postgresql`
+            </Info>
+
+        5. **Initialize the {PG} instance**
+
+            ```bash
+            sudo /usr/pgsql-17/bin/postgresql-17-setup initdb
+            ```
+
+        6. **Tune your {PG} instance for {TIMESCALE_DB}**
+
+            ```bash
+            sudo timescaledb-tune --pg-config=/usr/pgsql-17/bin/pg_config
+            ```
+
+            This script is included with the `timescaledb-tools` package when you install {TIMESCALE_DB}.
+
+        7. **Enable and start {PG}**
+
+            ```bash
+            sudo systemctl enable postgresql-17
+            sudo systemctl start postgresql-17
+            ```
+
+        8. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are now in the psql shell.
+
+        9. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+
+      <Tab title="Fedora">
+        1. **Install the latest {PG} packages**
+
+            ```bash
+            sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/F-$(rpm -E %{fedora})-x86_64/pgdg-fedora-repo-latest.noarch.rpm
+            ```
+
+        2. **Add the {TIMESCALE_DB} repository**
+
+            ```bash
+            sudo tee /etc/yum.repos.d/timescale_timescaledb.repo <<EOL
+            [timescale_timescaledb]
+            name=timescale_timescaledb
+            baseurl=https://packagecloud.io/timescale/timescaledb/el/9/\$basearch
+            repo_gpgcheck=1
+            gpgcheck=0
+            enabled=1
+            gpgkey=https://packagecloud.io/timescale/timescaledb/gpgkey
+            sslverify=1
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+            metadata_expire=300
+            EOL
+            ```
+
+        3. **Update your local repository list**
+
+            ```bash
+            sudo yum update
+            ```
+
+        4. **Install {TIMESCALE_DB}**
+
+            To avoid errors, **do not** install {TDB_APACHE} and {TDB_COMMUNITY} at the same time.
+
+            ```bash
+            sudo yum install timescaledb-2-postgresql-17 postgresql17
+            ```
+
+            <Info>
+            On Red Hat Enterprise Linux 8 and later, disable the built-in {PG} module:
+
+            `sudo dnf -qy module disable postgresql`
+            </Info>
+
+        5. **Initialize the {PG} instance**
+
+            ```bash
+            sudo /usr/pgsql-17/bin/postgresql-17-setup initdb
+            ```
+
+        6. **Tune your {PG} instance for {TIMESCALE_DB}**
+
+            ```bash
+            sudo timescaledb-tune --pg-config=/usr/pgsql-17/bin/pg_config
+            ```
+
+            This script is included with the `timescaledb-tools` package when you install {TIMESCALE_DB}.
+
+        7. **Enable and start {PG}**
+
+            ```bash
+            sudo systemctl enable postgresql-17
+            sudo systemctl start postgresql-17
+            ```
+
+        8. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are now in the psql shell.
+
+        9. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+
+      <Tab title="Rocky Linux">
+        {COMPANY} supports Rocky Linux 8 and 9 on amd64 only.
+
+        1. **Update your local repository list**
+
+            ```bash
+            sudo dnf update -y
+            sudo dnf install -y epel-release
+            ```
+
+        2. **Install the latest {PG} packages**
+
+            ```bash
+            sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+            ```
+
+        3. **Add the {TIMESCALE_DB} repository**
+
+            ```bash
+            sudo tee /etc/yum.repos.d/timescale_timescaledb.repo <<EOL
+            [timescale_timescaledb]
+            name=timescale_timescaledb
+            baseurl=https://packagecloud.io/timescale/timescaledb/el/9/\$basearch
+            repo_gpgcheck=1
+            gpgcheck=0
+            enabled=1
+            gpgkey=https://packagecloud.io/timescale/timescaledb/gpgkey
+            sslverify=1
+            sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+            metadata_expire=300
+            EOL
+            ```
+
+        4. **Disable the built-in {PG} module**
+
+            This is for Rocky Linux 9 only.
+
+            ```bash
+            sudo dnf module disable postgresql -y
+            ```
+
+        5. **Install {TIMESCALE_DB}**
+
+            To avoid errors, **do not** install {TDB_APACHE} and {TDB_COMMUNITY} at the same time.
+
+            ```bash
+            sudo dnf install -y postgresql16-server postgresql16-contrib timescaledb-2-postgresql-16
+            ```
+
+        6. **Initialize the {PG} instance**
+
+            ```bash
+            sudo /usr/pgsql-16/bin/postgresql-16-setup initdb
+            ```
+
+        7. **Tune your {PG} instance for {TIMESCALE_DB}**
+
+            ```bash
+            sudo timescaledb-tune --pg-config=/usr/pgsql-16/bin/pg_config
+            ```
+
+            This script is included with the `timescaledb-tools` package when you install {TIMESCALE_DB}.
+
+        8. **Enable and start {PG}**
+
+            ```bash
+            sudo systemctl enable postgresql-16
+            sudo systemctl start postgresql-16
+            ```
+
+        9. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are now in the psql shell.
+
+        10. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+
+      <Tab title="ArchLinux">
+        ArchLinux packages are built by the community.
+
+        1. **Install the latest {PG} and {TIMESCALE_DB} packages**
+
+            ```bash
+            sudo pacman -Syu timescaledb timescaledb-tune postgresql-libs
+            ```
+
+        2. **Initialize your {PG} instance**
+
+            ```bash
+            sudo -u postgres initdb --locale=en_US.UTF-8 --encoding=UTF8 -D /var/lib/postgres/data --data-checksums
+            ```
+
+        3. **Tune your {PG} instance for {TIMESCALE_DB}**
+
+            ```bash
+            sudo timescaledb-tune
+            ```
+
+            This script is included with the `timescaledb-tools` package when you install {TIMESCALE_DB}.
+
+        4. **Enable and start {PG}**
+
+            ```bash
+            sudo systemctl enable postgresql.service
+            sudo systemctl start postgresql.service
+            ```
+
+        5. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are in the psql shell.
+
+        6. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+    </Tabs>
+
+    ### Add the TimescaleDB extension to your database
+
+    For improved performance, you enable {TIMESCALE_DB} on each database on your {SELF_SHORT} {PG} instance. This section shows you how to enable {TIMESCALE_DB} for a new database in {PG} using `psql` from the command line.
+
+    1. **Connect to a database on your {PG} instance**
+
+        In {PG}, the default user and database are both `postgres`. To use a different database, set `<database-name>` to the name of that database:
+
+        ```bash
+        psql -d "postgres://<username>:<password>@<host>:<port>/<database-name>"
+        ```
+
+    2. **Add {TIMESCALE_DB} to the database**
+
+        ```sql
+        CREATE EXTENSION IF NOT EXISTS timescaledb;
+        ```
+
+    3. **Check that {TIMESCALE_DB} is installed**
+
+        ```sql
+        \dx
+        ```
+
+        You see the list of installed extensions:
+
+        ```sql
+        List of installed extensions
+        Name        | Version |   Schema   | Description
+        ------------+---------+------------+---------------------------------------------------------------------------------------
+        plpgsql    | 1.0     | pg_catalog | PL/pgSQL procedural language
+        timescaledb| 2.17.2  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)
+        ```
+
+        Press `q` to exit the list of extensions.
+
+    <SupportedPlatformsLinux />
+  </Tab>
+
+  <Tab title="MacOS">
+    ## Install self-hosted TimescaleDB on macOS
+
+    {TIMESCALE_DB} is a [{PG} extension][pg-extension] for time series and demanding workloads that ingest and query high volumes of data. You can host {TIMESCALE_DB} on a macOS device.
+
+    ### Prerequisites
+
+    To install {TIMESCALE_DB} on your MacOS device, you need:
+
+    - [{PG}][pg-macos]: for the latest functionality, install {PG} v16
+
+    <Info>
+    If you have already installed {PG} using a method other than Homebrew or MacPorts, you may encounter errors following these install instructions. Best practice is to fully remove any existing {PG} installations before you begin.
+
+    To keep your current {PG} installation, install from source.
+    </Info>
+
+    ### Install and configure TimescaleDB on Postgres
+
+    <Tabs>
+      <Tab title="Homebrew">
+        1. **Install Homebrew**
+
+            If you don't already have it:
+
+            ```bash
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            ```
+
+            For more information about Homebrew, including installation instructions, see the [Homebrew documentation][homebrew-docs].
+
+        2. **Add the {TIMESCALE_DB} Homebrew tap**
+
+            ```bash
+            brew tap timescale/tap
+            ```
+
+        3. **Install {TIMESCALE_DB} and psql**
+
+            ```bash
+            brew install timescaledb libpq
+            ```
+
+        4. **Update your path to include psql**
+
+            ```bash
+            brew link --force libpq
+            ```
+
+            On Intel chips, the symbolic link is added to `/usr/local/bin`. On Apple Silicon, the symbolic link is added to `/opt/homebrew/bin`.
+
+        5. **Run the `timescaledb-tune` script to configure your database**
+
+            ```bash
+            timescaledb-tune --quiet --yes
+            ```
+
+        6. **Change to the directory where the setup script is located**
+
+            It is typically located at `/opt/homebrew/Cellar/timescaledb/<VERSION>/bin/`, where `<VERSION>` is the version of `timescaledb` that you installed:
+
+            ```bash
+            cd /opt/homebrew/Cellar/timescaledb/<VERSION>/bin/
+            ```
+
+        7. **Run the setup script to complete installation**
+
+            ```bash
+            ./timescaledb_move.sh
+            ```
+
+        8. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are in the psql shell.
+
+        9. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+
+      <Tab title="MacPorts">
+        1. **Install MacPorts**
+
+            Download and run the package installer. For more information about MacPorts, including installation instructions, see the [MacPorts documentation][macports-docs].
+
+        2. **Install {TIMESCALE_DB} and psql**
+
+            ```bash
+            sudo port install timescaledb libpqxx
+            ```
+
+            To view the files installed, run:
+
+            ```bash
+            port contents timescaledb libpqxx
+            ```
+
+            <Warning>
+            MacPorts does not install the `timescaledb-tools` package or run the `timescaledb-tune` script. For more information about tuning your database, see the tuning documentation.
+            </Warning>
+
+        3. **Log in to {PG} as `postgres`**
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are in the psql shell.
+
+        4. **Set the password for `postgres`**
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+      </Tab>
+    </Tabs>
+
+    ### Add the TimescaleDB extension to your database
+
+    For improved performance, you enable {TIMESCALE_DB} on each database on your {SELF_SHORT} {PG} instance. This section shows you how to enable {TIMESCALE_DB} for a new database in {PG} using `psql` from the command line.
+
+    1. **Connect to a database on your {PG} instance**
+
+        In {PG}, the default user and database are both `postgres`. To use a different database, set `<database-name>` to the name of that database:
+
+        ```bash
+        psql -d "postgres://<username>:<password>@<host>:<port>/<database-name>"
+        ```
+
+    2. **Add {TIMESCALE_DB} to the database**
+
+        ```sql
+        CREATE EXTENSION IF NOT EXISTS timescaledb;
+        ```
+
+    3. **Check that {TIMESCALE_DB} is installed**
+
+        ```sql
+        \dx
+        ```
+
+        You see the list of installed extensions:
+
+        ```sql
+        List of installed extensions
+        Name        | Version |   Schema   | Description
+        ------------+---------+------------+---------------------------------------------------------------------------------------
+        plpgsql    | 1.0     | pg_catalog | PL/pgSQL procedural language
+        timescaledb| 2.17.2  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)
+        ```
+
+        Press `q` to exit the list of extensions.
+
+    <SupportedPlatformsMacOS />
+  </Tab>
+
+  <Tab title="Windows">
+    ## Install TimescaleDB on Windows
+
+    {TIMESCALE_DB} is a [{PG} extension][pg-extension] for time series and demanding workloads that ingest and query high volumes of data.
+
+    ### Prerequisites
+
+    To install {TIMESCALE_DB} on your Windows device, you need:
+
+    - OpenSSL v3.x
+
+        For {TIMESCALE_DB} v2.14.1 only, you need to install OpenSSL v1.1.1.
+    - [Visual C++ Redistributable for Visual Studio 2015][vs-redist]
+
+    <Info>
+    If you have previously installed {PG} without a package manager, you may encounter errors following these install instructions. Best practice is to fully remove any existing {PG} installations before you begin.
+
+    To keep your current {PG} installation, install from source.
+    </Info>
+
+    ### Install and configure TimescaleDB on Postgres
+
+    1. **Install the latest version of {PG} and psql**
+
+        1. Download [{PG}][pg-windows], then run the installer.
+
+            1. In the `Select Components` dialog, check `Command Line Tools`, along with any other components you want to install, and click `Next`.
+
+            2. Complete the installation wizard.
+
+        2. Check that you can run `pg_config`. If you cannot run `pg_config` from the command line, in the Windows Search tool, enter `system environment variables`. The path should be `C:\Program Files\PostgreSQL\<version>\bin`.
+
+    2. **Install {TIMESCALE_DB}**
+
+        1. Download the latest [{TIMESCALE_DB} release][tsdb-releases].
+
+        2. Unzip the {TIMESCALE_DB} installer to `<install_dir>`, your selected directory. Best practice is to use the latest version.
+
+        3. In `<install_dir>\timescaledb`, right-click `setup.exe`, then choose `Run as Administrator`.
+
+        4. Complete the installation wizard.
+
+            If you see an error like `could not load library "C:/Program Files/PostgreSQL/17/lib/timescaledb-2.17.2.dll": The specified module could not be found.`, use [Dependencies][dependencies] to ensure that your system can find the compatible DLLs for this release of TimescaleDB.
+
+    3. **Tune your {PG} instance for {TIMESCALE_DB}**
+
+        Run the `timescaledb-tune` script included in the `timescaledb-tools` package with {TIMESCALE_DB}.
+
+    4. **Log in to {PG} as `postgres`**
+
+        ```bash
+        sudo -u postgres psql
+        ```
+
+        You are in the psql shell.
+
+    5. **Set the password for `postgres`**
+
+        ```bash
+        \password postgres
+        ```
+
+        When you have set the password, type `\q` to exit psql.
+
+    ### Add the TimescaleDB extension to your database
+
+    For improved performance, you enable {TIMESCALE_DB} on each database on your {SELF_SHORT} {PG} instance. This section shows you how to enable {TIMESCALE_DB} for a new database in {PG} using `psql` from the command line.
+
+    1. **Connect to a database on your {PG} instance**
+
+        In {PG}, the default user and database are both `postgres`. To use a different database, set `<database-name>` to the name of that database:
+
+        ```bash
+        psql -d "postgres://<username>:<password>@<host>:<port>/<database-name>"
+        ```
+
+    2. **Add {TIMESCALE_DB} to the database**
+
+        ```sql
+        CREATE EXTENSION IF NOT EXISTS timescaledb;
+        ```
+
+    3. **Check that {TIMESCALE_DB} is installed**
+
+        ```sql
+        \dx
+        ```
+
+        You see the list of installed extensions:
+
+        ```sql
+        List of installed extensions
+        Name        | Version |   Schema   | Description
+        ------------+---------+------------+---------------------------------------------------------------------------------------
+        plpgsql    | 1.0     | pg_catalog | PL/pgSQL procedural language
+        timescaledb| 2.17.2  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)
+        ```
+
+        Press `q` to exit the list of extensions.
+
+    <SupportedPlatformsWindows />
+  </Tab>
+
+  <Tab title="Source">
+    ## Install self-hosted TimescaleDB from source
+
+    {TIMESCALE_DB} is a [{PG} extension][pg-extension] for time series and demanding workloads that ingest and query high volumes of data. You can install a {TIMESCALE_DB} instance on any local system, from source.
+
+    ### Prerequisites
+
+    To install {TIMESCALE_DB} from source, you need the following on your developer environment:
+
+    - **{PG}**: Install a supported version of {PG} using the [{PG} installation instructions][pg-download].
+
+        We recommend not using {TIMESCALE_DB} with {PG} 17.1, 16.5, 15.9, 14.14, 13.17, 12.21. These minor versions [introduced a breaking binary interface change][pg-binary-change] that, once identified, was reverted in subsequent minor {PG} versions 17.2, 16.6, 15.10, 14.15, 13.18, and 12.22. When you build from source, best practice is to build with {PG} 17.2, 16.6, etc and higher. Users of {CLOUD_LONG} and Platform packages built and distributed by {COMPANY} are unaffected.
+
+    - **Build tools**:
+
+        - [CMake version 3.11 or later][cmake]
+        - C language compiler for your operating system, such as `gcc` or `clang`.
+
+            If you are using a Microsoft Windows system, you can install Visual Studio 2015 or later instead of CMake and a C language compiler. Ensure you install the Visual Studio components for CMake and Git when you run the installer.
+
+    ### Install and configure TimescaleDB on Postgres
+
+    1. **Install the latest {PG} source**
+
+        1. At the command prompt, clone the {TIMESCALE_DB} GitHub repository:
+
+            ```bash
+            git clone https://github.com/timescale/timescaledb
+            ```
+
+        2. Change into the cloned directory:
+
+            ```bash
+            cd timescaledb
+            ```
+
+        3. Checkout the latest release. You can find the latest release tag on our [Releases page][tsdb-github]:
+
+            ```bash
+            git checkout 2.17.2
+            ```
+
+            This command produces an error that you are now in `detached head` state. It is expected behavior, and it occurs because you have checked out a tag, and not a branch. Continue with the steps in this procedure as normal.
+
+    2. **Build the source**
+
+        1. Bootstrap the build system:
+
+            <Tabs>
+              <Tab title="Linux">
+                ```bash
+                ./bootstrap
+                ```
+              </Tab>
+              <Tab title="Windows">
+                ```powershell
+                bootstrap.bat
+                ```
+              </Tab>
+            </Tabs>
+
+            For installation on Microsoft Windows, you might need to add the `pg_config` and `cmake` file locations to your path. In the Windows Search tool, search for `system environment variables`. The path for `pg_config` should be `C:\Program Files\PostgreSQL\<version>\bin`. The path for `cmake` is within the Visual Studio directory.
+
+        2. Build the extension:
+
+            <Tabs>
+              <Tab title="Linux">
+                ```bash
+                cd build && make
+                ```
+              </Tab>
+              <Tab title="Windows">
+                ```powershell
+                cmake --build ./build --config Release
+                ```
+              </Tab>
+            </Tabs>
+
+    3. **Install {TIMESCALE_DB}**
+
+        <Tabs>
+          <Tab title="Linux">
+            ```bash
+            make install
+            ```
+          </Tab>
+          <Tab title="Windows">
+            ```powershell
+            cmake --build ./build --config Release --target install
+            ```
+          </Tab>
+        </Tabs>
+
+    4. **Configure {PG}**
+
+        If you have more than one version of {PG} installed, {TIMESCALE_DB} can only be associated with one of them. The {TIMESCALE_DB} build scripts use `pg_config` to find out where {PG} stores its extension files, so you can use `pg_config` to find out which {PG} installation {TIMESCALE_DB} is using.
+
+        1. Locate the `postgresql.conf` configuration file:
+
+            ```bash
+            psql -d postgres -c "SHOW config_file;"
+            ```
+
+        2. Open the `postgresql.conf` file and update `shared_preload_libraries` to:
+
+            ```bash
+            shared_preload_libraries = 'timescaledb'
+            ```
+
+            If you use other preloaded libraries, make sure they are comma separated.
+
+        3. Tune your {PG} instance for {TIMESCALE_DB}
+
+            ```bash
+            sudo timescaledb-tune
+            ```
+
+            This script is included with the `timescaledb-tools` package when you install {TIMESCALE_DB}.
+
+        4. Restart the {PG} instance:
+
+            <Tabs>
+              <Tab title="Linux">
+                ```bash
+                service postgresql restart
+                ```
+              </Tab>
+              <Tab title="Windows">
+                ```powershell
+                pg_ctl restart
+                ```
+              </Tab>
+            </Tabs>
+
+    5. **Set the user password**
+
+        1. Log in to {PG} as `postgres`
+
+            ```bash
+            sudo -u postgres psql
+            ```
+
+            You are in the psql shell.
+
+        2. Set the password for `postgres`
+
+            ```bash
+            \password postgres
+            ```
+
+            When you have set the password, type `\q` to exit psql.
+
+    ### Add the TimescaleDB extension to your database
+
+    For improved performance, you enable {TIMESCALE_DB} on each database on your {SELF_SHORT} {PG} instance. This section shows you how to enable {TIMESCALE_DB} for a new database in {PG} using `psql` from the command line.
+
+    1. **Connect to a database on your {PG} instance**
+
+        In {PG}, the default user and database are both `postgres`. To use a different database, set `<database-name>` to the name of that database:
+
+        ```bash
+        psql -d "postgres://<username>:<password>@<host>:<port>/<database-name>"
+        ```
+
+    2. **Add {TIMESCALE_DB} to the database**
+
+        ```sql
+        CREATE EXTENSION IF NOT EXISTS timescaledb;
+        ```
+
+    3. **Check that {TIMESCALE_DB} is installed**
+
+        ```sql
+        \dx
+        ```
+
+        You see the list of installed extensions:
+
+        ```sql
+        List of installed extensions
+        Name        | Version |   Schema   | Description
+        ------------+---------+------------+---------------------------------------------------------------------------------------
+        plpgsql    | 1.0     | pg_catalog | PL/pgSQL procedural language
+        timescaledb| 2.17.2  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)
+        ```
+
+        Press `q` to exit the list of extensions.
+  </Tab>
+
+  <Tab title="Kubernetes">
+    ## Install TimescaleDB on Kubernetes
+
+    You can run {TIMESCALE_DB} inside Kubernetes using the {TIMESCALE_DB} Docker container images.
+
+    ### Prerequisites
+
+    To follow the steps on this page:
+
+    - Install [self-managed Kubernetes][k8s-setup] or sign up for a Kubernetes [Turnkey Cloud Solution][k8s-turnkey].
+    - Install [kubectl][kubectl] for command-line interaction with your cluster.
+
+    ### Integrate TimescaleDB in a Kubernetes cluster
+
+    Running {TIMESCALE_DB} on Kubernetes is similar to running {PG}. This procedure outlines the steps for a non-distributed system.
+
+    To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
+
+    1. **Create a default namespace for {COMPANY} components**
+
+        1. Create the {COMPANY} namespace:
+
+            ```bash
+            kubectl create namespace timescale
+            ```
+
+        2. Set this namespace as the default for your session:
+
+            ```bash
+            kubectl config set-context --current --namespace=timescale
+            ```
+
+        For more information, see [Kubernetes Namespaces][k8s-namespaces].
+
+    2. **Set up a persistent volume claim (PVC) storage**
+
+        To manually set up a persistent volume and claim for self-hosted Kubernetes, run the following command:
+
+        ```yaml
+        kubectl apply -f - <<EOF
+        apiVersion: v1
+        kind: PersistentVolumeClaim
+        metadata:
+          name: timescale-pvc
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
+        EOF
+        ```
+
+    3. **Deploy {TIMESCALE_DB} as a StatefulSet**
+
+        By default, the [{TIMESCALE_DB} Docker image][tsdb-docker] you are installing on Kubernetes uses the default {PG} database, user and password. To deploy {TIMESCALE_DB} on Kubernetes, run the following command:
+
+        ```yaml
+        kubectl apply -f - <<EOF
+        apiVersion: apps/v1
+        kind: StatefulSet
+        metadata:
+          name: timescaledb
+        spec:
+          serviceName: timescaledb
+          replicas: 1
+          selector:
+            matchLabels:
+              app: timescaledb
+          template:
+            metadata:
+              labels:
+                app: timescaledb
+            spec:
+              containers:
+                - name: timescaledb
+                  image: 'timescale/timescaledb:latest-pg17'
+                  env:
+                    - name: POSTGRES_USER
+                      value: postgres
+                    - name: POSTGRES_PASSWORD
+                      value: postgres
+                    - name: POSTGRES_DB
+                      value: postgres
+                    - name: PGDATA
+                      value: /var/lib/postgresql/data/pgdata
+                  ports:
+                    - containerPort: 5432
+                  volumeMounts:
+                    - mountPath: /var/lib/postgresql/data
+                      name: timescale-storage
+              volumes:
+                - name: timescale-storage
+                  persistentVolumeClaim:
+                    claimName: timescale-pvc
+        EOF
+        ```
+
+    4. **Allow applications to connect by exposing {TIMESCALE_DB} within Kubernetes**
+
+        ```yaml
+        kubectl apply -f - <<EOF
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: timescaledb
+        spec:
+          selector:
+            app: timescaledb
+          ports:
+            - protocol: TCP
+              port: 5432
+              targetPort: 5432
+          type: ClusterIP
+        EOF
+        ```
+
+    5. **Create a Kubernetes secret to store the database credentials**
+
+        ```bash
+        kubectl create secret generic timescale-secret \
+        --from-literal=PGHOST=timescaledb \
+        --from-literal=PGPORT=5432 \
+        --from-literal=PGDATABASE=postgres \
+        --from-literal=PGUSER=postgres \
+        --from-literal=PGPASSWORD=postgres
+        ```
+
+    6. **Deploy an application that connects to {TIMESCALE_DB}**
+
+        ```yaml
+        kubectl apply -f - <<EOF
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: timescale-app
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              app: timescale-app
+          template:
+            metadata:
+              labels:
+                app: timescale-app
+            spec:
+              containers:
+              - name: timescale-container
+                image: postgres:latest
+                envFrom:
+                  - secretRef:
+                      name: timescale-secret
+        EOF
+        ```
+
+    7. **Test the database connection**
+
+        1. Create and run a pod to verify database connectivity using your connection details saved in `timescale-secret`:
+
+            ```bash
+            kubectl run test-pod --image=postgres --restart=Never \
+            --env="PGHOST=$(kubectl get secret timescale-secret -o=jsonpath='{.data.PGHOST}' | base64 --decode)" \
+            --env="PGPORT=$(kubectl get secret timescale-secret -o=jsonpath='{.data.PGPORT}' | base64 --decode)" \
+            --env="PGDATABASE=$(kubectl get secret timescale-secret -o=jsonpath='{.data.PGDATABASE}' | base64 --decode)" \
+            --env="PGUSER=$(kubectl get secret timescale-secret -o=jsonpath='{.data.PGUSER}' | base64 --decode)" \
+            --env="PGPASSWORD=$(kubectl get secret timescale-secret -o=jsonpath='{.data.PGPASSWORD}' | base64 --decode)" \
+            -- sleep infinity
+            ```
+
+        2. Launch the {PG} interactive shell within the created `test-pod`:
+
+            ```bash
+            kubectl exec -it test-pod -- bash -c "psql -h \$PGHOST -U \$PGUSER -d \$PGDATABASE"
+            ```
+
+        You see the {PG} interactive terminal.
+
+    ### Install with Postgres Kubernetes operators
+
+    You can also use {PG} Kubernetes operators to simplify installation, configuration, and life cycle. The operators which our community members have told us work well are:
+
+    - [StackGres][stackgres] (includes {TIMESCALE_DB} images)
+    - [{PG} Operator (Patroni)][pg-operator]
+    - [PGO][pgo]
+    - [CloudNativePG][cloudnative-pg]
+  </Tab>
+</Tabs>
+
+## What's next
+
+Now that you have installed {TIMESCALE_DB}, you can:
+
+- Learn how to [configure your {TIMESCALE_DB} deployment][configure]
+- Explore [performance tuning][tune] to optimize your database
+- Understand [{HYPERTABLE} architecture and concepts][hypertables]
+- Set up [backup and restore][backup] for production environments
+- Configure [high availability][ha] for your deployment
+
+[pg-extension]: https://www.postgresql.org/docs/current/external-extensions.html
+[archlinux-packages]: https://archlinux.org/packages/?sort=&q=timescale&maintainer=&flagged=
+[docker-install]: https://docs.docker.com/get-started/get-docker/
+[psql-install]: https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/
+[timescaledb-ha]: https://hub.docker.com/r/timescale/timescaledb-ha
+[ubuntu]: https://ubuntu.com
+[toolkit]: https://github.com/timescale/timescaledb-toolkit
+[ufw-docker]: https://www.techrepublic.com/article/how-to-fix-the-docker-and-ufw-security-flaw/
+[docker-docs]: https://hub.docker.com/_/postgres
+[docker-logs]: https://docs.docker.com/engine/logging/
+[timescaledb-light]: https://hub.docker.com/r/timescale/timescaledb
+[alpine]: https://alpinelinux.org/
+[packagecloud]: https://packagecloud.io/timescale/timescaledb
+[pg-macos]: https://www.postgresql.org/download/macosx/
+[homebrew-docs]: https://docs.brew.sh/Installation
+[macports-docs]: https://guide.macports.org/#installing.macports
+[vs-redist]: https://www.microsoft.com/en-us/download/details.aspx?id=48145
+[pg-windows]: https://www.postgresql.org/download/windows/
+[tsdb-releases]: https://github.com/timescale/timescaledb/releases/
+[dependencies]: https://github.com/lucasg/Dependencies
+[tsdb-pg17]: https://github.com/timescale/timescaledb/releases/download/2.21.2/timescaledb-postgresql-17-windows-amd64.zip
+[tsdb-pg16]: https://github.com/timescale/timescaledb/releases/download/2.21.2/timescaledb-postgresql-16-windows-amd64.zip
+[tsdb-pg15]: https://github.com/timescale/timescaledb/releases/download/2.21.2/timescaledb-postgresql-15-windows-amd64.zip
+[pg-download]: https://www.postgresql.org/download/
+[pg-binary-change]: https://www.postgresql.org/about/news/postgresql-172-166-1510-1415-1318-and-1222-released-2965/
+[cmake]: https://cmake.org/download/
+[tsdb-github]: https://github.com/timescale/timescaledb/releases
+[k8s-setup]: https://kubernetes.io/docs/setup/
+[k8s-turnkey]: https://kubernetes.io/docs/setup/production-environment/turnkey-solutions/
+[kubectl]: https://kubernetes.io/docs/tasks/tools/
+[k8s-namespaces]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+[tsdb-docker]: https://hub.docker.com/r/timescale/timescaledb
+[stackgres]: https://github.com/ongres/stackgres
+[pg-operator]: https://github.com/zalando/postgres-operator
+[pgo]: https://github.com/CrunchyData/postgres-operator
+[cloudnative-pg]: https://github.com/cloudnative-pg/cloudnative-pg
+[configure]: /self-host/configure-your-deployment
+[tune]: /self-host/tune-your-deployment
+[hypertables]: /use-timescale/hypertables
+[backup]: /self-host/backup-and-restore
+[ha]: /self-host/high-availability
+
