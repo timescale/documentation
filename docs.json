@@ -425,39 +425,39 @@
               {
                 "group": "Install and update",
                 "pages": [
-                  "self-host/timescaledb/install-and-update/install-self-hosted",
-                  "self-host/timescaledb/install-and-update/update-self-hosted",
-                  "self-host/timescaledb/install-and-update/uninstall-self-hosted"
+                  "self-host/install-self-hosted",
+                  "self-host/update-self-hosted",
+                  "self-host/uninstall-self-hosted"
                 ]
               },
               {
                 "group": "Manage data security",
                 "pages": [
-                  "self-host/timescaledb/manage-data-security/high-availability",
-                  "self-host/timescaledb/manage-data-security/read-replication",
-                  "self-host/timescaledb/manage-data-security/backup-and-restore"
+                  "self-host/high-availability",
+                  "self-host/read-replication",
+                  "self-host/backup-and-restore"
                 ]
               },
               {
                 "group": "Configuration",
                 "pages": [
-                  "self-host/timescaledb/configuration/configure-your-deployment",
-                  "self-host/timescaledb/configuration/tune-your-deployment"
+                  "self-host/configure-your-deployment",
+                  "self-host/tune-your-deployment"
                 ]
               },
               {
                 "group": "Troubleshooting",
                 "pages": [
-                  "self-host/timescaledb/troubleshooting/troubleshooting"
+                  "self-host/troubleshooting"
                 ]
               },
               {
                 "group": "Reference",
                 "pages": [
-                  "self-host/timescaledb/reference/timescaledb-editions",
-                  "self-host/timescaledb/reference/configuration-parameters",
-                  "self-host/timescaledb/reference/limitations",
-                  "self-host/timescaledb/reference/contribute-to-timescaledb"
+                  "self-host/timescaledb-editions",
+                  "self-host/configuration-parameters",
+                  "self-host/limitations",
+                  "self-host/contribute-to-timescaledb"
                 ]
               }
             ]
