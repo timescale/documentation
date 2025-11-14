@@ -7,8 +7,8 @@ import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs-clo
 
 *   Install the `psycopg2` library.
 
-   For more information, see the [psycopg2 documentation](https://pypi.org/project/psycopg2/).
-*   Create a [Python virtual environment](https://docs.python.org/3/library/venv.html). (Optional)
+   For more information, see the [psycopg2 documentation][psycopg2-pypi].
+*   Create a [Python virtual environment][python-venv]. (Optional)
 
 ## Connect to TimescaleDB
 
@@ -35,7 +35,7 @@ prevents common attacks such as SQL injection.
       *   database name
 
 3.  Compose your connection string variable as a
-    [libpq connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING), using this format:
+    [libpq connection string][libpq-connstring], using this format:
 
     ```python
     CONNECTION = "postgres://username:password@host:port/dbname"
@@ -60,8 +60,8 @@ prevents common attacks such as SQL injection.
     details like your password, hostname, and port number.
     </Warning>
 
-4.  Use the `psycopg2` [connect function](https://www.psycopg.org/docs/module.html?highlight=connect#psycopg2.connect) to create a new
-    database session and create a new [cursor object](https://www.psycopg.org/docs/connection.html?highlight=cursor#connection.cursor) to
+4.  Use the `psycopg2` [connect function][psycopg2-connect] to create a new
+    database session and create a new [cursor object][psycopg2-cursor] to
     interact with the database.
 
     In your `main` function, add these lines:
@@ -206,7 +206,7 @@ section, you can use `psycopg2` with prepared statements, or you can use
     ```
 
 If you choose to use `pgcopy` instead, install the `pgcopy` package
-[using pip](https://pypi.org/project/pgcopy/), and then add this line to your list of
+[using pip][pgcopy-pypi], and then add this line to your list of
 `import` statements:
 
 ```python
@@ -305,9 +305,9 @@ you can use prepared statements to ensure queries are executed safely against
 the database.
 
 For more information about properly using placeholders in `psycopg2`, see the
-[basic module usage document](https://www.psycopg.org/docs/usage.html).
+[basic module usage document][psycopg2-usage].
 For more information about how to execute more complex queries in `psycopg2`,
-see the [psycopg2 documentation](https://www.psycopg.org/docs/usage.html).
+see the [psycopg2 documentation][psycopg2-usage].
 
 ### Execute a query
 
@@ -329,7 +329,7 @@ see the [psycopg2 documentation](https://www.psycopg.org/docs/usage.html).
     ```
 
 3.  To access all resulting rows returned by your query, use one of `pyscopg2`'s
-    [results retrieval methods](https://www.psycopg.org/docs/cursor.html),
+    [results retrieval methods][psycopg2-results],
     such as `fetchall()` or `fetchmany()`. This example prints the results of
     the query, row by row. Note that the result of `fetchall()` is a list of
     tuples, so you can handle them accordingly:
@@ -344,7 +344,7 @@ see the [psycopg2 documentation](https://www.psycopg.org/docs/usage.html).
     ```
 
 4.  (Optional) If you want a list of dictionaries instead, you can define the
-    cursor using [`DictCursor`](https://www.psycopg.org/docs/extras.html#dictionary-like-cursor):
+    cursor using [`DictCursor`][psycopg2-dictcursor]:
 
     ```python
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -376,3 +376,13 @@ executed safely against the database.
     cursor.execute(query, data)
     results = cursor.fetchall()
     ```
+
+[psycopg2-pypi]: https://pypi.org/project/psycopg2/
+[python-venv]: https://docs.python.org/3/library/venv.html
+[libpq-connstring]: https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+[psycopg2-connect]: https://www.psycopg.org/docs/module.html?highlight=connect#psycopg2.connect
+[psycopg2-cursor]: https://www.psycopg.org/docs/connection.html?highlight=cursor#connection.cursor
+[pgcopy-pypi]: https://pypi.org/project/pgcopy/
+[psycopg2-usage]: https://www.psycopg.org/docs/usage.html
+[psycopg2-results]: https://www.psycopg.org/docs/cursor.html
+[psycopg2-dictcursor]: https://www.psycopg.org/docs/extras.html#dictionary-like-cursor

@@ -3238,6 +3238,7 @@
       "destination": "/integrations/integrations"
     }
   ],
+  "customCss": ["styles.css"],
   "contextual": {
     "options": [
       "claude",
