@@ -39,6 +39,17 @@ h1 {
   font-size: 18px;
 }
 
+/* External link indicator */
+a[href^="http"]:not([href*="tigerdata.com"])::after,
+a[href^="https"]:not([href*="tigerdata.com"])::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 0.85em;
+  vertical-align: super;
+  opacity: 0.7;
+}
+
 /* dark mode styles */
 .dark {
   .link {

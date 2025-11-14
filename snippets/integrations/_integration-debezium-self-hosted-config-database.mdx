@@ -1,4 +1,4 @@
-import { PG, SELF_LONG, CAGG } from '/snippets/vars.mdx';
+import { PG, SELF_LONG, CAGG_CAP } from '/snippets/vars.mdx';
 
 1. **Configure your self-hosted {PG} deployment**
 
@@ -11,7 +11,7 @@ import { PG, SELF_LONG, CAGG } from '/snippets/vars.mdx';
       - MacOS: `/opt/homebrew/var/postgresql@<version>/`
       - Windows: `C:\Program Files\PostgreSQL\<version>\data\`
 
-   1. Enable logical replication.
+   2. Enable logical replication.
 
       Modify the following settings in `postgresql.conf`:
 
@@ -21,7 +21,7 @@ import { PG, SELF_LONG, CAGG } from '/snippets/vars.mdx';
       max_wal_senders = 10
       ```
 
-   1. Open `pg_hba.conf` and enable host replication.
+   3. Open `pg_hba.conf` and enable host replication.
 
       To allow replication connections, add the following:
 
@@ -31,14 +31,14 @@ import { PG, SELF_LONG, CAGG } from '/snippets/vars.mdx';
       This permission is for the `debezium` {PG} user running on a local or Docker deployment. For more about replication 
       permissions, see [Configuring {PG} to allow replication with the Debezium connector host][debezium-replication-permissions].
 
-   1. Restart {PG}.
+   4. Restart {PG}.
 
 
-1. **Connect to your {SELF_LONG} instance**
+2. **Connect to your {SELF_LONG} instance**
 
    Use [`psql`][psql-connect]. 
 
-1. **Create a Debezium user in {PG}**
+3. **Create a Debezium user in {PG}**
 
    Create a user with the `LOGIN` and `REPLICATION` permissions:
 
@@ -46,7 +46,7 @@ import { PG, SELF_LONG, CAGG } from '/snippets/vars.mdx';
     CREATE ROLE debezium WITH LOGIN REPLICATION PASSWORD '<debeziumpassword>';
     ```
 
-1. **Enable a replication spot for Debezium**
+4. **Enable a replication spot for Debezium**
 
    1. Create a table for Debezium to listen to:
 
@@ -56,22 +56,20 @@ import { PG, SELF_LONG, CAGG } from '/snippets/vars.mdx';
        city TEXT);
       ```
 
-   1. Turn the table into a hypertable:
+   2. Turn the table into a hypertable:
 
       ```sql
       SELECT create_hypertable('accounts', 'created_at');
       ```
 
-      Debezium also works with [{CAGG}s][caggs].
+      Debezium also works with [{CAGG_CAP}s][caggs].
 
-   1. Create a publication and enable a replication slot:
+   3. Create a publication and enable a replication slot:
   
       ```sql
       CREATE PUBLICATION dbz_publication FOR ALL TABLES WITH (publish = 'insert, update');
       ```
       
-[caggs]: /use-timescale/:currentVersion:/continuous-aggregates/
-[run-queries]: /getting-started/:currentVersion:/run-queries-from-console/
-[open-console]: https://console.cloud.timescale.com/dashboard/services
-[psql-connect]: /integrations/:currentVersion:/psql/#connect-to-your-service
-[debezium-replication-permissions]: https://debezium.io/documentation/reference/3.1/connectors/postgresql.html#postgresql-host-replication-permissions
+[caggs]: /use-timescale/continuous-aggregates
+[debezium-replication-permissions]: https://debezium.io/documentation/reference/3.2/connectors/postgresql.html#postgresql-host-replication-permissions
+[psql-connect]: /integrations/integrate/psql/#connect-to-your-service

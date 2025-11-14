@@ -1,5 +1,5 @@
 import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
-import { PG, SERVICE_LONG, CLOUD_LONG, VPC, SERVICE_SHORT } from '/snippets/vars.mdx';
+import { PG, SERVICE_LONG, CLOUD_LONG, VPC, SERVICE_SHORT, SELF_LONG_CAP } from '/snippets/vars.mdx';
 
 You use {PG} foreign data wrappers (FDWs) to query external data sources from a {SERVICE_LONG}. These external data sources can be one of the following:
 
@@ -16,15 +16,13 @@ If you are using {VPC} peering, you can create FDWs in your Customer VPC to quer
 
 ## Query another data source
 
-To query another data source: 
+To query another data source:
 
-<Tabs label="Query another data source">
+<Tabs>
 
-<Tab title="Tiger Cloud">
+<Tab title={`${CLOUD_LONG}`}>
 
 You create {PG} FDWs with the `postgres_fdw` extension, which is enabled by default in {CLOUD_LONG}.
-
-<Procedure>
 
 1. **Connect to your service**
 
@@ -87,9 +85,6 @@ You create {PG} FDWs with the `postgres_fdw` extension, which is enabled by defa
       SERVER film_server;
       ```
 
-</Procedure>
-
-
 A user with the `tsdbadmin` role assigned already has the required `USAGE` permission to create {PG} FDWs. You can enable another user, without the `tsdbadmin` role assigned, to query foreign data. To do so, explicitly grant the permission. For example, for a new `grafana` user:
 
 ```sql
@@ -116,11 +111,9 @@ IMPORT FOREIGN SCHEMA public
 
 </Tab>
 
-<Tab title="Self-hosted TimescaleDB">
+<Tab title={`${SELF_LONG_CAP}`}>
 
-You create {PG} FDWs with the `postgres_fdw` extension. See [documenation][enable-fdw-docs] on how to enable it. 
-
-<Procedure>
+You create {PG} FDWs with the `postgres_fdw` extension. See [documenation][enable-fdw-docs] on how to enable it.
 
 1. **Connect to your database**
 
@@ -183,15 +176,13 @@ You create {PG} FDWs with the `postgres_fdw` extension. See [documenation][enabl
      SERVER film_server;
      ```
 
-</Procedure>
-
 </Tab>
 
 </Tabs>
 
-[vpc-peering]: /use-timescale/:currentVersion:/security/vpc/
-[sql-editor]: /getting-started/:currentVersion:/run-queries-from-console/#ops-mode-sql-editor/
-[connect]: /getting-started/:currentVersion:/run-queries-from-console/
-[connection-info]: /integrations/:currentVersion:/find-connection-details/
+[vpc-peering]: /use-timescale/security/vpc
+[sql-editor]: /getting-started/run-queries-from-console/#ops-mode-sql-editor
+[connect]: /getting-started/run-queries-from-console
+[connection-info]: /integrations/find-connection-details
 [enable-fdw-docs]: https://www.postgresql.org/docs/current/postgres-fdw.html
-[psql]: /integrations/:currentVersion:/psql/
+[psql]: /integrations/psql
