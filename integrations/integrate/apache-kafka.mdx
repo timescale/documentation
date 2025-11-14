@@ -33,7 +33,7 @@ To install and configure Apache Kafka:
 
 Keep these terminals open, you use them to test the integration later.
 
-## Install the sink connector to communicate with {CLOUD_LONG}
+## Install the sink connector to communicate with Tiger Cloud
 
 To set up Kafka Connect server, plugins, drivers, and connectors:
 
@@ -69,7 +69,7 @@ To set up Kafka Connect server, plugins, drivers, and connectors:
     {"version":"3.9.0","commit":"a60e31147e6b01ee","kafka_cluster_id":"J-iy4IGXTbmiALHwPZEZ-A"}
     ```
 
-## Create a table in your {SERVICE_LONG} to ingest Kafka events
+## Create a table in your Tiger Cloud service to ingest Kafka events
 
 To prepare your {SERVICE_LONG} for Kafka integration:
 
@@ -88,7 +88,7 @@ To prepare your {SERVICE_LONG} for Kafka integration:
    ```
    <CreateHypertablePolicyNote />
 
-## Create the {CLOUD_LONG} sink
+## Create the Tiger Cloud sink
 
 To create a {CLOUD_LONG} sink in Apache Kafka:
 
@@ -133,7 +133,7 @@ To create a {CLOUD_LONG} sink in Apache Kafka:
    #["timescale-standalone-sink"]
    ```
 
-## Test the integration with {CLOUD_LONG}
+## Test the integration with Tiger Cloud
 
 To test this integration, send some messages onto the `accounts` topic. You can do this using the kafkacat or kcat utility.
 

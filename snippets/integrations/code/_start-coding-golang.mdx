@@ -5,10 +5,10 @@ import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs-clo
 
 <IntegrationPrereqs />
 
-- Install [Go](https://golang.org/doc/install).
-- Install the [PGX driver for Go](https://github.com/jackc/pgx).
+- Install [Go][install-go].
+- Install the [PGX driver for Go][pgx-driver].
 
-## Connect to your {SERVICE_LONG}
+## Connect to your Tiger Cloud service
 
 In this section, you create a connection to {CLOUD_LONG} using the PGX driver.
 PGX is a toolkit designed to help Go developers work directly with {PG}.
@@ -26,7 +26,7 @@ You can use it to help your Go application interact directly with TimescaleDB.
     *   database name
 
 2.  Compose your connection string variable as a
-    [libpq connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING), using this format:
+    [libpq connection string][libpq-connstring], using this format:
 
     ```go
     connStr := "postgres://username:password@host:port/dbname"
@@ -832,9 +832,15 @@ This section covers how to execute queries against your database.
 Now that you're able to connect, read, and write to a {TIMESCALE_DB} instance from
 your Go application, be sure to check out these advanced {TIMESCALE_DB} tutorials:
 
-*   Refer to the [pgx documentation](https://pkg.go.dev/github.com/jackc/pgx) for more information about pgx.
+*   Refer to the [pgx documentation][pgx-docs] for more information about pgx.
 *   Get up and running with {TIMESCALE_DB} with the [Getting Started](/getting-started/latest/)
     tutorial.
 *   Want fast inserts on CSV data? Check out
-    [{TIMESCALE_DB} parallel copy](https://github.com/timescale/timescaledb-parallel-copy), a tool for fast inserts,
+    [{TIMESCALE_DB} parallel copy][timescaledb-parallel-copy], a tool for fast inserts,
     written in Go.
+
+[install-go]: https://golang.org/doc/install
+[pgx-driver]: https://github.com/jackc/pgx
+[libpq-connstring]: https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+[pgx-docs]: https://pkg.go.dev/github.com/jackc/pgx
+[timescaledb-parallel-copy]: https://github.com/timescale/timescaledb-parallel-copy

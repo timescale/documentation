@@ -9,22 +9,18 @@ import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereq
 import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
 import { SERVICE_SHORT, CONSOLE, PROJECT_SHORT } from '/snippets/vars.mdx';
 
-<Icon icon="flask" /> Early access
-
 You use the Kafka source connector to stream events from Kafka into your {SERVICE_SHORT}. The connector connects to your Confluent Cloud Kafka cluster and Schema Registry using SASL/SCRAM authentication and service account–based API keys. Only the Avro format is currently supported [with some limitations](#known-limitations-and-unsupported-types).
 
 This page explains how to connect to your Confluent Cloud Kafka cluster.
 
-<Info>
-The Kafka source connector is not yet supported for production use.
-</Info>
+<Icon icon="flask" /> Early access: the Kafka source connector is not yet supported for production use.
 
 ## Prerequisites
 
 <IntegrationPrereqsCloud />
 
-- [Sign up](https://www.confluent.io/get-started/) for Confluent Cloud.
-- [Create](https://docs.confluent.io/cloud/current/clusters/create-cluster.html) a Kafka cluster in Confluent Cloud.
+- [Sign up][confluent-signup] for Confluent Cloud.
+- [Create][confluent-create-cluster] a Kafka cluster in Confluent Cloud.
 
 <NotSupportedAzure />
 
@@ -36,7 +32,7 @@ Take the following steps to prepare your Kafka cluster for connection:
 
     If you already have a service account, you can reuse it. To create a new service account:
 
-    1. Log in to [Confluent Cloud](https://confluent.cloud/).
+    1. Log in to [Confluent Cloud][confluent-cloud].
     2. Click the burger menu at the top-right of the pane, then press
        `Access control` > `Service accounts` >`Add service account`.
     3. Enter the following details:
@@ -115,7 +111,7 @@ Your Confluent Cloud Schema Registry is now accessible using the API key and sec
 
 Take the following steps to create a Kafka source connector in {CONSOLE}.
 
-1. **In [{CONSOLE}](https://console.cloud.timescale.com/dashboard/services), select your {SERVICE_SHORT}**
+1. **In [{CONSOLE}][console-services], select your {SERVICE_SHORT}**
 2. **Go to `Connectors` > `Source connectors`. Click `New Connector`, then select `Kafka`**
 3. **Click the pencil icon, then set the connector name**
 4. **Set up Kafka authentication**
@@ -223,3 +219,8 @@ Unsupported examples:
   "logicalType": "custom-type"
 }
 ```
+
+[confluent-signup]: https://www.confluent.io/get-started/
+[confluent-create-cluster]: https://docs.confluent.io/cloud/current/clusters/create-cluster.html
+[confluent-cloud]: https://confluent.cloud/
+[console-services]: https://console.cloud.timescale.com/dashboard/services
