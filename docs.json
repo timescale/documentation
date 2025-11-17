@@ -527,14 +527,14 @@
                           "api-reference/timescaledb/hypertables/merge_chunks",
                           "api-reference/timescaledb/hypertables/split_chunk",
                           "api-reference/timescaledb/hypertables/attach_chunk",
-                          "api-reference/timescaledb/hypertables/detach_chunk"
+                          "api-reference/timescaledb/hypertables/detach_chunk",
+                          "api-reference/timescaledb/hypertables/set_chunk_time_interval"
                         ]
                       },
                       {
                         "group": "Dimension management",
                         "pages": [
                           "api-reference/timescaledb/hypertables/add_dimension",
-                          "api-reference/timescaledb/hypertables/set_chunk_time_interval",
                           "api-reference/timescaledb/hypertables/set_integer_now_func"
                         ]
                       },

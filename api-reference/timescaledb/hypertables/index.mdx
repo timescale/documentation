@@ -102,12 +102,12 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
 - [`split_chunk()`][split_chunk]: split a {CHUNK} into multiple {CHUNK}s
 - [`attach_chunk()`][attach_chunk]: attach a table as a {CHUNK} to a {HYPERTABLE}
 - [`detach_chunk()`][detach_chunk]: detach a {CHUNK} from a {HYPERTABLE}
+- [`set_chunk_time_interval()`][set_chunk_time_interval]: set the time interval for {CHUNK} creation
+- [`set_integer_now_func()`][set_integer_now_func]: set function to compute current time for integer-based times
 
 ### [Dimension management][dimension-section]
 
 - [`add_dimension()`][add_dimension]: add a space-partitioning dimension to a {HYPERTABLE}
-- [`set_chunk_time_interval()`][set_chunk_time_interval]: set the time interval for {CHUNK} creation
-- [`set_integer_now_func()`][set_integer_now_func]: set function to compute current time for integer-based times
 
 ### [Size and statistics][size-section]
 
