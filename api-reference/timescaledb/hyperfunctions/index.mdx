@@ -64,7 +64,6 @@ SELECT approximate_row_count('readings');
 ## Available function groups
 
 ### Time series utilities
-[Core functions for time bucketing, ordered selection, and time-based calculations][time-series-utilities]:
 - [`time_bucket()`][time_bucket]: bucket rows by time interval
 - [`time_bucket_ng()`][time_bucket_ng]: next generation time bucketing with additional features
 - [`first()`][first]: get the first value ordered by another column
@@ -73,13 +72,11 @@ SELECT approximate_row_count('readings');
 - [`month_normalize()`][month_normalize]: normalize monthly metrics
 
 ### Gapfilling
-[Functions for filling gaps in time-series data][gapfilling]:
 - [`time_bucket_gapfill()`][time_bucket_gapfill]: bucket time and fill gaps in results
 - [`locf()`][locf]: last observation carried forward for filling gaps
 - [`interpolate()`][interpolate]: linear interpolation for filling gaps
 
 ### Distribution analysis
-[Functions for analyzing data distribution patterns][distribution-analysis]:
 - [`histogram()`][histogram]: create histograms to visualize data distribution
 - [`approximate_row_count()`][approximate_row_count]: fast approximate count of rows in a table
 

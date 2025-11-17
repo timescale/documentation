@@ -89,11 +89,11 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
 ## Available functions and commands
 
 ### [Table creation][create-table-section]
-[SQL commands for creating {HYPERTABLE}s][create-table-section]:
+
 - [`CREATE TABLE`][create_table]: create a {HYPERTABLE} using standard SQL syntax with {HYPERCORE}
 
 ### [Chunk management][chunk-management-section]
-[Functions for managing {CHUNK}s][chunk-management-section]:
+
 - [`show_chunks()`][show_chunks]: display {CHUNK}s associated with {HYPERTABLE}s
 - [`drop_chunks()`][drop_chunks]: remove {CHUNK}s from {HYPERTABLE}s
 - [`move_chunk()`][move_chunk]: move a {CHUNK} to a different tablespace
@@ -104,13 +104,13 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
 - [`detach_chunk()`][detach_chunk]: detach a {CHUNK} from a {HYPERTABLE}
 
 ### [Dimension management][dimension-section]
-[Functions for managing {HYPERTABLE} dimensions][dimension-section]:
+
 - [`add_dimension()`][add_dimension]: add a space-partitioning dimension to a {HYPERTABLE}
 - [`set_chunk_time_interval()`][set_chunk_time_interval]: set the time interval for {CHUNK} creation
 - [`set_integer_now_func()`][set_integer_now_func]: set function to compute current time for integer-based times
 
 ### [Size and statistics][size-section]
-[Functions for measuring {HYPERTABLE} and {CHUNK} sizes][size-section]:
+
 - [`hypertable_size()`][hypertable_size]: get the total disk space used by a {HYPERTABLE}
 - [`hypertable_detailed_size()`][hypertable_detailed_size]: get detailed disk space usage for a {HYPERTABLE}
 - [`hypertable_index_size()`][hypertable_index_size]: get the total size of indexes on a {HYPERTABLE}
@@ -120,19 +120,19 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
 - [`chunks_detailed_size()`][chunks_detailed_size]: get detailed size information for {CHUNK}s
 
 ### [Tablespace management][tablespace-section]
-[Functions for managing tablespaces with {HYPERTABLE}s][tablespace-section]:
+
 - [`attach_tablespace()`][attach_tablespace]: attach a tablespace to a {HYPERTABLE}
 - [`detach_tablespace()`][detach_tablespace]: detach a tablespace from a {HYPERTABLE}
 - [`detach_tablespaces()`][detach_tablespaces]: detach all tablespaces from a {HYPERTABLE}
 - [`show_tablespaces()`][show_tablespaces]: show tablespaces attached to a {HYPERTABLE}
 
 ### [Reordering and policies][reorder-section]
-[Functions for managing {CHUNK} reordering][reorder-section]:
+
 - [`add_reorder_policy()`][add_reorder_policy]: add a policy to automatically reorder {CHUNK}s
 - [`remove_reorder_policy()`][remove_reorder_policy]: remove an automatic {CHUNK} reordering policy
 
 ### [Query optimization][optimization-section]
-[Functions for optimizing queries on {HYPERTABLE}s][optimization-section]:
+
 - [`enable_chunk_skipping()`][enable_chunk_skipping]: enable {CHUNK} skipping for a {HYPERTABLE}
 - [`disable_chunk_skipping()`][disable_chunk_skipping]: disable {CHUNK} skipping for a {HYPERTABLE}
 
