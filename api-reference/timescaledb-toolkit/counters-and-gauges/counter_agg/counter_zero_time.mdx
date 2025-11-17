@@ -18,17 +18,6 @@ topics:
 Calculate the time when the counter value is predicted to have been zero. This is the x-intercept of the linear fit
 between counter value and time.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`TIMESTAMPTZ`: The time when the counter value is predicted to have been zero
-
 ## Samples
 
 Estimate the time when the counter started
@@ -47,3 +36,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`TIMESTAMPTZ`: The time when the counter value is predicted to have been zero
+

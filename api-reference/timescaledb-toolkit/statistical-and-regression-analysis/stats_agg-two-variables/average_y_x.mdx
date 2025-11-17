@@ -30,18 +30,6 @@ average_x(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| average_y \| average_x | DOUBLE PRECISION | The average of the values in the statistical aggregate |
-
 ## Samples
 
 Calculate the average of the integers from 0 to 100:
@@ -56,4 +44,15 @@ SELECT average_x(stats_agg(y, x))
 average
 -----------
 50
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| average_y \| average_x | DOUBLE PRECISION | The average of the values in the statistical aggregate |
+

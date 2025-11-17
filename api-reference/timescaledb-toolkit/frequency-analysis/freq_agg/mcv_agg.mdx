@@ -27,20 +27,6 @@ mcv_agg (
 ) RETURNS SpaceSavingAggregate
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `n` | INTEGER | - | ✔ | The target number of most-frequent values |
-| `value` | AnyElement | - | ✔ | The column to store frequencies for |
-| `skew` | DOUBLE PRECISION | 1.1 | | The estimated skew of the data, defined as the `s` parameter of a zeta distribution. Must be greater than `1.0`. Defaults to `1.1`. For more information, see the section on [skew](#estimated-skew). |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `agg` | SpaceSavingAggregate | An object storing the most common elements of the given table and their estimated frequency. You can pass this object to any of the accessor functions to get a final result. |
-
 ## Samples
 
 Create a topN aggregate over the `country` column of the `users` table. Targets the top 10 most-frequent values:
@@ -54,4 +40,17 @@ targets the 5 most-frequent values:
 
 ```sql
 SELECT mcv_agg(5, 1.05, type) FROM devices;
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `n` | INTEGER | - | ✔ | The target number of most-frequent values |
+| `value` | AnyElement | - | ✔ | The column to store frequencies for |
+| `skew` | DOUBLE PRECISION | 1.1 | | The estimated skew of the data, defined as the `s` parameter of a zeta distribution. Must be greater than `1.0`. Defaults to `1.1`. For more information, see the section on [skew](#estimated-skew). |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `agg` | SpaceSavingAggregate | An object storing the most common elements of the given table and their estimated frequency. You can pass this object to any of the accessor functions to get a final result. |
+

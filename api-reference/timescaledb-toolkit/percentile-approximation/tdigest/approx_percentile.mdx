@@ -23,19 +23,6 @@ approx_percentile(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| percentile | DOUBLE PRECISION | - |  | The percentile to compute. Must be within the range `[0.0, 1.0]` |
-| tdigest | TDigest | - |  | The `tdigest` aggregate |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| approx_percentile | DOUBLE PRECISION | The estimated value at the requested percentile |
-
 ## Samples
 
 Estimate the value at the first percentile, given a sample containing the numbers from 0 to 100.
@@ -50,4 +37,16 @@ FROM generate_series(0, 100) data;
 approx_percentile
 -------------------
             0.999
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| percentile | DOUBLE PRECISION | - |  | The percentile to compute. Must be within the range `[0.0, 1.0]` |
+| tdigest | TDigest | - |  | The `tdigest` aggregate |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| approx_percentile | DOUBLE PRECISION | The estimated value at the requested percentile |
+

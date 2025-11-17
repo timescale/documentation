@@ -27,20 +27,6 @@ state_periods(
 ) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | A state aggregate created using [`state_agg`][state_agg] |
-| state | TEXT \| BIGINT | - | ✔ | The target state to get data for |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| start_time | TIMESTAMPTZ | The time when the state started (inclusive) |
-| end_time | TIMESTAMPTZ | The time when the state ended (exclusive) |
-
 ## Samples
 
 Create a state aggregate and list all periods corresponding to the state `OK`.
@@ -63,3 +49,17 @@ Returns:
 
 [state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_agg
 [interpolated_state_periods]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/interpolated_state_periods
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | StateAgg | - | ✔ | A state aggregate created using [`state_agg`][state_agg] |
+| state | TEXT \| BIGINT | - | ✔ | The target state to get data for |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| start_time | TIMESTAMPTZ | The time when the state started (inclusive) |
+| end_time | TIMESTAMPTZ | The time when the state ended (exclusive) |
+

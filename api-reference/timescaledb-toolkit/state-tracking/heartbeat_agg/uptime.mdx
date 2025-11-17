@@ -26,18 +26,6 @@ uptime(
 ) RETURNS INTERVAL
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| uptime | INTERVAL | The sum of all the live ranges in the aggregate |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -58,3 +46,15 @@ Returns:
 ```
 
 [interpolated_uptime]: /api-reference/timescaledb/hyperfunctions/state-tracking/heartbeat_agg/interpolated_uptime
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| uptime | INTERVAL | The sum of all the live ranges in the aggregate |
+

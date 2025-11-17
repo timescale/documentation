@@ -23,18 +23,6 @@ min_val(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| digest | TDigest | - |  | The digest to extract the minimum value from |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| min_val | DOUBLE PRECISION | The minimum value entered into the `tdigest` |
-
 ## Samples
 
 Get the minimum of the integers from 1 to 100.
@@ -48,4 +36,15 @@ SELECT min_val(tdigest(100, data))
 min_val
 ---------
       1
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| digest | TDigest | - |  | The digest to extract the minimum value from |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| min_val | DOUBLE PRECISION | The minimum value entered into the `tdigest` |
+

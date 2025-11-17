@@ -18,17 +18,6 @@ topics:
 Calculate the instantaneous change at the left, or earliest, edge of a counter aggregate. This is equal to the second
 value minus the first value, after accounting for resets.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The instantaneous delta at the left, or earliest, edge of the counter aggregate
-
 ## Samples
 
 Get the instantaneous change at the start of each 15-minute counter aggregate.
@@ -47,3 +36,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The instantaneous delta at the left, or earliest, edge of the counter aggregate
+

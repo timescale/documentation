@@ -19,17 +19,6 @@ Calculate the instantaneous rate of change at the right, or latest, edge of a co
 last value minus the second-last value, divided by the time lapse between the two points, after accounting for resets.
 This calculation is useful for fast-moving counters.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The instantaneous rate of change at the right, or latest, edge of the counter aggregate
-
 ## Samples
 
 Get the instantaneous rate of change at the end of each 15-minute counter aggregate.
@@ -48,3 +37,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The instantaneous rate of change at the right, or latest, edge of the counter aggregate
+

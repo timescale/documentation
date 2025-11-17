@@ -23,19 +23,6 @@ approx_percentile_rank(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| value | DOUBLE PRECISION | - |  | The value to estimate the percentile of |
-| digest | TDigest | - |  | The `tdigest` aggregate |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| approx_percentile_rank | DOUBLE PRECISION | The estimated percentile associated with the provided value |
-
 ## Samples
 
 Estimate the percentile rank of the value `99`, given a sample containing the numbers from 0 to 100.
@@ -50,4 +37,16 @@ FROM generate_series(0, 100) data;
 approx_percentile_rank
 ----------------------------
         0.9851485148514851
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| value | DOUBLE PRECISION | - |  | The value to estimate the percentile of |
+| digest | TDigest | - |  | The `tdigest` aggregate |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| approx_percentile_rank | DOUBLE PRECISION | The estimated percentile associated with the provided value |
+

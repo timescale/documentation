@@ -28,22 +28,6 @@ interpolated_duration_in(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |
-| state | TEXT \| BIGINT | - | ✔ | The state to query |
-| start | TIMESTAMPTZ | - | ✔ | The start of the interval to be calculated |
-| interval | INTERVAL | - | ✔ | The length of the interval to be calculated |
-| prev | StateAgg | - | | The state aggregate from the prior interval, used to interpolate the value at `start`. If `NULL`, the first timestamp in `aggregate` is used as the start of the interval |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| interpolated_duration_in | INTERVAL | The total time spent in the queried state. Displayed as `days`, `hh:mm:ss`, or a combination of the two |
-
 ## Samples
 
 Create a test table that tracks when a system switches between `starting`, `running`, and `error` states. Query the
@@ -84,3 +68,19 @@ time                    | interpolated_duration_in
 
 [state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_agg
 [duration_in]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/duration_in
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |
+| state | TEXT \| BIGINT | - | ✔ | The state to query |
+| start | TIMESTAMPTZ | - | ✔ | The start of the interval to be calculated |
+| interval | INTERVAL | - | ✔ | The length of the interval to be calculated |
+| prev | StateAgg | - | | The state aggregate from the prior interval, used to interpolate the value at `start`. If `NULL`, the first timestamp in `aggregate` is used as the start of the interval |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| interpolated_duration_in | INTERVAL | The total time spent in the queried state. Displayed as `days`, `hh:mm:ss`, or a combination of the two |
+

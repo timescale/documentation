@@ -24,18 +24,6 @@ sum(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| sum | DOUBLE PRECISION | The sum of the values in the statistical aggregate |
-
 ## Samples
 
 Calculate the sum of the integers from 0 to 100:
@@ -50,3 +38,15 @@ sum
 -----
 5050
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| sum | DOUBLE PRECISION | The sum of the values in the statistical aggregate |
+

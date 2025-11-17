@@ -23,18 +23,6 @@ average(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| average | DOUBLE PRECISION | The average of the values in the statistical aggregate |
-
 ## Samples
 
 Calculate the average of the integers from 0 to 100:
@@ -49,3 +37,15 @@ average
 -----------
 50
 ```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| average | DOUBLE PRECISION | The average of the values in the statistical aggregate |

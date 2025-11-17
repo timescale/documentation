@@ -33,18 +33,6 @@ rolling(
 ) RETURNS StatsSummary1D
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| rolling | StatsSummary1D | A new statistical aggregate produced by combining the input statistical aggregates |
-
 ## Samples
 
 Combine hourly continuous aggregates to create a tumbling window daily aggregate. Calculate the average and standard
@@ -64,4 +52,15 @@ SELECT
   average(rolling(stats) OVER (ORDER BY bucket RANGE '1 day' PRECEDING)),
   stddev(rolling(stats) OVER (ORDER BY bucket RANGE '1 day' PRECEDING)),
 FROM foo_hourly;
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| rolling | StatsSummary1D | A new statistical aggregate produced by combining the input statistical aggregates |
+

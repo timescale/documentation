@@ -26,6 +26,19 @@ heartbeat_agg(
 ) RETURNS HeartbeatAgg
 ```
 
+## Samples
+
+Given a table called `system_health` with a `ping_time` column, construct an aggregate of system liveness for 10 days
+starting from Jan 1, 2022. This assumes a system is unhealthy if it hasn't been heard from in a 5 minute window.
+
+```sql
+SELECT heartbeat_agg(
+  ping_time,
+  '01-01-2022 UTC',
+  '10 days',
+  '5 min')
+FROM system_health;
+```
 ## Arguments
 
 | Name | Type | Default | Required | Description |
@@ -41,16 +54,3 @@ heartbeat_agg(
 |--------|------|-------------|
 | heartbeat_agg | HeartbeatAgg | The liveness data for the heartbeated system over the provided interval |
 
-## Samples
-
-Given a table called `system_health` with a `ping_time` column, construct an aggregate of system liveness for 10 days
-starting from Jan 1, 2022. This assumes a system is unhealthy if it hasn't been heard from in a 5 minute window.
-
-```sql
-SELECT heartbeat_agg(
-  ping_time,
-  '01-01-2022 UTC',
-  '10 days',
-  '5 min')
-FROM system_health;
-```

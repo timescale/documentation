@@ -24,18 +24,6 @@ mean(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| sketch | UddSketch | - |  | The `uddsketch` to extract the mean from |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| mean | DOUBLE PRECISION | The mean of the values in the `uddsketch` |
-
 ## Samples
 
 Calculate the mean of the integers from 0 to 100.
@@ -50,3 +38,15 @@ mean
 ------
 50
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| sketch | UddSketch | - |  | The `uddsketch` to extract the mean from |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| mean | DOUBLE PRECISION | The mean of the values in the `uddsketch` |
+

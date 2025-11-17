@@ -31,18 +31,6 @@ determination_coeff(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| determination_coeff | DOUBLE PRECISION | The determination coefficient of the least-squares fit line |
-
 ## Samples
 
 Calculate the determination coefficient of independent variable `y` and dependent variable `x` for each 15-minute time
@@ -55,4 +43,15 @@ SELECT
     determination_coeff(stats_agg(y, x)) AS summary
 FROM foo
 GROUP BY id, time_bucket('15 min'::interval, ts)
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| determination_coeff | DOUBLE PRECISION | The determination coefficient of the least-squares fit line |
+

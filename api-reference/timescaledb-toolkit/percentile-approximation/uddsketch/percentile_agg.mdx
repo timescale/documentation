@@ -29,18 +29,6 @@ percentile_agg(
 ) RETURNS UddSketch
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| value | DOUBLE PRECISION | - | ✔ | column of values to aggregate for percentile calculation |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| percentile_agg | UddSketch | a percentile estimator object created to calculate percentiles using the `UddSketch` algorithm |
-
 ## Samples
 
 Create a continuous aggregate that stores percentile aggregate objects. These objects can later be used with multiple
@@ -54,4 +42,15 @@ AS SELECT
     percentile_agg(value) as pct_agg
 FROM foo
 GROUP BY 1;
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| value | DOUBLE PRECISION | - | ✔ | column of values to aggregate for percentile calculation |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| percentile_agg | UddSketch | a percentile estimator object created to calculate percentiles using the `UddSketch` algorithm |
+

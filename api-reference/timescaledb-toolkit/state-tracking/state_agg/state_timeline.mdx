@@ -29,20 +29,6 @@ state_int_timeline(
 ) RETURNS (BIGINT, TIMESTAMPTZ, TIMESTAMPTZ)
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | The aggregate from which to get a timeline |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| state | TEXT \| BIGINT | A state found in the state aggregate |
-| start_time | TIMESTAMPTZ | The time when the state started (inclusive) |
-| end_time | TIMESTAMPTZ | The time when the state ended (exclusive) |
-
 ## Samples
 
 Get the history of states from a state aggregate.
@@ -66,4 +52,17 @@ Returns:
  STOP  | 2020-01-01 00:02:00+00 | 2020-01-01 00:02:00+00
 ```
 
-[interpolated_state_timeline]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/interpolated_state_timeline
+[interpolated_state_timeline]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/interpolated_state_timeline## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | StateAgg | - | ✔ | The aggregate from which to get a timeline |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| state | TEXT \| BIGINT | A state found in the state aggregate |
+| start_time | TIMESTAMPTZ | The time when the state started (inclusive) |
+| end_time | TIMESTAMPTZ | The time when the state ended (exclusive) |
+

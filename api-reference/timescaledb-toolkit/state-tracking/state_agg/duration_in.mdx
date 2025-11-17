@@ -26,21 +26,6 @@ duration_in(
 ) RETURNS INTERVAL
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |
-| state | TEXT \| BIGINT | - | ✔ | The state to query |
-| start | TIMESTAMPTZ | - | | If specified, only the time in the state after this time is returned |
-| interval | INTERVAL | - | | If specified, only the time in the state from the start time to the end of the interval is returned |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| duration_in | INTERVAL | The time spent in the given state. Displayed in `days`, `hh:mm:ss`, or a combination of the two |
-
 ## Samples
 
 Create a test table that tracks when a system switches between `starting`, `running`, and `error` states. Query the
@@ -75,3 +60,18 @@ duration_in
 
 [state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_agg
 [interpolated_duration_in]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/interpolated_duration_in
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |
+| state | TEXT \| BIGINT | - | ✔ | The state to query |
+| start | TIMESTAMPTZ | - | | If specified, only the time in the state after this time is returned |
+| interval | INTERVAL | - | | If specified, only the time in the state from the start time to the end of the interval is returned |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| duration_in | INTERVAL | The time spent in the given state. Displayed in `days`, `hh:mm:ss`, or a combination of the two |
+

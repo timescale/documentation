@@ -25,19 +25,6 @@ interpolate(
 ) RETURNS HEARTBEATAGG
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate containing liveness data for a particular interval |
-| pred | HeartbeatAgg | - | | The heartbeat aggregate for the preceding interval, if one exists |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| interpolate | HeartbeatAgg | A copy of `agg` which has been updated to include any heartbeat intervals extending past the end of `pred` |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -61,4 +48,16 @@ Returns:
                     dead_ranges
 -----------------------------------------------------
 ("2022-01-12 15:27:22+00","2022-01-12 15:31:17+00")
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate containing liveness data for a particular interval |
+| pred | HeartbeatAgg | - | | The heartbeat aggregate for the preceding interval, if one exists |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| interpolate | HeartbeatAgg | A copy of `agg` which has been updated to include any heartbeat intervals extending past the end of `pred` |
+

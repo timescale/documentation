@@ -27,7 +27,14 @@ tdigest(
 ) RETURNS TDigest
 ```
 
-## Arguments
+## Samples
+
+Given a table called `samples`, with a column called `data`, build a `tdigest` using the `data` column. Use 100 buckets
+for the approximation.
+
+```sql
+SELECT tdigest(100, data) FROM samples;
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -40,11 +47,3 @@ tdigest(
 |--------|------|-------------|
 | tdigest | TDigest | A percentile estimator object created to calculate percentiles using the `tdigest` algorithm |
 
-## Samples
-
-Given a table called `samples`, with a column called `data`, build a `tdigest` using the `data` column. Use 100 buckets
-for the approximation.
-
-```sql
-SELECT tdigest(100, data) FROM samples;
-```

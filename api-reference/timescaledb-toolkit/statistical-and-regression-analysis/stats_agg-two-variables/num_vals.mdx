@@ -22,18 +22,6 @@ num_vals(
 ) RETURNS BIGINT
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| num_vals | DOUBLE PRECISION | The number of values in the statistical aggregate |
-
 ## Samples
 
 Calculate the number of values from 1 to 5, and from 0 to 100, inclusive:
@@ -48,4 +36,15 @@ SELECT num_vals(stats_agg(y, x))
 num_vals
 --------
 505
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| num_vals | DOUBLE PRECISION | The number of values in the statistical aggregate |
+

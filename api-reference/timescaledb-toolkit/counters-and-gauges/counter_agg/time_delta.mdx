@@ -17,17 +17,6 @@ topics:
 
 Get the number of seconds between the first and last measurements in a counter aggregate
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The difference, in seconds, between the first and last times
-
 ## Samples
 
 Get the time difference between the first and last counter readings for each 15-minute interval. Note this difference
@@ -48,3 +37,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The difference, in seconds, between the first and last times
+

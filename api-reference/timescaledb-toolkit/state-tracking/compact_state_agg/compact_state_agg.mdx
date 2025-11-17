@@ -23,7 +23,13 @@ compact_state_agg(
 ) RETURNS StateAgg
 ```
 
-## Arguments
+## Samples
+
+Create a state aggregate to track the status of some devices.
+
+```sql
+SELECT toolkit_experimental.compact_state_agg(time, status) FROM devices;
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -36,10 +42,3 @@ compact_state_agg(
 |--------|------|-------------|
 | agg | StateAgg | An object storing the total time spent in each state |
 
-## Samples
-
-Create a state aggregate to track the status of some devices.
-
-```sql
-SELECT toolkit_experimental.compact_state_agg(time, status) FROM devices;
-```

@@ -18,17 +18,6 @@ topics:
 Calculate the time when the gauge value is modeled to have been zero. This is the x-intercept of the linear fit between
 gauge value and time.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
-
-
-## Returns
-
-`TIMESTAMPTZ`: The time when the gauge value is predicted to have been zero
-
 ## Samples
 
 Estimate the time when the gauge started
@@ -47,3 +36,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`TIMESTAMPTZ`: The time when the gauge value is predicted to have been zero
+

@@ -23,18 +23,6 @@ num_gaps(
 ) RETURNS BIGINT
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the number of gaps from |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| num_gaps | bigint | The number of gaps in the aggregate |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -52,4 +40,15 @@ Returns:
  num_gaps
 ---------
  4
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the number of gaps from |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| num_gaps | bigint | The number of gaps in the aggregate |
+

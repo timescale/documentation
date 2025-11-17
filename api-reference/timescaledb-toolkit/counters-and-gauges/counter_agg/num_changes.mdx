@@ -18,17 +18,6 @@ topics:
 Get the number of times the counter changed during the period summarized by the counter aggregate. Any change is
 counted, including resets to zero.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter summary created using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`BIGINT`: The number of times the counter changed
-
 ## Samples
 
 Get the number of times the counter changed over each 15-minute interval.
@@ -47,3 +36,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter summary created using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`BIGINT`: The number of times the counter changed
+

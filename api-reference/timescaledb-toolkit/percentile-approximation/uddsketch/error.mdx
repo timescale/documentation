@@ -23,18 +23,6 @@ error(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| sketch | UddSketch | - |  | The `uddsketch` to determine the error of |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| error | DOUBLE PRECISION | The maximum relative error of any percentile estimate |
-
 ## Samples
 
 Calculate the maximum relative error when estimating percentiles using `uddsketch`.
@@ -49,3 +37,15 @@ error
 -------
 0.001
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| sketch | UddSketch | - |  | The `uddsketch` to determine the error of |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| error | DOUBLE PRECISION | The maximum relative error of any percentile estimate |
+

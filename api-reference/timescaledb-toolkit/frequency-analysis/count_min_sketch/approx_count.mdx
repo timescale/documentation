@@ -23,7 +23,18 @@ approx_count (
 ) RETURNS INTEGER
 ```
 
-## Arguments
+## Samples
+
+Given a table of stock data, estimate how many times the symbol `AAPL` appears:
+
+```sql
+WITH t AS (
+  SELECT toolkit_experimental.count_min_sketch(symbol, 0.01, 0.01) AS symbol_sketch
+  FROM crypto_ticks
+)
+SELECT toolkit_experimental.approx_count('AAPL', symbol_sketch)
+FROM t;
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -36,15 +47,3 @@ approx_count (
 |--------|------|-------------|
 | `approx_count` | INTEGER | The estimated number of times `item` appeared in the sketch |
 
-## Samples
-
-Given a table of stock data, estimate how many times the symbol `AAPL` appears:
-
-```sql
-WITH t AS (
-  SELECT toolkit_experimental.count_min_sketch(symbol, 0.01, 0.01) AS symbol_sketch
-  FROM crypto_ticks
-)
-SELECT toolkit_experimental.approx_count('AAPL', symbol_sketch)
-FROM t;
-```

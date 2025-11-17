@@ -24,18 +24,6 @@ num_vals(
 ) RETURNS BIGINT
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| num_vals | DOUBLE PRECISION | The number of values in the statistical aggregate |
-
 ## Samples
 
 Calculate the number of values from 0 to 100, inclusive:
@@ -49,4 +37,15 @@ SELECT num_vals(stats_agg(data))
 num_vals
 --------
 101
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| num_vals | DOUBLE PRECISION | The number of values in the statistical aggregate |
+

@@ -18,23 +18,6 @@ topics:
 Calculate the rate of change in a gauge over a time period. Data points at the exact boundaries of the time period
 aren't needed. The function interpolates the gauge values at the boundaries from adjacent gauge aggregates if needed.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
-| `start` | `TIMESTAMPTZ` | - | ✔ | The start of the time period to compute the rate over |
-| `interval` | `INTERVAL` | - | ✔ | The length of the time period to compute the rate over |
-| `prev` | `GaugeSummary` | - |  | The gauge aggregate from the previous interval, used to interpolate the value at `start`. If `NULL`, the first timestamp in `summary` is used as the start of the interval. |
-| `next` | `GaugeSummary` | - |  | The gauge aggregate from the next interval, used to interpolate the value at `start + interval`. If `NULL`, the last timestamp in `summary` is used as the end of the interval. |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The per-second rate of change of the gauge between the specified bounds. If exact values are missing
-in the raw data for the first and last points, these values are interpolated linearly from the neighboring gauge
-aggregates.
-
 ## Samples
 
 Calculate the per-second rate of change for each 15-minute interval, using interpolation to get the values at the
@@ -60,3 +43,20 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+| `start` | `TIMESTAMPTZ` | - | ✔ | The start of the time period to compute the rate over |
+| `interval` | `INTERVAL` | - | ✔ | The length of the time period to compute the rate over |
+| `prev` | `GaugeSummary` | - |  | The gauge aggregate from the previous interval, used to interpolate the value at `start`. If `NULL`, the first timestamp in `summary` is used as the start of the interval. |
+| `next` | `GaugeSummary` | - |  | The gauge aggregate from the next interval, used to interpolate the value at `start + interval`. If `NULL`, the last timestamp in `summary` is used as the end of the interval. |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The per-second rate of change of the gauge between the specified bounds. If exact values are missing
+in the raw data for the first and last points, these values are interpolated linearly from the neighboring gauge
+aggregates.
+

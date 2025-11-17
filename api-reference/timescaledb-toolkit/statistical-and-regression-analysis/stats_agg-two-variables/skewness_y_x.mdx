@@ -33,19 +33,6 @@ skewness_x(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-| method | TEXT | `sample` | - | The method used for calculating the skewness. The two options are `population` and `sample`, which can be abbreviated to `pop` or `samp` |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| skewness_y \| skewness_x | DOUBLE PRECISION | The skewness of the values in the statistical aggregate |
-
 ## Samples
 
 Calculate the skewness of a sample containing the integers from 0 to 100:
@@ -59,4 +46,16 @@ SELECT skewness_x(stats_agg(data, data))
 skewness_x
 ----------
 0
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+| method | TEXT | `sample` | - | The method used for calculating the skewness. The two options are `population` and `sample`, which can be abbreviated to `pop` or `samp` |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| skewness_y \| skewness_x | DOUBLE PRECISION | The skewness of the values in the statistical aggregate |
+

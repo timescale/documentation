@@ -25,19 +25,6 @@ live_at(
 ) RETURNS BOOL
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
-| test | TimestampTz | - | ✔ | The time to test the liveness of |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| live_at | bool | True if the heartbeat aggregate had a heartbeat close before the test time |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -55,4 +42,16 @@ Returns:
  live_at
 ---------
  f
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
+| test | TimestampTz | - | ✔ | The time to test the liveness of |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| live_at | bool | True if the heartbeat aggregate had a heartbeat close before the test time |
+

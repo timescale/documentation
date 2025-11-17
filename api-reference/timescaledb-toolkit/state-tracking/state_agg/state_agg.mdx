@@ -24,6 +24,15 @@ state_agg(
 ) RETURNS StateAgg
 ```
 
+## Samples
+
+Create a state aggregate to track the status of some devices.
+
+```sql
+SELECT state_agg(time, status) FROM devices;
+```
+
+[compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/
 ## Arguments
 
 | Name | Type | Default | Required | Description |
@@ -37,12 +46,3 @@ state_agg(
 |--------|------|-------------|
 | agg | StateAgg | An object storing the periods spent in each state, including timestamps of state transitions |
 
-## Samples
-
-Create a state aggregate to track the status of some devices.
-
-```sql
-SELECT state_agg(time, status) FROM devices;
-```
-
-[compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/

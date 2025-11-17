@@ -23,7 +23,16 @@ min_frequency (
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
+## Samples
+
+Find the minimum frequency of the value `3` in a column named `value` within the table `value_test`:
+
+```sql
+SELECT min_frequency(
+    (SELECT mcv_agg(20, value) FROM value_test),
+    3
+);
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -36,13 +45,3 @@ min_frequency (
 |--------|------|-------------|
 | `min_frequency` | DOUBLE PRECISION | The minimum bound for the value's estimated frequency. The minimum frequency might be 0 if the value's frequency falls below the space-saving aggregate's cut-off threshold. For more information, see [`freq_agg`](#freq_agg). |
 
-## Samples
-
-Find the minimum frequency of the value `3` in a column named `value` within the table `value_test`:
-
-```sql
-SELECT min_frequency(
-    (SELECT mcv_agg(20, value) FROM value_test),
-    3
-);
-```

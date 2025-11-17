@@ -26,19 +26,6 @@ interpolated_uptime(
 ) RETURNS INTERVAL
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
-| pred | HeartbeatAgg | - | | The heartbeat aggregate for the interval before the one being measured, if one exists |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| interpolated_uptime | INTERVAL | The sum of all the live ranges in the aggregate, including those covered by the last heartbeat of the previous interval |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -59,4 +46,16 @@ Returns:
 interpolated_uptime
 -------------------
   6 days 23:56:05
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
+| pred | HeartbeatAgg | - | | The heartbeat aggregate for the interval before the one being measured, if one exists |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| interpolated_uptime | INTERVAL | The sum of all the live ranges in the aggregate, including those covered by the last heartbeat of the previous interval |
+

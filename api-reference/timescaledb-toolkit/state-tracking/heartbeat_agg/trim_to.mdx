@@ -25,7 +25,16 @@ trim_to(
 ) RETURNS HEARTBEATAGG
 ```
 
-## Arguments
+## Samples
+
+Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
+use this query to roll up several weeks and trim the result to an exact month:
+
+```sql
+SELECT trim_to(rollup(health), '03-1-2022 UTC', '1 month')
+FROM liveness
+WHERE date > '02-21-2022 UTC' AND date < '3-7-2022 UTC'
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -39,13 +48,3 @@ trim_to(
 |--------|------|-------------|
 | trim_to | heartbeat_agg | The trimmed aggregate |
 
-## Samples
-
-Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
-use this query to roll up several weeks and trim the result to an exact month:
-
-```sql
-SELECT trim_to(rollup(health), '03-1-2022 UTC', '1 month')
-FROM liveness
-WHERE date > '02-21-2022 UTC' AND date < '3-7-2022 UTC'
-```

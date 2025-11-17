@@ -26,6 +26,18 @@ by one or more accessors in this group to compute final results. Optionally,
 you can combine multiple intermediate aggregate objects using
 [`rollup()`](#rollup) before an accessor is applied.
 
+## Samples
+
+Create a counter aggregate to summarize daily counter data.
+
+```sql
+SELECT
+  time_bucket('1 day'::interval, ts) as dt,
+  counter_agg(ts, val) AS cs
+FROM foo
+WHERE id = 'bar'
+GROUP BY time_bucket('1 day'::interval, ts)
+```
 ## Arguments
 
 | Name | Type | Default | Required | Description |
@@ -41,15 +53,3 @@ you can combine multiple intermediate aggregate objects using
 to accessor functions in the counter aggregates API to perform final calculations. Or, pass the aggregate to rollup
 functions to combine multiple counter aggregates into larger aggregates.
 
-## Samples
-
-Create a counter aggregate to summarize daily counter data.
-
-```sql
-SELECT
-  time_bucket('1 day'::interval, ts) as dt,
-  counter_agg(ts, val) AS cs
-FROM foo
-WHERE id = 'bar'
-GROUP BY time_bucket('1 day'::interval, ts)
-```

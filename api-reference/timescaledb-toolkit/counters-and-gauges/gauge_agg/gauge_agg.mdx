@@ -26,6 +26,18 @@ by one or more accessors in this group to compute final results. Optionally,
 you can combine multiple intermediate aggregate objects with
 [`rollup()`](#rollup) before an accessor is applied.
 
+## Samples
+
+Create a gauge aggregate to summarize daily gauge data.
+
+```sql
+SELECT
+  time_bucket('1 day'::interval, ts) as dt,
+  gauge_agg(ts, val) AS cs
+FROM foo
+WHERE id = 'bar'
+GROUP BY time_bucket('1 day'::interval, ts)
+```
 ## Arguments
 
 | Name | Type | Default | Required | Description |
@@ -41,15 +53,3 @@ you can combine multiple intermediate aggregate objects with
 accessor functions in the gauge aggregates API to perform final calculations. Or, pass the aggregate to rollup functions
 to combine multiple gauge aggregates into larger aggregates.
 
-## Samples
-
-Create a gauge aggregate to summarize daily gauge data.
-
-```sql
-SELECT
-  time_bucket('1 day'::interval, ts) as dt,
-  gauge_agg(ts, val) AS cs
-FROM foo
-WHERE id = 'bar'
-GROUP BY time_bucket('1 day'::interval, ts)
-```

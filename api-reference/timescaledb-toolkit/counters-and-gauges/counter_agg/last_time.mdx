@@ -17,17 +17,6 @@ topics:
 
 Get the last timestamp from a counter aggregate.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `cs` | `CounterSummary` | - | ✔ | A counter aggregate produced using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`TIMESTAMPTZ`: The timestamp of the last point in the counter aggregate
-
 ## Samples
 
 Get the first and last point of each daily counter aggregate.
@@ -46,3 +35,14 @@ SELECT
     last_time(cs) -- extract the timestamp of the last point in the CounterSummary
 FROM t;
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `cs` | `CounterSummary` | - | ✔ | A counter aggregate produced using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`TIMESTAMPTZ`: The timestamp of the last point in the counter aggregate
+

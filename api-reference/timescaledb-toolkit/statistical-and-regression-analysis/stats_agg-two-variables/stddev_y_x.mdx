@@ -33,19 +33,6 @@ stddev_x(summary
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-| method | TEXT | `sample` | - | The method used for calculating the standard deviation. The two options are `population` and `sample`, which can be abbreviated to `pop` or `samp` |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| stddev_y \| stddev_x | DOUBLE PRECISION | The standard deviation of the values in the statistical aggregate |
-
 ## Samples
 
 Calculate the standard deviation of a sample containing the integers from 0 to 100:
@@ -59,4 +46,16 @@ SELECT stddev_y(stats_agg(data, data))
 stddev_y
 --------
 29.3002
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+| method | TEXT | `sample` | - | The method used for calculating the standard deviation. The two options are `population` and `sample`, which can be abbreviated to `pop` or `samp` |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| stddev_y \| stddev_x | DOUBLE PRECISION | The standard deviation of the values in the statistical aggregate |
+

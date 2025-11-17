@@ -26,18 +26,6 @@ dead_ranges(
 )
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| dead_ranges | TABLE (start TIMESTAMPTZ, end TIMESTAMPTZ) | The (start, end) pairs of when the system was down |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -56,4 +44,15 @@ Returns:
 -----------------------------------------------------
 ("2022-01-09 00:00:00+00","2022-01-09 00:00:30+00")
 ("2022-01-12 15:27:22+00","2022-01-12 15:31:17+00")
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| dead_ranges | TABLE (start TIMESTAMPTZ, end TIMESTAMPTZ) | The (start, end) pairs of when the system was down |
+

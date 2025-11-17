@@ -18,17 +18,6 @@ topics:
 Get the change in a gauge over a time period. This is the simple delta, computed by subtracting the last seen value from
 the first.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregated created using [`gauge_agg`](#gauge_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The change in the gauge over the bucketed interval
-
 ## Samples
 
 Get the change in each gauge over the entire time interval in table `foo`.
@@ -45,3 +34,14 @@ FROM (
     GROUP BY id
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregated created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The change in the gauge over the bucketed interval
+

@@ -26,19 +26,6 @@ kurtosis(
 ) DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
-| method | TEXT | `sample` | - | The method used for calculating the kurtosis. The two options are `population` and `sample`, which can be abbreviated to `pop` or `samp` |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| kurtosis | DOUBLE PRECISION | The kurtosis of the values in the statistical aggregate |
-
 ## Samples
 
 Calculate the kurtosis of a sample containing the integers from 0 to 100:
@@ -52,4 +39,16 @@ SELECT kurtosis(stats_agg(data))
 kurtosis
 ----------
 1.78195
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |
+| method | TEXT | `sample` | - | The method used for calculating the kurtosis. The two options are `population` and `sample`, which can be abbreviated to `pop` or `samp` |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| kurtosis | DOUBLE PRECISION | The kurtosis of the values in the statistical aggregate |
+

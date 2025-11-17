@@ -19,17 +19,6 @@ Calculate the instantaneous rate of change at the left, or earliest, edge of a g
 second value minus the first value, divided by the time lapse between the two points. This calculation is useful for
 fast-moving gauges.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The instantaneous rate of change at the left, or earliest, edge of the gauge aggregate
-
 ## Samples
 
 Get the instantaneous rate of change at the start of each 15-minute gauge aggregate.
@@ -48,3 +37,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The instantaneous rate of change at the left, or earliest, edge of the gauge aggregate
+

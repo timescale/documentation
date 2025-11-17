@@ -23,7 +23,13 @@ topn (
 ) RETURNS AnyElement
 ```
 
-## Arguments
+## Samples
+
+Get the 20 most frequent `zip_codes` from an `employees` table:
+
+```sql
+SELECT topn(mcv_agg(20, zip_code)) FROM employees;
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -36,10 +42,3 @@ topn (
 |--------|------|-------------|
 | `topn` | AnyElement | The N most-frequent values in the aggregate |
 
-## Samples
-
-Get the 20 most frequent `zip_codes` from an `employees` table:
-
-```sql
-SELECT topn(mcv_agg(20, zip_code)) FROM employees;
-```

@@ -23,18 +23,6 @@ max_val(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| digest | TDigest | - |  | The digest to extract the max value from |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| max_val | DOUBLE PRECISION | The maximum value entered into the `tdigest` |
-
 ## Samples
 
 Get the maximum of the integers from 1 to 100.
@@ -49,3 +37,15 @@ max_val
 ---------
     100
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| digest | TDigest | - |  | The digest to extract the max value from |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| max_val | DOUBLE PRECISION | The maximum value entered into the `tdigest` |
+

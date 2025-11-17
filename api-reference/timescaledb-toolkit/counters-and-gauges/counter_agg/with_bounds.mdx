@@ -22,17 +22,6 @@ products:
 Add time bounds to an already-computed counter aggregate. Bounds are necessary to use extrapolation accessors on the
 aggregate.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `cs` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-| `bounds` | `TSTZRANGE` | - | ✔ | A range of `timestamptz` giving the smallest and largest allowed times in the counter aggregate |
-
-## Returns
-
-`CounterSummary`: A new counter aggregate with the bounds applied
-
 ## Samples
 
 Create a counter aggregate for each `id` and each 15-minute interval. Then add bounds to the counter aggregate, so you
@@ -56,4 +45,14 @@ FROM (
     FROM foo
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `cs` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+| `bounds` | `TSTZRANGE` | - | ✔ | A range of `timestamptz` giving the smallest and largest allowed times in the counter aggregate |
+
+## Returns
+
+`CounterSummary`: A new counter aggregate with the bounds applied
+

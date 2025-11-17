@@ -18,18 +18,6 @@ topics:
 Calculate the correlation coefficient from a gauge aggregate. The calculation uses a linear least-squares fit, and
 returns a value between 0.0 and 1.0, from no correlation to the strongest possible correlation.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The correlation coefficient calculated with time as the independent variable and gauge value as the
-dependent variable.
-
 ## Samples
 
 Calculate the correlation coefficient to determine the goodness of a linear fit between gauge value and time.
@@ -48,3 +36,15 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The correlation coefficient calculated with time as the independent variable and gauge value as the
+dependent variable.
+

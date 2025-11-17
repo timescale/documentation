@@ -23,18 +23,6 @@ rollup(
 ) RETURNS StateAgg
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | State aggregates created using `compact_state_agg` |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| agg | StateAgg | A new state aggregate that combines the input state aggregates |
-
 ## Samples
 
 Combine multiple state aggregates and calculate the duration spent in the `START` state.
@@ -50,4 +38,15 @@ SELECT toolkit_experimental.duration_in(
     toolkit_experimental.rollup(buckets.sa)
 )
 FROM buckets;
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | StateAgg | - | ✔ | State aggregates created using `compact_state_agg` |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| agg | StateAgg | A new state aggregate that combines the input state aggregates |
+

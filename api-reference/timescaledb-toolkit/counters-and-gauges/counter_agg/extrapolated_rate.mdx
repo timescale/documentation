@@ -21,18 +21,6 @@ function to work. You can provide them as part of the original [`counter_agg`](#
 call, or by using the [`with_bounds`](#with_bounds) function on an existing
 counter aggregate.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-| `method` | `TEXT` | - | ✔ | The extrapolation method to use. Not case-sensitive. The only allowed value is `prometheus`, for the Prometheus extrapolation protocol. |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The extrapolated rate of change of the counter over the timer period of the counter aggregate.
-
 ## Samples
 
 ```sql
@@ -54,3 +42,15 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t;
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+| `method` | `TEXT` | - | ✔ | The extrapolation method to use. Not case-sensitive. The only allowed value is `prometheus`, for the Prometheus extrapolation protocol. |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The extrapolated rate of change of the counter over the timer period of the counter aggregate.
+

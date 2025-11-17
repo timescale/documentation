@@ -18,19 +18,6 @@ hyperfunction:
 Calculate the integral, or the area under the curve formed by the data points. Equal to [`average`][average] multiplied
 by the elapsed time.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |
-| unit | TEXT | second | | The unit of time to express the integral in. Can be `microsecond`, `millisecond`, `second`, `minute`, `hour`, or any alias for those units supported by Postgres |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| integral | DOUBLE PRECISION | The time-weighted integral |
-
 ## Samples
 
 Create a table to track irregularly sampled storage usage in bytes, and get the total storage used in byte-hours. Use
@@ -53,4 +40,16 @@ FROM
     user_storage_usage;
 ```
 
-[average]: /api-reference/timescaledb/hyperfunctions/time_weight/average
+[average]: /api-reference/timescaledb/hyperfunctions/time_weight/average## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |
+| unit | TEXT | second | | The unit of time to express the integral in. Can be `microsecond`, `millisecond`, `second`, `minute`, `hour`, or any alias for those units supported by Postgres |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| integral | DOUBLE PRECISION | The time-weighted integral |
+

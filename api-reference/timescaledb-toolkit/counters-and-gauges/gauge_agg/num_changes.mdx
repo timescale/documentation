@@ -17,17 +17,6 @@ topics:
 
 Get the number of times the gauge changed during the period summarized by the gauge aggregate.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge summary created using [`gauge_agg`](#gauge_agg) |
-
-
-## Returns
-
-`BIGINT`: The number of times the gauge changed
-
 ## Samples
 
 Get the number of times the gauge changed over each 15-minute interval.
@@ -46,3 +35,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge summary created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`BIGINT`: The number of times the gauge changed
+

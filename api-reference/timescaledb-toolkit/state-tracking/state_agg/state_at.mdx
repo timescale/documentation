@@ -28,19 +28,6 @@ state_at_int(
 ) RETURNS BIGINT
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |
-| ts | TIMESTAMPTZ | - | ✔ | The time to get the state at |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| state | TEXT \| BIGINT | The state at the given time |
-
 ## Samples
 
 Create a state aggregate and determine the state at a particular time.
@@ -61,3 +48,16 @@ START
 ```
 
 [state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_agg
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |
+| ts | TIMESTAMPTZ | - | ✔ | The time to get the state at |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| state | TEXT \| BIGINT | The state at the given time |
+

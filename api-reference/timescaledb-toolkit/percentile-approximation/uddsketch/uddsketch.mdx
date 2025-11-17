@@ -30,7 +30,14 @@ uddsketch(
 ) RETURNS UddSketch
 ```
 
-## Arguments
+## Samples
+
+Build a `uddsketch` using a column called `data` from a table called `samples`. Use a maximum of 100 buckets and a
+relative error of 0.01.
+
+```sql
+SELECT uddsketch(100, 0.01, data) FROM samples;
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -44,11 +51,3 @@ uddsketch(
 |--------|------|-------------|
 | uddsketch | UddSketch | a percentile estimator object created to calculate percentiles using the `uddsketch` algorithm |
 
-## Samples
-
-Build a `uddsketch` using a column called `data` from a table called `samples`. Use a maximum of 100 buckets and a
-relative error of 0.01.
-
-```sql
-SELECT uddsketch(100, 0.01, data) FROM samples;
-```

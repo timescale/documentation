@@ -14,20 +14,6 @@ hyperfunction:
 
 Downsample your data with the [Largest Triangle Three Buckets algorithm](https://github.com/sveinn-steinarsson/flot-downsample). This algorithm tries to retain visual similarity between the downsampled data and the original dataset.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| ts | TIMESTAMPTZ | - | ✔ | Timestamps for each data point |
-| value | DOUBLE PRECISION | - | ✔ | The value at each timestamp |
-| resolution | INT | - | ✔ | The approximate number of points to return. Determines the horizontal resolution of the resulting graph. |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| lttb | Timevector | An object representing a series of values occurring at set intervals from a starting time. It can be unpacked with `unnest`. For more information, see the documentation on [timevectors](/use-timescale/latest/hyperfunctions/function-pipelines/#timevectors). |
-
 ## Samples
 
 This example uses a table with raw data generated as a sine wave. You can use LTTB to dramatically reduce the number of
@@ -60,3 +46,17 @@ time                    |               value
 2020-01-06 20:00:00+00  |  2.4999999999999996
 2020-01-08 00:00:00+00  |   5.000000000000004
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| ts | TIMESTAMPTZ | - | ✔ | Timestamps for each data point |
+| value | DOUBLE PRECISION | - | ✔ | The value at each timestamp |
+| resolution | INT | - | ✔ | The approximate number of points to return. Determines the horizontal resolution of the resulting graph. |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| lttb | Timevector | An object representing a series of values occurring at set intervals from a starting time. It can be unpacked with `unnest`. For more information, see the documentation on [timevectors](/use-timescale/latest/hyperfunctions/function-pipelines/#timevectors). |
+

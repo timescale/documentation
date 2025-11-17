@@ -23,19 +23,6 @@ approx_percentile_array(
 ) RETURNS DOUBLE PRECISION[]
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| percentiles | DOUBLE PRECISION[] | - | ✔ | array of percentiles to compute. Must be within the range `[0.0, 1.0]` |
-| sketch | UddSketch | - | ✔ | the `uddsketch` aggregate |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| approx_percentile_array | DOUBLE PRECISION[] | the estimated values at the requested percentiles |
-
 ## Samples
 
 Estimate the value at the 90th, 50th, and 20th percentiles, given a sample containing the numbers from 0 to 100.
@@ -50,4 +37,16 @@ FROM generate_series(0, 100) data;
 approx_percentile_array
 -------------------
  {90.0,50.0,20.0}
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| percentiles | DOUBLE PRECISION[] | - | ✔ | array of percentiles to compute. Must be within the range `[0.0, 1.0]` |
+| sketch | UddSketch | - | ✔ | the `uddsketch` aggregate |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| approx_percentile_array | DOUBLE PRECISION[] | the estimated values at the requested percentiles |
+

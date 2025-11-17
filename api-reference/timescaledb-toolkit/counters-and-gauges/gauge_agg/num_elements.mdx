@@ -17,17 +17,6 @@ topics:
 
 Get the number of points with distinct timestamps from a gauge aggregate. Duplicate timestamps are ignored.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
-
-
-## Returns
-
-`BIGINT`: The number of points with distinct timestamps
-
 ## Samples
 
 Get the number of points for each 15-minute gauge aggregate.
@@ -46,3 +35,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+
+
+## Returns
+
+`BIGINT`: The number of points with distinct timestamps
+

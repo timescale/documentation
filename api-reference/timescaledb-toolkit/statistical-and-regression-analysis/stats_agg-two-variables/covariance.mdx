@@ -26,7 +26,18 @@ covariance(
 ) RETURNS DOUBLE PRECISION
 ```
 
-## Arguments
+## Samples
+
+Calculate the covariance of independent variable `y` and dependent variable `x` for each 15-minute time bucket:
+
+```sql
+SELECT
+    id,
+    time_bucket('15 min'::interval, ts) AS bucket,
+    covariance(stats_agg(y, x)) AS summary
+FROM foo
+GROUP BY id, time_bucket('15 min'::interval, ts)
+```## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -39,15 +50,3 @@ covariance(
 |--------|------|-------------|
 | covariance | DOUBLE PRECISION | The covariance of the least-squares fit line |
 
-## Samples
-
-Calculate the covariance of independent variable `y` and dependent variable `x` for each 15-minute time bucket:
-
-```sql
-SELECT
-    id,
-    time_bucket('15 min'::interval, ts) AS bucket,
-    covariance(stats_agg(y, x)) AS summary
-FROM foo
-GROUP BY id, time_bucket('15 min'::interval, ts)
-```

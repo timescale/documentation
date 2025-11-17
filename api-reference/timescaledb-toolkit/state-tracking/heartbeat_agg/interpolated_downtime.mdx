@@ -26,19 +26,6 @@ interpolated_downtime(
 ) RETURNS INTERVAL
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
-| pred | HeartbeatAgg | - | | The heartbeat aggregate for the interval before the one being measured, if one exists |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| interpolated_downtime | INTERVAL | The sum of all the unhealthy ranges in the aggregate, excluding those covered by the last heartbeat of the previous interval |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -59,4 +46,16 @@ Returns:
 interpolated_downtime
 ---------------------
        00:03:55
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |
+| pred | HeartbeatAgg | - | | The heartbeat aggregate for the interval before the one being measured, if one exists |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| interpolated_downtime | INTERVAL | The sum of all the unhealthy ranges in the aggregate, excluding those covered by the last heartbeat of the previous interval |
+

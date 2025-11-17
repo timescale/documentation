@@ -22,18 +22,6 @@ num_live_ranges(
 ) RETURNS BIGINT
 ```
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the number of ranges from |
-
-## Returns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| num_live_ranges | bigint | The number of live ranges in the aggregate |
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -51,4 +39,15 @@ Returns:
  num_live_ranges
 ---------
  5
-```
+```## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the number of ranges from |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| num_live_ranges | bigint | The number of live ranges in the aggregate |
+

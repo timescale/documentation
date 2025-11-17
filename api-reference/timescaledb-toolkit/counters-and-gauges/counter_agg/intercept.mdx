@@ -19,17 +19,6 @@ Calculate the y-intercept of a linear least-squares fit between counter value an
 projected value at the Postgres epoch `(2000-01-01 00:00:00+00)`. You can use the y-intercept with the slope to plot a
 best-fit line.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The y-intercept of the linear least-squares fit
-
 ## Samples
 
 Calculate the y-intercept of the linear fit for each 15-minute counter aggregate.
@@ -48,3 +37,14 @@ FROM (
     GROUP BY id, time_bucket('15 min'::interval, ts)
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The y-intercept of the linear least-squares fit
+

@@ -18,17 +18,6 @@ topics:
 Calculate the rate of change of the counter. This is the simple rate, equal to the last value minus the first value,
 divided by the time elapsed, after accounting for resets.
 
-## Arguments
-
-| Name | Type | Default | Required | Description |
-| --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
-
-
-## Returns
-
-`DOUBLE PRECISION`: The rate of change of the counter
-
 ## Samples
 
 Get the rate of change per `id` over the entire recorded interval.
@@ -45,3 +34,14 @@ FROM (
     GROUP BY id
 ) t
 ```
+## Arguments
+
+| Name | Type | Default | Required | Description |
+| --- | --- | --- | --- | --- |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+
+
+## Returns
+
+`DOUBLE PRECISION`: The rate of change of the counter
+
