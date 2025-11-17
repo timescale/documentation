@@ -1,0 +1,313 @@
+import MigratePrerequisites from '/snippets/prerequisites/_migrate-prerequisites.mdx';
+import LivesyncLimitations from '/snippets/integrations/_livesync-limitations.mdx';
+import SetupConnectionStrings from '/snippets/integrations/_setup-connection-strings-livesync.mdx';
+import ConfigureSourceDatabasePostgres from '/snippets/integrations/_configure-source-database-postgres.mdx';
+import TuneSourceDatabaseAWSRDS from '/snippets/integrations/_tune-source-database-awsrds-migration.mdx';
+import { SERVICE_SHORT, SERVICE_LONG, PG, PG_CONNECTOR } from '/snippets/vars.mdx';
+
+## Prerequisites
+
+<MigratePrerequisites />
+
+- Ensure that the source {PG} instance and the target {SERVICE_LONG} have the same extensions installed.
+
+  The {PG_CONNECTOR} does not create extensions on the target. If the table uses column types from an extension,
+  first create the extension on the target {SERVICE_LONG} before syncing the table.
+
+- [Install Docker][install-docker] on your sync machine.
+
+  For a better experience, use a 4 CPU/16GB EC2 instance or greater to run the {PG_CONNECTOR}.
+
+- Install the [{PG} client tools](/integrations/integrate/psql) on your sync machine.
+
+  This includes `psql`, `pg_dump`, `pg_dumpall`, and `vacuumdb` commands.
+
+## Limitations
+
+- The schema is not migrated by the connector, you use `pg_dump`/`pg_restore` to migrate it.
+
+<LivesyncLimitations />
+
+## Set your connection strings
+
+The `<user>` in the `SOURCE` connection must have the replication role granted in order to create a replication slot.
+
+<SetupConnectionStrings />
+
+## Tune your source database
+
+<Tabs>
+
+<Tab title="From AWS RDS/Aurora">
+
+<TuneSourceDatabaseAWSRDS />
+
+</Tab>
+
+<Tab title="From Postgres">
+
+<ConfigureSourceDatabasePostgres />
+
+</Tab>
+
+</Tabs>
+
+## Migrate the table schema
+
+Use `pg_dump` to:
+
+1. **Download the schema from the source database**
+
+   ```bash
+   pg_dump $SOURCE \
+   --no-privileges \
+   --no-owner \
+   --no-publications \
+   --no-subscriptions \
+   --no-table-access-method \
+   --no-tablespaces \
+   --schema-only \
+   --file=schema.sql
+   ```
+
+2. **Apply the schema on the target {SERVICE_SHORT}**
+
+   ```bash
+   psql $TARGET -f schema.sql
+   ```
+
+## Convert partitions and tables with time-series data into hypertables
+
+For efficient querying and analysis, you can convert tables which contain time-series or
+events data, and tables that are already partitioned using {PG} declarative partition into
+hypertables.
+
+1. **Convert tables to hypertables**
+
+   Run the following on each table in the target to convert it to a hypertable:
+
+   ```bash
+   psql -X -d $TARGET -c "SELECT public.create_hypertable('<table>', by_range('<partition column>', '<chunk interval>'::interval));"
+   ```
+
+   For example, to convert the *metrics* table into a hypertable with *time* as a partition column and
+   *1 day* as a partition interval:
+
+   ```bash
+   psql -X -d $TARGET -c "SELECT public.create_hypertable('public.metrics', by_range('time', '1 day'::interval));"
+   ```
+
+2. **Convert {PG} partitions to hypertables**
+
+   Rename the partition and create a new regular table with the same name as the partitioned table, then
+   convert to a hypertable:
+
+   ```bash
+   psql $TARGET -f - <<'EOF'
+      BEGIN;
+      ALTER TABLE public.events RENAME TO events_part;
+      CREATE TABLE public.events(LIKE public.events_part INCLUDING ALL);
+      SELECT create_hypertable('public.events', by_range('time', '1 day'::interval));
+      COMMIT;
+      EOF
+   ```
+
+## Specify the tables to synchronize
+
+After the schema is migrated, you [`CREATE PUBLICATION`][create-publication] on the source database that
+specifies the tables to synchronize.
+
+1. **Create a publication that specifies the table to synchronize**
+
+   A `PUBLICATION` enables you to synchronize some or all the tables in the schema or database.
+
+   ```sql
+   CREATE PUBLICATION <publication_name> FOR TABLE <table_name>, <table_name>;
+   ```
+
+    To add tables after to an existing publication, use [ALTER PUBLICATION][alter-publication]
+
+   ```sql
+   ALTER PUBLICATION <publication_name> ADD TABLE <table_name>;
+   ```
+
+2. **Publish the {PG} declarative partitioned table**
+
+   ```sql
+   ALTER PUBLICATION <publication_name> SET(publish_via_partition_root=true);
+   ```
+
+3. **Stop syncing a table in the `PUBLICATION`, use `DROP TABLE`**
+
+   ```sql
+   ALTER PUBLICATION <publication_name> DROP TABLE <table_name>;
+   ```
+
+## Synchronize your data
+
+You use the connector docker image to synchronize changes in real time from a {PG} database
+instance:
+
+1. **Start the connector**
+
+   As you run the connector continuously, best practice is to run it as a Docker daemon.
+
+   ```bash
+   docker run -d --rm --name livesync timescale/live-sync:v0.1.25 run \
+      --publication <publication_name> --subscription <subscription_name> \
+      --source $SOURCE --target $TARGET --table-map <table_map_as_json>
+   ```
+
+   `--publication`: The name of the publication as you created in the previous step. To use multiple publications, repeat the `--publication` flag.
+
+   `--subscription`: The name that identifies the subscription on the target.
+
+   `--source`: The connection string to the source {PG} database.
+
+   `--target`: The connection string to the target.
+
+   `--table-map`: (Optional) A JSON string that maps source tables to target tables. If not provided, the source and target table names are assumed to be the same.
+   For example, to map the source table `metrics` to the target table `metrics_data`:
+
+   ```
+   --table-map '{"source": {"schema": "public", "table": "metrics"}, "target": {"schema": "public", "table": "metrics_data"}}'
+   ```
+   To map only the schema, use:
+
+   ```
+   --table-map '{"source": {"schema": "public"}, "target": {"schema": "analytics"}}'
+   ```
+   This flag can be repeated for multiple table mappings.
+
+2. **Capture logs**
+
+   Once the connector is running as a docker daemon, you can also capture the logs:
+   ```bash
+   docker logs -f livesync
+   ```
+
+3. **View the progress of tables being synchronized**
+
+   List the tables being synchronized by the connector using the `_ts_live_sync.subscription_rel` table in the target:
+
+   ```bash
+   psql $TARGET -c "SELECT * FROM _ts_live_sync.subscription_rel"
+   ```
+
+   You see something like the following:
+
+   | subname  | pubname | schemaname | tablename | rrelid | state |    lsn     |          updated_at           |                                  last_error                                   |          created_at           | rows_copied | approximate_rows | bytes_copied | approximate_size | target_schema | target_table |
+   |----------|---------|-------------|-----------|--------|-------|------------|-------------------------------|-------------------------------------------------------------------------------|-------------------------------|-------------|------------------|--------------|------------------|---------------|-------------|
+   |livesync | analytics | public     | metrics   |  20856 | r     | 6/1A8CBA48 | 2025-06-24 06:16:21.434898+00 |                                                                               | 2025-06-24 06:03:58.172946+00 |    18225440 |         18225440 |   1387359359 |       1387359359 | public        | metrics  |
+
+   The `state` column indicates the current state of the table synchronization.
+   Possible values for `state` are:
+
+   | state | description |
+   |-------|-------------|
+   | d | initial table data sync |
+   | f | initial table data sync completed |
+   | s | catching up with the latest changes |
+   | r | table is ready, syncing live changes |
+
+   To see the replication lag, run the following against the SOURCE database:
+
+   ```bash
+   psql $SOURCE -f - <<'EOF'
+   SELECT
+      slot_name,
+      pg_size_pretty(pg_current_wal_flush_lsn() - confirmed_flush_lsn) AS lag
+   FROM pg_replication_slots
+   WHERE slot_name LIKE 'live_sync_%' AND slot_type = 'logical'
+   EOF
+   ```
+
+4. **Add or remove tables from the publication**
+
+   To add tables, use [ALTER PUBLICATION .. ADD TABLE][alter-publication]
+
+   ```sql
+   ALTER PUBLICATION <publication_name> ADD TABLE <table_name>;
+   ```
+
+   To remove tables, use [ALTER PUBLICATION .. DROP TABLE][alter-publication]
+
+   ```sql
+   ALTER PUBLICATION <publication_name> DROP TABLE <table_name>;
+   ```
+
+5. **Update table statistics**
+
+   If you have a large table, you can run `ANALYZE` on the target
+   to update the table statistics after the initial sync is complete.
+
+   This helps the query planner make better decisions for query execution plans.
+
+   ```bash
+   vacuumdb --analyze --verbose --dbname=$TARGET
+   ```
+
+6. **Stop the connector**
+
+   ```bash
+   docker stop live-sync
+   ```
+
+7. **(Optional) Reset sequence nextval on the target**
+
+   The connector does not automatically reset the sequence nextval on the target.
+
+   Run the following script to reset the sequence for all tables that have a
+   serial or identity column in the target:
+
+   ```bash
+   psql $TARGET -f - <<'EOF'
+      DO $$
+   DECLARE
+     rec RECORD;
+   BEGIN
+     FOR rec IN (
+       SELECT
+         sr.target_schema  AS table_schema,
+         sr.target_table   AS table_name,
+         col.column_name,
+         pg_get_serial_sequence(
+           sr.target_schema || '.' || sr.target_table,
+           col.column_name
+         ) AS seqname
+       FROM _ts_live_sync.subscription_rel AS sr
+       JOIN information_schema.columns AS col
+         ON col.table_schema = sr.target_schema
+        AND col.table_name   = sr.target_table
+       WHERE col.column_default LIKE 'nextval(%'  -- only serial/identity columns
+     ) LOOP
+       EXECUTE format(
+         'SELECT setval(%L,
+            COALESCE((SELECT MAX(%I) FROM %I.%I), 0) + 1,
+            false
+          );',
+         rec.seqname,       -- the sequence identifier
+         rec.column_name,   -- the column to MAX()
+         rec.table_schema,  -- schema for MAX()
+         rec.table_name     -- table for MAX()
+       );
+     END LOOP;
+   END;
+   $$ LANGUAGE plpgsql;
+   EOF
+   ```
+
+8. **Clean up**
+
+   Use the `--drop` flag to remove the replication slots created by the connector on the source database.
+
+   ```bash
+   docker run -it --rm --name livesync timescale/live-sync:v0.1.25 run \
+      --publication <publication_name> --subscription <subscription_name> \
+      --source $SOURCE --target $TARGET \
+      --drop
+   ```
+
+[install-docker]: https://docs.docker.com/engine/install/
+[create-publication]: https://www.postgresql.org/docs/current/sql-createpublication.html
+[alter-publication]: https://www.postgresql.org/docs/current/sql-alterpublication.html

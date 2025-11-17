@@ -15,7 +15,7 @@ system. {LAKE_LONG} unifies the {CLOUD_LONG} operational architecture with data 
 ![Tiger Lake architecture](https://assets.timescale.com/docs/images/tiger-cloud-console/tiger-lake-integration-tiger.svg)
 
 {LAKE_LONG} is a native integration enabling synchronization between {HYPERTABLE}s and relational tables
-running in {SERVICE_LONG}s to Iceberg tables running in [Amazon S3 Tables](https://aws.amazon.com/s3/features/tables/) in your AWS account.
+running in {SERVICE_LONG}s to Iceberg tables running in [Amazon S3 Tables][s3-tables] in your AWS account.
 
 <Info>
 Tiger Lake is currently in private beta. Please contact us to request access.
@@ -27,7 +27,7 @@ Tiger Lake is currently in private beta. Please contact us to request access.
 
 <NotSupportedAzure />
 
-## Integrate a data lake with your {SERVICE_LONG}
+## Integrate a data lake with your Tiger Cloud service
 
 To connect a {SERVICE_LONG} to your data lake:
 
@@ -36,7 +36,7 @@ To connect a {SERVICE_LONG} to your data lake:
 <Tab title="AWS Management Console">
 
 1. **Set the AWS region to host your table bucket**
-   1. In [AWS CloudFormation](https://console.aws.amazon.com/cloudformation/), select the current AWS region at the top-right of the page.
+   1. In [AWS CloudFormation][aws-cloudformation], select the current AWS region at the top-right of the page.
    1. Set it to the Region you want to create your table bucket in.
 
    **This must match the region your {SERVICE_LONG} is running in**: if the regions do not match AWS charges you for
@@ -62,7 +62,7 @@ To connect a {SERVICE_LONG} to your data lake:
 
 3. **Connect your {SERVICE_SHORT} to the data lake**
 
-   1. In [{CONSOLE}](https://console.cloud.timescale.com/dashboard/services), select the {SERVICE_SHORT} you want to integrate with AWS S3 Tables, then click
+   1. In [{CONSOLE}][console-services], select the {SERVICE_SHORT} you want to integrate with AWS S3 Tables, then click
       `Connectors`.
 
    1. Select the Apache Iceberg connector and supply the:
@@ -102,7 +102,7 @@ To connect a {SERVICE_LONG} to your data lake:
 
 2. **Connect your {SERVICE_SHORT} to the data lake**
 
-   1. In [{CONSOLE}](https://console.cloud.timescale.com/dashboard/services), select the {SERVICE_SHORT} you want to integrate with AWS S3 Tables, then click
+   1. In [{CONSOLE}][console-services], select the {SERVICE_SHORT} you want to integrate with AWS S3 Tables, then click
       `Connectors`.
 
    1. Select the Apache Iceberg connector and supply the:
@@ -118,7 +118,7 @@ To connect a {SERVICE_LONG} to your data lake:
 1. **Create a S3 Bucket**
 
    1. Set the AWS region to host your table bucket
-      1. In [Amazon S3 console](https://console.aws.amazon.com/s3/), select the current AWS region at the top-right of the page.
+      1. In [Amazon S3 console][aws-s3-console], select the current AWS region at the top-right of the page.
       2. Set it to the Region your you want to create your table bucket in.
 
       **This must match the region your {SERVICE_LONG} is running in**: if the regions do not match AWS charges you for
@@ -128,7 +128,7 @@ To connect a {SERVICE_LONG} to your data lake:
    1. Copy the `Amazon Resource Name (ARN)` for your table bucket.
 
 2. **Create an ARN role**
-   1. In [IAM Dashboard](https://console.aws.amazon.com/iamv2/home), click `Roles` then click `Create role`
+   1. In [IAM Dashboard][aws-iam-dashboard], click `Roles` then click `Create role`
    1. In `Select trusted entity`, click `Custom trust policy`, replace the **Custom trust policy** code block with the
       following:
 
@@ -191,7 +191,7 @@ To connect a {SERVICE_LONG} to your data lake:
 
 3. **Connect your {SERVICE_SHORT} to the data lake**
 
-   1. In [{CONSOLE}](https://console.cloud.timescale.com/dashboard/services), select the {SERVICE_SHORT} you want to integrate with AWS S3 Tables, then click
+   1. In [{CONSOLE}][console-services], select the {SERVICE_SHORT} you want to integrate with AWS S3 Tables, then click
       `Connectors`.
 
    1. Select the Apache Iceberg connector and supply the:
@@ -204,7 +204,7 @@ To connect a {SERVICE_LONG} to your data lake:
 
 </Tabs>
 
-## Stream data from your {SERVICE_LONG} to your data lake
+## Stream data from your Tiger Cloud service to your data lake
 
 When you start streaming, all data in the table is synchronized to Iceberg. Records are imported in time order, from
 oldest to youngest. The write throughput is approximately 40.000 records / second. For larger tables, a full import can
@@ -245,9 +245,9 @@ By default, the partition interval for an Iceberg table is one day(time-column) 
 | `day`         | Extract a date or timestamp day, as days from epoch.                      | `date`, `timestamp`, `timestamptz` |
 | `month`       | Extract a date or timestamp day, as days from epoch.                      | `date`, `timestamp`, `timestamptz` |
 | `year`        | Extract a date or timestamp day, as days from epoch.                      | `date`, `timestamp`, `timestamptz` |
-| `truncate[W]` | Value truncated to width W, see [options](https://iceberg.apache.org/spec/#truncate-transform-details)       |
+| `truncate[W]` | Value truncated to width W, see [options][iceberg-truncate]       |
 
-These partitions define the behavior using the [Iceberg partition specification](https://iceberg.apache.org/spec/#partition-transforms).
+These partitions define the behavior using the [Iceberg partition specification][iceberg-partitions].
 
 ### Sample code
 
@@ -339,10 +339,19 @@ data lake:
 
 * Service requires {PG} 17.6 and above is supported.
 * Consistent ingestion rates of over 30000 records / second can lead to a lost replication slot. Burst can be feathered out over time.
-* [Amazon S3 Tables Iceberg REST](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-integrating-open-source.html) catalog only is supported.
+* [Amazon S3 Tables Iceberg REST][s3-iceberg-rest] catalog only is supported.
 * In order to collect deletes made to data in the columstore, certain columnstore optimizations are disabled for {HYPERTABLE}s.
 * Direct Compress is not supported.
 * The `TRUNCATE` statement is not supported, and does not truncate data in the corresponding Iceberg table.
 * Data in a {HYPERTABLE} that has been moved to the low-cost object storage tier is not synced.
 * Writing to the same S3 table bucket from multiple services is not supported, bucket-to-service mapping is one-to-one.
 * Iceberg snapshots are pruned automatically if the amount exceeds 2500.
+
+[s3-tables]: https://aws.amazon.com/s3/features/tables/
+[aws-cloudformation]: https://console.aws.amazon.com/cloudformation/
+[console-services]: https://console.cloud.timescale.com/dashboard/services
+[aws-s3-console]: https://console.aws.amazon.com/s3/
+[aws-iam-dashboard]: https://console.aws.amazon.com/iamv2/home
+[iceberg-truncate]: https://iceberg.apache.org/spec/#truncate-transform-details
+[iceberg-partitions]: https://iceberg.apache.org/spec/#partition-transforms
+[s3-iceberg-rest]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-integrating-open-source.html

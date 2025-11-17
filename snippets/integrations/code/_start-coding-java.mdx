@@ -5,13 +5,13 @@ import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs-clo
 
 <IntegrationPrereqs />
 
-*   Install the [Java Development Kit (JDK)](https://openjdk.java.net).
-*   Install the [PostgreSQL JDBC driver](https://jdbc.postgresql.org).
+*   Install the [Java Development Kit (JDK)][install-jdk].
+*   Install the [PostgreSQL JDBC driver][jdbc-driver].
 
 All code in this quick start is for Java 16 and later. If you are working
 with older JDK versions, use legacy coding techniques.
 
-## Connect to your {SERVICE_LONG}
+## Connect to your Tiger Cloud service
 
 In this section, you create a connection to your {SERVICE_SHORT} using an application in
 a single file. You can use any of your favorite build tools, including `gradle`
@@ -40,10 +40,10 @@ or `maven`.
     to your console.
 
 3.  Import the PostgreSQL JDBC driver. If you are using a dependency manager,
-   include the [PostgreSQL JDBC Driver](https://mvnrepository.com/artifact/org.postgresql/postgresql) as a
+   include the [PostgreSQL JDBC Driver][jdbc-maven] as a
    dependency.
 
-4.  Download the [JAR artifact of the JDBC Driver](https://jdbc.postgresql.org/download/) and
+4.  Download the [JAR artifact of the JDBC Driver][jdbc-download] and
    save it with the `Main.java` file.
 
 5.  Import the `JDBC Driver` into the Java application and display a list of
@@ -89,7 +89,7 @@ or `maven`.
     var connUrl = "jdbc:postgresql://<HOSTNAME>:<PORT>/<DATABASE_NAME>?user=<USERNAME>&password=<PASSWORD>";
     ```
 
-    For more information about creating connection strings, see the [JDBC documentation](https://jdbc.postgresql.org/documentation/datasource/).
+    For more information about creating connection strings, see the [JDBC documentation][jdbc-docs].
 
     <Warning>
     This method of composing a connection string is for test or development
@@ -313,7 +313,7 @@ example, you generate some sample time-series data to insert into the
 
 This section covers how to execute queries against your database.
 
-## Execute queries on {TIMESCALE_DB}
+## Execute queries on TimescaleDB
 
 1.  Define the SQL query you'd like to run on the database. This example
     combines time-series and relational data. It returns the average values for
@@ -464,6 +464,12 @@ public class Main {
 }
 ```
 
+[install-jdk]: https://openjdk.java.net
+[jdbc-driver]: https://jdbc.postgresql.org
+[jdbc-maven]: https://mvnrepository.com/artifact/org.postgresql/postgresql
+[jdbc-download]: https://jdbc.postgresql.org/download/
+[jdbc-docs]: https://jdbc.postgresql.org/documentation/datasource/
+
 ### Execute more complex queries
 
 ```java
@@ -572,3 +578,9 @@ public class Main {
     }
 }
 ```
+
+[install-jdk]: https://openjdk.java.net
+[jdbc-driver]: https://jdbc.postgresql.org
+[jdbc-maven]: https://mvnrepository.com/artifact/org.postgresql/postgresql
+[jdbc-download]: https://jdbc.postgresql.org/download/
+[jdbc-docs]: https://jdbc.postgresql.org/documentation/datasource/

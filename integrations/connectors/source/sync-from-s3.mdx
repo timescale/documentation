@@ -9,7 +9,6 @@ import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereq
 import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
 import { S3_CONNECTOR, HYPERTABLE, CONSOLE, SERVICE_SHORT, PROJECT_SHORT } from '/snippets/vars.mdx';
 
-<Icon icon="flask" /> Early access
 
 You use the {S3_CONNECTOR} to synchronize CSV and Parquet files from an S3 bucket in real time. The connector runs continuously, enabling you to leverage real-time analytics capabilities with data constantly synced from S3. This lets you take full advantage of real-time analytics capabilities without having to develop or manage custom ETL solutions between S3 and your database.
 
@@ -20,12 +19,12 @@ You can use the {S3_CONNECTOR} to synchronize your existing and new data. Here's
 * Sync data from an S3 bucket:
     - Use glob patterns to identify the objects to sync.
     - Watch an S3 bucket for new files and import them automatically. It runs on a configurable schedule and tracks processed files.
-    - **Important**: The connector processes files in [lexicographical order](https://en.wikipedia.org/wiki/Lexicographic_order). It uses the name of the last file processed as a marker and fetches only files later in the alphabet in subsequent queries. Files added with names earlier in the alphabet than the marker are skipped and never synced. For example, if you add the file Bob when the marker is at Elephant, Bob is never processed.
+    - **Important**: The connector processes files in [lexicographical order][lexicographical-order]. It uses the name of the last file processed as a marker and fetches only files later in the alphabet in subsequent queries. Files added with names earlier in the alphabet than the marker are skipped and never synced. For example, if you add the file Bob when the marker is at Elephant, Bob is never processed.
     - For large backlogs, check every minute until caught up.
 
 * Sync data from multiple file formats:
-    - CSV: check for compression in GZ and ZIP format, then process using [timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy).
-    - Parquet: convert to CSV, then process using [timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy).
+    - CSV: check for compression in GZ and ZIP format, then process using [timescaledb-parallel-copy][timescaledb-parallel-copy].
+    - Parquet: convert to CSV, then process using [timescaledb-parallel-copy][timescaledb-parallel-copy].
 
 * The {S3_CONNECTOR} offers an option to enable a {HYPERTABLE} during the file-to-table schema mapping setup. You can enable [columnstore](/use-timescale/compression/about-compression) and [continuous aggregates](/use-timescale/continuous-aggregates/about-continuous-aggregates) through the SQL editor once the connector has started running.
 
@@ -37,9 +36,9 @@ The {S3_CONNECTOR} continuously imports data from an Amazon S3 bucket into your 
 The connector currently only syncs existing and new files—it does not support updating or deleting records based on updates and deletes from S3 to tables.
 </Note>
 
-<Info>
-This source S3 connector is not supported for production use. If you have any questions or feedback, talk to us in [#livesync in the Tiger Community](https://app.slack.com/client/T4GT3N2JK/C086NU9EZ88).
-</Info>
+
+<Icon icon="flask" /> Early access: this source S3 connector is not yet supported for production use. If you have
+any questions or feedback, talk to us in [#livesync in the Tiger Community][tiger-community-livesync].
 
 ## Prerequisites
 
@@ -50,7 +49,7 @@ This source S3 connector is not supported for production use. If you have any qu
   Directory buckets are not supported.
 - Configure access credentials for the S3 bucket.
   The following credentials are supported:
-    - [IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html#roles-creatingrole-user-console).
+    - [IAM Role][aws-iam-role].
 
       - Configure the trust policy. Set the:
 
@@ -58,13 +57,13 @@ This source S3 connector is not supported for production use. If you have any qu
         - `ExternalID`: set to the [{PROJECT_SHORT} and {SERVICE_SHORT} ID](/integrations/find-connection-details#find-your-project-and-service-id) of the
            {SERVICE_SHORT} you are syncing to in the format `<projectId>/<serviceId>`.
 
-           This is to avoid the [confused deputy problem](https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html).
+           This is to avoid the [confused deputy problem][aws-confused-deputy].
       - Give the following access permissions:
 
         - `s3:GetObject`.
         - `s3:ListBucket`.
 
-    - [Public anonymous user](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-anonymous-user).
+    - [Public anonymous user][aws-public-anonymous].
 
 <NotSupportedAzure />
 
@@ -93,13 +92,13 @@ This source S3 connector is not supported for production use. If you have any qu
    To prevent system overload, the connector tracks up to 100 files for each sync iteration. Additional checks only fill
    empty queue slots.
 
-## Synchronize data
+## Synchronize data to your service
 
 To sync data from your S3 bucket using {CONSOLE}:
 
 1. **Connect to your {SERVICE_SHORT}**
 
-   In [{CONSOLE}](https://console.cloud.timescale.com/dashboard/services), select the {SERVICE_SHORT} to sync live data to.
+   In [{CONSOLE}][console-services], select the {SERVICE_SHORT} to sync live data to.
 
 2. **Connect the source S3 bucket to the target {SERVICE_SHORT}**
 
@@ -109,7 +108,7 @@ To sync data from your S3 bucket using {CONSOLE}:
    2. Click the pencil icon, then set the name for the new connector.
    3. Set the `Bucket name` and `Authentication method`, then click `Continue`.
 
-      For instruction on creating the IAM role to connect your S3 bucket, click `Learn how`. The console connects to the source bucket.
+      For instruction on creating the IAM role to connect your S3 bucket, click `Learn how`. {CONSOLE} connects to the source bucket.
    4. In `Define files to sync`, choose the `File type` and set the `Glob pattern`.
 
       Use the following patterns:
@@ -126,15 +125,15 @@ To sync data from your S3 bucket using {CONSOLE}:
 
    ![S3 connector table selection](https://assets.timescale.com/docs/images/tiger-cloud-console/tiger-console-s3-connector-create-tables.png)
 
-   The console checks the file schema and, if possible, suggests the column to use as the time dimension in a
+   {CONSOLE} checks the file schema and, if possible, suggests the column to use as the time dimension in a
    {HYPERTABLE}.
 
    1. Choose `Create a new table for your data` or `Ingest data to an existing table`.
    2. Choose the `Data type` for each column, then click `Continue`.
-   3. Choose the interval. This can be a minute, an hour, or use a [cron expression](https://en.wikipedia.org/wiki/Cron#Cron_expression).
+   3. Choose the interval. This can be a minute, an hour, or use a [cron expression][cron-expression].
    4. Click `Start Connector`.
 
-      The console starts the connection between the source database and the target {SERVICE_SHORT} and displays the progress.
+      {CONSOLE} starts the connection between the source database and the target {SERVICE_SHORT} and displays the progress.
 
 4. **Monitor synchronization**
 
@@ -160,3 +159,12 @@ To sync data from your S3 bucket using {CONSOLE}:
     3. To pause or delete the connector, click `Connectors` > `Source connectors`, then open the three-dot menu on the right and select an option. You must pause the connector before deleting it.
 
 And that is it, you are using the {S3_CONNECTOR} to synchronize all the data, or specific files, from an S3 bucket in real time.
+
+[lexicographical-order]: https://en.wikipedia.org/wiki/Lexicographic_order
+[timescaledb-parallel-copy]: https://github.com/timescale/timescaledb-parallel-copy
+[tiger-community-livesync]: https://app.slack.com/client/T4GT3N2JK/C086NU9EZ88
+[aws-iam-role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html#roles-creatingrole-user-console
+[aws-confused-deputy]: https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html
+[aws-public-anonymous]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-anonymous-user
+[console-services]: https://console.cloud.timescale.com/dashboard/services
+[cron-expression]: https://en.wikipedia.org/wiki/Cron#Cron_expression
