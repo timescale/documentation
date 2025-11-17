@@ -324,12 +324,12 @@
             ]
           },
           {
-            "tab": "Integration",
+            "tab": "Integrations",
             "groups": [
               {
                 "group": " ",
                 "pages": [
-                  "integrations/integrations",
+                  "integrations/index",
                   "integrations/find-connection-details"
                 ]
               },
@@ -697,7 +697,7 @@
     }
   ],
   "contextual": {
-    "options": ["claude", "chatgpt"]
+    "options": ["claude", "chatgpt", "perplexity", "cursor"]
   },
   "fonts": {
     "family": "Geist"
