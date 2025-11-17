@@ -1,8 +1,6 @@
 import { SERVICE_SHORT, CLOUD_LONG, CONSOLE, SELF_LONG, SERVICE_LONG, SCALE, ENTERPRISE, PRICING_PLAN, SELF_LONG_CAP } from "/snippets/vars.mdx";
 
-[Prometheus][prometheus] is an open-source monitoring system with a dimensional data model, flexible query language, and a modern alerting approach.
-
-This page shows you how to export your {SERVICE_SHORT} telemetry to Prometheus:
+This page shows you how to export your {SERVICE_SHORT} telemetry to [Prometheus][prometheus]:
 
 - For {CLOUD_LONG}, using a dedicated Prometheus exporter in {CONSOLE}.
 - For {SELF_LONG}, using [Postgres Exporter][postgresql-exporter].
@@ -28,7 +26,12 @@ To export your data, do the following:
 
 <Tab title={`${CLOUD_LONG}`}>
 
-To export metrics from a {SERVICE_LONG}, you create a dedicated Prometheus exporter in {CONSOLE}, attach it to your {SERVICE_SHORT}, then configure Prometheus to scrape metrics using the exposed URL. The Prometheus exporter exposes the metrics related to the {SERVICE_LONG} like CPU, memory, and storage. To scrape other metrics, use Postgres Exporter as described for {SELF_LONG}. The Prometheus exporter is available for [{SCALE} and {ENTERPRISE}][pricing-plan-features] {PRICING_PLAN}s.
+To export metrics from a {SERVICE_LONG}, you create a dedicated Prometheus exporter in {CONSOLE}, attach it to your
+{SERVICE_SHORT}, then configure Prometheus to scrape metrics using the exposed URL. The Prometheus exporter exposes
+the metrics related to the {SERVICE_LONG} like CPU, memory, and storage. To scrape other metrics, use Postgres Exporter
+as described for {SELF_LONG}.
+
+The Prometheus exporter is available for [{SCALE} and {ENTERPRISE}][pricing-plan-features] {PRICING_PLAN}s.
 
 1. **Create a Prometheus exporter**
 

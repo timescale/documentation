@@ -9,9 +9,8 @@ import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereq
 import TransitGateway from '/snippets/integrations/_transit-gateway.mdx';
 import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
 
-[Google Cloud][google-cloud] is a suite of cloud computing services, offering scalable infrastructure, AI, analytics, databases, security, and developer tools to help businesses build, deploy, and manage applications.
 
-This page explains how to integrate your Google Cloud infrastructure with {CLOUD_LONG} using [AWS Transit Gateway][aws-transit-gateway].
+This page explains how to integrate your [Google Cloud][google-cloud] infrastructure with {CLOUD_LONG} using [AWS Transit Gateway][aws-transit-gateway].
 
 ## Prerequisites
 
@@ -19,15 +18,15 @@ This page explains how to integrate your Google Cloud infrastructure with {CLOUD
 
 - Set up [AWS Transit Gateway][gtw-setup].
 
+- Establish connectivity between Google Cloud and AWS.
+
+   See [Connect HA VPN to AWS peer gateways][gcp-aws].
+
 <NotSupportedAzure />
 
 ## Connect your Google Cloud infrastructure to your Tiger Cloud services
 
 To connect to {CLOUD_LONG}:
-
-1. **Connect your infrastructure to AWS Transit Gateway**
-
-   Establish connectivity between Google Cloud and AWS. See [Connect HA VPN to AWS peer gateways][gcp-aws].
 
 <TransitGateway />
 

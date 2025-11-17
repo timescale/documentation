@@ -10,9 +10,8 @@ import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs.mdx
 import CreateHypertablePolicyNote from '/snippets/manage-data/_create-hypertable-columnstore-policy-note.mdx';
 import { PG, CLOUD_LONG, HYPERTABLE_CAP, HYPERCORE_CAP, HYPERCORE, CAGG_CAP } from '/snippets/vars.mdx';
 
-[Supabase][supabase] is an open source Firebase alternative. This page shows how to run real-time analytical queries
-against a {SERVICE_LONG} through Supabase using a foreign data wrapper (fdw) to bring aggregated data from your
-{SERVICE_LONG}.
+This page shows how to run real-time analytical queries against a {SERVICE_LONG} through [Supabase][supabase] using a
+foreign data wrapper (fdw) to bring aggregated data from your {SERVICE_LONG}.
 
 ## Prerequisites
 
@@ -42,19 +41,6 @@ To set up a {SERVICE_LONG} optimized for analytics to receive data from Supabase
       );
       ```
      <CreateHypertablePolicyNote />
-
-1. **Optimize cooling data for analytics**
-
-   {HYPERCORE_CAP} is the hybrid row-columnar storage engine in {TIMESCALE_DB}, designed specifically for real-time analytics
-   and powered by time-series data. The advantage of {HYPERCORE} is its ability to seamlessly switch between row-oriented
-   and column-oriented storage. This flexibility enables {TIMESCALE_DB} to deliver the best of both worlds, solving the
-   key challenges in real-time analytics.
-
-   ```sql
-   ALTER TABLE signs SET (
-     timescaledb.enable_columnstore = true,
-     timescaledb.segmentby = 'name');
-   ```
 
 1. **Create optimized analytical queries**
 
