@@ -17,7 +17,7 @@ library. This library is one of the most popular {PG} libraries for
 Python. It allows you to execute raw SQL queries efficiently and safely, and
 prevents common attacks such as SQL injection.
 
-1.  Import the psycogpg2 library:
+1.  Import the psycopg2 library:
 
     ```python
     import psycopg2
@@ -209,7 +209,7 @@ section, you can use `psycopg2` with prepared statements, or you can use
 
     ```python
     # for sensors with ids 1-4
-    for id in range(1, 4, 1):
+    for id in range(1, 5, 1):
         data = (id,)
         # create random data
         simulate_query = """SELECT generate_series(now() - interval '24 hour', now(), interval '5 minute') AS time,
@@ -255,7 +255,7 @@ section, you can use `psycopg2` with prepared statements, or you can use
         cursor = conn.cursor()
 
         # for sensors with ids 1-4
-        for id in range(1, 4, 1):
+        for id in range(1, 5, 1):
             data = (id,)
             # create random data
             simulate_query = """SELECT generate_series(now() - interval '24 hour', now(), interval '5 minute') AS time,

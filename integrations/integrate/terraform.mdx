@@ -7,7 +7,7 @@ keywords: [Terraform, infrastructure as code, IaC, provisioning, automation, dep
 
 
 import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs.mdx';
-import { CLOUD_LONG, COMPANY, CONSOLE, VPC, PG } from '/snippets/vars.mdx';
+import { CLOUD_LONG, COMPANY, CONSOLE, VPC, PG, SELF_LONG_CAP } from '/snippets/vars.mdx';
 
 [Terraform][terraform] is an infrastructure-as-code tool that enables you to safely and predictably provision and manage infrastructure.
 
@@ -35,7 +35,7 @@ You use the [{COMPANY} Terraform provider][terraform-provider] to manage {SERVIC
 
    2. Click `Create credentials`, then save `Public key` and `Secret key`.
 
-2. **Configure {COMPANY} Terraform provider**
+2. **Configure the {COMPANY} Terraform provider**
 
    1. Create a `main.tf` configuration file with at least the following content. Change `x.y.z` to the [latest version][terraform-provider] of the provider.
 
@@ -106,7 +106,7 @@ You can now manage your resources with Terraform. See more about [available reso
 
 </Tab>
 
-<Tab title={`${SELF_LONG}`}>
+<Tab title={`${SELF_LONG_CAP}`}>
 
 You use the [`cyrilgdn/postgresql`][pg-provider] {PG} provider to connect to your {SELF_LONG} instance.
 

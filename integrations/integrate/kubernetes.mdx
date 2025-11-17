@@ -7,8 +7,8 @@ keywords: [Kubernetes, K8s, container orchestration, deployment, scaling, cloud 
 
 
 import KubernetesPrereqs from '/snippets/prerequisites/_kubernetes-prereqs.mdx';
-import KubernetesInstallSelf from '/snippets/procedures/_kubernetes-install-self-hosted.mdx';
-import { CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
+import KubernetesInstallSelf from '/snippets/integrations/_kubernetes-install-self-hosted.mdx';
+import { CLOUD_LONG, SERVICE_LONG, SELF_LONG_CAP } from '/snippets/vars.mdx';
 
 [Kubernetes][kubernetes] is an open-source container orchestration system that automates the deployment, scaling, and management of containerized applications. You can connect Kubernetes to {CLOUD_LONG}, and deploy {TIMESCALE_DB} within your Kubernetes clusters.
 
@@ -125,7 +125,8 @@ To connect your Kubernetes cluster to your {SERVICE_LONG}:
 
 </Tab>
 
-<Tab title={`${TIMESCALE_DB}`}>
+<Tab title={`${SELF_LONG_CAP}`}>
+
 
 <KubernetesInstallSelf />
 

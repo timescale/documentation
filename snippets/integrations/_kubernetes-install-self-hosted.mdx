@@ -4,8 +4,6 @@ Running {TIMESCALE_DB} on Kubernetes is similar to running {PG}. This procedure 
 
 To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
 
-<Procedure>
-
 1. **Create a default namespace for {COMPANY} components**
 
     1. Create the {COMPANY} namespace:
@@ -89,22 +87,22 @@ To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
 
 1. **Allow applications to connect by exposing {TIMESCALE_DB} within Kubernetes**
 
-  ```yaml
-  kubectl apply -f - <<EOF
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: timescaledb
-  spec:
-    selector:
-      app: timescaledb
-    ports:
-      - protocol: TCP
-        port: 5432
-        targetPort: 5432
-    type: ClusterIP
-  EOF
-  ```
+   ```yaml
+   kubectl apply -f - <<EOF
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: timescaledb
+   spec:
+     selector:
+       app: timescaledb
+     ports:
+       - protocol: TCP
+         port: 5432
+         targetPort: 5432
+     type: ClusterIP
+   EOF
+   ```
 
 1. **Create a Kubernetes secret to store the database credentials**
 
@@ -165,8 +163,6 @@ To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
          ```
 
    You see the {PG} interactive terminal.
-
-</Procedure>
 
 
 [kubernetes-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
