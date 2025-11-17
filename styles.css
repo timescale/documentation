@@ -73,7 +73,7 @@ h2#arguments ~ * table {
   width: 100% !important;
 }
 
-/* Description column - 50% width */
+/* Description column - 50% width, left-aligned */
 .api-ref-table table td:nth-child(5),
 .api-ref-table table th:nth-child(5),
 h2#arguments + * table td:nth-child(5),
@@ -83,9 +83,10 @@ h2#arguments ~ * table th:nth-child(5) {
   width: 50% !important;
   min-width: 50% !important;
   max-width: 50% !important;
+  text-align: left !important;
 }
 
-/* Name column - 15% width */
+/* Name column - 15% width with text wrapping */
 .api-ref-table table td:nth-child(1),
 .api-ref-table table th:nth-child(1),
 h2#arguments + * table td:nth-child(1),
@@ -95,9 +96,12 @@ h2#arguments ~ * table th:nth-child(1) {
   width: 15% !important;
   min-width: 15% !important;
   max-width: 15% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 
-/* Type column - 15% width */
+/* Type column - 15% width with text wrapping */
 .api-ref-table table td:nth-child(2),
 .api-ref-table table th:nth-child(2),
 h2#arguments + * table td:nth-child(2),
@@ -107,6 +111,9 @@ h2#arguments ~ * table th:nth-child(2) {
   width: 15% !important;
   min-width: 15% !important;
   max-width: 15% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 
 /* Default column - 10% width, centered */
@@ -133,4 +140,12 @@ h2#arguments ~ * table th:nth-child(4) {
   min-width: 10% !important;
   max-width: 10% !important;
   text-align: center !important;
+}
+
+/* Returns table - Description column left-aligned */
+h2#returns + * table td:nth-child(3),
+h2#returns + * table th:nth-child(3),
+h2#returns ~ * table td:nth-child(3),
+h2#returns ~ * table th:nth-child(3) {
+  text-align: left !important;
 }
