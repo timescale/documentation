@@ -30,23 +30,22 @@ or `maven`.
     }
     ```
 
-2.  From the command line in the current directory, run the application:
+1.  From the command line in the current directory, run the application:
 
     ```bash
     java Main.java
     ```
 
-    If the command is successful, `Hello, World!` line output is printed
-    to your console.
+    `Hello, World!` is printed to your console.
 
-3.  Import the PostgreSQL JDBC driver. If you are using a dependency manager,
+1.  Import the PostgreSQL JDBC driver. If you are using a dependency manager,
    include the [PostgreSQL JDBC Driver][jdbc-maven] as a
    dependency.
 
-4.  Download the [JAR artifact of the JDBC Driver][jdbc-download] and
+1.  Download the [JAR artifact of the JDBC Driver][jdbc-download] and
    save it with the `Main.java` file.
 
-5.  Import the `JDBC Driver` into the Java application and display a list of
+1.  Import the `JDBC Driver` into the Java application and display a list of
    available drivers for the check:
 
     ```java
@@ -62,28 +61,17 @@ or `maven`.
     }
     ```
 
-6.  Run all the examples:
+1.  Run all the examples:
 
     ```bash
     java -cp *.jar Main.java
     ```
 
-   If the command is successful, a string similar to
-   `org.postgresql.Driver@7f77e91b` is printed to your console. This means that you
-   are ready to connect to {TIMESCALE_DB} from Java.
+    A string similar to `org.postgresql.Driver@7f77e91b` is printed to the terminal. This means that you are ready to
+    connect to {TIMESCALE_DB} from Java.
 
-7.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
-   string for JDBC.
-
-    You'll need:
-
-      *   password
-      *   username
-      *   host URL
-      *   port
-      *   database name
-
-8.  Compose your connection string variable, using this format:
+1.  [Locate your {TIMESCALE_DB} credentials][connection-info] and compose a connection string for JDBC in the
+    following format:
 
     ```java
     var connUrl = "jdbc:postgresql://<HOSTNAME>:<PORT>/<DATABASE_NAME>?user=<USERNAME>&password=<PASSWORD>";
@@ -113,14 +101,13 @@ or `maven`.
     }
     ```
 
-9.  Run the code:
+1.  Run the code:
 
     ```bash
     java -cp *.jar Main.java
     ```
 
-    If the command is successful, a string similar to
-    `{ApplicationName=PostgreSQL JDBC Driver}` is printed to your console.
+    A string similar to `{ApplicationName=PostgreSQL JDBC Driver}` is printed to your console.
 
 ## Create a relational table
 
@@ -142,7 +129,7 @@ percentage of the sensors.
     );
     ```
 
-2.  Create a statement, execute the query you created in the previous step, and
+1.  Create a statement, execute the query you created in the previous step, and
     check that the table was created successfully:
 
     ```java
@@ -197,7 +184,7 @@ and most other tasks are executed on the hypertable.
     );
     ```
 
-2.  Create a statement, execute the query you created in the previous step:
+1.  Create a statement, execute the query you created in the previous step:
 
     ```sql
     SELECT create_hypertable('sensor_data', by_range('time'));
@@ -207,7 +194,7 @@ and most other tasks are executed on the hypertable.
 	The `by_range` and `by_hash` dimension builder is an addition to {TIMESCALE_DB} 2.13.
 	</Note>
 
-3.  Execute the two statements you created, and commit your changes to the
+1.  Execute the two statements you created, and commit your changes to the
     database:
 
     ```java
@@ -282,6 +269,8 @@ section, you can insert single rows, or insert by batches of rows.
     }
     ```
 
+## Batch insert data
+
 If you want to insert a batch of rows by using a batching mechanism. In this
 example, you generate some sample time-series data to insert into the
 `sensor_data` hypertable:
@@ -313,8 +302,6 @@ example, you generate some sample time-series data to insert into the
 
 This section covers how to execute queries against your database.
 
-## Execute queries on TimescaleDB
-
 1.  Define the SQL query you'd like to run on the database. This example
     combines time-series and relational data. It returns the average values for
     every 15 minute interval for sensors with specific type and location.
@@ -328,7 +315,7 @@ This section covers how to execute queries against your database.
     ORDER BY bucket DESC;
     ```
 
-2.  Execute the query with the prepared statement and read out the result set for
+1.  Execute the query with the prepared statement and read out the result set for
    all `a`-type sensors located on the `floor`:
 
     ```java
@@ -351,7 +338,7 @@ This section covers how to execute queries against your database.
     }
     ```
 
-    If the command is successful, you'll see output like this:
+    You see output like this:
 
     ```bash
     2021-05-12 23:30:00.0: 0,508649
@@ -584,3 +571,4 @@ public class Main {
 [jdbc-maven]: https://mvnrepository.com/artifact/org.postgresql/postgresql
 [jdbc-download]: https://jdbc.postgresql.org/download/
 [jdbc-docs]: https://jdbc.postgresql.org/documentation/datasource/
+[connection-info]: /integrations/find-connection-details/

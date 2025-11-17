@@ -23,19 +23,8 @@ prevents common attacks such as SQL injection.
     import psycopg2
     ```
 
-2.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
-   string for `psycopg2`.
-
-    You'll need:
-
-      *   password
-      *   username
-      *   host URL
-      *   port
-      *   database name
-
-3.  Compose your connection string variable as a
-    [libpq connection string][libpq-connstring], using this format:
+1.  [Locate your {TIMESCALE_DB} credentials][connection-info] and compose a connection string as a
+    [libpq connection string][libpq-connstring] in the following format:
 
     ```python
     CONNECTION = "postgres://username:password@host:port/dbname"
@@ -60,7 +49,7 @@ prevents common attacks such as SQL injection.
     details like your password, hostname, and port number.
     </Warning>
 
-4.  Use the `psycopg2` [connect function][psycopg2-connect] to create a new
+1.  Use the `psycopg2` [connect function][psycopg2-connect] to create a new
     database session and create a new [cursor object][psycopg2-cursor] to
     interact with the database.
 
@@ -107,7 +96,7 @@ percentage of the sensors.
                                     """
     ```
 
-2.  Open a cursor, execute the query you created in the previous step, and
+1.  Open a cursor, execute the query you created in the previous step, and
     commit the query to make the changes persistent. Afterward, close the cursor
     to clean up:
 
@@ -140,7 +129,7 @@ and most other tasks are executed on the hypertable.
                                         """
     ```
 
-2.  Formulate a `SELECT` statement that converts the `sensor_data` table to a
+1.  Formulate a `SELECT` statement that converts the `sensor_data` table to a
     hypertable. You must specify the table name to convert to a hypertable, and
     the name of the time column as the two arguments. For more information, see
     the [`create_hypertable` docs](/api/hypertable/create_hypertable):
@@ -153,7 +142,7 @@ and most other tasks are executed on the hypertable.
 	The `by_range` dimension builder is an addition to {TIMESCALE_DB} 2.13.
 	</Note>
 
-3.  Open a cursor with the connection, execute the statements from the previous
+1.  Open a cursor with the connection, execute the statements from the previous
     steps, commit your changes, and close the cursor:
 
     ```python
@@ -188,7 +177,7 @@ section, you can use `psycopg2` with prepared statements, or you can use
     conn.commit()
     ```
 
-2.  (Optional) Alternatively, you can pass variables to the `cursor.execute`
+1.  (Optional) Alternatively, you can pass variables to the `cursor.execute`
     function and separate the formulation of the SQL statement, `SQL`, from the
     data being passed with it into the prepared statement, `data`:
 
@@ -205,13 +194,13 @@ section, you can use `psycopg2` with prepared statements, or you can use
     conn.commit()
     ```
 
-If you choose to use `pgcopy` instead, install the `pgcopy` package
-[using pip][pgcopy-pypi], and then add this line to your list of
-`import` statements:
+    If you choose to use `pgcopy` instead, install the `pgcopy` package
+    [using pip][pgcopy-pypi], and then add this line to your list of
+    `import` statements:
 
-```python
-from pgcopy import CopyManager
-```
+    ```python
+    from pgcopy import CopyManager
+    ```
 
 1.  Generate some random sensor data using the `generate_series` function
     provided by {PG}. This example inserts a total of 480 rows of data (4
@@ -232,7 +221,7 @@ from pgcopy import CopyManager
         values = cursor.fetchall()
     ```
 
-2.  Define the column names of the table you want to insert data into. This
+1.  Define the column names of the table you want to insert data into. This
     example uses the `sensor_data` hypertable created earlier. This hypertable
     consists of columns named `time`, `sensor_id`, `temperature` and `cpu`. The
     column names are defined in a list of strings called `cols`:
@@ -241,7 +230,7 @@ from pgcopy import CopyManager
     cols = ['time', 'sensor_id', 'temperature', 'cpu']
     ```
 
-3.  Create an instance of the `pgcopy` CopyManager, `mgr`, and pass the
+1.  Create an instance of the `pgcopy` CopyManager, `mgr`, and pass the
     connection variable, hypertable name, and list of column names. Then use the
     `copy` function of the CopyManager to insert the data into the database
     quickly using `pgcopy`.
@@ -251,13 +240,13 @@ from pgcopy import CopyManager
     mgr.copy(values)
     ```
 
-4.  Commit to persist changes:
+1.  Commit to persist changes:
 
     ```python
     conn.commit()
     ```
 
-5.  (Optional) The full sample code to insert data into {TIMESCALE_DB} using
+1.  (Optional) The full sample code to insert data into {TIMESCALE_DB} using
     `pgcopy`, using the example of sensor data from four sensors:
 
     ```python
@@ -289,7 +278,7 @@ from pgcopy import CopyManager
         conn.commit()
     ```
 
-6.  (Optional) You can also check if the insertion worked:
+1.  (Optional) You can also check if the insertion worked:
 
     ```python
     cursor.execute("SELECT * FROM sensor_data LIMIT 5;")
@@ -319,7 +308,7 @@ see the [psycopg2 documentation][psycopg2-usage].
     query = "SELECT * FROM sensor_data;"
     ```
 
-2.  Open a cursor from the existing database connection, `conn`, and then execute
+1.  Open a cursor from the existing database connection, `conn`, and then execute
    the query you defined:
 
     ```python
@@ -328,7 +317,7 @@ see the [psycopg2 documentation][psycopg2-usage].
     cursor.execute(query)
     ```
 
-3.  To access all resulting rows returned by your query, use one of `pyscopg2`'s
+1.  To access all resulting rows returned by your query, use one of `pyscopg2`'s
     [results retrieval methods][psycopg2-results],
     such as `fetchall()` or `fetchmany()`. This example prints the results of
     the query, row by row. Note that the result of `fetchall()` is a list of
@@ -343,7 +332,7 @@ see the [psycopg2 documentation][psycopg2-usage].
     cursor.close()
     ```
 
-4.  (Optional) If you want a list of dictionaries instead, you can define the
+1.  (Optional) If you want a list of dictionaries instead, you can define the
     cursor using [`DictCursor`][psycopg2-dictcursor]:
 
     ```python
@@ -357,7 +346,7 @@ executed safely against the database.
 
 ### Execute queries using prepared statements
 
-1.  Write the query using prepared statements:
+Write the query using prepared statements:
 
     ```python
     # query with placeholders
@@ -386,3 +375,4 @@ executed safely against the database.
 [psycopg2-usage]: https://www.psycopg.org/docs/usage.html
 [psycopg2-results]: https://www.psycopg.org/docs/cursor.html
 [psycopg2-dictcursor]: https://www.psycopg.org/docs/extras.html#dictionary-like-cursor
+[connection-info]: /integrations/find-connection-details/

@@ -22,7 +22,7 @@ from a standard Rails app configured for {PG}.
     cd my_app
     ```
 
-2. **Install the {TIMESCALE_DB} gem**
+1. **Install the {TIMESCALE_DB} gem**
 
    1.  Open `Gemfile`, add the following line, then save your changes:
 
@@ -30,13 +30,13 @@ from a standard Rails app configured for {PG}.
        gem 'timescaledb'
        ```
 
-   2. In Terminal, run the following command:
+   1. In Terminal, run the following command:
 
       ```bash
       bundle install
       ```
 
-3. **Connect your app to your {SERVICE_LONG}**
+1. **Connect your app to your {SERVICE_LONG}**
 
    1.  In `<my_app_home>/config/database.yml` update the configuration to read securely connect to your {SERVICE_LONG}
        by adding `url: <%= ENV['DATABASE_URL'] %>` to the default configuration:
@@ -83,8 +83,8 @@ from a standard Rails app configured for {PG}.
       | pg_stat_statements  | 1.11    | public     | track planning and execution statistics of all SQL statements executed|
       | plpgsql             | 1.0     | pg_catalog | PL/pgSQL procedural language|
       | postgres_fdw        | 1.1     | public     | foreign-data wrapper for remote {PG} servers|
-      | timescaledb         | 2.18.1  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)|
-      | timescaledb_toolkit | 1.19.0  | public     | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities|
+      | timescaledb         | 2.23.0  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)|
+      | timescaledb_toolkit | 1.22.0  | public     | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities|
 
 ## Optimize time-series data in hypertables
 
@@ -98,10 +98,9 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
     ```bash
     rails generate migration create_page_loads
     ```
+    This creates the `<my_app_home>/db/migrate/<migration-datetime>_create_page_loads.rb` migration file.
 
-   This creates the `<my_app_home>/db/migrate/<migration-datetime>_create_page_loads.rb` migration file.
-
-2. **Add hypertable options**
+1. **Add hypertable options**
 
    Replace the contents of `<my_app_home>/db/migrate/<migration-datetime>_create_page_loads.rb`
    with the following:
@@ -133,9 +132,9 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
     Rails model includes a `PRIMARY KEY` index for id by default: either remove the column or make sure that the index
     includes time as part of a "composite key."
 
-   For more information, check the Roby docs around [composite primary keys][rails-composite-keys].
+   For more information, check the Ruby docs around [composite primary keys][rails-composite-keys].
 
-3.  **Create a `PageLoad` model**
+1.  **Create a `PageLoad` model**
 
     Create a new file called `<my_app_home>/app/models/page_load.rb` and add the following code:
 
@@ -184,7 +183,7 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
     end
     ```
 
-4.  **Run the migration**
+1.  **Run the migration**
 
     ```bash
     rails db:migrate
@@ -219,7 +218,7 @@ shows you how to ingest test data into your hypertable.
     end
     ```
 
-2.  **Generate some test data**
+1.  **Generate some test data**
 
     Use `bin/console` to join a Rails console session and run the following code
     to define some random page load access data:
@@ -247,14 +246,14 @@ shows you how to ingest test data into your hypertable.
     end
     ```
 
-3. **Insert the generated data into your {SERVICE_LONG}**
+1. **Insert the generated data into your {SERVICE_LONG}**
 
     ```bash
     # Insert the data in batches
     PageLoad.insert_all(generate_sample_page_loads, returning: false)
    ```
 
-4.  **Validate the test data in your {SERVICE_LONG}**
+1.  **Validate the test data in your {SERVICE_LONG}**
 
    ```bash
    PageLoad.count
@@ -393,8 +392,12 @@ Now that you have integrated the ruby gem into your app:
 * Check out the [official docs][timescaledb-ruby-docs].
 * Follow the [LTTB][lttb-tutorial], [Open AI long-term storage][openai-tutorial], and [candlesticks][candlestick-tutorial] tutorials.
 
+[install-rails]: https://guides.rubyonrails.org/install_ruby_on_rails.html#installing-rails
+[rails-composite-keys]: https://guides.rubyonrails.org/active_record_composite_primary_keys.html
+[ruby-blog-post]: https://www.timescale.com/blog/building-a-better-ruby-orm-for-time-series-and-analytics
 [timescaledb-ruby-gem]: https://github.com/timescale/timescaledb-ruby
 [timescaledb-ruby-docs]: https://timescale.github.io/timescaledb-ruby/
 [lttb-tutorial]: https://timescale.github.io/timescaledb-ruby/toolkit_lttb_tutorial/
 [openai-tutorial]: https://timescale.github.io/timescaledb-ruby/chat_gpt_tutorial/
 [candlestick-tutorial]: https://timescale.github.io/timescaledb-ruby/toolkit_candlestick/
+[connection-info]: /integrations/find-connection-details/

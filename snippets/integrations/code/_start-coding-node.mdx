@@ -37,13 +37,13 @@ ORM (object relational mapper) called [Sequelize][sequelize].
     }
     ```
 
-2.  Install Express.js:
+1.  Install Express.js:
 
     ```bash
     npm install express
     ```
 
-3.  Create a simple web page to check the connection. Create a new file called
+1.  Create a simple web page to check the connection. Create a new file called
     `index.js`, with this content:
 
     ```javascript
@@ -56,39 +56,29 @@ ORM (object relational mapper) called [Sequelize][sequelize].
     app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
     ```
 
-4.  Test your connection by starting the application:
+1.  Test your connection by starting the application:
 
     ```bash
     node index.js
     ```
 
-   In your web browser, navigate to `http://localhost:3000`. If the connection
-   is successful, it shows "Hello World!"
+    In your web browser, navigate to `http://localhost:3000`. If the connection
+    is successful, it shows `"Hello World!"`.
 
-5.  Add Sequelize to your project:
+1.  Add Sequelize to your project:
 
     ```bash
     npm install sequelize sequelize-cli pg pg-hstore
     ```
 
-6.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
-   string for Sequelize.
-
-    You'll need:
-
-      *   password
-      *   username
-      *   host URL
-      *   port
-      *   database name
-
-7.  Compose your connection string variable, using this format:
+1.  [Locate your {TIMESCALE_DB} credentials][connection-info] and compose a connection string for Sequelize
+    in the following format:
 
     ```javascript
     'postgres://<user>:<password>@<host>:<port>/<dbname>'
     ```
 
-8.  Open the `index.js` file you created. Require Sequelize in the application,
+1.  Open the `index.js` file you created. Require Sequelize in the application,
     and declare the connection string:
 
     ```javascript
@@ -109,7 +99,7 @@ ORM (object relational mapper) called [Sequelize][sequelize].
     Make sure you add the SSL settings in the `dialectOptions` sections. You
     can't connect to {TIMESCALE_DB} using SSL without them.
 
-9.  You can test the connection by adding these lines to `index.js` after the
+1.  You can test the connection by adding these lines to `index.js` after the
     `app.get` statement:
 
     ```javascript
@@ -154,7 +144,7 @@ In this section, you create a relational table called `page_loads`.
     New migration was created at <PATH>.
     ```
 
-2.  Edit the migration file so that it sets up a migration key:
+1.  Edit the migration file so that it sets up a migration key:
 
     ```javascript
     'use strict';
@@ -177,7 +167,7 @@ In this section, you create a relational table called `page_loads`.
     };
     ```
 
-3.  Migrate the change and make sure that it is reflected in the database:
+1.  Migrate the change and make sure that it is reflected in the database:
 
     ```bash
     npx sequelize db:migrate
@@ -194,7 +184,7 @@ In this section, you create a relational table called `page_loads`.
     == 20200528195725-create-page-loads: migrated (0.443s)
     ```
 
-4.  Create the `PageLoads` model in your code. In the `index.js` file, above the
+1.  Create the `PageLoads` model in your code. In the `index.js` file, above the
     `app.use` statement, add these lines:
 
     ```javascript
@@ -204,7 +194,7 @@ In this section, you create a relational table called `page_loads`.
     }, { timestamps: false });
     ```
 
-5.  Instantiate a `PageLoads` object and save it to the database.
+1.  Instantiate a `PageLoads` object and save it to the database.
 
 ## Create a hypertable
 
@@ -228,7 +218,7 @@ and most other tasks are executed on the hypertable.
     New migration was created at <PATH>/20200601202912-add_hypertable.js .
     ```
 
-2.  In the `migrations` folder, there is now a new file. Open the
+1.  In the `migrations` folder, there is now a new file. Open the
     file, and add this content:
 
     ```javascript
@@ -248,7 +238,7 @@ and most other tasks are executed on the hypertable.
 	The `by_range` dimension builder is an addition to {TIMESCALE_DB} 2.13.
 	</Note>
 
-3.  At the command prompt, run the migration command:
+1.  At the command prompt, run the migration command:
 
     ```bash
     npx sequelize db:migrate
@@ -300,30 +290,30 @@ This section covers how to execute queries against your database. In this
 example, every time the page is reloaded, all information currently in the table
 is displayed.
 
-1.  Modify the `/` route in the `index.js` file to call the Sequelize `findAll`
-    function and retrieve all data from the `page_loads` table using the
-    `PageLoads` model:
+Modify the `/` route in the `index.js` file to call the Sequelize `findAll`
+function and retrieve all data from the `page_loads` table using the
+`PageLoads` model:
 
-    ```javascript
-    app.get('/', async (req, res) => {
-        // get the user agent and current time
-        const userAgent = req.get('user-agent');
-        const time = new Date().getTime();
+```javascript
+app.get('/', async (req, res) => {
+    // get the user agent and current time
+    const userAgent = req.get('user-agent');
+    const time = new Date().getTime();
 
-        try {
-            // insert the record
-            await PageLoads.create({
-                userAgent, time
-            });
+    try {
+        // insert the record
+        await PageLoads.create({
+            userAgent, time
+        });
 
-            // now display everything in the table
-            const messages = await PageLoads.findAll();
-            res.send(messages);
-        } catch (e) {
-            console.log('Error inserting data', e)
-        }
-    })
-    ```
+        // now display everything in the table
+        const messages = await PageLoads.findAll();
+        res.send(messages);
+    } catch (e) {
+        console.log('Error inserting data', e)
+    }
+})
+```
 
 Now, when you reload the page, you should see all of the rows currently in the
 `page_loads` table.
@@ -331,3 +321,4 @@ Now, when you reload the page, you should see all of the rows currently in the
 [install-nodejs]: https://nodejs.org
 [install-npm]: https://docs.npmjs.com/getting-started
 [sequelize]: https://sequelize.org
+[connection-info]: /integrations/find-connection-details/
