@@ -142,20 +142,20 @@ Calls to `add_columnstore_policy` require either `after` or `created_before`, bu
 | `timezone`                    |TEXT| UTC. However, daylight savings time(DST) changes may shift this alignment.                                                   | ✖        | Set to a valid time zone to mitigate DST shifting. If `initial_start` is set, subsequent executions of this policy are aligned on `initial_start`.                                                                                                                                                                                                                                                                                                                         |
 | `if_not_exists`               |BOOLEAN| `false`                                                                                                                      | ✖        | Set to `true` so this job fails with a warning rather than an error if a {COLUMNSTORE} policy already exists on `hypertable`                                                                                                                                                                                                                                                                                                                                                |
 
-[compression_alter-table]: /api/:currentVersion:/hypercore/alter_table/
-[compression_continuous-aggregate]: /api/:currentVersion:/continuous-aggregates/alter_materialized_view/
-[set_integer_now_func]: /api/:currentVersion:/hypertable/set_integer_now_func
-[informational-views]: /api/:currentVersion:/informational-views/jobs/
-[chunk_time_interval]: /api/:currentVersion:/hypertable/set_chunk_time_interval/
-[next-start]: /api/:currentVersion:/informational-views/jobs/#arguments
-[job]: /api/:currentVersion:/jobs-automation/add_job/
-[remove_columnstore_policy]: /api/:currentVersion:/hypercore/remove_columnstore_policy/
-[hypertables-section]: /use-timescale/:currentVersion:/hypertables/
-[hypertable-create-table]: /api/:currentVersion:/hypertable/create_table/
-[hypercore]: /use-timescale/:currentVersion:/hypercore/
-[secondary-indexes]: /use-timescale/:currentVersion:/hypercore/secondary-indexes/
+[compression_alter-table]: /api-reference/timescaledb/hypercore/alter_table/
+[compression_continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/alter_materialized_view/
+[set_integer_now_func]: /api-reference/timescaledb/hypertable/set_integer_now_func
+[informational-views]: /api-reference/timescaledb/informational-views/jobs/
+[chunk_time_interval]: /api-reference/timescaledb/hypertable/set_chunk_time_interval/
+[next-start]: /api-reference/timescaledb/informational-views/jobs/#arguments
+[job]: /api-reference/timescaledb/jobs-automation/add_job/
+[remove_columnstore_policy]: /api-reference/timescaledb/hypercore/remove_columnstore_policy/
+[hypertables-section]: /manage-data/timescaledb/data-management/hypertables
+[hypertable-create-table]: /api-reference/timescaledb/hypertable/create_table/
+[hypercore]: /manage-data/timescaledb/data-management/hypercore/
+[secondary-indexes]: /manage-data/timescaledb/data-management/hypercore/secondary-indexes/
 [bloom-filters]: https://en.wikipedia.org/wiki/Bloom_filter
-[create_table_arguments]: /api/:currentVersion:/hypertable/create_table/#arguments
-[alter_job_samples]: /api/:currentVersion:/jobs-automation/alter_job/#samples
-[add_columnstore_policy]: /api/:currentVersion:/hypercore/add_columnstore_policy/
+[create_table_arguments]: /api-reference/timescaledb/hypertable/create_table/#arguments
+[alter_job_samples]: /api-reference/timescaledb/jobs-automation/alter_job/#samples
+[add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy/
 [tsdb-release-2-19-3]: https://github.com/timescale/timescaledb/releases/tag/2.19.3
