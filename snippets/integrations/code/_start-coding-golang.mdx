@@ -14,34 +14,24 @@ In this section, you create a connection to {CLOUD_LONG} using the PGX driver.
 PGX is a toolkit designed to help Go developers work directly with {PG}.
 You can use it to help your Go application interact directly with TimescaleDB.
 
-1.  Locate your {TIMESCALE_DB} credentials and use them to compose a connection
-    string for PGX.
-
-    You'll need:
-
-    *   password
-    *   username
-    *   host URL
-    *   port number
-    *   database name
-
-2.  Compose your connection string variable as a
-    [libpq connection string][libpq-connstring], using this format:
+1.  [Locate your {TIMESCALE_DB} credentials][connection-info] and compose a [libpq connection string][libpq-connstring],
+    for PGX in the following format:
 
     ```go
     connStr := "postgres://username:password@host:port/dbname"
     ```
 
-    If you're using a hosted version of TimescaleDB, or if you need an SSL
+    If you're using a hosted version of {TIMESCALE_DB}, or if you need an SSL
     connection, use this format instead:
 
     ```go
     connStr := "postgres://username:password@host:port/dbname?sslmode=require"
     ```
 
-3.  You can check that you're connected to your database with this
-    hello world program:
+1.  Check that you're connected to your database with this hello world program:
 
+    <Tabs>
+    <Tab title="Single connection">
     ```go
     package main
 
@@ -85,50 +75,49 @@ You can use it to help your Go application interact directly with TimescaleDB.
     ```go
     os.Getenv("DATABASE_CONNECTION_STRING")
     ```
+    </Tab>
+    <Tab title="Connection pooling">
 
-Alternatively, you can connect to {TIMESCALE_DB} using a connection pool.
-Connection pooling is useful to conserve computing resources, and can also
-result in faster database queries:
+      To create a connection pool that can be used for concurrent connections to
+       your database, use the `pgxpool.New()` function instead of
+       `pgx.Connect()`. Also note that this script imports
+       `github.com/jackc/pgx/v5/pgxpool`, instead of `pgx/v5` which was used to
+       create a single connection:
 
-1.  To create a connection pool that can be used for concurrent connections to
-   your database, use the `pgxpool.New()` function instead of
-   `pgx.Connect()`. Also note that this script imports
-   `github.com/jackc/pgx/v5/pgxpool`, instead of `pgx/v5` which was used to
-   create a single connection:
+        ```go
+        package main
 
-    ```go
-    package main
+        import (
+            "context"
+            "fmt"
+            "os"
 
-    import (
-        "context"
-        "fmt"
-        "os"
+            "github.com/jackc/pgx/v5/pgxpool"
+        )
 
-        "github.com/jackc/pgx/v5/pgxpool"
-    )
+        func main() {
 
-    func main() {
+            ctx := context.Background()
+            connStr := "yourConnectionStringHere"
+            dbpool, err := pgxpool.New(ctx, connStr)
+            if err != nil {
+                fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+                os.Exit(1)
+            }
+            defer dbpool.Close()
 
-        ctx := context.Background()
-        connStr := "yourConnectionStringHere"
-        dbpool, err := pgxpool.New(ctx, connStr)
-        if err != nil {
-            fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-            os.Exit(1)
+            //run a simple query to check our connection
+            var greeting string
+            err = dbpool.QueryRow(ctx, "select 'Hello, Tiger Data (but concurrently)'").Scan(&greeting)
+            if err != nil {
+                fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
+                os.Exit(1)
+            }
+            fmt.Println(greeting)
         }
-        defer dbpool.Close()
-
-        //run a simple query to check our connection
-        var greeting string
-        err = dbpool.QueryRow(ctx, "select 'Hello, Tiger Data (but concurrently)'").Scan(&greeting)
-        if err != nil {
-            fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
-            os.Exit(1)
-        }
-        fmt.Println(greeting)
-    }
-    ```
-
+        ```
+    </Tab>
+    </Tabs>
 ## Create a relational table
 
 In this section, you create a table called `sensors` which holds the ID, type,
@@ -145,7 +134,7 @@ percentage of the sensors.
     queryCreateTable := `CREATE TABLE sensors (id SERIAL PRIMARY KEY, type VARCHAR(50), location VARCHAR(50));`
     ```
 
-2.  Execute the `CREATE TABLE` statement with the `Exec()` function on the
+1.  Execute the `CREATE TABLE` statement with the `Exec()` function on the
     `dbpool` object, using the arguments of the current context and the
     statement string you created:
 
@@ -204,7 +193,7 @@ and most other tasks are executed on the hypertable.
             `
     ```
 
-2.  Formulate the `SELECT` statement to convert the table into a hypertable. You
+1.  Formulate the `SELECT` statement to convert the table into a hypertable. You
     must specify the table name to convert to a hypertable, and its time column
     name as the second argument. For more information, see the
     [`create_hypertable` docs](/api/hypertable/create_hypertable):
@@ -217,7 +206,7 @@ and most other tasks are executed on the hypertable.
 	The `by_range` dimension builder is an addition to {TIMESCALE_DB} 2.13.
 	</Note>
 
-3.  Execute the `CREATE TABLE` statement and `SELECT` statement which converts
+1.  Execute the `CREATE TABLE` statement and `SELECT` statement which converts
     the table into a hypertable. You can do this by calling the `Exec()`
     function on the `dbpool` object, using the arguments of the current context,
     and the `queryCreateTable` and `queryCreateHypertable` statement strings:
@@ -274,8 +263,7 @@ ways. Each of these example inserts the data from the two arrays, `sensorTypes` 
 `sensorLocations`, into the relational table named `sensors`.
 
 The first example inserts a single row of data at a time. The second example
-inserts multiple rows of data. The third example uses batch inserts to speed up
-the process.
+inserts multiple rows of data.
 
 1.  Open a connection pool to the database, then use the prepared statements to
     formulate an `INSERT` SQL statement, and execute it:
@@ -327,8 +315,8 @@ the process.
     }
     ```
 
-Instead of inserting a single row of data at a time, you can use this procedure
-to insert multiple rows of data, instead:
+    Instead of inserting a single row of data at a time, you can use this procedure
+    to insert multiple rows of data, instead:
 
 1.  This example uses {PG} to generate some sample time-series to insert
     into the `sensor_data` hypertable. Define the SQL statement to generate the
@@ -413,7 +401,7 @@ to insert multiple rows of data, instead:
     }
     ```
 
-2.  Formulate an SQL insert statement for the `sensor_data` hypertable:
+1.  Formulate an SQL insert statement for the `sensor_data` hypertable:
 
     ```go
     //SQL query to generate sample data
@@ -422,7 +410,7 @@ to insert multiple rows of data, instead:
         `
     ```
 
-3.  Execute the SQL statement for each sample in the results slice:
+1.  Execute the SQL statement for each sample in the results slice:
 
     ```go
     //Insert contents of results slice into TimescaleDB
@@ -439,7 +427,7 @@ to insert multiple rows of data, instead:
     fmt.Println("Successfully inserted samples into sensor_data hypertable")
     ```
 
-4.  This example `main.go` generates sample data and inserts it into
+1.  This example `main.go` generates sample data and inserts it into
     the `sensor_data` hypertable:
 
     ```go
@@ -541,6 +529,8 @@ to insert multiple rows of data, instead:
     }
     ```
 
+### Batch insert data
+
 Inserting multiple rows of data using this method executes as many `insert`
 statements as there are samples to be inserted. This can make ingestion of data
 slow. To speed up ingestion, you can batch insert data instead.
@@ -548,129 +538,128 @@ slow. To speed up ingestion, you can batch insert data instead.
 Here's a sample pattern for how to do so, using the sample data you generated in
 the previous procedure. It uses the pgx `Batch` object:
 
-1.  This example batch inserts data into the database:
 
-    ```go
-    package main
+```go
+package main
 
-    import (
-        "context"
-        "fmt"
-        "os"
-        "time"
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
 
-        "github.com/jackc/pgx/v5"
-        "github.com/jackc/pgx/v5/pgxpool"
-    )
+    "github.com/jackc/pgx/v5"
+    "github.com/jackc/pgx/v5/pgxpool"
+)
 
-    func main() {
-        /********************************************/
-        /* Connect using Connection Pool            */
-        /********************************************/
-        ctx := context.Background()
-        connStr := "yourConnectionStringHere"
-        dbpool, err := pgxpool.New(ctx, connStr)
-        if err != nil {
-            fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-            os.Exit(1)
-        }
-        defer dbpool.Close()
-
-        // Generate data to insert
-
-        //SQL query to generate sample data
-        queryDataGeneration := `
-            SELECT generate_series(now() - interval '24 hour', now(), interval '5 minute') AS time,
-            floor(random() * (3) + 1)::int as sensor_id,
-            random()*100 AS temperature,
-            random() AS cpu
-            `
-
-        //Execute query to generate samples for sensor_data hypertable
-        rows, err := dbpool.Query(ctx, queryDataGeneration)
-        if err != nil {
-            fmt.Fprintf(os.Stderr, "Unable to generate sensor data: %v\n", err)
-            os.Exit(1)
-        }
-        defer rows.Close()
-
-        fmt.Println("Successfully generated sensor data")
-
-        //Store data generated in slice results
-        type result struct {
-            Time        time.Time
-            SensorId    int
-            Temperature float64
-            CPU         float64
-        }
-        var results []result
-        for rows.Next() {
-            var r result
-            err = rows.Scan(&r.Time, &r.SensorId, &r.Temperature, &r.CPU)
-            if err != nil {
-                fmt.Fprintf(os.Stderr, "Unable to scan %v\n", err)
-                os.Exit(1)
-            }
-            results = append(results, r)
-        }
-        // Any errors encountered by rows.Next or rows.Scan are returned here
-        if rows.Err() != nil {
-            fmt.Fprintf(os.Stderr, "rows Error: %v\n", rows.Err())
-            os.Exit(1)
-        }
-
-        // Check contents of results slice
-        /*fmt.Println("Contents of RESULTS slice")
-        for i := range results {
-            var r result
-            r = results[i]
-            fmt.Printf("Time: %s | ID: %d | Temperature: %f | CPU: %f |\n", &r.Time, r.SensorId, r.Temperature, r.CPU)
-        }*/
-
-        //Insert contents of results slice into TimescaleDB
-        //SQL query to generate sample data
-        queryInsertTimeseriesData := `
-            INSERT INTO sensor_data (time, sensor_id, temperature, cpu) VALUES ($1, $2, $3, $4);
-            `
-
-        /********************************************/
-        /* Batch Insert into TimescaleDB            */
-        /********************************************/
-        //create batch
-        batch := &pgx.Batch{}
-        //load insert statements into batch queue
-        for i := range results {
-            var r result
-            r = results[i]
-            batch.Queue(queryInsertTimeseriesData, r.Time, r.SensorId, r.Temperature, r.CPU)
-        }
-        batch.Queue("select count(*) from sensor_data")
-
-        //send batch to connection pool
-        br := dbpool.SendBatch(ctx, batch)
-        //execute statements in batch queue
-        _, err = br.Exec()
-        if err != nil {
-            fmt.Fprintf(os.Stderr, "Unable to execute statement in batch queue %v\n", err)
-            os.Exit(1)
-        }
-        fmt.Println("Successfully batch inserted data")
-
-        //Compare length of results slice to size of table
-        fmt.Printf("size of results: %d\n", len(results))
-        //check size of table for number of rows inserted
-        // result of last SELECT statement
-        var rowsInserted int
-        err = br.QueryRow().Scan(&rowsInserted)
-        fmt.Printf("size of table: %d\n", rowsInserted)
-
-        err = br.Close()
-        if err != nil {
-            fmt.Fprintf(os.Stderr, "Unable to closer batch %v\n", err)
-            os.Exit(1)
-        }
+func main() {
+    /********************************************/
+    /* Connect using Connection Pool            */
+    /********************************************/
+    ctx := context.Background()
+    connStr := "yourConnectionStringHere"
+    dbpool, err := pgxpool.New(ctx, connStr)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+        os.Exit(1)
     }
-    ```
+    defer dbpool.Close()
+
+    // Generate data to insert
+
+    //SQL query to generate sample data
+    queryDataGeneration := `
+        SELECT generate_series(now() - interval '24 hour', now(), interval '5 minute') AS time,
+        floor(random() * (3) + 1)::int as sensor_id,
+        random()*100 AS temperature,
+        random() AS cpu
+        `
+
+    //Execute query to generate samples for sensor_data hypertable
+    rows, err := dbpool.Query(ctx, queryDataGeneration)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Unable to generate sensor data: %v\n", err)
+        os.Exit(1)
+    }
+    defer rows.Close()
+
+    fmt.Println("Successfully generated sensor data")
+
+    //Store data generated in slice results
+    type result struct {
+        Time        time.Time
+        SensorId    int
+        Temperature float64
+        CPU         float64
+    }
+    var results []result
+    for rows.Next() {
+        var r result
+        err = rows.Scan(&r.Time, &r.SensorId, &r.Temperature, &r.CPU)
+        if err != nil {
+            fmt.Fprintf(os.Stderr, "Unable to scan %v\n", err)
+            os.Exit(1)
+        }
+        results = append(results, r)
+    }
+    // Any errors encountered by rows.Next or rows.Scan are returned here
+    if rows.Err() != nil {
+        fmt.Fprintf(os.Stderr, "rows Error: %v\n", rows.Err())
+        os.Exit(1)
+    }
+
+    // Check contents of results slice
+    /*fmt.Println("Contents of RESULTS slice")
+    for i := range results {
+        var r result
+        r = results[i]
+        fmt.Printf("Time: %s | ID: %d | Temperature: %f | CPU: %f |\n", &r.Time, r.SensorId, r.Temperature, r.CPU)
+    }*/
+
+    //Insert contents of results slice into TimescaleDB
+    //SQL query to generate sample data
+    queryInsertTimeseriesData := `
+        INSERT INTO sensor_data (time, sensor_id, temperature, cpu) VALUES ($1, $2, $3, $4);
+        `
+
+    /********************************************/
+    /* Batch Insert into TimescaleDB            */
+    /********************************************/
+    //create batch
+    batch := &pgx.Batch{}
+    //load insert statements into batch queue
+    for i := range results {
+        var r result
+        r = results[i]
+        batch.Queue(queryInsertTimeseriesData, r.Time, r.SensorId, r.Temperature, r.CPU)
+    }
+    batch.Queue("select count(*) from sensor_data")
+
+    //send batch to connection pool
+    br := dbpool.SendBatch(ctx, batch)
+    //execute statements in batch queue
+    _, err = br.Exec()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Unable to execute statement in batch queue %v\n", err)
+        os.Exit(1)
+    }
+    fmt.Println("Successfully batch inserted data")
+
+    //Compare length of results slice to size of table
+    fmt.Printf("size of results: %d\n", len(results))
+    //check size of table for number of rows inserted
+    // result of last SELECT statement
+    var rowsInserted int
+    err = br.QueryRow().Scan(&rowsInserted)
+    fmt.Printf("size of table: %d\n", rowsInserted)
+
+    err = br.Close()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Unable to closer batch %v\n", err)
+        os.Exit(1)
+    }
+}
+```
 
 ## Execute a query
 
@@ -694,7 +683,7 @@ This section covers how to execute queries against your database.
         `
     ```
 
-2.  Use the `.Query()` function to execute the query string. Make sure you
+1.  Use the `.Query()` function to execute the query string. Make sure you
     specify the relevant placeholders:
 
     ```go
@@ -709,7 +698,7 @@ This section covers how to execute queries against your database.
     fmt.Println("Successfully executed query")
     ```
 
-3.  Access the rows returned by `.Query()`. Create a struct with fields
+1.  Access the rows returned by `.Query()`. Create a struct with fields
     representing the columns that you expect to be returned, then use the
     `rows.Next()` function to iterate through the rows returned and fill
     `results` with the array of structs. This uses the `rows.Scan()` function,
@@ -750,7 +739,7 @@ This section covers how to execute queries against your database.
     // use results here…
     ```
 
-4.  This example program runs a query, and accesses the results of
+1.  This example program runs a query, and accesses the results of
     that query:
 
     ```go
@@ -844,3 +833,4 @@ your Go application, be sure to check out these advanced {TIMESCALE_DB} tutorial
 [libpq-connstring]: https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
 [pgx-docs]: https://pkg.go.dev/github.com/jackc/pgx
 [timescaledb-parallel-copy]: https://github.com/timescale/timescaledb-parallel-copy
+[connection-info]: /integrations/find-connection-details/
