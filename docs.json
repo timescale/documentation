@@ -669,7 +669,6 @@
                         "pages": [
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/index",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket",
-                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/first",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/last",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month",
@@ -691,6 +690,12 @@
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill",
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/locf",
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/interpolate"
+                        ]
+                      },
+                      {
+                        "group": "Legacy functions",
+                        "pages": [
+                          "api-reference/timescaledb/hyperfunctions/legacy/time_bucket_ng"
                         ]
                       }
                     ]
