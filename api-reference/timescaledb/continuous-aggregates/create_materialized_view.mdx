@@ -46,7 +46,7 @@ you do not want the view to update when it is first created, use the
 `WITH NO DATA` parameter. For more information, see
 [`refresh_continuous_aggregate`][refresh-cagg].
 
-{CAGG}s have some limitations of what types of queries they can
+{CAGG_CAP}s have some limitations of what types of queries they can
 support. For more information, see the
 [{CAGG}s section][cagg-how-tos].
 
@@ -100,16 +100,11 @@ WITH (timescaledb.continuous) AS
 | `WITH` clause | TEXT | - | ✔ | Specifies options for the {CAGG} view |
 | `<select_query>` | TEXT | - | ✔ | A `SELECT` query that uses the specified syntax |
 
-Required `WITH` clause options:
+`WITH` clause options:
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `timescaledb.continuous` | BOOLEAN | - | ✔ | If `timescaledb.continuous` is not specified, this is a regular {PG} materialized view |
-
-Optional `WITH` clause options:
-
-| Name | Type | Default | Required | Description |
-|-|-|-|-|-|
 | `timescaledb.chunk_interval` | INTERVAL | 10x the original {HYPERTABLE} | - | Set the {CHUNK} interval. The default value is 10x the original {HYPERTABLE}. |
 | `timescaledb.create_group_indexes` | BOOLEAN | `TRUE` | - | Create indexes on the {CAGG} for columns in its `GROUP BY` clause. Indexes are in the form `(<GROUP_BY_COLUMN>, time_bucket)` |
 | `timescaledb.finalized` | BOOLEAN | `TRUE` | - | In {TIMESCALE_DB} 2.7 and above, use the new version of {CAGG}s, which stores finalized results for aggregate functions. Supports all aggregate functions, including ones that use `FILTER`, `ORDER BY`, and `DISTINCT` clauses. |
