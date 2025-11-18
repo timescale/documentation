@@ -34,7 +34,7 @@ Calculate the kurtosis of a sample containing the integers from 0 to 100:
 SELECT kurtosis(stats_agg(data))
   FROM generate_series(0, 100) data;
 ```
-
+This returns something like:
 ```sql
 kurtosis
 ----------
