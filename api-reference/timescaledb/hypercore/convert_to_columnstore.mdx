@@ -33,6 +33,16 @@ CALL convert_to_columnstore('_timescaledb_internal._hyper_1_2_chunk');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL convert_to_columnstore(
+    chunk = '<chunk_name>',
+    if_not_columnstore = true | false,
+    recompress = true | false
+);
+```
+
 | Name                 | Type | Default | Required | Description                                                                                                                                        |
 |----------------------|--|---------|--|----------------------------------------------------------------------------------------------------------------------------------------------------|
 | `chunk`         | REGCLASS | -       |✔| Name of the {CHUNK} to add to the {COLUMNSTORE}.                                                                                                      |

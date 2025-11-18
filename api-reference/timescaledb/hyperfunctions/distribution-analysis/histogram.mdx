@@ -55,6 +55,17 @@ The expected output:
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT histogram(
+    value = <anyelement>,
+    min = <anyelement>,
+    max = <anyelement>,
+    nbuckets = <integer>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `value` | ANY VALUE | - | ✔ | A set of values to partition into a histogram |

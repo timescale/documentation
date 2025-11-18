@@ -54,6 +54,20 @@ SELECT add_compression_policy('cpu_weekly', INTERVAL '8 weeks');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT add_compression_policy(
+    hypertable = '<hypertable_name>',
+    compress_after = <interval>,
+    if_not_exists = true | false,
+    schedule_interval = <interval>,
+    initial_start = <timestamptz>,
+    timezone = '<timezone>',
+    compress_created_before = <interval>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `hypertable` | REGCLASS | - | ✔ | Name of the {HYPERTABLE} or {CAGG} |

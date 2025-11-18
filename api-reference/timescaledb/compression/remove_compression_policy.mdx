@@ -32,6 +32,15 @@ SELECT remove_compression_policy('cpu_weekly');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT remove_compression_policy(
+    hypertable = '<hypertable_name>',
+    if_exists = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `hypertable` | REGCLASS | - | ✔ | Name of the {HYPERTABLE} or {CAGG} the policy should be removed from |

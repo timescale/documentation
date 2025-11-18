@@ -75,6 +75,16 @@ SELECT enable_chunk_skipping('conditions', 'device_id');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT enable_chunk_skipping(
+    hypertable = '<hypertable_name>',
+    column_name = '<column_name>',
+    if_not_exists = true | false
+);
+```
+
 | Name        | Type             | Default | Required | Description                            |
 |-------------|------------------|---------|-|----------------------------------------|
 |`column_name`| `TEXT`        | -       | ✔ | Column to track range statistics for |

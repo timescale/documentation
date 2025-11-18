@@ -46,6 +46,15 @@ boundary UUID's timestamp.
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT to_uuidv7_boundary(
+    timestamp = <timestamptz>,
+    boundary = 'lower' | 'upper'
+);
+```
+
 | Name | Type | Default | Required | Description |
 | - | - | - | - | - |
 | `ts` | TIMESTAMPTZ | - | ✔ | The timestamp used to return a UUIDv7 object |

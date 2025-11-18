@@ -26,6 +26,14 @@ SELECT * FROM show_tablespaces('conditions');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT show_tablespaces(
+    hypertable = '<hypertable_name>'
+);
+```
+
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `hypertable` | REGCLASS | - | ✔ | {HYPERTABLE} to show attached tablespaces for.|

@@ -37,6 +37,16 @@ SELECT disable_chunk_skipping('conditions', 'device_id');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT disable_chunk_skipping(
+    hypertable = '<hypertable_name>',
+    column_name = '<column_name>',
+    if_not_exists = true | false
+);
+```
+
 |Name|Type| Default | Required | Description|
 |-|-|-|-|-|
 |`hypertable`|REGCLASS| - | ✔ |Hypertable that the column belongs to|

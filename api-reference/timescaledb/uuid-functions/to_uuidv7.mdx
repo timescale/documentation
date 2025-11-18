@@ -28,6 +28,14 @@ FROM generate_series('2025-01-01:00:00:00'::timestamptz, '2025-01-01:00:00:03'::
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT to_uuidv7(
+    timestamp = <timestamptz>
+);
+```
+
 | Name | Type | Default | Required | Description |
 | - | - | - | - | - |
 | `ts` | TIMESTAMPTZ | - | ✔ | The timestamp used to return a UUIDv7 object |

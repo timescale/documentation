@@ -54,6 +54,16 @@ month_normalize
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT month_normalize(
+    metric => <metric>,
+    reference_date => <timestamp>,
+    days => <days>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `metric` | float8 | - | ✔ | The metric value to normalize |

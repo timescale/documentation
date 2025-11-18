@@ -36,7 +36,9 @@ SELECT
     x_intercept(stats_agg(y, x)) AS summary
 FROM foo
 GROUP BY id, time_bucket('15 min'::interval, ts)
-```## Arguments
+```
+
+## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|

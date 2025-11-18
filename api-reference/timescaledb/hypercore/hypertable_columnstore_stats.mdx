@@ -59,6 +59,14 @@ To retrieve compression statistics:
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT * FROM hypertable_columnstore_stats(
+    hypertable = '<hypertable_name>'
+);
+```
+
 |Name|Type|Description|
 |-|-|-|
 |`hypertable`|REGCLASS|{HYPERTABLE} to show statistics for|

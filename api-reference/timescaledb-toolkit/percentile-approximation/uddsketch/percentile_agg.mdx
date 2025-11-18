@@ -42,7 +42,9 @@ AS SELECT
     percentile_agg(value) as pct_agg
 FROM foo
 GROUP BY 1;
-```## Arguments
+```
+
+## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -52,5 +54,5 @@ GROUP BY 1;
 
 | Column | Type | Description |
 |--------|------|-------------|
-| percentile_agg | UddSketch | a percentile estimator object created to calculate percentiles using the `UddSketch` algorithm |
+| percentile_agg | UddSketch | A percentile estimator object created to calculate percentiles using the `UddSketch` algorithm |
 

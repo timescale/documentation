@@ -7,6 +7,8 @@ license: community
 type: function
 ---
 
+import OpenAPIEmbedArguments from '/snippets/api-reference/pgai/_openai_embed_arguments.mdx';
+
 Generate vector embeddings from text, text arrays, or tokens using OpenAI's embedding models. Embeddings are numerical
 representations of text that capture semantic meaning, making them ideal for semantic search, recommendations, and
 clustering.
@@ -77,21 +79,7 @@ WHERE embedding IS NULL;
 
 ## Arguments
 
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `model` | `TEXT` | - | ✔ | The OpenAI embedding model to use (e.g., `text-embedding-ada-002`, `text-embedding-3-small`) |
-| `input_text` | `TEXT` | - | ✔ | Single text input to embed (use this OR `input_texts` OR `input_tokens`) |
-| `input_texts` | `TEXT[]` | - | ✔ | Array of text inputs to embed in a batch |
-| `input_tokens` | `INT[]` | - | ✔ | Pre-tokenized input as an array of token IDs |
-| `api_key` | `TEXT` | `NULL` | ✖ | OpenAI API key. If not provided, uses `ai.openai_api_key` setting |
-| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
-| `dimensions` | `INT` | `NULL` | ✖ | Number of dimensions for the output embedding (only supported by some models) |
-| `openai_user` | `TEXT` | `NULL` | ✖ | Unique identifier for the end-user for abuse monitoring |
-| `encoding_format` | `TEXT` | `NULL` | ✖ | Format for the embeddings (`float` or `base64`) |
-| `extra_headers` | `JSONB` | `NULL` | ✖ | Additional HTTP headers to include in the API request |
-| `extra_query` | `JSONB` | `NULL` | ✖ | Additional query parameters for the API request |
-| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
-| `client_config` | `JSONB` | `NULL` | ✖ | Advanced client configuration options |
+<OpenAPIEmbedArguments />
 
 ## Returns
 

@@ -57,6 +57,6 @@ FROM (
 
 ## Returns
 
-`DOUBLE PRECISION`: The delta between the first and last points of the time interval. If exact values are missing in the
-raw data for the first and last points, these values are interpolated linearly from the neighboring gauge aggregates.
-
+| Column | Type | Description |
+|--------|------|-------------|
+| interpolated_delta | DOUBLE PRECISION | The delta between the first and last points of the time interval. If exact values are missing in the raw data for the first and last points, these values are interpolated linearly from the neighboring counter aggregates. |

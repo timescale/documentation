@@ -73,6 +73,18 @@ CALL refresh_continuous_aggregate('conditions', '2020-01-01', '2020-02-01', forc
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL refresh_continuous_aggregate(
+    continuous_aggregate = '<view_name>',
+    window_start = <interval>,
+    window_end = <interval>,
+    force = true | false,
+    options = '<jsonb_options>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `continuous_aggregate` | REGCLASS | - | ✔ | The {CAGG} to refresh. |

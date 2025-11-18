@@ -10,17 +10,15 @@ type: function
 Recursively split text into chunks using multiple separators. This provides more fine-grained control over the
 chunking process and can better preserve semantic meaning by trying separators in order.
 
-## Purpose
+The function tries each separator in order. If a chunk is still too large after applying a separator, it tries the
+next separator in the list. This helps preserve natural text boundaries like paragraphs and sentences.
+
+You use this function to:
 
 - Recursively split text using multiple separators
 - Preserve more semantic meaning in chunks
 - Try separators in order (paragraphs, then sentences, then words)
 - Default configuration balances context preservation and chunk size
-
-## How it works
-
-The function tries each separator in order. If a chunk is still too large after applying a separator, it tries the
-next separator in the list. This helps preserve natural text boundaries like paragraphs and sentences.
 
 ## Samples
 

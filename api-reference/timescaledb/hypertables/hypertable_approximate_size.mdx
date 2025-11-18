@@ -67,6 +67,14 @@ SELECT hypertable_approximate_size('device_stats_15m');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT hypertable_approximate_size(
+    hypertable = '<hypertable_name>'
+);
+```
+
 |Name|Type| Default | Required | Description|
 |-|-|-|-|-|
 |`hypertable`|REGCLASS| - | ✔ |Hypertable or continuous aggregate to show size of.|

@@ -19,6 +19,16 @@ Use in the same query as [`time_bucket_gapfill`][time_bucket_gapfill].
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT locf(
+    value = <anyelement>,
+    prev = <anyelement>,
+    treat_null_as_missing = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `value` | ANY ELEMENT | - | ✔ | The value to carry forward |

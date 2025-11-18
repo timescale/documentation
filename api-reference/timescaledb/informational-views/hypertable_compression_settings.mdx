@@ -1,5 +1,6 @@
 ---
 title: timescaledb_information.hypertable_compression_settings
+sidebarTitle: hypertable_compression_settings
 description: Get information about compression settings for all hypertables
 keywords: [compression, hypertable, information]
 tags: [hypertable compression, compression settings]
@@ -33,11 +34,11 @@ segmentby                | metric_id
 orderby                  | time DESC
 ```
 
-## Arguments
+## Available columns
 
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `hypertable` | `REGCLASS` | - | ✔ | Hypertable which has compression enabled |
-| `chunk` | `REGCLASS` | - | ✔ | Hypertable chunk which has compression enabled |
-| `segmentby` | `TEXT` | - | ✔ | List of columns used for segmenting the compressed data |
-| `orderby` | `TEXT` | - | ✔ | List of columns used for ordering compressed data along with ordering and NULL ordering information |
+| Name | Type | Description |
+|------|------|-------------|
+| `hypertable` | `REGCLASS` | Hypertable which has compression enabled |
+| `chunk` | `REGCLASS` | Hypertable chunk which has compression enabled |
+| `segmentby` | `TEXT` | List of columns used for segmenting the compressed data |
+| `orderby` | `TEXT` | List of columns used for ordering compressed data along with ordering and NULL ordering information |

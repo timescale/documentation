@@ -44,6 +44,14 @@ approximate_row_count
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT approximate_row_count(
+    relation = '<table_name>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `relation` | REGCLASS | - | ✔ | {HYPERTABLE} or regular {PG} table to get row count for. |

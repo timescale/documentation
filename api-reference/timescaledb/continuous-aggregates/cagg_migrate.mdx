@@ -42,6 +42,16 @@ Upgrade to version 2.8.1 or above before using it.
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL cagg_migrate(
+    cagg = '<view_name>',
+    override = true | false,
+    drop_old = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `cagg` | `REGCLASS` | - | ✔ | The {CAGG} to migrate |

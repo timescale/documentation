@@ -38,6 +38,14 @@ SELECT * FROM chunks_detailed_size('dist_table')
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT * FROM chunks_detailed_size(
+    hypertable = '<hypertable_name>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |---|---|---|-|---|
 | `hypertable` | REGCLASS | - | ✔ | Name of the hypertable |

@@ -25,6 +25,15 @@ Removes the existing data retention policy for the `conditions` table.
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT remove_retention_policy(
+    relation = '<hypertable_or_cagg_name>',
+    if_exists = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | REGCLASS | - | ✔ | Name of the hypertable or continuous aggregate from which to remove the policy |

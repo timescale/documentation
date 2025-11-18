@@ -57,7 +57,6 @@ FROM (
 
 ## Returns
 
-`DOUBLE PRECISION`: The per-second rate of change of the counter between the specified bounds. If exact values are
-missing in the raw data for the first and last points, these values are interpolated linearly from the neighboring
-counter aggregates.
-
+| Column | Type | Description |
+|--------|------|-------------|
+| interpolated_rate | DOUBLE PRECISION | The per-second rate of change of the counter between the specified bounds. If exact values are missing in the raw data for the first and last points, these values are interpolated linearly from the neighboring counter aggregates. |

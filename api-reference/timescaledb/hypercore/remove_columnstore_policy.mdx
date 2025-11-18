@@ -38,6 +38,15 @@ You see the {COLUMNSTORE} policies in the [informational views][informational-vi
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL remove_columnstore_policy(
+    hypertable = '<hypertable_name>',
+    if_exists = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|-|
 |`hypertable`|REGCLASS|-|✔| Name of the {HYPERTABLE} or {CAGG} to remove the policy from|

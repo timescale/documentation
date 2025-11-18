@@ -33,6 +33,16 @@ SELECT set_chunk_time_interval('conditions', 86400000);
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT set_chunk_time_interval(
+    hypertable = '<hypertable_name>',
+    chunk_time_interval = <interval>,
+    dimension_name = '<dimension_name>'
+);
+```
+
 
 | Name        | Type             | Default | Required                                                             | Description                                                                                                                                      |
 |-------------|------------------|---------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|

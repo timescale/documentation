@@ -7,6 +7,8 @@ license: community
 type: function
 ---
 
+import OpenAPIChatComplete from '/snippets/api-reference/pgai/_openai_chat_complete_arguments.mdx';
+
 Generate text completions using OpenAI's chat models like GPT-4 and GPT-3.5. This function enables you to have
 multi-turn conversations, generate text from prompts, and leverage advanced language model capabilities directly from
 PostgreSQL.
@@ -88,31 +90,7 @@ SELECT jsonb_pretty(
 
 ## Arguments
 
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `model` | `TEXT` | - | ✔ | The OpenAI model to use (e.g., `gpt-4o`, `gpt-4o-mini`, `gpt-3.5-turbo`) |
-| `messages` | `JSONB` | - | ✔ | Array of message objects with `role` and `content` fields |
-| `api_key` | `TEXT` | `NULL` | ✖ | OpenAI API key. If not provided, uses `ai.openai_api_key` setting |
-| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
-| `frequency_penalty` | `FLOAT` | `NULL` | ✖ | Penalize new tokens based on their frequency (-2.0 to 2.0) |
-| `logit_bias` | `JSONB` | `NULL` | ✖ | Modify the likelihood of specified tokens appearing |
-| `logprobs` | `BOOLEAN` | `NULL` | ✖ | Return log probabilities of output tokens |
-| `top_logprobs` | `INT` | `NULL` | ✖ | Number of most likely tokens to return at each position |
-| `max_tokens` | `INT` | `NULL` | ✖ | Maximum number of tokens to generate |
-| `n` | `INT` | `NULL` | ✖ | Number of chat completion choices to generate |
-| `presence_penalty` | `FLOAT` | `NULL` | ✖ | Penalize new tokens based on their presence (-2.0 to 2.0) |
-| `response_format` | `JSONB` | `NULL` | ✖ | Format of the response (e.g., `{"type": "json_object"}`) |
-| `seed` | `INT` | `NULL` | ✖ | Random seed for deterministic sampling |
-| `stop` | `TEXT` | `NULL` | ✖ | Up to 4 sequences where the API will stop generating |
-| `temperature` | `FLOAT` | `NULL` | ✖ | Sampling temperature (0 to 2). Higher = more random |
-| `top_p` | `FLOAT` | `NULL` | ✖ | Nucleus sampling parameter (0 to 1) |
-| `tools` | `JSONB` | `NULL` | ✖ | List of tools the model may call |
-| `tool_choice` | `JSONB` | `NULL` | ✖ | Controls which tool is called |
-| `openai_user` | `TEXT` | `NULL` | ✖ | Unique identifier for the end-user |
-| `extra_headers` | `JSONB` | `NULL` | ✖ | Additional HTTP headers |
-| `extra_query` | `JSONB` | `NULL` | ✖ | Additional query parameters |
-| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging |
-| `client_config` | `JSONB` | `NULL` | ✖ | Advanced client configuration |
+<OpenAPIChatComplete />
 
 ## Returns
 

@@ -34,6 +34,16 @@ SELECT compress_chunk('_timescaledb_internal._hyper_1_2_chunk');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT compress_chunk(
+    uncompressed_chunk = '<chunk_name>',
+    if_not_compressed = true | false,
+    recompress = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `chunk_name` | REGCLASS | - | ✔ | Name of the {CHUNK} to be compressed |

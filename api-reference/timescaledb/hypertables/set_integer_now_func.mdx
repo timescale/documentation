@@ -48,6 +48,16 @@ Set the integer `now` function for a {HYPERTABLE} with a time column in [unix ti
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT set_integer_now_func(
+    hypertable = '<hypertable_name>',
+    integer_now_func = '<function_name>',
+    replace_if_exists = true | false
+);
+```
+
 |Name|Type| Default | Required | Description |
 |-|-|-|-|-|
 |`main_table`|REGCLASS| - | ✔ | The {HYPERTABLE} `integer_now_func` is used in. |

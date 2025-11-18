@@ -21,6 +21,18 @@ data.
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT time_bucket_gapfill(
+    bucket_width = <interval>,
+    ts = <timestamp>,
+    start = <timestamp>,
+    finish = <timestamp>,
+    timezone = '<timezone>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `bucket_width` | INTERVAL \| INTEGER | - | ✔ | A {PG} time interval to specify the length of each bucket. For example, use `1 day` to get daily buckets. Use `INTEGER` only if your time column is integer-based. |

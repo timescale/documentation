@@ -46,6 +46,14 @@ SELECT hypertable_size('device_stats_15m');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT hypertable_size(
+    hypertable = '<hypertable_name>'
+);
+```
+
 |Name|Type| Default | Required | Description|
 |-|-|-|-|-|
 |`hypertable`|REGCLASS| - | ✔ |{HYPERTABLE} or {CAGG} to show size of.|

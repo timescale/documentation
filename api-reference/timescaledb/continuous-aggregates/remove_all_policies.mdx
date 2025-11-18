@@ -36,6 +36,15 @@ SELECT timescaledb_experimental.remove_all_policies('example_continuous_aggregat
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL remove_all_policies(
+    relation = '<view_name>',
+    if_exists = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | `REGCLASS` | - | ✔ | The {CAGG} to remove all policies from |

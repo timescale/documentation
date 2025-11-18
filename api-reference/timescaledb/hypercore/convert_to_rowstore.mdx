@@ -8,7 +8,7 @@ keywords: [columnstore, hypercore, rowstore, chunks, backfilling]
 products: [cloud, mst, self_hosted]
 ---
 
-import HypercoreManualWorkflow from '/snippets/api-reference/timescaledb/hypercore/hypercore-manual-workflow.mdx';
+import HypercoreManualWorkflow from '/snippets/api-reference/timescaledb/hypercore/_hypercore-manual-workflow.mdx';
 import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
@@ -29,6 +29,15 @@ To modify or add a lot of data to a {CHUNK}:
 <HypercoreManualWorkflow />
 
 ## Arguments
+
+The syntax is:
+
+```sql
+CALL convert_to_rowstore(
+    chunk = '<chunk_name>',
+    if_columnstore = true | false
+);
+```
 
 | Name | Type     | Default | Required | Description|
 |--|----------|---------|----------|-|

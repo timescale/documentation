@@ -42,6 +42,14 @@ show_policies
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT * FROM show_policies(
+    relation = '<view_name>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | `REGCLASS` | - | ✔ | The {CAGG} to display policies for |

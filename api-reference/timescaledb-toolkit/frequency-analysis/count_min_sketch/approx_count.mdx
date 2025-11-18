@@ -34,7 +34,9 @@ WITH t AS (
 )
 SELECT toolkit_experimental.approx_count('AAPL', symbol_sketch)
 FROM t;
-```## Arguments
+```
+
+## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -45,5 +47,5 @@ FROM t;
 
 | Column | Type | Description |
 |--------|------|-------------|
-| `approx_count` | INTEGER | The estimated number of times `item` appeared in the sketch |
+| approx_count | INTEGER | The estimated number of times `item` appeared in the sketch |
 

@@ -34,6 +34,15 @@ SELECT remove_continuous_aggregate_policy('cpu_view');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT remove_continuous_aggregate_policy(
+    continuous_aggregate = '<view_name>',
+    if_exists = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `continuous_aggregate` | `REGCLASS` | - | ✔ | Name of the {CAGG} the policies should be removed from |

@@ -43,6 +43,16 @@ CALL attach_chunk('ht', '_timescaledb_internal._hyper_1_2_chunk', '{"device_id":
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL attach_chunk(
+    hypertable = '<hypertable_name>',
+    chunk = '<chunk_name>',
+    slices = '<jsonb_slices>'
+);
+```
+
 |Name|Type| Default | Required | Description                                                                                                                                   |
 |---|---|-|-|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | `hypertable` | REGCLASS | - | ✔ | Name of the {HYPERTABLE} to attach `chunk` to.                                                                                                  |

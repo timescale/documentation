@@ -66,6 +66,14 @@ total | 48 kB
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT * FROM chunk_compression_stats(
+    hypertable = '<hypertable_name>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `hypertable` | REGCLASS | - | ✔ | Name of the {HYPERTABLE} |

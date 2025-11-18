@@ -9,9 +9,9 @@ tags: [scheduled jobs, background jobs, automation framework]
 products: [cloud, mst, self_hosted]
 ---
 
-import OldCreateHypertable from '/snippets/api-reference/timescaledb/hypercore/old-api-create-hypertable.mdx';
+import OldCreateHypertable from '/snippets/api-reference/timescaledb/hypercore/_old-api-create-hypertable.mdx';
 import CreateHypertablePolicyNote from
-'/snippets/api-reference/timescaledb/hypercore/create-hypertable-columnstore-policy-note.mdx';
+'/snippets/api-reference/timescaledb/hypercore/_create-hypertable-columnstore-policy-note.mdx';
 import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
@@ -128,6 +128,20 @@ To create a {COLUMNSTORE} job:
 
 
 ## Arguments
+
+The syntax is:
+
+```sql
+CALL add_columnstore_policy(
+    hypertable = '<hypertable_name>',
+    after = <interval>,
+    if_not_exists = true | false,
+    schedule_interval = <interval>,
+    initial_start = <timestamptz>,
+    timezone = '<timezone>',
+    created_before = <interval>
+);
+```
 
 Calls to `add_columnstore_policy` require either `after` or `created_before`, but cannot have both.
 

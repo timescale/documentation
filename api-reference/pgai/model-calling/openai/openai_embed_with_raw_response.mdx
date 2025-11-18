@@ -7,6 +7,8 @@ license: community
 type: function
 ---
 
+import OpenAPIEmbedArguments from '/snippets/api-reference/pgai/_openai_embed_arguments.mdx';
+
 Generate embeddings and receive the complete raw API response including all metadata. Use this when you need access to
 token usage, model information, or other response details not included in the standard `openai_embed()` function.
 
@@ -37,7 +39,7 @@ SELECT
 
 ## Arguments
 
-This function accepts the same arguments as [`openai_embed()`][openai_embed].
+<OpenAPIEmbedArguments />
 
 ## Returns
 

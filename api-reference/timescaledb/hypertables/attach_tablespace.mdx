@@ -39,6 +39,16 @@ SELECT attach_tablespace('disk2', 'conditions', if_not_attached => true);
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT attach_tablespace(
+    tablespace = '<tablespace_name>',
+    hypertable = '<hypertable_name>',
+    if_not_attached = true | false
+);
+```
+
 |Name|Type| Default | Required | Description|
 |---|---|-|-|---|
 | `tablespace` | TEXT | - | ✔ | Name of the tablespace to attach.|

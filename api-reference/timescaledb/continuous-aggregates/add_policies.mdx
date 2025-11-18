@@ -58,6 +58,18 @@ SELECT timescaledb_experimental.add_policies(
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL add_policies(
+    relation = '<view_name>',
+    refresh_start_offset = <interval>,
+    refresh_end_offset = <interval>,
+    compress_after = <interval>,
+    refresh_schedule_interval = <interval>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | `REGCLASS` | - | ✔ | The {CAGG} that the policies should be applied to |

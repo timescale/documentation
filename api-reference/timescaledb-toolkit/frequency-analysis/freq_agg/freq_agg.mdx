@@ -31,7 +31,9 @@ occurs in at least 5% of rows:
 
 ```sql
 SELECT toolkit_experimental.freq_agg(0.05, ZIP) FROM HomeSales;
-```## Arguments
+```
+
+## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -42,5 +44,5 @@ SELECT toolkit_experimental.freq_agg(0.05, ZIP) FROM HomeSales;
 
 | Column | Type | Description |
 |--------|------|-------------|
-| `agg` | SpaceSavingAggregate | An object storing the most common elements of the given table and their estimated frequency. You can pass this object to any of the accessor functions to get a final result. |
+| agg | SpaceSavingAggregate | An object storing the most common elements of the given table and their estimated frequency. You can pass this object to any of the accessor functions to get a final result. |
 

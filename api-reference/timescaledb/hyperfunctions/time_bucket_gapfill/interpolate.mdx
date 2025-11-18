@@ -19,6 +19,16 @@ Use in the same query as [`time_bucket_gapfill`][time_bucket_gapfill].
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT interpolate(
+    value = <anyelement>,
+    prev = <anyelement>,
+    next = <anyelement>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `value` | SMALLINT \| INTEGER \| BIGINT \| REAL \| DOUBLE PRECISION | - | ✔ | The value to interpolate |

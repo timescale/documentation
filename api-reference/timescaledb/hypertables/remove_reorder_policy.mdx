@@ -25,6 +25,15 @@ removes the existing reorder policy for the `conditions` table if it exists.
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT remove_reorder_policy(
+    hypertable = '<hypertable_name>',
+    if_exists = true | false
+);
+```
+
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `hypertable` | REGCLASS | - | ✔ | Name of the {HYPERTABLE} from which to remove the policy. |

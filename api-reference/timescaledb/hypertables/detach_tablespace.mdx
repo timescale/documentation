@@ -41,6 +41,16 @@ SELECT detach_tablespace('disk1');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT detach_tablespace(
+    tablespace = '<tablespace_name>',
+    hypertable = '<hypertable_name>',
+    if_attached = true | false
+);
+```
+
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `tablespace` | TEXT | - | ✔ | Tablespace to detach.|

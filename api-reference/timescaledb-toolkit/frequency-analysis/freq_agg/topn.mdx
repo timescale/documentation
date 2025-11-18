@@ -29,7 +29,9 @@ Get the 20 most frequent `zip_codes` from an `employees` table:
 
 ```sql
 SELECT topn(mcv_agg(20, zip_code)) FROM employees;
-```## Arguments
+```
+
+## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -40,5 +42,5 @@ SELECT topn(mcv_agg(20, zip_code)) FROM employees;
 
 | Column | Type | Description |
 |--------|------|-------------|
-| `topn` | AnyElement | The N most-frequent values in the aggregate |
+| topn | AnyElement | The N most-frequent values in the aggregate |
 

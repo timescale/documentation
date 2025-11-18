@@ -47,6 +47,15 @@ SELECT timescaledb_experimental.remove_policies(
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL remove_policies(
+    relation = '<view_name>',
+    if_exists = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | `REGCLASS` | - | ✔ | The {CAGG} to remove policies from |

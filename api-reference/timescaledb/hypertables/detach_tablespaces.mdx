@@ -26,6 +26,14 @@ SELECT detach_tablespaces('conditions');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT detach_tablespaces(
+    hypertable = '<hypertable_name>'
+);
+```
+
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `hypertable` | REGCLASS | - | ✔ | Hypertable to detach a the tablespace from.|

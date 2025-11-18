@@ -97,6 +97,19 @@ SELECT drop_chunks(format('%I.%I', hypertable_schema, hypertable_name)::regclass
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT drop_chunks(
+    relation = '<hypertable_or_cagg_name>',
+    older_than = <interval>,
+    newer_than = <interval>,
+    verbose = true | false,
+    created_before = <interval>,
+    created_after = <interval>
+);
+```
+
 |Name|Type| Default | Required | Description|
 |-|-|-|-|-|
 |`relation`|REGCLASS| - | ✔ |{HYPERTABLE} or {CAGG} from which to drop {CHUNK}s.|

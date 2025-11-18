@@ -40,6 +40,16 @@ SELECT reorder_chunk('_timescaledb_internal._hyper_1_10_chunk', '_timescaledb_in
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT reorder_chunk(
+    chunk = '<chunk_name>',
+    index = '<index_name>',
+    verbose = true | false
+);
+```
+
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `chunk` | REGCLASS | - | ✔ | Name of the {CHUNK} to reorder. |

@@ -4,7 +4,7 @@ description: Estimate the number of distinct values in a dataset, also known as 
 sidebarTitle: Overview
 ---
 
-import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
+import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/_two-step-aggregation.mdx';
 
 For large datasets and datasets with high cardinality (many distinct values), this can be much more efficient in
 both CPU and memory than an exact count using `count(DISTINCT)`.
@@ -29,7 +29,7 @@ this group.
 
 ### Roll up two hyperloglogs
 
-Roll up two hyperloglogs. The first hyperloglog buckets the integers from 1 to
+The first hyperloglog buckets the integers from 1 to
 100,000, and the second hyperloglog buckets the integers from 50,000 to
 150,000. Accounting for overlap, the exact number of distinct values in the
 combined set is 150,000.

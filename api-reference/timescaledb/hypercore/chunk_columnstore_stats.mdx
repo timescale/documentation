@@ -85,6 +85,14 @@ To retrieve statistics about {CHUNK}s:
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT * FROM chunk_columnstore_stats(
+    hypertable = '<hypertable_name>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 |`hypertable`|`REGCLASS`|-|✖| The name of a {HYPERTABLE} |

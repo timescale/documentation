@@ -1,5 +1,6 @@
 ---
 title: timescaledb_information.job_errors
+sidebarTitle: job_errors
 description: Get information about background job errors
 keywords: [jobs, information]
 tags: [background jobs, scheduled jobs, automation framework, scheduled views]
@@ -31,7 +32,7 @@ SELECT job_id, proc_schema, proc_name, pid, sqlerrcode, err_message from timesca
 
 ```
 
-## Available columns
+## Returns
 
 | Name | Type | Description |
 |------|------|-------------|

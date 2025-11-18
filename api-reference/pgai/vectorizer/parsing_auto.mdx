@@ -10,8 +10,6 @@ type: function
 Automatically select an appropriate parser based on detected file types. Documents with unrecognizable formats won't
 be processed and will generate an error in the `ai.vectorizer_errors` table.
 
-## Parser selection
-
 The parser selection examines file extensions and content types:
 - **PDF files, images, Office documents** (DOCX, XLSX, etc.): Uses Docling
 - **EPUB and MOBI** (e-book formats): Uses PyMuPDF

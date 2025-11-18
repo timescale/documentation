@@ -53,4 +53,6 @@ CREATE VIEW hll AS SELECT hyperloglog(32768, data) FROM samples;
 
 ## Returns
 
-A `hyperloglog` object which can be passed to other hyperloglog APIs for rollups and final calculation
+| Column | Type | Description |
+|--------|------|-------------|
+| hyperloglog | Hyperloglog | A `hyperloglog` object which can be passed to other hyperloglog APIs for rollups and final calculation |

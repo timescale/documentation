@@ -62,6 +62,18 @@ have the same semantics as the `drop_chunks` [function][drop_chunks].
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT show_chunks(
+    relation = '<hypertable_or_cagg_name>',
+    older_than = <interval>,
+    newer_than = <interval>,
+    created_before = <interval>,
+    created_after = <interval>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | REGCLASS | - | ✔ | {HYPERTABLE_CAP} or {CAGG} from which to select {CHUNK}s. |

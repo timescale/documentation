@@ -34,7 +34,9 @@ use this query to roll up several weeks and trim the result to an exact month:
 SELECT trim_to(rollup(health), '03-1-2022 UTC', '1 month')
 FROM liveness
 WHERE date > '02-21-2022 UTC' AND date < '3-7-2022 UTC'
-```## Arguments
+```
+
+## Arguments
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -46,5 +48,5 @@ WHERE date > '02-21-2022 UTC' AND date < '3-7-2022 UTC'
 
 | Column | Type | Description |
 |--------|------|-------------|
-| trim_to | heartbeat_agg | The trimmed aggregate |
+| trim_to | heartbeat_agg | The trimmed aggregate. |
 

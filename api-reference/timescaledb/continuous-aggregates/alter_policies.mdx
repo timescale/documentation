@@ -44,6 +44,18 @@ SELECT timescaledb_experimental.alter_policies(
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL alter_policies(
+    relation = '<view_name>',
+    refresh_start_offset = <interval>,
+    refresh_end_offset = <interval>,
+    compress_after = <interval>,
+    refresh_schedule_interval = <interval>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | `REGCLASS` | - | ✔ | The {CAGG} that you want to alter policies for |

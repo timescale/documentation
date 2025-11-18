@@ -49,7 +49,6 @@ GROUP BY time_bucket('1 day'::interval, ts)
 
 ## Returns
 
-`CounterSummary`: The counter aggregate, containing data about the variables in an intermediate form. Pass the aggregate
-to accessor functions in the counter aggregates API to perform final calculations. Or, pass the aggregate to rollup
-functions to combine multiple counter aggregates into larger aggregates.
-
+| Column | Type | Description |
+|--------|------|-------------|
+| counter_agg | CounterSummary | The counter aggregate, containing data about the variables in an intermediate form. Pass the aggregate to accessor functions in the counter aggregates API to perform final calculations. Or, pass the aggregate to rollup functions to combine multiple counter aggregates into larger aggregates. |

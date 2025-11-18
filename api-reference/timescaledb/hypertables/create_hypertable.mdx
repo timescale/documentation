@@ -8,7 +8,7 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/dimensions-info.mdx';
+import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/_dimensions-info.mdx';
 
 import { HYPERTABLE, CHUNK, PG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
@@ -161,6 +161,18 @@ SELECT create_hypertable('events', by_range('event', partition_func => 'event_st
 Subsequent data insertion and queries automatically leverage the UUIDv7-based partitioning.
 
 ## Arguments
+
+The syntax is:
+
+```sql
+SELECT create_hypertable(
+    relation = '<table_name>',
+    dimension = by_range('<column_name>') | by_hash('<column_name>', <number_partitions>),
+    create_default_indexes = true | false,
+    if_not_exists = true | false,
+    migrate_data = true | false
+);
+```
 
 | Name        | Type             | Default | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |-------------|------------------|---------|-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

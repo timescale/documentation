@@ -44,6 +44,21 @@ dimensions.
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL merge_chunks(
+    chunk1 = '<chunk_name_1>',
+    chunk2 = '<chunk_name_2>',
+    concurrently = true | false
+);
+
+-- Or merge multiple chunks:
+CALL merge_chunks(
+    chunks = ARRAY['<chunk_name_1>', '<chunk_name_2>', ...]::REGCLASS[]
+);
+```
+
 You can merge either two {CHUNK}s, or an arbitrary number of {CHUNK}s specified as an array of {CHUNK} identifiers.
 When you call `merge_chunks`, you must specify either `chunk1` and `chunk2`, or `chunks`. You cannot use both
 arguments.

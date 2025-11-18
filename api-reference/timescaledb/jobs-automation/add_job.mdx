@@ -44,6 +44,21 @@ SELECT add_job('user_defined_action','1 week', initial_start => '2022-12-04 00:0
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT add_job(
+    proc = '<procedure_name>',
+    schedule_interval = <interval>,
+    config = '<jsonb_config>',
+    initial_start = <timestamptz>,
+    scheduled = true | false,
+    check_config = '<procedure_name>',
+    fixed_schedule = true | false,
+    timezone = '<timezone>'
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `proc` | REGPROC | - | ✔ | Name of the function or procedure to register as a {JOB}. |

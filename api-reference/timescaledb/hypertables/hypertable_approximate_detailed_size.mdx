@@ -49,6 +49,14 @@ SELECT * FROM hypertable_approximate_detailed_size('hyper_table');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT hypertable_approximate_detailed_size(
+    relation = '<hypertable_name>'
+);
+```
+
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `hypertable` | REGCLASS | - | ✔ | Hypertable or continuous aggregate to show detailed approximate size of. |

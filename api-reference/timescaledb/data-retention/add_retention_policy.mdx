@@ -45,6 +45,20 @@ When you create a retention policy on a {HYPERTABLE} with an integer based time 
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT add_retention_policy(
+    relation = '<hypertable_or_cagg_name>',
+    drop_after = <interval>,
+    if_not_exists = true | false,
+    schedule_interval = <interval>,
+    initial_start = <timestamptz>,
+    timezone = '<timezone>',
+    drop_created_before = <interval>
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 |`relation`|REGCLASS|-|✔| Name of the hypertable or continuous aggregate to create the policy for |

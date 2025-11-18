@@ -35,6 +35,14 @@ CALL detach_chunk('_timescaledb_internal._hyper_1_2_chunk');
 
 ## Arguments
 
+The syntax is:
+
+```sql
+CALL detach_chunk(
+    chunk = '<chunk_name>'
+);
+```
+
 |Name|Type| Description                  |
 |---|---|------------------------------|
 | `chunk` | REGCLASS | Name of the {CHUNK} to detach. |

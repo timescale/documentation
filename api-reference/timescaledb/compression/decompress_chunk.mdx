@@ -33,6 +33,15 @@ SELECT decompress_chunk(c, true) FROM show_chunks('metrics') c;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT decompress_chunk(
+    uncompressed_chunk = '<chunk_name>',
+    if_compressed = true | false
+);
+```
+
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `chunk_name` | REGCLASS | - | ✔ | Name of the {CHUNK} to be decompressed. |

@@ -7,6 +7,8 @@ license: community
 type: function
 ---
 
+import OpenAPIListModels from '/snippets/api-reference/pgai/_openai_list_models_arguments.mdx';
+
 Retrieve a list of all models available from OpenAI, including their creation dates and ownership information. This is
 useful for discovering available models and verifying access to specific models.
 
@@ -59,14 +61,7 @@ SELECT EXISTS (
 
 ## Arguments
 
-| Name | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `api_key` | `TEXT` | `NULL` | ✖ | OpenAI API key. If not provided, uses `ai.openai_api_key` setting |
-| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
-| `extra_headers` | `JSONB` | `NULL` | ✖ | Additional HTTP headers to include in the API request |
-| `extra_query` | `JSONB` | `NULL` | ✖ | Additional query parameters for the API request |
-| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
-| `client_config` | `JSONB` | `NULL` | ✖ | Advanced client configuration options |
+<OpenAPIListModels />
 
 ## Returns
 

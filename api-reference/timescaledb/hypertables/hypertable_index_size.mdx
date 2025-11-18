@@ -51,6 +51,14 @@ SELECT pg_size_pretty(hypertable_index_size('second_index'));
 
 ## Arguments
 
+The syntax is:
+
+```sql
+SELECT hypertable_index_size(
+    index_name = '<index_name>'
+);
+```
+
 |Name|Type| Default | Required | Description|
 |-|-|-|-|-|
 |`index_name`|REGCLASS| - | ✔ |Name of the index on a hypertable|

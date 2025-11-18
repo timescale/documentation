@@ -9,7 +9,7 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/dimensions-info.mdx';
+import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/_dimensions-info.mdx';
 import { TIMESCALE_DB, CLOUD_LONG, HYPERTABLE, HYPERTABLE_CAP, CHUNK, PG } from '/snippets/vars.mdx';
 
 Add an additional partitioning dimension to a {TIMESCALE_DB} {HYPERTABLE}. You can only execute this `add_dimension`
@@ -60,6 +60,16 @@ SELECT add_dimension('conditions', by_hash('device_id', 2), if_not_exists => tru
 ```
 
 ## Arguments
+
+The syntax is:
+
+```sql
+SELECT add_dimension(
+    hypertable = '<hypertable_name>',
+    dimension = by_range('<column_name>', '<interval>') | by_hash('<column_name>', <number_partitions>),
+    if_not_exists = true | false
+);
+```
 
 | Name | Type             | Default | Required | Description                                                                                                                                       |
 |-|-|-|-|---------------------------------------------------------------------------------------------------------------------------------------------------|
