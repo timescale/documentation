@@ -21,6 +21,7 @@ function to work. You can provide them as part of the original [`gauge_agg`](#ga
 call, or by using the [`with_bounds`](#with_bounds) function on an existing
 gauge aggregate.
 
+
 ## Samples
 
 ```sql
@@ -44,6 +45,14 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+extrapolated_rate(
+    summary CounterSummary,
+    method TEXT
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |

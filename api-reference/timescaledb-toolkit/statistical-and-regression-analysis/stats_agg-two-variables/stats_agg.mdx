@@ -21,15 +21,16 @@ aggregate (`StatsSummary2D`) from your data. This intermediate form can then be 
 group to compute the final results. Optionally, multiple such intermediate aggregate objects can be combined using
 `rollup()` or `rolling()` before an accessor is applied.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 stats_agg(
     y DOUBLE PRECISION,
     x DOUBLE PRECISION
 ) RETURNS StatsSummary2D
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | y, x | DOUBLE PRECISION | - | ✔ | The variables to use for the statistical aggregate |

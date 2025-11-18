@@ -20,16 +20,6 @@ and end time.
 Unlike [`state_periods`][state_periods], you can use this function across multiple state aggregates that cover different
 time buckets. Any missing values at the time bucket boundaries are interpolated from adjacent state aggregates.
 
-```sql
-interpolated_state_periods(
-  agg StateAgg,
-  state [TEXT | BIGINT],
-  start TIMESTAMPTZ,
-  interval INTERVAL,
-  [, prev StateAgg]
-) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
-```
-
 ## Samples
 
 Given state aggregates bucketed by 1-minute intervals, interpolate the states at the bucket boundaries and list all time
@@ -69,6 +59,17 @@ Returns:
 [state_periods]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_periods
 ## Arguments
 
+The syntax is:
+
+```sql
+interpolated_state_periods(
+  agg StateAgg,
+  state [TEXT | BIGINT],
+  start TIMESTAMPTZ,
+  interval INTERVAL,
+  [, prev StateAgg]
+) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |

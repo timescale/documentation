@@ -18,14 +18,15 @@ hyperfunction:
 
 Get the timestamp corresponding to the low time from a candlestick aggregate.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 low_time(
     candlestick Candlestick
 ) RETURNS TIMESTAMPTZ
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | candlestick | Candlestick | - | ✔ | Candlestick aggregate |

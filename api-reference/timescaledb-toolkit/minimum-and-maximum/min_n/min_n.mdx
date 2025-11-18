@@ -18,8 +18,17 @@ products: [cloud, mst, self_hosted]
 
 Construct an aggregate that keeps track of the smallest values passed through it.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+min_n(
+    value BIGINT | DOUBLE PRECISION | TIMESTAMPTZ,
+    capacity BIGINT
+) MinN
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `value` | BIGINT \| DOUBLE PRECISION \| TIMESTAMPTZ | - | ✔ | The values passed into the aggregate |

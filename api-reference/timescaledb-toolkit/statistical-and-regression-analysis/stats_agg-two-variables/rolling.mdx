@@ -28,14 +28,15 @@ For re-aggregation in a non-window function context, such as combining hourly bu
 `rollup()`.
 </Info>
 
+## Arguments
+
+The syntax is:
+
 ```sql
 rolling(
     ss StatsSummary2D
 ) RETURNS StatsSummary2D
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

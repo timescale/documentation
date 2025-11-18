@@ -21,6 +21,10 @@ correct form to use with the accessors and rollups in this function group.
 
 If you're starting with raw tick data rather than candlestick data, use [`candlestick_agg()`](#candlestick_agg) instead.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 candlestick(
   ts TIMESTAMPTZ,
@@ -31,9 +35,6 @@ candlestick(
   volume DOUBLE PRECISION
 ) RETURNS Candlestick
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | ts | TIMESTAMPTZ | - | ✔ | Timestamp associated with stock price |

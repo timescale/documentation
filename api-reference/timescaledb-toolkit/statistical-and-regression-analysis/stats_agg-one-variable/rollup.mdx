@@ -21,14 +21,15 @@ from 15-minute buckets into daily buckets.
 
 For use in window functions, see `rolling()`.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 rollup(
     ss StatsSummary1D
 ) RETURNS StatsSummary1D
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

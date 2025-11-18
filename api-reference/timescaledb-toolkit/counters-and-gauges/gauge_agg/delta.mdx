@@ -18,6 +18,7 @@ topics:
 Get the change in a gauge over a time period. This is the simple delta, computed by subtracting the last seen value from
 the first.
 
+
 ## Samples
 
 Get the change in each gauge over the entire time interval in table `foo`.
@@ -36,6 +37,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+delta(
+    summary CounterSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `GaugeSummary` | - | ✔ | A gauge aggregated created using [`gauge_agg`](#gauge_agg) |

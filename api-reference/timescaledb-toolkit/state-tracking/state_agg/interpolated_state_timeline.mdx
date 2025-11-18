@@ -20,22 +20,6 @@ Unlike [`state_timeline`][state_timeline], you can use this function across mult
 different time buckets. Any missing values at the time bucket boundaries are interpolated from adjacent state
 aggregates.
 
-```sql
-interpolated_state_timeline(
-    agg StateAgg,
-    start TIMESTAMPTZ,
-    interval INTERVAL,
-    [, prev StateAgg]
-) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
-
-interpolated_state_int_timeline(
-    agg StateAgg,
-    start TIMESTAMPTZ,
-    interval INTERVAL,
-    [, prev StateAgg]
-) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
-```
-
 ## Samples
 
 Given state aggregates bucketed by 1-minute intervals, interpolate the states at the bucket boundaries and get the
@@ -77,6 +61,23 @@ Returns:
 [state_timeline]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_timeline
 ## Arguments
 
+The syntax is:
+
+```sql
+interpolated_state_timeline(
+    agg StateAgg,
+    start TIMESTAMPTZ,
+    interval INTERVAL,
+    [, prev StateAgg]
+) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
+
+interpolated_state_int_timeline(
+    agg StateAgg,
+    start TIMESTAMPTZ,
+    interval INTERVAL,
+    [, prev StateAgg]
+) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |

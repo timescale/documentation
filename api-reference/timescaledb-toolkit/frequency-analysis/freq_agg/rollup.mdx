@@ -22,14 +22,15 @@ This produces a very similar aggregate to running the same aggregate function ov
 any difference is no more than what you might get from simply reordering the input. However, if the source data for the
 different aggregates is very differently distributed, the rollup result may have looser frequency bounds.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 rollup(
     agg SpaceSavingAggregate
 ) RETURNS SpaceSavingAggregate
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `agg` | SpaceSavingAggregate | - | ✔ | The aggregates to roll up. These must have been created with the same parameters. |

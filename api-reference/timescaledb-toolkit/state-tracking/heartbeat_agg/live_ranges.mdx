@@ -17,15 +17,6 @@ hyperfunction:
 Return a set of (start_time, end_time) pairs representing when the underlying system was live during the interval of the
 aggregate.
 
-```sql
-live_ranges(
-    agg HEARTBEATAGG
-) RETURNS TABLE (
-    start TIMESTAMPTZ,
-    end TIMESTAMPTZ
-)
-```
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -48,6 +39,16 @@ Returns:
 
 ## Arguments
 
+The syntax is:
+
+```sql
+live_ranges(
+    agg HEARTBEATAGG
+) RETURNS TABLE (
+    start TIMESTAMPTZ,
+    end TIMESTAMPTZ
+)
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |

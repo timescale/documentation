@@ -17,12 +17,6 @@ hyperfunction:
 Combine multiple state aggregates into a single state aggregate. For example, you can use `rollup` to combine state
 aggregates from 15-minute buckets into daily buckets.
 
-```sql
-rollup(
-    agg StateAgg
-) RETURNS StateAgg
-```
-
 ## Samples
 
 Combine multiple state aggregates and calculate the duration spent in the `START` state.
@@ -42,6 +36,13 @@ FROM buckets;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+rollup(
+    agg StateAgg
+) RETURNS StateAgg
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | State aggregates created using `state_agg` |

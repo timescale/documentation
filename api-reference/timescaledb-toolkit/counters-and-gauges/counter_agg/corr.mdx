@@ -18,6 +18,7 @@ topics:
 Calculate the correlation coefficient from a counter aggregate. The calculation uses a linear least-squares fit, and
 returns a value between 0.0 and 1.0, from no correlation to the strongest possible correlation.
 
+
 ## Samples
 
 Calculate the correlation coefficient to determine the goodness of a linear fit between counter value and time.
@@ -38,6 +39,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+corr(
+    summary CounterSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |

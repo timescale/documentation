@@ -18,16 +18,6 @@ Calculate the total duration in the given state. Unlike [`duration_in`][duration
 multiple state aggregates that cover multiple time buckets. Any missing values at the time bucket boundaries are
 interpolated from adjacent state aggregates.
 
-```sql
-interpolated_duration_in(
-  agg StateAgg,
-  state {TEXT | BIGINT},
-  start TIMESTAMPTZ,
-  interval INTERVAL
-  [, prev StateAgg]
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Create a test table that tracks when a system switches between `starting`, `running`, and `error` states. Query the
@@ -69,6 +59,17 @@ time                    | interpolated_duration_in
 [compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/compact_state_agg
 [duration_in]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/duration_in## Arguments
 
+The syntax is:
+
+```sql
+interpolated_duration_in(
+  agg StateAgg,
+  state {TEXT | BIGINT},
+  start TIMESTAMPTZ,
+  interval INTERVAL
+  [, prev StateAgg]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | A state aggregate created with [`compact_state_agg`][compact_state_agg] |

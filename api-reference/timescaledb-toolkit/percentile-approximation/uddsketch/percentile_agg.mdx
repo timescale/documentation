@@ -23,12 +23,6 @@ one or more accessors in this group to compute final results.
 
 Optionally, multiple such intermediate aggregate objects can be combined using [`rollup()`](#rollup) before an accessor is applied.
 
-```sql
-percentile_agg(
-  value DOUBLE PRECISION
-) RETURNS UddSketch
-```
-
 ## Samples
 
 Create a continuous aggregate that stores percentile aggregate objects. These objects can later be used with multiple
@@ -46,6 +40,13 @@ GROUP BY 1;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+percentile_agg(
+  value DOUBLE PRECISION
+) RETURNS UddSketch
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | value | DOUBLE PRECISION | - | ✔ | column of values to aggregate for percentile calculation |

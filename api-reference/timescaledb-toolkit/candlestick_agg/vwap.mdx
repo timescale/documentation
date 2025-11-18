@@ -22,14 +22,15 @@ For Candlesticks constructed from data that is already aggregated, the Volume We
 the typical price for each period (where the typical price refers to the arithmetic mean of the high, low, and closing
 prices).
 
+## Arguments
+
+The syntax is:
+
 ```sql
 vwap(
     candlestick Candlestick
 ) RETURNS DOUBLE PRECISION
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | candlestick | Candlestick | - | ✔ | Candlestick aggregate |

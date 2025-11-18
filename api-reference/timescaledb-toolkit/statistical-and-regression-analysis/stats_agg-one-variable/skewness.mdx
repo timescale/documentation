@@ -18,13 +18,6 @@ keywords: [statistics, hyperfunctions, Toolkit]
 Calculate the skewness from the values in a statistical aggregate. The skewness is the third statistical moment. It is a
 measure of asymmetry in a data distribution.
 
-```sql
-skewness(
-  summary StatsSummary1D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the skewness of a sample containing the integers from 0 to 100:
@@ -42,6 +35,14 @@ skewness_x
 
 ## Arguments
 
+The syntax is:
+
+```sql
+skewness(
+  summary StatsSummary1D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

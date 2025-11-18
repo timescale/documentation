@@ -19,6 +19,7 @@ Calculate the time-weighted average. Equal to [`integral`][integral] divided by 
 key difference to `avg()`: If there is exactly one value, `avg()` would return that value, but `average()` returns
 `NULL`.
 
+
 ## Samples
 
 Calculate the time-weighted average of the column `val`, using the 'last observation carried forward' interpolation
@@ -39,6 +40,13 @@ FROM (
 
 [integral]: /api-reference/timescaledb/hyperfunctions/time_weight/integral## Arguments
 
+The syntax is:
+
+```sql
+average(
+    tws TimeWeightSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |

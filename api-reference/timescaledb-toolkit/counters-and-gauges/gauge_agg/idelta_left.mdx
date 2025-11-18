@@ -18,6 +18,7 @@ topics:
 Calculate the instantaneous change at the left, or earliest, edge of a gauge aggregate. This is equal to the second
 value minus the first value.
 
+
 ## Samples
 
 Get the instantaneous change at the start of each 15-minute gauge aggregate.
@@ -38,6 +39,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+idelta_left(
+  summary CounterSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |

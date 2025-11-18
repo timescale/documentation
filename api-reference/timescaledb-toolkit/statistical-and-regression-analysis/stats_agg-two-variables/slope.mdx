@@ -19,12 +19,6 @@ tags: [least squares, linear regression]
 Calculate the slope of the linear fitting line from a two-dimensional statistical aggregate. The calculation uses the
 standard least-squares fitting for linear regression.
 
-```sql
-slope(
-    summary StatsSummary2D
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the slope from independent variable `y` and dependent variable `x` for each 15-minute time bucket:
@@ -40,6 +34,13 @@ GROUP BY id, time_bucket('15 min'::interval, ts)
 
 ## Arguments
 
+The syntax is:
+
+```sql
+slope(
+    summary StatsSummary2D
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

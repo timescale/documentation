@@ -26,6 +26,7 @@ group to compute final results.
 Optionally, multiple such intermediate aggregate objects can be combined
 using [`rollup()`](#rollup) before an accessor is applied.
 
+
 ## Samples
 
 Given a table called `samples`, with a column called `weights`, return
@@ -44,6 +45,13 @@ CREATE VIEW hll AS SELECT toolkit_experimental.approx_count_distinct(data) FROM 
 
 ## Arguments
 
+The syntax is:
+
+```sql
+approx_count_distinct(
+    value AnyElement
+) RETURNS Hyperloglog
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `value` | AnyElement | - | ✔ | The column containing the elements to count. The type must have an extended, 64-bit, hash function. |

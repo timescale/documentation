@@ -17,14 +17,15 @@ hyperfunction:
 Return the data from a space-saving aggregate as a table. The table lists the stored values with the minimum and maximum
 bounds for their estimated frequencies.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 into_values(
     agg SpaceSavingAggregate
 ) RETURNS (AnyElement, DOUBLE PRECISION, DOUBLE PRECISION)
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `agg` | SpaceSavingAggregate | - | ✔ | A space-saving aggregate created using either [`freq_agg`](#freq_agg) or [`mcv_agg`](#mcv_agg) |

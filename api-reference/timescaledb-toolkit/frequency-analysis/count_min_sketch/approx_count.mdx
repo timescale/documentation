@@ -16,13 +16,6 @@ hyperfunction:
 
 Estimate the number of times a given text value appears in a column.
 
-```sql
-approx_count (
-    item TEXT,
-    agg CountMinSketch
-) RETURNS INTEGER
-```
-
 ## Samples
 
 Given a table of stock data, estimate how many times the symbol `AAPL` appears:
@@ -38,6 +31,22 @@ FROM t;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+approx_count (
+    item TEXT,
+    agg CountMinSketch
+) RETURNS INTEGER
+```
+
+
+```sql
+approx_count (
+    item TEXT,
+    agg CountMinSketch
+) RETURNS INTEGER
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `item` | TEXT | - | ✔ | The value you want to estimate occurrences of |

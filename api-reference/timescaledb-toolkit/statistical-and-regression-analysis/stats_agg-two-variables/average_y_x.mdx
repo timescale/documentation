@@ -18,18 +18,6 @@ keywords: [average, statistics, hyperfunctions, Toolkit]
 Calculate the average from a two-dimensional aggregate for the given dimension. For example, `average_y()` calculates
 the average for all the values of the `y` variable, independent of the values of the `x` variable.
 
-```sql
-average_y(
-  summary StatsSummary 2D
-) RETURNS DOUBLE PRECISION
-```
-
-```sql
-average_x(
-  summary StatsSummary 2D
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the average of the integers from 0 to 100:
@@ -48,6 +36,19 @@ average
 
 ## Arguments
 
+The syntax is:
+
+```sql
+average_y(
+  summary StatsSummary 2D
+) RETURNS DOUBLE PRECISION
+```
+
+```sql
+average_x(
+  summary StatsSummary 2D
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

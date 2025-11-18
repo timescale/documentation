@@ -16,13 +16,6 @@ hyperfunction:
 
 Get the top N most common values from a space-saving aggregate. The space-saving aggregate can be created from either [`freq_agg`](#freq_agg) or [`mcv_agg`](#mcv_agg).
 
-```sql
-topn (
-    agg SpaceSavingAggregate,
-    n INTEGER
-) RETURNS AnyElement
-```
-
 ## Samples
 
 Get the 20 most frequent `zip_codes` from an `employees` table:
@@ -33,6 +26,14 @@ SELECT topn(mcv_agg(20, zip_code)) FROM employees;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+topn (
+    agg SpaceSavingAggregate,
+    n INTEGER
+) RETURNS AnyElement
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `agg` | SpacingsavingAggregate | - | ✔ | A space-saving aggregate created using either [`freq_agg`](#freq_agg) or [`mcv_agg`](#mcv_agg) |

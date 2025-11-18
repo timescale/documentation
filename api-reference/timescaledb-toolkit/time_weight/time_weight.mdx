@@ -23,6 +23,7 @@ in this group to compute final results.
 Optionally, multiple such intermediate aggregate objects can be combined
 using [`rollup()`](#rollup) before an accessor is applied.
 
+
 ## Samples
 
 Aggregate data from column `val` into daily time-weighted aggregates,
@@ -38,6 +39,15 @@ GROUP BY time_bucket('1 day'::interval, ts)
 
 ## Arguments
 
+The syntax is:
+
+```sql
+time_weight(
+    method TEXT,
+    ts TIMESTAMPTZ,
+    value DOUBLE PRECISION
+) RETURNS TimeWeightSummary
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `method` | TEXT | - | ✔ | The weighting method to use. The available methods are `linear` (or its alias `trapezoidal`, for those familiar with numeric integration methods) and `LOCF`, which stands for 'last observation carried forward'. `linear` fills in missing data by interpolating linearly between the start and end points of the gap. `LOCF` fills in the gap by assuming that the value remains constant until the next value is seen. `LOCF` is most useful when a measurement is taken only when a value changes. `linear` is most useful if there are no such guarantees on the measurement. The method names are case-insensitive. |

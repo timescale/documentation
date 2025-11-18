@@ -17,13 +17,6 @@ keywords: [statistics, hyperfunctions, Toolkit]
 
 Calculate the variance from the values in a statistical aggregate.
 
-```sql
-variance(
-  summary StatsSummary1D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the variance of a sample containing the integers from 0 to 100:
@@ -41,6 +34,14 @@ variance
 
 ## Arguments
 
+The syntax is:
+
+```sql
+variance(
+  summary StatsSummary1D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

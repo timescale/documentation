@@ -18,8 +18,17 @@ products: [cloud, mst, self_hosted]
 
 Construct an aggregate which will keep track of the largest values passed through it.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+max_n(
+    value BIGINT | DOUBLE PRECISION | TIMESTAMPTZ,
+    capacity BIGINT
+) MaxN
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `value` | BIGINT \| DOUBLE PRECISION \| TIMESTAMPTZ | - | ✔ | The values passed into the aggregate |

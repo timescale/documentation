@@ -16,8 +16,17 @@ hyperfunction:
 The `saturating_sub_pos` function subtracts the second number from the first, saturating at 0 and 2,147,483,647 instead
 of overflowing.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+saturating_sub_pos(
+  x INT,
+  y INT
+) RETURNS INT
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | x | INT | - | ✔ | An integer for `y` to subtract from |

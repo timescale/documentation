@@ -18,6 +18,7 @@ topics:
 Get the number of times the counter changed during the period summarized by the counter aggregate. Any change is
 counted, including resets to zero.
 
+
 ## Samples
 
 Get the number of times the counter changed over each 15-minute interval.
@@ -38,6 +39,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+num_changes(
+    summary CounterSummary
+) RETURNS BIGINT
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `CounterSummary` | - | ✔ | A counter summary created using [`counter_agg`](#counter_agg) |

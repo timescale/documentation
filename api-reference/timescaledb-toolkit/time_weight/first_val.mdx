@@ -17,6 +17,7 @@ hyperfunction:
 
 Get the value of the first point in a TimeWeightSummary aggregate.
 
+
 ## Samples
 
 Produce a linear TimeWeightSummary over the column `val` and get the first value:
@@ -37,6 +38,13 @@ FROM t;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+first_val(
+    tw TimeWeightSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |

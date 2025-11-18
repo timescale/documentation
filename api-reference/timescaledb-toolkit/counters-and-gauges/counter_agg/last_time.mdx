@@ -17,6 +17,7 @@ topics:
 
 Get the last timestamp from a counter aggregate.
 
+
 ## Samples
 
 Get the first and last point of each daily counter aggregate.
@@ -37,6 +38,13 @@ FROM t;
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+last_time(
+    cs CounterSummary
+) RETURNS TIMESTAMPTZ
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `cs` | `CounterSummary` | - | ✔ | A counter aggregate produced using [`counter_agg`](#counter_agg) |

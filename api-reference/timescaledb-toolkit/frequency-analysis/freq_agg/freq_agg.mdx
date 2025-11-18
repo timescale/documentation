@@ -17,13 +17,6 @@ hyperfunction:
 Aggregate data into a space-saving aggregate object, which stores frequency information in an intermediate form. You can
 then use any of the accessors in this group to return estimated frequencies or the most common elements.
 
-```sql
-freq_agg(
-  min_freq DOUBLE PRECISION,
-  value AnyElement
-) RETURNS SpaceSavingAggregate
-```
-
 ## Samples
 
 Create a space-saving aggregate over a field `ZIP` in a `HomeSales` table. This aggregate tracks any `ZIP` value that
@@ -35,6 +28,14 @@ SELECT toolkit_experimental.freq_agg(0.05, ZIP) FROM HomeSales;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+freq_agg(
+  min_freq DOUBLE PRECISION,
+  value AnyElement
+) RETURNS SpaceSavingAggregate
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `min_freq` | DOUBLE PRECISION | - | ✔ | Frequency cutoff for keeping track of a value. Values that occur less frequently than the cutoff are not stored. |

@@ -21,20 +21,6 @@ calculates the kurtosis for all the values of the `y` variable, independent of v
 is the fourth statistical moment. It is a measure of "tailedness" of a data distribution compared to a normal
 distribution.
 
-```sql
-kurtosis_y(
-  summary StatsSummary2D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
-```sql
-kurtosis_x(
-  summary StatsSummary2D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the kurtosis of a sample containing the integers from 0 to 100:
@@ -52,6 +38,21 @@ kurtosis_y
 
 ## Arguments
 
+The syntax is:
+
+```sql
+kurtosis_y(
+  summary StatsSummary2D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
+
+```sql
+kurtosis_x(
+  summary StatsSummary2D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

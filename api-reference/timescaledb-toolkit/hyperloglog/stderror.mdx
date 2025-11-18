@@ -19,6 +19,7 @@ Estimate the relative standard error of a `Hyperloglog`. For approximate
 relative errors by number of buckets, see the
 [relative errors section](#approximate-relative-errors).
 
+
 ## Samples
 
 Estimate the relative standard error of a hyperloglog named
@@ -39,6 +40,13 @@ stderror
 
 ## Arguments
 
+The syntax is:
+
+```sql
+stderror(
+    hyperloglog Hyperloglog
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `hyperloglog` | Hyperloglog | - | ✔ | The hyperloglog to estimate the error of. |

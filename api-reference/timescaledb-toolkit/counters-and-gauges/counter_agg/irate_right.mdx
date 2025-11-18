@@ -19,6 +19,7 @@ Calculate the instantaneous rate of change at the right, or latest, edge of a co
 last value minus the second-last value, divided by the time lapse between the two points, after accounting for resets.
 This calculation is useful for fast-moving counters.
 
+
 ## Samples
 
 Get the instantaneous rate of change at the end of each 15-minute counter aggregate.
@@ -39,6 +40,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+irate_right(
+  summary CounterSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |

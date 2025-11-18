@@ -19,13 +19,6 @@ tags: [skew]
 Calculate the kurtosis from the values in a statistical aggregate. The kurtosis is the fourth statistical moment. It is
 a measure of "tailedness" of a data distribution compared to a normal distribution.
 
-```sql
-kurtosis(
-  summary StatsSummary1D,
-  [ method TEXT ]
-) DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the kurtosis of a sample containing the integers from 0 to 100:
@@ -43,6 +36,14 @@ kurtosis
 
 ## Arguments
 
+The syntax is:
+
+```sql
+kurtosis(
+  summary StatsSummary1D,
+  [ method TEXT ]
+) DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

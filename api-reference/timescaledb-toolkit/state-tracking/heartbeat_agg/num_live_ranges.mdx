@@ -16,12 +16,6 @@ hyperfunction:
 
 Return the number of live periods from a heartbeat aggregate.
 
-```sql
-num_live_ranges(
-    agg HEARTBEATAGG
-) RETURNS BIGINT
-```
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -43,6 +37,13 @@ Returns:
 
 ## Arguments
 
+The syntax is:
+
+```sql
+num_live_ranges(
+    agg HEARTBEATAGG
+) RETURNS BIGINT
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the number of ranges from |

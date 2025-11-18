@@ -18,13 +18,6 @@ Update a heartbeat aggregate to include any live ranges that should have been ca
 the predecessor, even if there aren't heartbeats for that range in the interval covered by this aggregate. Return the
 updated aggregate, which can then be used with any of the heartbeat aggregate accessors.
 
-```sql
-interpolate(
-    agg HEARTBEATAGG,
-    pred HEARTBEATAGG
-) RETURNS HEARTBEATAGG
-```
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -52,6 +45,14 @@ Returns:
 
 ## Arguments
 
+The syntax is:
+
+```sql
+interpolate(
+    agg HEARTBEATAGG,
+    pred HEARTBEATAGG
+) RETURNS HEARTBEATAGG
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate containing liveness data for a particular interval |

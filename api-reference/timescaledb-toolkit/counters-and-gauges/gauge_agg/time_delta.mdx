@@ -17,6 +17,7 @@ topics:
 
 Get the number of seconds between the first and last measurements in a gauge aggregate
 
+
 ## Samples
 
 Get the time difference between the first and last gauge readings for each 15-minute interval. Note this difference
@@ -39,6 +40,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+time_delta(
+    summary CounterSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |

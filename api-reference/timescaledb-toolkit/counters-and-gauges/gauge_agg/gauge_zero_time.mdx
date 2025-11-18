@@ -18,6 +18,7 @@ topics:
 Calculate the time when the gauge value is modeled to have been zero. This is the x-intercept of the linear fit between
 gauge value and time.
 
+
 ## Samples
 
 Estimate the time when the gauge started
@@ -38,6 +39,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+gauge_zero_time(
+    summary GaugeSummary
+) RETURNS TIMESTAMPTZ
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |

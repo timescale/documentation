@@ -17,6 +17,7 @@ products: [cloud, mst, self_hosted]
 
 Estimate the number of distinct values from a hyperloglog
 
+
 ## Samples
 
 Estimate the number of distinct values from a hyperloglog named
@@ -37,6 +38,13 @@ distinct_count
 
 ## Arguments
 
+The syntax is:
+
+```sql
+distinct_count(
+    hyperloglog Hyperloglog
+) RETURNS BIGINT
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `hyperloglog` | Hyperloglog | - | ✔ | The hyperloglog to extract the count from. |

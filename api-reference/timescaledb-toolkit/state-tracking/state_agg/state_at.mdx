@@ -16,18 +16,6 @@ hyperfunction:
 
 Determine the state at a given time from a state aggregate.
 
-```sql
-state_at(
-  agg StateAgg,
-  ts TIMESTAMPTZ
-) RETURNS TEXT
-
-state_at_int(
-  agg StateAgg,
-  ts TIMESTAMPTZ
-) RETURNS BIGINT
-```
-
 ## Samples
 
 Create a state aggregate and determine the state at a particular time.
@@ -50,6 +38,19 @@ START
 [state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_agg
 ## Arguments
 
+The syntax is:
+
+```sql
+state_at(
+  agg StateAgg,
+  ts TIMESTAMPTZ
+) RETURNS TEXT
+
+state_at_int(
+  agg StateAgg,
+  ts TIMESTAMPTZ
+) RETURNS BIGINT
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |

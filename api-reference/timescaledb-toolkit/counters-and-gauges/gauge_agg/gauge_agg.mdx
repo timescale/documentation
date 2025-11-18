@@ -26,6 +26,7 @@ by one or more accessors in this group to compute final results. Optionally,
 you can combine multiple intermediate aggregate objects with
 [`rollup()`](#rollup) before an accessor is applied.
 
+
 ## Samples
 
 Create a gauge aggregate to summarize daily gauge data.
@@ -40,6 +41,15 @@ GROUP BY time_bucket('1 day'::interval, ts)
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+gauge_agg(
+  ts TIMESTAMPTZ,
+  value DOUBLE PRECISION
+  [, bounds TSTZRANGE]
+) RETURNS GaugeSummary
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `ts` | `TIMESTAMPTZ` | - | ✔ | The time at each point |

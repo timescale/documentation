@@ -17,12 +17,6 @@ keywords: [average, statistics, hyperfunctions, Toolkit]
 
 Calculate a simple average (or mean) from the values in a statistical aggregate.
 
-```sql
-average(
-  summary StatsSummary1D
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the average of the integers from 0 to 100:
@@ -40,6 +34,13 @@ average
 
 ## Arguments
 
+The syntax is:
+
+```sql
+average(
+  summary StatsSummary1D
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

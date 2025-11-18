@@ -19,20 +19,6 @@ Calculate the skewness from a two-dimensional statistical aggregate for the give
 calculates the skewness for all the values of the `y` variable, independent of values of the `x` variable. The skewness
 is the third statistical moment. It is a measure of asymmetry in a data distribution.
 
-```sql
-skewness_y(
-  summary StatsSummary2D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
-```sql
-skewness_x(
-  summary StatsSummary2D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the skewness of a sample containing the integers from 0 to 100:
@@ -50,6 +36,21 @@ skewness_x
 
 ## Arguments
 
+The syntax is:
+
+```sql
+skewness_y(
+  summary StatsSummary2D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
+
+```sql
+skewness_x(
+  summary StatsSummary2D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

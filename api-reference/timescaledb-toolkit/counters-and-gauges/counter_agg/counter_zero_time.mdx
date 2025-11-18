@@ -18,6 +18,7 @@ topics:
 Calculate the time when the counter value is predicted to have been zero. This is the x-intercept of the linear fit
 between counter value and time.
 
+
 ## Samples
 
 Estimate the time when the counter started
@@ -38,6 +39,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+counter_zero_time(
+    summary CounterSummary
+) RETURNS TIMESTAMPTZ
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |

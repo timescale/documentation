@@ -17,16 +17,6 @@ hyperfunction:
 Unpack the state aggregate into a set of rows with two columns, displaying the duration of each state. By default, the
 columns are named `state` and `duration`. You can rename them using the same method as renaming a table.
 
-```sql
-into_values(
-  agg StateAgg
-) RETURNS (TEXT, INTERVAL)
-
-into_int_values(
-  agg StateAgg
-) RETURNS (INT, INTERVAL)
-```
-
 ## Samples
 
 Create a state aggregate from the table `states_test`. The time column is named `time`, and the `state` column contains
@@ -51,6 +41,17 @@ START | 00:00:11
 
 [state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/state_agg## Arguments
 
+The syntax is:
+
+```sql
+into_values(
+  agg StateAgg
+) RETURNS (TEXT, INTERVAL)
+
+into_int_values(
+  agg StateAgg
+) RETURNS (INT, INTERVAL)
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | A state aggregate created with [`state_agg`][state_agg] |

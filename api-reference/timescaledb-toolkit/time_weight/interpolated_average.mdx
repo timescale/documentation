@@ -26,6 +26,7 @@ method used within the TimeWeightSummary itself.
 
 Equal to [`interpolated_integral`][interpolated_integral] divided by the elapsed time.
 
+
 ## Samples
 
 Calculate the time-weighted daily average of the column `val`, interpolating over bucket bounds using the 'last
@@ -55,6 +56,17 @@ FROM (
 [average]: /api-reference/timescaledb/hyperfunctions/time_weight/average
 [interpolated_integral]: /api-reference/timescaledb/hyperfunctions/time_weight/interpolated_integral## Arguments
 
+The syntax is:
+
+```sql
+interpolated_average(
+    tws TimeWeightSummary,
+    start TIMESTAMPTZ,
+    interval INTERVAL
+    [, prev TimeWeightSummary]
+    [, next TimeWeightSummary]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |

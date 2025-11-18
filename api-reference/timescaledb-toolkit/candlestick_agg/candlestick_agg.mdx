@@ -30,8 +30,18 @@ data, use the companion [`candlestick()`](#candlestick) function instead.
 This function transforms the existing aggregated data into the correct form
 for use with the candlestick accessors.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+candlestick_agg(
+  ts TIMESTAMPTZ,
+  price DOUBLE PRECISION,
+  volume DOUBLE PRECISION
+) RETURNS Candlestick
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `ts` | TIMESTAMPTZ | - | ✔ | Timestamp associated with stock price |

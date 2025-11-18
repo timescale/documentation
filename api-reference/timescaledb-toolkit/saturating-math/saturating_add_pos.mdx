@@ -15,8 +15,17 @@ hyperfunction:
 
 The `saturating_add_pos` function adds two numbers, saturating at 0 and 2,147,483,647 instead of overflowing.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+saturating_add_pos(
+  x INT,
+  y INT
+) RETURNS INT
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | x | INT | - | ✔ | An integer to add to `y` |

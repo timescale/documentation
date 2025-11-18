@@ -22,6 +22,7 @@ products:
 Add time bounds to an already-computed gauge aggregate. Bounds are necessary to use extrapolation accessors on the
 aggregate.
 
+
 ## Samples
 
 Create a gauge aggregate for each `id` and each 15-minute interval. Then add bounds to the gauge aggregate, so you can
@@ -48,6 +49,14 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+with_bounds(
+    summary CounterSummary,
+    bounds TSTZRANGE,
+) RETURNS CounterSummary
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `cs` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |

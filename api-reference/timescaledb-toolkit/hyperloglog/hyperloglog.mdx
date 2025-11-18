@@ -28,6 +28,7 @@ aggregate function, [`approx_count_distinct()`](#approx_count_distinct).
 `approx_count_distinct` also creates a `hyperloglog`, but it sets a
 default bucket value that should work for many use cases.
 
+
 ## Samples
 
 Given a table called `samples`, with a column called `weights`, return
@@ -46,6 +47,14 @@ CREATE VIEW hll AS SELECT hyperloglog(32768, data) FROM samples;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+hyperloglog(
+    buckets INTEGER,
+    value AnyElement
+) RETURNS Hyperloglog
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `buckets` | INTEGER | - | ✔ | Number of buckets in the hyperloglog. Increasing the number of buckets improves accuracy but increases memory use. Value is rounded up to the next power of 2, and must be between 2^4 (16) and 2^18. Setting a value less than 2^10 (1,024) may result in poor accuracy if the true cardinality is high and is not recommended. If unsure, start experimenting with 8,192 (2^13) which has an approximate error rate of 1.15%. |

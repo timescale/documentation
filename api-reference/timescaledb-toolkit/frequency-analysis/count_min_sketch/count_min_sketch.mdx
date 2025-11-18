@@ -20,6 +20,10 @@ underestimate.
 
 You can control the relative error and the probability that the estimate falls outside the error bounds.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 count_min_sketch(
     values TEXT,
@@ -27,9 +31,6 @@ count_min_sketch(
     probability DOUBLE PRECISION,
 ) RETURNS CountMinSketch
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `values` | TEXT | - | ✔ | The column of values to count |

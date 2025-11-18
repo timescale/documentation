@@ -27,12 +27,6 @@ For re-aggregation in a non-window function context, such as combining hourly bu
 `rollup()`.
 </Info>
 
-```sql
-rolling(
-    ss StatsSummary1D
-) RETURNS StatsSummary1D
-```
-
 ## Samples
 
 Combine hourly continuous aggregates to create a tumbling window daily aggregate. Calculate the average and standard
@@ -56,6 +50,13 @@ FROM foo_hourly;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+rolling(
+    ss StatsSummary1D
+) RETURNS StatsSummary1D
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

@@ -21,6 +21,7 @@ function to work. You can provide them as part of the original [`counter_agg`](#
 call, or by using the [`with_bounds`](#with_bounds) function on an existing
 counter aggregate.
 
+
 ## Samples
 
 ```sql
@@ -44,6 +45,14 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+extrapolated_rate(
+    summary CounterSummary,
+    method TEXT
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |

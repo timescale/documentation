@@ -16,13 +16,6 @@ hyperfunction:
 
 Estimate the approximate values of an array of percentiles from a `uddsketch` aggregate.
 
-```sql
-approx_percentile_array(
-  percentiles DOUBLE PRECISION[],
-  uddsketch  UddSketch
-) RETURNS DOUBLE PRECISION[]
-```
-
 ## Samples
 
 Estimate the value at the 90th, 50th, and 20th percentiles, given a sample containing the numbers from 0 to 100.
@@ -41,6 +34,14 @@ approx_percentile_array
 
 ## Arguments
 
+The syntax is:
+
+```sql
+approx_percentile_array(
+  percentiles DOUBLE PRECISION[],
+  uddsketch  UddSketch
+) RETURNS DOUBLE PRECISION[]
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | percentiles | DOUBLE PRECISION[] | - | ✔ | array of percentiles to compute. Must be within the range `[0.0, 1.0]` |

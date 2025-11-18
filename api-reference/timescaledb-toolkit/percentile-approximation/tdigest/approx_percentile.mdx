@@ -16,13 +16,6 @@ hyperfunction:
 
 Estimate the approximate value at a percentile from a `tdigest` aggregate.
 
-```sql
-approx_percentile(
-  percentile DOUBLE PRECISION,
-  tdigest  TDigest
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Estimate the value at the first percentile, given a sample containing the numbers from 0 to 100.
@@ -41,6 +34,14 @@ approx_percentile
 
 ## Arguments
 
+The syntax is:
+
+```sql
+approx_percentile(
+  percentile DOUBLE PRECISION,
+  tdigest  TDigest
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | percentile | DOUBLE PRECISION | - |  | The percentile to compute. Must be within the range `[0.0, 1.0]` |

@@ -19,13 +19,6 @@ values at the boundary. This checks when the last heartbeat in the predecessor w
 entire heartbeat interval after that is considered live. This addresses the issue where `uptime` would consider the
 interval between the start of the interval and the first heartbeat as dead.
 
-```sql
-interpolated_uptime(
-    agg HEARTBEATAGG,
-    pred HEARTBEATAGG
-) RETURNS INTERVAL
-```
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -50,6 +43,14 @@ interpolated_uptime
 
 ## Arguments
 
+The syntax is:
+
+```sql
+interpolated_uptime(
+    agg HEARTBEATAGG,
+    pred HEARTBEATAGG
+) RETURNS INTERVAL
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |

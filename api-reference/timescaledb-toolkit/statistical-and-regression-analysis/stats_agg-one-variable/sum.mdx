@@ -18,12 +18,6 @@ tags: [sum]
 
 Calculate the sum of the values contained in a statistical aggregate.
 
-```sql
-sum(
-  summary StatsSummary1D
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the sum of the integers from 0 to 100:
@@ -40,6 +34,13 @@ sum
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+sum(
+  summary StatsSummary1D
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary1D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

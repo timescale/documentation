@@ -16,13 +16,6 @@ hyperfunction:
 
 Get the maximum bound of the estimated frequency for a given value in a space-saving aggregate.
 
-```sql
-max_frequency (
-    agg SpaceSavingAggregate,
-    value AnyElement
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Find the maximum frequency of the value `3` in a column named `value` within the table `value_test`:
@@ -36,6 +29,22 @@ SELECT max_frequency(
 
 ## Arguments
 
+The syntax is:
+
+```sql
+max_frequency (
+    agg SpaceSavingAggregate,
+    value AnyElement
+) RETURNS DOUBLE PRECISION
+```
+
+
+```sql
+max_frequency (
+    agg SpaceSavingAggregate,
+    value AnyElement
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `agg` | SpaceSavingAggregate | - | ✔ | A space-saving aggregate created using either [`freq_agg`](#freq_agg) or [`mcv_agg`](#mcv_agg) |

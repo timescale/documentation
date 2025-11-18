@@ -19,18 +19,6 @@ tags: [sum]
 Calculate the sum from a two-dimensional statistical aggregate for the given dimension. For example, `sum_y()`
 calculates the skewness for all the values of the `y` variable, independent of values of the `x` variable.
 
-```sql
-sum_y(
-  summary StatsSummary2D
-) RETURNS DOUBLE PRECISION
-```
-
-```sql
-sum_x(
-  summary StatsSummary2D
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the sum of the numbers from 0 to 100:
@@ -48,6 +36,19 @@ sum_y
 
 ## Arguments
 
+The syntax is:
+
+```sql
+sum_y(
+  summary StatsSummary2D
+) RETURNS DOUBLE PRECISION
+```
+
+```sql
+sum_x(
+  summary StatsSummary2D
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

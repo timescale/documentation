@@ -17,14 +17,6 @@ hyperfunction:
 Reduce the time range covered by a heartbeat aggregate. This can only be used to narrow the covered interval, passing
 arguments that would extend beyond the range covered by the initial aggregate gives an error.
 
-```sql
-trim_to(
-    agg HEARTBEATAGG,
-    start TIMESTAMPTZ,
-    duration INTERVAL
-) RETURNS HEARTBEATAGG
-```
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -38,6 +30,15 @@ WHERE date > '02-21-2022 UTC' AND date < '3-7-2022 UTC'
 
 ## Arguments
 
+The syntax is:
+
+```sql
+trim_to(
+    agg HEARTBEATAGG,
+    start TIMESTAMPTZ,
+    duration INTERVAL
+) RETURNS HEARTBEATAGG
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to trim down |

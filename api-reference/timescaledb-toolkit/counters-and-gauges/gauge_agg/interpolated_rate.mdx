@@ -18,6 +18,7 @@ topics:
 Calculate the rate of change in a gauge over a time period. Data points at the exact boundaries of the time period
 aren't needed. The function interpolates the gauge values at the boundaries from adjacent gauge aggregates if needed.
 
+
 ## Samples
 
 Calculate the per-second rate of change for each 15-minute interval, using interpolation to get the values at the
@@ -45,6 +46,17 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+interpolated_rate(
+    summary CounterSummary,
+    start TIMESTAMPTZ,
+    interval INTERVAL
+    [, prev CounterSummary]
+    [, next CounterSummary]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |

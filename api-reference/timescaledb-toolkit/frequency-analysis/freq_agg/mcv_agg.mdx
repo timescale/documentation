@@ -19,14 +19,6 @@ use any of the accessors in this group to return estimated frequencies or the mo
 
 This differs from [`freq_agg`](#freq_agg) in that you can specify a target number of values to keep, rather than a frequency cutoff.
 
-```sql
-mcv_agg (
-    n INTEGER,
-    value AnyElement
-    [, skew DOUBLE PRECISION]
-) RETURNS SpaceSavingAggregate
-```
-
 ## Samples
 
 Create a topN aggregate over the `country` column of the `users` table. Targets the top 10 most-frequent values:
@@ -44,6 +36,24 @@ SELECT mcv_agg(5, 1.05, type) FROM devices;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+mcv_agg (
+    n INTEGER,
+    value AnyElement
+    [, skew DOUBLE PRECISION]
+) RETURNS SpaceSavingAggregate
+```
+
+
+```sql
+mcv_agg (
+    n INTEGER,
+    value AnyElement
+    [, skew DOUBLE PRECISION]
+) RETURNS SpaceSavingAggregate
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `n` | INTEGER | - | ✔ | The target number of most-frequent values |

@@ -21,8 +21,16 @@ corresponding values associated with them. Note that Postgres requires
 an input argument with type matching the associated value in order to
 determine the response type.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+into_values (
+    agg MinN
+) SETOF BIGINT | SETOF DOUBLE PRECISION | SETOF TIMESTAMPTZ
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `agg` | MaxNBy | - | ✔ | The aggregate to return the results from. Note that the exact type here varies based on the type of data stored. |

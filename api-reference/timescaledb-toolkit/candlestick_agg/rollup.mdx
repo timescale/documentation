@@ -20,14 +20,15 @@ Combine multiple intermediate candlestick aggregates, produced by `candlestick_a
 intermediate candlestick aggregate. For example, you can use `rollup` to combine candlestick aggregates from 15-minute
 buckets into daily buckets.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 rollup(
   candlestick Candlestick
 ) RETURNS Candlestick
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | candlestick | Candlestick | - | ✔ | The aggregate produced by a `candlestick` or `candlestick_agg` call |

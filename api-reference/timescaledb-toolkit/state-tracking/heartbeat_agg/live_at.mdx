@@ -18,13 +18,6 @@ Determine whether the aggregate has a heartbeat indicating the system was live a
 
 Note that this returns false for any time not covered by the aggregate.
 
-```sql
-live_at(
-    agg HEARTBEATAGG,
-    test TIMESTAMPTZ
-) RETURNS BOOL
-```
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -46,6 +39,14 @@ Returns:
 
 ## Arguments
 
+The syntax is:
+
+```sql
+live_at(
+    agg HEARTBEATAGG,
+    test TIMESTAMPTZ
+) RETURNS BOOL
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |

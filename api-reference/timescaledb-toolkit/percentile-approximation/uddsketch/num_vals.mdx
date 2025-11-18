@@ -17,12 +17,6 @@ hyperfunction:
 Get the number of values contained in a `uddsketch`. This accessor allows you to calculate a count alongside
 percentiles, without needing to create two separate aggregates from the same raw data.
 
-```sql
-num_vals(
-  sketch UddSketch
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Count the number of integers from 0 to 100.
@@ -40,6 +34,13 @@ num_vals
 
 ## Arguments
 
+The syntax is:
+
+```sql
+num_vals(
+  sketch UddSketch
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | sketch | UddSketch | - |  | The `uddsketch` to extract the number of values from |

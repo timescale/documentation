@@ -17,6 +17,7 @@ topics:
 
 Get the number of times the counter is reset.
 
+
 ## Samples
 
 Get the number of counter resets for each 15-minute counter aggregate.
@@ -37,6 +38,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+num_resets(
+    summary CounterSummary
+) RETURNS BIGINT
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |

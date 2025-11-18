@@ -17,13 +17,6 @@ hyperfunction:
 Aggregate state data into a state aggregate to track state transitions. Unlike [`compact_state_agg`][compact_state_agg],
 which only stores durations, `state_agg` also stores the timestamps of state transitions.
 
-```sql
-state_agg(
-  ts TIMESTAMPTZ,
-  value {TEXT | BIGINT}
-) RETURNS StateAgg
-```
-
 ## Samples
 
 Create a state aggregate to track the status of some devices.
@@ -35,6 +28,14 @@ SELECT state_agg(time, status) FROM devices;
 [compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/
 ## Arguments
 
+The syntax is:
+
+```sql
+state_agg(
+  ts TIMESTAMPTZ,
+  value {TEXT | BIGINT}
+) RETURNS StateAgg
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | ts | TIMESTAMPTZ | - | ✔ | Timestamps associated with each state reading |

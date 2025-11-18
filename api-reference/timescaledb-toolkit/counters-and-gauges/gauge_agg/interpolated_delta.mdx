@@ -19,6 +19,7 @@ Calculate the change in a gauge over the time period covered by a gauge aggregat
 of the time period aren't needed. The function interpolates the gauge values at the boundaries from adjacent gauge
 aggregates if needed.
 
+
 ## Samples
 
 Calculate the gauge delta for each 15-minute interval, using interpolation to get the values at the interval boundaries
@@ -46,6 +47,17 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+interpolated_delta(
+    summary CounterSummary,
+    start TIMESTAMPTZ,
+    interval INTERVAL
+    [, prev CounterSummary]
+    [, next CounterSummary]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |

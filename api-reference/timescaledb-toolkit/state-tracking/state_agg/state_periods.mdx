@@ -20,13 +20,6 @@ and end time.
 If you have multiple state aggregates and need to interpolate the state across interval boundaries, use
 [`interpolated_state_periods`][interpolated_state_periods].
 
-```sql
-state_periods(
-    agg StateAgg,
-    state [TEXT | BIGINT]
-) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
-```
-
 ## Samples
 
 Create a state aggregate and list all periods corresponding to the state `OK`.
@@ -51,6 +44,14 @@ Returns:
 [interpolated_state_periods]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/interpolated_state_periods
 ## Arguments
 
+The syntax is:
+
+```sql
+state_periods(
+    agg StateAgg,
+    state [TEXT | BIGINT]
+) RETURNS (TIMESTAMPTZ, TIMESTAMPTZ)
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | A state aggregate created using [`state_agg`][state_agg] |

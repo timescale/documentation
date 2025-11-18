@@ -18,20 +18,6 @@ keywords: [statistics, hyperfunctions, Toolkit]
 Calculate the variance from a two-dimensional statistical aggregate for the given dimension. For example, `variance_y()`
 calculates the skewness for all the values of the `y` variable, independent of values of the `x` variable.
 
-```sql
-variance_y(
-  summary StatsSummary2D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
-```sql
-variance_x(summary
-    StatsSummary2D,
-    [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the variance of a sample containing the integers from 0 to 100:
@@ -49,6 +35,21 @@ variance_y
 
 ## Arguments
 
+The syntax is:
+
+```sql
+variance_y(
+  summary StatsSummary2D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
+
+```sql
+variance_x(summary
+    StatsSummary2D,
+    [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

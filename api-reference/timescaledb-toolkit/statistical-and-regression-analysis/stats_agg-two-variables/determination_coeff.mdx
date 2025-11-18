@@ -25,12 +25,6 @@ keywords:
 Calculate the determination coefficient from a two-dimensional statistical aggregate. The calculation uses the standard
 least-squares fitting for linear regression.
 
-```sql
-determination_coeff(
-    summary StatsSummary2D
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the determination coefficient of independent variable `y` and dependent variable `x` for each 15-minute time
@@ -47,6 +41,13 @@ GROUP BY id, time_bucket('15 min'::interval, ts)
 
 ## Arguments
 
+The syntax is:
+
+```sql
+determination_coeff(
+    summary StatsSummary2D
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

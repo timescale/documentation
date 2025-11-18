@@ -19,6 +19,7 @@ products: [cloud, mst, self_hosted]
 Return the N largest values seen by the aggregate. The values are formatted
 as an array in decreasing order.
 
+
 ## Samples
 
 Find the top 5 values from `i * 13 % 10007` for i = 1 to 10000.
@@ -42,6 +43,13 @@ into_array
 
 ## Arguments
 
+The syntax is:
+
+```sql
+into_array (
+    agg MinN
+) BIGINT[] | DOUBLE PRECISION[] | TIMESTAMPTZ[]
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `agg` | MaxN | - | ✔ | The aggregate to return the results from. Note that the exact type here varies based on the type of data stored in the aggregate. |

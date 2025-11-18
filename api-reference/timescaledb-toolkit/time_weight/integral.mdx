@@ -18,6 +18,7 @@ hyperfunction:
 Calculate the integral, or the area under the curve formed by the data points. Equal to [`average`][average] multiplied
 by the elapsed time.
 
+
 ## Samples
 
 Create a table to track irregularly sampled storage usage in bytes, and get the total storage used in byte-hours. Use
@@ -42,6 +43,14 @@ FROM
 
 [average]: /api-reference/timescaledb/hyperfunctions/time_weight/average## Arguments
 
+The syntax is:
+
+```sql
+integral(
+    tws TimeWeightSummary
+    [, unit TEXT]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |

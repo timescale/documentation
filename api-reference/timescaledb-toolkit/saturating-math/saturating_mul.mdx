@@ -16,8 +16,17 @@ hyperfunction:
 The `saturating_mul` function multiplies two numbers, saturating at -2,147,483,648 and 2,147,483,647 instead of
 overflowing.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+saturating_mul(
+  x INT,
+  y INT
+) RETURNS INT
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | x | INT | - | ✔ | An integer to multiply with `y` |

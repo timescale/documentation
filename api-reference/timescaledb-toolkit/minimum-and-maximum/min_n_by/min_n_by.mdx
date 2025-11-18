@@ -19,8 +19,18 @@ products: [cloud, mst, self_hosted]
 Construct an aggregate that keeps track of the smallest values passed through it, as well as some associated data which
 is passed alongside the value.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+min_n_by(
+    value BIGINT | DOUBLE PRECISION | TIMESTAMPTZ,
+    data ANYELEMENT,
+    capacity BIGINT
+) MinNBy
+```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `value` | BIGINT \| DOUBLE PRECISION \| TIMESTAMPTZ | - | ✔ | The values passed into the aggregate |

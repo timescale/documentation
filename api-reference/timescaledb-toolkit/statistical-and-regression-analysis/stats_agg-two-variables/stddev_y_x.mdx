@@ -19,20 +19,6 @@ tags: [standard deviation]
 Calculate the standard deviation from a two-dimensional statistical aggregate for the given dimension. For example,
 `stddev_y()` calculates the skewness for all the values of the `y` variable, independent of values of the `x` variable.
 
-```sql
-stddev_y(
-  summary StatsSummary2D,
-  [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
-```sql
-stddev_x(summary
-    StatsSummary2D,
-    [ method TEXT ]
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Calculate the standard deviation of a sample containing the integers from 0 to 100:
@@ -50,6 +36,21 @@ stddev_y
 
 ## Arguments
 
+The syntax is:
+
+```sql
+stddev_y(
+  summary StatsSummary2D,
+  [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
+
+```sql
+stddev_x(summary
+    StatsSummary2D,
+    [ method TEXT ]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | summary | StatsSummary2D | - | ✔ | The statistical aggregate produced by a `stats_agg` call |

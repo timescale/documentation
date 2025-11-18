@@ -22,14 +22,15 @@ failures. For instance, a master and standby system can have their heartbeats co
 intervals where both systems were down at the same time. The result of rolling overlapping heartbeats together like this
 is a heartbeat aggregate which considers a time live if any of its component aggregates were live.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 rollup(
   heartbeatagg HEARTBEATAGG
 ) RETURNS HEARTBEATAGG
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | heartbeatagg | HeartbeatAgg | - | ✔ | The heartbeat aggregates to roll up |

@@ -14,6 +14,7 @@ hyperfunction:
 
 Downsample your data with the [Largest Triangle Three Buckets algorithm](https://github.com/sveinn-steinarsson/flot-downsample). This algorithm tries to retain visual similarity between the downsampled data and the original dataset.
 
+
 ## Samples
 
 This example uses a table with raw data generated as a sine wave. You can use LTTB to dramatically reduce the number of
@@ -48,6 +49,15 @@ time                    |               value
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+lttb(
+  ts TIMESTAMPTZ,
+  value DOUBLE PRECISION,
+  resolution INT
+) RETURNS Timevector
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | ts | TIMESTAMPTZ | - | ✔ | Timestamps for each data point |

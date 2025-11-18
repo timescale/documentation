@@ -20,12 +20,6 @@ There may appear to be some downtime between the start of the aggregate and the 
 aggregate covering the previous period, you can use its last heartbeat to correct for this using
 [`interpolated_uptime()`][interpolated_uptime].
 
-```sql
-uptime(
-    agg HEARTBEATAGG
-) RETURNS INTERVAL
-```
-
 ## Samples
 
 Given a table called `liveness` containing weekly heartbeat aggregates in column `health` with timestamp column `date`,
@@ -48,6 +42,13 @@ Returns:
 [interpolated_uptime]: /api-reference/timescaledb/hyperfunctions/state-tracking/heartbeat_agg/interpolated_uptime
 ## Arguments
 
+The syntax is:
+
+```sql
+uptime(
+    agg HEARTBEATAGG
+) RETURNS INTERVAL
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | HeartbeatAgg | - | ✔ | A heartbeat aggregate to get the liveness data from |

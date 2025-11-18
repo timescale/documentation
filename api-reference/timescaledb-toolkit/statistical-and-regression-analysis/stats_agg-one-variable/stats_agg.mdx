@@ -25,14 +25,15 @@ group to compute final results. Optionally, multiple such intermediate aggregate
 can create a continuous aggregate using `stats_agg` to calculate average and sum. Later, you can reuse the same
 `StatsSummary1D` objects to calculate standard deviation from the same continuous aggregate.
 
+## Arguments
+
+The syntax is:
+
 ```sql
 stats_agg(
     value DOUBLE PRECISION
 ) RETURNS StatsSummary1D
 ```
-
-## Arguments
-
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | value | DOUBLE PRECISION | - | ✔ | The variable to use for the statistical aggregate |

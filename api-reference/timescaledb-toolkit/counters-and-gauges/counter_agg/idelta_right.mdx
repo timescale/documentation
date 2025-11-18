@@ -18,6 +18,7 @@ topics:
 Calculate the instantaneous change at the right, or latest, edge of a counter aggregate. This is equal to the last value
 minus the second-last value, after accounting for resets.
 
+
 ## Samples
 
 Get the instantaneous change at the end of each 15-minute counter aggregate.
@@ -38,6 +39,13 @@ FROM (
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+idelta_right(
+  summary CounterSummary
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |

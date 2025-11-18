@@ -17,12 +17,6 @@ hyperfunction:
 Get the minimum value from a `tdigest`. This accessor allows you to calculate the minimum alongside percentiles, without
 needing to create two separate aggregates from the same raw data.
 
-```sql
-min_val(
-  digest TDigest
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Get the minimum of the integers from 1 to 100.
@@ -40,6 +34,13 @@ min_val
 
 ## Arguments
 
+The syntax is:
+
+```sql
+min_val(
+  digest TDigest
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | digest | TDigest | - |  | The digest to extract the minimum value from |

@@ -20,8 +20,16 @@ hyperloglog, into a single intermediate hyperloglog aggregate. For example,
 you can use `rollup` to combine hyperloglog from 15-minute buckets into
 daily buckets.
 
+
 ## Arguments
 
+The syntax is:
+
+```sql
+rollup(
+  hyperloglog Hyperloglog
+) RETURNS Hyperloglog
+```
 | Name | Type | Default | Required | Description |
 |---|---|---|---|---|
 | `hyperloglog` | Hyperloglog | - | ✔ | The hyperloglog aggregates to roll up. |

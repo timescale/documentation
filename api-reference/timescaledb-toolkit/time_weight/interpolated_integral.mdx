@@ -26,6 +26,7 @@ method used within the TimeWeightSummary itself.
 
 Equal to [`interpolated_average`][interpolated_average] multiplied by the elapsed time.
 
+
 ## Samples
 
 Create a table to track irregularly sampled storage usage in bytes, and get the total storage used in byte-hours between
@@ -59,6 +60,18 @@ FROM
 [integral]: /api-reference/timescaledb/hyperfunctions/time_weight/integral
 [interpolated_average]: /api-reference/timescaledb/hyperfunctions/time_weight/interpolated_average## Arguments
 
+The syntax is:
+
+```sql
+interpolated_integral(
+    tws TimeWeightSummary,
+    start TIMESTAMPTZ,
+    interval INTERVAL
+    [, prev TimeWeightSummary]
+    [, next TimeWeightSummary]
+    [, unit TEXT]
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |

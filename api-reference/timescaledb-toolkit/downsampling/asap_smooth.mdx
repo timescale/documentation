@@ -14,6 +14,7 @@ hyperfunction:
 
 Downsample your data with the [ASAP smoothing algorithm](http://arxiv.org/pdf/1703.00983). This algorithm preserves the approximate shape and larger trends of the input data, while minimizing the local variance between points.
 
+
 ## Samples
 
 This example uses a table called `metrics`, with columns for `date` and `reading`. The columns contain measurements that
@@ -50,6 +51,15 @@ time                    |        value
 
 ## Arguments
 
+The syntax is:
+
+```sql
+asap_smooth(
+  ts TIMESTAMPTZ,
+  value DOUBLE PRECISION,
+  resolution INT
+) RETURNS Timevector
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | ts | TIMESTAMPTZ | - | ✔ | Timestamps for each data point |

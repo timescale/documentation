@@ -17,12 +17,6 @@ hyperfunction:
 Get the maximum value from a `tdigest`. This accessor allows you to calculate the maximum alongside percentiles, without
 needing to create two separate aggregates from the same raw data.
 
-```sql
-max_val(
-  digest TDigest
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Get the maximum of the integers from 1 to 100.
@@ -39,6 +33,13 @@ max_val
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+max_val(
+  digest TDigest
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | digest | TDigest | - |  | The digest to extract the max value from |

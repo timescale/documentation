@@ -16,13 +16,6 @@ hyperfunction:
 
 Estimate the percentile at which a given value would be located.
 
-```sql
-approx_percentile_rank(
-  value DOUBLE PRECISION,
-  digest TDigest
-) RETURNS DOUBLE PRECISION
-```
-
 ## Samples
 
 Estimate the percentile rank of the value `99`, given a sample containing the numbers from 0 to 100.
@@ -41,6 +34,14 @@ approx_percentile_rank
 
 ## Arguments
 
+The syntax is:
+
+```sql
+approx_percentile_rank(
+  value DOUBLE PRECISION,
+  digest TDigest
+) RETURNS DOUBLE PRECISION
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | value | DOUBLE PRECISION | - |  | The value to estimate the percentile of |

@@ -17,15 +17,6 @@ hyperfunction:
 Aggregate a set of heartbeat timestamps to track the liveness state of the underlying system for the specified time
 range.
 
-```sql
-heartbeat_agg(
-    heartbeat TIMESTAMPTZ,
-    agg_start TIMESTAMPTZ,
-    agg_duration INTERVAL,
-    heartbeat_liveness INTERVAL
-) RETURNS HeartbeatAgg
-```
-
 ## Samples
 
 Given a table called `system_health` with a `ping_time` column, construct an aggregate of system liveness for 10 days
@@ -41,6 +32,16 @@ FROM system_health;
 ```
 ## Arguments
 
+The syntax is:
+
+```sql
+heartbeat_agg(
+    heartbeat TIMESTAMPTZ,
+    agg_start TIMESTAMPTZ,
+    agg_duration INTERVAL,
+    heartbeat_liveness INTERVAL
+) RETURNS HeartbeatAgg
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | heartbeat | TIMESTAMPTZ | - | ✔ | The column containing the timestamps of the heartbeats |

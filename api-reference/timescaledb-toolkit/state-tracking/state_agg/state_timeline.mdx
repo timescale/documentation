@@ -19,16 +19,6 @@ Get a timeline of all states, showing each time a state is entered and exited.
 If you have multiple state aggregates and need to interpolate the state across interval boundaries, use
 [`interpolated_state_timeline`][interpolated_state_timeline].
 
-```sql
-state_timeline(
-    agg StateAgg
-) RETURNS (TEXT, TIMESTAMPTZ, TIMESTAMPTZ)
-
-state_int_timeline(
-    agg StateAgg
-) RETURNS (BIGINT, TIMESTAMPTZ, TIMESTAMPTZ)
-```
-
 ## Samples
 
 Get the history of states from a state aggregate.
@@ -54,6 +44,17 @@ Returns:
 
 [interpolated_state_timeline]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/interpolated_state_timeline## Arguments
 
+The syntax is:
+
+```sql
+state_timeline(
+    agg StateAgg
+) RETURNS (TEXT, TIMESTAMPTZ, TIMESTAMPTZ)
+
+state_int_timeline(
+    agg StateAgg
+) RETURNS (BIGINT, TIMESTAMPTZ, TIMESTAMPTZ)
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | The aggregate from which to get a timeline |

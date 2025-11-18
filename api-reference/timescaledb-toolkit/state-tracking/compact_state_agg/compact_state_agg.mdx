@@ -16,13 +16,6 @@ hyperfunction:
 
 Aggregate a dataset containing state data into a state aggregate to track the time spent in each state.
 
-```sql
-compact_state_agg(
-  ts TIMESTAMPTZ,
-  value {TEXT | BIGINT}
-) RETURNS StateAgg
-```
-
 ## Samples
 
 Create a state aggregate to track the status of some devices.
@@ -33,6 +26,14 @@ SELECT toolkit_experimental.compact_state_agg(time, status) FROM devices;
 
 ## Arguments
 
+The syntax is:
+
+```sql
+compact_state_agg(
+  ts TIMESTAMPTZ,
+  value {TEXT | BIGINT}
+) RETURNS StateAgg
+```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | ts | TIMESTAMPTZ | - | ✔ | Timestamps associated with each state reading |
