@@ -1,0 +1,31 @@
+---
+title: ai.scheduling_none
+description: Disable automatic scheduling for manual vectorizer control
+keywords: [pgai, vectorizer, scheduling, none, manual]
+tags: [vectorizer, configuration, scheduling]
+license: community
+type: function
+---
+
+Specify that no automatic scheduling should be set up for the vectorizer.
+
+- Manually control when the vectorizer runs or when you're using an external scheduling system
+- Use this for self-hosted deployments
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    scheduling => ai.scheduling_none(),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+This function takes no arguments.
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

@@ -1,0 +1,52 @@
+---
+title: ai.loading_uri
+description: Load data to embed from a file referenced in a source table column
+keywords: [pgai, vectorizer, loading, uri, s3, gcs, azure]
+tags: [vectorizer, configuration]
+license: community
+type: function
+---
+
+Load the data to embed from a file that is referenced in a column of the source table.
+
+This file path is internally passed to [smart_open](https://github.com/piskvorky/smart_open), so it supports any protocol that smart_open supports, including:
+
+- Local files
+- Amazon S3
+- Google Cloud Storage
+- Azure Blob Storage
+- HTTP/HTTPS
+- SFTP
+- and [many more](https://github.com/piskvorky/smart_open/blob/master/help.txt)
+
+## Environment configuration
+
+Ensure the vectorizer worker has the correct credentials to access the file, such as in environment variables. Here is an example for AWS S3:
+
+```bash
+export AWS_ACCESS_KEY_ID='your_access_key'
+export AWS_SECRET_ACCESS_KEY='your_secret_key'
+export AWS_REGION='your_region'  # optional
+```
+
+Make sure these environment variables are properly set in the environment where the vectorizer worker runs.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    loading => ai.loading_uri('file_uri_column_name'),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `column_name` | `TEXT` | - | ✔ | The name of the column containing the file path |
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

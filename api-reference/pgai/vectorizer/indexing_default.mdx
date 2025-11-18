@@ -1,0 +1,30 @@
+---
+title: ai.indexing_default
+description: Use platform-specific default indexing configuration for embeddings
+keywords: [pgai, vectorizer, indexing, default, configuration]
+tags: [vectorizer, configuration, indexing]
+license: community
+type: function
+---
+
+Use the platform-specific default value for indexing.
+
+On Timescale Cloud, the default is `ai.indexing_diskann()`. On self-hosted, the default is `ai.indexing_none()`. A TimescaleDB background job is used for automatic index creation. Since TimescaleDB may not be installed in a self-hosted environment, we default to `ai.indexing_none()`.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    indexing => ai.indexing_default(),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+This function takes no arguments.
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

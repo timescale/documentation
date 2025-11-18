@@ -88,7 +88,9 @@ USING diskann (embedding_column distance_ops [, labels_column])
 | `num_dimensions` | `int` | 0 (all dimensions) | Number of dimensions to index. Useful for Matryoshka embeddings |
 | `num_bits_per_dimension` | `int` | 2 (if less than 900 dims), 1 otherwise | Bits per dimension when using Statistical Binary Quantization |
 
+For detailed information about each parameter and tuning recommendations, see [Index build-time parameters][index_parameters].
 
+To configure query behavior at runtime, see [Query-time parameters][query_parameters].
 
 [index_parameters]: /api-reference/pgvectorscale/index_parameters
 [query_parameters]: /api-reference/pgvectorscale/query_parameters

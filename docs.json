@@ -1365,14 +1365,17 @@
                       {
                         "group": "Loading configuration",
                         "pages": [
-                          "api-reference/pgai/vectorizer/loading_column"
+                          "api-reference/pgai/vectorizer/loading_column",
+                          "api-reference/pgai/vectorizer/loading_uri"
                         ]
                       },
                       {
                         "group": "Parsing configuration",
                         "pages": [
                           "api-reference/pgai/vectorizer/parsing_auto",
-                          "api-reference/pgai/vectorizer/parsing_none"
+                          "api-reference/pgai/vectorizer/parsing_none",
+                          "api-reference/pgai/vectorizer/parsing_docling",
+                          "api-reference/pgai/vectorizer/parsing_pymupdf"
                         ]
                       },
                       {
@@ -1384,12 +1387,61 @@
                         ]
                       },
                       {
+                        "group": "Formatting configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/formatting_python_template"
+                        ]
+                      },
+                      {
                         "group": "Embedding configuration",
                         "pages": [
                           "api-reference/pgai/vectorizer/embedding_openai",
                           "api-reference/pgai/vectorizer/embedding_ollama",
                           "api-reference/pgai/vectorizer/embedding_litellm",
                           "api-reference/pgai/vectorizer/embedding_voyageai"
+                        ]
+                      },
+                      {
+                        "group": "Indexing configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/indexing_default",
+                          "api-reference/pgai/vectorizer/indexing_none",
+                          "api-reference/pgai/vectorizer/indexing_diskann",
+                          "api-reference/pgai/vectorizer/indexing_hnsw"
+                        ]
+                      },
+                      {
+                        "group": "Scheduling configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/scheduling_default",
+                          "api-reference/pgai/vectorizer/scheduling_none",
+                          "api-reference/pgai/vectorizer/scheduling_timescaledb"
+                        ]
+                      },
+                      {
+                        "group": "Processing configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/processing_default"
+                        ]
+                      },
+                      {
+                        "group": "Grant configuration",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/grant_to"
+                        ]
+                      },
+                      {
+                        "group": "Management",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/enable_vectorizer_schedule",
+                          "api-reference/pgai/vectorizer/disable_vectorizer_schedule"
+                        ]
+                      },
+                      {
+                        "group": "Monitoring",
+                        "pages": [
+                          "api-reference/pgai/vectorizer/vectorizer_status",
+                          "api-reference/pgai/vectorizer/vectorizer_queue_pending"
                         ]
                       }
                     ]

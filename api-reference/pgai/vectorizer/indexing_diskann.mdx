@@ -1,0 +1,37 @@
+---
+title: ai.indexing_diskann
+description: Configure DiskANN indexing for high-performance vector search on large datasets
+keywords: [pgai, vectorizer, indexing, diskann, performance]
+tags: [vectorizer, configuration, indexing]
+license: community
+type: function
+---
+
+Configure indexing using the DiskANN algorithm, which is designed for high-performance approximate nearest neighbor search on large-scale datasets. This is suitable for very large datasets that need to be stored on disk.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    indexing => ai.indexing_diskann(min_rows => 500000, storage_layout => 'memory_optimized'),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| min_rows | int | 100000 | ✖ | The minimum number of rows before creating the index |
+| storage_layout | text | - | ✖ | Set to either `memory_optimized` or `plain` |
+| num_neighbors | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
+| search_list_size | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
+| max_alpha | float8 | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
+| num_dimensions | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
+| num_bits_per_dimension | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
+| create_when_queue_empty | boolean | true | ✖ | Create the index only after all of the embeddings have been generated |
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

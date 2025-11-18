@@ -1,0 +1,36 @@
+---
+title: ai.parsing_pymupdf
+description: Parse documents using PyMuPDF for fast processing of PDFs and e-books
+keywords: [pgai, vectorizer, parsing, pymupdf, pdf, epub]
+tags: [vectorizer, configuration, parsing]
+license: community
+type: function
+---
+
+Parse the data provided by the loader using [PyMuPDF](https://pymupdf.readthedocs.io/en/latest/).
+
+PyMuPDF is a faster, simpler document parser that:
+- Processes PDF documents with basic structure preservation
+- Supports e-book formats like EPUB and MOBI
+- Is generally faster than docling for simpler documents
+- Works well for documents with straightforward layouts
+
+Choose pymupdf when processing speed is more important than perfect structure preservation.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    parsing => ai.parsing_pymupdf(),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+This function takes no arguments.
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

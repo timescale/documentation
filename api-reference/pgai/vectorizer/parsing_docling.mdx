@@ -1,0 +1,37 @@
+---
+title: ai.parsing_docling
+description: Parse documents using Docling for robust text extraction from complex documents
+keywords: [pgai, vectorizer, parsing, docling, ocr, pdf]
+tags: [vectorizer, configuration, parsing]
+license: community
+type: function
+---
+
+Parse the data provided by the loader using [Docling](https://docling-project.github.io/docling/).
+
+Docling is a more robust and thorough document parsing library that:
+- Uses OCR capabilities to extract text from images
+- Can parse complex documents with tables and multi-column layouts
+- Supports Office formats (DOCX, XLSX, etc.)
+- Preserves document structure better than other parsers
+- Converts documents to markdown format
+
+Note that docling uses ML models for improved parsing, which makes it slower than simpler parsers like pymupdf.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    parsing => ai.parsing_docling(),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+This function takes no arguments.
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

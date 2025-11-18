@@ -1,0 +1,47 @@
+---
+title: ai.enable_vectorizer_schedule
+description: Activate or resume automatic scheduling for a vectorizer
+keywords: [pgai, vectorizer, scheduling, enable, management]
+tags: [vectorizer, management, scheduling]
+license: community
+type: function
+---
+
+Activate or reactivate the scheduled job for a specific vectorizer.
+
+- Allow the vectorizer to resume automatic processing of new or updated data
+- Can be called with either a vectorizer name (recommended) or ID
+
+## Samples
+
+### Using vectorizer name
+
+```sql
+SELECT ai.enable_vectorizer_schedule('public_blog_embeddings');
+```
+
+### Using vectorizer ID
+
+```sql
+SELECT ai.enable_vectorizer_schedule(1);
+```
+
+## Arguments
+
+`ai.enable_vectorizer_schedule` can be called in two ways:
+
+### With vectorizer name (recommended)
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| name | text | - | ✔ | The name of the vectorizer whose schedule you want to enable |
+
+### With vectorizer ID
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| vectorizer_id | int | - | ✔ | The identifier of the vectorizer whose schedule you want to enable |
+
+## Returns
+
+`ai.enable_vectorizer_schedule` does not return a value.
