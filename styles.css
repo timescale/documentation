@@ -149,7 +149,7 @@ h2#returns ~ * table {
   width: 100% !important;
 }
 
-/* Returns table - Column column (1st) - 20% width */
+/* Returns table - Column column (1st) - 20% width with text wrapping */
 h2#returns + * table td:nth-child(1),
 h2#returns + * table th:nth-child(1),
 h2#returns ~ * table td:nth-child(1),
@@ -157,9 +157,12 @@ h2#returns ~ * table th:nth-child(1) {
   width: 20% !important;
   min-width: 20% !important;
   max-width: 20% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 
-/* Returns table - Type column (2nd) - 20% width */
+/* Returns table - Type column (2nd) - 20% width with text wrapping */
 h2#returns + * table td:nth-child(2),
 h2#returns + * table th:nth-child(2),
 h2#returns ~ * table td:nth-child(2),
@@ -167,9 +170,12 @@ h2#returns ~ * table th:nth-child(2) {
   width: 20% !important;
   min-width: 20% !important;
   max-width: 20% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 
-/* Returns table - Description column (3rd) - 60% width, left-aligned */
+/* Returns table - Description column (3rd) - 60% width, left-aligned with text wrapping */
 h2#returns + * table td:nth-child(3),
 h2#returns + * table th:nth-child(3),
 h2#returns ~ * table td:nth-child(3),
@@ -178,4 +184,7 @@ h2#returns ~ * table th:nth-child(3) {
   min-width: 60% !important;
   max-width: 60% !important;
   text-align: left !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
