@@ -189,6 +189,53 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
     rails db:migrate
     ```
 
+## Advanced configuration
+
+### Alternative model configuration approaches
+
+The {TIMESCALE_DB} gem provides three ways to configure your models as hypertables:
+
+1. **Per-model configuration** (shown above): Use `extend Timescaledb::ActsAsHypertable` in each model
+
+2. **Global configuration via initializer**: Create `config/initializers/timescaledb.rb`:
+
+    ```ruby
+    Timescaledb.configure do |config|
+      config.default_hypertable_options = {
+        time_column: 'created_at',
+        chunk_time_interval: '1 day'
+      }
+    end
+    ```
+
+3. **Abstract model inheritance**: Create a base class that other models inherit from:
+
+    ```ruby
+    class HypertableRecord < ApplicationRecord
+      self.abstract_class = true
+      extend Timescaledb::ActsAsHypertable
+    end
+
+    class PageLoad < HypertableRecord
+      acts_as_hypertable time_column: "created_at"
+    end
+    ```
+
+### Multi-dimensional partitioning
+
+In addition to time-based partitioning, you can add secondary dimensions using the `partition_column` option:
+
+```ruby
+hypertable_options = {
+  time_column: 'created_at',
+  partition_column: 'device_id',  # Add a secondary dimension
+  number_partitions: 4,            # Number of partitions for the secondary dimension
+  chunk_time_interval: '1 day'
+}
+```
+
+Multi-dimensional partitioning is useful when you have a high-cardinality dimension (like `device_id`, `customer_id`, or `region`) that you frequently query alongside time.
+
 ## Insert data your service
 
 The {TIMESCALE_DB} gem provides efficient ways to insert data into hypertables. This section
@@ -239,8 +286,7 @@ shows you how to ingest test data into your hypertable.
           path: paths.sample,
           user_agent: browsers.sample,
           performance: rand(0.1..2.0),
-          created_at: time,
-          updated_at: time
+          created_at: time
         }
       end
     end
@@ -341,7 +387,7 @@ status:
     ```ruby
     hypertable = PageLoad.hypertable
     hypertable.hypertable_name  # The name of your hypertable
-    hypertable.schema_name      # The schema where the hypertable is located
+    hypertable.hypertable_schema # The schema where the hypertable is located
     ```
 
 - Get detailed size information:
