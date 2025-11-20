@@ -1,0 +1,92 @@
+---
+title: Find your connection details
+description: You connect to Tiger Cloud, self-hosted TimescaleDB, or MST using your connection details
+keywords: [connection, credentials, hostname, port, username, password, database, authentication, connection string, service ID]
+---
+
+import { SERVICE_LONG, SELF_LONG, SELF_LONG_CAP, SERVICE_SHORT, CONSOLE, PROJECT_LONG, PROJECT_SHORT, PROJECT_SHORT_CAP, CLOUD_LONG, PG, MST_CONSOLE_LONG, MST_LONG, MST_SERVICE_SHORT } from '/snippets/vars.mdx';
+
+To connect to {CLOUD_LONG}, {SELF_LONG}, or {MST_LONG}, you need at least the following:
+
+- Hostname
+- Port
+- Username
+- Password
+- Database name
+
+Find the connection details based on your deployment type:
+
+<Tabs>
+
+<Tab title={`${CLOUD_LONG}`}>
+
+## Connect to your service
+
+Retrieve the connection details for your {SERVICE_LONG}:
+
+- **In `<service name>-credentials.txt`**:
+
+   All connection details are supplied in the configuration file you download when you create a new {SERVICE_SHORT}.
+
+- **In {CONSOLE}**:
+
+   Open the [`Services`][console-services] page and select your {SERVICE_SHORT}. The connection details, except the password, are available in `Service info` > `Connection info` > `More details`. If necessary, click `Forgot your password?` to get a new one.
+
+   ![{SERVICE_LONG} connection details](https://assets.timescale.com/docs/images/tiger-cloud-console/tiger-service-connection-details.png)
+
+## Find your project and service ID
+
+To retrieve the connection details for your {PROJECT_LONG} and {SERVICE_LONG}:
+
+1. **Retrieve your {PROJECT_SHORT} ID**:
+
+   In [{CONSOLE}][console-services], click your {PROJECT_SHORT} name in the upper left corner, then click `Copy` next to the {PROJECT_SHORT} ID.
+   ![Retrive the {PROJECT_SHORT} id in {CONSOLE}](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-project-id.png)
+
+2. **Retrieve your {SERVICE_SHORT} ID**:
+
+   Click the dots next to the {SERVICE_SHORT}, then click `Copy` next to the {SERVICE_SHORT} ID.
+   ![Retrieve the {SERVICE_SHORT} id in {CONSOLE}](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-service-id.png)
+
+## Create client credentials
+
+You use client credentials to obtain access tokens outside of the user context.
+
+To retrieve the connection details for your {CLOUD_LONG} {PROJECT_SHORT} for programmatic usage
+such as Terraform or the [{CLOUD_LONG} REST API][api-reference]:
+
+1. **Open the settings for your {PROJECT_SHORT}**:
+
+   In [{CONSOLE}][console-services], click your {PROJECT_SHORT} name in the upper left corner, then click <code>{PROJECT_SHORT_CAP} settings</code>.
+
+2. **Create client credentials**:
+
+   1. Click `Create credentials`, then copy `Public key` and `Secret key` locally.
+
+      ![Create client credentials in {CONSOLE}](https://assets.timescale.com/docs/images/tiger-cloud-console/tiger-cloud-console-client-credentials.png)
+
+       This is the only time you see the `Secret key`. After this, only the `Public key` is visible in this page.
+
+   2. Click `Done`.
+
+</Tab>
+
+<Tab title={`${SELF_LONG_CAP}`}>
+
+Find the connection details in the [{PG} configuration file][pg-config-file] or by asking your database administrator. The `postgres` superuser, created during {PG} installation, has all the permissions required to run procedures in this documentation. However, it is recommended to create other users and assign permissions on the need-only basis.
+
+</Tab>
+
+<Tab title={`${MST_LONG}`}>
+
+In the `Services` page of the {MST_CONSOLE_LONG}, click the {MST_SERVICE_SHORT} you want to connect to. You see the connection details:
+
+![MST connection details](https://assets.timescale.com/docs/images/mst-connection-info.png)
+
+</Tab>
+
+</Tabs>
+
+[api-reference]: /api-reference
+[console-services]: https://console.cloud.timescale.com/dashboard/services
+[pg-config-file]: https://www.postgresql.org/docs/current/runtime-config-file-locations.html

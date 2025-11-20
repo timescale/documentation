@@ -1,8 +1,69 @@
 ---
-title: Connect data in Postgres to your service
-description: Simulate and analyze a transport dataset in your Tiger Cloud service
-products: [cloud, mst, self_hosted]
-keywords: [IoT, simulate]
+title: Sync from Postgres
+description: Synchronize updates to your primary Postgres database with the corresponding Tiger Cloud service in real time
+keywords: [PostgreSQL, source connector, logical replication, synchronization, real-time replication, data sync, migration, CDC, change data capture]
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+import LivesyncConsole from '/snippets/integrations/_livesync-console-pg.mdx';
+import LivesyncTerminal from '/snippets/integrations/_livesync-terminal-pg.mdx';
+import { SERVICE_SHORT, PG, PG_CONNECTOR } from '/snippets/vars.mdx';
+
+
+You use the {PG_CONNECTOR} to synchronize all data or specific tables from a {PG} database instance to your
+{SERVICE_SHORT}, in real time. You run the connector continuously, turning {PG} into a primary database with your
+{SERVICE_SHORT} as a logical replica. This enables you to leverage real-time analytics capabilities on
+your replica data.
+
+![Connectors overview](https://assets.timescale.com/docs/images/tiger-on-azure/tiger-console-connector-overview.png)
+
+The {PG_CONNECTOR} leverages the well-established {PG} logical replication protocol. By relying on this protocol,
+it ensures compatibility, familiarity, and a broader knowledge base—making it easier for you to adopt the connector
+and integrate your data.
+
+You use the {PG_CONNECTOR} for data synchronization, rather than migration. This includes:
+
+* Copy existing data from a {PG} instance:
+  - Copy data at up to 150 GB/hr.
+
+    You need at least a 4 CPU/16 GB source database, and a 4 CPU/16 GB target {SERVICE_SHORT}.
+  - Copy the publication tables in parallel.
+
+    Large tables are still copied using a single connection. Parallel copying is in the backlog.
+  - Forget foreign key relationships.
+
+    The connector disables foreign key validation during the sync. For example, if a `metrics` table refers to
+    the `id` column on the `tags` table, you can still sync only the `metrics` table without worrying about their
+    foreign key relationships.
+  - Track progress.
+
+    {PG} exposes `COPY` progress under `pg_stat_progress_copy`.
+
+* Synchronize real-time changes from a {PG} instance.
+* Add and remove tables on demand using the [{PG} PUBLICATION interface][pg-publication].
+* Enable features such as hypertables, columnstore, and continuous aggregates on your logical replica.
+
+<Icon icon="flask" /> Early access: this source {PG} connector is not yet supported for production use. If you have
+any questions or feedback, talk to us in [#livesync in the Tiger Community][tiger-community-livesync].
+
+
+
+
+
+<Tabs>
+
+<Tab title="Tiger Cloud Console">
+
+<LivesyncConsole />
+
+</Tab>
+
+<Tab title="Self-hosted Postgres connector">
+
+<LivesyncTerminal />
+
+</Tab>
+
+</Tabs>
+
+[pg-publication]: https://www.postgresql.org/docs/current/sql-createpublication.html
+[tiger-community-livesync]: https://app.slack.com/client/T4GT3N2JK/C086NU9EZ88

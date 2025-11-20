@@ -1,19 +1,17 @@
-
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
+import { PG, CLOUD_LONG, COMPANY, TIMESCALE_DB, SELF_LONG_CAP } from '/snippets/vars.mdx';
+import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
 
 ## Prerequisites
 
 <IntegrationPrereqs />
 
-*   Install [Rails][rails-guide].
+*   Install [Rails][install-rails].
 
-## Connect a Rails app to your service 
+## Connect a Rails app to your service
 
 Every {SERVICE_LONG} is a 100% {PG} database hosted in {CLOUD_LONG} with
 {COMPANY} extensions such as {TIMESCALE_DB}. You connect to your {SERVICE_LONG}
 from a standard Rails app configured for {PG}.
-
-<Procedure>
 
 1.  **Create a new Rails app configured for {PG}**
 
@@ -33,7 +31,7 @@ from a standard Rails app configured for {PG}.
        ```
 
    1. In Terminal, run the following command:
-   
+
       ```bash
       bundle install
       ```
@@ -51,13 +49,13 @@ from a standard Rails app configured for {PG}.
          url: <%= ENV['DATABASE_URL'] %>
        ```
 
-   1.  Set the environment variable for `DATABASE_URL` to the value of `Service URL` from
-       your [connection details][connection-info]
+   2.  Set the environment variable for `DATABASE_URL` to the value of `Service URL` from
+       your [connection details](/integrations/find-connection-details)
        ```bash
        export DATABASE_URL="value of Service URL"
        ```
 
-   1. Create the database:
+   3. Create the database:
       - **{CLOUD_LONG}**: nothing to do. The database is part of your {SERVICE_LONG}.
       - **{SELF_LONG_CAP}**, create the database for the project:
 
@@ -65,13 +63,13 @@ from a standard Rails app configured for {PG}.
           rails db:create
           ```
 
-   1.  Run migrations:
+   4.  Run migrations:
 
        ```bash
        rails db:migrate
        ```
 
-   1.  Verify the connection from your app to your {SERVICE_LONG}:
+   5.  Verify the connection from your app to your {SERVICE_LONG}:
 
        ```bash
        echo "\dx" | rails dbconsole
@@ -79,37 +77,32 @@ from a standard Rails app configured for {PG}.
 
        The result shows the list of extensions in your {SERVICE_LONG}
 
-      |  Name  | Version | Schema | Description  |                                       
+      |  Name  | Version | Schema | Description  |
       | --  | -- | -- | -- |
-      | pg_buffercache      | 1.5     | public     | examine the shared buffer cache| 
-      | pg_stat_statements  | 1.11    | public     | track planning and execution statistics of all SQL statements executed| 
-      | plpgsql             | 1.0     | pg_catalog | PL/pgSQL procedural language| 
+      | pg_buffercache      | 1.5     | public     | examine the shared buffer cache|
+      | pg_stat_statements  | 1.11    | public     | track planning and execution statistics of all SQL statements executed|
+      | plpgsql             | 1.0     | pg_catalog | PL/pgSQL procedural language|
       | postgres_fdw        | 1.1     | public     | foreign-data wrapper for remote {PG} servers|
-      | timescaledb         | 2.18.1  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)| 
-      | timescaledb_toolkit | 1.19.0  | public     | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities| 
-
-</Procedure>
+      | timescaledb         | 2.23.0  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)|
+      | timescaledb_toolkit | 1.22.0  | public     | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities|
 
 ## Optimize time-series data in hypertables
 
 Hypertables are {PG} tables designed to simplify and accelerate data analysis. Anything
 you can do with regular {PG} tables, you can do with hypertables - but much faster and more conveniently.
 
-In this section, you use the helpers in the {TIMESCALE_DB} gem to create and manage a [hypertable][about-hypertables].
-
-<Procedure>
+In this section, you use the helpers in the {TIMESCALE_DB} gem to create and manage a [hypertable](/use-timescale/hypertables).
 
 1.  **Generate a migration to create the page loads table**
 
     ```bash
     rails generate migration create_page_loads
     ```
+    This creates the `<my_app_home>/db/migrate/<migration-datetime>_create_page_loads.rb` migration file.
 
-   This creates the `<my_app_home>/db/migrate/<migration-datetime>_create_page_loads.rb` migration file.
+1. **Add hypertable options**
 
-1. **Add hypertable options** 
-
-   Replace the contents of `<my_app_home>/db/migrate/<migration-datetime>_create_page_loads.rb` 
+   Replace the contents of `<my_app_home>/db/migrate/<migration-datetime>_create_page_loads.rb`
    with the following:
 
     ```ruby
@@ -136,10 +129,10 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
 
     The `id` column is not included in the table. This is because {TIMESCALE_DB} requires that any `UNIQUE` or `PRIMARY KEY`
     indexes on the table include all partitioning columns. In this case, this is the time column. A new
-    Rails model includes a `PRIMARY KEY` index for id by default: either remove the column or make sure that the index 
+    Rails model includes a `PRIMARY KEY` index for id by default: either remove the column or make sure that the index
     includes time as part of a "composite key."
 
-   For more information, check the Roby docs around [composite primary keys][rails-compostite-primary-keys].
+   For more information, check the Ruby docs around [composite primary keys][rails-composite-keys].
 
 1.  **Create a `PageLoad` model**
 
@@ -160,7 +153,7 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
       scope :safari_users, -> { where("user_agent LIKE ?", "%Safari%") }
 
       # Performance analysis scopes
-      scope :performance_stats, -> { 
+      scope :performance_stats, -> {
         select("stats_agg(#{value_column}) as stats_agg")
       }
 
@@ -196,14 +189,57 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
     rails db:migrate
     ```
 
-</Procedure>
+## Advanced configuration
+
+### Alternative model configuration approaches
+
+The {TIMESCALE_DB} gem provides three ways to configure your models as hypertables:
+
+1. **Per-model configuration** (shown above): Use `extend Timescaledb::ActsAsHypertable` in each model
+
+2. **Global configuration via initializer**: Create `config/initializers/timescaledb.rb`:
+
+    ```ruby
+    Timescaledb.configure do |config|
+      config.default_hypertable_options = {
+        time_column: 'created_at',
+        chunk_time_interval: '1 day'
+      }
+    end
+    ```
+
+3. **Abstract model inheritance**: Create a base class that other models inherit from:
+
+    ```ruby
+    class HypertableRecord < ApplicationRecord
+      self.abstract_class = true
+      extend Timescaledb::ActsAsHypertable
+    end
+
+    class PageLoad < HypertableRecord
+      acts_as_hypertable time_column: "created_at"
+    end
+    ```
+
+### Multi-dimensional partitioning
+
+In addition to time-based partitioning, you can add secondary dimensions using the `partition_column` option:
+
+```ruby
+hypertable_options = {
+  time_column: 'created_at',
+  partition_column: 'device_id',  # Add a secondary dimension
+  number_partitions: 4,            # Number of partitions for the secondary dimension
+  chunk_time_interval: '1 day'
+}
+```
+
+Multi-dimensional partitioning is useful when you have a high-cardinality dimension (like `device_id`, `customer_id`, or `region`) that you frequently query alongside time.
 
 ## Insert data your service
 
 The {TIMESCALE_DB} gem provides efficient ways to insert data into hypertables. This section
 shows you how to ingest test data into your hypertable.
-
-<Procedure>
 
 1.  **Create a controller to handle page loads**
 
@@ -219,7 +255,7 @@ shows you how to ingest test data into your hypertable.
         start_time = Time.current
         yield
         end_time = Time.current
-        
+
         PageLoad.create(
           path: request.path,
           user_agent: request.user_agent,
@@ -250,8 +286,7 @@ shows you how to ingest test data into your hypertable.
           path: paths.sample,
           user_agent: browsers.sample,
           performance: rand(0.1..2.0),
-          created_at: time,
-          updated_at: time
+          created_at: time
         }
       end
     end
@@ -270,8 +305,6 @@ shows you how to ingest test data into your hypertable.
    PageLoad.count
    PageLoad.first
    ```
-
-</Procedure>
 
 ## Reference
 
@@ -320,10 +353,10 @@ The {TIMESCALE_DB} gem provides several convenient scopes for querying your time
     puts "Standard Deviation: #{stats.stddev}"
     ```
 
-### {TIMESCALE_DB} features
+### TimescaleDB features
 
 The {TIMESCALE_DB} gem provides utility methods to access hypertable and chunk information. Every model that uses
-the `acts_as_hypertable` method has access to these methods. 
+the `acts_as_hypertable` method has access to these methods.
 
 
 #### Access hypertable and chunk information
@@ -346,7 +379,7 @@ the `acts_as_hypertable` method has access to these methods.
 
 #### Access hypertable stats
 
-You collect hypertable stats using methods that provide insights into your hypertable's structure, size, and compression 
+You collect hypertable stats using methods that provide insights into your hypertable's structure, size, and compression
 status:
 
 - Get basic hypertable information:
@@ -354,7 +387,7 @@ status:
     ```ruby
     hypertable = PageLoad.hypertable
     hypertable.hypertable_name  # The name of your hypertable
-    hypertable.schema_name      # The schema where the hypertable is located
+    hypertable.hypertable_schema # The schema where the hypertable is located
     ```
 
 - Get detailed size information:
@@ -368,7 +401,7 @@ status:
     hypertable.continuous_aggregates.map(&:view_name) # Get continuous aggregate view names
     ```
 
-#### Continuous aggregates 
+#### Continuous aggregates
 
 The `continuous_aggregates` method generates a class for each continuous aggregate.
 
@@ -394,31 +427,23 @@ The `continuous_aggregates` method generates a class for each continuous aggrega
    PageLoad.drop_continuous_aggregates
    ```
 
-   
+
 
 
 ## Next steps
 
 Now that you have integrated the ruby gem into your app:
 
-* Learn more about the [{TIMESCALE_DB} gem](https://github.com/timescale/timescaledb-ruby).
-* Check out the [official docs](https://timescale.github.io/timescaledb-ruby/).
-* Follow the [LTTB][LTTB], [Open AI long-term storage][open-ai-tutorial], and [candlesticks][candlesticks] tutorials.
+* Learn more about the [{TIMESCALE_DB} gem][timescaledb-ruby-gem].
+* Check out the [official docs][timescaledb-ruby-docs].
+* Follow the [LTTB][lttb-tutorial], [Open AI long-term storage][openai-tutorial], and [candlesticks][candlestick-tutorial] tutorials.
 
-[connect]: #connect-to-timescaledb
-[create-a-hypertable]: #create-a-hypertable
-[insert]: #insert-data
-[query]: #execute-queries
-[create-aggregates]: #execute-queries
-[add-policies]: #manage-chunks-and-compression
-[manage-chunks]: #manage-chunks-and-compression
-[install]: /getting-started/latest/
-[psql-install]: /integrations/psql/
-[rails-guide]: https://guides.rubyonrails.org/install_ruby_on_rails.html#installing-rails
-[connection-info]: /integrations/find-connection-details/
-[about-hypertables]: /use-timescale/hypertables/
-[rails-compostite-primary-keys]: https://guides.rubyonrails.org/active_record_composite_primary_keys.html
+[install-rails]: https://guides.rubyonrails.org/install_ruby_on_rails.html#installing-rails
+[rails-composite-keys]: https://guides.rubyonrails.org/active_record_composite_primary_keys.html
 [ruby-blog-post]: https://www.timescale.com/blog/building-a-better-ruby-orm-for-time-series-and-analytics
-[LTTB]: https://timescale.github.io/timescaledb-ruby/toolkit_lttb_tutorial/
-[open-ai-tutorial]: https://timescale.github.io/timescaledb-ruby/chat_gpt_tutorial/
-[candlesticks]: https://timescale.github.io/timescaledb-ruby/toolkit_candlestick/
+[timescaledb-ruby-gem]: https://github.com/timescale/timescaledb-ruby
+[timescaledb-ruby-docs]: https://timescale.github.io/timescaledb-ruby/
+[lttb-tutorial]: https://timescale.github.io/timescaledb-ruby/toolkit_lttb_tutorial/
+[openai-tutorial]: https://timescale.github.io/timescaledb-ruby/chat_gpt_tutorial/
+[candlestick-tutorial]: https://timescale.github.io/timescaledb-ruby/toolkit_candlestick/
+[connection-info]: /integrations/find-connection-details/

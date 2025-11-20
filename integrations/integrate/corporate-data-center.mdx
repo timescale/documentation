@@ -2,14 +2,12 @@
 title: Integrate your data center with Tiger Cloud
 sidebarTitle: Corporate data center
 description: Integrate your on-premise data center with Tiger Cloud using AWS Transit Gateway
-products: [cloud]
-price_plans: [scale, enterprise]
-keywords: [on-premise, integrations]
+keywords: [corporate data center, on-premise, hybrid cloud, Transit Gateway, VPN, secure connection, network integration, enterprise connectivity]
 ---
 
-
-import IntegrationPrereqsCloud from "/snippets/prerequisites/_integration-prereqs-cloud-only.mdx";
-import TransitGateway from "/snippets/integrations/_transit-gateway.mdx";
+import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
+import TransitGateway from '/snippets/integrations/_transit-gateway.mdx';
+import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
 
 This page explains how to integrate your corporate on-premise infrastructure with {CLOUD_LONG} using [AWS Transit Gateway][aws-transit-gateway].
 
@@ -19,21 +17,19 @@ This page explains how to integrate your corporate on-premise infrastructure wit
 
 - Set up [AWS Transit Gateway][gtw-setup].
 
-## Connect your on-premise infrastructure to your {SERVICE_LONG}s
+- Establish connectivity between your on-premise infrastructure and AWS.
+
+   See the [Centralize network connectivity using AWS Transit Gateway][aws-onprem].
+
+<NotSupportedAzure />
+
+## Connect your on-premise infrastructure to your Tiger Cloud services
 
 To connect to {CLOUD_LONG}:
 
-<Procedure>
-
-1. **Connect your infrastructure to AWS Transit Gateway**
-
-   Establish connectivity between your on-premise infrastructure and AWS. See the [Centralize network connectivity using AWS Transit Gateway][aws-onprem].
-
 <TransitGateway />
 
-</Procedure>
-
-You have successfully integrated your Microsoft Azure infrastructure with {CLOUD_LONG}.
+You have successfully integrated your corporate data center with {CLOUD_LONG}.
 
 [aws-transit-gateway]: https://aws.amazon.com/transit-gateway/
 [gtw-setup]: https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html
