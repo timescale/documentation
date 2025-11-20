@@ -1,0 +1,117 @@
+---
+title: cohere_rerank_simple()
+description: Rerank search results by semantic relevance with a simplified response
+keywords: [Cohere, rerank, search, relevance]
+tags: [AI, Cohere, reranking, search]
+license: community
+type: function
+---
+
+Rerank a list of documents by semantic relevance to a query. This function returns a simplified table format with just
+the document index, text, and relevance score.
+
+## Samples
+
+### Rerank search results
+
+Improve search relevance by reordering results:
+
+```sql
+SELECT *
+FROM ai.cohere_rerank_simple(
+    'rerank-english-v3.0',
+    'What is a database?',
+    ARRAY[
+        'PostgreSQL is a relational database',
+        'Python is a programming language',
+        'A database stores and manages data',
+        'JavaScript is used for web development'
+    ]
+)
+ORDER BY relevance_score DESC;
+```
+
+Returns:
+
+```text
+ index |              document              | relevance_score
+-------+------------------------------------+-----------------
+     2 | A database stores and manages data |        0.95
+     0 | PostgreSQL is a relational database|        0.89
+     1 | Python is a programming language   |        0.12
+     3 | JavaScript is used for web dev     |        0.08
+```
+
+### Limit results with top_n
+
+Return only the most relevant documents:
+
+```sql
+SELECT *
+FROM ai.cohere_rerank_simple(
+    'rerank-english-v3.0',
+    'time-series databases',
+    ARRAY[
+        'TimescaleDB extends PostgreSQL for time-series data',
+        'MongoDB is a document database',
+        'Time-series data has temporal ordering',
+        'Redis is an in-memory cache'
+    ],
+    top_n => 2
+)
+ORDER BY relevance_score DESC;
+```
+
+### Use in a search pipeline
+
+Combine vector search with reranking:
+
+```sql
+WITH vector_results AS (
+    SELECT content, embedding <=> query_embedding AS distance
+    FROM documents
+    ORDER BY embedding <=> query_embedding
+    LIMIT 20
+)
+SELECT content, relevance_score
+FROM vector_results
+CROSS JOIN LATERAL ai.cohere_rerank_simple(
+    'rerank-english-v3.0',
+    'user query here',
+    ARRAY_AGG(content) OVER (),
+    top_n => 5
+) AS reranked
+WHERE content = document
+ORDER BY relevance_score DESC;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The Cohere reranking model (e.g., `rerank-english-v3.0`) |
+| `query` | `TEXT` | - | ✔ | The search query |
+| `documents` | `TEXT[]` | - | ✔ | Array of documents to rerank |
+| `api_key` | `TEXT` | `NULL` | ✖ | Cohere API key. If not provided, uses configured secret |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `top_n` | `INT` | `NULL` | ✖ | Return only the top N most relevant documents |
+| `max_tokens_per_doc` | `INT` | `NULL` | ✖ | Maximum tokens per document (for truncation) |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`TABLE`: A table with the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `index` | `INT` | Original index of the document in the input array (0-based) |
+| `document` | `TEXT` | The document text |
+| `relevance_score` | `FLOAT8` | Relevance score (0.0 to 1.0, higher is more relevant) |
+
+## Related functions
+
+- [`cohere_rerank()`][cohere_rerank]: full API response with additional metadata
+- [`cohere_embed()`][cohere_embed]: generate embeddings for vector search
+
+[cohere_rerank]: /api-reference/pgai/model-calling/cohere/cohere_rerank
+[cohere_embed]: /api-reference/pgai/model-calling/cohere/cohere_embed

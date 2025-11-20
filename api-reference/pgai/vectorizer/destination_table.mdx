@@ -1,0 +1,78 @@
+---
+title: destination_table()
+description: Store embeddings in a separate table with automatic view creation
+keywords: [vectorizer, destination, embeddings, table]
+tags: [vectorizer, configuration, embeddings]
+license: community
+type: function
+---
+
+Store embeddings in a separate table. This is the default behavior, where a new table is created to store embeddings
+and a view joins the source table with the embeddings. This approach supports chunking, allowing multiple embeddings
+per source row.
+
+Key features for this function are:
+
+- New table created to store embeddings
+- View automatically joins source and embeddings tables
+- Supports chunking (multiple chunks per row)
+- Separate storage optimizes for different access patterns
+
+## Samples
+
+### Full configuration
+
+Specify all destination details:
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    destination => ai.destination_table(
+        target_schema => 'public',
+        target_table => 'my_table_embeddings_store',
+        view_schema => 'public',
+        view_name => 'my_table_embeddings'
+    ),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### Simpler configuration with defaults
+
+Use a base name and let defaults apply:
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    destination => ai.destination_table('my_table_embeddings'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+This creates:
+- Table: `my_table_embeddings_store`
+- View: `my_table_embeddings`
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `destination` | `NAME` | - | ✖ | Base name for view and table. View is named `<destination>`, table is named `<destination>_store` |
+| `target_schema` | `NAME` | Source table schema | ✖ | Schema where the embeddings table will be created |
+| `target_table` | `NAME` | `<source_table>_embedding_store` or `<destination>_store` | ✖ | Name of the table where embeddings will be stored |
+| `view_schema` | `NAME` | Source table schema | ✖ | Schema where the view will be created |
+| `view_name` | `NAME` | `<source_table>_embedding` or `<destination>` | ✖ | Name of the view that joins source and embeddings tables |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`destination_column()`][destination_column]: alternative approach storing embeddings in source table
+- [`create_vectorizer()`][create_vectorizer]: main function using this configuration
+
+[destination_column]: /api-reference/pgai/vectorizer/destination_column
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

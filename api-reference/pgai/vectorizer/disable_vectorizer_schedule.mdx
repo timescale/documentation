@@ -1,0 +1,48 @@
+---
+title: disable_vectorizer_schedule
+description: Deactivate or pause automatic scheduling for a vectorizer
+keywords: [pgai, vectorizer, scheduling, disable, management]
+tags: [vectorizer, management, scheduling]
+license: community
+type: function
+---
+
+Deactivate the scheduled job for a specific vectorizer.
+
+- Temporarily stop the automatic processing of new or updated data
+- Can be called with either a vectorizer name (recommended) or ID
+- Disabling a schedule does not delete the vectorizer or its configuration
+
+## Samples
+
+### Using vectorizer name
+
+```sql
+SELECT ai.disable_vectorizer_schedule('public_blog_embeddings');
+```
+
+### Using vectorizer ID
+
+```sql
+SELECT ai.disable_vectorizer_schedule(1);
+```
+
+## Arguments
+
+`ai.disable_vectorizer_schedule` can be called in two ways:
+
+### With vectorizer name (recommended)
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| name | text | - | ✔ | The name of the vectorizer whose schedule you want to disable |
+
+### With vectorizer ID
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| vectorizer_id | int | - | ✔ | The identifier of the vectorizer whose schedule you want to disable |
+
+## Returns
+
+`ai.disable_vectorizer_schedule` does not return a value.

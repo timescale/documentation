@@ -1,0 +1,91 @@
+---
+title: into_values()
+description: Returns the highest values from a MaxN aggregate
+topics: [hyperfunctions]
+tags: [hyperfunctions, toolkit, maximum]
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  family: minimum and maximum
+  type: accessor
+  aggregates:
+    - max_n()
+products: [cloud, mst, self_hosted]
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+
+Return the N highest values seen by the aggregate.
+
+## Samples
+
+Get the 5 highest daily temperatures from a weather dataset:
+
+## Arguments
+
+The syntax is:
+
+```sql
+SELECT into_values(
+    max_n(temperature, 5)
+) FROM weather_data
+WHERE date = '2024-01-15';
+```
+
+This returns a set of values that you can use in a query. For example:
+
+```sql
+-- Get the top 5 temperatures for each location
+SELECT
+    location,
+    into_values(max_n(temperature, 5)) as top_temp
+FROM weather_data
+GROUP BY location;
+```
+
+Output:
+```
+location  | top_temp
+----------|----------
+Station_A | 32.5
+Station_A | 31.2
+Station_A | 30.8
+Station_A | 29.5
+Station_A | 28.9
+Station_B | 28.3
+Station_B | 27.8
+...
+```
+
+To aggregate the results into daily buckets and get the highest values:
+
+```sql
+WITH daily_max AS (
+    SELECT
+        time_bucket('1 day'::interval, ts) as day,
+        max_n(temperature, 3) AS top_temps
+    FROM weather_data
+    GROUP BY day
+)
+SELECT
+    day,
+    into_values(top_temps) as temperature
+FROM daily_max
+ORDER BY day, temperature DESC;
+```
+```sql
+into_values (
+    agg MaxN
+) SETOF BIGINT | SETOF DOUBLE PRECISION | SETOF TIMESTAMPTZ
+```
+
+| Name | Type | Default | Required | Description |
+|--|--|--|--|--|
+| `agg` | MaxN | - | ✔ | The aggregate to return the results from. Note that the exact type here varies based on the type of data stored. |
+
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| into_values | SETOF BIGINT \| SETOF DOUBLE PRECISION \| SETOF TIMESTAMPTZ | The lowest values seen while creating this aggregate. |

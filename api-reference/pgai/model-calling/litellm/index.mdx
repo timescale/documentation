@@ -1,0 +1,106 @@
+---
+title: LiteLLM functions
+sidebarTitle: Overview
+description: Unified interface for 100+ LLM providers with a single API
+keywords: [LiteLLM, unified API, multi-provider, embeddings]
+tags: [AI, LiteLLM, embeddings, multi-provider]
+license: community
+type: function
+---
+
+import { PG } from '/snippets/vars.mdx';
+
+Call any LLM provider's API through LiteLLM's unified interface. LiteLLM translates a single API format into calls to
+OpenAI, Azure, AWS Bedrock, Google Vertex AI, Anthropic, Cohere, and 100+ other providers.
+
+## What is LiteLLM?
+
+LiteLLM is a unified interface that lets you call different LLM APIs using the same format. Instead of learning each
+provider's API, you can use one consistent interface and switch between providers by changing the model name.
+
+## Key features
+
+- **100+ providers**: Access OpenAI, Azure, AWS Bedrock, Google Vertex AI, Anthropic, Cohere, and more
+- **Unified API**: One interface for all providers
+- **Easy switching**: Change providers by updating the model name
+- **Fallback support**: Automatically retry failed requests with different providers
+- **Cost tracking**: Built-in usage and cost tracking across providers
+
+## Prerequisites
+
+To use LiteLLM functions, you need:
+
+1. API keys for the providers you want to use
+2. API keys configured in your database (see configuration section below)
+
+## Quick start
+
+### Use OpenAI through LiteLLM
+
+```sql
+SELECT ai.litellm_embed(
+    'text-embedding-ada-002',
+    'PostgreSQL is a powerful database',
+    api_key_name => 'OPENAI_API_KEY'
+);
+```
+
+### Use Azure OpenAI
+
+```sql
+SELECT ai.litellm_embed(
+    'azure/my-deployment',
+    'PostgreSQL is a powerful database',
+    api_key_name => 'AZURE_API_KEY',
+    extra_options => '{"api_base": "https://my-endpoint.openai.azure.com/"}'::jsonb
+);
+```
+
+### Use AWS Bedrock
+
+```sql
+SELECT ai.litellm_embed(
+    'bedrock/amazon.titan-embed-text-v1',
+    'PostgreSQL is a powerful database',
+    extra_options => '{"aws_region_name": "us-east-1"}'::jsonb
+);
+```
+
+### Use Google Vertex AI
+
+```sql
+SELECT ai.litellm_embed(
+    'vertex_ai/textembedding-gecko',
+    'PostgreSQL is a powerful database',
+    api_key_name => 'VERTEX_AI_KEY',
+    extra_options => '{"vertex_project": "my-project", "vertex_location": "us-central1"}'::jsonb
+);
+```
+
+## Configuration
+
+LiteLLM typically requires provider-specific configuration through environment variables or the `extra_options`
+parameter. Consult the [LiteLLM documentation](https://docs.litellm.ai/docs/providers) for provider-specific setup.
+
+## Available functions
+
+### Embeddings
+
+- [`litellm_embed()`][litellm_embed]: generate embeddings from any supported provider
+
+## Model naming convention
+
+LiteLLM uses a simple naming convention:
+
+- **OpenAI models**: Use the model name directly (e.g., `text-embedding-ada-002`)
+- **Other providers**: Prefix with provider name (e.g., `azure/deployment-name`, `bedrock/model-id`, `vertex_ai/model-name`)
+
+See the [LiteLLM providers documentation](https://docs.litellm.ai/docs/providers) for the complete list.
+
+## Resources
+
+- [LiteLLM documentation](https://docs.litellm.ai)
+- [LiteLLM providers](https://docs.litellm.ai/docs/providers)
+- [LiteLLM GitHub](https://github.com/BerriAI/litellm)
+
+[litellm_embed]: /api-reference/pgai/model-calling/litellm/litellm_embed

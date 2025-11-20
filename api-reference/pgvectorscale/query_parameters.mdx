@@ -1,0 +1,175 @@
+---
+title: Query-time parameters
+description: Tune StreamingDiskANN query performance and accuracy dynamically
+keywords: [pgvectorscale, parameters, query, performance, accuracy]
+tags: [query, configuration, performance]
+license: community
+type: configuration
+---
+
+Configure StreamingDiskANN query behavior at runtime to dynamically tune the accuracy vs performance trade-off for individual queries or sessions.
+
+- Adjust accuracy and speed trade-offs per query
+- Fine-tune search quality without rebuilding indexes
+- Optimize for different use cases (fast approximate vs high-accuracy search)
+- Control rescoring behavior for better accuracy
+
+## Samples
+
+### Increase accuracy for important queries
+
+```sql
+-- Temporarily increase search list size and rescoring
+BEGIN;
+SET LOCAL diskann.query_search_list_size = 200;
+SET LOCAL diskann.query_rescore = 100;
+
+SELECT * FROM document_embedding
+ORDER BY embedding <=> '[...]'
+LIMIT 10;
+
+COMMIT;
+```
+
+### Fast approximate search
+
+```sql
+-- Reduce search list size for faster queries
+SET diskann.query_search_list_size = 50;
+SET diskann.query_rescore = 20;
+
+SELECT * FROM document_embedding
+ORDER BY embedding <=> '[...]'
+LIMIT 10;
+```
+
+### Disable rescoring for maximum speed
+
+```sql
+-- Use quantized results without rescoring
+SET diskann.query_rescore = 0;
+
+SELECT * FROM document_embedding
+ORDER BY embedding <=> '[...]'
+LIMIT 10;
+```
+
+### Session-wide configuration
+
+```sql
+-- Set parameters for the entire session
+SET diskann.query_search_list_size = 150;
+SET diskann.query_rescore = 75;
+
+-- All queries in this session use these settings
+SELECT * FROM document_embedding ORDER BY embedding <=> '[...]' LIMIT 10;
+SELECT * FROM document_embedding ORDER BY embedding <=> '[...]' LIMIT 20;
+```
+
+## Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `diskann.query_search_list_size` | `int` | 100 | Number of additional candidates considered during graph search. Higher values improve accuracy but slow queries |
+| `diskann.query_rescore` | `int` | 50 | Number of elements rescored with full precision. Set to 0 to disable rescoring |
+
+### diskann.query_search_list_size
+
+Controls the size of the candidate list during graph traversal:
+
+- **Lower values (20-50)**: Faster queries, reduced accuracy, fewer candidates explored
+- **Default (100)**: Balanced performance and accuracy
+- **Higher values (100-200)**: Better accuracy, slower queries, more thorough search
+
+This parameter has the most direct impact on the accuracy/speed trade-off.
+
+### diskann.query_rescore
+
+The number of top candidates to rescore using full-precision vectors:
+
+- **0**: Disable rescoring, use quantized results directly (fastest)
+- **Default (50)**: Rescore top 50 candidates for improved accuracy
+- **Higher values (50-200)**: More thorough rescoring, better accuracy, slower queries
+
+Rescoring helps correct errors introduced by quantization in memory-optimized indexes. For plain storage indexes, rescoring has minimal effect.
+
+## Setting parameters
+
+### Session-level (persistent)
+
+```sql
+SET diskann.query_search_list_size = 150;
+```
+
+Applies to all queries in the current session until changed or the session ends.
+
+### Transaction-local (temporary)
+
+```sql
+BEGIN;
+SET LOCAL diskann.query_rescore = 100;
+-- Parameter applies only within this transaction
+SELECT * FROM document_embedding ORDER BY embedding <=> '[...]' LIMIT 10;
+COMMIT;
+-- Parameter is reset after commit
+```
+
+The `LOCAL` keyword ensures parameters reset after the transaction ends.
+
+## Tuning recommendations
+
+### High-accuracy applications
+
+For applications where accuracy is critical (e.g., medical diagnosis, legal document search):
+
+```sql
+SET diskann.query_search_list_size = 200;
+SET diskann.query_rescore = 100;
+```
+
+### Real-time applications
+
+For latency-sensitive applications (e.g., chatbots, autocomplete):
+
+```sql
+SET diskann.query_search_list_size = 50;
+SET diskann.query_rescore = 20;
+```
+
+### Batch processing
+
+For offline batch processing where throughput matters:
+
+```sql
+SET diskann.query_search_list_size = 75;
+SET diskann.query_rescore = 30;
+```
+
+### A/B testing different configurations
+
+```sql
+-- Test configuration A
+BEGIN;
+SET LOCAL diskann.query_search_list_size = 100;
+SET LOCAL diskann.query_rescore = 50;
+EXPLAIN ANALYZE SELECT * FROM document_embedding ORDER BY embedding <=> '[...]' LIMIT 10;
+COMMIT;
+
+-- Test configuration B
+BEGIN;
+SET LOCAL diskann.query_search_list_size = 150;
+SET LOCAL diskann.query_rescore = 75;
+EXPLAIN ANALYZE SELECT * FROM document_embedding ORDER BY embedding <=> '[...]' LIMIT 10;
+COMMIT;
+```
+
+### Performance considerations
+
+- Start with default values and adjust `diskann.query_rescore` first
+- Use transaction-local settings (`SET LOCAL`) for experimentation
+- Monitor query latency with `EXPLAIN ANALYZE` when tuning
+- Higher values consume more CPU but not significantly more memory
+
+
+[create_index]: /api-reference/pgvectorscale/create_index
+[index_parameters]: /api-reference/pgvectorscale/index_parameters

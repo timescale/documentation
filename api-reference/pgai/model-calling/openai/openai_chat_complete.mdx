@@ -1,0 +1,119 @@
+---
+title: openai_chat_complete()
+description: Generate text completions and have conversations with OpenAI's chat models
+keywords: [OpenAI, chat, GPT, completion, LLM]
+tags: [AI, chat, GPT, text generation]
+license: community
+type: function
+---
+
+import OpenAPIChatComplete from '/snippets/api-reference/pgai/_openai_chat_complete_arguments.mdx';
+
+Generate text completions using OpenAI's chat models like GPT-4 and GPT-3.5. This function enables you to have
+multi-turn conversations, generate text from prompts, and leverage advanced language model capabilities directly from
+PostgreSQL.
+
+## Samples
+
+### Generate a simple completion
+
+Ask a question and get a response:
+
+```sql
+SELECT ai.openai_chat_complete(
+    'gpt-4o-mini',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?')
+    )
+)->'choices'->0->'message'->>'content';
+```
+
+### Use system prompts
+
+Set the behavior and context with a system message:
+
+```sql
+SELECT ai.openai_chat_complete(
+    'gpt-4o',
+    jsonb_build_array(
+        jsonb_build_object('role', 'system', 'content', 'You are a helpful database expert'),
+        jsonb_build_object('role', 'user', 'content', 'Explain hypertables in simple terms')
+    )
+)->'choices'->0->'message'->>'content';
+```
+
+### Multi-turn conversation
+
+Continue a conversation with message history:
+
+```sql
+SELECT ai.openai_chat_complete(
+    'gpt-4o-mini',
+    jsonb_build_array(
+        jsonb_build_object('role', 'system', 'content', 'You are a SQL expert'),
+        jsonb_build_object('role', 'user', 'content', 'How do I create a table?'),
+        jsonb_build_object('role', 'assistant', 'content', 'Use CREATE TABLE...'),
+        jsonb_build_object('role', 'user', 'content', 'Now show me how to add an index')
+    )
+)->'choices'->0->'message'->>'content';
+```
+
+### Control response format
+
+Specify max tokens and temperature:
+
+```sql
+SELECT ai.openai_chat_complete(
+    'gpt-4o-mini',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Write a haiku about databases')
+    ),
+    max_tokens => 50,
+    temperature => 0.7
+);
+```
+
+### Get the full response
+
+Access all response metadata:
+
+```sql
+SELECT jsonb_pretty(
+    ai.openai_chat_complete(
+        'gpt-4o-mini',
+        jsonb_build_array(
+            jsonb_build_object('role', 'user', 'content', 'Hello!')
+        )
+    )
+);
+```
+
+## Arguments
+
+<OpenAPIChatComplete />
+
+## Returns
+
+`JSONB`: A JSON object containing the completion response with the following structure:
+- `id`: Unique identifier for the completion
+- `object`: Always `"chat.completion"`
+- `created`: Unix timestamp of when the completion was created
+- `model`: The model used for completion
+- `choices`: Array of completion choices
+  - `index`: Choice index
+  - `message`: The generated message with `role` and `content`
+  - `finish_reason`: Why the model stopped generating
+- `usage`: Token usage information
+  - `prompt_tokens`: Tokens in the prompt
+  - `completion_tokens`: Tokens in the completion
+  - `total_tokens`: Total tokens used
+
+## Related functions
+
+- [`openai_chat_complete_simple()`][openai_chat_complete_simple]: simplified interface for quick queries
+- [`openai_chat_complete_with_raw_response()`][openai_chat_complete_with_raw_response]: get raw HTTP response
+- [`openai_tokenize()`][openai_tokenize]: count tokens before making API calls
+
+[openai_chat_complete_simple]: /api-reference/pgai/model-calling/openai/openai_chat_complete_simple
+[openai_chat_complete_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response
+[openai_tokenize]: /api-reference/pgai/model-calling/openai/openai_tokenize

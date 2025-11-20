@@ -1,0 +1,103 @@
+---
+title: enable_chunk_skipping()
+description: Enable range tracking for columns of chunks from a hypertable
+topics: [hypertables]
+keywords: [hypertables, chunks, range-tracking, skipping]
+tags: [columns, ranges, min-max, chunks]
+license: apache
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+
+import CreateHypertablePolicyNote from '/snippets/manage-data/create-hypertable-columnstore-policy-note.mdx';
+
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
+<Icon icon="flask" /> Early access 2.17.1
+
+<Tag>Experimental</Tag>
+
+Enable range statistics for a specific column in a **compressed** {HYPERTABLE}. This tracks a range of values for that
+column per {CHUNK}.
+Used for {CHUNK} skipping during query optimization and applies only to the {CHUNK}s created after {CHUNK} skipping is
+enabled.
+
+Best practice is to enable range tracking on columns that are correlated to the
+partitioning column. In other words, enable tracking on secondary columns which are
+referenced in the `WHERE` clauses in your queries.
+
+TimescaleDB supports min/max range tracking for the `smallint`, `int`,
+`bigint`, `serial`, `bigserial`, `date`, `timestamp`, and `timestamptz` data types. The
+min/max ranges are calculated when a {CHUNK} belonging to
+this {HYPERTABLE} is compressed using the [compress_chunk][compress_chunk] function.
+The range is stored in start (inclusive) and end (exclusive) form in the
+`chunk_column_stats` catalog table.
+
+This way you store the min/max values for such columns in this catalog
+table at the per-{CHUNK} level. These min/max range values do
+not participate in partitioning of the data. These ranges are
+used for {CHUNK} skipping when the `WHERE` clause of an SQL query specifies
+ranges on the column.
+
+A [DROP COLUMN](https://www.postgresql.org/docs/current/sql-altertable.html#SQL-ALTERTABLE-DESC-DROP-COLUMN)
+on a column with statistics tracking enabled on it ends up removing all relevant entries
+from the catalog table.
+
+A [decompress_chunk][decompress_chunk] invocation on a compressed {CHUNK} resets its entries
+from the `chunk_column_stats` catalog table since now it's available for DML and the
+min/max range values can change on any further data manipulation in the {CHUNK}.
+
+By default, this feature is disabled. To enable {CHUNK} skipping, set `timescaledb.enable_chunk_skipping = on` in
+`postgresql.conf`. When you upgrade from a database instance that uses compression but does not support {CHUNK}
+skipping, you need to recompress the previously compressed {CHUNK}s for {CHUNK} skipping to work.
+
+## Samples
+
+In this sample, you create the `conditions` {HYPERTABLE} with partitioning on the `time` column. You then specify and
+enable additional columns to track ranges for.
+
+```sql
+CREATE TABLE conditions (
+   time        TIMESTAMPTZ       NOT NULL,
+   location    TEXT              NOT NULL,
+   device      TEXT              NOT NULL,
+   temperature DOUBLE PRECISION  NULL,
+   humidity    DOUBLE PRECISION  NULL
+) WITH (
+   tsdb.hypertable
+);
+
+SELECT enable_chunk_skipping('conditions', 'device_id');
+```
+
+<CreateHypertablePolicyNote />
+
+## Arguments
+
+The syntax is:
+
+```sql
+SELECT enable_chunk_skipping(
+    hypertable = '<hypertable_name>',
+    column_name = '<column_name>',
+    if_not_exists = true | false
+);
+```
+
+| Name        | Type             | Default | Required | Description                            |
+|-------------|------------------|---------|-|----------------------------------------|
+|`column_name`| `TEXT`        | -       | ✔ | Column to track range statistics for |
+|`hypertable`| `REGCLASS`        | -       | ✔ | {HYPERTABLE} that the column belongs to  |
+|`if_not_exists`| `BOOLEAN`        | `false` | ✖ | Set to `true` so that a notice is sent when ranges are not being tracked for a column. By default, an error is thrown |
+
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+|`column_stats_id`|INTEGER|ID of the entry in the TimescaleDB internal catalog|
+|`enabled`|BOOLEAN|Returns `true` when tracking is enabled, `if_not_exists` is `true`, and when a new entry is not added|
+
+[compress_chunk]: /api-reference/timescaledb/compression/compress_chunk/
+[decompress_chunk]: /api-reference/timescaledb/compression/decompress_chunk/

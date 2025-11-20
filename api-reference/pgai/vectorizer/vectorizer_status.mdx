@@ -1,0 +1,59 @@
+---
+title: vectorizer_status
+description: View to monitor vectorizer state and pending items
+keywords: [pgai, vectorizer, monitoring, status, health]
+tags: [vectorizer, monitoring, view]
+license: community
+type: view
+---
+
+Get a high-level overview of all vectorizers in the system.
+
+- Regularly monitor and check the health of the entire system
+- Display key information about each vectorizer's configuration and current state
+- Use the `pending_items` column to get a quick indication of processing backlogs
+
+## Samples
+
+### Retrieve all vectorizers with pending items
+
+```sql
+SELECT * FROM ai.vectorizer_status WHERE pending_items > 0;
+```
+
+### System health monitoring
+
+Alert if any vectorizer has more than 1000 pending items.
+
+```sql
+SELECT id, source_table, pending_items
+FROM ai.vectorizer_status
+WHERE pending_items > 1000;
+```
+
+### Get overview of all vectorizers
+
+```sql
+SELECT * FROM ai.vectorizer_status;
+```
+
+Sample output:
+
+| id | source_table | target_table | view | pending_items |
+|----|--------------|--------------|------|---------------|
+| 1 | public.blog | public.blog_contents_embedding_store | public.blog_contents_embeddings | 1 |
+
+## Returns
+
+| Column name | Description |
+|-------------|-------------|
+| id | The unique identifier of this vectorizer |
+| source_table | The fully qualified name of the source table |
+| target_table | The fully qualified name of the table storing the embeddings |
+| view | The fully qualified name of the view joining source and target tables |
+| pending_items | The number of items waiting to be processed by the vectorizer |
+
+The `pending_items` column indicates the number of items still awaiting embedding creation. The pending items count helps you to:
+- Identify bottlenecks in processing
+- Determine if you need to adjust scheduling or processing configurations
+- Monitor the impact of large data imports or updates on your vectorizers

@@ -1,0 +1,84 @@
+---
+title: chunking_character_text_splitter()
+description: Split text into chunks based on character count with configurable separators
+keywords: [vectorizer, chunking, character, text splitting]
+tags: [vectorizer, configuration, chunking]
+license: community
+type: function
+---
+
+Split text into chunks based on a specified separator, with control over chunk size and overlap between chunks.
+
+You use this function to:
+
+- Split text into chunks based on a specified separator
+- Control the chunk size and amount of overlap between chunks
+- Simple, predictable chunking strategy
+
+## Samples
+
+### Basic character splitting
+
+Split content into 128-character chunks with 10-character overlap:
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(128, 10)
+);
+```
+
+### Custom separator
+
+Split on newlines:
+
+```sql
+SELECT ai.create_vectorizer(
+    'documents'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(512, 50, E'\n')
+);
+```
+
+### Regex separator
+
+Split using a regular expression:
+
+```sql
+SELECT ai.create_vectorizer(
+    'text_data'::regclass,
+    loading => ai.loading_column('text'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(
+        chunk_size => 800,
+        chunk_overlap => 100,
+        separator => E'\\n\\n|\\. ',
+        is_separator_regex => true
+    )
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `chunk_size` | `int` | `800` | ✖ | Maximum number of characters in a chunk |
+| `chunk_overlap` | `int` | `400` | ✖ | Number of characters to overlap between chunks |
+| `separator` | `text` | `E'\n\n'` | ✖ | String or character used to split the text |
+| `is_separator_regex` | `bool` | `false` | ✖ | Set to `true` if `separator` is a regular expression |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`chunking_recursive_character_text_splitter()`][chunking_recursive]: more sophisticated recursive splitting
+- [`chunking_none()`][chunking_none]: disable chunking
+
+[chunking_recursive]: /api-reference/pgai/vectorizer/chunking_recursive_character_text_splitter
+[chunking_none]: /api-reference/pgai/vectorizer/chunking_none
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

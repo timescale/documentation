@@ -1,0 +1,128 @@
+---
+title: openai_moderate()
+description: Check content for policy violations using OpenAI's moderation API
+keywords: [OpenAI, moderation, content filtering, safety]
+tags: [AI, moderation, safety]
+license: community
+type: function
+---
+
+import OpenAPIModerate from '/snippets/api-reference/pgai/_openai_moderate_arguments.mdx';
+
+Analyze text content to detect potential policy violations including hate speech, violence, sexual content, self-harm,
+and harassment. This uses OpenAI's moderation API to help ensure your application complies with usage policies.
+
+## Samples
+
+### Check content for violations
+
+Analyze text for potentially harmful content:
+
+```sql
+SELECT ai.openai_moderate(
+    'text-moderation-latest',
+    'I want to hurt someone'
+);
+```
+
+Returns a JSON object with flagged categories and confidence scores:
+
+```json
+{
+  "id": "modr-...",
+  "model": "text-moderation-007",
+  "results": [{
+    "flagged": true,
+    "categories": {
+      "violence": true,
+      "harassment": true,
+      ...
+    },
+    "category_scores": {
+      "violence": 0.997,
+      "harassment": 0.571,
+      ...
+    }
+  }]
+}
+```
+
+### Check if content is flagged
+
+Get a simple boolean result:
+
+```sql
+SELECT
+    content,
+    (ai.openai_moderate('text-moderation-latest', content)->
+        'results'->0->>'flagged')::boolean AS is_flagged
+FROM user_comments;
+```
+
+### Filter by specific categories
+
+Check for specific types of violations:
+
+```sql
+SELECT
+    id,
+    content,
+    (ai.openai_moderate('text-moderation-latest', content)->
+        'results'->0->'categories'->>'violence')::boolean AS has_violence
+FROM posts
+WHERE (ai.openai_moderate('text-moderation-latest', content)->
+    'results'->0->'categories'->>'violence')::boolean = true;
+```
+
+### Moderate user-generated content with triggers
+
+Automatically flag problematic content:
+
+```sql
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    content TEXT,
+    is_flagged BOOLEAN
+);
+
+CREATE OR REPLACE FUNCTION moderate_comment()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.is_flagged := (
+        ai.openai_moderate('text-moderation-latest', NEW.content)->
+        'results'->0->>'flagged'
+    )::boolean;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER moderate_on_insert
+    BEFORE INSERT ON comments
+    FOR EACH ROW
+    EXECUTE FUNCTION moderate_comment();
+```
+
+## Arguments
+
+<OpenAPIModerate/>
+
+## Returns
+
+`JSONB`: A JSON object containing moderation results with the following structure:
+- `id`: Unique identifier for the moderation request
+- `model`: The model used
+- `results`: Array of result objects (one per input)
+  - `flagged`: Boolean indicating if content was flagged
+  - `categories`: Object with boolean flags for each category
+    - `hate`, `hate/threatening`
+    - `harassment`, `harassment/threatening`
+    - `self-harm`, `self-harm/intent`, `self-harm/instructions`
+    - `sexual`, `sexual/minors`
+    - `violence`, `violence/graphic`
+  - `category_scores`: Object with confidence scores (0-1) for each category
+
+## Related functions
+
+- [`openai_moderate_with_raw_response()`][openai_moderate_with_raw_response]: get the full HTTP response
+
+[openai_moderate_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response

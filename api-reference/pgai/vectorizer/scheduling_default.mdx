@@ -1,0 +1,30 @@
+---
+title: scheduling_default
+description: Use platform-specific default scheduling configuration for vectorizers
+keywords: [pgai, vectorizer, scheduling, default, configuration]
+tags: [vectorizer, configuration, scheduling]
+license: community
+type: function
+---
+
+Use the platform-specific default scheduling configuration.
+
+On Timescale Cloud, the default is `ai.scheduling_timescaledb()`. On self-hosted, the default is `ai.scheduling_none()`. A TimescaleDB background job is used to periodically trigger a cloud vectorizer on Timescale Cloud. This is not available in a self-hosted environment.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    scheduling => ai.scheduling_default(),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+This function takes no arguments.
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

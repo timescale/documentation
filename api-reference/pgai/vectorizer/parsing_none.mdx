@@ -1,0 +1,40 @@
+---
+title: parsing_none()
+description: Skip the parsing step for textual data
+keywords: [vectorizer, parsing, text, none]
+tags: [vectorizer, configuration, parsing]
+license: community
+type: function
+---
+
+Skip the parsing step. Only appropriate for textual data that doesn't require parsing.
+
+## Samples
+
+### Skip parsing for text data
+
+```sql
+SELECT ai.create_vectorizer(
+    'text_content'::regclass,
+    loading => ai.loading_column('content'),
+    parsing => ai.parsing_none(),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768)
+);
+```
+
+## Arguments
+
+This function takes no arguments.
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`parsing_auto()`][parsing_auto]: automatically select parser based on file type
+- [`loading_column()`][loading_column]: load text data from a column
+
+[parsing_auto]: /api-reference/pgai/vectorizer/parsing_auto
+[loading_column]: /api-reference/pgai/vectorizer/loading_column
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

@@ -1,0 +1,61 @@
+---
+title: compress_chunk()
+description: Manually compress a given chunk
+topics: [compression]
+keywords: [compression]
+tags: [chunks]
+license: community
+type: function
+products: [cloud, mst, self_hosted]
+---
+
+import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [convert_to_columnstore()][convert-to-columnstore].
+
+The `compress_chunk` function is used for synchronous compression (or recompression, if necessary) of a specific
+{CHUNK}. This is most often used instead of the [`add_compression_policy`][add-compression-policy] function, when a user
+wants more control over the scheduling of compression. For most users, we suggest using the policy framework instead.
+
+You can also compress {CHUNK}s by [running the job associated with your compression policy][run-job]. `compress_chunk`
+gives you more fine-grained control by allowing you to target a specific {CHUNK} that needs compressing.
+
+<Tip>
+You can get a list of {CHUNK}s belonging to a {HYPERTABLE} using the [`show_chunks` function][show-chunks].
+</Tip>
+
+## Samples
+
+Compress a single {CHUNK}.
+
+```sql
+SELECT compress_chunk('_timescaledb_internal._hyper_1_2_chunk');
+```
+
+## Arguments
+
+The syntax is:
+
+```sql
+SELECT compress_chunk(
+    uncompressed_chunk = '<chunk_name>',
+    if_not_compressed = true | false,
+    recompress = true | false
+);
+```
+
+| Name | Type | Default | Required | Description |
+|-|-|-|-|-|
+| `chunk_name` | REGCLASS | - | ✔ | Name of the {CHUNK} to be compressed |
+| `if_not_compressed` | BOOLEAN | true | - | Disabling this will make the function error out on {CHUNK}s that are already compressed. |
+
+## Returns
+
+| Column | Type | Description |
+|-|-|-|
+| `compress_chunk` | REGCLASS | Name of the {CHUNK} that was compressed |
+
+[convert-to-columnstore]: /api-reference/timescaledb/hypercore/convert_to_columnstore
+[add-compression-policy]: /api-reference/timescaledb/compression/add_compression_policy
+[run-job]: /api-reference/timescaledb/jobs-automation/run_job
+[show-chunks]: /api-reference/timescaledb/hypertables/show_chunks

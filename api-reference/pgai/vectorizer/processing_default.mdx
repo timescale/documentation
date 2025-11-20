@@ -1,0 +1,33 @@
+---
+title: processing_default
+description: Configure batch size and concurrency for vectorizer processing
+keywords: [pgai, vectorizer, processing, batch, concurrency]
+tags: [vectorizer, configuration, processing]
+license: community
+type: function
+---
+
+Specify the concurrency and batch size for the vectorizer.
+
+These are advanced options and most users should use the default.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    processing => ai.processing_default(batch_size => 200, concurrency => 5),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| batch_size | int | Determined by the vectorizer | ✖ | The number of items to process in each batch. The optimal batch size depends on your data and cloud function configuration, larger batch sizes can improve efficiency but may increase memory usage. The default is 1 for vectorizers that use document loading (`ai.loading_uri`) and 50 otherwise |
+| concurrency | int | Determined by the vectorizer | ✖ | The number of concurrent processing tasks to run. The optimal concurrency depends on your cloud infrastructure and rate limits, higher concurrency can speed up processing but may increase costs and resource usage |
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

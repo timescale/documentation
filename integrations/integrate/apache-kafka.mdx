@@ -37,7 +37,7 @@ To install and configure Apache Kafka:
 
 Keep these terminals open, you use them to test the integration later.
 
-## Install the sink connector to communicate with {CLOUD_LONG}
+## Install the sink connector to communicate with Tiger Cloud
 
 To set up Kafka Connect server, plugins, drivers, and connectors:
 
@@ -77,7 +77,7 @@ To set up Kafka Connect server, plugins, drivers, and connectors:
 
 </Procedure>
 
-## Create a table in your {SERVICE_LONG} to ingest Kafka events
+## Create a table in your Tiger service to ingest Kafka events
 
 To prepare your {SERVICE_LONG} for Kafka integration:
 
@@ -101,7 +101,7 @@ To prepare your {SERVICE_LONG} for Kafka integration:
 
 </Procedure>
 
-## Create the {CLOUD_LONG} sink
+## Create the Tiger Cloud sink
 
 To create a {CLOUD_LONG} sink in Apache Kafka: 
 
@@ -151,7 +151,7 @@ To create a {CLOUD_LONG} sink in Apache Kafka:
 
 </Procedure>
 
-## Test the integration with {CLOUD_LONG}
+## Test the integration with Tiger Cloud
 
 To test this integration, send some messages onto the `accounts` topic. You can do this using the kafkacat or kcat utility.
 
@@ -185,11 +185,11 @@ To test this integration, send some messages onto the `accounts` topic. You can 
 
 You have successfully integrated Apache Kafka with {CLOUD_LONG}.
 
-[connection-info]: /integrations/:currentVersion:/find-connection-details/
+[connection-info]: /integrations/find-connection-details/
 [apache-kafka]: https://kafka.apache.org/documentation/
 [install-kafka]: https://kafka.apache.org/quickstart
 [java-installers]: https://www.oracle.com/java/technologies/downloads/
 [kafka-connect]: https://docs.confluent.io/platform/current/connect/index.html
 [kraft]: https://developer.confluent.io/learn/kraft/
-[connect]: /getting-started/:currentVersion:/run-queries-from-console/
+[connect]: /get-started/timescaledb/run-queries-from-console/
 [kcat]: https://github.com/edenhill/kcat

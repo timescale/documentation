@@ -1,0 +1,100 @@
+---
+title: openai_embed()
+description: Generate vector embeddings from text using OpenAI models
+keywords: [OpenAI, embeddings, vectors, semantic search]
+tags: [AI, embeddings, vectors]
+license: community
+type: function
+---
+
+import OpenAPIEmbedArguments from '/snippets/api-reference/pgai/_openai_embed_arguments.mdx';
+
+Generate vector embeddings from text, text arrays, or tokens using OpenAI's embedding models. Embeddings are numerical
+representations of text that capture semantic meaning, making them ideal for semantic search, recommendations, and
+clustering.
+
+## Samples
+
+### Generate an embedding from text
+
+Create a vector embedding for a single piece of text:
+
+```sql
+SELECT ai.openai_embed(
+    'text-embedding-ada-002',
+    'PostgreSQL is a powerful database'
+);
+```
+
+### Generate embeddings for multiple texts
+
+Process multiple texts at once for efficiency:
+
+```sql
+SELECT ai.openai_embed(
+    'text-embedding-ada-002',
+    array[
+        'PostgreSQL is a powerful database',
+        'TimescaleDB extends PostgreSQL for time-series',
+        'pgai brings AI capabilities to PostgreSQL'
+    ]
+);
+```
+
+### Specify embedding dimensions
+
+Control the size of the output vector (model-dependent):
+
+```sql
+SELECT ai.openai_embed(
+    'text-embedding-3-small',
+    'PostgreSQL is a powerful database',
+    dimensions => 768
+);
+```
+
+### Use pre-tokenized input
+
+Provide tokens directly instead of text:
+
+```sql
+SELECT ai.openai_embed(
+    'text-embedding-ada-002',
+    array[1820, 25977, 46840, 23874, 389, 264, 2579, 58466]
+);
+```
+
+### Store embeddings in a table
+
+Generate and store embeddings for your data:
+
+```sql
+UPDATE documents
+SET embedding = ai.openai_embed(
+    'text-embedding-ada-002',
+    content
+)
+WHERE embedding IS NULL;
+```
+
+## Arguments
+
+<OpenAPIEmbedArguments />
+
+## Returns
+
+**For single text input:**
+- `vector`: A pgvector compatible vector containing the embedding
+
+**For array input:**
+- `TABLE(index INT, embedding vector)`: A table with an index and embedding for each input text
+
+## Related functions
+
+- [`openai_embed_with_raw_response()`][openai_embed_with_raw_response]: get the full API response including metadata
+- [`openai_tokenize()`][openai_tokenize]: convert text to tokens before embedding
+- [`openai_list_models()`][openai_list_models]: see available embedding models
+
+[openai_embed_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_embed_with_raw_response
+[openai_tokenize]: /api-reference/pgai/model-calling/openai/openai_tokenize
+[openai_list_models]: /api-reference/pgai/model-calling/openai/openai_list_models

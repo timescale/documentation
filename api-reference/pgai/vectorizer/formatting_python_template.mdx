@@ -1,0 +1,83 @@
+---
+title: formatting_python_template
+description: Configure how data is formatted before embedding using Python template strings
+keywords: [pgai, vectorizer, formatting, template, embedding]
+tags: [vectorizer, configuration, formatting]
+license: community
+type: function
+---
+
+Configure the way data from the source table is formatted before it is sent for embedding.
+
+`ai.formatting_python_template` provides a flexible way to structure the input for embedding models. This enables you to incorporate relevant metadata and additional text. This can significantly enhance the quality and usefulness of the generated embeddings, especially in scenarios where context from multiple fields is important for understanding or searching the content.
+
+- Define a template for formatting the data before embedding
+- Allow the combination of multiple fields from the source table
+- Add consistent context or structure to the text being embedded
+- Customize the input for the embedding model to improve relevance and searchability
+
+Formatting happens after chunking and the special `$chunk` variable contains the chunked text.
+
+## Samples
+
+### Default formatting
+
+The default formatter uses the `$chunk` template, resulting in outputting the chunk text as-is.
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    formatting => ai.formatting_python_template('$chunk'),
+    -- other parameters...
+);
+```
+
+### Add context from other columns
+
+Add the title and publication date to each chunk, providing more context for the embedding.
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    formatting => ai.formatting_python_template('Title: $title\nDate: $published\nContent: $chunk'),
+    -- other parameters...
+);
+```
+
+### Combine multiple fields
+
+Prepend author and category information to each chunk.
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    formatting => ai.formatting_python_template('Author: $author\nCategory: $category\n$chunk'),
+    -- other parameters...
+);
+```
+
+### Add consistent structure
+
+Add start and end markers to each chunk, which could be useful for certain types of embeddings or retrieval tasks.
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    formatting => ai.formatting_python_template('BEGIN DOCUMENT\n$chunk\nEND DOCUMENT'),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `template` | `TEXT` | `$chunk` | ✔ | A string using [Python template strings](https://docs.python.org/3/library/string.html#template-strings) with $-prefixed variables that defines how the data should be formatted |
+
+- The $chunk placeholder is required and represents the text chunk that will be embedded
+- Other placeholders can be used to reference columns from the source table
+- The template allows for adding static text or structuring the input in a specific way
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

@@ -1,0 +1,99 @@
+---
+title: ollama_list_models()
+description: List all locally installed Ollama models
+keywords: [Ollama, models, list, management]
+tags: [AI, Ollama, models, management]
+license: community
+type: function
+---
+
+List all models that are locally installed and available on your Ollama server. This function provides detailed
+information about each model including size, family, parameters, and when it was last modified.
+
+## Samples
+
+### List all models
+
+See all installed models:
+
+```sql
+SELECT * FROM ai.ollama_list_models();
+```
+
+Returns:
+
+```text
+    name     |    model     |    size    |   digest   | family  | format | ...
+-------------+--------------+------------+------------+---------+--------+-----
+ llama2      | llama2:latest| 3825819519 | sha256:... | llama   | gguf   | ...
+ mistral     | mistral:7b   | 4109865159 | sha256:... | mistral | gguf   | ...
+ codellama   | codellama:7b | 3825819519 | sha256:... | llama   | gguf   | ...
+```
+
+### Connect to specific host
+
+List models from a remote Ollama server:
+
+```sql
+SELECT * FROM ai.ollama_list_models(
+    host => 'http://ollama-server:11434'
+);
+```
+
+### Filter by model name
+
+Find a specific model:
+
+```sql
+SELECT name, size, modified_at
+FROM ai.ollama_list_models()
+WHERE name LIKE 'llama%';
+```
+
+### Check model sizes
+
+See how much disk space models are using:
+
+```sql
+SELECT
+    name,
+    pg_size_pretty(size) AS disk_space,
+    modified_at
+FROM ai.ollama_list_models()
+ORDER BY size DESC;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `host` | `TEXT` | `NULL` | ✖ | Ollama server URL (defaults to `http://localhost:11434`) |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`TABLE`: A table with the following columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `name` | `TEXT` | Model name (e.g., `llama2`, `mistral:7b`) |
+| `model` | `TEXT` | Full model identifier |
+| `size` | `BIGINT` | Model size in bytes |
+| `digest` | `TEXT` | SHA256 digest of the model |
+| `family` | `TEXT` | Model family (e.g., `llama`, `mistral`) |
+| `format` | `TEXT` | Model format (typically `gguf`) |
+| `families` | `JSONB` | Array of model families |
+| `parent_model` | `TEXT` | Parent model if this is a derivative |
+| `parameter_size` | `TEXT` | Number of parameters (e.g., `7B`, `13B`) |
+| `quantization_level` | `TEXT` | Quantization level (e.g., `Q4_0`, `Q5_K_M`) |
+| `modified_at` | `TIMESTAMPTZ` | Last modification timestamp |
+
+## Related functions
+
+- [`ollama_ps()`][ollama_ps]: see currently running models
+- [`ollama_embed()`][ollama_embed]: generate embeddings with a model
+- [`ollama_chat_complete()`][ollama_chat_complete]: chat with a model
+
+[ollama_ps]: /api-reference/pgai/model-calling/ollama/ollama_ps
+[ollama_embed]: /api-reference/pgai/model-calling/ollama/ollama_embed
+[ollama_chat_complete]: /api-reference/pgai/model-calling/ollama/ollama_chat_complete
