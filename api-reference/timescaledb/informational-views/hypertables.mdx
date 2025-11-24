@@ -25,14 +25,16 @@ SELECT create_hypertable('metrics','time');
 
 SELECT * from timescaledb_information.hypertables WHERE hypertable_name = 'metrics';
 
--[ RECORD 1 ]-------+--------
-hypertable_schema   | public
-hypertable_name     | metrics
-owner               | sven
-num_dimensions      | 1
-num_chunks          | 0
-compression_enabled | f
-tablespaces         | NULL
+-[ RECORD 1 ]-----------+-------------------------
+hypertable_schema       | public
+hypertable_name         | metrics
+owner                   | sven
+num_dimensions          | 1
+num_chunks              | 0
+compression_enabled     | f
+tablespaces             | NULL
+primary_dimension       | time
+primary_dimension_type  | timestamp with time zone
 ```
 
 ## Returns
@@ -46,5 +48,7 @@ tablespaces         | NULL
 | `num_chunks` | BIGINT | Number of {CHUNK}s |
 | `compression_enabled` | BOOLEAN | Is compression enabled on the {HYPERTABLE}? |
 | `tablespaces` | TEXT | Tablespaces attached to the {HYPERTABLE} |
+| `primary_dimension` | TEXT | Name of the primary (time) dimension column |
+| `primary_dimension_type` | TEXT | Data type of the primary dimension column |
 
 [hypertable-docs]: /manage-data/timescaledb/data-management/hypertables
