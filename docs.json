@@ -25,10 +25,10 @@
             "tab": "Welcome",
             "pages": [
               "index"
-              ]
+            ]
           },
           {
-            "tab": "Cloud",
+            "tab": "Deploy and operate",
             "menu": [
               {
                 "item": "Tiger Cloud",
@@ -54,6 +54,7 @@
                       "cloud/tiger/understand/tiger-cloud-architecture",
                       "cloud/tiger/understand/implementation-workflow",
                       "cloud/tiger/understand/pricing-and-account-management",
+                      "cloud/choose-deployment-type",
                       "cloud/tiger/understand/changelog"
                     ]
                   },
@@ -107,7 +108,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "cloud/tiger/troubleshooting/troubleshooting"
                     ]
@@ -188,7 +189,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "cloud/mst/troubleshooting/troubleshooting"
                     ]
@@ -200,11 +201,154 @@
                     ]
                   }
                 ]
+              },
+              {
+                "item": "Self-host",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "self-host/index"
+                    ]
+                  },
+                  {
+                    "group": "Install and update",
+                    "pages": [
+                      "self-host/timescaledb/install-and-update/install-self-hosted",
+                      "self-host/timescaledb/install-and-update/update-self-hosted",
+                      "self-host/timescaledb/install-and-update/uninstall-self-hosted"
+                    ]
+                  },
+                  {
+                    "group": "Manage data security",
+                    "pages": [
+                      "self-host/timescaledb/manage-data-security/high-availability",
+                      "self-host/timescaledb/manage-data-security/read-replication",
+                      "self-host/timescaledb/manage-data-security/backup-and-restore"
+                    ]
+                  },
+                  {
+                    "group": "Configure",
+                    "pages": [
+                      "self-host/timescaledb/configuration/configure-your-deployment",
+                      "self-host/timescaledb/configuration/tune-your-deployment"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshooting",
+                    "pages": [
+                      "self-host/timescaledb/troubleshooting/troubleshooting"
+                    ]
+                  },
+                  {
+                    "group": "Reference",
+                    "pages": [
+                      "self-host/timescaledb/reference/timescaledb-editions",
+                      "self-host/timescaledb/reference/configuration-parameters",
+                      "self-host/timescaledb/reference/limitations",
+                      "self-host/timescaledb/reference/contribute-to-timescaledb"
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "Choose your deployment type",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "cloud/choose-deployment-type"
+                    ]
+                  },
+                  {
+                    "group": "Get started",
+                    "pages": [
+                      "cloud/tiger/get-started/get-started-with-tiger-cloud",
+                      "cloud/tiger/get-started/create-services",
+                      "cloud/tiger/get-started/run-queries-from-console",
+                      "cloud/tiger/get-started/run-your-workload-in-cloud"
+                    ]
+                  },
+                  {
+                    "group": "Understand",
+                    "pages": [
+                      "cloud/tiger/understand/tiger-cloud-architecture",
+                      "cloud/tiger/understand/implementation-workflow",
+                      "cloud/tiger/understand/pricing-and-account-management",
+                      "cloud/choose-deployment-type",
+                      "cloud/tiger/understand/changelog"
+                    ]
+                  },
+                  {
+                    "group": "Storage",
+                    "pages": [
+                      "cloud/tiger/storage/manage-storage-tiers",
+                      "cloud/tiger/storage/query-tiered-data",
+                      "cloud/tiger/storage/replicas-and-forks-with-tiered-data",
+                      "cloud/tiger/storage/query-another-data-source-fdw"
+                    ]
+                  },
+                  {
+                    "group": "Monitor your services",
+                    "pages": [
+                      "cloud/tiger/monitoring/monitor-using-console",
+                      "cloud/tiger/monitoring/export-metrics-to-amazon-cloudwatch",
+                      "cloud/tiger/monitoring/export-metrics-to-datadog",
+                      "cloud/tiger/monitoring/export-metrics-to-prometheus",
+                      "cloud/tiger/monitoring/alerting",
+                      "cloud/tiger/monitoring/telemetry"
+                    ]
+                  },
+                  {
+                    "group": "Manage data security",
+                    "pages": [
+                      "cloud/tiger/data-security/high-availability",
+                      "cloud/tiger/data-security/read-scaling",
+                      "cloud/tiger/data-security/rapid-recovery",
+                      "cloud/tiger/data-security/backup",
+                      "cloud/tiger/data-security/restore-and-pitr"
+                    ]
+                  },
+                  {
+                    "group": "Secure access to cloud",
+                    "pages": [
+                      "cloud/tiger/secure-access/configure-role-based-access",
+                      "cloud/tiger/secure-access/user-authentication",
+                      "cloud/tiger/secure-access/connect-securely-from-any-cloud",
+                      "cloud/tiger/secure-access/connect-to-tiger-cloud-from-your-app",
+                      "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
+                      "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
+                      "cloud/tiger/secure-access/vpc-peering-and-aws-private-link",
+                      "cloud/tiger/secure-access/setup-an-ip-allow-list"
+                    ]
+                  },
+                  {
+                    "group": "Configuration",
+                    "pages": [
+                      "cloud/tiger/configuration/tune-your-service"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "cloud/tiger/troubleshooting/troubleshooting"
+                    ]
+                  },
+                  {
+                    "group": "Reference",
+                    "pages": [
+                      "cloud/tiger/reference/tiger-cloud-regions",
+                      "cloud/tiger/reference/contribute-to-tigerdata",
+                      "cloud/tiger/reference/postgres-extensions-in-tiger-cloud",
+                      "cloud/tiger/reference/configuration-parameters"
+                    ]
+                  }
+                ]
               }
             ]
           },
           {
-            "tab": "Data",
+            "tab": "TimescaleDB",
             "url": "manage-data/index",
             "menu": [
               {
@@ -276,7 +420,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "manage-data/timescaledb/troubleshooting/troubleshooting"
                     ]
@@ -361,7 +505,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "manage-data/timescaledb/troubleshooting/troubleshooting"
                     ]
@@ -446,7 +590,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "manage-data/timescaledb/troubleshooting/troubleshooting"
                     ]
@@ -531,7 +675,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "manage-data/timescaledb/troubleshooting/troubleshooting"
                     ]
@@ -616,7 +760,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "manage-data/timescaledb/troubleshooting/troubleshooting"
                     ]
@@ -633,7 +777,7 @@
                 ]
               },
               {
-                "item": "Troubleshooting",
+                "item": "Troubleshoot",
                 "groups": [
                   {
                     "group": "  ",
@@ -701,7 +845,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "manage-data/timescaledb/troubleshooting/troubleshooting"
                     ]
@@ -786,7 +930,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "manage-data/timescaledb/troubleshooting/troubleshooting"
                     ]
@@ -805,11 +949,11 @@
             ]
           },
           {
-            "tab": "Agentic Postgres",
+            "tab": "AI",
             "url": "agentic-postgres/index",
             "menu": [
               {
-                "item": "AI tooling",
+                "item": "AI Tooling",
                 "groups": [
                   {
                     "group": " ",
@@ -818,10 +962,50 @@
                     ]
                   },
                   {
-                    "group": "Agent frameworks",
+                    "group": "Quickstart",
                     "pages": [
-                      "agentic-postgres/agents/tiger-eon",
-                      "agentic-postgres/agents/tiger-agents-for-work",
+                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
+                    ]
+                  },
+                  {
+                    "group": "Semantic search",
+                    "pages": [
+                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
+                    ]
+                  },
+                  {
+                    "group": "Multi-agent systems",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-agents-for-work"
+                    ]
+                  },
+                  {
+                    "group": "RAG pipelines",
+                    "pages": [
+                      "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
+                    ]
+                  },
+                  {
+                    "group": "AI powered analytics",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-eon"
+                    ]
+                  },
+                  {
+                    "group": "Tiger EON",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-eon"
+                    ]
+                  },
+                  {
+                    "group": "Tiger Agents",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-agents-for-work"
+                    ]
+                  },
+                  {
+                    "group": "MCP Server",
+                    "pages": [
                       "agentic-postgres/agents/mcp-server"
                     ]
                   },
@@ -831,30 +1015,80 @@
                       "agentic-postgres/pgai/pgai",
                       "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
                     ]
+                  }
+                ]
+              },
+              {
+                "item": "Quickstart",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "agentic-postgres/pgai/pgai"
+                    ]
                   },
                   {
-                    "group": "pgvectorscale",
+                    "group": "Quickstart",
                     "pages": [
+                      "agentic-postgres/pgai/pgai",
                       "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
-                    ]
-                  },
-                  {
-                    "group": "Interfaces",
-                    "pages": [
-                      "agentic-postgres/interfaces/python-interface",
-                      "agentic-postgres/interfaces/sql-interface"
-                    ]
-                  },
-                  {
-                    "group": "Concepts",
-                    "pages": [
-                      "agentic-postgres/key-vector-database-concepts"
                     ]
                   }
                 ]
               },
               {
-                "item": "Agent frameworks",
+                "item": "Semantic search",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
+                    ]
+                  },
+                  {
+                    "group": "Semantic search",
+                    "pages": [
+                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "Multi-agent systems",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-agents-for-work"
+                    ]
+                  },
+                  {
+                    "group": "Multi-agent systems",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-agents-for-work"
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "RAG pipelines",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
+                    ]
+                  },
+                  {
+                    "group": "RAG pipelines",
+                    "pages": [
+                      "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "AI powered analytics",
                 "groups": [
                   {
                     "group": " ",
@@ -863,37 +1097,60 @@
                     ]
                   },
                   {
-                    "group": "Agent frameworks",
+                    "group": "AI powered analytics",
                     "pages": [
-                      "agentic-postgres/agents/tiger-eon",
-                      "agentic-postgres/agents/tiger-agents-for-work",
+                      "agentic-postgres/agents/tiger-eon"
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "Tiger EON",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-eon"
+                    ]
+                  },
+                  {
+                    "group": "Tiger EON",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-eon"
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "Tiger Agents",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-agents-for-work"
+                    ]
+                  },
+                  {
+                    "group": "Tiger Agents",
+                    "pages": [
+                      "agentic-postgres/agents/tiger-agents-for-work"
+                    ]
+                  }
+                ]
+              },
+              {
+                "item": "MCP Server",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
                       "agentic-postgres/agents/mcp-server"
                     ]
                   },
                   {
-                    "group": "pgai",
+                    "group": "MCP Server",
                     "pages": [
-                      "agentic-postgres/pgai/pgai",
-                      "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
-                    ]
-                  },
-                  {
-                    "group": "pgvectorscale",
-                    "pages": [
-                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
-                    ]
-                  },
-                  {
-                    "group": "Interfaces",
-                    "pages": [
-                      "agentic-postgres/interfaces/python-interface",
-                      "agentic-postgres/interfaces/sql-interface"
-                    ]
-                  },
-                  {
-                    "group": "Concepts",
-                    "pages": [
-                      "agentic-postgres/key-vector-database-concepts"
+                      "agentic-postgres/agents/mcp-server"
                     ]
                   }
                 ]
@@ -908,172 +1165,10 @@
                     ]
                   },
                   {
-                    "group": "Agent frameworks",
-                    "pages": [
-                      "agentic-postgres/agents/tiger-eon",
-                      "agentic-postgres/agents/tiger-agents-for-work",
-                      "agentic-postgres/agents/mcp-server"
-                    ]
-                  },
-                  {
                     "group": "pgai",
                     "pages": [
                       "agentic-postgres/pgai/pgai",
                       "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
-                    ]
-                  },
-                  {
-                    "group": "pgvectorscale",
-                    "pages": [
-                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
-                    ]
-                  },
-                  {
-                    "group": "Interfaces",
-                    "pages": [
-                      "agentic-postgres/interfaces/python-interface",
-                      "agentic-postgres/interfaces/sql-interface"
-                    ]
-                  },
-                  {
-                    "group": "Concepts",
-                    "pages": [
-                      "agentic-postgres/key-vector-database-concepts"
-                    ]
-                  }
-                ]
-              },
-              {
-                "item": "pgvectorscale",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
-                    ]
-                  },
-                  {
-                    "group": "Agent frameworks",
-                    "pages": [
-                      "agentic-postgres/agents/tiger-eon",
-                      "agentic-postgres/agents/tiger-agents-for-work",
-                      "agentic-postgres/agents/mcp-server"
-                    ]
-                  },
-                  {
-                    "group": "pgai",
-                    "pages": [
-                      "agentic-postgres/pgai/pgai",
-                      "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
-                    ]
-                  },
-                  {
-                    "group": "pgvectorscale",
-                    "pages": [
-                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
-                    ]
-                  },
-                  {
-                    "group": "Interfaces",
-                    "pages": [
-                      "agentic-postgres/interfaces/python-interface",
-                      "agentic-postgres/interfaces/sql-interface"
-                    ]
-                  },
-                  {
-                    "group": "Concepts",
-                    "pages": [
-                      "agentic-postgres/key-vector-database-concepts"
-                    ]
-                  }
-                ]
-              },
-              {
-                "item": "Interfaces",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "agentic-postgres/interfaces/python-interface"
-                    ]
-                  },
-                  {
-                    "group": "Agent frameworks",
-                    "pages": [
-                      "agentic-postgres/agents/tiger-eon",
-                      "agentic-postgres/agents/tiger-agents-for-work",
-                      "agentic-postgres/agents/mcp-server"
-                    ]
-                  },
-                  {
-                    "group": "pgai",
-                    "pages": [
-                      "agentic-postgres/pgai/pgai",
-                      "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
-                    ]
-                  },
-                  {
-                    "group": "pgvectorscale",
-                    "pages": [
-                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
-                    ]
-                  },
-                  {
-                    "group": "Interfaces",
-                    "pages": [
-                      "agentic-postgres/interfaces/python-interface",
-                      "agentic-postgres/interfaces/sql-interface"
-                    ]
-                  },
-                  {
-                    "group": "Concepts",
-                    "pages": [
-                      "agentic-postgres/key-vector-database-concepts"
-                    ]
-                  }
-                ]
-              },
-              {
-                "item": "Concepts",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "agentic-postgres/key-vector-database-concepts"
-                    ]
-                  },
-                  {
-                    "group": "Agent frameworks",
-                    "pages": [
-                      "agentic-postgres/agents/tiger-eon",
-                      "agentic-postgres/agents/tiger-agents-for-work",
-                      "agentic-postgres/agents/mcp-server"
-                    ]
-                  },
-                  {
-                    "group": "pgai",
-                    "pages": [
-                      "agentic-postgres/pgai/pgai",
-                      "agentic-postgres/pgai/vectorizer-automate-ai-embeddings"
-                    ]
-                  },
-                  {
-                    "group": "pgvectorscale",
-                    "pages": [
-                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
-                    ]
-                  },
-                  {
-                    "group": "Interfaces",
-                    "pages": [
-                      "agentic-postgres/interfaces/python-interface",
-                      "agentic-postgres/interfaces/sql-interface"
-                    ]
-                  },
-                  {
-                    "group": "Concepts",
-                    "pages": [
-                      "agentic-postgres/key-vector-database-concepts"
                     ]
                   }
                 ]
@@ -1081,11 +1176,11 @@
             ]
           },
           {
-            "tab": "Tutorials",
+            "tab": "Learn",
             "url": "tutorials/index",
             "menu": [
               {
-                "item": "All tutorials",
+                "item": "All implementations",
                 "groups": [
                   {
                     "group": " ",
@@ -1094,27 +1189,90 @@
                     ]
                   },
                   {
-                    "group": "Time-series",
+                    "group": "Quickstart",
                     "pages": [
+                      "tutorials/time-series/query-bitcoin-blockchain"
+                    ]
+                  },
+                  {
+                    "group": "IoT sensor",
+                    "pages": [
+                      "tutorials/ai/real-time-predictive-maintenence",
                       "tutorials/real-time-analytics/energy-consumption",
+                      "tutorials/time-series/health-biometical-analysis"
+                    ]
+                  },
+                  {
+                    "group": "Financial",
+                    "pages": [
+                      "tutorials/ai/financial-forcasting",
+                      "tutorials/time-series/query-bitcoin-blockchain"
+                    ]
+                  },
+                  {
+                    "group": "Real-time dashboards",
+                    "pages": [
                       "tutorials/real-time-analytics/transport",
-                      "tutorials/time-series/query-bitcoin-blockchain",
-                      "tutorials/time-series/health-biometical-analysis",
                       "tutorials/time-series/anomaly-detection-in-streaming-data"
                     ]
                   },
                   {
-                    "group": "AI",
+                    "group": "AI applications",
                     "pages": [
                       "tutorials/ai/financial-forcasting",
                       "tutorials/ai/powered-observability",
                       "tutorials/ai/real-time-predictive-maintenence"
                     ]
+                  },
+                  {
+                    "group": "System monitoring",
+                    "pages": [
+                      "tutorials/ai/powered-observability",
+                      "tutorials/time-series/anomaly-detection-in-streaming-data"
+                    ]
+                  },
+                  {
+                    "group": "Energy",
+                    "pages": [
+                      "tutorials/real-time-analytics/energy-consumption"
+                    ]
+                  },
+                  {
+                    "group": "Healthcare",
+                    "pages": [
+                      "tutorials/time-series/health-biometical-analysis",
+                      "tutorials/ai/powered-observability"
+                    ]
+                  },
+                  {
+                    "group": "Transport",
+                    "pages": [
+                      "tutorials/real-time-analytics/transport"
+                    ]
                   }
                 ]
               },
               {
-                "item": "Time-series",
+                "item": "Quickstart",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/time-series/query-bitcoin-blockchain"
+                    ]
+                  },
+                  {
+                    "group": "Quickstart",
+                    "pages": [
+                      "tutorials/time-series/query-bitcoin-blockchain",
+                      "tutorials/ai/real-time-predictive-maintenence"
+                    ]
+                  }
+                ],
+                "url": "tutorials/time-series/query-bitcoin-blockchain"
+              },
+              {
+                "item": "IoT sensor",
                 "groups": [
                   {
                     "group": " ",
@@ -1123,27 +1281,17 @@
                     ]
                   },
                   {
-                    "group": "Time-series",
+                    "group": "IoT sensor",
                     "pages": [
                       "tutorials/real-time-analytics/energy-consumption",
-                      "tutorials/real-time-analytics/transport",
-                      "tutorials/time-series/query-bitcoin-blockchain",
-                      "tutorials/time-series/health-biometical-analysis",
-                      "tutorials/time-series/anomaly-detection-in-streaming-data"
-                    ]
-                  },
-                  {
-                    "group": "AI",
-                    "pages": [
-                      "tutorials/ai/financial-forcasting",
-                      "tutorials/ai/powered-observability",
-                      "tutorials/ai/real-time-predictive-maintenence"
+                      "tutorials/time-series/health-biometical-analysis"
                     ]
                   }
-                ]
+                ],
+                "url": "tutorials/real-time-analytics/energy-consumption"
               },
               {
-                "item": "AI",
+                "item": "Financial",
                 "groups": [
                   {
                     "group": " ",
@@ -1152,29 +1300,75 @@
                     ]
                   },
                   {
-                    "group": "Time-series",
+                    "group": "Financial",
                     "pages": [
-                      "tutorials/real-time-analytics/energy-consumption",
-                      "tutorials/real-time-analytics/transport",
-                      "tutorials/time-series/query-bitcoin-blockchain",
-                      "tutorials/time-series/health-biometical-analysis",
-                      "tutorials/time-series/anomaly-detection-in-streaming-data"
+                      "tutorials/ai/financial-forcasting",
+                      "tutorials/time-series/query-bitcoin-blockchain"
+                    ]
+                  }
+                ],
+                "url": "tutorials/ai/financial-forcasting"
+              },
+              {
+                "item": "Real-time dashboards",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/real-time-analytics/transport"
                     ]
                   },
                   {
-                    "group": "AI",
+                    "group": "Real-time dashboards",
                     "pages": [
-                      "tutorials/ai/financial-forcasting",
-                      "tutorials/ai/powered-observability",
-                      "tutorials/ai/real-time-predictive-maintenence"
+                      "tutorials/real-time-analytics/transport",
+                      "tutorials/time-series/anomaly-detection-in-streaming-data"
                     ]
                   }
-                ]
+                ],
+                "url": "tutorials/real-time-analytics/transport"
+              },
+              {
+                "item": "Energy",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/real-time-analytics/energy-consumption"
+                    ]
+                  },
+                  {
+                    "group": "Energy",
+                    "pages": [
+                      "tutorials/real-time-analytics/energy-consumption"
+                    ]
+                  }
+                ],
+                "url": "tutorials/real-time-analytics/energy-consumption"
+              },
+              {
+                "item": "Healthcare",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/time-series/health-biometical-analysis"
+                    ]
+                  },
+                  {
+                    "group": "Healthcare",
+                    "pages": [
+                      "tutorials/time-series/health-biometical-analysis",
+                      "tutorials/ai/powered-observability"
+                    ]
+                  }
+                ],
+                "url": "tutorials/time-series/health-biometical-analysis"
               }
             ]
           },
           {
-            "tab": "Integrations",
+            "tab": "Integrate",
             "url": "integrations/index",
             "menu": [
               {
@@ -1884,257 +2078,6 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Self-host",
-            "url": "self-host/index",
-            "menu": [
-              {
-                "item": "Install and update",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "self-host/timescaledb/install-and-update/install-self-hosted"
-                    ]
-                  },
-                  {
-                    "group": "Install and update",
-                    "pages": [
-                      "self-host/timescaledb/install-and-update/install-self-hosted",
-                      "self-host/timescaledb/install-and-update/update-self-hosted",
-                      "self-host/timescaledb/install-and-update/uninstall-self-hosted"
-                    ]
-                  },
-                  {
-                    "group": "Manage data security",
-                    "pages": [
-                      "self-host/timescaledb/manage-data-security/high-availability",
-                      "self-host/timescaledb/manage-data-security/read-replication",
-                      "self-host/timescaledb/manage-data-security/backup-and-restore"
-                    ]
-                  },
-                  {
-                    "group": "Configure",
-                    "pages": [
-                      "self-host/timescaledb/configuration/configure-your-deployment",
-                      "self-host/timescaledb/configuration/tune-your-deployment"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshooting",
-                    "pages": [
-                      "self-host/timescaledb/troubleshooting/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Reference",
-                    "pages": [
-                      "self-host/timescaledb/reference/timescaledb-editions",
-                      "self-host/timescaledb/reference/configuration-parameters",
-                      "self-host/timescaledb/reference/limitations",
-                      "self-host/timescaledb/reference/contribute-to-timescaledb"
-                    ]
-                  }
-                ]
-              },
-              {
-                "item": "Manage data security",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "self-host/timescaledb/manage-data-security/high-availability"
-                    ]
-                  },
-                  {
-                    "group": "Install and update",
-                    "pages": [
-                      "self-host/timescaledb/install-and-update/install-self-hosted",
-                      "self-host/timescaledb/install-and-update/update-self-hosted",
-                      "self-host/timescaledb/install-and-update/uninstall-self-hosted"
-                    ]
-                  },
-                  {
-                    "group": "Manage data security",
-                    "pages": [
-                      "self-host/timescaledb/manage-data-security/high-availability",
-                      "self-host/timescaledb/manage-data-security/read-replication",
-                      "self-host/timescaledb/manage-data-security/backup-and-restore"
-                    ]
-                  },
-                  {
-                    "group": "Configure",
-                    "pages": [
-                      "self-host/timescaledb/configuration/configure-your-deployment",
-                      "self-host/timescaledb/configuration/tune-your-deployment"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshooting",
-                    "pages": [
-                      "self-host/timescaledb/troubleshooting/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Reference",
-                    "pages": [
-                      "self-host/timescaledb/reference/timescaledb-editions",
-                      "self-host/timescaledb/reference/configuration-parameters",
-                      "self-host/timescaledb/reference/limitations",
-                      "self-host/timescaledb/reference/contribute-to-timescaledb"
-                    ]
-                  }
-                ]
-              },
-              {
-                "item": "Configure",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "self-host/timescaledb/configuration/configure-your-deployment"
-                    ]
-                  },
-                  {
-                    "group": "Install and update",
-                    "pages": [
-                      "self-host/timescaledb/install-and-update/install-self-hosted",
-                      "self-host/timescaledb/install-and-update/update-self-hosted",
-                      "self-host/timescaledb/install-and-update/uninstall-self-hosted"
-                    ]
-                  },
-                  {
-                    "group": "Manage data security",
-                    "pages": [
-                      "self-host/timescaledb/manage-data-security/high-availability",
-                      "self-host/timescaledb/manage-data-security/read-replication",
-                      "self-host/timescaledb/manage-data-security/backup-and-restore"
-                    ]
-                  },
-                  {
-                    "group": "Configure",
-                    "pages": [
-                      "self-host/timescaledb/configuration/configure-your-deployment",
-                      "self-host/timescaledb/configuration/tune-your-deployment"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshooting",
-                    "pages": [
-                      "self-host/timescaledb/troubleshooting/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Reference",
-                    "pages": [
-                      "self-host/timescaledb/reference/timescaledb-editions",
-                      "self-host/timescaledb/reference/configuration-parameters",
-                      "self-host/timescaledb/reference/limitations",
-                      "self-host/timescaledb/reference/contribute-to-timescaledb"
-                    ]
-                  }
-                ]
-              },
-              {
-                "item": "Troubleshooting",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "self-host/timescaledb/troubleshooting/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Install and update",
-                    "pages": [
-                      "self-host/timescaledb/install-and-update/install-self-hosted",
-                      "self-host/timescaledb/install-and-update/update-self-hosted",
-                      "self-host/timescaledb/install-and-update/uninstall-self-hosted"
-                    ]
-                  },
-                  {
-                    "group": "Manage data security",
-                    "pages": [
-                      "self-host/timescaledb/manage-data-security/high-availability",
-                      "self-host/timescaledb/manage-data-security/read-replication",
-                      "self-host/timescaledb/manage-data-security/backup-and-restore"
-                    ]
-                  },
-                  {
-                    "group": "Configure",
-                    "pages": [
-                      "self-host/timescaledb/configuration/configure-your-deployment",
-                      "self-host/timescaledb/configuration/tune-your-deployment"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshooting",
-                    "pages": [
-                      "self-host/timescaledb/troubleshooting/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Reference",
-                    "pages": [
-                      "self-host/timescaledb/reference/timescaledb-editions",
-                      "self-host/timescaledb/reference/configuration-parameters",
-                      "self-host/timescaledb/reference/limitations",
-                      "self-host/timescaledb/reference/contribute-to-timescaledb"
-                    ]
-                  }
-                ]
-              },
-              {
-                "item": "Reference",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "self-host/timescaledb/reference/timescaledb-editions"
-                    ]
-                  },
-                  {
-                    "group": "Install and update",
-                    "pages": [
-                      "self-host/timescaledb/install-and-update/install-self-hosted",
-                      "self-host/timescaledb/install-and-update/update-self-hosted",
-                      "self-host/timescaledb/install-and-update/uninstall-self-hosted"
-                    ]
-                  },
-                  {
-                    "group": "Manage data security",
-                    "pages": [
-                      "self-host/timescaledb/manage-data-security/high-availability",
-                      "self-host/timescaledb/manage-data-security/read-replication",
-                      "self-host/timescaledb/manage-data-security/backup-and-restore"
-                    ]
-                  },
-                  {
-                    "group": "Configure",
-                    "pages": [
-                      "self-host/timescaledb/configuration/configure-your-deployment",
-                      "self-host/timescaledb/configuration/tune-your-deployment"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshooting",
-                    "pages": [
-                      "self-host/timescaledb/troubleshooting/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Reference",
-                    "pages": [
-                      "self-host/timescaledb/reference/timescaledb-editions",
-                      "self-host/timescaledb/reference/configuration-parameters",
-                      "self-host/timescaledb/reference/limitations",
-                      "self-host/timescaledb/reference/contribute-to-timescaledb"
                     ]
                   }
                 ]
