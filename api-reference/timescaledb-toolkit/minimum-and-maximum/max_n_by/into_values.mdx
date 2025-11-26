@@ -21,15 +21,43 @@ corresponding values associated with them. Note that Postgres requires
 an input argument with type matching the associated value in order to
 determine the response type.
 
+## Samples
+
+Find the top 5 values from i * 13 % 10007 for i = 1 to 10000:
+
+```sql
+SELECT into_values(
+    max_n_by(sub.mod, sub.div, 5),
+    NULL::INT)
+FROM (
+  SELECT (i * 13) % 10007 AS mod, (i * 13) / 10007 AS div
+  FROM generate_series(1,10000) as i
+) sub;
+```
+
+Output:
+```
+into_values
+-------------
+(10006,3)
+(10005,7)
+(10004,11)
+(10003,2)
+(10002,6)
+```
 
 ## Arguments
 
 The syntax is:
 
 ```sql
-into_values (
-    agg MinN
-) SETOF BIGINT | SETOF DOUBLE PRECISION | SETOF TIMESTAMPTZ
+into_values(
+  agg MaxNBy,
+  dummy ANYELEMENT
+) TABLE (
+  value BIGINT | DOUBLE PRECISION | TIMESTAMPTZ,
+  data ANYELEMENT
+)
 ```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
