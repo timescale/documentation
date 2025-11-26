@@ -11,7 +11,8 @@ products: [cloud, mst, self_hosted]
 
 import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [convert_to_columnstore()][convert-to-columnstore].
+Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [convert_to_columnstore()][convert-to-columnstore].
+However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 The `compress_chunk` function is used for synchronous compression (or recompression, if necessary) of a specific
 {CHUNK}. This is most often used instead of the [`add_compression_policy`][add-compression-policy] function, when a user

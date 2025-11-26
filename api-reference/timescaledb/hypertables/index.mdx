@@ -86,13 +86,13 @@ Add a second partitioning dimension for multi-dimensional data:
 SELECT add_dimension('conditions', 'location', number_partitions => 4);
 ```
 
-## Available functions and commands
+## Available functions
 
-### [Table creation][create-table-section]
+### Table creation
 
 - [`CREATE TABLE`][create_table]: create a {HYPERTABLE} using standard SQL syntax with {HYPERCORE}
 
-### [Chunk management][chunk-management-section]
+### Chunk management
 
 - [`show_chunks()`][show_chunks]: display {CHUNK}s associated with {HYPERTABLE}s
 - [`drop_chunks()`][drop_chunks]: remove {CHUNK}s from {HYPERTABLE}s
@@ -105,11 +105,11 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
 - [`set_chunk_time_interval()`][set_chunk_time_interval]: set the time interval for {CHUNK} creation
 - [`set_integer_now_func()`][set_integer_now_func]: set function to compute current time for integer-based times
 
-### [Dimension management][dimension-section]
+### Dimension management
 
 - [`add_dimension()`][add_dimension]: add a space-partitioning dimension to a {HYPERTABLE}
 
-### [Size and statistics][size-section]
+### Size and statistics
 
 - [`hypertable_size()`][hypertable_size]: get the total disk space used by a {HYPERTABLE}
 - [`hypertable_detailed_size()`][hypertable_detailed_size]: get detailed disk space usage for a {HYPERTABLE}
@@ -119,19 +119,19 @@ SELECT add_dimension('conditions', 'location', number_partitions => 4);
   information
 - [`chunks_detailed_size()`][chunks_detailed_size]: get detailed size information for {CHUNK}s
 
-### [Tablespace management][tablespace-section]
+### Tablespace management
 
 - [`attach_tablespace()`][attach_tablespace]: attach a tablespace to a {HYPERTABLE}
 - [`detach_tablespace()`][detach_tablespace]: detach a tablespace from a {HYPERTABLE}
 - [`detach_tablespaces()`][detach_tablespaces]: detach all tablespaces from a {HYPERTABLE}
 - [`show_tablespaces()`][show_tablespaces]: show tablespaces attached to a {HYPERTABLE}
 
-### [Reordering and policies][reorder-section]
+### Reordering and policies
 
 - [`add_reorder_policy()`][add_reorder_policy]: add a policy to automatically reorder {CHUNK}s
 - [`remove_reorder_policy()`][remove_reorder_policy]: remove an automatic {CHUNK} reordering policy
 
-### [Query optimization][optimization-section]
+### Query optimization
 
 - [`enable_chunk_skipping()`][enable_chunk_skipping]: enable {CHUNK} skipping for a {HYPERTABLE}
 - [`disable_chunk_skipping()`][disable_chunk_skipping]: disable {CHUNK} skipping for a {HYPERTABLE}
@@ -142,11 +142,8 @@ For backward compatibility, {TIMESCALE_DB} also provides [`create_hypertable()`]
 original function for creating {HYPERTABLE}s. Use [`CREATE TABLE`][create_table] for new {HYPERTABLE}s.
 
 [hypertable-docs]: /manage-data/timescaledb/data-management/hypertables/understand-hypertables
-
-[create-table-section]: #table-creation
 [create_table]: /api-reference/timescaledb/hypertables/create_table
 
-[chunk-management-section]: #chunk-management
 [show_chunks]: /api-reference/timescaledb/hypertables/show_chunks
 [drop_chunks]: /api-reference/timescaledb/hypertables/drop_chunks
 [move_chunk]: /api-reference/timescaledb/hypertables/move_chunk
@@ -156,12 +153,10 @@ original function for creating {HYPERTABLE}s. Use [`CREATE TABLE`][create_table]
 [attach_chunk]: /api-reference/timescaledb/hypertables/attach_chunk
 [detach_chunk]: /api-reference/timescaledb/hypertables/detach_chunk
 
-[dimension-section]: #dimension-management
 [add_dimension]: /api-reference/timescaledb/hypertables/add_dimension
 [set_chunk_time_interval]: /api-reference/timescaledb/hypertables/set_chunk_time_interval
 [set_integer_now_func]: /api-reference/timescaledb/hypertables/set_integer_now_func
 
-[size-section]: #size-and-statistics
 [hypertable_size]: /api-reference/timescaledb/hypertables/hypertable_size
 [hypertable_detailed_size]: /api-reference/timescaledb/hypertables/hypertable_detailed_size
 [hypertable_index_size]: /api-reference/timescaledb/hypertables/hypertable_index_size
@@ -169,17 +164,14 @@ original function for creating {HYPERTABLE}s. Use [`CREATE TABLE`][create_table]
 [hypertable_approximate_detailed_size]: /api-reference/timescaledb/hypertables/hypertable_approximate_detailed_size
 [chunks_detailed_size]: /api-reference/timescaledb/hypertables/chunks_detailed_size
 
-[tablespace-section]: #tablespace-management
 [attach_tablespace]: /api-reference/timescaledb/hypertables/attach_tablespace
 [detach_tablespace]: /api-reference/timescaledb/hypertables/detach_tablespace
 [detach_tablespaces]: /api-reference/timescaledb/hypertables/detach_tablespaces
 [show_tablespaces]: /api-reference/timescaledb/hypertables/show_tablespaces
 
-[reorder-section]: #reordering-and-policies
 [add_reorder_policy]: /api-reference/timescaledb/hypertables/add_reorder_policy
 [remove_reorder_policy]: /api-reference/timescaledb/hypertables/remove_reorder_policy
 
-[optimization-section]: #query-optimization
 [enable_chunk_skipping]: /api-reference/timescaledb/hypertables/enable_chunk_skipping
 [disable_chunk_skipping]: /api-reference/timescaledb/hypertables/disable_chunk_skipping
 

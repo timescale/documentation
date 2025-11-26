@@ -24,7 +24,7 @@ Create a test table that tracks when a system switches between `starting`, `runn
 table for the time spent in the `running` state. Use `LAG` and `LEAD` to get the neighboring aggregates for
 interpolation.
 
-If you prefer to see the result in seconds, [`EXTRACT`](https://www.postgresql.org/docs/current/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT) the epoch from the returned result.
+If you prefer to see the result in seconds, [`EXTRACT`][extract] the epoch from the returned result.
 
 ```sql
 SELECT
@@ -56,8 +56,7 @@ time                    | interpolated_duration_in
 2020-01-04 00:00:00+00  | 12:00:00
 ```
 
-[compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/compact_state_agg
-[duration_in]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/duration_in## Arguments
+## Arguments
 
 The syntax is:
 
@@ -70,6 +69,7 @@ interpolated_duration_in(
   [, prev StateAgg]
 ) RETURNS DOUBLE PRECISION
 ```
+
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | agg | StateAgg | - | ✔ | A state aggregate created with [`compact_state_agg`][compact_state_agg] |
@@ -84,3 +84,7 @@ interpolated_duration_in(
 |--------|------|-------------|
 | interpolated_duration_in | INTERVAL | The total time spent in the queried state. Displayed as `days`, `hh:mm:ss`, or a combination of the two. |
 
+
+[extract]:https://www.postgresql.org/docs/current/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT
+[compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/compact_state_agg
+[duration_in]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/duration_in
