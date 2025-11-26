@@ -188,9 +188,24 @@ SELECT create_hypertable(
 ## Returns
 
 |Column|Type| Description                                                                                                 |
-|-|-|-------------------------------------------------------------------------------------------------------------|
-|`hypertable_id`|INTEGER| The ID of the hypertable you created.                                                                   |
-|`created`|BOOLEAN| `TRUE` when the hypertable is created. `FALSE` when `if_not_exists` is `true` and no hypertable was created. |
+|------|----|------------------------------------------------------------------------------------------------------------|
+|`hypertable_id`|INTEGER| The ID of the {HYPERTABLE} you created.                                                                   |
+|`created`|BOOLEAN| `TRUE` when the {HYPERTABLE} is created. `FALSE` when `if_not_exists` is `true` and no {HYPERTABLE} was created. |
+
+On failure, an error is returned:
+
+| Error | Description |
+|-------|-------------|
+| `table "<name>" is already a hypertable` | The table is already a {HYPERTABLE}. Use `if_not_exists => TRUE` to suppress this error. |
+| `column "<name>" does not exist` | The specified partitioning column does not exist in the table. |
+| `column "<name>" is already a dimension` | The column is already used as a partitioning dimension. |
+| `cannot create a unique index without the column "<name>" (used in partitioning)` | Unique and primary key constraints must include all partitioning columns. |
+| `cannot have FOREIGN KEY constraints to hypertable "<name>"` | Foreign key constraints to {HYPERTABLE}s are not supported. |
+| `cannot create hypertable for table "<name>" because it is part of a publication` | Tables in publications cannot be converted to {HYPERTABLE}s. |
+| `invalid number of partitions: must be between 1 and 32767` | The number of hash partitions specified is out of valid range. |
+| `cannot specify both the number of partitions and an interval` | When using `by_hash`, specify either the number of partitions or an interval, not both. |
+| `invalid interval type for <type> dimension` | The chunk interval type does not match the partitioning column type. |
+| `must be owner of hypertable "<name>"` | Only the table owner can convert it to a {HYPERTABLE}. |
 
 
 

@@ -10,7 +10,8 @@ deprecated: true
 products: [cloud, mst, self_hosted]
 ---
 
-import { TIMESCALE_DB, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
+import { CHUNK, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
+import AddDimensionErrors from '/snippets/api-reference/timescaledb/_add-dimension-errors.mdx';
 
 <Icon icon="circle-pause" iconType="duotone" /> Deprecated since {TIMESCALE_DB} v2.13.0. Use, [add_dimension()][add-dimension].
 
@@ -150,6 +151,8 @@ SELECT add_dimension(
 |`table_name`|TEXT|Table name of the {HYPERTABLE}|
 |`column_name`|TEXT|Column name of the column to partition by|
 |`created`|BOOLEAN|True if the dimension was added, false when `if_not_exists` is true and no dimension was added|
+
+<AddDimensionErrors />
 
 When executing this function, either `number_partitions` or
 `chunk_time_interval` must be supplied, which dictates if the

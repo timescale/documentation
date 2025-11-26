@@ -172,4 +172,12 @@ The `created_before`/`created_after` parameters cannot be used together with
 `older_than`/`newer_than`.
 </Note>
 
+## Returns
+
+| Column | Type | Description |
+|-|-|-|
+| drop_chunks | TEXT | The name of each {CHUNK} that was dropped. Returns one row per dropped {CHUNK}. |
+
+The function returns a set of {CHUNK} names in the format `_timescaledb_internal._hyper_X_Y_chunk`, where each row represents a {CHUNK} that was successfully dropped. If no {CHUNK}s match the specified criteria, the function returns an empty result set.
+
 [show_chunks]: /api-reference/timescaledb/hypertables/show_chunks/

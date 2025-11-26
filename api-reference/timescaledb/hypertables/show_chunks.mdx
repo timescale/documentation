@@ -129,4 +129,19 @@ The `created_before`/`created_after` parameters cannot be used together with
 `older_than`/`newer_than`.
 </Note>
 
+## Returns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| show_chunks | REGCLASS | Name of the {CHUNK} matching the criteria |
+
+This function returns a set of rows, one for each {CHUNK} that matches the specified criteria.
+
+On failure, an error is returned:
+
+| Error | Description |
+|-------|-------------|
+| `invalid hypertable or continuous aggregate` | The specified relation is not a valid {HYPERTABLE} or {CAGG} |
+| `invalid time range` | The specified time range parameters do not result in a valid overlapping range |
+
 [drop_chunks]: /api-reference/timescaledb/hypertable/drop_chunks

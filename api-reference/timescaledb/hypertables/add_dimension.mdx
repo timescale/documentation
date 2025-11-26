@@ -10,6 +10,8 @@ products: [cloud, mst, self_hosted]
 ---
 
 import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/_dimensions-info.mdx';
+import AddDimensionErrors from '/snippets/api-reference/timescaledb/_add-dimension-errors.mdx';
+
 import { TIMESCALE_DB, CLOUD_LONG, HYPERTABLE, HYPERTABLE_CAP, CHUNK, PG } from '/snippets/vars.mdx';
 
 Add an additional partitioning dimension to a {TIMESCALE_DB} {HYPERTABLE}. You can only execute this `add_dimension`
@@ -88,6 +90,8 @@ SELECT add_dimension(
 |-|-|-------------------------------------------------------------------------------------------------------------|
 |`dimension_id`|INTEGER| ID of the dimension in the {TIMESCALE_DB} internal catalog                                                     |
 |`created`|BOOLEAN| `true` if the dimension was added, `false` when you set `if_not_exists` to `true` and no dimension was added. |
+
+<AddDimensionErrors />
 
 
 [create_hypertable]: /api-reference/timescaledb/hypertables/create_hypertable

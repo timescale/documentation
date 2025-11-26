@@ -12,7 +12,7 @@ products: [cloud, mst, self_hosted]
 
 import CreateHypertablePolicyNote from '/snippets/manage-data/create-hypertable-columnstore-policy-note.mdx';
 
-import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+import { CHUNK, CHUNK_CAP, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 <Icon icon="flask" /> Early access 2.17.1
 
@@ -94,7 +94,7 @@ SELECT enable_chunk_skipping(
 
 |Column|Type|Description|
 |-|-|-|
-|`column_stats_id`|INTEGER|ID of the entry in the TimescaleDB internal catalog|
+|`column_stats_id`|INTEGER|ID of the entry in the {TIMESCALE_DB} internal catalog|
 |`enabled`|BOOLEAN|Returns `true` when tracking is enabled, `if_not_exists` is `true`, and when a new entry is not added|
 
 [compress_chunk]: /api-reference/timescaledb/compression/compress_chunk/

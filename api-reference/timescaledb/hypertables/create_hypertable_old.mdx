@@ -8,7 +8,7 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-import { TIMESCALE_DB, HYPERTABLE, HYPERTABLE_CAP, PG } from '/snippets/vars.mdx';
+import { CHUNK, HYPERTABLE, HYPERTABLE_CAP, PG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 <Icon icon="circle-pause" iconType="duotone" /> Old API since {TIMESCALE_DB} v2.13.0. Use [`create_hypertable`][api-create-hypertable].
 
@@ -131,6 +131,18 @@ SELECT create_hypertable(
 If you use `SELECT * FROM create_hypertable(...)` you get the return value
 formatted as a table with column headings.
 </Note>
+
+On failure, an error is returned:
+
+| Error | Description |
+|-|-|
+| {HYPERTABLE} "{table_name}" not found | The specified table does not exist |
+| permission denied for schema {schema_name} | Insufficient permissions to access the schema |
+| must be owner of {HYPERTABLE} "{table_name}" | Only the table owner can convert it to a {HYPERTABLE} |
+| permissions denied: cannot create {CHUNK}s in schema "{schema_name}" | Insufficient permissions on the associated schema for {CHUNK}s |
+| table "{table_name}" is already a {HYPERTABLE} | The table has already been converted to a {HYPERTABLE} |
+| table "{table_name}" is not empty | The table contains data and `migrate_data` is not set to true |
+| invalid partitioning function | The specified partitioning function is not valid or has incorrect signature |
 
 The use of the `migrate_data` argument to convert a non-empty table can
 lock the table for a significant amount of time, depending on how much data is

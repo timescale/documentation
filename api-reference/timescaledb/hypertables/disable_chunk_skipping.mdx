@@ -9,7 +9,7 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, COLUMNSTORE } from '/snippets/vars.mdx';
+import { CHUNK, CHUNK_CAP, COLUMNSTORE, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 Disable range tracking for a specific column in a {HYPERTABLE} **in the {COLUMNSTORE}**.
 
@@ -57,7 +57,7 @@ SELECT disable_chunk_skipping(
 
 |Column|Type|Description|
 |-|-|-|
-|`hypertable_id`|INTEGER|ID of the hypertable in TimescaleDB.|
+|`hypertable_id`|INTEGER|ID of the {HYPERTABLE} in {TIMESCALE_DB}.|
 |`column_name`|TEXT|Name of the column range tracking is disabled for|
 |`disabled`|BOOLEAN|Returns `true` when tracking is disabled. `false` when `if_not_exists` is `true` and the entry was not removed|
 

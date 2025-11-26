@@ -36,4 +36,10 @@ SELECT detach_tablespaces(
 
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
-| `hypertable` | REGCLASS | - | ✔ | Hypertable to detach a the tablespace from.|
+| `hypertable` | REGCLASS | - | ✔ | Hypertable to detach the tablespace from.|
+
+## Returns
+
+| Name | Type | Description |
+|-|-|-|
+| detach_tablespaces | INTEGER | The total number of tablespaces that were detached from the {HYPERTABLE}. |

@@ -22,6 +22,27 @@ Return the N highest values seen by the aggregate.
 
 Get the 5 highest daily temperatures from a weather dataset:
 
+```sql
+SELECT into_values(
+    max_n(sub.val, 5))
+FROM (
+  SELECT (i * 13) % 10007 AS val
+  FROM generate_series(1,10000) as i
+) sub;
+```
+Output:
+
+```sql
+into_values
+-------------
+10006
+10005
+10004
+10003
+10002
+```
+
+
 ## Arguments
 
 The syntax is:

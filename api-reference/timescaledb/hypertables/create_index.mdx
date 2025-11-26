@@ -59,4 +59,8 @@ CREATE INDEX ON conditions USING brin(time, location)
     WITH (timescaledb.transaction_per_chunk);
 ```
 
+## Returns
+
+The `CREATE INDEX` command does not return a value. Upon successful completion, an index is created on the {HYPERTABLE} and all its {CHUNK}s.
+
 [postgres-createindex]: https://www.postgresql.org/docs/current/sql-createindex.html

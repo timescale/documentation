@@ -64,5 +64,8 @@ SELECT set_integer_now_func(
 |`integer_now_func`|REGPROC| - | ✔ | A function that returns the current time set in each row in the `time` column in `main_table`.|
 |`replace_if_exists`|BOOLEAN| `FALSE` | ✖ | Set to `true` to override `integer_now_func` when you have previously set a custom function. |
 
+## Returns
+
+This function returns void.
 
 [chunks]: /use-timescale/hypertables/#hypertable-partitioning

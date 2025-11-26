@@ -10,6 +10,7 @@ products: [cloud, mst, self_hosted]
 ---
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+import ReturnsNullIfNotHypertable from '/snippets/api-reference/timescaledb/_returns-null-if-not-hypertable.mdx';
 
 Get information about the disk space used by the {CHUNK}s belonging to a
 {HYPERTABLE}, returning size information for each {CHUNK} table, any
@@ -54,17 +55,12 @@ SELECT * FROM chunks_detailed_size(
 
 |Column|Type|Description|
 |---|---|---|
-|chunk_schema| TEXT | Schema name of the chunk |
-|chunk_name| TEXT | Name of the chunk|
-|table_bytes|BIGINT | Disk space used by the chunk table|
+|chunk_schema| TEXT | Schema name of the {CHUNK} |
+|chunk_name| TEXT | Name of the {CHUNK}|
+|table_bytes|BIGINT | Disk space used by the {CHUNK} table|
 |index_bytes|BIGINT | Disk space used by indexes|
 |toast_bytes|BIGINT | Disk space of toast tables|
-|total_bytes|BIGINT | Total disk space used by the chunk, including all indexes and TOAST data|
+|total_bytes|BIGINT | Total disk space used by the {CHUNK}, including all indexes and TOAST data|
 |node_name| TEXT | Node for which size is reported, applicable only to distributed {HYPERTABLE}s|
 
-<Tip>
-
-If executed on a relation that is not a {HYPERTABLE}, the function
-returns `NULL`.
-
-</Tip>
+<ReturnsNullIfNotHypertable />

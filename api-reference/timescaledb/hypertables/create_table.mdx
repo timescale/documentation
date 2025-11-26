@@ -173,7 +173,21 @@ WITH (
 
 ## Returns
 
-{TIMESCALE_DB} returns a simple message indicating success or failure.
+| Return Value | Type | Description |
+|--------------|------|-------------|
+| CREATE TABLE | Command tag | Command completed successfully |
+
+On failure, an error is returned:
+
+| Error | Description |
+|-------|-------------|
+| `partition column could not be determined` | No timestamp column found for automatic partitioning. Use `tsdb.partition_column` to specify the partitioning column. |
+| `column "<name>" does not exist` | The specified partition column does not exist in the table. |
+| `timescaledb options requires hypertable option` | {TIMESCALE_DB} options used without setting `tsdb.hypertable=true`. |
+| `invalid input syntax for type <type>` | Invalid value for `tsdb.chunk_interval` for the partition column type. |
+| `invalid value for tsdb.create_default_indexes '<value>'` | Value for `tsdb.create_default_indexes` must be a boolean. |
+| `unrecognized parameter "<param>"` | Invalid {TIMESCALE_DB} parameter specified. |
+| `functionality not supported under the current "apache" license` | Feature requires a {TIMESCALE_DB} license with additional capabilities. |
 
 
 [pg-create-table]: https://www.postgresql.org/docs/current/sql-createtable.html

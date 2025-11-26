@@ -37,3 +37,11 @@ SELECT show_tablespaces(
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `hypertable` | REGCLASS | - | ✔ | {HYPERTABLE} to show attached tablespaces for.|
+
+## Returns
+
+| Column | Type | Description |
+|-|-|-|
+| show_tablespaces | NAME | The name of each tablespace attached to the {HYPERTABLE}. Returns one row per attached tablespace. |
+
+The function returns a set of tablespace names. If no tablespaces are attached to the {HYPERTABLE}, the function returns an empty result set.
