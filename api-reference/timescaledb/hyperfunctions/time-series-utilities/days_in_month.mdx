@@ -1,0 +1,46 @@
+---
+title: days_in_month()
+description: Calculates days in month given a timestamptz
+topics: [hyperfunctions]
+keywords: [hyperfunctions, Toolkit, normalization]
+license: community
+type: function
+toolkit: true
+hyperfunction:
+  type: one-step operation
+products: [cloud, mst, self_hosted]
+---
+
+<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+
+Given a timestamptz, returns how many days are in that month.
+
+## Samples
+
+Calculate how many days in the month of January 1, 2022:
+
+```sql
+SELECT days_in_month('2021-01-01 00:00:00+03'::timestamptz)
+```
+
+The output looks like this:
+
+```sql
+days_in_month
+---------------------
+31
+```
+
+## Arguments
+
+The syntax is:
+
+```sql
+SELECT days_in_month(
+    date = <date>
+);
+```
+
+| Name | Type | Default | Required | Description |
+|--|--|--|--|--|
+| `date` | TIMESTAMPTZ | - | ✔ | Timestamp to use to calculate how many days in the month |

@@ -1,0 +1,30 @@
+---
+title: grant_to
+description: Grant permissions to users for vectorizer-created objects
+keywords: [pgai, vectorizer, permissions, grant, access]
+tags: [vectorizer, configuration, security]
+license: community
+type: function
+---
+
+Grant permissions to a comma-separated list of users.
+
+Includes the users specified in the `ai.grant_to_default` setting.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    grant_to => ai.grant_to('bob', 'alice'),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+This function takes a comma-separated list of usernames to grant permissions to.
+
+## Returns
+
+An array of name values that you can use in `ai.create_vectorizer`.

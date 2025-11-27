@@ -1,0 +1,97 @@
+---
+title: cohere_chat_complete()
+description: Generate chat completions with RAG support using Cohere's Command models
+keywords: [Cohere, chat, RAG, conversation]
+tags: [AI, Cohere, chat, RAG]
+license: community
+type: function
+---
+
+Generate chat completions using Cohere's Command models with built-in support for retrieval augmented generation (RAG).
+Ground responses in your documents and get automatic citations.
+
+## Samples
+
+### Basic chat
+
+```sql
+SELECT ai.cohere_chat_complete(
+    'command-r-plus',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?')
+    )
+)->'message'->>'content';
+```
+
+### Chat with documents (RAG)
+
+```sql
+SELECT ai.cohere_chat_complete(
+    'command-r-plus',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What are the key features?')
+    ),
+    documents => '[
+        {"text": "PostgreSQL supports ACID transactions"},
+        {"text": "TimescaleDB extends PostgreSQL for time-series"}
+    ]'::jsonb
+);
+```
+
+### Use tools
+
+```sql
+SELECT ai.cohere_chat_complete(
+    'command-r-plus',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is the weather?')
+    ),
+    tools => '[
+        {
+            "name": "get_weather",
+            "description": "Get current weather",
+            "parameter_definitions": {
+                "location": {"type": "str", "required": true}
+            }
+        }
+    ]'::jsonb
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | Cohere model (e.g., `command-r-plus`, `command-r`) |
+| `messages` | `JSONB` | - | ✔ | Array of message objects with `role` and `content` |
+| `api_key` | `TEXT` | `NULL` | ✖ | Cohere API key |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of secret containing the API key |
+| `tools` | `JSONB` | `NULL` | ✖ | Tool definitions for function calling |
+| `documents` | `JSONB` | `NULL` | ✖ | Documents for RAG |
+| `citation_options` | `JSONB` | `NULL` | ✖ | Citation configuration |
+| `response_format` | `JSONB` | `NULL` | ✖ | Response format specification |
+| `safety_mode` | `TEXT` | `NULL` | ✖ | Safety mode setting |
+| `max_tokens` | `INT` | `NULL` | ✖ | Maximum tokens to generate |
+| `stop_sequences` | `TEXT[]` | `NULL` | ✖ | Sequences that stop generation |
+| `temperature` | `FLOAT8` | `NULL` | ✖ | Sampling temperature (0.0 to 1.0) |
+| `seed` | `INT` | `NULL` | ✖ | Random seed for reproducibility |
+| `frequency_penalty` | `FLOAT8` | `NULL` | ✖ | Frequency penalty |
+| `presence_penalty` | `FLOAT8` | `NULL` | ✖ | Presence penalty |
+| `k` | `INT` | `NULL` | ✖ | Top-k sampling parameter |
+| `p` | `FLOAT8` | `NULL` | ✖ | Top-p (nucleus) sampling parameter |
+| `logprobs` | `BOOLEAN` | `NULL` | ✖ | Return log probabilities |
+| `tool_choice` | `TEXT` | `NULL` | ✖ | Tool choice strategy |
+| `strict_tools` | `BOOL` | `NULL` | ✖ | Enforce strict tool schemas |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging |
+
+## Returns
+
+`JSONB`: Complete API response with message, citations, and metadata.
+
+## Related functions
+
+- [`cohere_rerank()`][cohere_rerank]: rerank documents for RAG
+- [`anthropic_generate()`][anthropic_generate]: alternative with Claude models
+
+[cohere_rerank]: /api-reference/pgai/model-calling/cohere/cohere_rerank
+[anthropic_generate]: /api-reference/pgai/model-calling/anthropic/anthropic_generate

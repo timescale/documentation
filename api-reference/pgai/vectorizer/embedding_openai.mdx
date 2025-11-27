@@ -1,0 +1,100 @@
+---
+title: embedding_openai()
+description: Use OpenAI models to generate embeddings
+keywords: [vectorizer, embedding, OpenAI, configuration]
+tags: [vectorizer, configuration, embeddings, OpenAI]
+license: community
+type: function
+---
+
+Use an OpenAI model to generate embeddings for your vectorizer.
+
+You use this function to:
+
+- Define which OpenAI embedding model to use
+- Specify the dimensionality of the embeddings
+- Configure optional parameters like user identifier for API calls
+- Set the name of the environment variable that holds your OpenAI API key
+
+## Samples
+
+### Basic OpenAI embedding
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### With custom API key name
+
+```sql
+SELECT ai.create_vectorizer(
+    'documents'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_openai(
+        'text-embedding-3-small',
+        768,
+        api_key_name => 'MY_OPENAI_API_KEY'
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### With user tracking
+
+```sql
+SELECT ai.create_vectorizer(
+    'user_content'::regclass,
+    loading => ai.loading_column('text'),
+    embedding => ai.embedding_openai(
+        'text-embedding-3-small',
+        768,
+        chat_user => 'analytics_team'
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### With custom base URL
+
+```sql
+SELECT ai.create_vectorizer(
+    'data_table'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_openai(
+        'text-embedding-3-small',
+        768,
+        base_url => 'https://custom-openai-endpoint.com/v1'
+    ),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `text` | - | ✔ | Name of the OpenAI embedding model (e.g., `text-embedding-3-small`) |
+| `dimensions` | `int` | - | ✔ | Number of dimensions for the embedding vectors |
+| `chat_user` | `text` | - | ✖ | Identifier for the user making the API call (for tracking/monitoring) |
+| `api_key_name` | `text` | `OPENAI_API_KEY` | ✖ | Name of the environment variable containing the OpenAI API key |
+| `base_url` | `text` | - | ✖ | Custom base URL for the OpenAI API |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`embedding_ollama()`][embedding_ollama]: use local Ollama models
+- [`embedding_litellm()`][embedding_litellm]: use any provider through LiteLLM
+- [`embedding_voyageai()`][embedding_voyageai]: use Voyage AI models
+
+[embedding_ollama]: /api-reference/pgai/vectorizer/embedding_ollama
+[embedding_litellm]: /api-reference/pgai/vectorizer/embedding_litellm
+[embedding_voyageai]: /api-reference/pgai/vectorizer/embedding_voyageai
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

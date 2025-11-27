@@ -1,0 +1,73 @@
+---
+title: openai_client_config()
+description: Configure OpenAI client settings for API requests
+keywords: [OpenAI, configuration, client, settings]
+tags: [AI, configuration]
+license: community
+type: function
+---
+
+Create a configuration object for customizing OpenAI API client behavior. Use this to set base URLs, timeouts,
+organization IDs, and other advanced client options.
+
+## Samples
+
+### Configure timeout
+
+Set a custom timeout for API requests:
+
+```sql
+SELECT ai.openai_client_config(
+    timeout_seconds => 60
+);
+```
+
+### Use custom base URL
+
+Point to a different OpenAI-compatible API endpoint:
+
+```sql
+SELECT ai.openai_client_config(
+    base_url => 'https://api.custom-endpoint.com/v1'
+);
+```
+
+### Full configuration
+
+Combine multiple settings:
+
+```sql
+SELECT ai.openai_embed(
+    'text-embedding-ada-002',
+    'sample text',
+    client_config => ai.openai_client_config(
+        base_url => 'https://custom.openai.com/v1',
+        timeout_seconds => 120,
+        max_retries => 3
+    )
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `base_url` | `TEXT` | `NULL` | ✖ | Custom base URL for the OpenAI API |
+| `timeout_seconds` | `FLOAT8` | `NULL` | ✖ | Timeout in seconds for API requests |
+| `organization` | `TEXT` | `NULL` | ✖ | OpenAI organization ID |
+| `project` | `TEXT` | `NULL` | ✖ | OpenAI project ID |
+| `max_retries` | `INT` | `NULL` | ✖ | Maximum number of retry attempts |
+| `default_headers` | `JSONB` | `NULL` | ✖ | Default headers to include in all requests |
+| `default_query` | `JSONB` | `NULL` | ✖ | Default query parameters for all requests |
+
+## Returns
+
+`JSONB`: A configuration object that can be passed to other OpenAI functions via the `client_config` parameter.
+
+## Related functions
+
+- [`openai_embed()`][openai_embed]: use custom client config with embeddings
+- [`openai_chat_complete()`][openai_chat_complete]: use custom client config with chat
+
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed
+[openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete

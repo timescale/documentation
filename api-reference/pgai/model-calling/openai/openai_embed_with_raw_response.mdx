@@ -1,0 +1,56 @@
+---
+title: openai_embed_with_raw_response()
+description: Generate embeddings and get the complete API response including metadata
+keywords: [OpenAI, embeddings, raw response, metadata]
+tags: [AI, embeddings, advanced]
+license: community
+type: function
+---
+
+import OpenAPIEmbedArguments from '/snippets/api-reference/pgai/_openai_embed_arguments.mdx';
+
+Generate embeddings and receive the complete raw API response including all metadata. Use this when you need access to
+token usage, model information, or other response details not included in the standard `openai_embed()` function.
+
+## Samples
+
+### Get raw embedding response
+
+Receive the full API response:
+
+```sql
+SELECT ai.openai_embed_with_raw_response(
+    'text-embedding-ada-002',
+    'PostgreSQL is powerful'
+);
+```
+
+### Extract token usage
+
+Check how many tokens were used:
+
+```sql
+SELECT
+    (ai.openai_embed_with_raw_response(
+        'text-embedding-ada-002',
+        'sample text'
+    )->>'usage')::jsonb;
+```
+
+## Arguments
+
+<OpenAPIEmbedArguments />
+
+## Returns
+
+`JSONB`: The complete API response including:
+- `object`: Response type
+- `data`: Array of embedding objects
+- `model`: Model used
+- `usage`: Token usage information
+
+## Related functions
+
+- [`openai_embed()`][openai_embed]: standard embedding function returning just the vector
+
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed

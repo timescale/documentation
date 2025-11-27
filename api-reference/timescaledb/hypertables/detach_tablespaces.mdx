@@ -1,0 +1,39 @@
+---
+title: detach_tablespaces()
+description: Detach all tablespaces from a hypertable
+topics: [hypertables]
+keywords: [tablespaces, hypertables, detach]
+products: [cloud, mst, self_hosted]
+license: apache
+type: function
+---
+
+
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
+Detach all tablespaces from a {HYPERTABLE}. After issuing this command
+on a {HYPERTABLE}, it no longer has any tablespaces attached to
+it. New {CHUNK}s are instead placed in the database's default
+tablespace.
+
+## Samples
+
+Detach all tablespaces from the {HYPERTABLE} `conditions`:
+
+```sql
+SELECT detach_tablespaces('conditions');
+```
+
+## Arguments
+
+The syntax is:
+
+```sql
+SELECT detach_tablespaces(
+    hypertable = '<hypertable_name>'
+);
+```
+
+|Name|Type| Default | Required | Description|
+|---|---|---|---|---|
+| `hypertable` | REGCLASS | - | ✔ | Hypertable to detach a the tablespace from.|
