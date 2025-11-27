@@ -115,6 +115,7 @@
                   {
                     "group": "Reference",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "cloud/tiger/reference/tiger-cloud-regions",
                       "cloud/tiger/reference/contribute-to-tigerdata",
                       "cloud/tiger/reference/postgres-extensions-in-tiger-cloud",
@@ -2818,6 +2819,7 @@
               },
               {
                 "item": "Tiger Cloud REST API",
+                "openapi": "https://raw.githubusercontent.com/timescale/savannah-public/main/openapi.yaml",
                 "groups": [
                   {
                     "group": " ",
@@ -2826,8 +2828,46 @@
                     ]
                   },
                   {
-                    "group": " ",
-                    "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml"
+                    "group": "Services",
+                    "expanded": true,
+                    "pages": [
+                      "GET /projects/{project_id}/services",
+                      "POST /projects/{project_id}/services",
+                      "GET /projects/{project_id}/services/{service_id}",
+                      "DELETE /projects/{project_id}/services/{service_id}",
+                      "POST /projects/{project_id}/services/{service_id}/attachToVPC",
+                      "POST /projects/{project_id}/services/{service_id}/detachFromVPC",
+                      "POST /projects/{project_id}/services/{service_id}/resize",
+                      "POST /projects/{project_id}/services/{service_id}/enablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/disablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/forkService",
+                      "POST /projects/{project_id}/services/{service_id}/updatePassword",
+                      "POST /projects/{project_id}/services/{service_id}/setEnvironment",
+                      "POST /projects/{project_id}/services/{service_id}/setHA"
+                    ]
+                  },
+                  {
+                    "group": "VPCs",
+                    "expanded": true,
+                    "pages": [
+                      "GET /projects/{project_id}/vpcs",
+                      "POST /projects/{project_id}/vpcs",
+                      "GET /projects/{project_id}/vpcs/{vpc_id}",
+                      "DELETE /projects/{project_id}/vpcs/{vpc_id}",
+                      "POST /projects/{project_id}/vpcs/{vpc_id}/rename",
+                      "GET /projects/{project_id}/vpcs/{vpc_id}/peerings",
+                      "POST /projects/{project_id}/vpcs/{vpc_id}/peerings",
+                      "GET /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}",
+                      "DELETE /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}"
+                    ]
+                  },
+                  {
+                    "group": "Analytics",
+                    "expanded": true,
+                    "pages": [
+                      "POST /analytics/identify",
+                      "POST /analytics/track"
+                    ]
                   }
                 ]
               },

@@ -6,18 +6,18 @@ info:
 
     ## Authentication
 
-    The Tiger Cloud REST API uses HTTP Basic Authentication. Include your access key and secret key in the Authorization header.
+    The Tiger Cloud REST API uses HTTP Basic Authentication. Include your public key and secret key in the Authorization header.
 
     ### Basic Authentication
     ```http
-    Authorization: Basic <base64(access_key:secret_key)>
+    Authorization: Basic <base64(public_key:secret_key)>
     ```
 
     ### Example
     ```bash
     # Using cURL
     curl -X GET "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
-      -H "Authorization: Basic $(echo -n 'your_access_key:your_secret_key' | base64)"
+      -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)"
     ```
 
     ## Service Management
@@ -40,6 +40,9 @@ servers:
     description: Tiger Cloud API server
   - url: http://localhost:8080
     description: Local development server
+
+security:
+  - basicAuth: []
 
 tags:
   - name: Services
@@ -658,6 +661,27 @@ paths:
           $ref: '#/components/responses/ClientError'
 
 components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: |
+        HTTP Basic Authentication using your Tiger Cloud public key and secret key.
+
+        Format: `Authorization: Basic <base64(public_key:secret_key)>`
+
+        Example:
+        ```bash
+        curl -X GET "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
+          -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)"
+        ```
+      x-basic-info-func: |
+        basicAuth:
+          username:
+            label: Public Key
+          password:
+            label: Secret Key
+
   parameters:
     ProjectId:
       name: project_id

@@ -9,18 +9,67 @@ description: A comprehensive RESTful API for managing Tiger Cloud resources incl
 
 ## Authentication
 
-The Tiger Cloud REST API uses HTTP Basic Authentication. Include your access key and secret key in the Authorization header.
+The Tiger Cloud REST API uses HTTP Basic Authentication. Include your public key and secret key in the Authorization header.
+
+To run the samples in this API reference, add your [public key and secret key](/integrations/integrate/find-connection-details)
+as the `Authorization.username` and `Authorization.password` when you run the calls.
 
 ### Basic Authentication
 ```http
-Authorization: Basic <base64(access_key:secret_key)>
+Authorization: Basic <base64(public_key:secret_key)>
 ```
 
-### Example
+## Samples
+
+### List all services
+
 ```bash
-# Using cURL
 curl -X GET "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
-  -H "Authorization: Basic $(echo -n 'your_access_key:your_secret_key' | base64)"
+  -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)"
+```
+
+### Create a new service
+
+```bash
+curl -X POST "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
+  -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my-production-db",
+    "region_code": "us-east-1",
+    "compute": {
+      "cpu": "0.5",
+      "memory_gb": 2
+    }
+  }'
+```
+
+### Create a VPC
+
+```bash
+curl -X POST "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/vpcs" \
+  -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my-vpc",
+    "region_code": "us-east-1",
+    "cidr": "10.0.0.0/16"
+  }'
+```
+
+### Create a read replica set
+
+```bash
+curl -X POST "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services/{service_id}/replicaSets" \
+  -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "region_code": "us-west-2",
+    "compute": {
+      "cpu": "0.5",
+      "memory_gb": 2
+    }
+  }'
 ```
 
 ## API Endpoints
