@@ -1,0 +1,52 @@
+---
+title: openai_chat_complete_simple()
+description: Simplified interface for quick chat completions with OpenAI models
+keywords: [OpenAI, chat, GPT, simple]
+tags: [AI, chat, GPT]
+license: community
+type: function
+---
+
+A simplified wrapper around `openai_chat_complete()` for quick, single-turn chat interactions. Use this when you need
+a straightforward question-and-answer interaction without the complexity of managing message arrays.
+
+## Samples
+
+### Quick question
+
+Get a response to a simple question:
+
+```sql
+SELECT ai.openai_chat_complete_simple('What is PostgreSQL?');
+```
+
+### Specify a model
+
+Use a different GPT model:
+
+```sql
+SELECT ai.openai_chat_complete_simple(
+    'What is a hypertable?',
+    model => 'gpt-4o'
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `message` | `TEXT` | - | ✔ | The user message/question |
+| `api_key` | `TEXT` | `NULL` | ✖ | OpenAI API key. If not provided, uses `ai.openai_api_key` setting |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `model` | `TEXT` | `'gpt-4o-mini'` | ✖ | The OpenAI model to use |
+| `client_config` | `JSONB` | `NULL` | ✖ | Advanced client configuration options |
+
+## Returns
+
+`TEXT`: The text response from the model.
+
+## Related functions
+
+- [`openai_chat_complete()`][openai_chat_complete]: full-featured chat completion with message history
+
+[openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete

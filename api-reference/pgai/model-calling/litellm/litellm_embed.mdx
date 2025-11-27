@@ -1,0 +1,160 @@
+---
+title: litellm_embed()
+description: Generate embeddings from 100+ providers through a unified API
+keywords: [LiteLLM, embeddings, multi-provider, unified API]
+tags: [AI, LiteLLM, embeddings, vectors]
+license: community
+type: function
+---
+
+Generate vector embeddings from any LLM provider through LiteLLM's unified interface. Switch between OpenAI, Azure,
+AWS Bedrock, Google Vertex AI, and 100+ other providers by simply changing the model name.
+
+## Samples
+
+### Use OpenAI
+
+```sql
+SELECT ai.litellm_embed(
+    'text-embedding-ada-002',
+    'PostgreSQL is a powerful database',
+    api_key_name => 'OPENAI_API_KEY'
+);
+```
+
+### Use Azure OpenAI
+
+Embed with Azure OpenAI deployment:
+
+```sql
+SELECT ai.litellm_embed(
+    'azure/my-embedding-deployment',
+    'PostgreSQL is a powerful database',
+    api_key_name => 'AZURE_API_KEY',
+    extra_options => '{
+        "api_base": "https://my-resource.openai.azure.com/",
+        "api_version": "2023-05-15"
+    }'::jsonb
+);
+```
+
+### Use AWS Bedrock
+
+Embed with Amazon Titan:
+
+```sql
+SELECT ai.litellm_embed(
+    'bedrock/amazon.titan-embed-text-v1',
+    'PostgreSQL is a powerful database',
+    extra_options => '{
+        "aws_region_name": "us-east-1",
+        "aws_access_key_id": "your-key",
+        "aws_secret_access_key": "your-secret"
+    }'::jsonb
+);
+```
+
+### Use Google Vertex AI
+
+Embed with Vertex AI:
+
+```sql
+SELECT ai.litellm_embed(
+    'vertex_ai/textembedding-gecko',
+    'PostgreSQL is a powerful database',
+    extra_options => '{
+        "vertex_project": "my-project-id",
+        "vertex_location": "us-central1"
+    }'::jsonb
+);
+```
+
+### Batch embeddings
+
+Process multiple texts efficiently:
+
+```sql
+SELECT index, embedding
+FROM ai.litellm_embed(
+    'text-embedding-ada-002',
+    ARRAY[
+        'PostgreSQL is a powerful database',
+        'TimescaleDB extends PostgreSQL',
+        'pgai brings AI to PostgreSQL'
+    ],
+    api_key_name => 'OPENAI_API_KEY'
+);
+```
+
+### Store embeddings in a table
+
+```sql
+UPDATE documents
+SET embedding = ai.litellm_embed(
+    'text-embedding-ada-002',
+    content,
+    api_key_name => 'OPENAI_API_KEY'
+)
+WHERE embedding IS NULL;
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | Model identifier with optional provider prefix (e.g., `text-embedding-ada-002`, `azure/deployment`, `bedrock/model-id`) |
+| `input_text` | `TEXT` | - | ✔ | Single text input to embed (use this OR `input_texts`) |
+| `input_texts` | `TEXT[]` | - | ✔ | Array of text inputs to embed in a batch |
+| `api_key` | `TEXT` | `NULL` | ✖ | API key for the provider |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `extra_options` | `JSONB` | `NULL` | ✖ | Provider-specific options (API base URL, region, project, etc.) |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+**For single text input:**
+- `vector`: A pgvector compatible vector containing the embedding
+
+**For array input:**
+- `TABLE(index INT, embedding vector)`: A table with an index and embedding for each input text
+
+## Provider-specific configuration
+
+Different providers require different configurations through the `extra_options` parameter:
+
+### Azure OpenAI
+```json
+{
+  "api_base": "https://resource.openai.azure.com/",
+  "api_version": "2023-05-15"
+}
+```
+
+### AWS Bedrock
+```json
+{
+  "aws_region_name": "us-east-1",
+  "aws_access_key_id": "key",
+  "aws_secret_access_key": "secret"
+}
+```
+
+### Google Vertex AI
+```json
+{
+  "vertex_project": "project-id",
+  "vertex_location": "us-central1"
+}
+```
+
+See [LiteLLM providers documentation](https://docs.litellm.ai/docs/providers) for complete configuration options.
+
+## Related functions
+
+- [`openai_embed()`][openai_embed]: direct OpenAI integration
+- [`cohere_embed()`][cohere_embed]: direct Cohere integration
+- [`voyageai_embed()`][voyageai_embed]: direct Voyage AI integration
+
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed
+[cohere_embed]: /api-reference/pgai/model-calling/cohere/cohere_embed
+[voyageai_embed]: /api-reference/pgai/model-calling/voyageai/voyageai_embed

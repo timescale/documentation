@@ -1,0 +1,116 @@
+---
+title: create_vectorizer()
+description: Create and configure an automated embedding system for a table
+keywords: [vectorizer, create, embeddings, automation]
+tags: [vectorizer, embeddings, automation]
+license: community
+type: function
+---
+
+Set up and configure an automated system for generating and managing embeddings for a specific table in your database.
+This function creates the necessary infrastructure (tables, views, triggers, columns) and configures the embedding
+generation process.
+
+You use this function to:
+
+- Automate the process of creating embeddings for table data
+- Set up necessary infrastructure (tables, views, triggers, columns)
+- Configure the embedding generation process
+- Integrate with AI providers for embedding creation
+- Set up scheduling for background processing
+
+## Samples
+
+### Table destination (default)
+
+Create a separate table to store embeddings with a view that joins with the source table:
+
+```sql
+SELECT ai.create_vectorizer(
+    'website.blog'::regclass,
+    name => 'website_blog_vectorizer',
+    loading => ai.loading_column('contents'),
+    embedding => ai.embedding_ollama('nomic-embed-text', 768),
+    chunking => ai.chunking_character_text_splitter(128, 10),
+    formatting => ai.formatting_python_template('title: $title published: $published $chunk'),
+    grant_to => ai.grant_to('bob', 'alice'),
+    destination => ai.destination_table(
+        target_schema => 'website',
+        target_table => 'blog_embeddings_store',
+        view_name => 'blog_embeddings'
+    )
+);
+```
+
+This creates:
+1. A vectorizer named 'website_blog_vectorizer' for the `website.blog` table
+2. A separate table `website.blog_embeddings_store` to store embeddings
+3. A view `website.blog_embeddings` joining source and embeddings
+4. Loads the `contents` column
+5. Uses Ollama `nomic-embed-text` model to create 768 dimensional embeddings
+6. Chunks content into 128-character pieces with 10-character overlap
+7. Formats each chunk with title and published date
+8. Grants necessary permissions to roles `bob` and `alice`
+
+### Column destination
+
+Store embeddings directly in the source table (requires no chunking):
+
+```sql
+SELECT ai.create_vectorizer(
+    'website.product_descriptions'::regclass,
+    name => 'product_descriptions_vectorizer',
+    loading => ai.loading_column('description'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_none(),  -- Required for column destination
+    grant_to => ai.grant_to('marketing_team'),
+    destination => ai.destination_column('description_embedding')
+);
+```
+
+This creates:
+1. A vectorizer named 'product_descriptions_vectorizer'
+2. A column `description_embedding` directly in the source table
+3. Loads the `description` column
+4. No chunking (required for column destination)
+5. Uses OpenAI's embedding model to create 768 dimensional embeddings
+6. Grants necessary permissions to role `marketing_team`
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `source` | `regclass` | - | ✔ | The source table that embeddings are generated for |
+| `name` | `text` | Auto-generated | ✖ | Unique name for the vectorizer. Auto-generated based on destination type if not provided. Must follow snake_case pattern `^[a-z][a-z_0-9]*$` |
+| `destination` | Destination config | `ai.destination_table()` | ✖ | How embeddings will be stored: `ai.destination_table()` (default) or `ai.destination_column()` |
+| `embedding` | Embedding config | - | ✔ | How to embed the data using `ai.embedding_*()` functions |
+| `loading` | Loading config | - | ✔ | How to load data from source table using `ai.loading_*()` functions |
+| `parsing` | Parsing config | `ai.parsing_auto()` | ✖ | How to parse the data using `ai.parsing_*()` functions |
+| `chunking` | Chunking config | `ai.chunking_recursive_character_text_splitter()` | ✖ | How to split text data using `ai.chunking_*()` functions |
+| `indexing` | Indexing config | `ai.indexing_default()` | ✖ | How to index embeddings using `ai.indexing_*()` functions |
+| `formatting` | Formatting config | `ai.formatting_python_template()` | ✖ | How to format data before embedding |
+| `scheduling` | Scheduling config | `ai.scheduling_default()` | ✖ | How often to run the vectorizer using `ai.scheduling_*()` functions |
+| `processing` | Processing config | `ai.processing_default()` | ✖ | How to process embeddings |
+| `queue_schema` | `name` | - | ✖ | Schema where the work queue table is created |
+| `queue_table` | `name` | - | ✖ | Name of the work queue table |
+| `grant_to` | Grant config | `ai.grant_to_default()` | ✖ | Which users can use objects created by the vectorizer |
+| `enqueue_existing` | `bool` | `true` | ✖ | Whether existing rows should be immediately queued for embedding |
+| `if_not_exists` | `bool` | `false` | ✖ | Avoid error if the vectorizer already exists |
+
+## Returns
+
+`INT`: The ID of the vectorizer created. You can also reference the vectorizer by its name in management functions.
+
+## Related functions
+
+- [`drop_vectorizer()`][drop_vectorizer]: remove a vectorizer
+- [`destination_table()`][destination_table]: store embeddings in separate table
+- [`destination_column()`][destination_column]: store embeddings in source table
+- [`enable_vectorizer_schedule()`][enable_vectorizer_schedule]: resume automatic processing
+- [`disable_vectorizer_schedule()`][disable_vectorizer_schedule]: pause automatic processing
+
+[drop_vectorizer]: /api-reference/pgai/vectorizer/drop_vectorizer
+[destination_table]: /api-reference/pgai/vectorizer/destination_table
+[destination_column]: /api-reference/pgai/vectorizer/destination_column
+[enable_vectorizer_schedule]: /api-reference/pgai/vectorizer/enable_vectorizer_schedule
+[disable_vectorizer_schedule]: /api-reference/pgai/vectorizer/disable_vectorizer_schedule

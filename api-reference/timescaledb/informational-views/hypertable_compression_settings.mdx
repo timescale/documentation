@@ -1,0 +1,44 @@
+---
+title: timescaledb_information.hypertable_compression_settings
+sidebarTitle: hypertable_compression_settings
+description: Get information about compression settings for all hypertables
+keywords: [compression, hypertable, information]
+tags: [hypertable compression, compression settings]
+license: community
+type: view
+---
+
+import { HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
+
+Shows information about compression settings for each {HYPERTABLE} {CHUNK} that has compression enabled on it.
+
+## Samples
+
+Show compression settings for all {HYPERTABLE}s:
+
+```sql
+SELECT * FROM timescaledb_information.hypertable_compression_settings;
+hypertable               | measurements
+chunk                    | _timescaledb_internal._hyper_2_97_chunk
+segmentby                |
+orderby                  | time DESC
+```
+
+Find compression settings for a specific {HYPERTABLE}:
+
+```sql
+SELECT * FROM timescaledb_information.hypertable_compression_settings WHERE hypertable::TEXT LIKE 'metrics';
+hypertable               | metrics
+chunk                    | _timescaledb_internal._hyper_1_12_chunk
+segmentby                | metric_id
+orderby                  | time DESC
+```
+
+## Available columns
+
+| Name | Type | Description |
+|------|------|-------------|
+| `hypertable` | `REGCLASS` | Hypertable which has compression enabled |
+| `chunk` | `REGCLASS` | Hypertable chunk which has compression enabled |
+| `segmentby` | `TEXT` | List of columns used for segmenting the compressed data |
+| `orderby` | `TEXT` | List of columns used for ordering compressed data along with ordering and NULL ordering information |

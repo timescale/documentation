@@ -3,6 +3,8 @@ title: Vectorizer API reference
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 ---
 
+import { CLOUD_LONG } from '/snippets/vars.mdx';
+
 This page provides an API reference for Vectorizer functions. For an overview
 of Vectorizer and how it works, see the [Vectorizer Guide](/docs/vectorizer/overview.md).
 
@@ -676,7 +678,6 @@ The function takes several parameters to customize the LiteLLM embedding configu
 | api_key_name  | text  | -       | ✖        | Set the name of the environment variable that contains the API key. This allows for flexible API key management without hardcoding keys in the database. |
 | extra_options | jsonb | -       | ✖        | Set provider-specific configuration options.                                                                                                             |
 
-[LiteLLM embedding documentation]: https://docs.litellm.ai/docs/embedding/supported_embedding
 
 
 #### Returns
@@ -705,7 +706,6 @@ Note: The [Cohere documentation on input_type] specifies that the `input_type` p
 By default, LiteLLM sets this to `search_document`. The input type can be provided
 via `extra_options`, i.e. `extra_options => '{"input_type": "search_document"}'::jsonb`.
 
-[Cohere documentation on input_type]: https://docs.cohere.com/v2/docs/embeddings#the-input_type-parameter
 
 #### Mistral
 
@@ -779,7 +779,6 @@ never succeed.
     );
 ```
 
-[Huggingface inference]: https://huggingface.co/docs/huggingface_hub/en/guides/inference
 
 #### AWS Bedrock
 
@@ -792,7 +791,6 @@ The simplest method is to provide the `AWS_ACCESS_KEY_ID`,
 vectorizer worker. Consult the [boto3 credentials documentation] for more
 options.
 
-[boto3 credentials documentation]: (https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html)
 
 ```sql
     SELECT ai.create_vectorizer(
@@ -838,7 +836,6 @@ correspond to the project id, and the path to a file containing credentials for
 a service account. Consult the [Authentication methods at Google] for more
 options.
 
-[Authentication methods at Google]: https://cloud.google.com/docs/authentication
 
 ```sql
     SELECT ai.create_vectorizer(
@@ -915,7 +912,7 @@ The function takes several parameters to customize the OpenAI embedding configur
 | model        | text | -                | ✔        | Specify the name of the OpenAI embedding model to use. For example, `text-embedding-3-small`.                                                                                                                                                                                             |
 | dimensions   | int  | -                | ✔        | Define the number of dimensions for the embedding vectors. This should match the output dimensions of the chosen model.                                                                                                                                                                   |
 | chat_user    | text | -                | ✖        | The identifier for the user making the API call. This can be useful for tracking API usage or for OpenAI's monitoring purposes.                                                                                                                                                           |
-| api_key_name | text | `OPENAI_API_KEY` | ✖        | Set [the name of the environment variable that contains the OpenAI API key][openai-use-env-var]. This allows for flexible API key management without hardcoding keys in the database. On Timescale Cloud, you should set this to the name of the secret that contains the OpenAI API key. |
+| api_key_name | text | `OPENAI_API_KEY` | ✖        | Set [the name of the environment variable that contains the OpenAI API key][openai-use-env-var]. This allows for flexible API key management without hardcoding keys in the database. On {CLOUD_LONG}, you should set this to the name of the secret that contains the OpenAI API key. |
 | base_url     | text | -                | ✖        | Set the base_url of the OpenAI API. Note: no default configured here to allow configuration of the vectorizer worker through `OPENAI_BASE_URL` env var.                                                                                                                                   |
 #### Returns
 
@@ -1001,7 +998,7 @@ The function takes several parameters to customize the Voyage AI embedding confi
 | model        | text    | -                | ✔        | Specify the name of the [Voyage AI model](https://docs.voyageai.com/docs/embeddings#model-choices) to use.                                                                                                                                                                |
 | dimensions   | int     | -                | ✔        | Define the number of dimensions for the embedding vectors. This should match the output dimensions of the chosen model.                                                                                                                                                   |
 | input_type   | text    | 'document'       | ✖        | Type of the input text, null, 'query', or 'document'.                                                                                                                                                                                                                     |
-| api_key_name | text    | `VOYAGE_API_KEY` | ✖        | Set the name of the environment variable that contains the Voyage AI API key. This allows for flexible API key management without hardcoding keys in the database. On Timescale Cloud, you should set this to the name of the secret that contains the Voyage AI API key. |
+| api_key_name | text    | `VOYAGE_API_KEY` | ✖        | Set the name of the environment variable that contains the Voyage AI API key. This allows for flexible API key management without hardcoding keys in the database. On {CLOUD_LONG}, you should set this to the name of the secret that contains the Voyage AI API key. |
 
 #### Returns
 
@@ -1127,7 +1124,7 @@ The available functions are:
 
 You use `ai.indexing_default` to use the platform-specific default value for indexing.
 
-On Timescale Cloud, the default is `ai.indexing_diskann()`. On self-hosted, the default is `ai.indexing_none()`.
+On {CLOUD_LONG}, the default is `ai.indexing_diskann()`. On self-hosted, the default is `ai.indexing_none()`.
 A timescaledb background job is used for automatic index creation. Since timescaledb may not be installed
 in a self-hosted environment, we default to `ai.indexing_none()`.
 
@@ -1259,17 +1256,17 @@ considerations.
 
 The available functions are:
 
-- [ai.scheduling_default](#aischeduling_default): uses the platform-specific default scheduling configuration. On Timescale Cloud this is equivalent to `ai.scheduling_timescaledb()`. On self-hosted deployments, this is equivalent to `ai.scheduling_none()`.
+- [ai.scheduling_default](#aischeduling_default): uses the platform-specific default scheduling configuration. On {CLOUD_LONG} this is equivalent to `ai.scheduling_timescaledb()`. On self-hosted deployments, this is equivalent to `ai.scheduling_none()`.
 - [ai.scheduling_none](#aischeduling_none): when you want manual control over when the vectorizer runs. Use this when you're using an external scheduling system, as is the case with self-hosted deployments.
-- [ai.scheduling_timescaledb](#aischeduling_timescaledb): leverages TimescaleDB's robust job scheduling system, which is designed for reliability and scalability. Use this when you're using Timescale Cloud.
+- [ai.scheduling_timescaledb](#aischeduling_timescaledb): leverages TimescaleDB's robust job scheduling system, which is designed for reliability and scalability. Use this when you're using {CLOUD_LONG}.
 
 
 ### ai.scheduling_default
 
 You use `ai.scheduling_default` to use the platform-specific default scheduling configuration.
 
-On Timescale Cloud, the default is `ai.scheduling_timescaledb()`. On self-hosted, the default is `ai.scheduling_none()`.
-A timescaledb background job is used to periodically trigger a cloud vectorizer on Timescale Cloud.
+On {CLOUD_LONG}, the default is `ai.scheduling_timescaledb()`. On self-hosted, the default is `ai.scheduling_none()`.
+A timescaledb background job is used to periodically trigger a cloud vectorizer on {CLOUD_LONG}.
 This is not available in a self-hosted environment.
 
 #### Example usage
@@ -1819,6 +1816,11 @@ SELECT ai.vectorizer_queue_pending(1, exact_count=>true);
 
 The number of items in the queue for the specified vectorizer
 
+[LiteLLM embedding documentation]: https://docs.litellm.ai/docs/embedding/supported_embedding
+[Cohere documentation on input_type]: https://docs.cohere.com/v2/docs/embeddings#the-input_type-parameter
+[Huggingface inference]: https://huggingface.co/docs/huggingface_hub/en/guides/inference
+[boto3 credentials documentation]: (https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html)
+[Authentication methods at Google]: https://cloud.google.com/docs/authentication
 [timescale-cloud]: https://console.cloud.timescale.com/
 [openai-use-env-var]: https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety#h_a1ab3ba7b2
 [openai-set-key]: https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety#h_a1ab3ba7b2

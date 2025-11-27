@@ -64,3 +64,127 @@ h1 {
     border-color: #ffffff1a;
   }
 }
+
+/* API Reference table styling - applies to all tables with 5 columns under Arguments heading */
+.api-ref-table table,
+h2#arguments + * table,
+h2#arguments ~ * table {
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+
+/* Description column - 50% width, left-aligned */
+.api-ref-table table td:nth-child(5),
+.api-ref-table table th:nth-child(5),
+h2#arguments + * table td:nth-child(5),
+h2#arguments + * table th:nth-child(5),
+h2#arguments ~ * table td:nth-child(5),
+h2#arguments ~ * table th:nth-child(5) {
+  width: 50% !important;
+  min-width: 50% !important;
+  max-width: 50% !important;
+  text-align: left !important;
+}
+
+/* Name column - 15% width with text wrapping */
+.api-ref-table table td:nth-child(1),
+.api-ref-table table th:nth-child(1),
+h2#arguments + * table td:nth-child(1),
+h2#arguments + * table th:nth-child(1),
+h2#arguments ~ * table td:nth-child(1),
+h2#arguments ~ * table th:nth-child(1) {
+  width: 15% !important;
+  min-width: 15% !important;
+  max-width: 15% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Type column - 15% width with text wrapping */
+.api-ref-table table td:nth-child(2),
+.api-ref-table table th:nth-child(2),
+h2#arguments + * table td:nth-child(2),
+h2#arguments + * table th:nth-child(2),
+h2#arguments ~ * table td:nth-child(2),
+h2#arguments ~ * table th:nth-child(2) {
+  width: 15% !important;
+  min-width: 15% !important;
+  max-width: 15% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Default column - 10% width, centered */
+.api-ref-table table td:nth-child(3),
+.api-ref-table table th:nth-child(3),
+h2#arguments + * table td:nth-child(3),
+h2#arguments + * table th:nth-child(3),
+h2#arguments ~ * table td:nth-child(3),
+h2#arguments ~ * table th:nth-child(3) {
+  width: 10% !important;
+  min-width: 10% !important;
+  max-width: 10% !important;
+  text-align: center !important;
+}
+
+/* Required column - 10% width, centered */
+.api-ref-table table td:nth-child(4),
+.api-ref-table table th:nth-child(4),
+h2#arguments + * table td:nth-child(4),
+h2#arguments + * table th:nth-child(4),
+h2#arguments ~ * table td:nth-child(4),
+h2#arguments ~ * table th:nth-child(4) {
+  width: 10% !important;
+  min-width: 10% !important;
+  max-width: 10% !important;
+  text-align: center !important;
+}
+
+/* Returns table styling */
+h2#returns + * table,
+h2#returns ~ * table {
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+
+/* Returns table - Column column (1st) - 20% width with text wrapping */
+h2#returns + * table td:nth-child(1),
+h2#returns + * table th:nth-child(1),
+h2#returns ~ * table td:nth-child(1),
+h2#returns ~ * table th:nth-child(1) {
+  width: 20% !important;
+  min-width: 20% !important;
+  max-width: 20% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Returns table - Type column (2nd) - 20% width with text wrapping */
+h2#returns + * table td:nth-child(2),
+h2#returns + * table th:nth-child(2),
+h2#returns ~ * table td:nth-child(2),
+h2#returns ~ * table th:nth-child(2) {
+  width: 20% !important;
+  min-width: 20% !important;
+  max-width: 20% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Returns table - Description column (3rd) - 60% width, left-aligned with text wrapping */
+h2#returns + * table td:nth-child(3),
+h2#returns + * table th:nth-child(3),
+h2#returns ~ * table td:nth-child(3),
+h2#returns ~ * table th:nth-child(3) {
+  width: 60% !important;
+  min-width: 60% !important;
+  max-width: 60% !important;
+  text-align: left !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
