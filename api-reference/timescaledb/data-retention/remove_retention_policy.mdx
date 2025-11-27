@@ -9,6 +9,7 @@ type: function
 products: [cloud, self_hosted, mst]
 ---
 
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import {CHUNK, HYPERTABLE} from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Community
@@ -38,3 +39,7 @@ SELECT remove_retention_policy(
 |-|-|-|-|-|
 | `relation` | REGCLASS | - | ✔ | Name of the hypertable or continuous aggregate from which to remove the policy |
 | `if_exists` | BOOLEAN | `false` | - | Set to true to avoid throwing an error if the policy does not exist. |
+
+## Returns
+
+<ReturnsVoid />

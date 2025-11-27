@@ -9,6 +9,7 @@ products: [cloud, mst, self_hosted]
 ---
 
 import HypercoreManualWorkflow from '/snippets/api-reference/timescaledb/hypercore/_hypercore-manual-workflow.mdx';
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
@@ -43,6 +44,10 @@ CALL convert_to_rowstore(
 |--|----------|---------|----------|-|
 |`chunk`| REGCLASS | -       | ✖        | Name of the {CHUNK} to be moved to the {ROWSTORE}. |
 |`if_compressed`| BOOLEAN  | `true`  | ✔        | Set to `false` so this job fails with an error rather than an warning if `chunk` is not in the {COLUMNSTORE} |
+
+## Returns
+
+<ReturnsVoid />
 
 [job]: /api-reference/timescaledb/jobs-automation/
 [alter_job]: /api-reference/timescaledb/jobs-automation/alter_job/

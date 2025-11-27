@@ -67,3 +67,9 @@ SELECT last(
 |--|--|--|--|--|
 | `value` | ANY ELEMENT | - | ✔ | The value to return |
 | `time` | TIMESTAMP or INTEGER | - | ✔ | The timestamp to use for comparison |
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `last` | ANY ELEMENT | The value from the `value` column corresponding to the latest `time` within the aggregate group. The return type matches the `value` input type. |

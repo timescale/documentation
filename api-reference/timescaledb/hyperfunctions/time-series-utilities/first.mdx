@@ -64,3 +64,9 @@ SELECT first(
 |--|--|--|--|--|
 | `value` | TEXT | - | ✔ | The value to return |
 | `time` | TIMESTAMP or INTEGER | - | ✔ | The timestamp to use for comparison |
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `first` | ANY ELEMENT | The value from the `value` column corresponding to the earliest `time` within the aggregate group. The return type matches the `value` input type. |

@@ -9,6 +9,7 @@ tags: [delete, drop]
 products: [cloud, mst, self_hosted]
 ---
 
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { COLUMNSTORE, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
@@ -52,6 +53,9 @@ CALL remove_columnstore_policy(
 |`hypertable`|REGCLASS|-|✔| Name of the {HYPERTABLE} or {CAGG} to remove the policy from|
 | `if_exists` | BOOLEAN | `false` |✖| Set to `true` so this job fails with a warning rather than an error if a {COLUMNSTORE} policy does not exist on `hypertable` |
 
+## Returns
+
+<ReturnsVoid />
 
 [informational-views]: /api-reference/timescaledb/informational-views/jobs/
 [add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy/

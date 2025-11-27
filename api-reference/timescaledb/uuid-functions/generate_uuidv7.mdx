@@ -39,3 +39,9 @@ suitable for use in a time-partitioned column in {TIMESCALE_DB}.
     ```sql
     INSERT INTO alerts VALUES (generate_uuidv7(), 'high CPU');
     ```
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `generate_uuidv7` | UUID | A UUIDv7 object based on the current time with random bits. |

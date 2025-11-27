@@ -218,7 +218,9 @@ can't be used with continuous aggregates. Best practice is to use
 
 ## Returns
 
-The function returns the bucket's start time. The return value type is the same as `ts`.
+|Column|Type|Description|
+|-|-|-|
+| `time_bucket_ng` | DATE, TIMESTAMP, or TIMESTAMPTZ | The bucket's start time. The return type matches the input `ts` type. |
 
 [time_bucket]: /api-reference/timescaledb/hyperfunctions/time_bucket
 [caggs]: /manage-data/timescaledb/data-management/continuous-aggregates/

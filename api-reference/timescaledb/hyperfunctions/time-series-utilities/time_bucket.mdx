@@ -138,3 +138,9 @@ a non-month component. For example, `1 month` and `3 months` are both valid
 bucket widths, but `1 month 1 day` and `3 months 2 weeks` are not.
 
 </Info>
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `time_bucket` | TIMESTAMP, TIMESTAMPTZ, DATE, or INTEGER | The start time of the bucket that contains the input timestamp. The return type matches the input `ts` type. |

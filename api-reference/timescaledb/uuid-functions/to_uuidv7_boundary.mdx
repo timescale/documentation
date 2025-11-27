@@ -58,3 +58,9 @@ SELECT to_uuidv7_boundary(
 | Name | Type | Default | Required | Description |
 | - | - | - | - | - |
 | `ts` | TIMESTAMPTZ | - | ✔ | The timestamp used to return a UUIDv7 object |
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `to_uuidv7_boundary` | UUID | A boundary UUIDv7 object with random bits set to zero, suitable for use in range queries. |

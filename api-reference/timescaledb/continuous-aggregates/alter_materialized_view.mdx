@@ -71,6 +71,10 @@ ALTER MATERIALIZED VIEW <view_name> SET ( timescaledb.<argument> =  <value> [, .
 | `timescaledb.enable_cagg_window_functions` | BOOLEAN | `false` | - | EXPERIMENTAL: enable window functions on {CAGG}s. Support is experimental, as there is a risk of data inconsistency. For example, in backfill scenarios, buckets could be missed. |
 | `timescaledb.chunk_interval` (formerly `timescaledb.chunk_time_interval`) | INTERVAL | 10x the original {HYPERTABLE}. | - | Set the {CHUNK} interval. Renamed in {TIMESCALE_DB} V2.20. |
 
+## Returns
+
+For standard `ALTER MATERIALIZED VIEW` return behavior, see the [PostgreSQL ALTER MATERIALIZED VIEW documentation][postgres-alterview].
+
 [create_materialized_view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view#arguments
 [postgres-alterview]: https://www.postgresql.org/docs/current/sql-alterview.html
 [create-cagg]: /use-timescale/latest/continuous-aggregates/create-a-continuous-aggregate/

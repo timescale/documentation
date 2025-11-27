@@ -111,7 +111,13 @@ WITH (timescaledb.continuous) AS
 | `timescaledb.materialized_only` | BOOLEAN | `TRUE` | - | Return only materialized data when querying the {CAGG} view |
 | `timescaledb.invalidate_using` | TEXT | `trigger` | - | Set to `wal` to read changes from the WAL using logical decoding, then update the materialization invalidations for {CAGG}s using this information. This reduces the I/O and CPU needed to manage the {HYPERTABLE} invalidation log. Set to `trigger` to collect invalidations whenever there are inserts, updates, or deletes to a {HYPERTABLE}. This default behaviour uses more resources than `wal`. |
 
+## Returns
+
+For standard `CREATE MATERIALIZED VIEW` return behavior, see the [PostgreSQL CREATE MATERIALIZED VIEW documentation][postgres-create-matview].
+
 For more information, see the [real-time aggregates][real-time-aggregates] section.
+
+[postgres-create-matview]: https://www.postgresql.org/docs/current/sql-creatematerializedview.html
 
 [cagg-how-tos]: /use-timescale/latest/continuous-aggregates/
 [real-time-aggregates]: /use-timescale/latest/continuous-aggregates/real-time-aggregates/

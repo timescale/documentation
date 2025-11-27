@@ -8,6 +8,7 @@ type: function
 products: [cloud, self_hosted, mst]
 ---
 
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
 
 Refresh all buckets of a {CAGG} in the refresh window given by
@@ -113,6 +114,10 @@ Note that it's not guaranteed that all buckets will be updated: refreshes will
 not take place when buckets are materialized with no data changes or with
 changes that only occurred in the secondary table used in the JOIN.
 </Warning>
+
+## Returns
+
+<ReturnsVoid />
 
 [modify-parameters]: /use-timescale/latest/configuration/customize-configuration/
 [create_materialized_view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view

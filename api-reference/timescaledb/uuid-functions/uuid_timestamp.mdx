@@ -49,4 +49,10 @@ SELECT uuid_timestamp(
 | - | - | - | - | - |
 | `uuid` | UUID | - | ✔ | The UUID object to extract the timestamp from |
 
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `uuid_timestamp` | TIMESTAMPTZ | The timestamp extracted from the UUIDv7 object with millisecond precision. |
+
 [uuid_timestamp_micros]: /api-reference/timescaledb/uuid-functions/uuid_timestamp_micros

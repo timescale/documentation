@@ -9,6 +9,7 @@ type: procedure
 products: [cloud, self_hosted, mst]
 ---
 
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 Migrate a {CAGG} from the old format to the new format introduced
@@ -57,5 +58,9 @@ CALL cagg_migrate(
 | `cagg` | `REGCLASS` | - | ✔ | The {CAGG} to migrate |
 | `override` | `BOOLEAN` | `false` | - | If false, the old {CAGG} keeps its name. The new {CAGG} is named `<OLD_CONTINUOUS_AGGREGATE_NAME>_new`. If true, the new {CAGG} gets the old name. The old {CAGG} is renamed `<OLD_CONTINUOUS_AGGREGATE_NAME>_old`. |
 | `drop_old` | `BOOLEAN` | `false` | - | If true, the old {CAGG} is deleted. Must be used together with `override`. |
+
+## Returns
+
+<ReturnsVoid />
 
 [how-to-migrate]: /use-timescale/latest/continuous-aggregates/migrate/

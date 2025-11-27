@@ -69,3 +69,9 @@ SELECT month_normalize(
 | `metric` | float8 | - | ✔ | The metric value to normalize |
 | `reference_date` | TIMESTAMPTZ | - | ✔ | Timestamp to normalize the metric with |
 | `days` | float8 | 365.25/12 | ❌ | Number of days to use for normalization |
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `month_normalize` | DOUBLE PRECISION | The normalized metric value, adjusted to a standard 30.4375-day month (365.25/12). |

@@ -12,6 +12,7 @@ products: [cloud, mst, self_hosted]
 import OldCreateHypertable from '/snippets/api-reference/timescaledb/hypercore/_old-api-create-hypertable.mdx';
 import CreateHypertablePolicyNote from
 '/snippets/api-reference/timescaledb/hypercore/_create-hypertable-columnstore-policy-note.mdx';
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 
 <Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
@@ -155,6 +156,10 @@ Calls to `add_columnstore_policy` require either `after` or `created_before`, bu
 | `next_start`                  |TIMESTAMPTZ| -|  ✖       | Set the start time of the next immediate execution. It does not change the computation of the next scheduled time after the next execution.  |
 | `timezone`                    |TEXT| UTC. However, daylight savings time(DST) changes may shift this alignment.                                                   | ✖        | Set to a valid time zone to mitigate DST shifting. If `initial_start` is set, subsequent executions of this policy are aligned on `initial_start`.                                                                                                                                                                                                                                                                                                                         |
 | `if_not_exists`               |BOOLEAN| `false`                                                                                                                      | ✖        | Set to `true` so this job fails with a warning rather than an error if a {COLUMNSTORE} policy already exists on `hypertable`                                                                                                                                                                                                                                                                                                                                                |
+
+## Returns
+
+<ReturnsVoid />
 
 [compression_alter-table]: /api-reference/timescaledb/hypercore/alter_table/
 [compression_continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/alter_materialized_view/

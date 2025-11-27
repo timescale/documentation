@@ -49,5 +49,11 @@ SELECT uuid_timestamp_micros(
 | - | - | - | - | - |
 | `uuid` | UUID | - | ✔ | The UUID object to extract the timestamp from |
 
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `uuid_timestamp_micros` | TIMESTAMPTZ | The timestamp extracted from the UUIDv7 object with microsecond precision. |
+
 [uuid_timestamp]: /api-reference/timescaledb/uuid-functions/uuid_timestamp
 [pg-timestamp-timezone]: https://www.postgresql.org/docs/current/datatype-datetime.html
