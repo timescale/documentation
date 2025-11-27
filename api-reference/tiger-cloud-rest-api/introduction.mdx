@@ -74,7 +74,13 @@ curl -X POST "https://console.cloud.timescale.com/public/api/v1/projects/{projec
 
 ## API Endpoints
 
-The REST API is organized around three main resource types:
+The REST API is organized around the following resource types:
+
+### Authentication
+
+Get information about your API credentials:
+
+- [**Get Authentication Info**](/api-reference/auth/get-authentication-info) - `GET /auth/info`
 
 ### Service Management
 
@@ -84,6 +90,8 @@ Manage Tiger Cloud database services:
 - [**Create a Service**](/api-reference/services/create-a-service) - `POST /projects/{project_id}/services`
 - [**Get a Service**](/api-reference/services/get-a-service) - `GET /projects/{project_id}/services/{service_id}`
 - [**Delete a Service**](/api-reference/services/delete-a-service) - `DELETE /projects/{project_id}/services/{service_id}`
+- [**Start a Service**](/api-reference/services/start-a-service) - `POST /projects/{project_id}/services/{service_id}/start`
+- [**Stop a Service**](/api-reference/services/stop-a-service) - `POST /projects/{project_id}/services/{service_id}/stop`
 - [**Resize a Service**](/api-reference/services/resize-a-service) - `POST /projects/{project_id}/services/{service_id}/resize`
 - [**Update Service Password**](/api-reference/services/update-service-password) - `POST /projects/{project_id}/services/{service_id}/updatePassword`
 - [**Set Environment for a Service**](/api-reference/services/set-environment-for-a-service) - `POST /projects/{project_id}/services/{service_id}/setEnvironment`
