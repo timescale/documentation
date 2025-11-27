@@ -64,3 +64,266 @@ h1 {
     border-color: #ffffff1a;
   }
 }
+
+
+/* OSANO STARTS */
+
+.osano-cm-window__dialog {
+  color: white;
+  align-items: center;
+  padding-top: 1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  background-color: #333;
+  font-size: 0.75rem;
+  line-height: 17px;
+  justify-content: space-between !important;
+}
+
+@media (min-width: 768px) {
+  .osano-cm-window__dialog {
+    align-items: flex-start;
+  }
+}
+
+.osano-cm-dialog__buttons {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center !important;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: center;
+  margin: unset;
+  gap: 1rem;
+  max-width: unset !important;
+}
+
+@media (min-width: 768px) {
+  .osano-cm-dialog__buttons {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    min-width: 360px;
+    width: 600px !important;
+  }
+}
+
+.osano-cm-dialog__content {
+  width: 100%;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.osano-cm-dialog__content > span {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .osano-cm-dialog__content {
+    max-width: 65%;
+    padding-bottom: 0;
+    text-align: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .osano-cm-dialog__content {
+    flex: auto !important;
+  }
+}
+
+.osano-cm-widget {
+  /* display: none !important; */
+}
+
+.osano-cm-dialog__close {
+  display: none;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  stroke: white;
+}
+
+.osano-cm-dialog__close:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.osano-cm-info-dialog-header__close {
+  transform: none;
+  transition: none;
+}
+
+.osano-cm-info-dialog-header__close:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  stroke: #141e34;
+  stroke-width: 1;
+}
+
+.osano-cm-info-dialog-header__close:hover {
+  stroke: #141e34 !important;
+  stroke-width: 1;
+}
+
+.osano-cm-toggle__switch {
+  background-color: #6447fb;
+  border-radius: 1rem;
+  padding: 5px;
+  border-color: #ccc;
+}
+
+.osano-cm-toggle__switch::after {
+  background-color: #333;
+  top: 5px;
+  left: 5px;
+}
+
+.osano-cm-toggle__input:focus + .osano-cm-toggle__switch,
+.osano-cm-toggle__input:hover + .osano-cm-toggle__switch {
+  background-color: white;
+}
+
+.osano-cm-toggle__input:checked:focus + .osano-cm-toggle__switch,
+.osano-cm-toggle__input:checked:hover + .osano-cm-toggle__switch {
+  background-color: black;
+  border-color: black;
+}
+
+.osano-cm-toggle__input:checked + .osano-cm-toggle__switch {
+  background-color: black;
+  border-color: black;
+}
+
+.osano-cm-toggle__input:checked + .osano-cm-toggle__switch::after {
+  background-color: #6447fb;
+}
+
+.osano-cm-toggle__input:checked + .osano-cm-toggle__switch:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.osano-cm-toggle__input:disabled:checked + .osano-cm-toggle__switch::after,
+.osano-cm-toggle__input:disabled:checked:focus + .osano-cm-toggle__switch::after,
+.osano-cm-toggle__input:disabled:checked:hover + .osano-cm-toggle__switch::after {
+  background-color: #646464ff;
+
+}
+
+.osano-cm-toggle__input:disabled:checked + .osano-cm-toggle__switch,
+.osano-cm-toggle__input:disabled:checked:hover + .osano-cm-toggle__switch
+.osano-cm-toggle__input:disabled + .osano-cm-toggle__switch,
+.osano-cm-toggle__input:disabled:focus + .osano-cm-toggle__switch,
+.osano-cm-toggle__input:disabled:hover + .osano-cm-toggle__switch {
+  background-color: #b5b5b5 !important;
+  border-color: #b5b5b5 !important;
+}
+
+.osano-cm-toggle__input + .osano-cm-toggle__switch {
+  background-color: white;
+}
+
+.osano-cm-toggle__input:focus + .osano-cm-toggle__switch::before {
+  border-color: transparent !important;
+}
+
+.osano-cm-toggle__label {
+  font-weight: bold;
+}
+
+.osano-cm-view__button {
+  height: 42px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border-color: #333 !important;
+}
+
+.osano-cm-view__button:focus {
+  background-color: #333;
+}
+
+.osano-cm-view__button:hover {
+  background-color: #333;
+}
+
+.osano-cm-view__button:active {
+  opacity: 0.6;
+}
+
+.osano-cm-description {
+  font-family: Geist, sans-serif;
+  color: #333;
+}
+
+.osano-cm-info-dialog-header__header {
+  font-family: Geist, sans-serif;
+  font-size: 1.25rem;
+  line-height: 24px;
+  color: #141e35;
+  font-weight: bold;
+}
+
+.osano-cm-view--type_consent .osano-cm-list-item:nth-child(5) {
+  display: none;
+}
+
+.osano-cm-buttons__button {
+  height: 32px;
+  max-width: 100%;
+  color: black;
+  font-weight: 600;
+  outline: 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition: opacity 0.2s;
+}
+
+.osano-cm-buttons__button:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .osano-cm-buttons__button {
+    max-width: 145px;
+  }
+}
+
+.osano-cm-button--type_denyAll,
+.osano-cm-button--type_deny {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.osano-cm-button--type_denyAll:hover,
+.osano-cm-button--type_deny:hover {
+  background-color: #cccccc50;
+}
+
+.osano-cm-button--type_manage {
+  background-color: transparent;
+  color: white;
+}
+
+.osano-cm-button--type_manage:hover {
+  background-color: transparent;
+  color: #eee;
+}
+
+.osano-cm-dialog--type_bar.osano-cm-dialog--position_bottom {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.osano-cm-window__widget:focus {
+  outline: none;
+}
+
+/* OSANO ENDS */
