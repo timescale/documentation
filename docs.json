@@ -95,7 +95,6 @@
                       "cloud/tiger/secure-access/connect-securely-from-any-cloud",
                       "cloud/tiger/secure-access/connect-to-tiger-cloud-from-your-app",
                       "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
-                      "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
                       "cloud/tiger/secure-access/vpc-peering-and-aws-private-link",
                       "cloud/tiger/secure-access/setup-an-ip-allow-list"
                     ]
@@ -107,7 +106,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshooting",
+                    "group": "Troubleshoot",
                     "pages": [
                       "cloud/tiger/troubleshooting/troubleshooting"
                     ]
