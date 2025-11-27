@@ -1,0 +1,2 @@
+* remove robots.txt file
+* remove noindex from docs.json file
