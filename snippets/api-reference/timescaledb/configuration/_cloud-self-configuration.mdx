@@ -1,0 +1,17 @@
+import { TIMESCALE_DB, SERVICE_LONG } from '/snippets/vars.mdx';
+
+Please refer to the [Grand Unified Configuration (GUC) parameters][gucs] for a complete list.
+
+## Policies
+
+### `timescaledb.max_background_workers (int)`
+
+Max background worker processes allocated to {TIMESCALE_DB}. Set to at least 1 +
+the number of databases loaded with the {TIMESCALE_DB} extension in a Postgres instance. Default value is 16.
+
+## Tiger service tuning
+
+### `timescaledb.disable_load (bool)`
+Disable the loading of the actual extension
+
+[gucs]: /api-reference/timescaledb/configuration/gucs

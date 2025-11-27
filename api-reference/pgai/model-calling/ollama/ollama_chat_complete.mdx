@@ -1,0 +1,145 @@
+---
+title: ollama_chat_complete()
+description: Generate chat completions using local Ollama models
+keywords: [Ollama, chat, conversation, local LLM]
+tags: [AI, chat, Ollama, local]
+license: community
+type: function
+---
+
+Generate chat completions using locally hosted Ollama models. This function supports multi-turn conversations, tool
+calling, and structured output with complete data privacy.
+
+## Samples
+
+### Basic chat completion
+
+Have a conversation with a local model:
+
+```sql
+SELECT ai.ollama_chat_complete(
+    'llama2',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?')
+    )
+)->'message'->>'content';
+```
+
+### Multi-turn conversation
+
+Continue a conversation with message history:
+
+```sql
+SELECT ai.ollama_chat_complete(
+    'llama2',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is PostgreSQL?'),
+        jsonb_build_object('role', 'assistant', 'content', 'PostgreSQL is a powerful open-source database.'),
+        jsonb_build_object('role', 'user', 'content', 'What makes it different from MySQL?')
+    )
+)->'message'->>'content';
+```
+
+### Use with specific host
+
+Connect to a custom Ollama server:
+
+```sql
+SELECT ai.ollama_chat_complete(
+    'llama2',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Explain databases')
+    ),
+    host => 'http://ollama-server:11434'
+)->'message'->>'content';
+```
+
+### Configure chat options
+
+Customize the chat parameters:
+
+```sql
+SELECT ai.ollama_chat_complete(
+    'llama2',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'Write a creative story')
+    ),
+    chat_options => '{"temperature": 0.9, "top_p": 0.95}'::jsonb
+)->'message'->>'content';
+```
+
+### Structured output with JSON
+
+Request JSON responses:
+
+```sql
+SELECT ai.ollama_chat_complete(
+    'llama2',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'List 3 database types')
+    ),
+    response_format => '{"type": "json"}'::jsonb
+)->'message'->>'content';
+```
+
+### Use tools (function calling)
+
+Enable the model to call tools:
+
+```sql
+SELECT ai.ollama_chat_complete(
+    'llama2',
+    jsonb_build_array(
+        jsonb_build_object('role', 'user', 'content', 'What is the weather in Paris?')
+    ),
+    tools => '[
+        {
+            "type": "function",
+            "function": {
+                "name": "get_weather",
+                "description": "Get current weather",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "location": {"type": "string"}
+                    }
+                }
+            }
+        }
+    ]'::jsonb
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The Ollama model to use (e.g., `llama2`, `mistral`, `codellama`) |
+| `messages` | `JSONB` | - | ✔ | Array of message objects with `role` and `content` |
+| `host` | `TEXT` | `NULL` | ✖ | Ollama server URL (defaults to `http://localhost:11434`) |
+| `keep_alive` | `TEXT` | `NULL` | ✖ | How long to keep the model loaded (e.g., `5m`, `1h`) |
+| `chat_options` | `JSONB` | `NULL` | ✖ | Model-specific options like temperature, top_p |
+| `tools` | `JSONB` | `NULL` | ✖ | Function definitions for tool calling |
+| `response_format` | `JSONB` | `NULL` | ✖ | Format specification (e.g., `{"type": "json"}`) |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+
+## Returns
+
+`JSONB`: The complete API response including:
+- `model`: Model used for the chat
+- `message`: The assistant's response with `role` and `content`
+- `created_at`: Response timestamp
+- `done`: Whether generation is complete
+- `total_duration`: Total time taken
+- `prompt_eval_count`: Number of tokens in prompt
+- `eval_count`: Number of tokens generated
+
+## Related functions
+
+- [`ollama_generate()`][ollama_generate]: single-turn text completion
+- [`ollama_embed()`][ollama_embed]: generate embeddings
+- [`ollama_list_models()`][ollama_list_models]: see available models
+
+[ollama_generate]: /api-reference/pgai/model-calling/ollama/ollama_generate
+[ollama_embed]: /api-reference/pgai/model-calling/ollama/ollama_embed
+[ollama_list_models]: /api-reference/pgai/model-calling/ollama/ollama_list_models

@@ -1,0 +1,30 @@
+---
+title: indexing_none
+description: Disable automatic indexing for embeddings
+keywords: [pgai, vectorizer, indexing, none, manual]
+tags: [vectorizer, configuration, indexing]
+license: community
+type: function
+---
+
+Specify that no special indexing should be used for the embeddings.
+
+This is useful when you don't need fast similarity searches or when you're dealing with a small amount of data.
+
+## Samples
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    indexing => ai.indexing_none(),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+This function takes no arguments.
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

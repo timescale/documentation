@@ -1,0 +1,27 @@
+---
+title: openai_chat_complete_with_raw_response()
+description: Generate chat completions and get the raw HTTP response
+keywords: [OpenAI, chat, raw response, HTTP]
+tags: [AI, chat, advanced]
+license: community
+type: function
+---
+
+import OpenAPIChatComplete from '/snippets/api-reference/pgai/_openai_chat_complete_arguments.mdx';
+
+Generate chat completions and receive the raw HTTP response. Use this when you need access to HTTP headers,
+status codes, or other low-level response details.
+
+## Arguments
+
+<OpenAPIChatComplete/>
+
+## Returns
+
+`JSONB`: The complete HTTP response including headers and body.
+
+## Related functions
+
+- [`openai_chat_complete()`][openai_chat_complete]: standard chat completion function
+
+[openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete

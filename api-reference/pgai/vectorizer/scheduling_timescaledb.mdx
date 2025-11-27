@@ -1,0 +1,80 @@
+---
+title: scheduling_timescaledb
+description: Configure automated scheduling using TimescaleDB job scheduling
+keywords: [pgai, vectorizer, scheduling, timescaledb, automation]
+tags: [vectorizer, configuration, scheduling]
+license: community
+type: function
+---
+
+Configure automated scheduling using TimescaleDB's job scheduling system.
+
+- Allow periodic execution of the vectorizer to process new or updated data
+- Provide fine-grained control over when and how often the vectorizer runs
+
+## Samples
+
+### Basic usage
+
+Run every 5 minutes (default).
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    scheduling => ai.scheduling_timescaledb(),
+    -- other parameters...
+);
+```
+
+### Custom interval
+
+Run every hour.
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    scheduling => ai.scheduling_timescaledb(interval '1 hour'),
+    -- other parameters...
+);
+```
+
+### Specific start time and timezone
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    scheduling => ai.scheduling_timescaledb(
+        interval '30 minutes',
+        initial_start => '2024-01-01 00:00:00'::timestamptz,
+        timezone => 'America/New_York'
+    ),
+    -- other parameters...
+);
+```
+
+### Fixed schedule
+
+```sql
+SELECT ai.create_vectorizer(
+    'my_table'::regclass,
+    scheduling => ai.scheduling_timescaledb(
+        interval '1 day',
+        fixed_schedule => true,
+        timezone => 'UTC'
+    ),
+    -- other parameters...
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| schedule_interval | interval | '10m' | ✔ | Set how frequently the vectorizer checks for new or updated data to process |
+| initial_start | timestamptz | - | ✖ | Delay the start of scheduling. This is useful for coordinating with other system processes or maintenance windows |
+| fixed_schedule | bool | - | ✖ | Set to `true` to use a fixed schedule such as every day at midnight. Set to `false` for a sliding window such as every 24 hours from the last run |
+| timezone | text | - | ✖ | Set the timezone this schedule operates in. This ensures that schedules are interpreted correctly, especially important for fixed schedules or when coordinating with business hours |
+
+## Returns
+
+A JSON configuration object that you can use in `ai.create_vectorizer`.

@@ -1,0 +1,60 @@
+---
+title: loading_column()
+description: Load data to embed directly from a column in the source table
+keywords: [vectorizer, loading, column, data source]
+tags: [vectorizer, configuration, loading]
+license: community
+type: function
+---
+
+Load data to embed directly from a column in the source table. This is the most common loading method for embedding
+textual content stored in your database.
+
+## Samples
+
+### Load from a text column
+
+```sql
+SELECT ai.create_vectorizer(
+    'blog_posts'::regclass,
+    loading => ai.loading_column('content'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768),
+    chunking => ai.chunking_character_text_splitter(512)
+);
+```
+
+### Load from multiple tables
+
+```sql
+-- For products table
+SELECT ai.create_vectorizer(
+    'products'::regclass,
+    loading => ai.loading_column('description'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768)
+);
+
+-- For reviews table
+SELECT ai.create_vectorizer(
+    'reviews'::regclass,
+    loading => ai.loading_column('review_text'),
+    embedding => ai.embedding_openai('text-embedding-3-small', 768)
+);
+```
+
+## Arguments
+
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `column_name` | `TEXT` | - | ✔ | Name of the column containing the data to load |
+
+## Returns
+
+A JSON configuration object for use in [`create_vectorizer()`][create_vectorizer].
+
+## Related functions
+
+- [`loading_uri()`][loading_uri]: load data from files referenced by URIs
+- [`create_vectorizer()`][create_vectorizer]: main function using this configuration
+
+[loading_uri]: /api-reference/pgai/vectorizer/loading_uri
+[create_vectorizer]: /api-reference/pgai/vectorizer/create_vectorizer

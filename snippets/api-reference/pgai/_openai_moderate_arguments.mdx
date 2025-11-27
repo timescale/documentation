@@ -1,0 +1,10 @@
+| Name | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `model` | `TEXT` | - | ✔ | The moderation model to use (e.g., `text-moderation-latest`, `text-moderation-stable`) |
+| `input_text` | `TEXT` | - | ✔ | The text content to analyze |
+| `api_key` | `TEXT` | `NULL` | ✖ | OpenAI API key. If not provided, uses `ai.openai_api_key` setting |
+| `api_key_name` | `TEXT` | `NULL` | ✖ | Name of the secret containing the API key |
+| `extra_headers` | `JSONB` | `NULL` | ✖ | Additional HTTP headers to include in the API request |
+| `extra_query` | `JSONB` | `NULL` | ✖ | Additional query parameters for the API request |
+| `verbose` | `BOOLEAN` | `FALSE` | ✖ | Enable verbose logging for debugging |
+| `client_config` | `JSONB` | `NULL` | ✖ | Advanced client configuration options |
