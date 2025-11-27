@@ -2819,12 +2819,19 @@
               },
               {
                 "item": "Tiger Cloud REST API",
-                "openapi": "https://raw.githubusercontent.com/timescale/savannah-public/main/openapi.yaml",
+                "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml",
                 "groups": [
                   {
                     "group": " ",
                     "pages": [
                       "api-reference/tiger-cloud-rest-api/introduction"
+                    ]
+                  },
+                  {
+                    "group": "Auth",
+                    "expanded": true,
+                    "pages": [
+                      "GET /auth/info"
                     ]
                   },
                   {
@@ -2835,6 +2842,8 @@
                       "POST /projects/{project_id}/services",
                       "GET /projects/{project_id}/services/{service_id}",
                       "DELETE /projects/{project_id}/services/{service_id}",
+                      "POST /projects/{project_id}/services/{service_id}/start",
+                      "POST /projects/{project_id}/services/{service_id}/stop",
                       "POST /projects/{project_id}/services/{service_id}/attachToVPC",
                       "POST /projects/{project_id}/services/{service_id}/detachFromVPC",
                       "POST /projects/{project_id}/services/{service_id}/resize",
@@ -2844,6 +2853,19 @@
                       "POST /projects/{project_id}/services/{service_id}/updatePassword",
                       "POST /projects/{project_id}/services/{service_id}/setEnvironment",
                       "POST /projects/{project_id}/services/{service_id}/setHA"
+                    ]
+                  },
+                  {
+                    "group": "Read Replica Sets",
+                    "expanded": true,
+                    "pages": [
+                      "GET /projects/{project_id}/services/{service_id}/replicaSets",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets",
+                      "DELETE /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/resize",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/enablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/disablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/setEnvironment"
                     ]
                   },
                   {

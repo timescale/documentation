@@ -1,33 +1,8 @@
 openapi: 3.0.3
 info:
-  title: Tiger Cloud REST API
+  title: Tiger Cloud API
   description: |
-    A comprehensive RESTful API for managing Tiger Cloud resources including VPCs, services, and read replicas.
-
-    ## Authentication
-
-    The Tiger Cloud REST API uses HTTP Basic Authentication. Include your public key and secret key in the Authorization header.
-
-    ### Basic Authentication
-    ```http
-    Authorization: Basic <base64(public_key:secret_key)>
-    ```
-
-    ### Example
-    ```bash
-    # Using cURL
-    curl -X GET "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
-      -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)"
-    ```
-
-    ## Service Management
-
-    You use this endpoint to create a Tiger Cloud service with one or more of the following addons:
-
-    - `time-series`: a Tiger Cloud service optimized for real-time analytics. For time-stamped data like events, prices, metrics, sensor readings, or any information that changes over time.
-    - `ai`: a Tiger Cloud service instance with vector extensions.
-
-    To have multiple addons when you create a new service, set `"addons": ["time-series", "ai"]`. To create a vanilla Postgres instance, set `addons` to an empty list `[]`.
+    A RESTful API for Tiger Cloud.
   version: 1.0.0
   license:
     name: Proprietary
@@ -37,7 +12,7 @@ info:
     url: https://www.tigerdata.com/contact
 servers:
   - url: https://console.cloud.timescale.com/public/api/v1
-    description: Tiger Cloud API server
+    description: API server for Tiger Cloud
   - url: http://localhost:8080
     description: Local development server
 
@@ -45,393 +20,89 @@ security:
   - basicAuth: []
 
 tags:
-  - name: Services
-    description: Manage services, read replicas, and their associated actions.
+  - name: Auth
+    description: Authentication and authorization information.
   - name: VPCs
     description: Manage VPCs and their peering connections.
+  - name: Services
+    description: Manage services, read replicas, and their associated actions.
   - name: Analytics
     description: Track analytics events.
 
-
 paths:
-  /projects/{project_id}/services:
+  /auth/info:
     get:
       tags:
-        - Services
-      summary: List All Services
-      description: Retrieves a list of all services within a specific project.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
+        - Auth
+      summary: Get Authentication Info
+      description: Returns information about the authentication credentials being used to access the API
       responses:
         '200':
-          description: A list of services.
+          description: Authentication information retrieved successfully.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Service'
+                $ref: '#/components/schemas/AuthInfo'
         '4XX':
           $ref: '#/components/responses/ClientError'
+
+  /analytics/identify:
     post:
       tags:
-        - Services
-      summary: Create a Service
-      description: Creates a new database service within a project. This is an asynchronous operation.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
+        - Analytics
+      summary: Identify a user
+      description: Identifies a user with optional properties for analytics tracking.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceCreate'
-      responses:
-        '202':
-          description: Service creation request has been accepted.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Service'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}:
-    get:
-      tags:
-        - Services
-      summary: Get a Service
-      description: Retrieves the details of a specific service by its ID.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
+              type: object
+              properties:
+                properties:
+                  type: object
+                  additionalProperties: true
+                  description: Optional map of arbitrary properties associated with the user
+                  example:
+                    email: "user@example.com"
+                    name: "John Doe"
       responses:
         '200':
-          description: Service details.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Service'
+          $ref: '#/components/responses/AnalyticsResponse'
         '4XX':
           $ref: '#/components/responses/ClientError'
-    delete:
-      tags:
-        - Services
-      summary: Delete a Service
-      description: Deletes a specific service. This is an asynchronous operation.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      responses:
-        '202':
-          description: Deletion request has been accepted.
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/attachToVPC:
+
+  /analytics/track:
     post:
       tags:
-        - Services
-      summary: Attach Service to VPC
-      description: Associates a service with a VPC.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
+        - Analytics
+      summary: Track an analytics event
+      description: Tracks an analytics event with optional properties.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceVPCInput'
-      responses:
-        '202':
-          $ref: '#/components/responses/SuccessMessage'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/detachFromVPC:
-    post:
-      tags:
-        - Services
-      summary: Detach Service from VPC
-      description: Disassociates a service from its VPC.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ServiceVPCInput'
-      responses:
-        '202':
-          $ref: '#/components/responses/SuccessMessage'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/resize:
-    post:
-      tags:
-        - Services
-      summary: Resize a Service
-      description: Changes the CPU and memory allocation for a specific service within a project.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ResizeInput'
-      responses:
-        '202':
-          description: Resize request has been accepted and is in progress.
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/enablePooler:
-    post:
-      tags:
-        - Services
-      summary: Enable Connection Pooler for a Service
-      description: Activates the connection pooler for a specific service within a project.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
+              type: object
+              required:
+                - event
+              properties:
+                event:
+                  type: string
+                  description: The name of the event to track
+                  example: service_created
+                properties:
+                  type: object
+                  additionalProperties: true
+                  description: Optional map of arbitrary properties associated with the event
+                  example:
+                    region: "us-east-1"
       responses:
         '200':
-          $ref: '#/components/responses/SuccessMessage'
+          $ref: '#/components/responses/AnalyticsResponse'
         '4XX':
           $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/disablePooler:
-    post:
-      tags:
-        - Services
-      summary: Disable Connection Pooler for a Service
-      description: Deactivates the connection pooler for a specific service within a project.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      responses:
-        '200':
-          $ref: '#/components/responses/SuccessMessage'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/forkService:
-    post:
-      tags:
-        - Services
-      summary: Fork a Service
-      description: Creates a new, independent service within a project by taking a snapshot of an existing one.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ForkServiceCreate'
-      responses:
-        '202':
-          description: Fork request accepted. The response contains the details of the new service being created.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Service'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/updatePassword:
-    post:
-      tags:
-        - Services
-      summary: Update Service Password
-      description: Sets a new master password for the service within a project.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdatePasswordInput'
-      responses:
-        '204':
-          description: Password updated successfully. No content returned.
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/setEnvironment:
-    post:
-      tags:
-        - Services
-      summary: Set Environment for a Service
-      description: Sets the environment type for the service.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SetEnvironmentInput'
-      responses:
-        '200':
-          $ref: '#/components/responses/SuccessMessage'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/setHA:
-    post:
-      tags:
-        - Services
-      summary: Change HA configuration for a Service
-      description: Changes the HA configuration for a specific service. This is an asynchronous operation.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SetHAReplicaInput'
-      responses:
-        '202':
-          description: HA replica configuration updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Service'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/replicaSets:
-    get:
-      tags:
-        - Read Replica Sets
-      summary: Get Read Replica Sets
-      description: Retrieves a list of all read replica sets associated with a primary service within a project.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      responses:
-        '200':
-          description: A list of read replica sets.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ReadReplicaSet'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-    post:
-      tags:
-        - Read Replica Sets
-      summary: Create a Read Replica Set
-      description: Creates a new read replica set for a service. This is an asynchronous operation.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReadReplicaSetCreate'
-      responses:
-        '202':
-          description: Read replica set creation request has been accepted.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReadReplicaSet'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}:
-    delete:
-      tags:
-        - Read Replica Sets
-      summary: Delete a Read Replica Set
-      description: Deletes a specific read replica set. This is an asynchronous operation.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-        - $ref: '#/components/parameters/ReplicaSetId'
-      responses:
-        '202':
-          description: Deletion request has been accepted.
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/resize:
-    post:
-      tags:
-        - Read Replica Sets
-      summary: Resize a Read Replica Set
-      description: Changes the resource allocation for a specific read replica set.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-        - $ref: '#/components/parameters/ReplicaSetId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ResizeInput'
-      responses:
-        '202':
-          description: Resize request has been accepted and is in progress.
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/enablePooler:
-    post:
-      tags:
-        - Read Replica Sets
-      summary: Enable Connection Pooler for a Read Replica
-      description: Activates the connection pooler for a specific read replica set.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-        - $ref: '#/components/parameters/ReplicaSetId'
-      responses:
-        '200':
-          $ref: '#/components/responses/SuccessMessage'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/disablePooler:
-    post:
-      tags:
-        - Read Replica Sets
-      summary: Disable Connection Pooler for a Read Replica
-      description: Deactivates the connection pooler for a specific read replica set.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-        - $ref: '#/components/parameters/ReplicaSetId'
-      responses:
-        '200':
-          $ref: '#/components/responses/SuccessMessage'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
-  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/setEnvironment:
-    post:
-      tags:
-        - Read Replica Sets
-      summary: Set Environment for a Read Replica
-      description: Sets the environment type for the read replica set.
-      parameters:
-        - $ref: '#/components/parameters/ProjectId'
-        - $ref: '#/components/parameters/ServiceId'
-        - $ref: '#/components/parameters/ReplicaSetId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SetEnvironmentInput'
-      responses:
-        '200':
-          $ref: '#/components/responses/SuccessMessage'
-        '4XX':
-          $ref: '#/components/responses/ClientError'
+
   /projects/{project_id}/vpcs:
     get:
       tags:
@@ -473,6 +144,7 @@ paths:
                 $ref: '#/components/schemas/VPC'
         '4XX':
           $ref: '#/components/responses/ClientError'
+
   /projects/{project_id}/vpcs/{vpc_id}:
     get:
       tags:
@@ -504,6 +176,7 @@ paths:
           description: VPC deleted successfully.
         '4XX':
           $ref: '#/components/responses/ClientError'
+
   /projects/{project_id}/vpcs/{vpc_id}/rename:
     post:
       tags:
@@ -528,6 +201,7 @@ paths:
                 $ref: '#/components/schemas/VPC'
         '4XX':
           $ref: '#/components/responses/ClientError'
+
   /projects/{project_id}/vpcs/{vpc_id}/peerings:
     get:
       tags:
@@ -571,6 +245,7 @@ paths:
                 $ref: '#/components/schemas/Peering'
         '4XX':
           $ref: '#/components/responses/ClientError'
+
   /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}:
     get:
       tags:
@@ -604,59 +279,437 @@ paths:
           description: VPC peering deleted successfully.
         '4XX':
           $ref: '#/components/responses/ClientError'
-  /analytics/identify:
-    post:
+
+  /projects/{project_id}/services:
+    get:
       tags:
-        - Analytics
-      summary: Identify a user
-      description: Identifies a user with optional properties for analytics tracking.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                properties:
-                  type: object
-                  additionalProperties: true
-                  description: Optional map of arbitrary properties associated with the user
-                  example:
-                    email: "user@example.com"
-                    name: "John Doe"
+        - Services
+      summary: List All Services
+      description: Retrieves a list of all services within a specific project.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
       responses:
         '200':
-          $ref: '#/components/responses/AnalyticsResponse'
+          description: A list of services.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
         '4XX':
           $ref: '#/components/responses/ClientError'
-  /analytics/track:
     post:
       tags:
-        - Analytics
-      summary: Track an analytics event
-      description: Tracks an analytics event with optional properties.
+        - Services
+      summary: Create a Service
+      description: Creates a new database service within a project. This is an asynchronous operation.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - event
-              properties:
-                event:
-                  type: string
-                  description: The name of the event to track
-                  example: service_created
-                properties:
-                  type: object
-                  additionalProperties: true
-                  description: Optional map of arbitrary properties associated with the event
-                  example:
-                    region: "us-east-1"
+              $ref: '#/components/schemas/ServiceCreate'
+      responses:
+        '202':
+          description: Service creation request has been accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}:
+    get:
+      tags:
+        - Services
+      summary: Get a Service
+      description: Retrieves the details of a specific service by its ID.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
       responses:
         '200':
-          $ref: '#/components/responses/AnalyticsResponse'
+          description: Service details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+    delete:
+      tags:
+        - Services
+      summary: Delete a Service
+      description: Deletes a specific service. This is an asynchronous operation.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      responses:
+        '202':
+          description: Deletion request has been accepted.
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/start:
+    post:
+      tags:
+        - Services
+      summary: Start a Service
+      description: Starts a stopped service within a project. This is an asynchronous operation.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      responses:
+        '202':
+          description: Service start request has been accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/stop:
+    post:
+      tags:
+        - Services
+      summary: Stop a Service
+      description: Stops a running service within a project. This is an asynchronous operation.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      responses:
+        '202':
+          description: Service stop request has been accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/attachToVPC:
+    post:
+      tags:
+        - Services
+      summary: Attach Service to VPC
+      description: Associates a service with a VPC.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceVPCInput'
+      responses:
+        '202':
+          $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/detachFromVPC:
+    post:
+      tags:
+        - Services
+      summary: Detach Service from VPC
+      description: Disassociates a service from its VPC.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceVPCInput'
+      responses:
+        '202':
+          $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/resize:
+    post:
+      tags:
+        - Services
+      summary: Resize a Service
+      description: Changes the CPU and memory allocation for a specific service within a project.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResizeInput'
+      responses:
+        '202':
+          description: Resize request has been accepted and is in progress.
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/enablePooler:
+    post:
+      tags:
+        - Services
+      summary: Enable Connection Pooler for a Service
+      description: Activates the connection pooler for a specific service within a project.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/disablePooler:
+    post:
+      tags:
+        - Services
+      summary: Disable Connection Pooler for a Service
+      description: Deactivates the connection pooler for a specific service within a project.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/forkService:
+    post:
+      tags:
+        - Services
+      summary: Fork a Service
+      description: Creates a new, independent service within a project by taking a snapshot of an existing one.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForkServiceCreate'
+      responses:
+        '202':
+          description: Fork request accepted. The response contains the details of the new service being created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/updatePassword:
+    post:
+      tags:
+        - Services
+      summary: Update Service Password
+      description: Sets a new master password for the service within a project.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePasswordInput'
+      responses:
+        '204':
+          description: Password updated successfully. No content returned.
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/setEnvironment:
+    post:
+      tags:
+        - Services
+      summary: Set Environment for a Service
+      description: Sets the environment type for the service.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetEnvironmentInput'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/setHA:
+    post:
+      tags:
+        - Services
+      summary: Change HA configuration for a Service
+      description: Changes the HA configuration for a specific service. This is an asynchronous operation.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetHAReplicaInput'
+      responses:
+        '202':
+          description: HA replica configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/replicaSets:
+    get:
+      tags:
+        - Read Replica Sets
+      summary: Get Read Replica Sets
+      description: Retrieves a list of all read replica sets associated with a primary service within a project.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      responses:
+        '200':
+          description: A list of read replica sets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReadReplicaSet'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+    post:
+      tags:
+        - Read Replica Sets
+      summary: Create a Read Replica Set
+      description: Creates a new read replica set for a service. This is an asynchronous operation.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadReplicaSetCreate'
+      responses:
+        '202':
+          description: Read replica set creation request has been accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadReplicaSet'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}:
+    delete:
+      tags:
+        - Read Replica Sets
+      summary: Delete a Read Replica Set
+      description: Deletes a specific read replica set. This is an asynchronous operation.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/ReplicaSetId'
+      responses:
+        '202':
+          description: Deletion request has been accepted.
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/resize:
+    post:
+      tags:
+        - Read Replica Sets
+      summary: Resize a Read Replica Set
+      description: Changes the resource allocation for a specific read replica set.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/ReplicaSetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResizeInput'
+      responses:
+        '202':
+          description: Resize request has been accepted and is in progress.
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/enablePooler:
+    post:
+      tags:
+        - Read Replica Sets
+      summary: Enable Connection Pooler for a Read Replica
+      description: Activates the connection pooler for a specific read replica set.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/ReplicaSetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/disablePooler:
+    post:
+      tags:
+        - Read Replica Sets
+      summary: Disable Connection Pooler for a Read Replica
+      description: Deactivates the connection pooler for a specific read replica set.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/ReplicaSetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessMessage'
+        '4XX':
+          $ref: '#/components/responses/ClientError'
+
+  /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/setEnvironment:
+    post:
+      tags:
+        - Read Replica Sets
+      summary: Set Environment for a Read Replica
+      description: Sets the environment type for the read replica set.
+      parameters:
+        - $ref: '#/components/parameters/ProjectId'
+        - $ref: '#/components/parameters/ServiceId'
+        - $ref: '#/components/parameters/ReplicaSetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetEnvironmentInput'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessMessage'
         '4XX':
           $ref: '#/components/responses/ClientError'
 
@@ -675,12 +728,6 @@ components:
         curl -X GET "https://console.cloud.timescale.com/public/api/v1/projects/{project_id}/services" \
           -H "Authorization: Basic $(echo -n 'your_public_key:your_secret_key' | base64)"
         ```
-      x-basic-info-func: |
-        basicAuth:
-          username:
-            label: Public Key
-          password:
-            label: Secret Key
 
   parameters:
     ProjectId:
@@ -725,6 +772,81 @@ components:
         example: "1234567890"
 
   schemas:
+    AuthInfo:
+      type: object
+      required:
+        - type
+        - apiKey
+      properties:
+        type:
+          type: string
+          description: The type of authentication being used
+          enum: ["apiKey"]
+          example: "apiKey"
+        apiKey:
+          type: object
+          description: Information about the API key credentials
+          required:
+            - public_key
+            - name
+            - created
+            - project
+            - issuing_user
+          properties:
+            public_key:
+              type: string
+              description: The public key of the client credentials
+              example: "tskey_abc123"
+            name:
+              type: string
+              description: The name of the credential
+              example: "my-production-token"
+            created:
+              type: string
+              format: date-time
+              description: When the client credentials were created
+              example: "2024-01-15T10:30:00Z"
+            project:
+              type: object
+              description: Information about the project
+              required:
+                - id
+                - name
+                - plan_type
+              properties:
+                id:
+                  type: string
+                  description: The project ID
+                  example: "rp1pz7uyae"
+                name:
+                  type: string
+                  description: The name of the project
+                  example: "My Production Project"
+                plan_type:
+                  type: string
+                  description: The plan type for the project
+                  example: "FREE"
+            issuing_user:
+              type: object
+              description: Information about the user who created the credentials
+              required:
+                - id
+                - name
+                - email
+              properties:
+                id:
+                  type: string
+                  description: The user ID
+                  example: "user123"
+                name:
+                  type: string
+                  description: The user's name
+                  example: "John Doe"
+                email:
+                  type: string
+                  format: email
+                  description: The user's email
+                  example: "john.doe@example.com"
     VPC:
       type: object
       properties:
