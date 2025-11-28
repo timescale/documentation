@@ -57,8 +57,7 @@ FROM
     user_storage_usage;
 ```
 
-[integral]: /api-reference/timescaledb/hyperfunctions/time_weight/integral
-[interpolated_average]: /api-reference/timescaledb/hyperfunctions/time_weight/interpolated_average## Arguments
+## Arguments
 
 The syntax is:
 
@@ -87,3 +86,6 @@ interpolated_integral(
 |--------|------|-------------|
 | integral | DOUBLE PRECISION | The time-weighted integral for the interval (`start`, `start` + `interval`), computed from the `TimeWeightSummary` plus end points interpolated from `prev` and `next` |
 
+
+[integral]: /api-reference/timescaledb/hyperfunctions/time_weight/integral
+[interpolated_average]: /api-reference/timescaledb/hyperfunctions/time_weight/interpolated_average

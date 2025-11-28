@@ -19,7 +19,7 @@ Convert a string into tokens:
 ```sql
 SELECT ai.openai_tokenize(
     'text-embedding-ada-002',
-    'Timescale is Postgres made Powerful'
+    'Tiger Data is Postgres made Powerful'
 );
 ```
 
@@ -39,7 +39,7 @@ Determine how many tokens a text will use:
 SELECT array_length(
     ai.openai_tokenize(
         'text-embedding-ada-002',
-        'Timescale is Postgres made Powerful'
+        'Tiger Data is Postgres made Powerful'
     ),
     1
 ) AS token_count;

@@ -53,8 +53,7 @@ FROM (
 ) t
 ```
 
-[average]: /api-reference/timescaledb/hyperfunctions/time_weight/average
-[interpolated_integral]: /api-reference/timescaledb/hyperfunctions/time_weight/interpolated_integral## Arguments
+## Arguments
 
 The syntax is:
 
@@ -67,6 +66,7 @@ interpolated_average(
     [, next TimeWeightSummary]
 ) RETURNS DOUBLE PRECISION
 ```
+
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | tws | TimeWeightSummary | - | ✔ | The input TimeWeightSummary from a time_weight() call |
@@ -81,3 +81,5 @@ interpolated_average(
 |--------|------|-------------|
 | average | DOUBLE PRECISION | The time-weighted average for the interval (`start`, `start` + `interval`), computed from the `TimeWeightSummary` plus end points interpolated from `prev` and `next` |
 
+[average]: /api-reference/timescaledb/hyperfunctions/time_weight/average
+[interpolated_integral]: /api-reference/timescaledb/hyperfunctions/time_weight/interpolated_integral

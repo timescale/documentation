@@ -8,234 +8,193 @@ import { CTALink } from "/snippets/cta-link.jsx"
 
 <div className="px-6 md:px-12 md:py-8 prose max-w-8xl mx-auto relative">
 
-<Heading level={1} noAnchor className="font-bold text-4xl mb-4 dark:text-white">Welcome</Heading>
+<Heading level={1} noAnchor className="font-bold text-4xl mb-4 dark:text-white">Tiger Data documentation</Heading>
 
-<p className="text-neutral-600 dark:text-white pb-2">Tiger Data makes Postgres better for your time-series, real-time analytics, and AI workloads.</p>
-
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Create</Heading>
-
-<CardGroup cols={4}>
-<Card
-    title="Track time-series data"
-    icon="chart-line"
-    href="/manage-data/get-started/get-started-with-timescaledb"
->
-Store and analyze time-stamped data from IoT sensors, metrics, events, and logs. Automatically partition by time for fast queries.
-</Card>
-<Card
-    title="Build AI apps"
-    icon="brain-circuit"
-    href="/agentic-postgres/index"
->
-Create intelligent applications with vector search, semantic similarity, and AI-powered analytics. Build RAG systems and recommendation engines.
-</Card>
-<Card
-    title="Real-time analytics"
-    icon="gauge-high"
-    href="/manage-data/get-started/get-started-with-timescaledb"
->
-Run complex analytical queries on streaming data with continuous aggregates. Get instant insights from live metrics and events.
-</Card>
-<Card
-    title="Agentic Postgres"
-    icon="user-robot"
-    href="/agentic-postgres/index"
->
-Deploy AI assistants that understand and act on your data. Build autonomous agents with memory, reasoning, and decision-making capabilities.
-</Card>
-</CardGroup>
-
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Core features</Heading>
-
-<CardGroup cols={3}>
-<Card
-    title="Hypertables"
-    icon="table"
-    href="/manage-data/data-management/hypertables/understand-hypertables"
->
-Postgres tables optimized for time-series data with automatic partitioning by time. Scale to billions of rows with fast queries across time ranges.
-</Card>
-<Card
-    title="Continuous aggregates"
-    icon="arrows-rotate"
-    href="/manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
->
-Materialized views that automatically refresh in the background. Pre-compute expensive aggregations for instant dashboard performance.
-</Card>
-<Card
-    title="Columnstore"
-    icon="table-cells-row-unlock"
-    href="/manage-data/data-management/hypercore/understand-hypercore"
->
-Hybrid row-columnar storage engine for analytics workloads. Achieve 90%+ compression and 100x faster analytical queries.
-</Card>
-<Card
-    title="AI & vectors"
-    icon="brain-circuit"
-    href="/agentic-postgres/index"
->
-Vector search with pgvector and pgvectorscale for similarity matching. Build semantic search and recommendation systems at scale.
-</Card>
-<Card
-    title="pgai"
-    icon="brain"
-    href="/agentic-postgres/pgai/pgai"
->
-Bring AI models directly to your database with built-in LLM integration. Run embeddings, completions, and reasoning without moving data.
-</Card>
-<Card
-    title="Retention"
-    icon="clock"
-    href="/api-reference/timescaledb/data-retention/index"
->
-Automatically delete old data based on time-based policies. Free up storage and maintain performance as your data grows.
-</Card>
-</CardGroup>
-
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Deploy and operate</Heading>
-
-<CardGroup cols={3}>
-<Card
-    title="Deploy"
-    icon="rocket"
-    href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud"
->
-Launch your database in minutes on Tiger Cloud or self-host with TimescaleDB. Choose the deployment that fits your requirements.
-</Card>
-<Card
-    title="Monitor"
-    icon="chart-mixed"
-    href="/deploy-and-operate/tiger-cloud/monitoring/monitor-using-console"
->
-Track performance metrics, query statistics, and resource usage in real time. Export to Datadog, Prometheus, or CloudWatch.
-</Card>
-<Card
-    title="Scale"
-    icon="arrow-up-right-dots"
-    href="/deploy-and-operate/tiger-cloud/storage/manage-storage-tiers"
->
-Grow from gigabytes to petabytes with tiered storage and automatic partitioning. Add compute and storage independently as needed.
-</Card>
-<Card
-    title="Secure"
-    icon="shield-check"
-    href="/deploy-and-operate/tiger-cloud/data-security/backup"
->
-Protect your data with automated backups, point-in-time recovery, and high availability. Configure VPC peering and encryption.
-</Card>
-<Card
-    title="Optimize"
-    icon="gauge"
-    href="/manage-data/data-management/hypercore/understand-hypercore"
->
-Improve query performance with compression, indexing strategies, and columnar storage. Tune configurations for your workload.
-</Card>
-<Card
-    title="Integrate"
-    icon="plug"
-    href="/integrations/index"
->
-Connect with Grafana, Kafka, LangChain, Terraform, and hundreds of other tools. Works with any Postgres-compatible integration.
-</Card>
-</CardGroup>
-
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Choose deployment type</Heading>
+<p className="text-neutral-600 dark:text-white pb-2">Welcome to the Tiger Data documentation! We make Postgres better for your time-series, real-time analytics, and AI workloads. </p>
 
 <Columns cols={2}>
 <CardComponent
     title={<>Get started with Tiger Cloud</>}
-    icon="cloud"
-    href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud"
-    cta={<CTALink text="Learn how" href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud" />}>
+    icon="rocket" 
+    href="/cloud/tiger/get-started/get-started-with-tiger-cloud" 
+    cta={<CTALink text="Learn how" href="/cloud/tiger/get-started/get-started-with-tiger-cloud" />}>
     Tiger Cloud is the fastest Postgres cloud, powered by Tiger Postgres. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.
 </CardComponent>
 
 <CardComponent
-    title={<>Self-host TimescaleDB</>}
-    icon="server"
-    href="/manage-data/get-started/get-started-with-timescaledb"
-    cta={<CTALink text="Learn how" href="/manage-data/get-started/get-started-with-timescaledb" />}>
+    title={<>Get started with TimescaleDB</>}
+    icon="play" 
+    href="/manage-data/timescaledb/get-started/get-started-with-timescaledb" 
+    cta={<CTALink text="Learn how" href="/manage-data/timescaledb/get-started/get-started-with-timescaledb" />}>
     TimescaleDB is an open-source Postgres extension designed for running real-time analytics on time-series data. It is engineered up from Postgres and maintains full SQL support.
 </CardComponent>
 </Columns>
 
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Quick Starts</Heading>
+<CardComponent
+    title={<>Build AI agents with Postgres for Agents</>}
+    icon="user-robot"
+    href="/agentic-postgres/index"
+    cta={<CTALink text="Explore" href="/agentic-postgres/index" />}>
+    Build and deploy AI assistants that understand, analyze, and act on your organizational data. Tiger Data provides the tools and infrastructure you need for semantic search, recommendation systems, and intelligent agents—including pgvector, pgai, pgvectorscale, Tiger Eon, and Tiger Agents.
+</CardComponent>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Features</Heading>
+
+All Tiger Cloud services include the tooling you expect for production and developer environments:\
+[live migration](/manage-data/timescaledb/data-management/import-and-ingest/live-migration), [automatic backups](/cloud/tiger/data-security/backup) and [PITR](/cloud/tiger/data-security/restore-and-pitr), [high availability](/cloud/tiger/data-security/high-availability), [read replicas](/cloud/tiger/data-security/read-scaling), [data forking](/cloud/tiger/storage/replicas-and-forks-with-tiered-data), [connection pooling](/cloud/mst/data-performance/connection-pools), [tiered storage](/cloud/tiger/storage/manage-storage-tiers), [usage-based storage](/cloud/tiger/storage/manage-storage-tiers), [secure in-Console SQL editing](/cloud/tiger/get-started/run-queries-from-console),  [service metrics and insights](/cloud/tiger/monitoring/monitor-using-console), [streamlined maintenance](/cloud/tiger/understand/tiger-cloud-architecture), and much more. Tiger Cloud continuously monitors your services and prevents common PostgreSQL out-of-memory crashes.
 
 <CardGroup cols={3}>
 <Card
-    title="5-min setup"
-    icon="clock"
-    href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud"
+    title="Hypertables"
+    icon="pen-to-square"
+    href="/manage-data/timescaledb/data-management/hypertables/understand-hypertables"
 >
-Create your first Tiger Cloud service and connect from your application. Start building in minutes with no infrastructure setup.
+Postgres tables in TimescaleDB that automatically partition your time-series data by time.
 </Card>
 <Card
-    title="First query"
-    icon="code"
-    href="/deploy-and-operate/tiger-cloud/get-started/run-queries-from-console"
+    title="Hypercore"
+    icon="table-cells-row-unlock"
+    href="/manage-data/timescaledb/data-management/hypercore/understand-hypercore"
 >
-Run SQL queries directly from the Tiger Console. Learn the basics of querying time-series and relational data.
+The hybrid row-columnar storage engine in TimescaleDB used by hypertables.
 </Card>
 <Card
-    title="Migrate data"
-    icon="right-left"
-    href="/manage-data/data-management/import-and-ingest/live-migration"
+    title="Continuous aggregates"
+    icon="squirrel"
+    href="/manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
 >
-Move your existing PostgreSQL, MySQL, or MongoDB database to Tiger Cloud. Use live migration for zero-downtime transitions.
-</Card>
-<Card
-    title="Build AI app"
-    icon="user-robot"
-    href="/agentic-postgres/index"
->
-Create a RAG application with vector search and LLM integration. Build intelligent features powered by your data.
-</Card>
-<Card
-    title="IoT sensor"
-    icon="sensor"
-    href="/tutorials/time-series/simulate-iot-sensor-data"
->
-Ingest and analyze simulated IoT sensor data with hypertables. Learn time-series best practices with a complete example.
-</Card>
-<Card
-    title="Analytics dashboard"
-    icon="chart-line"
-    href="/integrations/integrate/grafana"
->
-Visualize your time-series data with Grafana dashboards and alerts. Connect to Tiger Cloud in minutes.
+Incrementally refresh aggregation queries in the background.
 </Card>
 </CardGroup>
 
-<Heading level={2} noAnchor className="font-semibold dark:text-white">Migration guides</Heading>
+<Heading level={2} noAnchor className="font-semibold dark:text-white">What you can build</Heading>
 
 <CardGroup cols={3}>
 <Card
-    title="From PostgreSQL"
-    icon="database"
-    href="/manage-data/data-management/import-and-ingest/live-migration"
->
-Migrate your PostgreSQL database to Tiger Cloud with live replication. Minimize downtime and preserve your existing schemas.
-</Card>
-<Card
-    title="From MySQL"
-    icon="database"
-    href="/manage-data/data-management/import-and-ingest/live-migration"
->
-Convert your MySQL database to PostgreSQL and migrate to Tiger Cloud. Automated tools handle schema translation and data transfer.
-</Card>
-<Card
-    title="From MongoDB"
-    icon="leaf"
-    href="/manage-data/data-management/import-and-ingest/live-migration"
->
-Move from MongoDB to relational time-series storage. Transform document-based data into optimized time-series tables.
-</Card>
-<Card
-    title="From InfluxDB"
+    title="Time-series analytics"
     icon="chart-line"
-    href="/manage-data/data-management/import-and-ingest/live-migration"
+    href="/manage-data/timescaledb/get-started/get-started-with-timescaledb"
 >
-Migrate time-series data from InfluxDB to Tiger Cloud. Gain SQL capabilities while maintaining time-series performance.
+Build real-time analytics on events, metrics, and IoT data with hypertables and continuous aggregates.
+</Card>
+<Card
+    title="AI and vector search"
+    icon="brain-circuit"
+    href="/agentic-postgres/index"
+>
+Power RAG applications and semantic search with pgvector, pgai, and StreamingDiskANN indexing.
+</Card>
+<Card
+    title="Agentic workflows"
+    icon="user-robot"
+    href="/agentic-postgres/agents/tiger-eon"
+>
+Build AI assistants that understand and act on your organizational data with Tiger Eon and Tiger Agents.
+</Card>
+</CardGroup>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Popular integrations</Heading>
+
+Tiger Cloud works with any tool that integrates with Postgres. Explore our [integrations](/integrations/index).
+
+<CardGroup cols={3}>
+<Card
+    title="Grafana"
+    icon="chart-line"
+    href="/integrations/integrate/grafana"
+>
+Visualize time-series data with powerful dashboards and alerts.
+</Card>
+<Card
+    title="Kafka"
+    icon="diagram-project"
+    href="/integrations/integrate/apache-kafka"
+>
+Stream data from Kafka topics into your database in real time.
+</Card>
+<Card
+    title="LangChain"
+    icon="link"
+    href="/agentic-postgres/integrations/langchain-integration"
+>
+Build RAG applications with LangChain and vector search.
+</Card>
+<Card
+    title="Datadog"
+    icon="chart-simple"
+    href="/integrations/integrate/datadog"
+>
+Monitor service metrics and send logs to Datadog.
+</Card>
+<Card
+    title="Terraform"
+    icon="code"
+    href="/integrations/integrate/terraform"
+>
+Manage Tiger Cloud infrastructure as code.
+</Card>
+<Card
+    title="AWS"
+    icon="aws"
+    href="/integrations/integrate/aws"
+>
+Connect securely from AWS with VPC peering and PrivateLink.
+</Card>
+</CardGroup>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">Learn with tutorials</Heading>
+
+Step-by-step guides for common use cases. See all [tutorials](/tutorials/index).
+
+<CardGroup cols={3}>
+<Card
+    title="Transport & geolocation"
+    icon="location-dot"
+    href="/tutorials/real-time-analytics/transport"
+>
+Analyze real-time transport data with geospatial queries.
+</Card>
+<Card
+    title="Energy consumption"
+    icon="bolt"
+    href="/tutorials/real-time-analytics/energy-consumption"
+>
+Track and analyze energy usage patterns over time.
+</Card>
+<Card
+    title="Financial forecasting"
+    icon="chart-line-up"
+    href="/tutorials/ai/financial-forcasting"
+>
+Build AI-powered financial prediction models.
+</Card>
+</CardGroup>
+
+<Heading level={2} noAnchor className="font-semibold dark:text-white">API reference</Heading>
+
+Complete function and endpoint documentation for all Tiger Data products.
+
+<CardGroup cols={3}>
+<Card
+    title="TimescaleDB API"
+    icon="database"
+    href="/api-reference/timescaledb/index"
+>
+SQL functions for hypertables, continuous aggregates, compression, and data retention.
+</Card>
+<Card
+    title="Toolkit API"
+    icon="toolbox"
+    href="/api-reference/timescaledb-toolkit/index"
+>
+Hyperfunctions for time-series analysis including statistical aggregates and time-weighted calculations.
+</Card>
+<Card
+    title="REST API"
+    icon="code"
+    href="/api-reference/tiger-cloud-rest-api/introduction"
+>
+Manage Tiger Cloud services, VPCs, and resources programmatically via REST endpoints.
 </Card>
 </CardGroup>
 

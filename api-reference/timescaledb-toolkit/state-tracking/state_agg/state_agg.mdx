@@ -25,7 +25,6 @@ Create a state aggregate to track the status of some devices.
 SELECT state_agg(time, status) FROM devices;
 ```
 
-[compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/
 ## Arguments
 
 The syntax is:
@@ -47,3 +46,4 @@ state_agg(
 |--------|------|-------------|
 | agg | StateAgg | An object storing the periods spent in each state, including timestamps of state transitions |
 
+[compact_state_agg]: /api-reference/timescaledb/hyperfunctions/state-tracking/compact_state_agg/

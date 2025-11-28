@@ -1648,69 +1648,7 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/integrate/terraform"
-                    ]
-                  },
-                  {
-                    "group": "Connectors",
-                    "pages": [
-                      "integrations/connectors/destination/tigerlake",
-                      "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
-                    ]
-                  },
-                  {
-                    "group": "Coding",
-                    "pages": [
-                      "integrations/code/start-coding-with-tigerdata"
-                    ]
-                  },
-                  {
-                    "group": "Configuration and deployment",
-                    "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
-                    ]
-                  },
-                  {
-                    "group": "Data engineering and extract, transform, load",
-                    "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
-                    ]
-                  },
-                  {
-                    "group": "Data ingestion and streaming",
-                    "pages": [
-                      "integrations/integrate/fivetran"
-                    ]
-                  },
-                  {
-                    "group": "Observability and alerting",
-                    "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
-                    ]
-                  },
-                  {
-                    "group": "Query and administration",
-                    "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "api-reference/timescaledb/timescaledb-api-reference"
                     ]
                   },
                   {

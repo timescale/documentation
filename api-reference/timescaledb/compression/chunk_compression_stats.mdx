@@ -11,7 +11,8 @@ products: [cloud, mst, self_hosted]
 
 import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Replaced by [chunk_columnstore_stats()][chunk-columnstore-stats].
+Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [chunk_columnstore_stats()][chunk-columnstore-stats].
+However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 Get {CHUNK}-specific statistics related to {HYPERTABLE} compression. All sizes are in bytes.
 
