@@ -58,7 +58,7 @@ than the individual tuples. Also, the [columnstore policy][add_columnstore_polic
 SET timescaledb.enable_direct_compress_copy;
 ```
 
-## Optimize cooling data in the {COLUMNSTORE}
+## Optimize cooling data in the columnstore
 
 As the data cools and becomes more suited for analytics, [add a columnstore policy][add_columnstore_policy] so your data
 is automatically converted to the {COLUMNSTORE} after a specific time interval. This columnar format enables fast
@@ -126,7 +126,7 @@ All data chunks belonging to the hypertable are deleted.
 [postgres-altertable]: https://www.postgresql.org/docs/current/sql-altertable.html
 [hypertable-create-table]: /api-reference/timescaledb/hypertable/create_table/
 [add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy/
-[install]: /get-started/timescaledb/
+[install]: /manage-data/get-started/get-started-with-timescaledb
 [postgres-createtable]: https://www.postgresql.org/docs/current/sql-createtable.html
 [postgresql-timestamp]: https://wiki.postgresql.org/wiki/Don't_Do_This#Don.27t_use_timestamp_.28without_time_zone.29
 [data-migration]: /migrate/
