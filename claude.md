@@ -42,7 +42,7 @@
 - Arguments table with format: | Name | Type | Default | Required | Description |
 - Returns section
 
-### Troubleshooting pages should include:
+### Troubleshoot pages should include:
 - Specific frontmatter fields (title, section, products/topics)
 - Clear problem identification
 - Step-by-step resolution procedures

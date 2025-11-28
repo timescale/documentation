@@ -14,7 +14,7 @@ import { HYPERTABLE, CHUNK, TIMESCALE_DB } from '/snippets/vars.mdx';
 Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [ALTER TABLE (Hypercore)][alter-table-hypercore].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
-`ALTER TABLE` statement is used to turn on compression and set compression options.
+Use 'ALTER TABLE' to turn on compression and set compression options.
 
 By itself, this `ALTER` statement alone does not compress a {HYPERTABLE}. To do so, either create a compression policy
 using the [add_compression_policy][add-compression-policy] function or manually compress a specific {HYPERTABLE} {CHUNK}

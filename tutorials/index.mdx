@@ -1,5 +1,5 @@
 ---
-title: Tutorials
+title: Learn
 sidebarTitle: Overview
 description: Walk through a variety of scenarios that use example datasets, and enable yourself to get the best out of Tiger Data products.
 products: [cloud, mst, self_hosted]
@@ -7,19 +7,92 @@ keywords: [tutorials, examples, guides]
 mode: "wide"
 ---
 
-<CardGroup cols={2}>
+<CardGroup cols={1}>
   <Card
-    title="Time-series"
+    title="Quickstart"
     icon="chart-line"
-    href="/tutorials/real-time-analytics/energy-consumption"
+    href="/tutorials/time-series/query-bitcoin-blockchain"
   >
     Learn to build time-series applications with TimescaleDB. Analyze energy consumption patterns, track transport and geolocation data, query blockchain transactions, perform health monitoring analysis, and detect anomalies in streaming data.
   </Card>
+</CardGroup>
+
+## By use case
+
+<CardGroup cols={2}>
   <Card
-    title="AI"
+    title="IoT sensor"
+    icon="sensor"
+    href="/tutorials/real-time-analytics/energy-consumption"
+  >
+    Analyze IoT sensor data and energy consumption patterns with TimescaleDB. Monitor infrastructure, track resource usage, and perform health biomedical analysis.
+  </Card>
+  <Card
+    title="Financial analytics"
+    icon="chart-mixed"
+    href="/tutorials/ai/financial-forcasting"
+  >
+    Build financial forecasting models and analyze blockchain transactions. Leverage time-series and AI capabilities for market analysis and predictions.
+  </Card>
+  <Card
+    title="Real-time dashboards"
+    icon="chart-line-up"
+    href="/tutorials/real-time-analytics/transport"
+  >
+    Create real-time monitoring dashboards. Track transport and geolocation data, detect anomalies in streaming data, and visualize time-series metrics.
+  </Card>
+  <Card
+    title="AI applications"
     icon="brain-circuit"
     href="/tutorials/ai/financial-forcasting"
   >
     Build AI-powered applications with Tiger Data's vector and embedding capabilities. Create financial forecasting models, implement AI-powered observability systems, and develop real-time predictive maintenance solutions.
+  </Card>
+  <Card
+    title="System monitoring"
+    icon="monitor-waveform"
+    href="/tutorials/ai/powered-observability"
+  >
+    Implement AI-powered observability and monitoring systems. Detect anomalies, track system health, and automate alerting for critical infrastructure.
+  </Card>
+  <Card
+    title="RAG systems"
+    icon="messages"
+    href="/tutorials/ai/financial-forcasting"
+  >
+    Build Retrieval-Augmented Generation systems using vector search and embeddings. Implement semantic search and context-aware AI applications.
+  </Card>
+</CardGroup>
+
+## By industry
+
+<CardGroup cols={2}>
+  <Card
+    title="Energy"
+    icon="bolt"
+    href="/tutorials/real-time-analytics/energy-consumption"
+  >
+    Monitor and analyze energy consumption patterns. Build solutions for grid management, renewable energy tracking, and power usage optimization.
+  </Card>
+  <Card
+    title="Healthcare"
+    icon="heart-pulse"
+    href="/tutorials/time-series/health-biometical-analysis"
+  >
+    Develop healthcare monitoring and analysis applications. Track patient vitals, perform biomedical data analysis, and implement AI-powered observability for medical systems.
+  </Card>
+  <Card
+    title="Transport"
+    icon="truck"
+    href="/tutorials/real-time-analytics/transport"
+  >
+    Build transportation and logistics solutions. Track vehicle locations, optimize routes, analyze traffic patterns, and monitor fleet performance in real-time.
+  </Card>
+  <Card
+    title="Manufacturing"
+    icon="industry"
+    href="/tutorials/ai/real-time-predictive-maintenence"
+  >
+    Create manufacturing and industrial IoT solutions. Implement predictive maintenance, monitor equipment health, detect anomalies, and optimize production processes.
   </Card>
 </CardGroup>

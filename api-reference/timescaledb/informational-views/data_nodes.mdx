@@ -1,0 +1,38 @@
+---
+title: timescaledb_information.data_nodes
+sidebarTitle: data_nodes
+description: Get information on data nodes in a multi-node cluster
+keywords: [multi-node, information]
+tags: [data nodes, cluster]
+license: community
+type: view
+---
+
+import { TIMESCALE_DB } from '/snippets/vars.mdx';
+
+<Icon icon="sunset" iconType="duotone" /> Sunsetted 2.14.0
+
+Get information on data nodes. This function is specific to running
+{TIMESCALE_DB} in a multi-node setup.
+
+## Samples
+
+Get metadata related to data nodes.
+
+```sql
+SELECT * FROM timescaledb_information.data_nodes;
+
+ node_name    | owner      | options
+--------------+------------+--------------------------------
+ dn1         | postgres   | {host=localhost,port=15431,dbname=test}
+ dn2         | postgres   | {host=localhost,port=15432,dbname=test}
+(2 rows)
+```
+
+## Returns
+
+| Name | Type | Description |
+|------|------|-------------|
+| `node_name` | TEXT | Data node name. |
+| `owner` | REGCLASS | Oid of the user, who added the data node. |
+| `options` | JSONB | Options used when creating the data node. |

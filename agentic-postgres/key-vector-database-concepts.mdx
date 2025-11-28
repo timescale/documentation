@@ -68,7 +68,7 @@ Many embedding systems (for example OpenAI's ada-002) use vectors with length 1 
 - The negative inner product is `−dot product`.
 - The Euclidean distance is related to the dot product, where the squared Euclidean distance is `2(1−dot product)`.
 
-#### Recommended vector distance for use in {PG}
+#### Recommended vector distance for use in Postgres
 
 Using cosine distance, especially on unit vectors, is recommended. These recommendations are based on OpenAI's [recommendation](https://platform.openai.com/docs/guides/embeddings/which-distance-function-should-i-use) as well as the fact that the ranking of different distances on unit vectors is preserved.
 

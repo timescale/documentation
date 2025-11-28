@@ -32,7 +32,7 @@ Each major doc section has a dedicated directory with `.md` files inside, repres
   - An argument table with `Name`, `Type`, `Default`, `Required`, `Description` columns.
   - A return table with `Column`, `Type`, and `Description` columns.
 
-- **Troubleshooting pages** are not written as whole Markdown files, but are programmatically assembled from individual files in the`_troubleshooting` folder. Each entry describes a single troubleshooting case and its solution, and contains the following front matter:
+- **Troubleshoot pages** are not written as whole Markdown files, but are programmatically assembled from individual files in the`_troubleshooting` folder. Each entry describes a single troubleshooting case and its solution, and contains the following front matter:
     
     |Key| Type  |Required| Description                                                                                                                                                                           | 
     |-|-------|-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -69,7 +69,7 @@ The navigation hierarchy of a doc section is governed by `page-index/page-index.
             excerpt: "Tiger Cloud services explorer",
           },
           {
-            title: "Troubleshooting Tiger Cloud services",
+            title: "Troubleshoot Tiger Cloud services",
             href: "troubleshooting",
             type: "placeholder",
           },
