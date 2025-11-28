@@ -11,6 +11,8 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
+<Icon icon="circle-play" iconType="duotone" /> Since 1.5.0
+
 Override the [`now()`](https://www.postgresql.org/docs/16/functions-datetime.html) date/time function used to
 set the current time in the integer `time` column in a {HYPERTABLE}. Many policies only apply to
 [{CHUNK}s][chunks] of a certain age. `integer_now_func` determines the age of each {CHUNK}.

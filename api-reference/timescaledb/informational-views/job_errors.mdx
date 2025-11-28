@@ -10,6 +10,8 @@ type: view
 
 import { CAGG, COLUMNSTORE } from '/snippets/vars.mdx';
 
+<Icon icon="circle-play" iconType="duotone" /> Since 2.12.0
+
 Shows information about runtime errors encountered by jobs run by the automation framework.
 This includes custom jobs and jobs run by policies
 created to manage data retention, {CAGG}s, {COLUMNSTORE}, and
@@ -84,4 +86,4 @@ For example, the owner can change the retention interval like this:
 SELECT alter_job(id,config:=jsonb_set(config,'{drop_after}', '"2 weeks"')) FROM _timescaledb_config.bgw_job WHERE id = 2;
 ```
 
-[jobs]: /api-reference/timescaledb/jobs-automation/
+[jobs]: /api-reference/timescaledb/jobs-automation

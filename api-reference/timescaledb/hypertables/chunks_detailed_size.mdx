@@ -9,8 +9,10 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 import ReturnsNullIfNotHypertable from '/snippets/api-reference/timescaledb/_returns-null-if-not-hypertable.mdx';
+import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
+<Icon icon="circle-play" iconType="duotone" /> Since 0.2.0
 
 Get information about the disk space used by the {CHUNK}s belonging to a
 {HYPERTABLE}, returning size information for each {CHUNK} table, any

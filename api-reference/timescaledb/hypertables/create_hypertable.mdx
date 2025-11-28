@@ -12,6 +12,8 @@ import DimensionInfo from '/snippets/api-reference/timescaledb/hypertables/_dime
 
 import { HYPERTABLE, CHUNK, PG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
+<Icon icon="circle-play" iconType="duotone" /> Since 0.1.0
+
 Replace a standard {PG} relational table with a [{HYPERTABLE}][hypertable-docs] that is partitioned on a single
 dimension. To create a new {HYPERTABLE}, best practice is to call <a href="https://docs.tigerdata.com/api/latest/hypertable/create_table/">CREATE TABLE</a>.
 
@@ -28,7 +30,7 @@ as `NOT NULL`. If this is not already specified on table creation, `create_hyper
 this constraint on the table when it is executed.
 
 This page describes the generalized {HYPERTABLE} API introduced in {TIMESCALE_DB} v2.13.
-The [old interface for `create_hypertable` is also available](/api-reference/timescaledb/hypertables/create_hypertable_old/).
+The [old interface for `create_hypertable` is also available](/api-reference/timescaledb/hypertables/create_hypertable_old).
 
 ## Samples
 
@@ -216,7 +218,7 @@ On failure, an error is returned:
 [inheritance]: https://www.postgresql.org/docs/current/ddl-partitioning.html#DDL-PARTITIONING-USING-INHERITANCE
 [migrate-data]: /api-reference/timescaledb/hypertables/create_hypertable/#arguments
 [dimension-info]: /api-reference/timescaledb/hypertables/create_hypertable/#dimension-info
-[set_chunk_time_interval]: /api-reference/timescaledb/hypertables/set_chunk_time_interval/
+[set_chunk_time_interval]: /api-reference/timescaledb/hypertables/set_chunk_time_interval
 [about-constraints]: /use-timescale/schema-management/about-constraints
 [share-row-exclusive]: https://www.postgresql.org/docs/current/sql-lock.html
 [by-range]: /api-reference/timescaledb/hypertables/create_hypertable/#by_range
@@ -225,4 +227,4 @@ On failure, an error is returned:
 [sample-composite-columns]: /api-reference/timescaledb/hypertables/create_hypertable/#time-partition-a-hypertable-using-composite-columns-and-immutable-functions
 [sample-iso-formatting]: /api-reference/timescaledb/hypertables/create_hypertable/#time-partition-a-hypertable-using-iso-formatting
 [sample-uuidv7]: /api-reference/timescaledb/hypertables/create_hypertable/#time-partition-a-hypertable-using-iso-formatting
-[uuidv7_functions]: /api-reference/timescaledb/uuid-functions/
+[uuidv7_functions]: /api-reference/timescaledb/uuid-functions
