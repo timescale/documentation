@@ -36,90 +36,91 @@
                   {
                     "group": " ",
                     "pages": [
-                      "cloud/index"
+                      "deploy-and-operate/index"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "cloud/tiger/get-started/get-started-with-tiger-cloud",
-                      "cloud/tiger/get-started/create-services",
-                      "cloud/tiger/get-started/run-queries-from-console",
-                      "cloud/tiger/get-started/run-your-workload-in-cloud"
+                      "deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud",
+                      "deploy-and-operate/tiger-cloud/get-started/create-services",
+                      "deploy-and-operate/tiger-cloud/get-started/run-queries-from-console",
+                      "deploy-and-operate/tiger-cloud/get-started/run-your-workload-in-cloud"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "cloud/tiger/understand/tiger-cloud-architecture",
-                      "cloud/tiger/understand/implementation-workflow",
-                      "cloud/tiger/understand/pricing-and-account-management",
-                      "cloud/choose-deployment-type",
-                      "cloud/tiger/understand/changelog"
+                      "deploy-and-operate/tiger-cloud/understand/tiger-cloud-architecture",
+                      "deploy-and-operate/tiger-cloud/understand/implementation-workflow",
+                      "deploy-and-operate/tiger-cloud/understand/pricing-and-account-management",
+                      "deploy-and-operate/choose-deployment-type",
+                      "deploy-and-operate/tiger-cloud/understand/changelog"
                     ]
                   },
                   {
                     "group": "Storage",
                     "pages": [
-                      "cloud/tiger/storage/manage-storage-tiers",
-                      "cloud/tiger/storage/query-tiered-data",
-                      "cloud/tiger/storage/replicas-and-forks-with-tiered-data",
-                      "cloud/tiger/storage/query-another-data-source-fdw"
+                      "deploy-and-operate/tiger-cloud/storage/manage-storage-tiers",
+                      "deploy-and-operate/tiger-cloud/storage/query-tiered-data",
+                      "deploy-and-operate/tiger-cloud/storage/replicas-and-forks-with-tiered-data",
+                      "deploy-and-operate/tiger-cloud/storage/query-another-data-source-fdw"
                     ]
                   },
                   {
                     "group": "Monitor your services",
                     "pages": [
-                      "cloud/tiger/monitoring/monitor-using-console",
-                      "cloud/tiger/monitoring/export-metrics-to-amazon-cloudwatch",
-                      "cloud/tiger/monitoring/export-metrics-to-datadog",
-                      "cloud/tiger/monitoring/export-metrics-to-prometheus",
-                      "cloud/tiger/monitoring/alerting",
-                      "cloud/tiger/monitoring/telemetry"
+                      "deploy-and-operate/tiger-cloud/monitoring/monitor-using-console",
+                      "deploy-and-operate/tiger-cloud/monitoring/export-metrics-to-amazon-cloudwatch",
+                      "deploy-and-operate/tiger-cloud/monitoring/export-metrics-to-datadog",
+                      "deploy-and-operate/tiger-cloud/monitoring/export-metrics-to-prometheus",
+                      "deploy-and-operate/tiger-cloud/monitoring/alerting",
+                      "deploy-and-operate/tiger-cloud/monitoring/telemetry"
                     ]
                   },
                   {
                     "group": "Manage data security",
                     "pages": [
-                      "cloud/tiger/data-security/high-availability",
-                      "cloud/tiger/data-security/read-scaling",
-                      "cloud/tiger/data-security/rapid-recovery",
-                      "cloud/tiger/data-security/backup",
-                      "cloud/tiger/data-security/restore-and-pitr"
+                      "deploy-and-operate/tiger-cloud/data-security/high-availability",
+                      "deploy-and-operate/tiger-cloud/data-security/read-scaling",
+                      "deploy-and-operate/tiger-cloud/data-security/rapid-recovery",
+                      "deploy-and-operate/tiger-cloud/data-security/backup",
+                      "deploy-and-operate/tiger-cloud/data-security/restore-and-pitr"
                     ]
                   },
                   {
                     "group": "Secure access to cloud",
                     "pages": [
-                      "cloud/tiger/secure-access/configure-role-based-access",
-                      "cloud/tiger/secure-access/user-authentication",
-                      "cloud/tiger/secure-access/connect-securely-from-any-cloud",
-                      "cloud/tiger/secure-access/connect-to-tiger-cloud-from-your-app",
-                      "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
-                      "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
-                      "cloud/tiger/secure-access/vpc-peering-and-aws-private-link",
-                      "cloud/tiger/secure-access/setup-an-ip-allow-list"
+                      "deploy-and-operate/tiger-cloud/secure-access/configure-role-based-access",
+                      "deploy-and-operate/tiger-cloud/secure-access/user-authentication",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-securely-from-any-cloud",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-to-tiger-cloud-from-your-app",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-to-a-service-with-stricter-ssl",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-to-a-service-with-stricter-ssl",
+                      "deploy-and-operate/tiger-cloud/secure-access/vpc-peering-and-aws-private-link",
+                      "deploy-and-operate/tiger-cloud/secure-access/setup-an-ip-allow-list"
                     ]
                   },
                   {
                     "group": "Configuration",
                     "pages": [
-                      "cloud/tiger/configuration/tune-your-service"
+                      "deploy-and-operate/tiger-cloud/configuration/tune-your-service"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "cloud/tiger/troubleshooting/troubleshooting"
+                      "deploy-and-operate/tiger-cloud/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "cloud/tiger/reference/tiger-cloud-regions",
-                      "cloud/tiger/reference/contribute-to-tigerdata",
-                      "cloud/tiger/reference/postgres-extensions-in-tiger-cloud",
-                      "cloud/tiger/reference/configuration-parameters"
+                      "deploy-and-operate/tiger-cloud/reference/tiger-cloud-regions",
+                      "deploy-and-operate/tiger-cloud/reference/contribute-to-tigerdata",
+                      "deploy-and-operate/tiger-cloud/reference/postgres-extensions-in-tiger-cloud",
+                      "deploy-and-operate/tiger-cloud/reference/configuration-parameters",
+                      "deploy-and-operate/tiger-cloud/reference/glossary"
                     ]
                   }
                 ]
@@ -130,74 +131,75 @@
                   {
                     "group": " ",
                     "pages": [
-                      "cloud/mst/index"
+                      "deploy-and-operate/mst/index"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "cloud/mst/get-started/get-started-with-managed-service-for-timescaledb"
+                      "deploy-and-operate/mst/get-started/get-started-with-managed-service-for-timescaledb"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "cloud/mst/understand/about-managed-service-for-timescaledb",
-                      "cloud/mst/understand/billing"
+                      "deploy-and-operate/mst/understand/about-managed-service-for-timescaledb",
+                      "deploy-and-operate/mst/understand/billing"
                     ]
                   },
                   {
                     "group": "Data performance",
                     "pages": [
-                      "cloud/mst/data-performance/ingest-data",
-                      "cloud/mst/data-performance/connection-pools"
+                      "deploy-and-operate/mst/data-performance/ingest-data",
+                      "deploy-and-operate/mst/data-performance/connection-pools"
                     ]
                   },
                   {
                     "group": "Storage",
                     "pages": [
-                      "cloud/mst/storage/storage"
+                      "deploy-and-operate/mst/storage/storage"
                     ]
                   },
                   {
                     "group": "Monitor your services",
                     "pages": [
-                      "cloud/mst/monitoring/viewing-service-logs",
-                      "cloud/mst/monitoring/visualizing-data-with-google-data-studio",
-                      "cloud/mst/monitoring/visualizing-data-with-grafana",
-                      "cloud/mst/monitoring/logging",
-                      "cloud/mst/monitoring/sending-metrics-to-datadog",
-                      "cloud/mst/monitoring/monitoring-with-prometheus-endpoint"
+                      "deploy-and-operate/mst/monitoring/viewing-service-logs",
+                      "deploy-and-operate/mst/monitoring/visualizing-data-with-google-data-studio",
+                      "deploy-and-operate/mst/monitoring/visualizing-data-with-grafana",
+                      "deploy-and-operate/mst/monitoring/logging",
+                      "deploy-and-operate/mst/monitoring/sending-metrics-to-datadog",
+                      "deploy-and-operate/mst/monitoring/monitoring-with-prometheus-endpoint"
                     ]
                   },
                   {
                     "group": "Manage data security",
                     "pages": [
-                      "cloud/mst/data-security/data-security"
+                      "deploy-and-operate/mst/data-security/data-security"
                     ]
                   },
                   {
                     "group": "Secure access to cloud",
                     "pages": [
-                      "cloud/mst/secure-access/secure-access"
+                      "deploy-and-operate/mst/secure-access/secure-access"
                     ]
                   },
                   {
                     "group": "Configuration",
                     "pages": [
-                      "cloud/mst/configuration/configuration"
+                      "deploy-and-operate/mst/configuration/configuration"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "cloud/mst/troubleshooting/troubleshooting"
+                      "deploy-and-operate/mst/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "cloud/mst/reference/reference"
+                      "deploy-and-operate/mst/reference/reference",
+                      "deploy-and-operate/tiger-cloud/reference/glossary"
                     ]
                   }
                 ]
@@ -208,45 +210,47 @@
                   {
                     "group": " ",
                     "pages": [
-                      "self-host/index"
+                      "deploy-and-operate/timescaledb/index"
                     ]
                   },
                   {
                     "group": "Install and update",
                     "pages": [
-                      "self-host/timescaledb/install-and-update/install-self-hosted",
-                      "self-host/timescaledb/install-and-update/update-self-hosted",
-                      "self-host/timescaledb/install-and-update/uninstall-self-hosted"
+                      "deploy-and-operate/timescaledb/install-and-update/install-self-hosted",
+                      "deploy-and-operate/timescaledb/install-and-update/install-timescaledb-toolkit",
+                      "deploy-and-operate/timescaledb/install-and-update/update-self-hosted",
+                      "deploy-and-operate/timescaledb/install-and-update/uninstall-self-hosted"
                     ]
                   },
                   {
                     "group": "Manage data security",
                     "pages": [
-                      "self-host/timescaledb/manage-data-security/high-availability",
-                      "self-host/timescaledb/manage-data-security/read-replication",
-                      "self-host/timescaledb/manage-data-security/backup-and-restore"
+                      "deploy-and-operate/timescaledb/manage-data-security/high-availability",
+                      "deploy-and-operate/timescaledb/manage-data-security/read-replication",
+                      "deploy-and-operate/timescaledb/manage-data-security/backup-and-restore"
                     ]
                   },
                   {
                     "group": "Configure",
                     "pages": [
-                      "self-host/timescaledb/configuration/configure-your-deployment",
-                      "self-host/timescaledb/configuration/tune-your-deployment"
+                      "deploy-and-operate/timescaledb/configuration/configure-your-deployment",
+                      "deploy-and-operate/timescaledb/configuration/tune-your-deployment"
                     ]
                   },
                   {
                     "group": "Troubleshooting",
                     "pages": [
-                      "self-host/timescaledb/troubleshooting/troubleshooting"
+                      "deploy-and-operate/timescaledb/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "self-host/timescaledb/reference/timescaledb-editions",
-                      "self-host/timescaledb/reference/configuration-parameters",
-                      "self-host/timescaledb/reference/limitations",
-                      "self-host/timescaledb/reference/contribute-to-timescaledb"
+                      "deploy-and-operate/timescaledb/reference/timescaledb-editions",
+                      "deploy-and-operate/timescaledb/reference/configuration-parameters",
+                      "deploy-and-operate/timescaledb/reference/limitations",
+                      "deploy-and-operate/timescaledb/reference/contribute-to-timescaledb",
+                      "deploy-and-operate/tiger-cloud/reference/glossary"
                     ]
                   }
                 ]
@@ -257,90 +261,90 @@
                   {
                     "group": " ",
                     "pages": [
-                      "cloud/choose-deployment-type"
+                      "deploy-and-operate/choose-deployment-type"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "cloud/tiger/get-started/get-started-with-tiger-cloud",
-                      "cloud/tiger/get-started/create-services",
-                      "cloud/tiger/get-started/run-queries-from-console",
-                      "cloud/tiger/get-started/run-your-workload-in-cloud"
+                      "deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud",
+                      "deploy-and-operate/tiger-cloud/get-started/create-services",
+                      "deploy-and-operate/tiger-cloud/get-started/run-queries-from-console",
+                      "deploy-and-operate/tiger-cloud/get-started/run-your-workload-in-cloud"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "cloud/tiger/understand/tiger-cloud-architecture",
-                      "cloud/tiger/understand/implementation-workflow",
-                      "cloud/tiger/understand/pricing-and-account-management",
-                      "cloud/choose-deployment-type",
-                      "cloud/tiger/understand/changelog"
+                      "deploy-and-operate/tiger-cloud/understand/tiger-cloud-architecture",
+                      "deploy-and-operate/tiger-cloud/understand/implementation-workflow",
+                      "deploy-and-operate/tiger-cloud/understand/pricing-and-account-management",
+                      "deploy-and-operate/choose-deployment-type",
+                      "deploy-and-operate/tiger-cloud/understand/changelog"
                     ]
                   },
                   {
                     "group": "Storage",
                     "pages": [
-                      "cloud/tiger/storage/manage-storage-tiers",
-                      "cloud/tiger/storage/query-tiered-data",
-                      "cloud/tiger/storage/replicas-and-forks-with-tiered-data",
-                      "cloud/tiger/storage/query-another-data-source-fdw"
+                      "deploy-and-operate/tiger-cloud/storage/manage-storage-tiers",
+                      "deploy-and-operate/tiger-cloud/storage/query-tiered-data",
+                      "deploy-and-operate/tiger-cloud/storage/replicas-and-forks-with-tiered-data",
+                      "deploy-and-operate/tiger-cloud/storage/query-another-data-source-fdw"
                     ]
                   },
                   {
                     "group": "Monitor your services",
                     "pages": [
-                      "cloud/tiger/monitoring/monitor-using-console",
-                      "cloud/tiger/monitoring/export-metrics-to-amazon-cloudwatch",
-                      "cloud/tiger/monitoring/export-metrics-to-datadog",
-                      "cloud/tiger/monitoring/export-metrics-to-prometheus",
-                      "cloud/tiger/monitoring/alerting",
-                      "cloud/tiger/monitoring/telemetry"
+                      "deploy-and-operate/tiger-cloud/monitoring/monitor-using-console",
+                      "deploy-and-operate/tiger-cloud/monitoring/export-metrics-to-amazon-cloudwatch",
+                      "deploy-and-operate/tiger-cloud/monitoring/export-metrics-to-datadog",
+                      "deploy-and-operate/tiger-cloud/monitoring/export-metrics-to-prometheus",
+                      "deploy-and-operate/tiger-cloud/monitoring/alerting",
+                      "deploy-and-operate/tiger-cloud/monitoring/telemetry"
                     ]
                   },
                   {
                     "group": "Manage data security",
                     "pages": [
-                      "cloud/tiger/data-security/high-availability",
-                      "cloud/tiger/data-security/read-scaling",
-                      "cloud/tiger/data-security/rapid-recovery",
-                      "cloud/tiger/data-security/backup",
-                      "cloud/tiger/data-security/restore-and-pitr"
+                      "deploy-and-operate/tiger-cloud/data-security/high-availability",
+                      "deploy-and-operate/tiger-cloud/data-security/read-scaling",
+                      "deploy-and-operate/tiger-cloud/data-security/rapid-recovery",
+                      "deploy-and-operate/tiger-cloud/data-security/backup",
+                      "deploy-and-operate/tiger-cloud/data-security/restore-and-pitr"
                     ]
                   },
                   {
                     "group": "Secure access to cloud",
                     "pages": [
-                      "cloud/tiger/secure-access/configure-role-based-access",
-                      "cloud/tiger/secure-access/user-authentication",
-                      "cloud/tiger/secure-access/connect-securely-from-any-cloud",
-                      "cloud/tiger/secure-access/connect-to-tiger-cloud-from-your-app",
-                      "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
-                      "cloud/tiger/secure-access/connect-to-a-service-with-stricter-ssl",
-                      "cloud/tiger/secure-access/vpc-peering-and-aws-private-link",
-                      "cloud/tiger/secure-access/setup-an-ip-allow-list"
+                      "deploy-and-operate/tiger-cloud/secure-access/configure-role-based-access",
+                      "deploy-and-operate/tiger-cloud/secure-access/user-authentication",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-securely-from-any-cloud",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-to-tiger-cloud-from-your-app",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-to-a-service-with-stricter-ssl",
+                      "deploy-and-operate/tiger-cloud/secure-access/connect-to-a-service-with-stricter-ssl",
+                      "deploy-and-operate/tiger-cloud/secure-access/vpc-peering-and-aws-private-link",
+                      "deploy-and-operate/tiger-cloud/secure-access/setup-an-ip-allow-list"
                     ]
                   },
                   {
                     "group": "Configuration",
                     "pages": [
-                      "cloud/tiger/configuration/tune-your-service"
+                      "deploy-and-operate/tiger-cloud/configuration/tune-your-service"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "cloud/tiger/troubleshooting/troubleshooting"
+                      "deploy-and-operate/tiger-cloud/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "cloud/tiger/reference/tiger-cloud-regions",
-                      "cloud/tiger/reference/contribute-to-tigerdata",
-                      "cloud/tiger/reference/postgres-extensions-in-tiger-cloud",
-                      "cloud/tiger/reference/configuration-parameters"
+                      "deploy-and-operate/tiger-cloud/reference/tiger-cloud-regions",
+                      "deploy-and-operate/tiger-cloud/reference/contribute-to-tigerdata",
+                      "deploy-and-operate/tiger-cloud/reference/postgres-extensions-in-tiger-cloud",
+                      "deploy-and-operate/tiger-cloud/reference/configuration-parameters"
                     ]
                   }
                 ]
@@ -348,7 +352,7 @@
             ]
           },
           {
-            "tab": "TimescaleDB",
+            "tab": "Data",
             "url": "manage-data/index",
             "menu": [
               {
@@ -363,15 +367,15 @@
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/get-started/get-started-with-timescaledb",
+                      "manage-data/get-started/timescaledb-read-write-data"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/understand/timescaledb-architecture",
+                      "manage-data/understand/design-your-data-model"
                     ]
                   },
                   {
@@ -380,32 +384,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
+                          "manage-data/data-management/hypertables/understand-hypertables",
+                          "manage-data/data-management/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+                          "manage-data/data-management/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
+                          "manage-data/data-management/jobs/understand-jobs"
                         ]
                       }
                     ]
@@ -413,25 +417,25 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                      "manage-data/data-management/import-and-ingest/live-migration",
+                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
+                      "manage-data/data-management/import-and-ingest/import-console",
+                      "manage-data/data-management/import-and-ingest/import-terminal"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/limitations",
+                      "manage-data/reference/contribute-to-timescaledb"
                     ]
                   }
                 ]
@@ -442,21 +446,21 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb"
+                      "manage-data/get-started/get-started-with-timescaledb"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/get-started/get-started-with-timescaledb",
+                      "manage-data/get-started/timescaledb-read-write-data"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/understand/timescaledb-architecture",
+                      "manage-data/understand/design-your-data-model"
                     ]
                   },
                   {
@@ -465,32 +469,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
+                          "manage-data/data-management/hypertables/understand-hypertables",
+                          "manage-data/data-management/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+                          "manage-data/data-management/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
+                          "manage-data/data-management/jobs/understand-jobs"
                         ]
                       }
                     ]
@@ -498,25 +502,25 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                      "manage-data/data-management/import-and-ingest/live-migration",
+                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
+                      "manage-data/data-management/import-and-ingest/import-console",
+                      "manage-data/data-management/import-and-ingest/import-terminal"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/limitations",
+                      "manage-data/reference/contribute-to-timescaledb"
                     ]
                   }
                 ]
@@ -527,21 +531,21 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture"
+                      "manage-data/understand/timescaledb-architecture"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/get-started/get-started-with-timescaledb",
+                      "manage-data/get-started/timescaledb-read-write-data"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/understand/timescaledb-architecture",
+                      "manage-data/understand/design-your-data-model"
                     ]
                   },
                   {
@@ -550,32 +554,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
+                          "manage-data/data-management/hypertables/understand-hypertables",
+                          "manage-data/data-management/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+                          "manage-data/data-management/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
+                          "manage-data/data-management/jobs/understand-jobs"
                         ]
                       }
                     ]
@@ -583,25 +587,25 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                      "manage-data/data-management/import-and-ingest/live-migration",
+                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
+                      "manage-data/data-management/import-and-ingest/import-console",
+                      "manage-data/data-management/import-and-ingest/import-terminal"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/limitations",
+                      "manage-data/reference/contribute-to-timescaledb"
                     ]
                   }
                 ]
@@ -612,21 +616,21 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/timescaledb/data-management/hypertables/understand-hypertables"
+                      "manage-data/data-management/hypertables/understand-hypertables"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/get-started/get-started-with-timescaledb",
+                      "manage-data/get-started/timescaledb-read-write-data"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/understand/timescaledb-architecture",
+                      "manage-data/understand/design-your-data-model"
                     ]
                   },
                   {
@@ -635,32 +639,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
+                          "manage-data/data-management/hypertables/understand-hypertables",
+                          "manage-data/data-management/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+                          "manage-data/data-management/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
+                          "manage-data/data-management/jobs/understand-jobs"
                         ]
                       }
                     ]
@@ -668,25 +672,25 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                      "manage-data/data-management/import-and-ingest/live-migration",
+                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
+                      "manage-data/data-management/import-and-ingest/import-console",
+                      "manage-data/data-management/import-and-ingest/import-terminal"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/limitations",
+                      "manage-data/reference/contribute-to-timescaledb"
                     ]
                   }
                 ]
@@ -697,21 +701,21 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration"
+                      "manage-data/data-management/import-and-ingest/live-migration"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/get-started/get-started-with-timescaledb",
+                      "manage-data/get-started/timescaledb-read-write-data"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/understand/timescaledb-architecture",
+                      "manage-data/understand/design-your-data-model"
                     ]
                   },
                   {
@@ -720,32 +724,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
+                          "manage-data/data-management/hypertables/understand-hypertables",
+                          "manage-data/data-management/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+                          "manage-data/data-management/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
+                          "manage-data/data-management/jobs/understand-jobs"
                         ]
                       }
                     ]
@@ -753,25 +757,25 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                      "manage-data/data-management/import-and-ingest/live-migration",
+                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
+                      "manage-data/data-management/import-and-ingest/import-console",
+                      "manage-data/data-management/import-and-ingest/import-terminal"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/limitations",
+                      "manage-data/reference/contribute-to-timescaledb"
                     ]
                   }
                 ]
@@ -782,21 +786,21 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/get-started/get-started-with-timescaledb",
+                      "manage-data/get-started/timescaledb-read-write-data"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/understand/timescaledb-architecture",
+                      "manage-data/understand/design-your-data-model"
                     ]
                   },
                   {
@@ -805,32 +809,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
+                          "manage-data/data-management/hypertables/understand-hypertables",
+                          "manage-data/data-management/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+                          "manage-data/data-management/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
+                          "manage-data/data-management/jobs/understand-jobs"
                         ]
                       }
                     ]
@@ -838,25 +842,25 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                      "manage-data/data-management/import-and-ingest/live-migration",
+                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
+                      "manage-data/data-management/import-and-ingest/import-console",
+                      "manage-data/data-management/import-and-ingest/import-terminal"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/limitations",
+                      "manage-data/reference/contribute-to-timescaledb"
                     ]
                   }
                 ]
@@ -867,21 +871,21 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions"
+                      "manage-data/reference/timescaledb-editions"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "manage-data/timescaledb/get-started/get-started-with-timescaledb",
-                      "manage-data/timescaledb/get-started/timescaledb-read-write-data"
+                      "manage-data/get-started/get-started-with-timescaledb",
+                      "manage-data/get-started/timescaledb-read-write-data"
                     ]
                   },
                   {
                     "group": "Understand",
                     "pages": [
-                      "manage-data/timescaledb/understand/timescaledb-architecture",
-                      "manage-data/timescaledb/understand/design-your-data-model"
+                      "manage-data/understand/timescaledb-architecture",
+                      "manage-data/understand/design-your-data-model"
                     ]
                   },
                   {
@@ -890,32 +894,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypertables/understand-hypertables",
-                          "manage-data/timescaledb/data-management/hypertables/hypertable-crud"
+                          "manage-data/data-management/hypertables/understand-hypertables",
+                          "manage-data/data-management/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+                          "manage-data/data-management/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/timescaledb/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/timescaledb/data-management/jobs/understand-jobs"
+                          "manage-data/data-management/jobs/understand-jobs"
                         ]
                       }
                     ]
@@ -923,25 +927,26 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/timescaledb/data-management/import-and-ingest/live-migration",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-console",
-                      "manage-data/timescaledb/data-management/import-and-ingest/import-terminal",
-                      "manage-data/timescaledb/data-management/import-and-ingest/ingest-terminal"
+                      "manage-data/data-management/import-and-ingest/live-migration",
+                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
+                      "manage-data/data-management/import-and-ingest/import-console",
+                      "manage-data/data-management/import-and-ingest/import-terminal"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
-                      "manage-data/timescaledb/troubleshooting/troubleshooting"
+                      "manage-data/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "manage-data/timescaledb/reference/timescaledb-editions",
-                      "manage-data/timescaledb/reference/configuration-parameters",
-                      "manage-data/timescaledb/reference/limitations",
-                      "manage-data/timescaledb/reference/contribute-to-timescaledb"
+                      "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/limitations",
+                      "manage-data/reference/contribute-to-timescaledb",
+                      "deploy-and-operate/tiger-cloud/reference/glossary"
                     ]
                   }
                 ]
@@ -949,7 +954,7 @@
             ]
           },
           {
-            "tab": "AI",
+            "tab": "Agentic Postgres",
             "url": "agentic-postgres/index",
             "menu": [
               {
@@ -1197,6 +1202,7 @@
                   {
                     "group": "IoT sensor",
                     "pages": [
+                      "tutorials/time-series/simulate-iot-sensor-data",
                       "tutorials/ai/real-time-predictive-maintenence",
                       "tutorials/real-time-analytics/energy-consumption",
                       "tutorials/time-series/health-biometical-analysis"
@@ -1205,6 +1211,7 @@
                   {
                     "group": "Financial",
                     "pages": [
+                      "tutorials/real-time-analytics/ingest-real-time-websocket-data",
                       "tutorials/ai/financial-forcasting",
                       "tutorials/time-series/query-bitcoin-blockchain"
                     ]
@@ -1397,7 +1404,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1431,12 +1438,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1476,7 +1492,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1510,12 +1526,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1555,7 +1580,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1589,12 +1614,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1634,7 +1668,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1668,12 +1702,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1713,7 +1756,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1747,12 +1790,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1792,7 +1844,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1826,12 +1878,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1871,7 +1932,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1905,12 +1966,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1950,7 +2020,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -1984,12 +2054,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -2029,7 +2108,7 @@
                   {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/integrate/terraform",
+                      "integrations/configuration-deployment/terraform",
                       "integrations/integrate/kubernetes"
                     ]
                   },
@@ -2063,12 +2142,21 @@
                   {
                     "group": "Query and administration",
                     "pages": [
+                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
-                      "integrations/integrate/qstudio"
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Troubleshoot",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -2281,12 +2369,6 @@
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/locf",
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/interpolate"
                         ]
-                      },
-                      {
-                        "group": "Legacy functions",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/legacy/time_bucket_ng"
-                        ]
                       }
                     ]
                   },
@@ -2328,6 +2410,7 @@
                         "group": "Hypertable and chunk information",
                         "pages": [
                           "api-reference/timescaledb/informational-views/chunks",
+                          "api-reference/timescaledb/informational-views/data_nodes",
                           "api-reference/timescaledb/informational-views/dimensions",
                           "api-reference/timescaledb/informational-views/hypertables"
                         ]

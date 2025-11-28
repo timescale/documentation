@@ -18,7 +18,7 @@ import { CTALink } from "/snippets/cta-link.jsx"
 <Card
     title="Track time-series data"
     icon="chart-line"
-    href="/manage-data/timescaledb/get-started/get-started-with-timescaledb"
+    href="/manage-data/get-started/get-started-with-timescaledb"
 >
 Store and analyze time-stamped data from IoT sensors, metrics, events, and logs. Automatically partition by time for fast queries.
 </Card>
@@ -32,7 +32,7 @@ Create intelligent applications with vector search, semantic similarity, and AI-
 <Card
     title="Real-time analytics"
     icon="gauge-high"
-    href="/manage-data/timescaledb/get-started/get-started-with-timescaledb"
+    href="/manage-data/get-started/get-started-with-timescaledb"
 >
 Run complex analytical queries on streaming data with continuous aggregates. Get instant insights from live metrics and events.
 </Card>
@@ -51,21 +51,21 @@ Deploy AI assistants that understand and act on your data. Build autonomous agen
 <Card
     title="Hypertables"
     icon="table"
-    href="/manage-data/timescaledb/data-management/hypertables/understand-hypertables"
+    href="/manage-data/data-management/hypertables/understand-hypertables"
 >
 Postgres tables optimized for time-series data with automatic partitioning by time. Scale to billions of rows with fast queries across time ranges.
 </Card>
 <Card
     title="Continuous aggregates"
     icon="arrows-rotate"
-    href="/manage-data/timescaledb/data-management/continuous-aggregates/understand-continuous-aggregates"
+    href="/manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
 >
 Materialized views that automatically refresh in the background. Pre-compute expensive aggregations for instant dashboard performance.
 </Card>
 <Card
     title="Columnstore"
     icon="table-cells-row-unlock"
-    href="/manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+    href="/manage-data/data-management/hypercore/understand-hypercore"
 >
 Hybrid row-columnar storage engine for analytics workloads. Achieve 90%+ compression and 100x faster analytical queries.
 </Card>
@@ -98,35 +98,35 @@ Automatically delete old data based on time-based policies. Free up storage and 
 <Card
     title="Deploy"
     icon="rocket"
-    href="/cloud/tiger/get-started/get-started-with-tiger-cloud"
+    href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud"
 >
 Launch your database in minutes on Tiger Cloud or self-host with TimescaleDB. Choose the deployment that fits your requirements.
 </Card>
 <Card
     title="Monitor"
     icon="chart-mixed"
-    href="/cloud/tiger/monitoring/monitor-using-console"
+    href="/deploy-and-operate/tiger-cloud/monitoring/monitor-using-console"
 >
 Track performance metrics, query statistics, and resource usage in real time. Export to Datadog, Prometheus, or CloudWatch.
 </Card>
 <Card
     title="Scale"
     icon="arrow-up-right-dots"
-    href="/cloud/tiger/storage/manage-storage-tiers"
+    href="/deploy-and-operate/tiger-cloud/storage/manage-storage-tiers"
 >
 Grow from gigabytes to petabytes with tiered storage and automatic partitioning. Add compute and storage independently as needed.
 </Card>
 <Card
     title="Secure"
     icon="shield-check"
-    href="/cloud/tiger/data-security/backup"
+    href="/deploy-and-operate/tiger-cloud/data-security/backup"
 >
 Protect your data with automated backups, point-in-time recovery, and high availability. Configure VPC peering and encryption.
 </Card>
 <Card
     title="Optimize"
     icon="gauge"
-    href="/manage-data/timescaledb/data-management/hypercore/understand-hypercore"
+    href="/manage-data/data-management/hypercore/understand-hypercore"
 >
 Improve query performance with compression, indexing strategies, and columnar storage. Tune configurations for your workload.
 </Card>
@@ -145,16 +145,16 @@ Connect with Grafana, Kafka, LangChain, Terraform, and hundreds of other tools. 
 <CardComponent
     title={<>Get started with Tiger Cloud</>}
     icon="cloud"
-    href="/cloud/tiger/get-started/get-started-with-tiger-cloud"
-    cta={<CTALink text="Learn how" href="/cloud/tiger/get-started/get-started-with-tiger-cloud" />}>
+    href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud"
+    cta={<CTALink text="Learn how" href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud" />}>
     Tiger Cloud is the fastest Postgres cloud, powered by Tiger Postgres. It enhances Postgres to handle time series, events, real-time analytics, and vector search—all in a single database alongside transactional workloads.
 </CardComponent>
 
 <CardComponent
     title={<>Self-host TimescaleDB</>}
     icon="server"
-    href="/manage-data/timescaledb/get-started/get-started-with-timescaledb"
-    cta={<CTALink text="Learn how" href="/manage-data/timescaledb/get-started/get-started-with-timescaledb" />}>
+    href="/manage-data/get-started/get-started-with-timescaledb"
+    cta={<CTALink text="Learn how" href="/manage-data/get-started/get-started-with-timescaledb" />}>
     TimescaleDB is an open-source Postgres extension designed for running real-time analytics on time-series data. It is engineered up from Postgres and maintains full SQL support.
 </CardComponent>
 </Columns>
@@ -165,21 +165,21 @@ Connect with Grafana, Kafka, LangChain, Terraform, and hundreds of other tools. 
 <Card
     title="5-min setup"
     icon="clock"
-    href="/cloud/tiger/get-started/get-started-with-tiger-cloud"
+    href="/deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud"
 >
 Create your first Tiger Cloud service and connect from your application. Start building in minutes with no infrastructure setup.
 </Card>
 <Card
     title="First query"
     icon="code"
-    href="/cloud/tiger/get-started/run-queries-from-console"
+    href="/deploy-and-operate/tiger-cloud/get-started/run-queries-from-console"
 >
 Run SQL queries directly from the Tiger Console. Learn the basics of querying time-series and relational data.
 </Card>
 <Card
     title="Migrate data"
     icon="right-left"
-    href="/manage-data/timescaledb/data-management/import-and-ingest/live-migration"
+    href="/manage-data/data-management/import-and-ingest/live-migration"
 >
 Move your existing PostgreSQL, MySQL, or MongoDB database to Tiger Cloud. Use live migration for zero-downtime transitions.
 </Card>
@@ -212,28 +212,28 @@ Visualize your time-series data with Grafana dashboards and alerts. Connect to T
 <Card
     title="From PostgreSQL"
     icon="database"
-    href="/manage-data/timescaledb/data-management/import-and-ingest/live-migration"
+    href="/manage-data/data-management/import-and-ingest/live-migration"
 >
 Migrate your PostgreSQL database to Tiger Cloud with live replication. Minimize downtime and preserve your existing schemas.
 </Card>
 <Card
     title="From MySQL"
     icon="database"
-    href="/manage-data/timescaledb/data-management/import-and-ingest/live-migration"
+    href="/manage-data/data-management/import-and-ingest/live-migration"
 >
 Convert your MySQL database to PostgreSQL and migrate to Tiger Cloud. Automated tools handle schema translation and data transfer.
 </Card>
 <Card
     title="From MongoDB"
     icon="leaf"
-    href="/manage-data/timescaledb/data-management/import-and-ingest/live-migration"
+    href="/manage-data/data-management/import-and-ingest/live-migration"
 >
 Move from MongoDB to relational time-series storage. Transform document-based data into optimized time-series tables.
 </Card>
 <Card
     title="From InfluxDB"
     icon="chart-line"
-    href="/manage-data/timescaledb/data-management/import-and-ingest/live-migration"
+    href="/manage-data/data-management/import-and-ingest/live-migration"
 >
 Migrate time-series data from InfluxDB to Tiger Cloud. Gain SQL capabilities while maintaining time-series performance.
 </Card>
