@@ -1,7 +1,7 @@
 ---
 title: Integrate Apache Airflow with Tiger Cloud
 sidebarTitle: Apache Airflow
-description: Apache Airflow is a platform to programmatically author, schedule, and monitor workflows. Integrate Apache Airflow with Tiger Cloud and create a data pipeline
+description: Orchestrate data pipelines with Apache Airflow DAGs to automate ETL workflows, schedule tasks, and manage time-series data ingestion into hypertables.
 keywords: [Apache Airflow, workflow orchestration, DAG, data pipeline, scheduling, task automation, ETL, Python, workflow management]
 ---
 
@@ -9,9 +9,7 @@ keywords: [Apache Airflow, workflow orchestration, DAG, data pipeline, schedulin
 import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs.mdx';
 import { CLOUD_LONG, PG, CONSOLE } from '/snippets/vars.mdx';
 
-Apache Airflow® is a platform created by the community to programmatically author, schedule, and monitor workflows.
-
-A [DAG (Directed Acyclic Graph)][airflow-dag] is the core concept of Airflow, collecting [Tasks][airflow-task] together,
+Apache Airflow® is a platform created by the community to programmatically author, schedule, and monitor workflows. A [DAG (Directed Acyclic Graph)][airflow-dag] is the core concept of Airflow, collecting [Tasks][airflow-task] together,
 organized with dependencies and relationships to say how they should run. You declare a DAG in a Python file
 in the `$AIRFLOW_HOME/dags` folder of your Airflow instance.
 

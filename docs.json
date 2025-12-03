@@ -1384,15 +1384,17 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/index"
+                      "integrations/index",
+                      "integrations/find-connection-details"
                     ]
                   },
                   {
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -1402,10 +1404,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -1432,27 +1441,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1462,6 +1463,12 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1479,8 +1486,9 @@
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -1490,10 +1498,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -1520,27 +1535,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1550,6 +1557,12 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1567,8 +1580,9 @@
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -1578,10 +1592,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -1608,27 +1629,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1638,6 +1651,107 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
+                    ]
+                  }
+                ],
+                "url": "integrations/code/start-coding-with-tigerdata"
+              },
+              {
+                "item": "Business intelligence and data visualization",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/integrate/power-bi"
+                    ]
+                  },
+                  {
+                    "group": "Connectors",
+                    "pages": [
+                      "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-postgres",
+                      "integrations/connectors/source/stream-from-kafka"
+                    ]
+                  },
+                  {
+                    "group": "Coding",
+                    "pages": [
+                      "integrations/code/start-coding-with-tigerdata"
+                    ]
+                  },
+                  {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
+                    "group": "Configuration and deployment",
+                    "pages": [
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
+                    ]
+                  },
+                  {
+                    "group": "Data engineering and extract, transform, load",
+                    "pages": [
+                      "integrations/integrate/amazon-sagemaker",
+                      "integrations/integrate/apache-airflow",
+                      "integrations/integrate/apache-kafka",
+                      "integrations/integrate/aws-lambda",
+                      "integrations/integrate/debezium",
+                      "integrations/integrate/decodable"
+                    ]
+                  },
+                  {
+                    "group": "Data ingestion and streaming",
+                    "pages": [
+                      "integrations/integrate/fivetran"
+                    ]
+                  },
+                  {
+                    "group": "Observability and alerting",
+                    "pages": [
+                      "integrations/integrate/cloudwatch",
+                      "integrations/integrate/datadog",
+                      "integrations/integrate/grafana",
+                      "integrations/integrate/prometheus",
+                      "integrations/integrate/telegraf"
+                    ]
+                  },
+                  {
+                    "group": "Query and administration",
+                    "pages": [
+                      "integrations/integrate/azure-data-studio",
+                      "integrations/integrate/dbeaver",
+                      "integrations/integrate/pgadmin",
+                      "integrations/integrate/postgresql",
+                      "integrations/integrate/psql",
+                      "integrations/integrate/qstudio",
+                      "integrations/integrate/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/integrate/aws",
+                      "integrations/integrate/corporate-data-center",
+                      "integrations/integrate/google-cloud",
+                      "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1648,25 +1762,12 @@
                   {
                     "group": " ",
                     "pages": [
-                      "api-reference/timescaledb/timescaledb-api-reference"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Secure connectivity to Tiger Cloud",
-                    "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   }
-                ]
+                ],
+                "url": "integrations/integrate/kubernetes"
               },
               {
                 "item": "Data engineering and extract, transform, load",
@@ -1681,8 +1782,9 @@
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -1692,10 +1794,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -1722,27 +1831,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1752,6 +1853,12 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1769,8 +1876,9 @@
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -1780,10 +1888,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -1810,27 +1925,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1840,6 +1947,12 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1857,8 +1970,9 @@
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -1868,10 +1982,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -1898,27 +2019,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -1928,6 +2041,12 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1945,8 +2064,9 @@
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -1956,10 +2076,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -1986,27 +2113,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -2016,6 +2135,12 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -2033,8 +2158,9 @@
                     "group": "Connectors",
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-s3",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/stream-from-kafka"
                     ]
                   },
                   {
@@ -2044,10 +2170,17 @@
                     ]
                   },
                   {
+                    "group": "Business intelligence and data visualization",
+                    "pages": [
+                      "integrations/integrate/power-bi",
+                      "integrations/integrate/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/integrate/kubernetes",
+                      "integrations/integrate/terraform"
                     ]
                   },
                   {
@@ -2074,27 +2207,19 @@
                       "integrations/integrate/datadog",
                       "integrations/integrate/grafana",
                       "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/integrate/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
                       "integrations/integrate/azure-data-studio",
                       "integrations/integrate/dbeaver",
                       "integrations/integrate/pgadmin",
                       "integrations/integrate/postgresql",
                       "integrations/integrate/psql",
                       "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
                       "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
                     ]
                   },
                   {
@@ -2104,6 +2229,12 @@
                       "integrations/integrate/corporate-data-center",
                       "integrations/integrate/google-cloud",
                       "integrations/integrate/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -3088,156 +3219,6 @@
       }
     ]
   },
-  "redirects": [
-    {
-      "source": "/tutorials/latest/real-time-analytics-energy-consumption/:slug*",
-      "destination": "/tutorials/time-series/analyze-energy-consumption"
-    },
-    {
-      "source": "/tutorials/latest/blockchain-analyze/:slug*",
-      "destination": "/tutorials/time-series/analyze-blockchain"
-    },
-    {
-      "source": "/tutorials/latest/blockchain-query/:slug*",
-      "destination": "/tutorials/time-series/query-blockchain"
-    },
-    {
-      "source": "/tutorials/latest/simulate-iot-sensor-data/:slug*",
-      "destination": "/tutorials/time-series/simulate-iot-sensor-data"
-    },
-    {
-      "source": "/tutorials/latest/real-time-analytics-transport/:slug*",
-      "destination": "/tutorials/time-series/analyze-transport-geospatial-data"
-    },
-    {
-      "source": "/tutorials/latest/financial-tick-data/:slug*",
-      "destination": "/tutorials/time-series/analyze-financial-tick-data"
-    },
-    {
-      "source": "/tutorials/latest/financial-ingest-real-time/:slug*",
-      "destination": "/tutorials/time-series/ingest-real-time-financial-data"
-    },
-    {
-      "source": "/tutorials/latest/:slug*",
-      "destination": "/tutorials/tutorials"
-    },
-    {
-      "source": "/integrations/latest/amazon-sagemaker/:slug*",
-      "destination": "/integrations/integrate/amazon-sagemaker"
-    },
-    {
-      "source": "/integrations/latest/apache-airflow/:slug*",
-      "destination": "/integrations/integrate/apache-airflow"
-    },
-    {
-      "source": "/integrations/latest/apache-kafka/:slug*",
-      "destination": "/integrations/integrate/apache-kafka"
-    },
-    {
-      "source": "/integrations/latest/aws/:slug*",
-      "destination": "/integrations/integrate/aws"
-    },
-    {
-      "source": "/integrations/latest/aws-lambda/:slug*",
-      "destination": "/integrations/integrate/aws-lambda"
-    },
-    {
-      "source": "/integrations/latest/azure-data-studio/:slug*",
-      "destination": "/integrations/integrate/azure-data-studio"
-    },
-    {
-      "source": "/integrations/latest/cloudwatch/:slug*",
-      "destination": "/integrations/integrate/cloudwatch"
-    },
-    {
-      "source": "/integrations/latest/corporate-data-center/:slug*",
-      "destination": "/integrations/integrate/corporate-data-center"
-    },
-    {
-      "source": "/integrations/latest/datadog/:slug*",
-      "destination": "/integrations/integrate/datadog"
-    },
-    {
-      "source": "/integrations/latest/dbeaver/:slug*",
-      "destination": "/integrations/integrate/dbeaver"
-    },
-    {
-      "source": "/integrations/latest/debezium/:slug*",
-      "destination": "/integrations/integrate/debezium"
-    },
-    {
-      "source": "/integrations/latest/decodable/:slug*",
-      "destination": "/integrations/integrate/decodable"
-    },
-    {
-      "source": "/integrations/latest/fivetran/:slug*",
-      "destination": "/integrations/integrate/fivetran"
-    },
-    {
-      "source": "/integrations/latest/google-cloud/:slug*",
-      "destination": "/integrations/integrate/google-cloud"
-    },
-    {
-      "source": "/integrations/latest/grafana/:slug*",
-      "destination": "/integrations/integrate/grafana"
-    },
-    {
-      "source": "/integrations/latest/kubernetes/:slug*",
-      "destination": "/integrations/integrate/kubernetes"
-    },
-    {
-      "source": "/integrations/latest/microsoft-azure/:slug*",
-      "destination": "/integrations/integrate/microsoft-azure"
-    },
-    {
-      "source": "/integrations/latest/pgadmin/:slug*",
-      "destination": "/integrations/integrate/pgadmin"
-    },
-    {
-      "source": "/integrations/latest/postgresql/:slug*",
-      "destination": "/integrations/integrate/postgresql"
-    },
-    {
-      "source": "/integrations/latest/power-bi/:slug*",
-      "destination": "/integrations/integrate/power-bi"
-    },
-    {
-      "source": "/integrations/latest/prometheus/:slug*",
-      "destination": "/integrations/integrate/prometheus"
-    },
-    {
-      "source": "/integrations/latest/psql/:slug*",
-      "destination": "/integrations/integrate/psql"
-    },
-    {
-      "source": "/integrations/latest/qstudio/:slug*",
-      "destination": "/integrations/integrate/qstudio"
-    },
-    {
-      "source": "/integrations/latest/supabase/:slug*",
-      "destination": "/integrations/integrate/supabase"
-    },
-    {
-      "source": "/integrations/latest/tableau/:slug*",
-      "destination": "/integrations/integrate/tableau"
-    },
-    {
-      "source": "/integrations/latest/telegraf/:slug*",
-      "destination": "/integrations/integrate/telegraf"
-    },
-    {
-      "source": "/integrations/latest/terraform/:slug*",
-      "destination": "/integrations/integrate/terraform"
-    },
-    {
-      "source": "/integrations/latest/find-connection-details/:slug*",
-      "destination": "/integrations/find-connection-details"
-    },
-    {
-      "source": "/integrations/latest/:slug*",
-      "destination": "/integrations/integrations"
-    }
-  ],
   "customCss": ["styles.css"],
   "contextual": {
     "options": [

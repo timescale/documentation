@@ -1,7 +1,7 @@
 ---
 title: Integrate Amazon CloudWatch with Tiger Cloud
 sidebarTitle: Amazon CloudWatch
-description: Amazon CloudWatch is a monitoring and observability service. Export telemetry data from your Tiger Cloud service with time-series and analytics capability to Amazon CloudWatch
+description: Export telemetry metrics, logs, and performance data from Tiger Cloud services to Amazon CloudWatch for centralized monitoring, alerting, and dashboards.
 keywords: [Amazon CloudWatch, monitoring, observability, metrics, AWS, telemetry, logs, alarms, dashboards, resource monitoring]
 ---
 
@@ -10,7 +10,9 @@ import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
 import CloudWatchExporter from '/snippets/integrations/_cloudwatch-data-exporter.mdx';
 import ManageDataExporter from '/snippets/integrations/_manage-a-data-exporter.mdx';
 
-You can export telemetry data from your {SERVICE_LONG}s with the time-series and analytics capability enabled to [Amazon CloudWatch][cloudwatch]. The available metrics include CPU usage, RAM usage, and storage. This integration is available for [Scale and Enterprise][pricing-plan-features] pricing tiers.
+Amazon CloudWatch is a monitoring and observability service designed to help collect, analyze, and act on data from applications, infrastructure, and services running in AWS and on-premises environments.
+
+You can export telemetry data from your {SERVICE_LONG}s with the real-time analytics capability enabled to [Amazon CloudWatch][cloudwatch]. The available metrics include CPU usage, RAM usage, and storage. This integration is available for [Scale and Enterprise][pricing-plan-features] pricing tiers.
 
 This page explains how to export telemetry data from your {SERVICE_LONG} into CloudWatch by creating a {CLOUD_LONG} data exporter, then attaching it to the {SERVICE_SHORT}.
 

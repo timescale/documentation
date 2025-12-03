@@ -1,11 +1,13 @@
 ---
 title: Stream from Kafka
-description: Stream data from Kafka into a Tiger Cloud service in order to store, query, and analyze your Kafka events efficiently
+description: Stream Avro events from Confluent Cloud Kafka into your service using SASL/SCRAM authentication and Schema Registry for real-time analytics.
+keywords: [Kafka, source connector, streaming, Confluent Cloud, SASL/SCRAM, Avro, Schema Registry, event streaming, real-time ingestion]
 ---
 
-import { SERVICE_SHORT, CONSOLE, PROJECT_SHORT } from '/snippets/vars.mdx';
+
 import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
 import NotSupportedAzure from '/snippets/changes/_not-supported-for-azure.mdx';
+import { SERVICE_SHORT, CONSOLE, PROJECT_SHORT } from '/snippets/vars.mdx';
 
 You use the Kafka source connector to stream events from Kafka into your {SERVICE_SHORT}. The connector connects to your Confluent Cloud Kafka cluster and Schema Registry using SASL/SCRAM authentication and service account–based API keys. Only the Avro format is currently supported [with some limitations](#known-limitations-and-unsupported-types).
 

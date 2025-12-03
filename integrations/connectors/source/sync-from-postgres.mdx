@@ -6,7 +6,7 @@ keywords: [PostgreSQL, source connector, logical replication, synchronization, r
 
 import LivesyncConsole from '/snippets/integrations/_livesync-console-pg.mdx';
 import LivesyncTerminal from '/snippets/integrations/_livesync-terminal-pg.mdx';
-import { SERVICE_SHORT, PG, PG_CONNECTOR } from '/snippets/vars.mdx';
+import { SERVICE_SHORT, PG, PG_CONNECTOR, HYPERTABLE, COLUMNSTORE, CAGG } from '/snippets/vars.mdx';
 
 
 You use the {PG_CONNECTOR} to synchronize all data or specific tables from a {PG} database instance to your
@@ -40,7 +40,7 @@ You use the {PG_CONNECTOR} for data synchronization, rather than migration. This
 
 * Synchronize real-time changes from a {PG} instance.
 * Add and remove tables on demand using the [{PG} PUBLICATION interface][pg-publication].
-* Enable features such as hypertables, columnstore, and continuous aggregates on your logical replica.
+* Enable features such as {HYPERTABLE}s, {COLUMNSTORE}, and {CAGG}s on your logical replica.
 
 <Icon icon="flask" /> Early access: this source {PG} connector is not yet supported for production use. If you have
 any questions or feedback, talk to us in [#livesync in the Tiger Community][tiger-community-livesync].
@@ -51,7 +51,7 @@ any questions or feedback, talk to us in [#livesync in the Tiger Community][tige
 
 <Tabs>
 
-<Tab title="Tiger Cloud Console">
+<Tab title="Tiger Console">
 
 <LivesyncConsole />
 

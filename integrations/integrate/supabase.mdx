@@ -1,7 +1,7 @@
 ---
 title: Integrate Supabase with Tiger Cloud
 sidebarTitle: Supabase
-description: Supabase is an open source Firebase alternative. Integrate Supabase with Tiger Cloud
+description: Run real-time analytical queries from Supabase using foreign data wrappers to access hypertables, continuous aggregates, and time-series data.
 keywords: [Supabase, Firebase alternative, backend as a service, BaaS, PostgreSQL, real-time, authentication, open-source, database management]
 ---
 
@@ -29,7 +29,7 @@ To set up a {SERVICE_LONG} optimized for analytics to receive data from Supabase
    are {PG} tables that help you improve insert and query performance by automatically partitioning your data by
    time.
 
-   1. [Connect to your {SERVICE_LONG}][connect] and create a table that will point to a Supabase database:
+    [Connect to your {SERVICE_LONG}][connect] and create a table that will point to a Supabase database:
 
       ```sql
       CREATE TABLE signs (
@@ -63,7 +63,7 @@ To set up a {SERVICE_LONG} optimized for analytics to receive data from Supabase
       WITH NO DATA;
       ```
 
-   1. Setup a delay stats comparing `origin_time` to `time`.
+   1. Set up a delay stats comparing `origin_time` to `time`.
 
       ```sql
       CREATE MATERIALIZED VIEW IF NOT EXISTS _signs_per_minute_delay
@@ -76,7 +76,7 @@ To set up a {SERVICE_LONG} optimized for analytics to receive data from Supabase
       WITH NO DATA;
       ```
 
-   1. Setup a view to recieve the data from Supabase.
+   1. Set up a view to receive the data from Supabase.
 
       ```sql
       CREATE VIEW signs_per_minute_delay
@@ -147,7 +147,7 @@ To set up a Supabase database that injects data into your {SERVICE_LONG}:
 
 1. **Create the user mapping for the foreign server**
 
-   Update the following command with your [connection details][connection-info], the run it
+   Update the following command with your [connection details][connection-info], then run it
    in the Supabase database:
 
    ```sql
@@ -239,6 +239,5 @@ You have successfully integrated Supabase with your {SERVICE_LONG}.
 [supabase-new-project]: https://supabase.com/dashboard/new
 [hypertables-section]: /use-timescale/hypertables
 [connect]: /getting-started/run-queries-from-console
-[hypercore]: /use-timescale/hypercore
 [postgres-materialized-views]: https://www.postgresql.org/docs/current/rules-materializedviews.html
 [connection-info]: /integrations/find-connection-details
