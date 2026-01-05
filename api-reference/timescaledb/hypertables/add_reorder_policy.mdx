@@ -13,7 +13,7 @@ import { CHUNK, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.
 
 <Tag>Community</Tag>
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.2.0
+<Icon icon="tag" iconType="duotone" /> Since [1.2.0][tsdb-1.2.0]
 
 Create a policy to reorder the rows of a {HYPERTABLE}'s {CHUNK}s on a specific index. The policy reorders the rows for
 all {CHUNK}s except the two most recent ones, because these are still getting writes. By default, the policy runs every
@@ -69,3 +69,5 @@ SELECT add_reorder_policy(
 
 [reorder_chunk]: /api-reference/timescaledb/hypertables/reorder_chunk
 [alter_job]: /api-reference/timescaledb/jobs-automation/alter_job
+
+[tsdb-1.2.0]: https://github.com/timescale/timescaledb/releases/tag/1.2.0

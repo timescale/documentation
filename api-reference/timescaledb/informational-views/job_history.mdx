@@ -10,7 +10,7 @@ type: view
 
 import { CAGG, COLUMNSTORE } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.12.0
+<Icon icon="tag" iconType="duotone" /> Since [2.12.0][tsdb-2.12.0]
 
 Shows information about the jobs run by the automation framework.
 This includes custom jobs and jobs run by policies
@@ -92,3 +92,5 @@ SELECT alter_job(id,config:=jsonb_set(config,'{drop_after}', '"2 weeks"')) FROM 
 ```
 
 [jobs]: /api-reference/timescaledb/jobs-automation
+
+[tsdb-2.12.0]: https://github.com/timescale/timescaledb/releases/tag/2.12.0

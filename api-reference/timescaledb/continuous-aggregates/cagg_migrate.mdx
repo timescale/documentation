@@ -12,7 +12,7 @@ products: [cloud, self_hosted, mst]
 import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.7.0
+<Icon icon="tag" iconType="duotone" /> Since [2.7.0][tsdb-2.7.0]
 
 Migrate a {CAGG} from the old format to the new format introduced
 in {TIMESCALE_DB} 2.7.
@@ -66,3 +66,5 @@ CALL cagg_migrate(
 <ReturnsVoid />
 
 [how-to-migrate]: /use-timescale/latest/continuous-aggregates/migrate/
+
+[tsdb-2.7.0]: https://github.com/timescale/timescaledb/releases/tag/2.7.0

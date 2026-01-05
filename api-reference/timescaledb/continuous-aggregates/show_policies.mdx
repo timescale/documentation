@@ -11,7 +11,7 @@ products: [cloud, self_hosted, mst]
 
 import { CAGG } from '/snippets/vars.mdx';
 
-<Icon icon="flask" /> Early access <Icon icon="circle-play" iconType="duotone" /> Since 2.10.0
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.10.0][tsdb-2.10.0]
 
 Show all policies that are currently set on a {CAGG}.
 
@@ -59,3 +59,5 @@ SELECT * FROM show_policies(
 | Column | Type | Description |
 |-|-|-|
 | `show_policies` | `JSONB` | Details for each policy set on the {CAGG} |
+
+[tsdb-2.10.0]: https://github.com/timescale/timescaledb/releases/tag/2.10.0

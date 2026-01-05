@@ -11,7 +11,7 @@ type: function
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.7.0
+<Icon icon="tag" iconType="duotone" /> Since [0.7.0][tsdb-0.7.0]
 
 Detach a tablespace from one or more {HYPERTABLE}s. This _only_ means
 that _new_ {CHUNK}s are not placed on the detached tablespace. This
@@ -76,3 +76,5 @@ other {HYPERTABLE}s.
 | detach_tablespace | INTEGER | The number of {HYPERTABLE}s from which the tablespace was detached. |
 
 When called with both `tablespace` and `hypertable` arguments, returns 1 if the tablespace was successfully detached from the specified {HYPERTABLE}. When called with only the `tablespace` argument, returns the total number of {HYPERTABLE}s from which the tablespace was detached.
+
+[tsdb-0.7.0]: https://github.com/timescale/timescaledb/releases/tag/0.7.0

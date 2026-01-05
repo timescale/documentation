@@ -11,48 +11,48 @@ products: [cloud, mst, self_hosted]
 
 import { CHUNK, HYPERTABLE, HYPERTABLE_CAP, CAGG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.9.0
+<Icon icon="tag" iconType="duotone" /> Since [0.9.0][tsdb-0.9.0]
 
 
 ## Samples
 
-- Get the list of all {CHUNK}s associated with a table:
+- **Get the list of all {CHUNK}s associated with a table**:
 
     ```sql
     SELECT show_chunks('conditions');
     ```
 
-- For {HYPERTABLE}s with mixed-case names, include double quotes within the string literal:
+- **For {HYPERTABLE}s with mixed-case names, include double quotes within the string literal**:
 
     ```sql
     SELECT show_chunks('"MyMixedCaseTable"');
     ```
 
-- Or with schema qualification:
+- **Or with schema qualification**:
 
     ```sql
     SELECT show_chunks('public."MyMixedCaseTable"');
     ```
 
-- Get all {CHUNK}s from the {HYPERTABLE} called `conditions` that are older than 3 months:
+- **Get all {CHUNK}s from the {HYPERTABLE} called `conditions` that are older than 3 months**:
 
     ```sql
     SELECT show_chunks('conditions', older_than => INTERVAL '3 months');
     ```
 
-- Get all {CHUNK}s from the {HYPERTABLE} called `conditions` created earlier than 3 months before:
+- **Get all {CHUNK}s from the {HYPERTABLE} called `conditions` created earlier than 3 months before**:
 
     ```sql
     SELECT show_chunks('conditions', created_before => INTERVAL '3 months');
     ```
 
-- Get all {CHUNK}s from the {HYPERTABLE} `conditions` created in the previous month:
+- **Get all {CHUNK}s from the {HYPERTABLE} `conditions` created in the previous month**:
 
     ```sql
     SELECT show_chunks('conditions', created_after => INTERVAL '1 month');
     ```
 
-- Get all {CHUNK}s from the {HYPERTABLE} `conditions` created before 2017:
+- **Get all {CHUNK}s from the {HYPERTABLE} `conditions` created before 2017**:
 
     ```sql
     SELECT show_chunks('conditions', older_than => DATE '2017-01-01');
@@ -143,3 +143,5 @@ On failure, an error is returned:
 | `invalid time range` | The specified time range parameters do not result in a valid overlapping range |
 
 [drop_chunks]: /api-reference/timescaledb/hypertables/drop_chunks
+
+[tsdb-0.9.0]: https://github.com/timescale/timescaledb/releases/tag/0.9.0

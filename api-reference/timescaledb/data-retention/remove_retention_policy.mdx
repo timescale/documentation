@@ -12,7 +12,7 @@ products: [cloud, self_hosted, mst]
 import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import {CHUNK, HYPERTABLE} from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Community <Icon icon="circle-play" iconType="duotone" /> Since 1.2.0
+<Icon icon="circle-play" iconType="duotone" /> Community <Icon icon="tag" iconType="duotone" /> Since [1.2.0][tsdb-1.2.0]
 
 Remove a policy to drop {CHUNK}s of a particular {HYPERTABLE}.
 
@@ -43,3 +43,5 @@ SELECT remove_retention_policy(
 ## Returns
 
 <ReturnsVoid />
+
+[tsdb-1.2.0]: https://github.com/timescale/timescaledb/releases/tag/1.2.0

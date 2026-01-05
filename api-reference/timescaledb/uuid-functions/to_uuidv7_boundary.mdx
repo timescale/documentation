@@ -11,16 +11,13 @@ products: [cloud, mst, self_hosted]
 
 import { PG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.13.0
+<Icon icon="tag" iconType="duotone" /> Since [2.23.0][tsdb-2.23.0]
 
 Create a UUIDv7 object from a {PG} timestamp for use in range queries.
 
 `ts` is converted to a UNIX timestamp split into millisecond and sub-millisecond parts.
 
-![UUIDv7 microseconds](https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg)
-
 The random bits of the UUID are set to zero in order to create a "lower" boundary UUID.
-
 For example, you can use the returned UUIDs to find all rows with UUIDs where the timestamp is less than the
 boundary UUID's timestamp.
 
@@ -64,3 +61,5 @@ SELECT to_uuidv7_boundary(
 |Column|Type|Description|
 |-|-|-|
 | `to_uuidv7_boundary` | UUID | A boundary UUIDv7 object with random bits set to zero, suitable for use in range queries. |
+
+[tsdb-2.23.0]: https://github.com/timescale/timescaledb/releases/tag/2.23.0

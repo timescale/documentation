@@ -12,7 +12,7 @@ hyperfunction:
     - state_agg()
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
+<Icon icon="tag" iconType="duotone" /> Since [1.15.0][tsdb-1.15.0]
 
 Calculate the total duration in a given state. Unlike [`duration_in`][duration_in], you can use this function across
 multiple state aggregates that cover multiple time buckets. Any missing values at the time bucket boundaries are
@@ -85,3 +85,5 @@ interpolated_duration_in(
 
 [state_agg]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/state_agg
 [duration_in]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/duration_in
+
+[tsdb-1.15.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.15.0

@@ -11,7 +11,7 @@ products: [cloud, self_hosted, mst]
 import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
+<Icon icon="tag" iconType="duotone" /> Since [1.3.0][tsdb-1.3.0]
 
 Refresh all buckets of a {CAGG} in the refresh window given by
 `window_start` and `window_end`.
@@ -123,3 +123,5 @@ changes that only occurred in the secondary table used in the JOIN.
 
 [modify-parameters]: /use-timescale/latest/configuration/customize-configuration/
 [create_materialized_view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view
+
+[tsdb-1.3.0]: https://github.com/timescale/timescaledb/releases/tag/1.3.0

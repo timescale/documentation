@@ -6,12 +6,13 @@ keywords: [hypertables, chunks, range-tracking, skipping]
 tags: [columns, ranges, min-max, chunks]
 license: apache
 type: function
+experimental: true
 products: [cloud, mst, self_hosted]
 ---
 
 import { CHUNK, CHUNK_CAP, COLUMNSTORE, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.11.0
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.11.0][tsdb-2.11.0]
 
 Disable range tracking for a specific column in a {HYPERTABLE} **in the {COLUMNSTORE}**.
 
@@ -72,3 +73,5 @@ and enabled range tracking on a column in the hypertable.
 
 
 [enable_chunk_skipping]: /api-reference/timescaledb/hypertables/enable_chunk_skipping
+
+[tsdb-2.11.0]: https://github.com/timescale/timescaledb/releases/tag/2.11.0

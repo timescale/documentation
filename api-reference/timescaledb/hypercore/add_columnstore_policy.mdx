@@ -15,7 +15,7 @@ import CreateHypertablePolicyNote from
 import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
+<Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 Create a [job][job] that automatically moves {CHUNK}s in a {HYPERTABLE} to the {COLUMNSTORE} after a
 specific time interval.
@@ -47,16 +47,10 @@ policy applies only to the {CHUNK}s that have not yet been converted to {COLUMNS
 
 To create a {COLUMNSTORE} job:
 
-- **Enable {COLUMNSTORE}**
+1. **Enable {COLUMNSTORE}**
 
     For [efficient queries][secondary-indexes] on data in the columnstore, remember to `segmentby` the column you will
     use most often to filter your data.
-    * [Use `ALTER MATERIALIZED VIEW` for a {CAGG}][compression_continuous-aggregate]
-      ```sql
-      ALTER MATERIALIZED VIEW assets_candlestick_daily SET (
-         timescaledb.enable_columnstore = true,
-         timescaledb.segmentby = 'symbol');
-      ```
 
    * [Use `CREATE TABLE` for a {HYPERTABLE}][hypertable-create-table]. The columnstore policy is created automatically.
 
@@ -74,7 +68,15 @@ To create a {COLUMNSTORE} job:
      ```
      <OldCreateHypertable />
 
-- **Add a policy to move {CHUNK}s to the {COLUMNSTORE} at a specific time interval**
+   * [Use `ALTER MATERIALIZED VIEW` for a {CAGG}][compression_continuous-aggregate]
+     ```sql
+     ALTER MATERIALIZED VIEW assets_candlestick_daily SET (
+        timescaledb.enable_columnstore = true,
+        timescaledb.segmentby = 'symbol');
+     ```
+
+
+1. **Add a policy to move {CHUNK}s to the {COLUMNSTORE} at a specific time interval**
 
    For example:
 
@@ -118,7 +120,7 @@ To create a {COLUMNSTORE} job:
       ```
 
 
-- **View the policies that you set or the policies that already exist**
+1. **View the policies that you set or the policies that already exist**
 
    ``` sql
    SELECT * FROM timescaledb_information.jobs
@@ -178,3 +180,5 @@ Calls to `add_columnstore_policy` require either `after` or `created_before`, bu
 [alter_job_samples]: /api-reference/timescaledb/jobs-automation/alter_job/#samples
 [add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy
 [tsdb-release-2-19-3]: https://github.com/timescale/timescaledb/releases/tag/2.19.3
+
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

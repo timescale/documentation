@@ -11,7 +11,7 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, CAGG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.1.0
+<Icon icon="tag" iconType="duotone" /> Since [0.1.0][tsdb-0.1.0]
 
 Sets the `chunk_time_interval` on a {HYPERTABLE}. The new interval is used
 when new {CHUNK}s are created, and time intervals on existing {CHUNK}s are
@@ -82,3 +82,5 @@ For more information, see [{HYPERTABLE} partitioning][hypertable-partitioning].
 This function returns void.
 
 [hypertable-partitioning]: /use-timescale/hypertables/#hypertable-partitioning
+
+[tsdb-0.1.0]: https://github.com/timescale/timescaledb/releases/tag/0.1.0

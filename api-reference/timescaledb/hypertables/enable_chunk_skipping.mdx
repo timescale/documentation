@@ -6,6 +6,7 @@ keywords: [hypertables, chunks, range-tracking, skipping]
 tags: [columns, ranges, min-max, chunks]
 license: apache
 type: function
+experimental: true
 products: [cloud, mst, self_hosted]
 ---
 
@@ -14,7 +15,7 @@ import CreateHypertablePolicyNote from '/snippets/manage-data/create-hypertable-
 
 import { CHUNK, CHUNK_CAP, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.11.0
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.11.0][tsdb-2.11.0]
 
 Enable range statistics for a specific column in a **compressed** {HYPERTABLE}. This tracks a range of values for that
 column per {CHUNK}.
@@ -99,3 +100,5 @@ SELECT enable_chunk_skipping(
 
 [compress_chunk]: /api-reference/timescaledb/compression/compress_chunk
 [decompress_chunk]: /api-reference/timescaledb/compression/decompress_chunk
+
+[tsdb-2.11.0]: https://github.com/timescale/timescaledb/releases/tag/2.11.0

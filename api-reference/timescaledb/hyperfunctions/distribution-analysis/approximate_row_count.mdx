@@ -13,7 +13,7 @@ products: [cloud, mst, self_hosted]
 
 import { PG, HYPERTABLE } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.10.0
+<Icon icon="tag" iconType="duotone" /> Since [0.10.0][tsdb-0.10.0]
 
 Get approximate row count for {HYPERTABLE}, distributed {HYPERTABLE}, or regular {PG} table based on catalog estimates.
 This function supports tables with nested inheritance and declarative partitioning.
@@ -47,9 +47,7 @@ approximate_row_count
 The syntax is:
 
 ```sql
-SELECT approximate_row_count(
-    relation = '<table_name>'
-);
+SELECT approximate_row_count('<table_name>');
 ```
 
 | Name | Type | Default | Required | Description |
@@ -61,3 +59,5 @@ SELECT approximate_row_count(
 |Column|Type|Description|
 |-|-|-|
 | `approximate_row_count` | BIGINT | A numeric estimate of the number of rows in the specified table or {HYPERTABLE}. |
+
+[tsdb-0.10.0]: https://github.com/timescale/timescaledb/releases/tag/0.10.0

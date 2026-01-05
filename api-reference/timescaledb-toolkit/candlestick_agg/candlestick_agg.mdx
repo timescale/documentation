@@ -15,7 +15,7 @@ hyperfunction:
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.14.0
+<Icon icon="tag" iconType="duotone" /> Since [1.14.0][tsdb-1.14.0]
 
 This is the first step for performing financial calculations on raw tick
 data. Use `candlestick_agg` to create an intermediate aggregate from your
@@ -53,3 +53,5 @@ candlestick_agg(
 | Column | Type | Description |
 |--------|------|-------------|
 | agg | Candlestick | An object storing `(timestamp, value)` pairs for each of the opening, high, low, and closing prices, in addition to information used to calculate the total volume and Volume Weighted Average Price. |
+
+[tsdb-1.14.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.14.0

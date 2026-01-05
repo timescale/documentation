@@ -11,9 +11,9 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.5.0
+<Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
 
-Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [remove_columnstore_policy()][remove-columnstore-policy].
+<Icon icon="archive" iconType="duotone" /> Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [remove_columnstore_policy()][remove-columnstore-policy].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 If you need to remove the compression policy. To restart policy-based compression you need to add the policy again. To
@@ -51,3 +51,5 @@ SELECT remove_compression_policy(
 
 [remove-columnstore-policy]: /api-reference/timescaledb/hypercore/remove_columnstore_policy
 [informational-views]: /api-reference/timescaledb/informational-views/jobs
+
+[tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0

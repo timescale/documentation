@@ -17,7 +17,7 @@ products:
 - self_hosted
 ---
 
-<Icon icon="flask" /> Early access 1.6.0
+<Icon icon="flask" /> Early access [1.6.0][toolkit-1.6.0]
 
 This is the first step for performing any aggregate calculations
 on gauge data. Use `gauge_agg` to create an intermediate aggregate
@@ -62,3 +62,5 @@ gauge_agg(
 | Column | Type | Description |
 |--------|------|-------------|
 | gauge_agg | GaugeSummary | The gauge aggregate, containing data about the variables in an intermediate form. Pass the aggregate to accessor functions in the gauge aggregates API to perform final calculations. Or, pass the aggregate to rollup functions to combine multiple gauge aggregates into larger aggregates. |
+
+[toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

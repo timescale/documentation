@@ -11,7 +11,7 @@ type: function
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.7.0
+<Icon icon="tag" iconType="duotone" /> Since [0.7.0][tsdb-0.7.0]
 
 Detach all tablespaces from a {HYPERTABLE}. After issuing this command
 on a {HYPERTABLE}, it no longer has any tablespaces attached to
@@ -46,3 +46,4 @@ SELECT detach_tablespaces(
 |-|-|-|
 | detach_tablespaces | INTEGER | The total number of tablespaces that were detached from the {HYPERTABLE}. |
 
+[tsdb-0.7.0]: https://github.com/timescale/timescaledb/releases/tag/0.7.0

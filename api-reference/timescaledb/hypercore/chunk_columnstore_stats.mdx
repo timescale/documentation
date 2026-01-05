@@ -11,7 +11,7 @@ products: [cloud, mst, self_hosted]
 
 import { COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
+<Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 <Tag>Community</Tag>
 
@@ -88,9 +88,7 @@ To retrieve statistics about {CHUNK}s:
 The syntax is:
 
 ```sql
-SELECT * FROM chunk_columnstore_stats(
-    hypertable = '<hypertable_name>'
-);
+SELECT * FROM chunk_columnstore_stats('<hypertable_name>');
 ```
 
 | Name | Type | Default | Required | Description |
@@ -121,3 +119,5 @@ SELECT * FROM chunk_columnstore_stats(
 [job]: /api-reference/timescaledb/jobs-automation/add_job
 [chunks_detailed_size]: /api-reference/timescaledb/hypertables/chunks_detailed_size
 [hypertable-create-table]: /api-reference/timescaledb/hypertables/create_table
+
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

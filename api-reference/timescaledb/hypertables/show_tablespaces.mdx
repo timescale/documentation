@@ -11,7 +11,7 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.7.0
+<Icon icon="tag" iconType="duotone" /> Since [0.7.0][tsdb-0.7.0]
 
 Show the tablespaces attached to a {HYPERTABLE}.
 
@@ -47,3 +47,5 @@ SELECT show_tablespaces(
 | show_tablespaces | NAME | The name of each tablespace attached to the {HYPERTABLE}. Returns one row per attached tablespace. |
 
 The function returns a set of tablespace names. If no tablespaces are attached to the {HYPERTABLE}, the function returns an empty result set.
+
+[tsdb-0.7.0]: https://github.com/timescale/timescaledb/releases/tag/0.7.0

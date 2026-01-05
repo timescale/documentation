@@ -12,7 +12,7 @@ products: [cloud, mst, self_hosted]
 import ReturnsNullIfNotHypertable from '/snippets/api-reference/timescaledb/_returns-null-if-not-hypertable.mdx';
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, CAGG, PG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.13.0
+<Icon icon="tag" iconType="duotone" /> Since [2.13.0][tsdb-2.13.0]
 
 Get detailed information about approximate disk space used by a {HYPERTABLE} or
 {CAGG}, returning size information for the table
@@ -55,9 +55,7 @@ SELECT * FROM hypertable_approximate_detailed_size('hyper_table');
 The syntax is:
 
 ```sql
-SELECT hypertable_approximate_detailed_size(
-    relation = '<hypertable_name>'
-);
+SELECT * FROM hypertable_approximate_detailed_size('<hypertable_name>');
 ```
 
 |Name|Type| Default | Required | Description|
@@ -77,3 +75,5 @@ SELECT hypertable_approximate_detailed_size(
 
 
 [hypertable-docs]: /use-timescale/hypertables/
+
+[tsdb-2.13.0]: https://github.com/timescale/timescaledb/releases/tag/2.13.0

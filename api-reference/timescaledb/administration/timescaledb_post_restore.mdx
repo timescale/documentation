@@ -10,7 +10,7 @@ type: function
 
 import { TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.9.0
+<Icon icon="tag" iconType="duotone" /> Since [0.9.0][tsdb-0.9.0]
 
 Perform the required operations after you have finished restoring the database using `pg_restore`. Specifically, this
 resets the `timescaledb.restoring` GUC and restarts any background workers.
@@ -32,3 +32,5 @@ SELECT timescaledb_post_restore();
 |success|BOOLEAN|TRUE if the operation completed successfully|
 
 [pg-dump-restore]: /migrate/postgres/pg-dump-and-restore
+
+[tsdb-0.9.0]: https://github.com/timescale/timescaledb/releases/tag/0.9.0

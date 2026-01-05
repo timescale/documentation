@@ -148,11 +148,18 @@
 - Check the directory that the files are to move into
 - Update all ${VARIABLES} to use the mintlify variables (reference snippets/vars.mdx for mappings)
 - replace references to import since`<version>` with `<Icon icon="circle-play" iconType="duotone" />` Since `<version>` on its own line after the frontmatter, followed by a newline before content begins
-- replace references to import deprecated`<version>` with `<Icon icon="circle-pause" iconType="duotone" />` Deprecated `<version>` on its own line after the frontmatter, followed by a newline before content begins
-- replace references to import DeprecationNotice with `<Icon icon="circle-pause" iconType="duotone" />` Deprecated on its own line after the frontmatter, followed by a newline before content begins
+- replace references to import deprecated`<version>` with `<Icon icon="archive" iconType="duotone" />` Deprecated `<version>` on its own line after the frontmatter, followed by a newline before content begins
+- replace references to import DeprecationNotice with `<Icon icon="archive" iconType="duotone" />` Deprecated on its own line after the frontmatter, followed by a newline before content begins
 - replace references to import sunsetted`<version>` with `<Icon icon="sunset" iconType="duotone" />` Sunsetted `<version>` on its own line after the frontmatter, followed by a newline before content begins
-- replace references to import EarlyAccess`<version>` with `<Icon icon="flask" />` Early access `<version>` on its own line after the frontmatter, followed by a newline before content begins. if there is no version number, don't add one
-- replace references to import Experimental with `<Icon icon="flask" />` Early access on its own line after the frontmatter, followed by a newline before content begins. if there is no version number, don't add one
+- replace references to import EarlyAccess`<version>` with `<Icon icon="flask" />` Early access on its own line after the frontmatter:
+  - **For TimescaleDB functions**: Use format `<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [version][tsdb-version]`
+  - **For Toolkit functions**: Use format `<Icon icon="flask" /> Early access [version][toolkit-version]`
+  - **Without version**: Use `<Icon icon="flask" />` Early access (no version number)
+  - **IMPORTANT**: Add markdown reference link at the end of the file:
+    - TimescaleDB: `[tsdb-X.X.X]: https://github.com/timescale/timescaledb/releases/tag/X.X.X`
+    - Toolkit: `[toolkit-X.X.X]: https://github.com/timescale/timescaledb-toolkit/releases/tag/X.X.X`
+    - Ensure there is a blank line before the markdown reference link
+- replace references to import Experimental with `<Icon icon="flask" />` Early access on its own line after the frontmatter, followed by a newline before content begins. Follow the same version linking rules as above.
 - **ALWAYS keep imported partials as snippets**: When migrating files that import other MDX files (partials), ALWAYS migrate those partials to the snippets/ directory and import them as snippets in the new file. NEVER inline the content directly.
 - Ask where the other imported files should go in the snippets directory (initially manual, but track patterns to automate over time). For manage-data content, use snippets/manage-data/; for API reference content, use snippets/api-reference/[component]/
 - Update the metadata in each file, rename the excerpt metadata name as description, and api_name as title

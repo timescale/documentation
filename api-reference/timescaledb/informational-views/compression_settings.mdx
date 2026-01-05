@@ -10,9 +10,9 @@ type: view
 
 import { HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-pause" iconType="duotone" /> Deprecated
+<Icon icon="archive" iconType="duotone" /> Deprecated
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.5.0
+<Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
 
 This view exists for backwards compatibility. The supported views to retrieve information about compression are:
 
@@ -90,3 +90,5 @@ The `by_range` dimension builder is an addition to {TIMESCALE_DB} 2.13.
 
 [chunk_compression_settings]: /api-reference/timescaledb/informational-views/chunk_compression_settings
 [hypertable_compression_settings]: /api-reference/timescaledb/informational-views/hypertable_compression_settings
+
+[tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0

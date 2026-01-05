@@ -12,7 +12,7 @@ hyperfunction:
     - freq_agg()
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+<Icon icon="tag" iconType="duotone" /> Since [1.16.0][tsdb-1.16.0]
 
 Get the minimum bound of the estimated frequency for a given value in a space-saving aggregate.
 
@@ -56,3 +56,4 @@ min_frequency (
 |--------|------|-------------|
 | min_frequency | DOUBLE PRECISION | The minimum bound for the value's estimated frequency. The minimum frequency might be 0 if the value's frequency falls below the space-saving aggregate's cut-off threshold. For more information, see [`freq_agg`](#freq_agg). |
 
+[tsdb-1.16.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.16.0

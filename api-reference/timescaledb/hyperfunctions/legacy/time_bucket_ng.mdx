@@ -15,7 +15,7 @@ products: [cloud, mst, self_hosted]
 
 import { PG, TIMESCALE_DB, HYPERTABLE } from '/snippets/vars.mdx';
 
-<Icon icon="circle-pause" iconType="duotone" /> Deprecated <Icon icon="circle-play" iconType="duotone" /> Since 2.0.0
+<Icon icon="archive" iconType="duotone" /> Deprecated <Icon icon="tag" iconType="duotone" /> Since [2.0.0][tsdb-2.0.0]
 
 The `time_bucket_ng()` function is an experimental version of the
 [`time_bucket()`][time_bucket] function. It introduced some new capabilities,
@@ -201,8 +201,8 @@ SELECT time_bucket_ng(
 |--|--|--|--|--|
 | `bucket_width` | INTERVAL | - | ✔ | A {PG} time interval for how long each bucket is |
 | `ts` | DATE, TIMESTAMP or TIMESTAMPTZ | - | ✔ | The timestamp to bucket |
-| `origin` | Should be the same as `ts` | - | ❌ | Buckets are aligned relative to this timestamp |
-| `timezone` | TEXT | - | ❌ | The name of the timezone. The argument can be specified only if the type of `ts` is TIMESTAMPTZ |
+| `origin` | Should be the same as `ts` | - | - | Buckets are aligned relative to this timestamp |
+| `timezone` | TEXT | - | - | The name of the timezone. The argument can be specified only if the type of `ts` is TIMESTAMPTZ |
 
 <Info>
 
@@ -223,4 +223,5 @@ can't be used with continuous aggregates. Best practice is to use
 | `time_bucket_ng` | DATE, TIMESTAMP, or TIMESTAMPTZ | The bucket's start time. The return type matches the input `ts` type. |
 
 [time_bucket]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket
-[caggs]: /manage-data/timescaledb/data-management/continuous-aggregates/
+[caggs]: /manage-data/data-management/continuous-aggregates/understand-continuous-aggregates
+[tsdb-2.0.0]: https://github.com/timescale/timescaledb/releases/tag/2.0.0

@@ -14,7 +14,7 @@ hyperfunction:
     - candlestick_agg()
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.14.0
+<Icon icon="tag" iconType="duotone" /> Since [1.14.0][tsdb-1.14.0]
 
 Transform pre-aggregated candlestick data into a candlestick aggregate object. This object contains the data in the
 correct form to use with the accessors and rollups in this function group.
@@ -49,3 +49,5 @@ candlestick(
 | Column | Type | Description |
 |--------|------|-------------|
 | agg | Candlestick | An object storing `(timestamp, value)` pairs for each of the opening, high, low, and closing prices, in addition to information used to calculate the total volume and Volume Weighted Average Price. |
+
+[tsdb-1.14.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.14.0

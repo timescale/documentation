@@ -11,13 +11,11 @@ products: [cloud, mst, self_hosted]
 
 import { PG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.13.0
+<Icon icon="tag" iconType="duotone" /> Since [2.23.0][tsdb-2.23.0]
 
 Create a UUIDv7 object from a {PG} timestamp and random bits.
 
 `ts` is converted to a UNIX timestamp split into millisecond and sub-millisecond parts.
-
-![UUIDv7 microseconds](https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg)
 
 ## Samples
 
@@ -45,3 +43,5 @@ SELECT to_uuidv7(
 |Column|Type|Description|
 |-|-|-|
 | `to_uuidv7` | UUID | A UUIDv7 object created from the input timestamp with random bits. |
+
+[tsdb-2.23.0]: https://github.com/timescale/timescaledb/releases/tag/2.23.0

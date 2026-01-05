@@ -9,11 +9,9 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.13.0
+<Icon icon="tag" iconType="duotone" /> Since [2.23.0][tsdb-2.23.0]
 
 Extract the version number from a UUID object:
-
-![UUIDv7](https://assets.timescale.com/docs/images/uuidv7-structure.svg)
 
 ## Samples
 
@@ -46,3 +44,5 @@ SELECT uuid_version(
 |Column|Type|Description|
 |-|-|-|
 | `uuid_version` | INTEGER | The version number extracted from the UUID object (e.g., 7 for UUIDv7). |
+
+[tsdb-2.23.0]: https://github.com/timescale/timescaledb/releases/tag/2.23.0

@@ -8,7 +8,8 @@
     "dark": "#000"
   },
   "styling": {
-    "codeblocks": "dark"
+    "codeblocks": "dark",
+    "eyebrows": "breadcrumbs"
   },
   "seo": {
     "metatags": {
@@ -2139,7 +2140,8 @@
                         "group": "Table creation",
                         "pages": [
                           "api-reference/timescaledb/hypertables/create_table",
-                          "api-reference/timescaledb/hypertables/create_hypertable"
+                          "api-reference/timescaledb/hypertables/create_hypertable",
+                          "api-reference/timescaledb/hypertables/create_index"
                         ]
                       },
                       {
@@ -2154,12 +2156,7 @@
                           "api-reference/timescaledb/hypertables/attach_chunk",
                           "api-reference/timescaledb/hypertables/detach_chunk",
                           "api-reference/timescaledb/hypertables/set_chunk_time_interval",
-                          "api-reference/timescaledb/hypertables/set_integer_now_func"
-                        ]
-                      },
-                      {
-                        "group": "Dimension management",
-                        "pages": [
+                          "api-reference/timescaledb/hypertables/set_integer_now_func",
                           "api-reference/timescaledb/hypertables/add_dimension"
                         ]
                       },
@@ -2198,12 +2195,6 @@
                         ]
                       },
                       {
-                        "group": "Indexes",
-                        "pages": [
-                          "api-reference/timescaledb/hypertables/create_index"
-                        ]
-                      },
-                      {
                         "group": "Legacy functions",
                         "pages": [
                           "api-reference/timescaledb/hypertables/create_hypertable_old",
@@ -2224,14 +2215,9 @@
                         ]
                       },
                       {
-                        "group": "Configuration",
-                        "pages": [
-                          "api-reference/timescaledb/hypercore/alter_table"
-                        ]
-                      },
-                      {
                         "group": "Manual conversion",
                         "pages": [
+                          "api-reference/timescaledb/hypercore/alter_table",
                           "api-reference/timescaledb/hypercore/convert_to_columnstore",
                           "api-reference/timescaledb/hypercore/convert_to_rowstore"
                         ]
@@ -2257,12 +2243,7 @@
                           "api-reference/timescaledb/continuous-aggregates/create_materialized_view",
                           "api-reference/timescaledb/continuous-aggregates/alter_materialized_view",
                           "api-reference/timescaledb/continuous-aggregates/drop_materialized_view",
-                          "api-reference/timescaledb/continuous-aggregates/cagg_migrate"
-                        ]
-                      },
-                      {
-                        "group": "Refresh CAGGs",
-                        "pages": [
+                          "api-reference/timescaledb/continuous-aggregates/cagg_migrate",
                           "api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate"
                         ]
                       },
@@ -2297,7 +2278,8 @@
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/first",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/last",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month",
-                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize"
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize",
+                          "api-reference/timescaledb/hyperfunctions/legacy/time_bucket_ng"
                         ]
                       },
                       {
@@ -2315,12 +2297,6 @@
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill",
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/locf",
                           "api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/interpolate"
-                        ]
-                      },
-                      {
-                        "group": "Legacy functions",
-                        "pages": [
-                          "api-reference/timescaledb/hyperfunctions/legacy/time_bucket_ng"
                         ]
                       }
                     ]
@@ -2365,7 +2341,8 @@
                           "api-reference/timescaledb/informational-views/chunks",
                           "api-reference/timescaledb/informational-views/data_nodes",
                           "api-reference/timescaledb/informational-views/dimensions",
-                          "api-reference/timescaledb/informational-views/hypertables"
+                          "api-reference/timescaledb/informational-views/hypertables",
+                          "api-reference/timescaledb/informational-views/continuous_aggregates"
                         ]
                       },
                       {
@@ -2374,12 +2351,6 @@
                           "api-reference/timescaledb/informational-views/chunk_compression_settings",
                           "api-reference/timescaledb/informational-views/compression_settings",
                           "api-reference/timescaledb/informational-views/hypertable_compression_settings"
-                        ]
-                      },
-                      {
-                        "group": "CAGGs",
-                        "pages": [
-                          "api-reference/timescaledb/informational-views/continuous_aggregates"
                         ]
                       },
                       {
@@ -2422,12 +2393,6 @@
                     "pages": [
                       "api-reference/timescaledb/compression/index",
                       {
-                        "group": "Configuration",
-                        "pages": [
-                          "api-reference/timescaledb/compression/alter_table_compression"
-                        ]
-                      },
-                      {
                         "group": "Policies",
                         "pages": [
                           "api-reference/timescaledb/compression/add_compression_policy",
@@ -2437,6 +2402,7 @@
                       {
                         "group": "Manual compression",
                         "pages": [
+                          "api-reference/timescaledb/compression/alter_table_compression",
                           "api-reference/timescaledb/compression/compress_chunk",
                           "api-reference/timescaledb/compression/decompress_chunk",
                           "api-reference/timescaledb/compression/recompress_chunk"
