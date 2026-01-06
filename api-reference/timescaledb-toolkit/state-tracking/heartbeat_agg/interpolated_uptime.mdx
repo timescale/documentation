@@ -12,7 +12,7 @@ hyperfunction:
     - heartbeat_agg()
 ---
 
-<Icon icon="tag" iconType="duotone" /> Since [1.15.0][tsdb-1.15.0]
+<Icon icon="tag" iconType="duotone" /> Since [1.15.0][toolkit-1.15.0]
 
 Calculate uptime from a heartbeat aggregate, taking the heartbeat aggregate from the preceding interval to interpolate
 values at the boundary. This checks when the last heartbeat in the predecessor was received and makes sure that the
@@ -62,4 +62,4 @@ interpolated_uptime(
 |--------|------|-------------|
 | interpolated_uptime | INTERVAL | The sum of all the live ranges in the aggregate, including those covered by the last heartbeat of the previous interval. |
 
-[tsdb-1.15.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.15.0
+[toolkit-1.15.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.15.0

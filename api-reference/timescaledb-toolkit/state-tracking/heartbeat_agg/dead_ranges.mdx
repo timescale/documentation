@@ -12,7 +12,7 @@ hyperfunction:
     - heartbeat_agg()
 ---
 
-<Icon icon="tag" iconType="duotone" /> Since [1.15.0][tsdb-1.15.0]
+<Icon icon="tag" iconType="duotone" /> Since [1.15.0][toolkit-1.15.0]
 
 Return a set of (start_time, end_time) pairs representing when the underlying system did not have a valid heartbeat
 during the interval of the aggregate.
@@ -59,4 +59,4 @@ dead_ranges(
 |--------|------|-------------|
 | dead_ranges | TABLE (start TIMESTAMPTZ, end TIMESTAMPTZ) | The (start, end) pairs of when the system was down. |
 
-[tsdb-1.15.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.15.0
+[toolkit-1.15.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.15.0

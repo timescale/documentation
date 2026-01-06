@@ -13,7 +13,7 @@ hyperfunction:
     - time_weight()
 ---
 
-<Icon icon="tag" iconType="duotone" /> Since [1.14.0][tsdb-1.14.0]
+<Icon icon="tag" iconType="duotone" /> Since [1.14.0][toolkit-1.14.0]
 
 Calculate the time-weighted average over an interval, while interpolating the interval bounds.
 
@@ -82,4 +82,6 @@ interpolated_average(
 | average | DOUBLE PRECISION | The time-weighted average for the interval (`start`, `start` + `interval`), computed from the `TimeWeightSummary` plus end points interpolated from `prev` and `next` |
 
 [average]: /api-reference/timescaledb-toolkit/time_weight/average
-[interpolated_integral]: /api-reference/timescaledb-toolkit/time_weight/interpolated_integral[tsdb-1.14.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.14.0
+[interpolated_integral]: /api-reference/timescaledb-toolkit/time_weight/interpolated_integral
+
+[toolkit-1.14.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.14.0

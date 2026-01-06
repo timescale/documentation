@@ -11,7 +11,7 @@ hyperfunction:
   type: function
 ---
 
-<Icon icon="flask" /> Early access
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [1.8.0][toolkit-1.8.0]
 
 The `saturating_mul` function multiplies two numbers, saturating at -2,147,483,648 and 2,147,483,647 instead of
 overflowing.
@@ -37,3 +37,5 @@ saturating_mul(
 | Column | Type | Description |
 |--------|------|-------------|
 | saturating_mul | INT | The result of `x * y`, saturating at the numeric bounds instead of overflowing. The numeric bounds are the upper and lower bounds of the 32-bit signed integers |
+
+[toolkit-1.8.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.8.0

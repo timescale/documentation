@@ -11,7 +11,7 @@ products: [cloud, mst, self_hosted]
 
 import { CHUNK, HYPERTABLE, HYPERTABLE_CAP, PG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="archive" iconType="duotone" /> Old API [v2.13.0][tsdb-2.13.0]. Use [`create_hypertable`][api-create-hypertable].
+<Icon icon="archive" iconType="duotone" /> Old API [v2.13.0][tsdb-2.13.0]. Use [`create_hypertable`][api-create-hypertable]. <Icon icon="tag" iconType="duotone" /> Since [1.0.0][tsdb-1.0.0]
 
 Creates a {TIMESCALE_DB} {HYPERTABLE} from a {PG} table (replacing the latter),
 partitioned on time and with the option to partition on one or more other
@@ -216,4 +216,5 @@ this constraint on the table when it is executed.
 [hypertable-docs]: /manage-data/data-management/hypertables/understand-hypertables
 [api-create-hypertable]: /api-reference/timescaledb/hypertables/create_hypertable
 
+[tsdb-1.0.0]: https://github.com/timescale/timescaledb/releases/tag/1.0.0
 [tsdb-2.13.0]: https://github.com/timescale/timescaledb/releases/tag/2.13.0

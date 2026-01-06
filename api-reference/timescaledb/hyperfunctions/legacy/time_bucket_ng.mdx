@@ -15,7 +15,7 @@ products: [cloud, mst, self_hosted]
 
 import { PG, TIMESCALE_DB, HYPERTABLE } from '/snippets/vars.mdx';
 
-<Icon icon="archive" iconType="duotone" /> Deprecated <Icon icon="tag" iconType="duotone" /> Since [2.0.0][tsdb-2.0.0]
+<Icon icon="archive" iconType="duotone" /> Deprecated [v2.8.0][tsdb-2.8.0] <Icon icon="tag" iconType="duotone" /> Since [2.4.0][tsdb-2.4.0]
 
 The `time_bucket_ng()` function is an experimental version of the
 [`time_bucket()`][time_bucket] function. It introduced some new capabilities,
@@ -224,4 +224,6 @@ can't be used with continuous aggregates. Best practice is to use
 
 [time_bucket]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket
 [caggs]: /manage-data/data-management/continuous-aggregates/understand-continuous-aggregates
-[tsdb-2.0.0]: https://github.com/timescale/timescaledb/releases/tag/2.0.0
+
+[tsdb-2.4.0]: https://github.com/timescale/timescaledb/releases/tag/2.4.0
+[tsdb-2.8.0]: https://github.com/timescale/timescaledb/releases/tag/2.8.0
