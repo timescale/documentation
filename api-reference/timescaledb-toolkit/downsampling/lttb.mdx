@@ -12,7 +12,7 @@ hyperfunction:
 
 <Icon icon="tag" iconType="duotone" /> Since [1.10.1][toolkit-1.10.1]
 
-Downsample your data with the [Largest Triangle Three Buckets algorithm](https://github.com/sveinn-steinarsson/flot-downsample). This algorithm tries to retain visual similarity between the downsampled data and the original dataset.
+Downsample your data with the [Largest Triangle Three Buckets algorithm][largest-triangle-three-buckets-algorithm]. This algorithm tries to retain visual similarity between the downsampled data and the original dataset.
 
 
 ## Samples
@@ -68,6 +68,8 @@ lttb(
 
 | Column | Type | Description |
 |--------|------|-------------|
-| lttb | Timevector | An object representing a series of values occurring at set intervals from a starting time. It can be unpacked with `unnest`. For more information, see the documentation on [timevectors](/use-timescale/latest/hyperfunctions/function-pipelines/#timevectors). |
+n| lttb | Timevector | An object representing a series of values occurring at set intervals from a starting time. It can be unpacked with `unnest`. For more information, see the documentation on [timevectors][timevectors]. |
 
+[largest-triangle-three-buckets-algorithm]: https://github.com/sveinn-steinarsson/flot-downsample
+[timevectors]: /use-timescale/latest/hyperfunctions/function-pipelines/#timevectors
 [toolkit-1.10.1]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.10.1

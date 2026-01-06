@@ -34,7 +34,7 @@ rollup(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `cs` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+| `cs` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`][counter-agg] |
 
 ## Returns
 
@@ -42,4 +42,5 @@ rollup(
 |--------|------|-------------|
 | counter_agg | CounterSummary | A new counter aggregate created by combining the input counter aggregates |
 
+[counter-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg
 [toolkit-1.3.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.3.0

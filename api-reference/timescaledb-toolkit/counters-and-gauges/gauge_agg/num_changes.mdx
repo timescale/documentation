@@ -47,7 +47,7 @@ num_changes(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge summary created using [`gauge_agg`](#gauge_agg) |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge summary created using [`gauge_agg`][gauge-agg] |
 
 
 ## Returns
@@ -56,4 +56,5 @@ num_changes(
 |--------|------|-------------|
 | num_changes | BIGINT | The number of times the counter changed |
 
+[gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
 [toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

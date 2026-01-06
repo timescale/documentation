@@ -59,7 +59,7 @@ with_bounds(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `cs` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+| `cs` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`][gauge-agg] |
 | `bounds` | `TSTZRANGE` | - | ✔ | A range of `timestamptz` giving the smallest and largest allowed times in the gauge aggregate |
 
 ## Returns
@@ -68,4 +68,5 @@ with_bounds(
 |--------|------|-------------|
 | counter_agg | CounterSummary | A new counter aggregate with the bounds applied |
 
+[gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
 [toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

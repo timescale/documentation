@@ -13,7 +13,7 @@ embeddings, complete chat conversations, moderate content, and work with tokens 
 
 ## Prerequisites
 
-To use OpenAI functions, you need an [OpenAI API key](https://platform.openai.com/docs/quickstart/step-2-set-up-your-api-key).
+To use OpenAI functions, you need an [OpenAI API key][openai-api-key].
 
 Set your API key as an environment variable and configure it when connecting:
 
@@ -22,7 +22,7 @@ export OPENAI_API_KEY="your-api-key"
 PGOPTIONS="-c ai.openai_api_key=$OPENAI_API_KEY" psql -d "postgres://..."
 ```
 
-For more configuration options, see [handling API keys](/api-reference/pgai/utilities/api-keys).
+For more configuration options, see [handling API keys][api-keys].
 
 ## Samples
 
@@ -100,15 +100,17 @@ SELECT array_length(
   list
 - [`openai_client_config()`][openai_client_config]: configure OpenAI client settings
 
-[openai_list_models]: /api-reference/pgai/model-calling/openai/openai_list_models
-[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed
+[api-keys]: /api-reference/pgai/utilities/api-keys
+[openai-api-key]: https://platform.openai.com/docs/quickstart/step-2-set-up-your-api-key
 [openai_chat_complete]: /api-reference/pgai/model-calling/openai/openai_chat_complete
 [openai_chat_complete_simple]: /api-reference/pgai/model-calling/openai/openai_chat_complete_simple
-[openai_moderate]: /api-reference/pgai/model-calling/openai/openai_moderate
-[openai_tokenize]: /api-reference/pgai/model-calling/openai/openai_tokenize
-[openai_detokenize]: /api-reference/pgai/model-calling/openai/openai_detokenize
-[openai_embed_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_embed_with_raw_response
 [openai_chat_complete_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_chat_complete_with_raw_response
-[openai_moderate_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response
-[openai_list_models_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response
 [openai_client_config]: /api-reference/pgai/model-calling/openai/openai_client_config
+[openai_detokenize]: /api-reference/pgai/model-calling/openai/openai_detokenize
+[openai_embed]: /api-reference/pgai/model-calling/openai/openai_embed
+[openai_embed_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_embed_with_raw_response
+[openai_list_models]: /api-reference/pgai/model-calling/openai/openai_list_models
+[openai_list_models_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_list_models_with_raw_response
+[openai_moderate]: /api-reference/pgai/model-calling/openai/openai_moderate
+[openai_moderate_with_raw_response]: /api-reference/pgai/model-calling/openai/openai_moderate_with_raw_response
+[openai_tokenize]: /api-reference/pgai/model-calling/openai/openai_tokenize

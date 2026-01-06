@@ -47,7 +47,7 @@ last_time(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `cs` | `CounterSummary` | - | ✔ | A counter aggregate produced using [`counter_agg`](#counter_agg) |
+| `cs` | `CounterSummary` | - | ✔ | A counter aggregate produced using [`counter_agg`][counter-agg] |
 
 
 ## Returns
@@ -56,4 +56,5 @@ last_time(
 |--------|------|-------------|
 | last_time | TIMESTAMPTZ | The timestamp of the last point in the counter aggregate |
 
+[counter-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg
 [toolkit-1.11.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.11.0

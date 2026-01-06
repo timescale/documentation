@@ -17,8 +17,8 @@ topics:
 
 Calculate the rate of change of a counter during the time period specified by the bounds
 in the counter aggregate. The bounds must be specified for the `extrapolated_rate`
-function to work. You can provide them as part of the original [`counter_agg`](#counter_agg)
-call, or by using the [`with_bounds`](#with_bounds) function on an existing
+function to work. You can provide them as part of the original [`counter_agg`][counter-agg]
+call, or by using the [`with_bounds`][with-bounds] function on an existing
 counter aggregate.
 
 
@@ -55,7 +55,7 @@ extrapolated_rate(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`](#counter_agg) |
+| `summary` | `CounterSummary` | - | ✔ | A counter aggregate created using [`counter_agg`][counter-agg] |
 | `method` | `TEXT` | - | ✔ | The extrapolation method to use. Not case-sensitive. The only allowed value is `prometheus`, for the Prometheus extrapolation protocol. |
 
 
@@ -65,4 +65,6 @@ extrapolated_rate(
 |--------|------|-------------|
 | extrapolated_rate | DOUBLE PRECISION | The extrapolated rate of change of the counter over the timer period of the counter aggregate. |
 
+[counter-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg
 [toolkit-1.3.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.3.0
+[with-bounds]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/with_bounds

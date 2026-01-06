@@ -14,7 +14,7 @@ import { HYPERTABLE, CHUNK, HYPERCORE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 Compression functionality is included in {HYPERCORE}.
 
-Before you set up compression, you need to [configure the {HYPERTABLE} for compression][configure-compression] and then
+Before you set up compression, you need to [configure the {HYPERTABLE} for compression][alter-table-compression] and then
 [set up a compression policy][add-compression-policy].
 
 <Note>
@@ -76,17 +76,15 @@ statements like `ON CONFLICT` and `RETURNING`.
 - [`chunk_compression_stats()`][chunk-compression-stats]: get compression-related statistics for {CHUNK}s
 - [`hypertable_compression_stats()`][hypertable-compression-stats]: get {HYPERTABLE} statistics related to compression
 
-[hypercore]: /api-reference/timescaledb/hypercore
-[configure-compression]: /api-reference/timescaledb/compression/alter_table_compression
 [add-compression-policy]: /api-reference/timescaledb/compression/add_compression_policy
+[alter-table-compression]: /api-reference/timescaledb/compression/alter_table_compression
+[chunk-compression-stats]: /api-reference/timescaledb/compression/chunk_compression_stats
 [compress-chunk]: /api-reference/timescaledb/compression/compress_chunk
 [compression-blog]: https://www.timescale.com/blog/building-columnar-compression-in-a-row-oriented-database
 [compression-docs]: /use-timescale/compression
-[alter-table-compression]: /api-reference/timescaledb/compression/alter_table_compression
-[remove-compression-policy]: /api-reference/timescaledb/compression/remove_compression_policy
 [decompress-chunk]: /api-reference/timescaledb/compression/decompress_chunk
-[recompress-chunk]: /api-reference/timescaledb/compression/recompress_chunk
-[chunk-compression-stats]: /api-reference/timescaledb/compression/chunk_compression_stats
+[hypercore]: /api-reference/timescaledb/hypercore
 [hypertable-compression-stats]: /api-reference/timescaledb/compression/hypertable_compression_stats
-
+[recompress-chunk]: /api-reference/timescaledb/compression/recompress_chunk
+[remove-compression-policy]: /api-reference/timescaledb/compression/remove_compression_policy
 [tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

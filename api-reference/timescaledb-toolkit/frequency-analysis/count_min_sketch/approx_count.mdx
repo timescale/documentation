@@ -50,7 +50,7 @@ approx_count (
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `item` | TEXT | - | ✔ | The value you want to estimate occurrences of |
-| `agg` | CountMinSketch | - | ✔ | A `CountMinSketch` object created using [`count_min_sketch`](#count_min_sketch) |
+| `agg` | CountMinSketch | - | ✔ | A `CountMinSketch` object created using [`count_min_sketch`][count-min-sketch] |
 
 ## Returns
 
@@ -58,5 +58,5 @@ approx_count (
 |--------|------|-------------|
 | approx_count | INTEGER | The estimated number of times `item` appeared in the sketch |
 
-
+[count-min-sketch]: /api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/count_min_sketch
 [toolkit-1.8.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.8.0

@@ -21,10 +21,10 @@ intermediate aggregate from your raw data. This intermediate form can then
 be used by one or more accessors in this group to compute final results.
 
 Optionally, multiple such intermediate aggregate objects can be combined
-using [`rollup()`](#rollup) before an accessor is applied.
+using [`rollup()`][rollup] before an accessor is applied.
 
 If you're not sure what value to set for `buckets`, try using the alternate
-aggregate function, [`approx_count_distinct()`](#approx_count_distinct).
+aggregate function, [`approx_count_distinct()`][approx-count-distinct].
 `approx_count_distinct` also creates a `hyperloglog`, but it sets a
 default bucket value that should work for many use cases.
 
@@ -66,4 +66,6 @@ hyperloglog(
 |--------|------|-------------|
 | hyperloglog | Hyperloglog | A `hyperloglog` object which can be passed to other hyperloglog APIs for rollups and final calculation |
 
+[approx-count-distinct]: /api-reference/timescaledb-toolkit/hyperloglog/approx_count_distinct
+[rollup]: /api-reference/timescaledb-toolkit/hyperloglog/rollup
 [toolkit-1.3.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.3.0

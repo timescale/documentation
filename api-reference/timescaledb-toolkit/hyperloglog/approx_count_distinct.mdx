@@ -24,7 +24,7 @@ This intermediate form can then be used by one or more accessors in this
 group to compute final results.
 
 Optionally, multiple such intermediate aggregate objects can be combined
-using [`rollup()`](#rollup) before an accessor is applied.
+using [`rollup()`][rollup] before an accessor is applied.
 
 
 ## Samples
@@ -62,4 +62,5 @@ approx_count_distinct(
 |--------|------|-------------|
 | hyperloglog | Hyperloglog | A `hyperloglog` object which can be passed to other hyperloglog APIs for rollups and final calculation |
 
+[rollup]: /api-reference/timescaledb-toolkit/hyperloglog/rollup
 [toolkit-1.16.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.16.0

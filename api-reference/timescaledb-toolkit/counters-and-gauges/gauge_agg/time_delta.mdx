@@ -49,7 +49,7 @@ time_delta(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`][gauge-agg] |
 
 
 ## Returns
@@ -58,4 +58,5 @@ time_delta(
 |--------|------|-------------|
 | time_delta | DOUBLE PRECISION | The difference, in seconds, between the first and last times |
 
+[gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
 [toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0
