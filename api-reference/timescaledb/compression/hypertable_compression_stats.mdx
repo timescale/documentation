@@ -4,6 +4,7 @@ description: Get hypertable statistics related to compression
 topics: [compression]
 keywords: [compression, hypertables, information]
 tags: [statistics, size]
+tag: Old API
 license: community
 type: function
 products: [cloud, mst, self_hosted]
@@ -13,7 +14,7 @@ import { HYPERTABLE, CHUNK, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 <Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
 
-<Icon icon="archive" iconType="duotone" /> Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [hypertable_columnstore_stats()][hypertable-columnstore-stats].
+<Icon icon="archive" iconType="duotone" /> Old API [v2.18.0][tsdb-2.18.0]. Superseded by [hypertable_columnstore_stats()][hypertable-columnstore-stats].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 Get statistics related to {HYPERTABLE} compression. All sizes are in bytes.
@@ -91,3 +92,5 @@ Returns show `NULL` if the data is currently uncompressed.
 [compression-docs]: /use-timescale/compression
 
 [tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0
+
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

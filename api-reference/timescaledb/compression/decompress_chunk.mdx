@@ -3,6 +3,7 @@ title: decompress_chunk()
 description: Decompress a compressed chunk
 topics: [compression]
 keywords: [compression, decompression, chunks, backfilling]
+tag: Old API
 license: community
 type: function
 products: [cloud, mst, self_hosted]
@@ -12,7 +13,7 @@ import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 <Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
 
-<Icon icon="archive" iconType="duotone" /> Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [convert_to_rowstore()][convert-to-rowstore].
+<Icon icon="archive" iconType="duotone" /> Old API [v2.18.0][tsdb-2.18.0]. Superseded by [convert_to_rowstore()][convert-to-rowstore].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 <Warning>
@@ -59,3 +60,5 @@ SELECT decompress_chunk(
 [convert-to-rowstore]: /api-reference/timescaledb/hypercore/convert_to_rowstore
 
 [tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0
+
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

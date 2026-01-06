@@ -1,15 +1,16 @@
 ---
-title: Compression overview (Old API, replaced by hypercore)
+title: Compression overview (superseded by hypercore)
 sidebarTitle: Overview
 description: TimescaleDB API reference for compressing your data. Includes SQL functions for compressing and decompressing chunks, managing compression policies, and getting compression stats
 keywords: [compression]
 tags: [hypertables]
+tag: Old API
 products: [cloud, mst, self_hosted]
 ---
 
 import { HYPERTABLE, CHUNK, HYPERCORE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="archive" iconType="duotone" /> Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [Hypercore][hypercore].
+<Icon icon="archive" iconType="duotone" /> Old API [v2.18.0][tsdb-2.18.0]. Superseded by [Hypercore][hypercore].
 
 Compression functionality is included in {HYPERCORE}.
 
@@ -87,3 +88,5 @@ statements like `ON CONFLICT` and `RETURNING`.
 [recompress-chunk]: /api-reference/timescaledb/compression/recompress_chunk
 [chunk-compression-stats]: /api-reference/timescaledb/compression/chunk_compression_stats
 [hypertable-compression-stats]: /api-reference/timescaledb/compression/hypertable_compression_stats
+
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

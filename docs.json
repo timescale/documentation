@@ -2141,7 +2141,8 @@
                         "pages": [
                           "api-reference/timescaledb/hypertables/create_table",
                           "api-reference/timescaledb/hypertables/create_hypertable",
-                          "api-reference/timescaledb/hypertables/create_index"
+                          "api-reference/timescaledb/hypertables/create_index",
+                          "api-reference/timescaledb/hypertables/create_hypertable_old"
                         ]
                       },
                       {
@@ -2157,7 +2158,8 @@
                           "api-reference/timescaledb/hypertables/detach_chunk",
                           "api-reference/timescaledb/hypertables/set_chunk_time_interval",
                           "api-reference/timescaledb/hypertables/set_integer_now_func",
-                          "api-reference/timescaledb/hypertables/add_dimension"
+                          "api-reference/timescaledb/hypertables/add_dimension",
+                          "api-reference/timescaledb/hypertables/add_dimension_old"
                         ]
                       },
                       {
@@ -2192,13 +2194,6 @@
                         "pages": [
                           "api-reference/timescaledb/hypertables/enable_chunk_skipping",
                           "api-reference/timescaledb/hypertables/disable_chunk_skipping"
-                        ]
-                      },
-                      {
-                        "group": "Legacy functions",
-                        "pages": [
-                          "api-reference/timescaledb/hypertables/create_hypertable_old",
-                          "api-reference/timescaledb/hypertables/add_dimension_old"
                         ]
                       }
                     ]
@@ -2389,7 +2384,7 @@
                     ]
                   },
                   {
-                    "group": "Compression (Old API, replaced by Hypercore)",
+                    "group": "Compression (replaced by hypercore)",
                     "pages": [
                       "api-reference/timescaledb/compression/index",
                       {
