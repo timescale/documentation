@@ -11,7 +11,7 @@ hyperfunction:
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 0.0.10-beta
+<Icon icon="tag" iconType="duotone" /> Since [0.0.10][tsdb-0.0.10]-beta
 
 The `time_bucket` function is similar to the standard {PG} `date_bin`
 function. Unlike `date_bin`, it allows for arbitrary time intervals of months or
@@ -119,9 +119,9 @@ SELECT time_bucket(
 |--|--|--|--|--|
 | `bucket_width` | INTERVAL | - | ✔ | A {PG} time interval for how long each bucket is |
 | `ts` | DATE, TIMESTAMP, or TIMESTAMPTZ | - | ✔ | The timestamp to bucket |
-| `timezone` | TEXT | UTC+0 | ❌ | The time zone for calculating bucket start and end times. Can only be used with `TIMESTAMPTZ`. |
-| `origin` | DATE, TIMESTAMP, or TIMESTAMPTZ | midnight on January 3, 2000 (for buckets < month) or midnight on January 1, 2000 (for month/year/century buckets) | ❌ | Buckets are aligned relative to this timestamp |
-| `offset` | INTERVAL | - | ❌ | The time interval to offset all time buckets by. A positive value shifts bucket start and end times later. A negative value shifts bucket start and end times earlier. `offset` must be surrounded with double quotes when used as a named argument, because it is a reserved key word in {PG}. |
+| `timezone` | TEXT | UTC+0 | - | The time zone for calculating bucket start and end times. Can only be used with `TIMESTAMPTZ`. |
+| `origin` | DATE, TIMESTAMP, or TIMESTAMPTZ | midnight on January 3, 2000 (for buckets < month) or midnight on January 1, 2000 (for month/year/century buckets) | - | Buckets are aligned relative to this timestamp |
+| `offset` | INTERVAL | - | - | The time interval to offset all time buckets by. A positive value shifts bucket start and end times later. A negative value shifts bucket start and end times earlier. `offset` must be surrounded with double quotes when used as a named argument, because it is a reserved key word in {PG}. |
 
 **For integer time inputs:**
 
@@ -129,7 +129,7 @@ SELECT time_bucket(
 |--|--|--|--|--|
 | `bucket_width` | INTEGER | - | ✔ | The bucket width |
 | `ts` | INTEGER | - | ✔ | The timestamp to bucket |
-| `offset` | INTEGER | - | ❌ | The amount to offset all buckets by. A positive value shifts bucket start and end times later. A negative value shifts bucket start and end times earlier. `offset` must be surrounded with double quotes when used as a named argument, because it is a reserved key word in {PG}. |
+| `offset` | INTEGER | - | - | The amount to offset all buckets by. A positive value shifts bucket start and end times later. A negative value shifts bucket start and end times earlier. `offset` must be surrounded with double quotes when used as a named argument, because it is a reserved key word in {PG}. |
 
 <Info>
 
@@ -138,3 +138,11 @@ a non-month component. For example, `1 month` and `3 months` are both valid
 bucket widths, but `1 month 1 day` and `3 months 2 weeks` are not.
 
 </Info>
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `time_bucket` | TIMESTAMP, TIMESTAMPTZ, DATE, or INTEGER | The start time of the bucket that contains the input timestamp. The return type matches the input `ts` type. |
+
+[tsdb-0.0.10]: https://github.com/timescale/timescaledb/releases/tag/0.0.10

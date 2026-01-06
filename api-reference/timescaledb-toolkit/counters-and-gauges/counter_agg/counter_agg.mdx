@@ -17,14 +17,14 @@ products:
 - self_hosted
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.3.0
+<Icon icon="tag" iconType="duotone" /> Since [1.3.0][toolkit-1.3.0]
 
 This is the first step for performing any aggregate calculations
 on counter data. Use `counter_agg` to create an intermediate aggregate
 from your data. This intermediate form can then be used
 by one or more accessors in this group to compute final results. Optionally,
 you can combine multiple intermediate aggregate objects using
-[`rollup()`](#rollup) before an accessor is applied.
+[`rollup()`][rollup] before an accessor is applied.
 
 
 ## Samples
@@ -54,7 +54,7 @@ counter_agg(
 | --- | --- | --- | --- | --- |
 | `ts` | `TIMESTAMPTZ` | - | ✔ | The time at each point |
 | `value` | `DOUBLE PRECISION` | - | ✔ | The value of the counter at each point |
-| `bounds` | `TSTZRANGE` | - |  | The smallest and largest possible times that can be input to this aggregate. Bounds are required for extrapolation, but not for other accessor functions. If you don't specify bounds at aggregate creation time, you can add them later using the [`with_bounds`](#with_bounds) function. |
+| `bounds` | `TSTZRANGE` | - |  | The smallest and largest possible times that can be input to this aggregate. Bounds are required for extrapolation, but not for other accessor functions. If you don't specify bounds at aggregate creation time, you can add them later using the [`with_bounds`][with-bounds] function. |
 
 
 ## Returns
@@ -62,3 +62,7 @@ counter_agg(
 | Column | Type | Description |
 |--------|------|-------------|
 | counter_agg | CounterSummary | The counter aggregate, containing data about the variables in an intermediate form. Pass the aggregate to accessor functions in the counter aggregates API to perform final calculations. Or, pass the aggregate to rollup functions to combine multiple counter aggregates into larger aggregates. |
+
+[rollup]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/rollup
+[toolkit-1.3.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.3.0
+[with-bounds]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/with_bounds

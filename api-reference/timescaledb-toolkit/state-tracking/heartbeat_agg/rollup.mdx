@@ -12,7 +12,7 @@ hyperfunction:
     - heartbeat_agg()
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
+<Icon icon="tag" iconType="duotone" /> Since [1.15.0][toolkit-1.15.0]
 
 Combine multiple heartbeat aggregates into one. This can be used to combine aggregates into adjacent intervals into one
 larger interval, such as rolling daily aggregates into a weekly or monthly aggregate.
@@ -40,3 +40,5 @@ rollup(
 | Column | Type | Description |
 |--------|------|-------------|
 | rollup | HeartbeatAgg | A heartbeat aggregate covering the interval from the earliest start time of its component aggregates to the latest end time. It combines the live ranges of all the components |
+
+[toolkit-1.15.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.15.0

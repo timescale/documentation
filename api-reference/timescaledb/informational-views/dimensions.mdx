@@ -10,6 +10,8 @@ type: view
 
 import { HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [0.1.0][tsdb-0.1.0]
+
 Returns information about the dimensions of a {HYPERTABLE}. {HYPERTABLE}s can be
 partitioned on a range of different dimensions. By default, all {HYPERTABLE}s are
 partitioned on time, but it is also possible to partition on other dimensions in
@@ -122,3 +124,5 @@ num_partitions    |
 The `time_interval` and `integer_interval` columns are not applicable for space
 based dimensions.
 </Info>
+
+[tsdb-0.1.0]: https://github.com/timescale/timescaledb/releases/tag/0.1.0

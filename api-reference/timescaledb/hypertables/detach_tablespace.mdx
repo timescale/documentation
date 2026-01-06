@@ -11,6 +11,8 @@ type: function
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [0.7.0][tsdb-0.7.0]
+
 Detach a tablespace from one or more {HYPERTABLE}s. This _only_ means
 that _new_ {CHUNK}s are not placed on the detached tablespace. This
 is useful, for instance, when a tablespace is running low on disk
@@ -54,7 +56,7 @@ SELECT detach_tablespace(
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
 | `tablespace` | TEXT | - | ✔ | Tablespace to detach.|
-| `hypertable` | REGCLASS | - | ✖ | Hypertable to detach a the tablespace from.|
+| `hypertable` | REGCLASS | - | ✖ | Hypertable to detach the tablespace from.|
 | `if_attached` | BOOLEAN | `FALSE` | ✖ | Set to true to avoid throwing an error if the tablespace is not attached to the given table. A notice is issued instead. |
 
 When giving only the tablespace name as argument, the given tablespace
@@ -66,3 +68,13 @@ is issued.
 When specifying a specific {HYPERTABLE}, the tablespace is only
 detached from the given {HYPERTABLE} and thus may remain attached to
 other {HYPERTABLE}s.
+
+## Returns
+
+| Name | Type | Description |
+|-|-|-|
+| detach_tablespace | INTEGER | The number of {HYPERTABLE}s from which the tablespace was detached. |
+
+When called with both `tablespace` and `hypertable` arguments, returns 1 if the tablespace was successfully detached from the specified {HYPERTABLE}. When called with only the `tablespace` argument, returns the total number of {HYPERTABLE}s from which the tablespace was detached.
+
+[tsdb-0.7.0]: https://github.com/timescale/timescaledb/releases/tag/0.7.0

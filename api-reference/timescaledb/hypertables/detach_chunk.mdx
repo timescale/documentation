@@ -9,15 +9,16 @@ products: [cloud, mst, self_hosted]
 ---
 
 
-import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+import { CHUNK, CHUNK_CAP, COLUMNSTORE, HYPERTABLE, HYPERTABLE_CAP } from '/snippets/vars.mdx';
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.21.0
+<Icon icon="tag" iconType="duotone" /> Since [2.21.0][tsdb-2.21.0]
 
 <Tag>Community</Tag>
 
 Separate a {CHUNK} from a [{HYPERTABLE}][hypertables-section].
 
-![Hypertable structure](https://assets.timescale.com/docs/images/hypertable-structure.png)
+![Hypertable structure][hypertable-structure]
 
 The {CHUNK} becomes a standalone {HYPERTABLE} with the same name and schema. All existing constraints and
 indexes on the {CHUNK} are preserved after detaching. Foreign keys are dropped.
@@ -50,7 +51,9 @@ CALL detach_chunk(
 
 ## Returns
 
-This function returns void.
+<ReturnsVoid />
 
+[hypertable-structure]: https://assets.timescale.com/docs/images/hypertable-structure.png
 [hypertables-section]: /use-timescale/hypertables/
 [setup-hypercore]: /use-timescale/hypercore/real-time-analytics-in-hypercore/
+[tsdb-2.21.0]: https://github.com/timescale/timescaledb/releases/tag/2.21.0

@@ -4,6 +4,7 @@ description: Change compression settings on a compressed hypertable
 topics: [compression]
 keywords: [compression]
 tags: [settings, hypertables, alter, change]
+tag: Old API
 license: community
 type: command
 products: [cloud, mst, self_hosted]
@@ -11,7 +12,9 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, CHUNK, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [ALTER TABLE (Hypercore)][alter-table-hypercore].
+<Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
+
+<Icon icon="archive" iconType="duotone" /> Old API [v2.18.0][tsdb-2.18.0]. Superseded by [ALTER TABLE (Hypercore)][alter-table-hypercore].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 Use 'ALTER TABLE' to turn on compression and set compression options.
@@ -68,6 +71,8 @@ ALTER TABLE metrics SET (timescaledb.compress_chunk_time_interval = '0');
 | `column_name` | TEXT | Column used to order by or segment by |
 | `interval` | TEXT | Time interval used to roll compressed {CHUNK}s into |
 
-[alter-table-hypercore]: /api-reference/timescaledb/hypercore/alter_table
 [add-compression-policy]: /api-reference/timescaledb/compression/add_compression_policy
+[alter-table-hypercore]: /api-reference/timescaledb/hypercore/alter_table
 [compress-chunk]: /api-reference/timescaledb/compression/compress_chunk
+[tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

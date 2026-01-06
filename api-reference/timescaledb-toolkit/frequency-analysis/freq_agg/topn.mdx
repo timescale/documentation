@@ -12,9 +12,9 @@ hyperfunction:
     - freq_agg()
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+<Icon icon="tag" iconType="duotone" /> Since [1.16.0][toolkit-1.16.0]
 
-Get the top N most common values from a space-saving aggregate. The space-saving aggregate can be created from either [`freq_agg`](#freq_agg) or [`mcv_agg`](#mcv_agg).
+Get the top N most common values from a space-saving aggregate. The space-saving aggregate can be created from either [`freq_agg`][freq-agg] or [`mcv_agg`][mcv-agg].
 
 ## Samples
 
@@ -36,7 +36,7 @@ topn (
 ```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| `agg` | SpacingsavingAggregate | - | ✔ | A space-saving aggregate created using either [`freq_agg`](#freq_agg) or [`mcv_agg`](#mcv_agg) |
+| `agg` | SpacingsavingAggregate | - | ✔ | A space-saving aggregate created using either [`freq_agg`][freq-agg] or [`mcv_agg`][mcv-agg] |
 | `n` | INTEGER | - | ✔ | The number of values to return. Required only for frequency aggregates. For top N aggregates, defaults to target N of the aggregate itself, and requests for a higher N return an error. In some cases, the function might return fewer than N values. This might happen if a frequency aggregate doesn't contain N values above the minimum frequency, or if the data isn't skewed enough to support N values from a top N aggregate. |
 
 ## Returns
@@ -45,3 +45,6 @@ topn (
 |--------|------|-------------|
 | topn | AnyElement | The N most-frequent values in the aggregate |
 
+[freq-agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/freq_agg
+[mcv-agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/mcv_agg
+[toolkit-1.16.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.16.0

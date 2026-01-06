@@ -11,7 +11,9 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
-Override the [`now()`](https://www.postgresql.org/docs/16/functions-datetime.html) date/time function used to
+<Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
+
+Override the [`now()`][now] date/time function used to
 set the current time in the integer `time` column in a {HYPERTABLE}. Many policies only apply to
 [{CHUNK}s][chunks] of a certain age. `integer_now_func` determines the age of each {CHUNK}.
 
@@ -22,7 +24,7 @@ The function you set as `integer_now_func` has no arguments. It must be either:
   plan, especially if you have a lot of {CHUNK}s.
 
 - `STABLE`: `integer_now_func` is evaluated just before query execution starts.
-  [{CHUNK} pruning](https://www.timescale.com/blog/optimizing-queries-timescaledb-hypertables-with-partitions-postgresql-6366873a995d) is executed at runtime. This generates a correct result, but may increase
+  [{CHUNK} pruning][chunk-pruning] is executed at runtime. This generates a correct result, but may increase
   planning time.
 
 `set_integer_now_func` does not work on tables where the `time` column type is `TIMESTAMP`, `TIMESTAMPTZ`, or
@@ -30,7 +32,7 @@ The function you set as `integer_now_func` has no arguments. It must be either:
 
 ## Samples
 
-Set the integer `now` function for a {HYPERTABLE} with a time column in [unix time](https://en.wikipedia.org/wiki/Unix_time).
+Set the integer `now` function for a {HYPERTABLE} with a time column in [unix time][unix-time].
 
 - `IMMUTABLE`: when you execute the query each time:
     ```sql
@@ -64,5 +66,12 @@ SELECT set_integer_now_func(
 |`integer_now_func`|REGPROC| - | ✔ | A function that returns the current time set in each row in the `time` column in `main_table`.|
 |`replace_if_exists`|BOOLEAN| `FALSE` | ✖ | Set to `true` to override `integer_now_func` when you have previously set a custom function. |
 
+## Returns
 
+This function returns void.
+
+[chunk-pruning]: https://www.timescale.com/blog/optimizing-queries-timescaledb-hypertables-with-partitions-postgresql-6366873a995d
 [chunks]: /use-timescale/hypertables/#hypertable-partitioning
+[now]: https://www.postgresql.org/docs/16/functions-datetime.html
+[tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0
+[unix-time]: https://en.wikipedia.org/wiki/Unix_time

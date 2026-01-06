@@ -12,6 +12,8 @@ products: [cloud, self_hosted, mst]
 
 import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [1.3.0][tsdb-1.3.0]
+
 {CAGG_CAP} views can be dropped using the `DROP MATERIALIZED VIEW` statement.
 
 This statement deletes the {CAGG} and all its internal
@@ -45,3 +47,11 @@ DROP MATERIALIZED VIEW [IF EXISTS] <view_name>;
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `<view_name>` | TEXT | - | ✔ | Name (optionally schema-qualified) of {CAGG} view to be dropped. |
+
+## Returns
+
+For standard `DROP MATERIALIZED VIEW` return behavior, see the [PostgreSQL DROP MATERIALIZED VIEW documentation][postgres-drop-matview].
+
+[postgres-drop-matview]: https://www.postgresql.org/docs/current/sql-dropmaterializedview.html
+
+[tsdb-1.3.0]: https://github.com/timescale/timescaledb/releases/tag/1.3.0

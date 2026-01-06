@@ -8,7 +8,6 @@ toolkit: true
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="flask" /> Early access 1.6.0
 
 Analyze data coming from gauges. Unlike counters, gauges can decrease as well as increase.
 
@@ -84,25 +83,26 @@ ORDER BY hour;
 ### Mutator
 - [`with_bounds()`][with_bounds]: add time bounds to a gauge aggregate for extrapolation
 
+[corr]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/corr
+[counter_agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg
+[delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/delta
+[extrapolated_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_delta
+[extrapolated_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_rate
+[gauge_agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
+[gauge_zero_time]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_zero_time
+[idelta_left]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_left
+[idelta_right]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_right
+[intercept]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/intercept
+[interpolated_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_delta
+[interpolated_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_rate
+[irate_left]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_left
+[irate_right]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_right
+[num_changes]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_changes
+[num_elements]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_elements
+[rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rate
+[rollup]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rollup
+[slope]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/slope
+[time_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/time_delta
+[toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0
 [two-step-aggregation]: #two-step-aggregation
-[counter_agg]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/counter_agg/index
-[gauge_agg]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/gauge_agg
-[corr]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/corr
-[delta]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/delta
-[extrapolated_delta]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/extrapolated_delta
-[extrapolated_rate]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/extrapolated_rate
-[gauge_zero_time]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/gauge_zero_time
-[idelta_left]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/idelta_left
-[idelta_right]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/idelta_right
-[intercept]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/intercept
-[interpolated_delta]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/interpolated_delta
-[interpolated_rate]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/interpolated_rate
-[irate_left]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/irate_left
-[irate_right]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/irate_right
-[num_changes]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/num_changes
-[num_elements]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/num_elements
-[rate]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/rate
-[slope]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/slope
-[time_delta]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/time_delta
-[rollup]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/rollup
-[with_bounds]: /api-reference/timescaledb/hyperfunctions/counters-and-gauges/gauge_agg/with_bounds
+[with_bounds]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/with_bounds

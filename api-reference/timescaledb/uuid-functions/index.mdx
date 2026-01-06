@@ -14,7 +14,7 @@ import { HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 UUIDv7 is a time-ordered UUID that includes a Unix timestamp with millisecond precision in its first 48 bits. Like
 other UUIDs it uses 6 bits for version and variant info. The remaining 74 bits are random.
 
-![UUIDv7 microseconds](https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg)
+![UUIDv7 microseconds][uuidv7-microseconds]
 
 UUIDv7 is ideal anywhere you create lots of records over time. Advantages are:
 
@@ -105,3 +105,4 @@ You use UUIDs for events, orders, messages, uploads, runs, jobs, spans, and more
 [uuid_timestamp]: /api-reference/timescaledb/uuid-functions/uuid_timestamp
 [uuid_timestamp_micros]: /api-reference/timescaledb/uuid-functions/uuid_timestamp_micros
 [uuid_version]: /api-reference/timescaledb/uuid-functions/uuid_version
+[uuidv7-microseconds]: https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg

@@ -11,7 +11,7 @@ products: [cloud, self_hosted, mst]
 
 import { CAGG, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
-<Icon icon="flask" /> Early access
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.10.0][tsdb-2.10.0]
 
 Add refresh, compression, and data retention policies to a {CAGG}
 in one step. The added compression and retention policies apply to the
@@ -88,3 +88,5 @@ time bucket is based on integers.
 Returns `true` if successful.
 
 [add_continuous_aggregate_policy]: /api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy
+
+[tsdb-2.10.0]: https://github.com/timescale/timescaledb/releases/tag/2.10.0

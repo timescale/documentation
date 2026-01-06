@@ -8,11 +8,10 @@ toolkit: true
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="flask" /> Early access 1.5.0
 
 Get the most common elements of a set and their relative frequency. The estimation uses the SpaceSaving algorithm.
 
-This group of functions contains two aggregate functions, which let you set the cutoff for keeping track of a value in different ways. [`freq_agg`](#freq_agg) allows you to specify a minimum frequency, and [`mcv_agg`](#mcv_agg) allows you to specify the target number of values to keep.
+This group of functions contains two aggregate functions, which let you set the cutoff for keeping track of a value in different ways. [`freq_agg`][freq-agg] allows you to specify a minimum frequency, and [`mcv_agg`][mcv-agg] allows you to specify the target number of values to keep.
 
 To estimate the absolute number of times a value appears, use [`count_min_sketch`][count_min_sketch].
 
@@ -85,8 +84,8 @@ The output for this query looks like this, with some variation due to randomness
 ## Available functions
 
 ### Aggregates
-- [`freq_agg()`][freq_agg]: aggregate data into a space-saving aggregate with a minimum frequency cutoff
-- [`mcv_agg()`][mcv_agg]: aggregate data into a space-saving aggregate with a target number of values
+- [`freq_agg()`][freq-agg]: aggregate data into a space-saving aggregate with a minimum frequency cutoff
+- [`mcv_agg()`][mcv-agg]: aggregate data into a space-saving aggregate with a target number of values
 
 ### Accessors
 - [`into_values()`][into_values]: return the values and their estimated frequencies from a frequency aggregate
@@ -97,12 +96,13 @@ The output for this query looks like this, with some variation due to randomness
 ### Rollup
 - [`rollup()`][rollup]: combine multiple frequency aggregates
 
+[count_min_sketch]: /api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch
+[freq-agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/freq_agg
+[into_values]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/into_values
+[max_frequency]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/max_frequency
+[mcv-agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/mcv_agg
+[min_frequency]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/min_frequency
+[rollup]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/rollup
+[toolkit-1.5.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.5.0
+[topn]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/topn
 [two-step-aggregation]: #two-step-aggregation
-[count_min_sketch]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/count_min_sketch/index
-[freq_agg]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/freq_agg
-[mcv_agg]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/mcv_agg
-[into_values]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/into_values
-[max_frequency]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/max_frequency
-[min_frequency]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/min_frequency
-[topn]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/topn
-[rollup]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/rollup

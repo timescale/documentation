@@ -12,7 +12,7 @@ hyperfunction:
     - uddsketch()
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.0.0
+<Icon icon="tag" iconType="duotone" /> Since [1.0.0][toolkit-1.0.0]
 
 Aggregate data in a UddSketch, using reasonable default values, for further calculation of percentile estimates. This is
 an alternate first step for calculating approximate percentiles. It provides added convenience by using sensible
@@ -21,7 +21,7 @@ defaults to create a `UddSketch`. Internally, it calls `uddsketch` with 200 buck
 Use `percentile_agg` to create an intermediate aggregate from your raw data. This intermediate form can then be used by
 one or more accessors in this group to compute final results.
 
-Optionally, multiple such intermediate aggregate objects can be combined using [`rollup()`](#rollup) before an accessor is applied.
+Optionally, multiple such intermediate aggregate objects can be combined using [`rollup()`][rollup] before an accessor is applied.
 
 ## Samples
 
@@ -57,3 +57,5 @@ percentile_agg(
 |--------|------|-------------|
 | percentile_agg | UddSketch | A percentile estimator object created to calculate percentiles using the `UddSketch` algorithm |
 
+[rollup]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/rollup
+[toolkit-1.0.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.0.0

@@ -8,7 +8,6 @@ toolkit: true
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="flask" /> Early access 1.5.0
 
 Analyze the frequency of values in time-series data using memory-efficient probabilistic data structures. These
 functions help you identify the most common elements and estimate occurrence counts without storing every individual
@@ -72,6 +71,7 @@ FROM sketch;
 ### Count-min sketch
 - [`count_min_sketch()`][count_min_sketch]: estimate absolute counts using the count-min sketch data structure
 
+[count_min_sketch]: /api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch
+[freq_agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg
+[toolkit-1.5.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.5.0
 [two-step-aggregation]: #two-step-aggregation
-[freq_agg]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/freq_agg/index
-[count_min_sketch]: /api-reference/timescaledb/hyperfunctions/frequency-analysis/count_min_sketch/index

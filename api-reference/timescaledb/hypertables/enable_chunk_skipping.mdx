@@ -6,15 +6,16 @@ keywords: [hypertables, chunks, range-tracking, skipping]
 tags: [columns, ranges, min-max, chunks]
 license: apache
 type: function
+experimental: true
 products: [cloud, mst, self_hosted]
 ---
 
 
 import CreateHypertablePolicyNote from '/snippets/manage-data/create-hypertable-columnstore-policy-note.mdx';
 
-import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+import { CHUNK, CHUNK_CAP, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="flask" /> Early access 2.17.1
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.11.0][tsdb-2.11.0]
 
 Enable range statistics for a specific column in a **compressed** {HYPERTABLE}. This tracks a range of values for that
 column per {CHUNK}.
@@ -38,7 +39,7 @@ not participate in partitioning of the data. These ranges are
 used for {CHUNK} skipping when the `WHERE` clause of an SQL query specifies
 ranges on the column.
 
-A [DROP COLUMN](https://www.postgresql.org/docs/current/sql-altertable.html#SQL-ALTERTABLE-DESC-DROP-COLUMN)
+A [DROP COLUMN][drop-column]
 on a column with statistics tracking enabled on it ends up removing all relevant entries
 from the catalog table.
 
@@ -94,8 +95,10 @@ SELECT enable_chunk_skipping(
 
 |Column|Type|Description|
 |-|-|-|
-|`column_stats_id`|INTEGER|ID of the entry in the TimescaleDB internal catalog|
+|`column_stats_id`|INTEGER|ID of the entry in the {TIMESCALE_DB} internal catalog|
 |`enabled`|BOOLEAN|Returns `true` when tracking is enabled, `if_not_exists` is `true`, and when a new entry is not added|
 
-[compress_chunk]: /api-reference/timescaledb/compression/compress_chunk/
-[decompress_chunk]: /api-reference/timescaledb/compression/decompress_chunk/
+[compress_chunk]: /api-reference/timescaledb/compression/compress_chunk
+[decompress_chunk]: /api-reference/timescaledb/compression/decompress_chunk
+[drop-column]: https://www.postgresql.org/docs/current/sql-altertable.html#SQL-ALTERTABLE-DESC-DROP-COLUMN
+[tsdb-2.11.0]: https://github.com/timescale/timescaledb/releases/tag/2.11.0

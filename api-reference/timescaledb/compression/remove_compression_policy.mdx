@@ -4,6 +4,7 @@ description: Remove a compression policy from a hypertable
 topics: [compression, jobs]
 keywords: [compression, policies, remove]
 tags: [delete, drop]
+tag: Old API
 license: community
 type: function
 products: [cloud, mst, self_hosted]
@@ -11,7 +12,9 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [remove_columnstore_policy()][remove-columnstore-policy].
+<Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
+
+<Icon icon="archive" iconType="duotone" /> Old API [v2.18.0][tsdb-2.18.0]. Superseded by [remove_columnstore_policy()][remove-columnstore-policy].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 If you need to remove the compression policy. To restart policy-based compression you need to add the policy again. To
@@ -47,5 +50,7 @@ SELECT remove_compression_policy(
 | `hypertable` | REGCLASS | - | ✔ | Name of the {HYPERTABLE} or {CAGG} the policy should be removed from |
 | `if_exists` | BOOLEAN | false | - | Setting to true causes the command to fail with a notice instead of an error if a compression policy does not exist on the {HYPERTABLE}. |
 
-[remove-columnstore-policy]: /api-reference/timescaledb/hypercore/remove_columnstore_policy
 [informational-views]: /api-reference/timescaledb/informational-views/jobs
+[remove-columnstore-policy]: /api-reference/timescaledb/hypercore/remove_columnstore_policy
+[tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

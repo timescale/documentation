@@ -3,14 +3,15 @@ title: create_hypertable() (old interface)
 description: Create a hypertable
 topics: [hypertables]
 keywords: [hypertables, create]
+tag: Old API
 license: apache
 type: function
 products: [cloud, mst, self_hosted]
 ---
 
-import { TIMESCALE_DB, HYPERTABLE, HYPERTABLE_CAP, PG } from '/snippets/vars.mdx';
+import { CHUNK, HYPERTABLE, HYPERTABLE_CAP, PG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-pause" iconType="duotone" /> Old API since {TIMESCALE_DB} v2.13.0. Use [`create_hypertable`][api-create-hypertable].
+<Icon icon="archive" iconType="duotone" /> Old API [v2.13.0][tsdb-2.13.0]. Use [`create_hypertable`][api-create-hypertable]. <Icon icon="tag" iconType="duotone" /> Since [1.0.0][tsdb-1.0.0]
 
 Creates a {TIMESCALE_DB} {HYPERTABLE} from a {PG} table (replacing the latter),
 partitioned on time and with the option to partition on one or more other
@@ -132,6 +133,18 @@ If you use `SELECT * FROM create_hypertable(...)` you get the return value
 formatted as a table with column headings.
 </Note>
 
+On failure, an error is returned:
+
+| Error | Description |
+|-|-|
+| {HYPERTABLE} "{table_name}" not found | The specified table does not exist |
+| permission denied for schema {schema_name} | Insufficient permissions to access the schema |
+| must be owner of {HYPERTABLE} "{table_name}" | Only the table owner can convert it to a {HYPERTABLE} |
+| permissions denied: cannot create {CHUNK}s in schema "{schema_name}" | Insufficient permissions on the associated schema for {CHUNK}s |
+| table "{table_name}" is already a {HYPERTABLE} | The table has already been converted to a {HYPERTABLE} |
+| table "{table_name}" is not empty | The table contains data and `migrate_data` is not set to true |
+| invalid partitioning function | The specified partitioning function is not valid or has incorrect signature |
+
 The use of the `migrate_data` argument to convert a non-empty table can
 lock the table for a significant amount of time, depending on how much data is
 in the table. It can also run into deadlock if foreign key constraints exist to
@@ -147,7 +160,7 @@ to insert data into tables that are referenced in the foreign key constraints
 and into the converting table itself. The deadlock can be prevented by manually
 obtaining `SHARE ROW EXCLUSIVE` lock on the referenced tables before calling
 `create_hypertable` in the same transaction, see
-[{PG} documentation](https://www.postgresql.org/docs/current/sql-lock.html)
+[{PG} documentation][pg-documentation]
 for the syntax.
 
 ## Units
@@ -198,7 +211,9 @@ not already specified on table creation, `create_hypertable` automatically adds
 this constraint on the table when it is executed.
 </Note>
 
-
+[api-create-hypertable]: /api-reference/timescaledb/hypertables/create_hypertable
 [create_distributed_hypertable]: /api-reference/timescaledb/distributed-hypertables/create_distributed_hypertable
 [hypertable-docs]: /manage-data/data-management/hypertables/understand-hypertables
-[api-create-hypertable]: /api-reference/timescaledb/hypertables/create_hypertable
+[pg-documentation]: https://www.postgresql.org/docs/current/sql-lock.html
+[tsdb-1.0.0]: https://github.com/timescale/timescaledb/releases/tag/1.0.0
+[tsdb-2.13.0]: https://github.com/timescale/timescaledb/releases/tag/2.13.0

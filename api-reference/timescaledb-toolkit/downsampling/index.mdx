@@ -8,7 +8,6 @@ toolkit: true
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.10.1
 
 Downsample your data to visualize trends while preserving fewer data points. Downsampling replaces a set of values with
 a much smaller set that is highly representative of the original data. This is particularly useful for graphing
@@ -74,6 +73,7 @@ FROM unnest((
 ### ASAP smoothing
 - [`asap_smooth()`][asap_smooth]: downsample using the ASAP smoothing algorithm
 
-[lttb]: /api-reference/timescaledb/hyperfunctions/downsampling/lttb
-[gp_lttb]: /api-reference/timescaledb/hyperfunctions/downsampling/gp_lttb
-[asap_smooth]: /api-reference/timescaledb/hyperfunctions/downsampling/asap_smooth
+[asap_smooth]: /api-reference/timescaledb-toolkit/downsampling/asap_smooth
+[gp_lttb]: /api-reference/timescaledb-toolkit/downsampling/gp_lttb
+[lttb]: /api-reference/timescaledb-toolkit/downsampling/lttb
+[toolkit-1.10.1]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.10.1

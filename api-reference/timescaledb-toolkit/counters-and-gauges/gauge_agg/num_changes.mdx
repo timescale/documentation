@@ -13,7 +13,7 @@ topics:
 - hyperfunctions
 ---
 
-<Icon icon="flask" /> Early access 1.6.0
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [1.6.0][toolkit-1.6.0]
 
 Get the number of times the gauge changed during the period summarized by the gauge aggregate.
 
@@ -47,7 +47,7 @@ num_changes(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge summary created using [`gauge_agg`](#gauge_agg) |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge summary created using [`gauge_agg`][gauge-agg] |
 
 
 ## Returns
@@ -55,3 +55,6 @@ num_changes(
 | Column | Type | Description |
 |--------|------|-------------|
 | num_changes | BIGINT | The number of times the counter changed |
+
+[gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
+[toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

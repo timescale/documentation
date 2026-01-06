@@ -9,7 +9,10 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
+import ReturnsNullIfNotHypertable from '/snippets/api-reference/timescaledb/_returns-null-if-not-hypertable.mdx';
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
+
+<Icon icon="tag" iconType="duotone" /> Since [0.2.0][tsdb-0.2.0]
 
 Get information about the disk space used by the {CHUNK}s belonging to a
 {HYPERTABLE}, returning size information for each {CHUNK} table, any
@@ -41,9 +44,7 @@ SELECT * FROM chunks_detailed_size('dist_table')
 The syntax is:
 
 ```sql
-SELECT * FROM chunks_detailed_size(
-    hypertable = '<hypertable_name>'
-);
+SELECT * FROM chunks_detailed_size('<hypertable_name>');
 ```
 
 | Name | Type | Default | Required | Description |
@@ -54,17 +55,14 @@ SELECT * FROM chunks_detailed_size(
 
 |Column|Type|Description|
 |---|---|---|
-|chunk_schema| TEXT | Schema name of the chunk |
-|chunk_name| TEXT | Name of the chunk|
-|table_bytes|BIGINT | Disk space used by the chunk table|
+|chunk_schema| TEXT | Schema name of the {CHUNK} |
+|chunk_name| TEXT | Name of the {CHUNK}|
+|table_bytes|BIGINT | Disk space used by the {CHUNK} table|
 |index_bytes|BIGINT | Disk space used by indexes|
 |toast_bytes|BIGINT | Disk space of toast tables|
-|total_bytes|BIGINT | Total disk space used by the chunk, including all indexes and TOAST data|
+|total_bytes|BIGINT | Total disk space used by the {CHUNK}, including all indexes and TOAST data|
 |node_name| TEXT | Node for which size is reported, applicable only to distributed {HYPERTABLE}s|
 
-<Tip>
+<ReturnsNullIfNotHypertable />
 
-If executed on a relation that is not a {HYPERTABLE}, the function
-returns `NULL`.
-
-</Tip>
+[tsdb-0.2.0]: https://github.com/timescale/timescaledb/releases/tag/0.2.0

@@ -13,7 +13,7 @@ topics:
 - hyperfunctions
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.11.0
+<Icon icon="tag" iconType="duotone" /> Since [1.11.0][toolkit-1.11.0]
 
 Get the value of the last point from a counter aggregate.
 
@@ -47,7 +47,7 @@ last_val(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `cs` | `CounterSummary` | - | ✔ | A counter aggregate produced using [`counter_agg`](#counter_agg) |
+| `cs` | `CounterSummary` | - | ✔ | A counter aggregate produced using [`counter_agg`][counter-agg] |
 
 
 ## Returns
@@ -55,3 +55,6 @@ last_val(
 | Column | Type | Description |
 |--------|------|-------------|
 | last_val | DOUBLE PRECISION | The value of the last point in the counter aggregate |
+
+[counter-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg
+[toolkit-1.11.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.11.0

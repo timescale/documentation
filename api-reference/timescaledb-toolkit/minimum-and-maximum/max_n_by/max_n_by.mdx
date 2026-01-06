@@ -14,7 +14,7 @@ hyperfunction:
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+<Icon icon="tag" iconType="duotone" /> Since [1.16.0][toolkit-1.16.0]
 
 Construct an aggregate that keeps track of the largest values passed through it, as well as some associated data which
 is passed alongside the value.
@@ -42,3 +42,5 @@ max_n_by(
 | Column | Type | Description |
 |--------|------|-------------|
 | max_n_by | MaxNBy | The compiled aggregate. Note that the exact type will be MaxByInts, MaxByFloats, or MaxByTimes depending on the input type |
+
+[toolkit-1.16.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.16.0

@@ -9,7 +9,7 @@ type: view
 
 import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
 
-<Icon icon="flask" /> Early access
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.10.0][tsdb-2.10.0]
 
 The `policies` view provides information on all policies set on {CAGG}s.
 
@@ -70,3 +70,5 @@ hypertable_name   | _materialized_hypertable_2
 | `config` | JSONB | Configuration details for the policy job |
 | `hypertable_schema` | TEXT | Schema of the {HYPERTABLE} that contains the actual data for the {CAGG} view |
 | `hypertable_name` | TEXT | Name of the {HYPERTABLE} that contains the actual data for the {CAGG} view |
+
+[tsdb-2.10.0]: https://github.com/timescale/timescaledb/releases/tag/2.10.0

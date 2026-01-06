@@ -11,6 +11,8 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, CHUNK, CAGG } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [0.1.0][tsdb-0.1.0]
+
 Removes data {CHUNK}s whose time range falls completely before (or
 after) a specified time. Shows a list of the {CHUNK}s that were
 dropped, in the same style as the `show_chunks` [function][show_chunks].
@@ -30,70 +32,69 @@ based on a hash partition.
 
 ## Samples
 
-Drop all {CHUNK}s from {HYPERTABLE} `conditions` older than 3 months:
+- **Drop all {CHUNK}s from {HYPERTABLE} `conditions` older than 3 months**:
 
-```sql
-SELECT drop_chunks('conditions', INTERVAL '3 months');
-```
+    ```sql
+    SELECT drop_chunks('conditions', INTERVAL '3 months');
+    ```
 
-Example output:
+    Example output:
 
-```sql
-              drop_chunks
-----------------------------------------
- _timescaledb_internal._hyper_3_5_chunk
- _timescaledb_internal._hyper_3_6_chunk
- _timescaledb_internal._hyper_3_7_chunk
- _timescaledb_internal._hyper_3_8_chunk
- _timescaledb_internal._hyper_3_9_chunk
-(5 rows)
-```
+    ```sql
+                  drop_chunks
+    ----------------------------------------
+     _timescaledb_internal._hyper_3_5_chunk
+     _timescaledb_internal._hyper_3_6_chunk
+     _timescaledb_internal._hyper_3_7_chunk
+     _timescaledb_internal._hyper_3_8_chunk
+     _timescaledb_internal._hyper_3_9_chunk
+    (5 rows)
+    ```
 
-Drop all {CHUNK}s from {HYPERTABLE} `conditions` created before 3 months:
+- **Drop all {CHUNK}s from {HYPERTABLE} `conditions` created before 3 months**:
 
-```sql
-SELECT drop_chunks('conditions', created_before => now() -  INTERVAL '3 months');
-```
+    ```sql
+    SELECT drop_chunks('conditions', created_before => now() -  INTERVAL '3 months');
+    ```
 
-Drop all {CHUNK}s more than 3 months in the future from {HYPERTABLE}
-`conditions`. This is useful for correcting data ingested with
-incorrect clocks:
+- **Drop all {CHUNK}s more than 3 months in the future from {HYPERTABLE} `conditions`**:
 
-```sql
-SELECT drop_chunks('conditions', newer_than => now() + interval '3 months');
-```
+    This is useful for correcting data ingested with incorrect clocks:
 
-Drop all {CHUNK}s from {HYPERTABLE} `conditions` before 2017:
+    ```sql
+    SELECT drop_chunks('conditions', newer_than => now() + interval '3 months');
+    ```
 
-```sql
-SELECT drop_chunks('conditions', '2017-01-01'::date);
-```
+- **Drop all {CHUNK}s from {HYPERTABLE} `conditions` before 2017**:
 
-Drop all {CHUNK}s from {HYPERTABLE} `conditions` before 2017, where time
-column is given in milliseconds from the UNIX epoch:
+    ```sql
+    SELECT drop_chunks('conditions', '2017-01-01'::date);
+    ```
 
-```sql
-SELECT drop_chunks('conditions', 1483228800000);
-```
+- **Drop all {CHUNK}s from {HYPERTABLE} `conditions` before 2017, where time column is given in milliseconds from the UNIX epoch**:
 
-Drop all {CHUNK}s older than 3 months ago and newer than 4 months ago from {HYPERTABLE} `conditions`:
+    ```sql
+    SELECT drop_chunks('conditions', 1483228800000);
+    ```
 
-```sql
-SELECT drop_chunks('conditions', older_than => INTERVAL '3 months', newer_than => INTERVAL '4 months')
-```
+- **Drop all {CHUNK}s older than 3 months ago and newer than 4 months ago from {HYPERTABLE} `conditions`**:
 
-Drop all {CHUNK}s created 3 months ago and created 4 months before from {HYPERTABLE} `conditions`:
+    ```sql
+    SELECT drop_chunks('conditions', older_than => INTERVAL '3 months', newer_than => INTERVAL '4 months')
+    ```
 
-```sql
-SELECT drop_chunks('conditions', created_before => INTERVAL '3 months', created_after => INTERVAL '4 months')
-```
+- **Drop all {CHUNK}s created 3 months ago and created 4 months before from {HYPERTABLE} `conditions`**:
 
-Drop all {CHUNK}s older than 3 months ago across all {HYPERTABLE}s:
+    ```sql
+    SELECT drop_chunks('conditions', created_before => INTERVAL '3 months', created_after => INTERVAL '4 months')
+    ```
 
-```sql
-SELECT drop_chunks(format('%I.%I', hypertable_schema, hypertable_name)::regclass, INTERVAL '3 months')
-  FROM timescaledb_information.hypertables;
-```
+- **Drop all {CHUNK}s older than 3 months ago across all {HYPERTABLE}s**:
+
+    ```sql
+    SELECT drop_chunks(format('%I.%I', hypertable_schema, hypertable_name)::regclass, INTERVAL '3 months')
+      FROM timescaledb_information.hypertables;
+    ```
 
 ## Arguments
 
@@ -172,4 +173,14 @@ The `created_before`/`created_after` parameters cannot be used together with
 `older_than`/`newer_than`.
 </Note>
 
-[show_chunks]: /api-reference/timescaledb/hypertables/show_chunks/
+## Returns
+
+| Column | Type | Description |
+|-|-|-|
+| drop_chunks | TEXT | The name of each {CHUNK} that was dropped. Returns one row per dropped {CHUNK}. |
+
+The function returns a set of {CHUNK} names in the format `_timescaledb_internal._hyper_X_Y_chunk`, where each row represents a {CHUNK} that was successfully dropped. If no {CHUNK}s match the specified criteria, the function returns an empty result set.
+
+[show_chunks]: /api-reference/timescaledb/hypertables/show_chunks
+
+[tsdb-0.1.0]: https://github.com/timescale/timescaledb/releases/tag/0.1.0

@@ -11,7 +11,7 @@ products: [cloud, mst, self_hosted]
 
 import { COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
+<Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 <Tag>Community</Tag>
 
@@ -62,9 +62,7 @@ To retrieve compression statistics:
 The syntax is:
 
 ```sql
-SELECT * FROM hypertable_columnstore_stats(
-    hypertable = '<hypertable_name>'
-);
+SELECT * FROM hypertable_columnstore_stats('<hypertable_name>');
 ```
 
 |Name|Type|Description|
@@ -88,3 +86,5 @@ SELECT * FROM hypertable_columnstore_stats(
 |`node_name`|TEXT|nodes on which the {HYPERTABLE} is located, applicable only to distributed {HYPERTABLE}s. Returns `NULL` if `compression_status` == `Uncompressed`. |
 
 [hypertable-docs]: /manage-data/data-management/hypertables
+
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

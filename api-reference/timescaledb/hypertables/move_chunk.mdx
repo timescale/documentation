@@ -14,6 +14,8 @@ import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, PG } from '/snippets/vars
 
 <Tag>Community</Tag>
 
+<Icon icon="tag" iconType="duotone" /> Since [1.3.0][tsdb-1.3.0]
+
 TimescaleDB allows you to move data and indexes to different tablespaces. This
 allows you to move data to more cost-effective storage as it ages.
 
@@ -65,6 +67,11 @@ SELECT move_chunk(
 |`reorder_index`|REGCLASS| - | ✖ |The name of the index (on either the {HYPERTABLE} or {CHUNK}) to order by|
 |`verbose`|BOOLEAN| `FALSE` | ✖ |Setting to true displays messages about the progress of the move_chunk command.|
 
+## Returns
+
+This function returns void.
+
 [manage-storage]: /use-timescale/schema-management/about-tablespaces/
-[postgres-cluster]: https://www.postgresql.org/docs/current/sql-cluster.html
 [postgres-altertable]: https://www.postgresql.org/docs/13/sql-altertable.html
+[postgres-cluster]: https://www.postgresql.org/docs/current/sql-cluster.html
+[tsdb-1.3.0]: https://github.com/timescale/timescaledb/releases/tag/1.3.0

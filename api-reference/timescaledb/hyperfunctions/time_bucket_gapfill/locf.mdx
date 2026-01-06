@@ -11,7 +11,7 @@ hyperfunction:
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.1.1
+<Icon icon="tag" iconType="duotone" /> Since [1.1.1][tsdb-1.1.1]
 
 Fill in missing values by carrying the last observed value forward.
 Use in the same query as [`time_bucket_gapfill`][time_bucket_gapfill].
@@ -37,7 +37,10 @@ SELECT locf(
 
 ## Returns
 
-The gapfilled value. The return type is the type of `value`.
+|Column|Type|Description|
+|-|-|-|
+| `locf` | ANY ELEMENT | The gapfilled value. The return type matches the input `value` type. |
 
-[time_bucket_gapfill]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill
 [interpolate]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/interpolate
+[time_bucket_gapfill]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill
+[tsdb-1.1.1]: https://github.com/timescale/timescaledb/releases/tag/1.1.1

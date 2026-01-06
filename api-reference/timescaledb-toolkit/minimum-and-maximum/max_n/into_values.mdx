@@ -14,7 +14,7 @@ hyperfunction:
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+<Icon icon="tag" iconType="duotone" /> Since [1.16.0][toolkit-1.16.0]
 
 Return the N highest values seen by the aggregate.
 
@@ -32,7 +32,8 @@ FROM (
 ```
 
 Output:
-```
+
+```sql
 into_values
 -------------
 10006
@@ -41,6 +42,7 @@ into_values
 10003
 10002
 ```
+
 
 ## Arguments
 
@@ -61,3 +63,5 @@ into_values (
 | Column | Type | Description |
 |--------|------|-------------|
 | into_values | SETOF BIGINT \| SETOF DOUBLE PRECISION \| SETOF TIMESTAMPTZ | The lowest values seen while creating this aggregate. |
+
+[toolkit-1.16.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.16.0

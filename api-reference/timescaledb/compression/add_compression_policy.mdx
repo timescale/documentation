@@ -4,6 +4,7 @@ description: Add policy to schedule automatic compression of chunks
 topics: [compression, jobs]
 keywords: [compression, policies]
 tags: [scheduled jobs, background jobs, automation framework]
+tag: Old API
 license: community
 type: function
 products: [cloud, mst, self_hosted]
@@ -11,7 +12,9 @@ products: [cloud, mst, self_hosted]
 
 import { CHUNK, HYPERTABLE, CAGG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [add_columnstore_policy()][add-columnstore-policy].
+<Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
+
+<Icon icon="archive" iconType="duotone" /> Old API [v2.18.0][tsdb-2.18.0]. Superseded by [add_columnstore_policy()][add-columnstore-policy].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 Allows you to set a policy by which the system compresses a {CHUNK} automatically in the background after it reaches a
@@ -89,5 +92,7 @@ The `compress_after` parameter should be specified differently depending on the 
 [add-columnstore-policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy
 [compression-alter-table]: /api-reference/timescaledb/compression/alter_table_compression
 [compression-continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/alter_materialized_view
-[set-integer-now-func]: /api-reference/timescaledb/hypertables/set_integer_now_func
 [informational-views]: /api-reference/timescaledb/informational-views/jobs
+[set-integer-now-func]: /api-reference/timescaledb/hypertables/set_integer_now_func
+[tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

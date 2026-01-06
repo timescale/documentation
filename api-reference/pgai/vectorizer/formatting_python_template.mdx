@@ -72,7 +72,7 @@ SELECT ai.create_vectorizer(
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| `template` | `TEXT` | `$chunk` | ✔ | A string using [Python template strings](https://docs.python.org/3/library/string.html#template-strings) with $-prefixed variables that defines how the data should be formatted |
+| `template` | `TEXT` | `$chunk` | ✔ | A string using [Python template strings][python-template-strings] with $-prefixed variables that defines how the data should be formatted |
 
 - The $chunk placeholder is required and represents the text chunk that will be embedded
 - Other placeholders can be used to reference columns from the source table
@@ -81,3 +81,5 @@ SELECT ai.create_vectorizer(
 ## Returns
 
 A JSON configuration object that you can use in `ai.create_vectorizer`.
+
+[python-template-strings]: https://docs.python.org/3/library/string.html#template-strings

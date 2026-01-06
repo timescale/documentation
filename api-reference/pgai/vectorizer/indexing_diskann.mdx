@@ -25,13 +25,15 @@ SELECT ai.create_vectorizer(
 |------|------|---------|----------|-------------|
 | min_rows | int | 100000 | ✖ | The minimum number of rows before creating the index |
 | storage_layout | text | - | ✖ | Set to either `memory_optimized` or `plain` |
-| num_neighbors | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
-| search_list_size | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
-| max_alpha | float8 | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
-| num_dimensions | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
-| num_bits_per_dimension | int | - | ✖ | Advanced [DiskANN](https://github.com/microsoft/DiskANN/tree/main) parameter |
+| num_neighbors | int | - | ✖ | Advanced [DiskANN][diskann] parameter |
+| search_list_size | int | - | ✖ | Advanced [DiskANN][diskann] parameter |
+| max_alpha | float8 | - | ✖ | Advanced [DiskANN][diskann] parameter |
+| num_dimensions | int | - | ✖ | Advanced [DiskANN][diskann] parameter |
+| num_bits_per_dimension | int | - | ✖ | Advanced [DiskANN][diskann] parameter |
 | create_when_queue_empty | boolean | true | ✖ | Create the index only after all of the embeddings have been generated |
 
 ## Returns
 
 A JSON configuration object that you can use in `ai.create_vectorizer`.
+
+[diskann]: https://github.com/microsoft/DiskANN/tree/main

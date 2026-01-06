@@ -4,6 +4,7 @@ description: Get compression-related statistics for chunks
 topics: [compression]
 keywords: [compression, statistics, chunks, information]
 tags: [disk space, schemas, size]
+tag: Old API
 license: community
 type: function
 products: [cloud, mst, self_hosted]
@@ -11,7 +12,9 @@ products: [cloud, mst, self_hosted]
 
 import { CHUNK, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-Old API since [{TIMESCALE_DB} v2.18.0](https://github.com/timescale/timescaledb/releases/tag/2.18.0). Superseded by [chunk_columnstore_stats()][chunk-columnstore-stats].
+<Icon icon="tag" iconType="duotone" /> Since [1.5.0][tsdb-1.5.0]
+
+<Icon icon="archive" iconType="duotone" /> Old API [v2.18.0][tsdb-2.18.0]. Superseded by [chunk_columnstore_stats()][chunk-columnstore-stats].
 However, compression APIs are still supported, you do not need to migrate to the hypercore APIs.
 
 Get {CHUNK}-specific statistics related to {HYPERTABLE} compression. All sizes are in bytes.
@@ -97,3 +100,7 @@ SELECT * FROM chunk_compression_stats(
 | `node_name` | TEXT | nodes on which the {CHUNK} is located, applicable only to distributed {HYPERTABLE}s |
 
 [chunk-columnstore-stats]: /api-reference/timescaledb/hypercore/chunk_columnstore_stats
+
+[tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0
+
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

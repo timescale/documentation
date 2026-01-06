@@ -11,7 +11,7 @@ hyperfunction:
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.16.0
+<Icon icon="tag" iconType="duotone" /> Since [1.16.0][tsdb-1.16.0]
 
 Given a timestamptz, returns how many days are in that month.
 
@@ -36,11 +36,17 @@ days_in_month
 The syntax is:
 
 ```sql
-SELECT days_in_month(
-    date = <date>
-);
+SELECT days_in_month('<date>');
 ```
 
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `date` | TIMESTAMPTZ | - | ✔ | Timestamp to use to calculate how many days in the month |
+
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `days_in_month` | INTEGER | The number of days in the month of the input timestamp. |
+
+[tsdb-1.16.0]: https://github.com/timescale/timescaledb/releases/tag/1.16.0

@@ -13,7 +13,7 @@ topics:
 - hyperfunctions
 ---
 
-<Icon icon="flask" /> Early access 1.8.0
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [1.8.0][toolkit-1.8.0]
 
 Calculate the change in a gauge over the time period covered by a gauge aggregate. Data points at the exact boundaries
 of the time period aren't needed. The function interpolates the gauge values at the boundaries from adjacent gauge
@@ -60,7 +60,7 @@ interpolated_delta(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`][gauge-agg] |
 | `start` | `TIMESTAMPTZ` | - | ✔ | The start of the time period to compute the delta over |
 | `interval` | `INTERVAL` | - | ✔ | The length of the time period to compute the delta over |
 | `prev` | `GaugeSummary` | - |  | The gauge aggregate from the previous interval, used to interpolate the value at `start`. If `NULL`, the first timestamp in `summary` is used as the start of the interval. |
@@ -72,3 +72,6 @@ interpolated_delta(
 | Column | Type | Description |
 |--------|------|-------------|
 | interpolated_delta | DOUBLE PRECISION | The delta between the first and last points of the time interval. If exact values are missing in the raw data for the first and last points, these values are interpolated linearly from the neighboring counter aggregates. |
+
+[gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
+[toolkit-1.8.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.8.0

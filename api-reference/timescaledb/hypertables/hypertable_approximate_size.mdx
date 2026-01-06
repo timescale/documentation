@@ -11,6 +11,8 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, CAGG, PG } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [2.13.0][tsdb-2.13.0]
+
 Get the approximate total disk space used by a {HYPERTABLE} or {CAGG},
 that is, the sum of the size for the table itself including {CHUNK}s,
 any indexes on the table, and any toast tables. The size is reported
@@ -70,9 +72,7 @@ SELECT hypertable_approximate_size('device_stats_15m');
 The syntax is:
 
 ```sql
-SELECT hypertable_approximate_size(
-    hypertable = '<hypertable_name>'
-);
+SELECT hypertable_approximate_size('<hypertable_name>');
 ```
 
 |Name|Type| Default | Required | Description|
@@ -81,7 +81,7 @@ SELECT hypertable_approximate_size(
 
 ## Returns
 
-|Name|Type|Description|
+|Column|Type|Description|
 |-|-|-|
 |hypertable_approximate_size|BIGINT|Total approximate disk space used by the specified {HYPERTABLE}, including all indexes and TOAST data|
 
@@ -93,3 +93,5 @@ SELECT hypertable_approximate_size(
 
 
 [hypertable-docs]: /use-timescale/hypertables/
+
+[tsdb-2.13.0]: https://github.com/timescale/timescaledb/releases/tag/2.13.0

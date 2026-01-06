@@ -11,6 +11,8 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [1.3.0][tsdb-1.3.0]
+
 ```SQL
 CREATE INDEX ... WITH (timescaledb.transaction_per_chunk, ...);
 ```
@@ -59,4 +61,10 @@ CREATE INDEX ON conditions USING brin(time, location)
     WITH (timescaledb.transaction_per_chunk);
 ```
 
+## Returns
+
+The `CREATE INDEX` command does not return a value. Upon successful completion, an index is created on the {HYPERTABLE} and all its {CHUNK}s.
+
 [postgres-createindex]: https://www.postgresql.org/docs/current/sql-createindex.html
+
+[tsdb-1.3.0]: https://github.com/timescale/timescaledb/releases/tag/1.3.0

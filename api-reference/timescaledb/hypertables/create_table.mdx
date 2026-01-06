@@ -8,7 +8,7 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.20.0
+<Icon icon="tag" iconType="duotone" /> Since [2.20.0][tsdb-2.20.0]
 
 
 import OldApiCreateHypertable from '/snippets/manage-data/old-api-create-hypertable.mdx';
@@ -168,19 +168,34 @@ WITH (
 | `tsdb.associated_schema`       |REGCLASS| `_timescaledb_internal`                                                                                                                                                                                                                                                                       |  ✖  | Set the schema name for internal {HYPERTABLE} tables.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `tsdb.associated_table_prefix` |TEXT| `_hyper`                                                                                                                                                                                                                                                                                      | ✖  | Set the prefix for the names of internal {HYPERTABLE} {CHUNK}s.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `tsdb.orderby`                 |TEXT| Descending order on the time column in `table_name`.                                                                                                                                                                                                                                          | ✖| The order in which items are used in the {COLUMNSTORE}. Specified in the same way as an `ORDER BY` clause in a `SELECT` query. Setting `tsdb.orderby` automatically creates an implicit min/max sparse index on the `orderby` column.                                                                                                                                                                                                                                                                                                                                                                                       |
-| `tsdb.segmentby`               |TEXT| {TIMESCALE_DB} looks at [`pg_stats`](https://www.postgresql.org/docs/current/view-pg-stats.html) and determines an appropriate column based on the data cardinality and distribution. If `pg_stats` is not available, {TIMESCALE_DB} looks for an appropriate column from the existing indexes. | ✖| Set the list of columns used to segment data in the {COLUMNSTORE} for `table`. An identifier representing the source of the data such as `device_id` or `tags_id` is usually a good candidate.                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `tsdb.segmentby`               |TEXT| {TIMESCALE_DB} looks at [`pg_stats`][pgstats] and determines an appropriate column based on the data cardinality and distribution. If `pg_stats` is not available, {TIMESCALE_DB} looks for an appropriate column from the existing indexes. | ✖| Set the list of columns used to segment data in the {COLUMNSTORE} for `table`. An identifier representing the source of the data such as `device_id` or `tags_id` is usually a good candidate.                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |`tsdb.sparse_index`| TEXT | {TIMESCALE_DB} evaluates the columns you already have indexed, checks which data types are a good fit for sparse indexing, then creates a sparse index as an optimization.                                                                     | ✖ | Configure the sparse indexes for compressed {CHUNK}s. Requires setting `tsdb.orderby`. Supported index types include: <li> `bloom(<column_name>)`: a probabilistic index, effective for `=` filters. Cannot be applied to `tsdb.orderby` columns.</li> <li> `minmax(<column_name>)`: stores min/max values for each compressed {CHUNK}. Setting `tsdb.orderby` automatically creates an implicit min/max sparse index on the `orderby` column. </li> Define multiple indexes using a comma-separated list. You can set only one index per column. Set to an empty string to avoid using sparse indexes and explicitly disable the default behavior. |
 
 ## Returns
 
-{TIMESCALE_DB} returns a simple message indicating success or failure.
+| Return Value | Type | Description |
+|--------------|------|-------------|
+| CREATE TABLE | Command tag | Command completed successfully |
 
+On failure, an error is returned:
 
-[pg-create-table]: https://www.postgresql.org/docs/current/sql-createtable.html
-[create_hypertable]: /api-reference/timescaledb/hypertables/create_hypertable
-[alter_table_hypercore]: /api-reference/timescaledb/hypercore/alter_table
-[sql-select]: https://www.postgresql.org/docs/current/sql-select.html
+| Error | Description |
+|-------|-------------|
+| `partition column could not be determined` | No timestamp column found for automatic partitioning. Use `tsdb.partition_column` to specify the partitioning column. |
+| `column "<name>" does not exist` | The specified partition column does not exist in the table. |
+| `timescaledb options requires hypertable option` | {TIMESCALE_DB} options used without setting `tsdb.hypertable=true`. |
+| `invalid input syntax for type <type>` | Invalid value for `tsdb.chunk_interval` for the partition column type. |
+| `invalid value for tsdb.create_default_indexes '<value>'` | Value for `tsdb.create_default_indexes` must be a boolean. |
+| `unrecognized parameter "<param>"` | Invalid {TIMESCALE_DB} parameter specified. |
+| `functionality not supported under the current "apache" license` | Feature requires a {TIMESCALE_DB} license with additional capabilities. |
+
 [add-dimension]: /api-reference/timescaledb/hypertables/add_dimension
 [add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy
+[alter_table_hypercore]: /api-reference/timescaledb/hypercore/alter_table
+[create_hypertable]: /api-reference/timescaledb/hypertables/create_hypertable
+[pg-create-table]: https://www.postgresql.org/docs/current/sql-createtable.html
+[pgstats]: https://www.postgresql.org/docs/current/view-pg-stats.html
 [remove_columnstore_policy]: /api-reference/timescaledb/hypercore/remove_columnstore_policy
+[sql-select]: https://www.postgresql.org/docs/current/sql-select.html
+[tsdb-2.20.0]: https://github.com/timescale/timescaledb/releases/tag/2.20.0
 [uuidv7_functions]: /api-reference/timescaledb/uuid-functions

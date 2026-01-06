@@ -11,6 +11,8 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [0.2.0][tsdb-0.2.0]
+
 Get the disk space used by an index on a {HYPERTABLE}, including the
 disk space needed to provide the index on all {CHUNK}s. The size is
 reported in bytes.
@@ -54,9 +56,7 @@ SELECT pg_size_pretty(hypertable_index_size('second_index'));
 The syntax is:
 
 ```sql
-SELECT hypertable_index_size(
-    index_name = '<index_name>'
-);
+SELECT hypertable_index_size('<index_name>');
 ```
 
 |Name|Type| Default | Required | Description|
@@ -75,3 +75,5 @@ If the function is executed on a non-{HYPERTABLE} relation, `NULL` is returned.
 
 
 [hypertable-docs]: /use-timescale/hypertables/
+
+[tsdb-0.2.0]: https://github.com/timescale/timescaledb/releases/tag/0.2.0

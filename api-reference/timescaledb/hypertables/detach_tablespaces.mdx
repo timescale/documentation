@@ -11,6 +11,8 @@ type: function
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP } from '/snippets/vars.mdx';
 
+<Icon icon="tag" iconType="duotone" /> Since [0.7.0][tsdb-0.7.0]
+
 Detach all tablespaces from a {HYPERTABLE}. After issuing this command
 on a {HYPERTABLE}, it no longer has any tablespaces attached to
 it. New {CHUNK}s are instead placed in the database's default
@@ -36,4 +38,12 @@ SELECT detach_tablespaces(
 
 |Name|Type| Default | Required | Description|
 |---|---|---|---|---|
-| `hypertable` | REGCLASS | - | ✔ | Hypertable to detach a the tablespace from.|
+| `hypertable` | REGCLASS | - | ✔ | Hypertable to detach the tablespace from.|
+
+## Returns
+
+| Name | Type | Description |
+|-|-|-|
+| detach_tablespaces | INTEGER | The total number of tablespaces that were detached from the {HYPERTABLE}. |
+
+[tsdb-0.7.0]: https://github.com/timescale/timescaledb/releases/tag/0.7.0

@@ -11,11 +11,9 @@ products: [cloud, mst, self_hosted]
 
 import { PG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Community
+<Icon icon="tag" iconType="duotone" /> Since [2.23.0][tsdb-2.23.0]
 
 Extract a {PG} timestamp with time zone from a UUIDv7 object.
-
-![UUIDv7 microseconds](https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg)
 
 `uuid` contains a millisecond unix timestamp and an optional sub-millisecond fraction.
 This fraction is used to construct the {PG} timestamp.
@@ -49,4 +47,11 @@ SELECT uuid_timestamp(
 | - | - | - | - | - |
 | `uuid` | UUID | - | ✔ | The UUID object to extract the timestamp from |
 
+## Returns
+
+|Column|Type|Description|
+|-|-|-|
+| `uuid_timestamp` | TIMESTAMPTZ | The timestamp extracted from the UUIDv7 object with millisecond precision. |
+
+[tsdb-2.23.0]: https://github.com/timescale/timescaledb/releases/tag/2.23.0
 [uuid_timestamp_micros]: /api-reference/timescaledb/uuid-functions/uuid_timestamp_micros

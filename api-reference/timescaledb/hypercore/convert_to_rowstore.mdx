@@ -9,9 +9,10 @@ products: [cloud, mst, self_hosted]
 ---
 
 import HypercoreManualWorkflow from '/snippets/api-reference/timescaledb/hypercore/_hypercore-manual-workflow.mdx';
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
+<Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 <Tag>Community</Tag>
 
@@ -44,8 +45,13 @@ CALL convert_to_rowstore(
 |`chunk`| REGCLASS | -       | ✖        | Name of the {CHUNK} to be moved to the {ROWSTORE}. |
 |`if_compressed`| BOOLEAN  | `true`  | ✔        | Set to `false` so this job fails with an error rather than an warning if `chunk` is not in the {COLUMNSTORE} |
 
-[job]: /api-reference/timescaledb/jobs-automation/
+## Returns
+
+<ReturnsVoid />
+
 [alter_job]: /api-reference/timescaledb/jobs-automation/alter_job/
 [convert_to_columnstore]: /api-reference/timescaledb/hypercore/convert_to_columnstore/
 [informational-views]: /api-reference/timescaledb/informational-views/jobs/
 [insert]: /manage-data/data-management/write-data/insert/
+[job]: /api-reference/timescaledb/jobs-automation/
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

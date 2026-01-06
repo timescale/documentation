@@ -12,7 +12,7 @@ hyperfunction:
     - state_agg()
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 1.15.0
+<Icon icon="tag" iconType="duotone" /> Since [1.15.0][toolkit-1.15.0]
 
 Get a timeline of all states, showing each time a state is entered and exited.
 
@@ -68,4 +68,6 @@ state_int_timeline(
 | start_time | TIMESTAMPTZ | The time when the state started (inclusive) |
 | end_time | TIMESTAMPTZ | The time when the state ended (exclusive) |
 
-[interpolated_state_timeline]: /api-reference/timescaledb/hyperfunctions/state-tracking/state_agg/interpolated_state_timeline
+[interpolated_state_timeline]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_state_timeline
+
+[toolkit-1.15.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.15.0

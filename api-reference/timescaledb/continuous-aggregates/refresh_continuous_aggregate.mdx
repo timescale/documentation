@@ -8,7 +8,10 @@ type: function
 products: [cloud, self_hosted, mst]
 ---
 
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
+
+<Icon icon="tag" iconType="duotone" /> Since [1.3.0][tsdb-1.3.0]
 
 Refresh all buckets of a {CAGG} in the refresh window given by
 `window_start` and `window_end`.
@@ -114,5 +117,10 @@ not take place when buckets are materialized with no data changes or with
 changes that only occurred in the secondary table used in the JOIN.
 </Warning>
 
-[modify-parameters]: /use-timescale/latest/configuration/customize-configuration/
+## Returns
+
+<ReturnsVoid />
+
 [create_materialized_view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view
+[modify-parameters]: /use-timescale/latest/configuration/customize-configuration/
+[tsdb-1.3.0]: https://github.com/timescale/timescaledb/releases/tag/1.3.0

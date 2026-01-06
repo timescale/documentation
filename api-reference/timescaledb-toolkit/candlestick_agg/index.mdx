@@ -172,9 +172,9 @@ this format:
  2022-10-18 00:00:00-04 │ VTI    │ 188.14 │  188.7 │ 184.71 │ 186.46 │  3906800
 ```
 
-You can use the [`candlestick`](#candlestick) function to transform the data
+You can use the [`candlestick`][candlestick] function to transform the data
 into a form that you'll be able pass to all of the accessors and
-[`rollup`](#rollup) functions. To show that your data is preserved, this example
+[`rollup`][rollup] functions. To show that your data is preserved, this example
 shows how these accessors return a table that looks just like your data:
 
 ``` sql
@@ -216,8 +216,8 @@ FROM cs
 ```
 
 The advantage of transforming your data into the candlestick aggergate form is
-that you can then use other functions in this group, such as [`rollup`](#rollup)
-and [`vwap`](#vwap).
+that you can then use other functions in this group, such as [`rollup`][rollup]
+and [`vwap`][vwap].
 
 Roll up your by-day historical data into weekly buckets and return the Volume
 Weighted Average Price:
@@ -262,17 +262,17 @@ GROUP BY weekly_bucket, symbol
 ### Rollup
 - [`rollup()`][rollup]: roll up multiple candlestick aggregates
 
+[candlestick]: /api-reference/timescaledb-toolkit/candlestick_agg/candlestick
+[candlestick_agg]: /api-reference/timescaledb-toolkit/candlestick_agg/candlestick_agg
+[close]: /api-reference/timescaledb-toolkit/candlestick_agg/close
+[close_time]: /api-reference/timescaledb-toolkit/candlestick_agg/close_time
+[high]: /api-reference/timescaledb-toolkit/candlestick_agg/high
+[high_time]: /api-reference/timescaledb-toolkit/candlestick_agg/high_time
+[low]: /api-reference/timescaledb-toolkit/candlestick_agg/low
+[low_time]: /api-reference/timescaledb-toolkit/candlestick_agg/low_time
+[open]: /api-reference/timescaledb-toolkit/candlestick_agg/open
+[open_time]: /api-reference/timescaledb-toolkit/candlestick_agg/open_time
+[rollup]: /api-reference/timescaledb-toolkit/candlestick_agg/rollup
 [two-step-aggregation]: #two-step-aggregation
-[candlestick_agg]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/candlestick_agg
-[candlestick]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/candlestick
-[open]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/open
-[open_time]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/open_time
-[high]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/high
-[high_time]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/high_time
-[low]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/low
-[low_time]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/low_time
-[close]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/close
-[close_time]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/close_time
-[volume]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/volume
-[vwap]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/vwap
-[rollup]: /api-reference/timescaledb/hyperfunctions/candlestick_agg/rollup
+[volume]: /api-reference/timescaledb-toolkit/candlestick_agg/volume
+[vwap]: /api-reference/timescaledb-toolkit/candlestick_agg/vwap

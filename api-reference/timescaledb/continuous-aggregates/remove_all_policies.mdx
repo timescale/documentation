@@ -11,7 +11,7 @@ products: [cloud, self_hosted, mst]
 
 import { CAGG, HYPERTABLE, COLUMNSTORE } from '/snippets/vars.mdx';
 
-<Icon icon="flask" /> Early access
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.10.0][tsdb-2.10.0]
 
 Remove all policies from a {CAGG}. The removed {COLUMNSTORE} and
 retention policies apply to the {CAGG}, _not_ to the original
@@ -52,4 +52,6 @@ CALL remove_all_policies(
 
 ## Returns
 
-Returns true if successful.
+Returns `true` if successful.
+
+[tsdb-2.10.0]: https://github.com/timescale/timescaledb/releases/tag/2.10.0

@@ -12,9 +12,10 @@ products: [cloud, mst, self_hosted]
 import OldCreateHypertable from '/snippets/api-reference/timescaledb/hypercore/_old-api-create-hypertable.mdx';
 import CreateHypertablePolicyNote from
 '/snippets/api-reference/timescaledb/hypercore/_create-hypertable-columnstore-policy-note.mdx';
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { COLUMNSTORE, ROWSTORE, TIMESCALE_DB, CHUNK, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.18.0
+<Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 Create a [job][job] that automatically moves {CHUNK}s in a {HYPERTABLE} to the {COLUMNSTORE} after a
 specific time interval.
@@ -31,7 +32,7 @@ specific time interval.
 When {COLUMNSTORE} is enabled, [bloom filters][bloom-filters] are enabled by default, and every new {CHUNK} has a bloom
 index.
 Bloom indexes are not retrofitted, existing {CHUNK}s need to be fully recompressed to have the bloom indexes present. If
-you converted {CHUNK}s to {COLUMNSTORE} using {TIMESCALE_DB} [v2.19.3](tsdb-release-2-19-3) or below, to enable bloom filters on that data you have
+you converted {CHUNK}s to {COLUMNSTORE} using {TIMESCALE_DB} [v2.19.3][tsdb-2.19.3] or below, to enable bloom filters on that data you have
 to convert those {CHUNK}s to the {ROWSTORE}, then convert them back to the {COLUMNSTORE}.
 
 To view the policies that you set or the policies that already exist, see [informational views][informational-views].
@@ -46,16 +47,10 @@ policy applies only to the {CHUNK}s that have not yet been converted to {COLUMNS
 
 To create a {COLUMNSTORE} job:
 
-- **Enable {COLUMNSTORE}**
+1. **Enable {COLUMNSTORE}**
 
     For [efficient queries][secondary-indexes] on data in the columnstore, remember to `segmentby` the column you will
     use most often to filter your data.
-    * [Use `ALTER MATERIALIZED VIEW` for a {CAGG}][compression_continuous-aggregate]
-      ```sql
-      ALTER MATERIALIZED VIEW assets_candlestick_daily SET (
-         timescaledb.enable_columnstore = true,
-         timescaledb.segmentby = 'symbol');
-      ```
 
    * [Use `CREATE TABLE` for a {HYPERTABLE}][hypertable-create-table]. The columnstore policy is created automatically.
 
@@ -73,7 +68,15 @@ To create a {COLUMNSTORE} job:
      ```
      <OldCreateHypertable />
 
-- **Add a policy to move {CHUNK}s to the {COLUMNSTORE} at a specific time interval**
+   * [Use `ALTER MATERIALIZED VIEW` for a {CAGG}][compression_continuous-aggregate]
+     ```sql
+     ALTER MATERIALIZED VIEW assets_candlestick_daily SET (
+        timescaledb.enable_columnstore = true,
+        timescaledb.segmentby = 'symbol');
+     ```
+
+
+1. **Add a policy to move {CHUNK}s to the {COLUMNSTORE} at a specific time interval**
 
    For example:
 
@@ -117,7 +120,7 @@ To create a {COLUMNSTORE} job:
       ```
 
 
-- **View the policies that you set or the policies that already exist**
+1. **View the policies that you set or the policies that already exist**
 
    ``` sql
    SELECT * FROM timescaledb_information.jobs
@@ -156,20 +159,25 @@ Calls to `add_columnstore_policy` require either `after` or `created_before`, bu
 | `timezone`                    |TEXT| UTC. However, daylight savings time(DST) changes may shift this alignment.                                                   | ✖        | Set to a valid time zone to mitigate DST shifting. If `initial_start` is set, subsequent executions of this policy are aligned on `initial_start`.                                                                                                                                                                                                                                                                                                                         |
 | `if_not_exists`               |BOOLEAN| `false`                                                                                                                      | ✖        | Set to `true` so this job fails with a warning rather than an error if a {COLUMNSTORE} policy already exists on `hypertable`                                                                                                                                                                                                                                                                                                                                                |
 
-[compression_alter-table]: /api-reference/timescaledb/hypercore/alter_table/
-[compression_continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/alter_materialized_view/
-[set_integer_now_func]: /api-reference/timescaledb/hypertable/set_integer_now_func
-[informational-views]: /api-reference/timescaledb/informational-views/jobs/
-[chunk_time_interval]: /api-reference/timescaledb/hypertable/set_chunk_time_interval/
-[next-start]: /api-reference/timescaledb/informational-views/jobs/#arguments
-[job]: /api-reference/timescaledb/jobs-automation/add_job/
-[remove_columnstore_policy]: /api-reference/timescaledb/hypercore/remove_columnstore_policy/
-[hypertables-section]: /manage-data/data-management/hypertables
-[hypertable-create-table]: /api-reference/timescaledb/hypertable/create_table/
-[hypercore]: /manage-data/data-management/hypercore/
-[secondary-indexes]: /manage-data/data-management/hypercore/secondary-indexes/
-[bloom-filters]: https://en.wikipedia.org/wiki/Bloom_filter
-[create_table_arguments]: /api-reference/timescaledb/hypertable/create_table/#arguments
+## Returns
+
+<ReturnsVoid />
+
+[add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy
 [alter_job_samples]: /api-reference/timescaledb/jobs-automation/alter_job/#samples
-[add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy/
-[tsdb-release-2-19-3]: https://github.com/timescale/timescaledb/releases/tag/2.19.3
+[bloom-filters]: https://en.wikipedia.org/wiki/Bloom_filter
+[chunk_time_interval]: /api-reference/timescaledb/hypertables/set_chunk_time_interval
+[compression_alter-table]: /api-reference/timescaledb/hypercore/alter_table
+[compression_continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/alter_materialized_view
+[create_table_arguments]: /api-reference/timescaledb/hypertables/create_table/#arguments
+[hypercore]: /manage-data/data-management/hypercore/
+[hypertable-create-table]: /api-reference/timescaledb/hypertable/create_table/
+[hypertables-section]: /manage-data/data-management/hypertables
+[informational-views]: /api-reference/timescaledb/informational-views/jobs
+[job]: /api-reference/timescaledb/jobs-automation/add_job/
+[next-start]: /api-reference/timescaledb/informational-views/jobs/#arguments
+[remove_columnstore_policy]: /api-reference/timescaledb/hypercore/remove_columnstore_policy/
+[secondary-indexes]: /manage-data/data-management/hypercore/secondary-indexes/
+[set_integer_now_func]: /api-reference/timescaledb/hypertables/set_integer_now_func
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0
+[tsdb-2.19.3]: https://github.com/timescale/timescaledb/releases/tag/2.19.3

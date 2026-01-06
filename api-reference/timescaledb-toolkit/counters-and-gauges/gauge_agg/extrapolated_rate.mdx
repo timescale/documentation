@@ -13,12 +13,12 @@ topics:
 - hyperfunctions
 ---
 
-<Icon icon="flask" /> Early access 1.6.0
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [1.6.0][toolkit-1.6.0]
 
 Calculate the rate of change of a gauge during the time period specified by the bounds
 in the gauge aggregate. The bounds must be specified for the `extrapolated_rate`
-function to work. You can provide them as part of the original [`gauge_agg`](#gauge_agg)
-call, or by using the [`with_bounds`](#with_bounds) function on an existing
+function to work. You can provide them as part of the original [`gauge_agg`][gauge-agg]
+call, or by using the [`with_bounds`][with-bounds] function on an existing
 gauge aggregate.
 
 
@@ -55,7 +55,7 @@ extrapolated_rate(
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`](#gauge_agg) |
+| `summary` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`][gauge-agg] |
 | `method` | `TEXT` | - | ✔ | The extrapolation method to use. Not case-sensitive. The only allowed value is `prometheus`, for the Prometheus extrapolation protocol. |
 
 
@@ -64,3 +64,7 @@ extrapolated_rate(
 | Column | Type | Description |
 |--------|------|-------------|
 | extrapolated_rate | DOUBLE PRECISION | The extrapolated rate of change of the counter over the timer period of the counter aggregate. |
+
+[gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
+[toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0
+[with-bounds]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/with_bounds

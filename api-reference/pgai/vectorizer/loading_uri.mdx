@@ -9,7 +9,7 @@ type: function
 
 Load the data to embed from a file that is referenced in a column of the source table.
 
-This file path is internally passed to [smart_open](https://github.com/piskvorky/smart_open), so it supports any protocol that smart_open supports, including:
+This file path is internally passed to [smart_open][smartopen], so it supports any protocol that smart_open supports, including:
 
 - Local files
 - Amazon S3
@@ -17,7 +17,7 @@ This file path is internally passed to [smart_open](https://github.com/piskvorky
 - Azure Blob Storage
 - HTTP/HTTPS
 - SFTP
-- and [many more](https://github.com/piskvorky/smart_open/blob/master/help.txt)
+- and [many more][many-more]
 
 ## Environment configuration
 
@@ -50,3 +50,6 @@ SELECT ai.create_vectorizer(
 ## Returns
 
 A JSON configuration object that you can use in `ai.create_vectorizer`.
+
+[many-more]: https://github.com/piskvorky/smart_open/blob/master/help.txt
+[smartopen]: https://github.com/piskvorky/smart_open

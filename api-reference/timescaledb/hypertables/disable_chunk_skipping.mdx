@@ -6,10 +6,13 @@ keywords: [hypertables, chunks, range-tracking, skipping]
 tags: [columns, ranges, min-max, chunks]
 license: apache
 type: function
+experimental: true
 products: [cloud, mst, self_hosted]
 ---
 
-import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, COLUMNSTORE } from '/snippets/vars.mdx';
+import { CHUNK, CHUNK_CAP, COLUMNSTORE, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
+
+<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [2.11.0][tsdb-2.11.0]
 
 Disable range tracking for a specific column in a {HYPERTABLE} **in the {COLUMNSTORE}**.
 
@@ -57,7 +60,7 @@ SELECT disable_chunk_skipping(
 
 |Column|Type|Description|
 |-|-|-|
-|`hypertable_id`|INTEGER|ID of the hypertable in TimescaleDB.|
+|`hypertable_id`|INTEGER|ID of the {HYPERTABLE} in {TIMESCALE_DB}.|
 |`column_name`|TEXT|Name of the column range tracking is disabled for|
 |`disabled`|BOOLEAN|Returns `true` when tracking is disabled. `false` when `if_not_exists` is `true` and the entry was not removed|
 
@@ -69,4 +72,6 @@ and enabled range tracking on a column in the hypertable.
 </Note>
 
 
-[enable_chunk_skipping]: /api-reference/timescaledb/hypertables/enable_chunk_skipping/
+[enable_chunk_skipping]: /api-reference/timescaledb/hypertables/enable_chunk_skipping
+
+[tsdb-2.11.0]: https://github.com/timescale/timescaledb/releases/tag/2.11.0

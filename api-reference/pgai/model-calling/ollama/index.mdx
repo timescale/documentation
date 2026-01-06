@@ -35,7 +35,7 @@ Before using Ollama functions, you need to:
 2. Pull the models you want to use
 3. Ensure your {PG} database can access the Ollama host
 
-For installation instructions, visit [ollama.com](https://ollama.com).
+For installation instructions, visit [ollama.com][ollamacom].
 
 ## Quick start
 
@@ -105,12 +105,16 @@ SELECT ai.ollama_embed('llama2', 'sample text', host => 'http://ollama-server:11
 
 ## Resources
 
-- [Ollama documentation](https://github.com/ollama/ollama/tree/main/docs)
-- [Ollama models library](https://ollama.com/library)
-- [Ollama API reference](https://github.com/ollama/ollama/blob/main/docs/api.md)
+- [Ollama documentation][ollama-documentation]
+- [Ollama models library][ollama-models-library]
+- [Ollama API reference][ollama-api-reference]
 
+[ollama-api-reference]: https://github.com/ollama/ollama/blob/main/docs/api.md
+[ollama-documentation]: https://github.com/ollama/ollama/tree/main/docs
+[ollama-models-library]: https://ollama.com/library
+[ollama_chat_complete]: /api-reference/pgai/model-calling/ollama/ollama_chat_complete
 [ollama_embed]: /api-reference/pgai/model-calling/ollama/ollama_embed
 [ollama_generate]: /api-reference/pgai/model-calling/ollama/ollama_generate
-[ollama_chat_complete]: /api-reference/pgai/model-calling/ollama/ollama_chat_complete
 [ollama_list_models]: /api-reference/pgai/model-calling/ollama/ollama_list_models
 [ollama_ps]: /api-reference/pgai/model-calling/ollama/ollama_ps
+[ollamacom]: https://ollama.com

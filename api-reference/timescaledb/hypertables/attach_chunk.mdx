@@ -8,7 +8,9 @@ type: function
 products: [cloud, mst, self_hosted]
 ---
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.21.0
+<Icon icon="tag" iconType="duotone" /> Since [2.21.0][tsdb-2.21.0]
+
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK } from '/snippets/vars.mdx';
 
@@ -16,7 +18,7 @@ import { HYPERTABLE, HYPERTABLE_CAP, CHUNK } from '/snippets/vars.mdx';
 
 Attach a {HYPERTABLE} as a {CHUNK} in another {HYPERTABLE} at a given slice in a dimension.
 
-![Hypertable structure](https://assets.timescale.com/docs/images/hypertable-structure.png)
+![Hypertable structure][hypertable-structure]
 
 The schema, name, existing constraints, and indexes of `chunk` do not change, even
 if a constraint conflicts with a {CHUNK} constraint in `hypertable`.
@@ -61,6 +63,8 @@ CALL attach_chunk(
 
 ## Returns
 
-This function returns void.
+<ReturnsVoid />
 
 [hypertable-detach-chunk]: /api-reference/timescaledb/hypertables/detach_chunk
+[hypertable-structure]: https://assets.timescale.com/docs/images/hypertable-structure.png
+[tsdb-2.21.0]: https://github.com/timescale/timescaledb/releases/tag/2.21.0

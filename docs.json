@@ -8,7 +8,8 @@
     "dark": "#000"
   },
   "styling": {
-    "codeblocks": "dark"
+    "codeblocks": "dark",
+    "eyebrows": "breadcrumbs"
   },
   "seo": {
     "metatags": {
@@ -36,7 +37,8 @@
                   {
                     "group": " ",
                     "pages": [
-                      "deploy-and-operate/index"
+                      "deploy-and-operate/index",
+                      "deploy-and-operate/tiger-cloud/index"
                     ]
                   },
                   {
@@ -975,7 +977,10 @@
                   {
                     "group": "Semantic search",
                     "pages": [
-                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started"
+                      "agentic-postgres/key-vector-database-concepts",
+                      "agentic-postgres/pgvectorscale/pgvectorscale-get-started",
+                      "agentic-postgres/interfaces/sql-interface",
+                      "agentic-postgres/interfaces/python-interface"
                     ]
                   },
                   {
@@ -1646,74 +1651,6 @@
                 "item": "Configuration and deployment",
                 "groups": [
                   {
-                    "group": " ",
-                    "pages": [
-                      "integrations/configuration-deployment/terraform"
-                    ]
-                  },
-                  {
-                    "group": "Connectors",
-                    "pages": [
-                      "integrations/connectors/destination/tigerlake",
-                      "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
-                    ]
-                  },
-                  {
-                    "group": "Coding",
-                    "pages": [
-                      "integrations/code/start-coding-with-tigerdata"
-                    ]
-                  },
-                  {
-                    "group": "Configuration and deployment",
-                    "pages": [
-                      "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
-                    ]
-                  },
-                  {
-                    "group": "Data engineering and extract, transform, load",
-                    "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
-                    ]
-                  },
-                  {
-                    "group": "Data ingestion and streaming",
-                    "pages": [
-                      "integrations/integrate/fivetran"
-                    ]
-                  },
-                  {
-                    "group": "Observability and alerting",
-                    "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
-                    ]
-                  },
-                  {
-                    "group": "Query and administration",
-                    "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
                     "group": "Troubleshoot",
                     "pages": [
                       "integrations/troubleshooting"
@@ -2176,6 +2113,17 @@
             "tab": "API",
             "menu": [
               {
+                "item": " ",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "api-reference/overview"
+                    ]
+                  }
+                ]
+              },
+              {
                 "item": "TimescaleDB API",
                 "groups": [
                   {
@@ -2192,7 +2140,9 @@
                         "group": "Table creation",
                         "pages": [
                           "api-reference/timescaledb/hypertables/create_table",
-                          "api-reference/timescaledb/hypertables/create_hypertable"
+                          "api-reference/timescaledb/hypertables/create_hypertable",
+                          "api-reference/timescaledb/hypertables/create_index",
+                          "api-reference/timescaledb/hypertables/create_hypertable_old"
                         ]
                       },
                       {
@@ -2206,14 +2156,10 @@
                           "api-reference/timescaledb/hypertables/split_chunk",
                           "api-reference/timescaledb/hypertables/attach_chunk",
                           "api-reference/timescaledb/hypertables/detach_chunk",
-                          "api-reference/timescaledb/hypertables/set_chunk_time_interval"
-                        ]
-                      },
-                      {
-                        "group": "Dimension management",
-                        "pages": [
+                          "api-reference/timescaledb/hypertables/set_chunk_time_interval",
+                          "api-reference/timescaledb/hypertables/set_integer_now_func",
                           "api-reference/timescaledb/hypertables/add_dimension",
-                          "api-reference/timescaledb/hypertables/set_integer_now_func"
+                          "api-reference/timescaledb/hypertables/add_dimension_old"
                         ]
                       },
                       {
@@ -2249,19 +2195,6 @@
                           "api-reference/timescaledb/hypertables/enable_chunk_skipping",
                           "api-reference/timescaledb/hypertables/disable_chunk_skipping"
                         ]
-                      },
-                      {
-                        "group": "Indexes",
-                        "pages": [
-                          "api-reference/timescaledb/hypertables/create_index"
-                        ]
-                      },
-                      {
-                        "group": "Legacy functions",
-                        "pages": [
-                          "api-reference/timescaledb/hypertables/create_hypertable_old",
-                          "api-reference/timescaledb/hypertables/add_dimension_old"
-                        ]
                       }
                     ]
                   },
@@ -2277,14 +2210,9 @@
                         ]
                       },
                       {
-                        "group": "Configuration",
-                        "pages": [
-                          "api-reference/timescaledb/hypercore/alter_table"
-                        ]
-                      },
-                      {
                         "group": "Manual conversion",
                         "pages": [
+                          "api-reference/timescaledb/hypercore/alter_table",
                           "api-reference/timescaledb/hypercore/convert_to_columnstore",
                           "api-reference/timescaledb/hypercore/convert_to_rowstore"
                         ]
@@ -2310,12 +2238,7 @@
                           "api-reference/timescaledb/continuous-aggregates/create_materialized_view",
                           "api-reference/timescaledb/continuous-aggregates/alter_materialized_view",
                           "api-reference/timescaledb/continuous-aggregates/drop_materialized_view",
-                          "api-reference/timescaledb/continuous-aggregates/cagg_migrate"
-                        ]
-                      },
-                      {
-                        "group": "Refresh CAGGs",
-                        "pages": [
+                          "api-reference/timescaledb/continuous-aggregates/cagg_migrate",
                           "api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate"
                         ]
                       },
@@ -2350,7 +2273,8 @@
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/first",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/last",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month",
-                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize"
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize",
+                          "api-reference/timescaledb/hyperfunctions/legacy/time_bucket_ng"
                         ]
                       },
                       {
@@ -2412,7 +2336,8 @@
                           "api-reference/timescaledb/informational-views/chunks",
                           "api-reference/timescaledb/informational-views/data_nodes",
                           "api-reference/timescaledb/informational-views/dimensions",
-                          "api-reference/timescaledb/informational-views/hypertables"
+                          "api-reference/timescaledb/informational-views/hypertables",
+                          "api-reference/timescaledb/informational-views/continuous_aggregates"
                         ]
                       },
                       {
@@ -2421,12 +2346,6 @@
                           "api-reference/timescaledb/informational-views/chunk_compression_settings",
                           "api-reference/timescaledb/informational-views/compression_settings",
                           "api-reference/timescaledb/informational-views/hypertable_compression_settings"
-                        ]
-                      },
-                      {
-                        "group": "CAGGs",
-                        "pages": [
-                          "api-reference/timescaledb/informational-views/continuous_aggregates"
                         ]
                       },
                       {
@@ -2465,15 +2384,9 @@
                     ]
                   },
                   {
-                    "group": "Compression (Old API, replaced by Hypercore)",
+                    "group": "Compression (replaced by hypercore)",
                     "pages": [
                       "api-reference/timescaledb/compression/index",
-                      {
-                        "group": "Configuration",
-                        "pages": [
-                          "api-reference/timescaledb/compression/alter_table_compression"
-                        ]
-                      },
                       {
                         "group": "Policies",
                         "pages": [
@@ -2484,6 +2397,7 @@
                       {
                         "group": "Manual compression",
                         "pages": [
+                          "api-reference/timescaledb/compression/alter_table_compression",
                           "api-reference/timescaledb/compression/compress_chunk",
                           "api-reference/timescaledb/compression/decompress_chunk",
                           "api-reference/timescaledb/compression/recompress_chunk"
@@ -2844,6 +2758,7 @@
               },
               {
                 "item": "Tiger Cloud REST API",
+                "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml",
                 "groups": [
                   {
                     "group": " ",
@@ -2852,8 +2767,68 @@
                     ]
                   },
                   {
-                    "group": " ",
-                    "openapi": "api-reference/tiger-cloud-rest-api/openapi.yaml"
+                    "group": "Auth",
+                    "expanded": true,
+                    "pages": [
+                      "GET /auth/info"
+                    ]
+                  },
+                  {
+                    "group": "Services",
+                    "expanded": true,
+                    "pages": [
+                      "GET /projects/{project_id}/services",
+                      "POST /projects/{project_id}/services",
+                      "GET /projects/{project_id}/services/{service_id}",
+                      "DELETE /projects/{project_id}/services/{service_id}",
+                      "POST /projects/{project_id}/services/{service_id}/start",
+                      "POST /projects/{project_id}/services/{service_id}/stop",
+                      "POST /projects/{project_id}/services/{service_id}/attachToVPC",
+                      "POST /projects/{project_id}/services/{service_id}/detachFromVPC",
+                      "POST /projects/{project_id}/services/{service_id}/resize",
+                      "POST /projects/{project_id}/services/{service_id}/enablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/disablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/forkService",
+                      "POST /projects/{project_id}/services/{service_id}/updatePassword",
+                      "POST /projects/{project_id}/services/{service_id}/setEnvironment",
+                      "POST /projects/{project_id}/services/{service_id}/setHA"
+                    ]
+                  },
+                  {
+                    "group": "Read Replica Sets",
+                    "expanded": true,
+                    "pages": [
+                      "GET /projects/{project_id}/services/{service_id}/replicaSets",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets",
+                      "DELETE /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/resize",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/enablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/disablePooler",
+                      "POST /projects/{project_id}/services/{service_id}/replicaSets/{replica_set_id}/setEnvironment"
+                    ]
+                  },
+                  {
+                    "group": "VPCs",
+                    "expanded": true,
+                    "pages": [
+                      "GET /projects/{project_id}/vpcs",
+                      "POST /projects/{project_id}/vpcs",
+                      "GET /projects/{project_id}/vpcs/{vpc_id}",
+                      "DELETE /projects/{project_id}/vpcs/{vpc_id}",
+                      "POST /projects/{project_id}/vpcs/{vpc_id}/rename",
+                      "GET /projects/{project_id}/vpcs/{vpc_id}/peerings",
+                      "POST /projects/{project_id}/vpcs/{vpc_id}/peerings",
+                      "GET /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}",
+                      "DELETE /projects/{project_id}/vpcs/{vpc_id}/peerings/{peering_id}"
+                    ]
+                  },
+                  {
+                    "group": "Analytics",
+                    "expanded": true,
+                    "pages": [
+                      "POST /analytics/identify",
+                      "POST /analytics/track"
+                    ]
                   }
                 ]
               },

@@ -10,9 +10,10 @@ deprecated: true
 products: [cloud, mst, self_hosted]
 ---
 
-import { TIMESCALE_DB, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
+import AddDimensionErrors from '/snippets/api-reference/timescaledb/_add-dimension-errors.mdx';
+import { CHUNK, HYPERTABLE, HYPERTABLE_CAP, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<Icon icon="circle-pause" iconType="duotone" /> Deprecated since {TIMESCALE_DB} v2.13.0. Use, [add_dimension()][add-dimension].
+<Icon icon="archive" iconType="duotone" /> Deprecated [v2.13.0][tsdb-2.13.0]. Use [add_dimension()][add-dimension]. <Icon icon="tag" iconType="duotone" /> Since [1.0.0][tsdb-1.0.0]
 
 
 Add an additional partitioning dimension to a {TIMESCALE_DB} {HYPERTABLE}.
@@ -151,6 +152,8 @@ SELECT add_dimension(
 |`column_name`|TEXT|Column name of the column to partition by|
 |`created`|BOOLEAN|True if the dimension was added, false when `if_not_exists` is true and no dimension was added|
 
+<AddDimensionErrors />
+
 When executing this function, either `number_partitions` or
 `chunk_time_interval` must be supplied, which dictates if the
 dimension uses hash or interval partitioning.
@@ -173,6 +176,7 @@ is the number of milliseconds since the UNIX epoch).
  to use at most one "space" dimension.
 </Warning>
 
-
-[create_hypertable]: /api-reference/timescaledb/hypertables/create_hypertable_old
 [add-dimension]: /api-reference/timescaledb/hypertables/add_dimension
+[create_hypertable]: /api-reference/timescaledb/hypertables/create_hypertable_old
+[tsdb-1.0.0]: https://github.com/timescale/timescaledb/releases/tag/1.0.0
+[tsdb-2.13.0]: https://github.com/timescale/timescaledb/releases/tag/2.13.0

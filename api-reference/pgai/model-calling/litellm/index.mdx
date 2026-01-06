@@ -80,7 +80,7 @@ SELECT ai.litellm_embed(
 ## Configuration
 
 LiteLLM typically requires provider-specific configuration through environment variables or the `extra_options`
-parameter. Consult the [LiteLLM documentation](https://docs.litellm.ai/docs/providers) for provider-specific setup.
+parameter. Consult the [LiteLLM documentation][litellm-providers] for provider-specific setup.
 
 ## Available functions
 
@@ -95,12 +95,15 @@ LiteLLM uses a simple naming convention:
 - **OpenAI models**: Use the model name directly (e.g., `text-embedding-ada-002`)
 - **Other providers**: Prefix with provider name (e.g., `azure/deployment-name`, `bedrock/model-id`, `vertex_ai/model-name`)
 
-See the [LiteLLM providers documentation](https://docs.litellm.ai/docs/providers) for the complete list.
+See the [LiteLLM providers documentation][litellm-providers] for the complete list.
 
 ## Resources
 
-- [LiteLLM documentation](https://docs.litellm.ai)
-- [LiteLLM providers](https://docs.litellm.ai/docs/providers)
-- [LiteLLM GitHub](https://github.com/BerriAI/litellm)
+- [LiteLLM documentation][litellm-documentation-1]
+- [LiteLLM providers][litellm-providers]
+- [LiteLLM GitHub][litellm-github]
 
+[litellm-documentation-1]: https://docs.litellm.ai
+[litellm-github]: https://github.com/BerriAI/litellm
+[litellm-providers]: https://docs.litellm.ai/docs/providers
 [litellm_embed]: /api-reference/pgai/model-calling/litellm/litellm_embed

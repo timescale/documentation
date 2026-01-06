@@ -9,9 +9,10 @@ tags: [background jobs, scheduled jobs, automation framework]
 products: [cloud, mst, self_hosted]
 ---
 
+import ReturnsVoid from '/snippets/api-reference/timescaledb/_returns-void.mdx';
 import { JOB_CAP, JOB } from '/snippets/vars.mdx';
 
-<Icon icon="tag" iconType="duotone" /> Community
+<Icon icon="tag" iconType="duotone" /> Community <Icon icon="tag" iconType="duotone" /> Since [1.2.0][tsdb-1.2.0]
 
 Delete a {JOB} registered with the automation framework.
 This works for {JOB}s as well as policies.
@@ -39,3 +40,9 @@ SELECT delete_job(
 | Name | Type | Default | Required | Description |
 |---|---|---|---|---|
 | `job_id` | INTEGER | - | ✔ | TimescaleDB background {JOB} id |
+
+## Returns
+
+<ReturnsVoid />
+
+[tsdb-1.2.0]: https://github.com/timescale/timescaledb/releases/tag/1.2.0
