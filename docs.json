@@ -1389,7 +1389,8 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/index"
+                      "integrations/index",
+                      "integrations/find-connection-details"
                     ]
                   },
                   {
@@ -1397,7 +1398,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -1407,66 +1409,71 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
-                    ]
-                  },
-                  {
-                    "group": "Troubleshoot",
-                    "pages": [
-                      "integrations/troubleshooting"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio"
                     ]
                   },
                   {
                     "group": "Secure connectivity to Tiger Cloud",
                     "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1485,7 +1492,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -1495,66 +1503,72 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
                       "integrations/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Secure connectivity to Tiger Cloud",
-                    "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
                     ]
                   }
                 ]
@@ -1573,7 +1587,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -1583,51 +1598,66 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
                     ]
                   },
                   {
@@ -1635,34 +1665,197 @@
                     "pages": [
                       "integrations/troubleshooting"
                     ]
+                  }
+                ]
+              },
+              {
+                "item": "BI and visualization",
+                "url": "integrations/bi-vizualization/power-bi",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
+                    "group": "Connectors",
+                    "pages": [
+                      "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-postgres",
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
+                    ]
+                  },
+                  {
+                    "group": "Coding",
+                    "pages": [
+                      "integrations/code/start-coding-with-tigerdata"
+                    ]
+                  },
+                  {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
+                    "group": "Configuration and deployment",
+                    "pages": [
+                      "integrations/configuration-deployment/terraform",
+                      "integrations/configuration-deployment/kubernetes"
+                    ]
+                  },
+                  {
+                    "group": "Data engineering and extract, transform, load",
+                    "pages": [
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Data ingestion and streaming",
+                    "pages": [
+                      "integrations/data-ingestion-streaming/fivetran"
+                    ]
+                  },
+                  {
+                    "group": "Observability and alerting",
+                    "pages": [
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
+                    ]
+                  },
+                  {
+                    "group": "Query and administration",
+                    "pages": [
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio"
+                    ]
                   },
                   {
                     "group": "Secure connectivity to Tiger Cloud",
                     "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
               },
               {
                 "item": "Configuration and deployment",
+                "url": "integrations/configuration-deployment/terraform",
                 "groups": [
                   {
-                    "group": "Troubleshoot",
+                    "group": " ",
                     "pages": [
-                      "integrations/troubleshooting"
+                      "integrations/configuration-deployment/terraform",
+                      "integrations/configuration-deployment/kubernetes"
+                    ]
+                  },
+                  {
+                    "group": "Connectors",
+                    "pages": [
+                      "integrations/connectors/destination/tigerlake",
+                      "integrations/connectors/source/sync-from-postgres",
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
+                    ]
+                  },
+                  {
+                    "group": "Coding",
+                    "pages": [
+                      "integrations/code/start-coding-with-tigerdata"
+                    ]
+                  },
+                  {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
+                    "group": "Configuration and deployment",
+                    "pages": [
+                      "integrations/configuration-deployment/terraform",
+                      "integrations/configuration-deployment/kubernetes"
+                    ]
+                  },
+                  {
+                    "group": "Data engineering and extract, transform, load",
+                    "pages": [
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Data ingestion and streaming",
+                    "pages": [
+                      "integrations/data-ingestion-streaming/fivetran"
+                    ]
+                  },
+                  {
+                    "group": "Observability and alerting",
+                    "pages": [
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
+                    ]
+                  },
+                  {
+                    "group": "Query and administration",
+                    "pages": [
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio"
                     ]
                   },
                   {
                     "group": "Secure connectivity to Tiger Cloud",
                     "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "integrations/troubleshooting"
                     ]
                   }
                 ]
@@ -1673,7 +1866,7 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker"
+                      "integrations/data-engineering-etl/amazon-sagemaker"
                     ]
                   },
                   {
@@ -1681,7 +1874,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -1691,66 +1885,72 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
                       "integrations/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Secure connectivity to Tiger Cloud",
-                    "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
                     ]
                   }
                 ]
@@ -1761,7 +1961,7 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
@@ -1769,7 +1969,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -1779,66 +1980,72 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
                       "integrations/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Secure connectivity to Tiger Cloud",
-                    "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
                     ]
                   }
                 ]
@@ -1849,7 +2056,7 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/integrate/cloudwatch"
+                      "integrations/observability-alerting/cloudwatch"
                     ]
                   },
                   {
@@ -1857,7 +2064,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -1867,66 +2075,72 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
                       "integrations/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Secure connectivity to Tiger Cloud",
-                    "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
                     ]
                   }
                 ]
@@ -1937,7 +2151,7 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/integrate/azure-data-studio"
+                      "integrations/query-administration/azure-data-studio"
                     ]
                   },
                   {
@@ -1945,7 +2159,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -1955,66 +2170,72 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
                       "integrations/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Secure connectivity to Tiger Cloud",
-                    "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
                     ]
                   }
                 ]
@@ -2025,7 +2246,7 @@
                   {
                     "group": " ",
                     "pages": [
-                      "integrations/integrate/aws"
+                      "integrations/secure-connectivity/aws"
                     ]
                   },
                   {
@@ -2033,7 +2254,8 @@
                     "pages": [
                       "integrations/connectors/destination/tigerlake",
                       "integrations/connectors/source/sync-from-postgres",
-                      "integrations/connectors/source/sync-from-s3"
+                      "integrations/connectors/source/sync-from-s3",
+                      "integrations/connectors/source/sync-from-kafka"
                     ]
                   },
                   {
@@ -2043,66 +2265,72 @@
                     ]
                   },
                   {
+                    "group": "BI and visualization",
+                    "pages": [
+                      "integrations/bi-vizualization/power-bi",
+                      "integrations/bi-vizualization/tableau"
+                    ]
+                  },
+                  {
                     "group": "Configuration and deployment",
                     "pages": [
                       "integrations/configuration-deployment/terraform",
-                      "integrations/integrate/kubernetes"
+                      "integrations/configuration-deployment/kubernetes"
                     ]
                   },
                   {
                     "group": "Data engineering and extract, transform, load",
                     "pages": [
-                      "integrations/integrate/amazon-sagemaker",
-                      "integrations/integrate/apache-airflow",
-                      "integrations/integrate/apache-kafka",
-                      "integrations/integrate/aws-lambda",
-                      "integrations/integrate/debezium",
-                      "integrations/integrate/decodable"
+                      "integrations/data-engineering-etl/amazon-sagemaker",
+                      "integrations/data-engineering-etl/apache-airflow",
+                      "integrations/data-engineering-etl/apache-kafka",
+                      "integrations/data-engineering-etl/aws-lambda",
+                      "integrations/data-engineering-etl/debezium",
+                      "integrations/data-engineering-etl/decodable",
+                      "integrations/data-engineering-etl/supabase"
                     ]
                   },
                   {
                     "group": "Data ingestion and streaming",
                     "pages": [
-                      "integrations/integrate/fivetran"
+                      "integrations/data-ingestion-streaming/fivetran"
                     ]
                   },
                   {
                     "group": "Observability and alerting",
                     "pages": [
-                      "integrations/integrate/cloudwatch",
-                      "integrations/integrate/datadog",
-                      "integrations/integrate/grafana",
-                      "integrations/integrate/prometheus",
-                      "integrations/integrate/tableau"
+                      "integrations/observability-alerting/cloudwatch",
+                      "integrations/observability-alerting/datadog",
+                      "integrations/observability-alerting/grafana",
+                      "integrations/observability-alerting/prometheus",
+                      "integrations/observability-alerting/telegraf"
                     ]
                   },
                   {
                     "group": "Query and administration",
                     "pages": [
-                      "integrations/integrate/find-connection-details",
-                      "integrations/integrate/azure-data-studio",
-                      "integrations/integrate/dbeaver",
-                      "integrations/integrate/pgadmin",
-                      "integrations/integrate/postgresql",
-                      "integrations/integrate/psql",
-                      "integrations/integrate/qstudio",
-                      "integrations/integrate/power-bi",
-                      "integrations/integrate/supabase"
+                      "integrations/query-administration/azure-data-studio",
+                      "integrations/query-administration/dbeaver",
+                      "integrations/query-administration/pgadmin",
+                      "integrations/query-administration/postgresql",
+                      "integrations/query-administration/psql",
+                      "integrations/query-administration/qstudio",
+                      "integrations/data-engineering-etl/supabase"
+                    ]
+                  },
+                  {
+                    "group": "Secure connectivity to Tiger Cloud",
+                    "pages": [
+                      "integrations/secure-connectivity/aws",
+                      "integrations/secure-connectivity/corporate-data-center",
+                      "integrations/secure-connectivity/google-cloud",
+                      "integrations/secure-connectivity/microsoft-azure"
                     ]
                   },
                   {
                     "group": "Troubleshoot",
                     "pages": [
                       "integrations/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "Secure connectivity to Tiger Cloud",
-                    "pages": [
-                      "integrations/integrate/aws",
-                      "integrations/integrate/corporate-data-center",
-                      "integrations/integrate/google-cloud",
-                      "integrations/integrate/microsoft-azure"
                     ]
                   }
                 ]
