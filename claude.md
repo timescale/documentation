@@ -191,7 +191,7 @@
      title: My Page
      ---
 
-     import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
+     import TwoStepAggregation from '/snippets/reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';
 
      ## Two-step aggregation
 
@@ -222,7 +222,7 @@ When migrating a hyperfunction group (e.g., candlestick_agg, state_agg, time_wei
 For hyperfunction groups that use the two-step aggregation pattern, add these sections to index.mdx in this order:
 
 1. **Two-step aggregation section**:
-   - Import the snippet after the frontmatter: `import TwoStepAggregation from '/snippets/api-reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';`
+   - Import the snippet after the frontmatter: `import TwoStepAggregation from '/snippets/reference/timescaledb/hyperfunctions/two-step-aggregation.mdx';`
    - Add `## Two-step aggregation` heading followed by `<TwoStepAggregation />`
 
 2. **Samples section**: Add `## Samples` with subsections for each example (e.g., `### Get candlestick values from tick data`)
