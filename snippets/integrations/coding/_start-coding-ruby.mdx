@@ -184,6 +184,77 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
     rails db:migrate
     ```
 
+## Insert data your service
+
+The {TIMESCALE_DB} gem provides efficient ways to insert data into {HYPERTABLE}s. This section
+shows you how to ingest test data into your {HYPERTABLE}.
+
+1. **Create a controller to handle page loads**
+
+   Create a new file called `<my_app_home>/app/controllers/application_controller.rb` and add the following code:
+
+   ```ruby
+   class ApplicationController < ActionController::Base
+     around_action :track_page_load
+
+     private
+
+     def track_page_load
+       start_time = Time.current
+       yield
+       end_time = Time.current
+
+       PageLoad.create(
+         path: request.path,
+         user_agent: request.user_agent,
+         performance: (end_time - start_time)
+       )
+     end
+   end
+   ```
+
+1. **Generate some test data**
+
+    Use `bin/console` to join a Rails console session and run the following code
+    to define some random page load access data:
+
+    ```ruby
+    def generate_sample_page_loads(total: 1000)
+      time = 1.month.ago
+      paths = %w[/ /about /contact /products /blog]
+      browsers = [
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.0) Gecko/20100101 Firefox/89.0",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+      ]
+
+      total.times.map do
+        time = time + rand(60).seconds
+        {
+          path: paths.sample,
+          user_agent: browsers.sample,
+          performance: rand(0.1..2.0),
+          created_at: time,
+          updated_at: time
+        }
+      end
+    end
+    ```
+
+1. **Insert the generated data into your {SERVICE_LONG}**
+
+    ```bash
+    # Insert the data in batches
+    PageLoad.insert_all(generate_sample_page_loads, returning: false)
+    ```
+
+1.  **Validate the test data in your {SERVICE_LONG}**
+
+    ```bash
+    PageLoad.count
+    PageLoad.first
+    ```
+
 ## Reference
 
 This section lists the most common tasks you might perform with the {TIMESCALE_DB} gem.
