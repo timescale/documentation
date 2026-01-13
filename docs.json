@@ -3446,6 +3446,962 @@
     {
       "source": "/api-reference/timescaledb/timescaledb-api-reference",
       "destination": "/api-reference/timescaledb/index"
+    },
+    {
+      "source": "/api/latest/hypertable/:slug*",
+      "destination": "/api-reference/timescaledb/hypertables/:slug*"
+    },
+    {
+      "source": "/api/latest/compression/:slug*",
+      "destination": "/api-reference/timescaledb/compression/:slug*"
+    },
+    {
+      "source": "/api/latest/configuration/:slug*",
+      "destination": "/api-reference/timescaledb/configuration/:slug*"
+    },
+    {
+      "source": "/api/latest/data-retention/:slug*",
+      "destination": "/api-reference/timescaledb/data-retention/:slug*"
+    },
+    {
+      "source": "/api/latest/hypercore/:slug*",
+      "destination": "/api-reference/timescaledb/hypercore/:slug*"
+    },
+    {
+      "source": "/api/latest/informational-views/:slug*",
+      "destination": "/api-reference/timescaledb/informational-views/:slug*"
+    },
+    {
+      "source": "/api/latest/jobs-automation/:slug*",
+      "destination": "/api-reference/timescaledb/jobs-automation/:slug*"
+    },
+    {
+      "source": "/api/latest/uuid-functions/:slug*",
+      "destination": "/api-reference/timescaledb/uuid-functions/:slug*"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/add_continuous_aggregate_policy/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/add_policies/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/add_policies"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/alter_materialized_view/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/alter_materialized_view"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/alter_policies/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/alter_policies"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/cagg_migrate/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/cagg_migrate"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/create_materialized_view/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/create_materialized_view"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/drop_materialized_view/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/drop_materialized_view"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/hypertable_detailed_size/",
+      "destination": "/api-reference/timescaledb/hypertables/hypertable_detailed_size"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/hypertable_size/",
+      "destination": "/api-reference/timescaledb/hypertables/hypertable_size"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/refresh_continuous_aggregate/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/remove_all_policies/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/remove_all_policies"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/remove_continuous_aggregate_policy/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/remove_continuous_aggregate_policy"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/remove_policies/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/remove_policies"
+    },
+    {
+      "source": "/api/latest/continuous-aggregates/show_policies/",
+      "destination": "/api-reference/timescaledb/continuous-aggregates/show_policies"
+    },
+    {
+      "source": "/api/latest/api-reference/",
+      "destination": "/api-reference/tiger-cloud-rest-api/introduction"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/approximate-count-distinct/hyperloglog/",
+      "destination": "/api-reference/timescaledb-toolkit/hyperloglog/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/approximate-count-distinct/hyperloglog/approx_count_distinct/",
+      "destination": "/api-reference/timescaledb-toolkit/hyperloglog/approx_count_distinct"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/approximate-count-distinct/hyperloglog/distinct_count/",
+      "destination": "/api-reference/timescaledb-toolkit/hyperloglog/distinct_count"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/approximate-count-distinct/hyperloglog/hyperloglog/",
+      "destination": "/api-reference/timescaledb-toolkit/hyperloglog/hyperloglog"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/approximate-count-distinct/hyperloglog/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/hyperloglog/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/approximate-count-distinct/hyperloglog/stderror/",
+      "destination": "/api-reference/timescaledb-toolkit/hyperloglog/stderror"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/corr/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/corr"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/counter_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/counter_zero_time/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_zero_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/extrapolated_delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/extrapolated_delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/extrapolated_rate/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/extrapolated_rate"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/first_time/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/first_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/first_val/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/first_val"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/idelta_left/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/idelta_left"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/idelta_right/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/idelta_right"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/intercept/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/intercept"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/interpolated_delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/interpolated_delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/interpolated_rate/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/interpolated_rate"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/irate_left/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/irate_left"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/irate_right/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/irate_right"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/last_time/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/last_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/last_val/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/last_val"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/num_changes/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_changes"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/num_elements/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_elements"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/num_resets/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_resets"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/rate/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/rate"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/slope/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/slope"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/time_delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/time_delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/counter_agg/with_bounds/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/with_bounds"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/corr/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/corr"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/extrapolated_delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/extrapolated_rate/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_rate"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/gauge_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/gauge_zero_time/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_zero_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/idelta_left/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_left"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/idelta_right/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_right"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/intercept/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/intercept"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/interpolated_delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/interpolated_rate/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_rate"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/irate_left/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_left"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/irate_right/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_right"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/num_changes/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_changes"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/num_elements/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_elements"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/rate/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rate"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/slope/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/slope"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/time_delta/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/time_delta"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/counters-and-gauges/gauge_agg/with_bounds/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/with_bounds"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/downsampling/downsampling/",
+      "destination": "/api-reference/timescaledb-toolkit/downsampling/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/downsampling/downsampling/asap_smooth/",
+      "destination": "/api-reference/timescaledb-toolkit/downsampling/asap_smooth"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/downsampling/downsampling/gp_lttb/",
+      "destination": "/api-reference/timescaledb-toolkit/downsampling/gp_lttb"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/downsampling/downsampling/lttb/",
+      "destination": "/api-reference/timescaledb-toolkit/downsampling/lttb"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/candlestick/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/candlestick"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/candlestick_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/candlestick_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/close/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/close"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/close_time/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/close_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/high/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/high"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/high_time/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/high_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/low/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/low"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/low_time/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/low_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/open/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/open"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/open_time/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/open_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/volume/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/volume"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/financial-analysis/candlestick_agg/vwap/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/vwap"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/count_min_sketch/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/count_min_sketch/approx_count/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/approx_count"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/count_min_sketch/count_min_sketch/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/count_min_sketch"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/freq_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/freq_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/into_values/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/into_values"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/max_frequency/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/max_frequency"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/mcv_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/mcv_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/min_frequency/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/min_frequency"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/frequency-analysis/freq_agg/topn/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/topn"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/index/index/",
+      "destination": "/api-reference/timescaledb-toolkit/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n/into_array/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/into_array"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n/into_values/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/into_values"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n/max_n/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/max_n"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n_by/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n_by/into_values/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/into_values"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n_by/max_n_by/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/max_n_by"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/max_n_by/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n/into_array/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/into_array"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n/into_values/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/into_values"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n/min_n/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/min_n"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n_by/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n_by/into_values/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/into_values"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n_by/min_n_by/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/min_n_by"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/minimum-and-maximum/min_n_by/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/approx_percentile/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/approx_percentile"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/approx_percentile_rank/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/approx_percentile_rank"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/max_val/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/max_val"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/mean/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/mean"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/min_val/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/min_val"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/num_vals/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/num_vals"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/tdigest/tdigest/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/tdigest/tdigest"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/approx_percentile/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/approx_percentile_array/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile_array"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/approx_percentile_rank/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile_rank"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/error/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/error"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/mean/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/mean"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/num_vals/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/num_vals"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/percentile_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/percentile_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/percentile-approximation/uddsketch/uddsketch/",
+      "destination": "/api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/uddsketch"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/saturating-math/saturating-math/",
+      "destination": "/api-reference/timescaledb-toolkit/saturating-math/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/saturating-math/saturating-math/saturating_add/",
+      "destination": "/api-reference/timescaledb-toolkit/saturating-math/saturating_add"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/saturating-math/saturating-math/saturating_add_pos/",
+      "destination": "/api-reference/timescaledb-toolkit/saturating-math/saturating_add_pos"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/saturating-math/saturating-math/saturating_mul/",
+      "destination": "/api-reference/timescaledb-toolkit/saturating-math/saturating_mul"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/saturating-math/saturating-math/saturating_sub/",
+      "destination": "/api-reference/timescaledb-toolkit/saturating-math/saturating_sub"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/saturating-math/saturating-math/saturating_sub_pos/",
+      "destination": "/api-reference/timescaledb-toolkit/saturating-math/saturating_sub_pos"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/compact_state_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/compact_state_agg/compact_state_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/compact_state_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/compact_state_agg/duration_in/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/duration_in"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/compact_state_agg/interpolated_duration_in/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/interpolated_duration_in"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/compact_state_agg/into_values/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/into_values"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/compact_state_agg/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/dead_ranges/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/dead_ranges"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/downtime/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/downtime"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/heartbeat_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/heartbeat_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/interpolate/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolate"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/interpolated_downtime/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolated_downtime"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/interpolated_uptime/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolated_uptime"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/live_at/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/live_at"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/live_ranges/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/live_ranges"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/num_gaps/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/num_gaps"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/num_live_ranges/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/num_live_ranges"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/trim_to/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/trim_to"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/heartbeat_agg/uptime/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/uptime"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/duration_in/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/duration_in"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/interpolated_duration_in/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_duration_in"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/interpolated_state_periods/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_state_periods"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/interpolated_state_timeline/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_state_timeline"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/into_values/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/into_values"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/state_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/state_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/state_at/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/state_at"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/state_periods/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/state_periods"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/state-tracking/state_agg/state_timeline/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking/state_agg/state_timeline"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/average/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/average"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/kurtosis/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/kurtosis"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/num_vals/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/num_vals"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/rolling/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/rolling"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/skewness/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/skewness"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/stats_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/stats_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/stddev/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/stddev"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/sum/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/sum"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-one-variable/variance/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/variance"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/average_y_x/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/average_y_x"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/corr/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/corr"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/covariance/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/covariance"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/determination_coeff/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/determination_coeff"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/intercept/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/intercept"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/kurtosis_y_x/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/kurtosis_y_x"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/num_vals/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/num_vals"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/rolling/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/rolling"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/skewness_y_x/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/skewness_y_x"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/slope/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/slope"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/stats_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/stats_agg"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/stddev_y_x/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/stddev_y_x"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/sum_y_x/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/sum_y_x"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/variance_y_x/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/variance_y_x"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/statistical-and-regression-analysis/stats_agg-two-variables/x_intercept/",
+      "destination": "/api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/x_intercept"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/index"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/average/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/average"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/first_time/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/first_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/first_val/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/first_val"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/integral/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/integral"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/interpolated_average/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/interpolated_average"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/interpolated_integral/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/interpolated_integral"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/last_time/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/last_time"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/last_val/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/last_val"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/rollup"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/time-weighted-calculations/time_weight/time_weight/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight/time_weight"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/",
+      "destination": "/api-reference/timescaledb-toolkit"
+    },
+    {
+      "source": "/api/latest/hyperfunctions/gapfilling-interpolation/time_bucket_gapfill/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time_bucket_gapfill"
+    },
+    {
+      "source": "/api/latest/",
+      "destination": "/api-reference/overview"
+    },
+    {
+      "source": "/api/latest/api-tag-overview/",
+      "destination": "/api-reference/timescaledb/tag-overview"
+    },
+    {
+      "source": "/api/latest/approximate_row_count/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/distribution-analysis/approximate_row_count"
+    },
+    {
+      "source": "/api/latest/counter_aggs/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges"
+    },
+    {
+      "source": "/api/latest/days_in_month/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month"
+    },
+    {
+      "source": "/api/latest/downsample/",
+      "destination": "/api-reference/timescaledb-toolkit/downsampling"
+    },
+    {
+      "source": "/api/latest/first/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/first"
+    },
+    {
+      "source": "/api/latest/frequency-analysis/",
+      "destination": "/api-reference/timescaledb-toolkit/frequency-analysis"
+    },
+    {
+      "source": "/api/latest/gapfilling-interpolation/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time_bucket_gapfill"
+    },
+    {
+      "source": "/api/latest/gauge_agg/",
+      "destination": "/api-reference/timescaledb-toolkit/counters-and-gauges"
+    },
+    {
+      "source": "/api/latest/histogram/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/distribution-analysis/histogram"
+    },
+    {
+      "source": "/api/latest/last/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/last"
+    },
+    {
+      "source": "/api/latest/month_normalize/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize"
+    },
+    {
+      "source": "/api/latest/rollup/",
+      "destination": "/api-reference/timescaledb-toolkit/candlestick_agg/rollup"
+    },
+    {
+      "source": "/api/latest/state-aggregates/",
+      "destination": "/api-reference/timescaledb-toolkit/state-tracking"
+    },
+    {
+      "source": "/api/latest/time-weighted-averages/",
+      "destination": "/api-reference/timescaledb-toolkit/time_weight"
+    },
+    {
+      "source": "/api/latest/time_bucket/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket"
+    },
+    {
+      "source": "/api/latest/time_bucket_ng/",
+      "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng"
     }
   ]
 }
