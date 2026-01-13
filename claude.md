@@ -147,6 +147,7 @@
 
 - Check the directory that the files are to move into
 - Update all ${VARIABLES} to use the mintlify variables (reference snippets/vars.mdx for mappings)
+- Do not use variables in headers (##, ###, etc.) - use plain text instead
 - replace references to import since`<version>` with `<Icon icon="circle-play" iconType="duotone" />` Since `<version>` on its own line after the frontmatter, followed by a newline before content begins
 - replace references to import deprecated`<version>` with `<Icon icon="archive" iconType="duotone" />` Deprecated `<version>` on its own line after the frontmatter, followed by a newline before content begins
 - replace references to import DeprecationNotice with `<Icon icon="archive" iconType="duotone" />` Deprecated on its own line after the frontmatter, followed by a newline before content begins
@@ -163,6 +164,8 @@
 - **ALWAYS keep imported partials as snippets**: When migrating files that import other MDX files (partials), ALWAYS migrate those partials to the snippets/ directory and import them as snippets in the new file. NEVER inline the content directly.
 - Ask where the other imported files should go in the snippets directory (initially manual, but track patterns to automate over time). For manage-data content, use snippets/manage-data/; for API reference content, use snippets/api-reference/[component]/
 - Update the metadata in each file, rename the excerpt metadata name as description, and api_name as title
+- Update description frontmatter to be action-oriented about what you can do with the service you are integrating with, and ensure it fits into one line
+- Remove products: metadata from frontmatter (products are not used in Mintlify structure)
 - Remove api: and version: metadata sections, indent license and type under root level
 - Put the value of stable in a since icon (e.gple., if stable: 1.0.0, add Since 1.0.0 icon), then remove the stable metadata item
 - Remove the first # header from the content (title is handled by frontmatter)

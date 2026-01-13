@@ -1,10 +1,8 @@
-import { TIMESCALE_DB, PG, SELF_LONG, COMPANY } from '/snippets/vars.mdx';
+import { COMPANY, PG, SELF_LONG, TIMESCALE_DB, TOOLKIT_LONG } from '/snippets/vars.mdx';
 
 Running {TIMESCALE_DB} on Kubernetes is similar to running {PG}. This procedure outlines the steps for a non-distributed system. 
 
 To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
-
-<Procedure>
 
 1. **Create a default namespace for {COMPANY} components**
 
@@ -43,8 +41,9 @@ To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
 
 1. **Deploy {TIMESCALE_DB} as a StatefulSet**
 
-   By default, the [{TIMESCALE_DB} Docker image][timescale-docker-image] you are installing on Kubernetes uses the
-   default {PG} database, user and password. To deploy {TIMESCALE_DB} on Kubernetes, run the following command:
+   By default, the [{TIMESCALE_DB} HA Docker image][timescale-ha-docker-image] you are installing on Kubernetes uses the
+   default {PG} database, user and password. This image includes {TIMESCALE_DB} and {TOOLKIT_LONG}.
+   To deploy {TIMESCALE_DB} on Kubernetes, run the following command:
 
     ```yaml
     kubectl apply -f - <<EOF
@@ -65,7 +64,7 @@ To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
         spec:
           containers:
             - name: timescaledb
-              image: 'timescale/timescaledb:latest-pg17'
+              image: 'timescale/timescaledb-ha:pg18'
               env:
                 - name: POSTGRES_USER
                   value: postgres
@@ -89,22 +88,22 @@ To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
 
 1. **Allow applications to connect by exposing {TIMESCALE_DB} within Kubernetes**
 
-  ```yaml
-  kubectl apply -f - <<EOF
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: timescaledb
-  spec:
-    selector:
-      app: timescaledb
-    ports:
-      - protocol: TCP
-        port: 5432
-        targetPort: 5432
-    type: ClusterIP
-  EOF
-  ```
+      ```yaml
+      kubectl apply -f - <<EOF
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: timescaledb
+      spec:
+        selector:
+          app: timescaledb
+        ports:
+          - protocol: TCP
+            port: 5432
+            targetPort: 5432
+        type: ClusterIP
+      EOF
+      ```
 
 1. **Create a Kubernetes secret to store the database credentials**
 
@@ -166,9 +165,7 @@ To connect your Kubernetes cluster to {SELF_LONG} running in the cluster:
 
    You see the {PG} interactive terminal.
 
-</Procedure>
 
-
+[connection-info]: /integrations/find-connection-details
 [kubernetes-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-[timescale-docker-image]: https://hub.docker.com/r/timescale/timescaledb
-[connection-info]: /integrations/find-connection-details/
+[timescale-ha-docker-image]: https://hub.docker.com/r/timescale/timescaledb-ha/tags
