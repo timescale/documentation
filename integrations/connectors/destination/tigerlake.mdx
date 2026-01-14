@@ -7,14 +7,14 @@ keywords: [data lakehouse, iceberg tables, s3 tables, data lake integration, lak
 
 import IntegrationPrereqsCloud from '/snippets/prerequisites/_integration-prereqs-cloud-only.mdx';
 import NotSupportedAzure from '/snippets/admonitions/_not-supported-for-azure.mdx';
-import { CLOUD_LONG, CONSOLE, HYPERTABLE, HYPERTABLE_CAP, HYPERTABLES, LAKE_LONG, PG, SERVICE_LONG, SERVICE_SHORT } from '/snippets/vars.mdx';
+import { CLOUD_LONG, CONSOLE, HYPERTABLE, HYPERTABLE_CAP, LAKE_LONG, PG, SERVICE_LONG, SERVICE_SHORT } from '/snippets/vars.mdx';
 
 {LAKE_LONG} enables you to build real-time applications alongside efficient data pipeline management within a single
 system.
 
 ![Tiger Lake architecture][tiger-lake-architecture]
 
-{LAKE_LONG} is a native integration enabling synchronization between {HYPERTABLES} and relational tables
+{LAKE_LONG} is a native integration enabling synchronization between {HYPERTABLE}s and relational tables
 running in {SERVICE_LONG}s to Iceberg tables running in [Amazon S3 Tables][s3-tables] in your AWS account.
 
 ## Prerequisites
@@ -232,7 +232,7 @@ ALTER TABLE <table_name> SET (
   **cannot** resume after being stopped.
 * `tigerlake.iceberg_partitionby`: optional property to define a partition specification in Iceberg. By default the
    Iceberg table is partitioned as `day(<time-column of {HYPERTABLE}>)`. This default behavior is only applicable
-   to {HYPERTABLES}. For more information, see [partitioning][partitioning].
+   to {HYPERTABLE}s. For more information, see [partitioning][partitioning].
 * `tigerlake.iceberg_namespace`: optional property to set a namespace, the default is `timescaledb`.
 * `tigerlake.iceberg_table`: optional property to specify a different table name. If no name is specified the {PG} table name is used.
 
@@ -342,7 +342,7 @@ data lake:
 
 * Service requires {PG} 17.6 and above is supported.
 * [Amazon S3 Tables Iceberg REST][aws-s3-tables] catalog only is supported.
-* In order to collect deletes made to data in the columstore, certain columnstore optimizations are disabled for {HYPERTABLES}, this includes [Direct Compress][direct-compress].
+* In order to collect deletes made to data in the columstore, certain columnstore optimizations are disabled for {HYPERTABLE}s, this includes [Direct Compress][direct-compress].
 * The `TRUNCATE` statement is not supported, and does not truncate data in the corresponding Iceberg table.
 * Data in a {HYPERTABLE} that has been moved to the [low-cost object storage tier][data-tiering] is not synced.
 * Writing to the same S3 table bucket from multiple services is not supported, bucket-to-service mapping is one-to-one.
