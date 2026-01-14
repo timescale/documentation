@@ -1,0 +1,244 @@
+---
+title: Query the Bitcoin blockchain
+description: Learn to use Tiger Cloud to query and analyze transactions on a blockchain as you would any other time-series data
+keywords: [beginner, crypto, blockchain, Bitcoin, finance, analytics, hypercore, compression]
+---
+
+import FinancialIndustry from "/snippets/tutorials/_financial-industry-intro.mdx";
+import SetupBlockchainDataset from "/snippets/tutorials/_setup-blockchain-dataset.mdx";
+import TutorialsHypercoreIntro from "/snippets/intros/_hypercore-intro-short.mdx";
+import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
+import { CLOUD_LONG, SERVICE_LONG, SERVICE_SHORT, CONSOLE, TIMESCALE_DB, HYPERCORE, COLUMNSTORE, ROWSTORE, HYPERTABLE } from '/snippets/vars.mdx';
+
+<FinancialIndustry />
+
+In this tutorial, you use {CLOUD_LONG} to ingest, store, and analyze transactions
+on the Bitcoin blockchain.
+
+[Blockchains][blockchain-def] are, at their essence, a distributed database. The
+[transactions][transactions-def] in a blockchain are an example of time-series data. You can use
+{TIMESCALE_DB} to query transactions on a blockchain, in exactly the same way as you
+might query time-series transactions in any other database.
+
+This tutorial covers:
+
+1.  **Ingest data into a {SERVICE_SHORT}**: set up and connect to a {SERVICE_LONG}, create tables and {HYPERTABLE}s, and ingest data.
+1.  **Query your data**: obtain information, including finding the most recent transactions on the blockchain, and
+   gathering information about the transactions using aggregation functions.
+1.  **Compress your data using {HYPERCORE}**: compress data that is no longer needed for highest performance queries, but is still accessed regularly
+    for real-time analytics.
+
+When you've completed this tutorial, you can use the same dataset to [Analyze the Bitcoin blockchain][analyze-blockchain],
+using {TIMESCALE_DB} hyperfunctions.
+
+## Prerequisites
+
+<IntegrationPrereqs />
+
+<SetupBlockchainDataset />
+
+## Query the data
+
+When you have your dataset loaded, you can start constructing some queries to
+discover what your data tells you. In this section, you learn how to write
+queries that answer these questions:
+
+*   [What are the five most recent coinbase transactions?](#what-are-the-five-most-recent-coinbase-transactions)
+*   [What are the five most recent transactions?](#what-are-the-five-most-recent-transactions)
+*   [What are the five most recent blocks?](#what-are-the-five-most-recent-blocks)
+
+### What are the five most recent coinbase transactions?
+
+In the last procedure, you excluded coinbase transactions from the results.
+[Coinbase][coinbase-def] transactions are the first transaction in a block, and
+they include the reward a coin miner receives for mining the coin. To find out
+the most recent coinbase transactions, you can use a similar `SELECT` statement,
+but search for transactions that are coinbase instead. If you include the
+transaction value in US Dollars again, you'll notice that the value is $0 for
+each. This is because the coin has not transferred ownership in coinbase
+transactions.
+
+**Finding the five most recent coinbase transactions**
+
+1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
+1.  At the psql prompt, use this query to select the five most recent
+    coinbase transactions:
+
+    ```sql
+    SELECT time, hash, block_id, fee_usd  FROM transactions
+    WHERE is_coinbase IS TRUE
+    ORDER BY time DESC
+    LIMIT 5;
+    ```
+
+1.  The data you get back looks a bit like this:
+
+    ```sql
+             time          |                               hash                               | block_id | fee_usd
+    ------------------------+------------------------------------------------------------------+----------+---------
+     2023-06-12 23:54:18+00 | 22e4610bc12d482bc49b7a1c5b27ad18df1a6f34256c16ee7e499b511e02d71e |   794111 |       0
+     2023-06-12 23:53:08+00 | dde958bb96a302fd956ced32d7b98dd9860ff82d569163968ecfe29de457fedb |   794110 |       0
+     2023-06-12 23:44:50+00 | 75ac1fa7febe1233ee57ca11180124c5ceb61b230cdbcbcba99aecc6a3e2a868 |   794109 |       0
+     2023-06-12 23:44:14+00 | 1e941d66b92bf0384514ecb83231854246a94c86ff26270fbdd9bc396dbcdb7b |   794108 |       0
+     2023-06-12 23:41:08+00 | 60ae50447254d5f4561e1c297ee8171bb999b6310d519a0d228786b36c9ffacf |   794107 |       0
+    (5 rows)
+    ```
+
+### What are the five most recent transactions?
+
+This dataset contains Bitcoin transactions for the last five days. To find out
+the most recent transactions in the dataset, you can use a `SELECT` statement.
+In this case, you want to find transactions that are not coinbase transactions,
+sort them by time in descending order, and take the top five results. You also
+want to see the block ID, and the value of the transaction in US Dollars.
+
+**Finding the five most recent transactions**
+
+1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
+1.  At the psql prompt, use this query to select the five most recent
+    non-coinbase transactions:
+
+    ```sql
+    SELECT time, hash, block_id, fee_usd  FROM transactions
+    WHERE is_coinbase IS NOT TRUE
+    ORDER BY time DESC
+    LIMIT 5;
+    ```
+
+1.  The data you get back looks a bit like this:
+
+    ```sql
+              time          |                               hash                               | block_id | fee_usd
+    ------------------------+------------------------------------------------------------------+----------+---------
+     2023-06-12 23:54:18+00 | 6f709d52e9aa7b2569a7f8c40e7686026ede6190d0532220a73fdac09deff973 |   794111 |   7.614
+     2023-06-12 23:54:18+00 | ece5429f4a76b1603aecbee31bf3d05f74142a260e4023316250849fe49115ae |   794111 |   9.306
+     2023-06-12 23:54:18+00 | 54a196398880a7e2e38312d4285fa66b9c7129f7d14dc68c715d783322544942 |   794111 | 13.1928
+     2023-06-12 23:54:18+00 | 3e83e68735af556d9385427183e8160516fafe2f30f30405711c4d64bf0778a6 |   794111 |  3.5416
+     2023-06-12 23:54:18+00 | ca20d073b1082d7700b3706fe2c20bc488d2fc4a9bb006eb4449efe3c3fc6b2b |   794111 |  8.6842
+    (5 rows)
+    ```
+
+### What are the five most recent blocks?
+
+In this procedure, you use a more complicated query to return the five most
+recent blocks, and show some additional information about each, including the
+block weight, number of transactions in each block, and the total block value in
+US Dollars.
+
+**Finding the five most recent blocks**
+
+1.  Connect to the {SERVICE_LONG} that contains the Bitcoin dataset.
+1.  At the psql prompt, use this query to select the five most recent
+    coinbase transactions:
+
+    ```sql
+    WITH recent_blocks AS (
+     SELECT block_id FROM transactions
+     WHERE is_coinbase IS TRUE
+     ORDER BY time DESC
+     LIMIT 5
+    )
+    SELECT
+     t.block_id, count(*) AS transaction_count,
+     SUM(weight) AS block_weight,
+     SUM(output_total_usd) AS block_value_usd
+    FROM transactions t
+    INNER JOIN recent_blocks b ON b.block_id = t.block_id
+    WHERE is_coinbase IS NOT TRUE
+    GROUP BY t.block_id;
+    ```
+
+1.  The data you get back looks a bit like this:
+
+    ```sql
+     block_id | transaction_count | block_weight |  block_value_usd
+    ----------+-------------------+--------------+--------------------
+       794108 |              5625 |      3991408 |  65222453.36381342
+       794111 |              5039 |      3991748 |  5966031.481099684
+       794109 |              6325 |      3991923 |  5406755.801599815
+       794110 |              2525 |      3995553 |  177249139.6457974
+       794107 |              4464 |      3991838 | 107348519.36559173
+    (5 rows)
+    ```
+
+## Compress your data using hypercore
+
+<TutorialsHypercoreIntro />
+
+### Optimize your data in the columnstore
+
+To compress the data in the `transactions` table, do the following:
+
+1. Connect to your {SERVICE_LONG}
+
+   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. The in-Console editors display the query speed.
+   You can also connect to your {SERVICE_SHORT} using [psql][connect-using-psql].
+
+1. Convert data to the {COLUMNSTORE}:
+
+   You can do this either automatically or manually:
+   - [Automatically convert chunks][add_columnstore_policy] in the {HYPERTABLE} to the {COLUMNSTORE} at a specific time interval:
+
+       ```sql
+      CALL add_columnstore_policy('transactions', after => INTERVAL '1d');
+       ```
+
+   - [Manually convert all chunks][convert_to_columnstore] in the {HYPERTABLE} to the {COLUMNSTORE}:
+
+       ```sql
+       DO $$
+       DECLARE
+          chunk_name TEXT;
+       BEGIN
+          FOR chunk_name IN (SELECT c FROM show_chunks('transactions') c)
+          LOOP
+             RAISE NOTICE 'Converting chunk: %', chunk_name; -- Optional: To see progress
+             CALL convert_to_columnstore(chunk_name);
+          END LOOP;
+          RAISE NOTICE 'Conversion to columnar storage complete for all chunks.'; -- Optional: Completion message
+       END$$;
+       ```
+
+### Take advantage of query speedups
+
+Previously, data in the {COLUMNSTORE} was segmented by the `block_id` column value.
+This means fetching data by filtering or grouping on that column is
+more efficient. Ordering is set to time descending. This means that when you run queries
+which try to order data in the same way, you see performance benefits.
+
+1. Connect to your {SERVICE_LONG}
+
+   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. The in-Console editors display the query speed.
+
+1. Run the following query:
+
+   ```sql
+   WITH recent_blocks AS (
+    SELECT block_id FROM transactions
+    WHERE is_coinbase IS TRUE
+    ORDER BY time DESC
+    LIMIT 5
+   )
+   SELECT
+    t.block_id, count(*) AS transaction_count,
+    SUM(weight) AS block_weight,
+    SUM(output_total_usd) AS block_value_usd
+   FROM transactions t
+   INNER JOIN recent_blocks b ON b.block_id = t.block_id
+   WHERE is_coinbase IS NOT TRUE
+   GROUP BY t.block_id;
+   ```
+
+   Performance speedup is of two orders of magnitude, around 15 ms when compressed in the {COLUMNSTORE} and
+   1 second when decompressed in the {ROWSTORE}.
+
+[analyze-blockchain]: /tutorials/time-series/analyze-blockchain/
+[hypercore]: /use-timescale/hypercore/
+[in-console-editors]: /getting-started/run-queries-from-console/
+[services-portal]: https://console.cloud.timescale.com/dashboard/services
+[connect-using-psql]: /integrations/psql#connect-to-your-service
+[add_columnstore_policy]: /api/hypercore/add_columnstore_policy/
+[convert_to_columnstore]: /api/hypercore/convert_to_columnstore/
+[blockchain-def]: https://www.pcmag.com/encyclopedia/term/blockchain
+[transactions-def]: https://www.pcmag.com/encyclopedia/term/bitcoin-transaction
+[coinbase-def]: https://www.pcmag.com/encyclopedia/term/coinbase-transaction
