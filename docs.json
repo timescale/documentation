@@ -1204,7 +1204,7 @@
                     ]
                   },
                   {
-                    "group": "Quickstart",
+                    "group": "Get started",
                     "pages": [
                       "tutorials/time-series/query-bitcoin-blockchain"
                     ]
@@ -1270,7 +1270,7 @@
                 ]
               },
               {
-                "item": "Quickstart",
+                "item": "Get started",
                 "groups": [
                   {
                     "group": " ",
@@ -1279,7 +1279,7 @@
                     ]
                   },
                   {
-                    "group": "Quickstart",
+                    "group": "Get started",
                     "pages": [
                       "tutorials/time-series/query-bitcoin-blockchain",
                       "tutorials/ai/real-time-predictive-maintenence"
