@@ -24,8 +24,6 @@ To query another data source:
 
 You create {PG} FDWs with the `postgres_fdw` extension, which is enabled by default in {CLOUD_LONG}.
 
-
-
 1. **Connect to your service**
 
    See [how to connect][connect].
@@ -87,9 +85,6 @@ You create {PG} FDWs with the `postgres_fdw` extension, which is enabled by defa
       SERVER film_server;
       ```
 
-
-
-
 A user with the `tsdbadmin` role assigned already has the required `USAGE` permission to create {PG} FDWs. You can enable another user, without the `tsdbadmin` role assigned, to query foreign data. To do so, explicitly grant the permission. For example, for a new `grafana` user:
 
 ```sql
@@ -118,9 +113,7 @@ IMPORT FOREIGN SCHEMA public
 
 <Tab title="Self-hosted TimescaleDB">
 
-You create {PG} FDWs with the `postgres_fdw` extension. See [documenation][enable-fdw-docs] on how to enable it. 
-
-
+You create {PG} FDWs with the `postgres_fdw` extension. See [documenation][enable-fdw-docs] on how to enable it.
 
 1. **Connect to your database**
 
@@ -182,8 +175,6 @@ You create {PG} FDWs with the `postgres_fdw` extension. See [documenation][enabl
      )
      SERVER film_server;
      ```
-
-
 
 </Tab>
 

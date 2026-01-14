@@ -1,22 +1,16 @@
-import { SERVICE_LONG, SERVICE_SHORT, CONSOLE } from '/snippets/vars.mdx';
-
-### Attach a data exporter to a Tiger service
+### Attach a data exporter to a Tiger Cloud service
 
 To send telemetry data to an external monitoring tool, you attach a data exporter to your
 {SERVICE_LONG}. You can attach only one exporter to a {SERVICE_SHORT}.
 
-To attach an exporter: 
-
-
+To attach an exporter:
 
 1.  **In [{CONSOLE}][console-services], choose the {SERVICE_SHORT}**
 1.  **Click `Operations` > `Exporters`**
 1.  **Select the exporter, then click `Attach exporter`**
 1.  **If you are attaching a first `Logs` data type exporter, restart the {SERVICE_SHORT}**
 
-
-
-### Monitor Tiger service metrics
+### Monitor Tiger Cloud service metrics
 
 You can now monitor your {SERVICE_SHORT} metrics. Use the following metrics to check the service is running correctly:
 
@@ -42,21 +36,15 @@ Additionally, use the following tags to filter your results.
 
 To update a data exporter:
 
-
-
 1.  **In {CONSOLE}, open [Exporters][console-integrations]**
 1.  **Next to the exporter you want to edit, click the menu > `Edit`**
 1.  **Edit the exporter fields and save your changes**
 
 You cannot change fields such as the provider or the AWS region.
 
-
-
 ### Delete a data exporter
 
 To remove a data exporter that you no longer need:
-
-
 
 1. **Disconnect the data exporter from your {SERVICE_LONG}s**
 
@@ -72,8 +60,6 @@ To remove a data exporter that you no longer need:
    1. In {CONSOLE}, open [Exporters][console-integrations]
    1. Next to the exporter you want to edit, click menu > `Delete`
    1. Confirm that you want to delete the data exporter.
-
-
 
 ### Reference
 

@@ -1,7 +1,5 @@
 import { CONSOLE, CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
 
-
-
 1.  **In {CONSOLE}, open [Exporters][console-integrations]**
 1.  **Click `New exporter`**
 1.  **Select the data type and specify `AWS CloudWatch` for provider**
@@ -23,8 +21,6 @@ import { CONSOLE, CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
     <Tabs label="Authentication methods">
 
     <Tab title="IAM role">
-
-
     
     1. In AWS, navigate to [IAM > Identity providers][create-an-iam-id-provider], then click `Add provider`.
 
@@ -100,15 +96,11 @@ import { CONSOLE, CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
            ]
          }        
          ```      
-      1. Click `Add role`. 
-
-
+      1. Click `Add role`.
 
     </Tab>
 
     <Tab title="CloudWatch credentials">
-
-
 
     When you use CloudWatch credentials, you link an Identity and Access Management (IAM)
     user with access to CloudWatch only with your {SERVICE_LONG}:
@@ -123,15 +115,11 @@ import { CONSOLE, CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
 
        AWS keys give access to your AWS services. To keep your AWS account secure, restrict users to the minimum required permissions. Always store your keys in a safe location. To avoid this issue, use the IAM role authentication method.
 
-
-
     </Tab>
 
     </Tabs> 
 
 1. Select the AWS Region your CloudWatch services run in, then click `Create exporter`.
-
-
 
 [console-integrations]: https://console.cloud.timescale.com/dashboard/integrations
 [console-cloudwatch-configuration]: https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups
