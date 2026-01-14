@@ -1206,7 +1206,7 @@
                   {
                     "group": "Get started",
                     "pages": [
-                      "tutorials/time-series/query-bitcoin-blockchain"
+                      "tutorials/quickstart"
                     ]
                   },
                   {
@@ -1275,18 +1275,17 @@
                   {
                     "group": " ",
                     "pages": [
-                      "tutorials/time-series/query-bitcoin-blockchain"
+                      "tutorials/quickstart"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "tutorials/time-series/query-bitcoin-blockchain",
-                      "tutorials/ai/real-time-predictive-maintenence"
+                      "tutorials/quickstart"
                     ]
                   }
                 ],
-                "url": "tutorials/time-series/query-bitcoin-blockchain"
+                "url": "tutorials/quickstart"
               },
               {
                 "item": "IoT sensor",
