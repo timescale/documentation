@@ -1,8 +1,17 @@
 ---
 title: Limitations
-description: Known limitations and constraints of TimescaleDB.
-products: [cloud]
-content_group: Reference
+description: TimescaleDB features come with a few limitations that we are constantly working to remove. See the current and regularly updated list of limitations
+keywords: [hypertables, limitations]
+products: [cloud, mst, self_hosted]
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+import { TIMESCALE_DB, PG } from '/snippets/vars.mdx';
+
+While {TIMESCALE_DB} generally offers capabilities that go beyond what {PG} offers, there are some limitations to using hypertables.
+
+## Hypertable limitations
+
+*   Time dimensions (columns) used for partitioning cannot have NULL values.
+*   Unique indexes must include all columns that are partitioning dimensions.
+*   `UPDATE` statements that move values between partitions (chunks) are not supported. This includes upserts (`INSERT ... ON CONFLICT UPDATE`).
+*   Foreign key constraints from a hypertable referencing another hypertable are not supported.

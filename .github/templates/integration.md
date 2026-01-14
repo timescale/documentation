@@ -5,7 +5,7 @@ products: [cloud]
 keywords: ["<third-party tool name>", "integration"]
 ---
 
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
+import IntegrationPrereqs from "/snippets/prerequisites/_prereqs-cloud-and-self.mdx";
 import { CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
 
 # Integrate <third-party tool name> with {CLOUD_LONG}

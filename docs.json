@@ -11,6 +11,9 @@
     "codeblocks": "dark",
     "eyebrows": "breadcrumbs"
   },
+  "toc": {
+    "depth": 3
+  },
   "seo": {
     "metatags": {
       "robots": "noindex"
@@ -118,11 +121,11 @@
                   {
                     "group": "Reference",
                     "pages": [
-                      "deploy-and-operate/tiger-cloud/reference/tiger-cloud-regions",
                       "deploy-and-operate/tiger-cloud/reference/contribute-to-tigerdata",
+                      "deploy-and-operate/tiger-cloud/reference/glossary",
                       "deploy-and-operate/tiger-cloud/reference/postgres-extensions-in-tiger-cloud",
-                      "deploy-and-operate/tiger-cloud/reference/configuration-parameters",
-                      "deploy-and-operate/tiger-cloud/reference/glossary"
+                      "deploy-and-operate/tiger-cloud/reference/supported-platforms",
+                      "deploy-and-operate/tiger-cloud/reference/tiger-cloud-regions"
                     ]
                   }
                 ]
@@ -200,8 +203,9 @@
                   {
                     "group": "Reference",
                     "pages": [
-                      "deploy-and-operate/mst/reference/reference",
-                      "deploy-and-operate/tiger-cloud/reference/glossary"
+                      "deploy-and-operate/mst/reference/contribute-to-tigerdata",
+                      "deploy-and-operate/tiger-cloud/reference/glossary",
+                      "deploy-and-operate/mst/reference/reference"
                     ]
                   }
                 ]
@@ -249,10 +253,10 @@
                     "group": "Reference",
                     "pages": [
                       "deploy-and-operate/timescaledb/reference/timescaledb-editions",
-                      "deploy-and-operate/timescaledb/reference/configuration-parameters",
+                      "deploy-and-operate/timescaledb/reference/contribute-to-tigerdata",
+                      "deploy-and-operate/timescaledb/reference/glossary",
                       "deploy-and-operate/timescaledb/reference/limitations",
-                      "deploy-and-operate/timescaledb/reference/contribute-to-timescaledb",
-                      "deploy-and-operate/tiger-cloud/reference/glossary"
+                      "deploy-and-operate/timescaledb/reference/supported-platforms"
                     ]
                   }
                 ]
@@ -343,10 +347,11 @@
                   {
                     "group": "Reference",
                     "pages": [
-                      "deploy-and-operate/tiger-cloud/reference/tiger-cloud-regions",
                       "deploy-and-operate/tiger-cloud/reference/contribute-to-tigerdata",
+                      "deploy-and-operate/tiger-cloud/reference/glossary",
                       "deploy-and-operate/tiger-cloud/reference/postgres-extensions-in-tiger-cloud",
-                      "deploy-and-operate/tiger-cloud/reference/configuration-parameters"
+                      "deploy-and-operate/tiger-cloud/reference/supported-platforms",
+                      "deploy-and-operate/tiger-cloud/reference/tiger-cloud-regions"
                     ]
                   }
                 ]
@@ -435,9 +440,9 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
-                      "manage-data/reference/configuration-parameters",
-                      "manage-data/reference/limitations",
-                      "manage-data/reference/contribute-to-timescaledb"
+                      "manage-data/reference/contribute-to-tigerdata",
+                      "manage-data/reference/glossary",
+                      "manage-data/reference/limitations"
                     ]
                   }
                 ]
@@ -520,9 +525,9 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
-                      "manage-data/reference/configuration-parameters",
-                      "manage-data/reference/limitations",
-                      "manage-data/reference/contribute-to-timescaledb"
+                      "manage-data/reference/contribute-to-tigerdata",
+                      "manage-data/reference/glossary",
+                      "manage-data/reference/limitations"
                     ]
                   }
                 ]
@@ -605,9 +610,9 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
-                      "manage-data/reference/configuration-parameters",
-                      "manage-data/reference/limitations",
-                      "manage-data/reference/contribute-to-timescaledb"
+                      "manage-data/reference/contribute-to-tigerdata",
+                      "manage-data/reference/glossary",
+                      "manage-data/reference/limitations"
                     ]
                   }
                 ]
@@ -690,9 +695,9 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
-                      "manage-data/reference/configuration-parameters",
-                      "manage-data/reference/limitations",
-                      "manage-data/reference/contribute-to-timescaledb"
+                      "manage-data/reference/contribute-to-tigerdata",
+                      "manage-data/reference/glossary",
+                      "manage-data/reference/limitations"
                     ]
                   }
                 ]
@@ -775,9 +780,9 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
-                      "manage-data/reference/configuration-parameters",
-                      "manage-data/reference/limitations",
-                      "manage-data/reference/contribute-to-timescaledb"
+                      "manage-data/reference/contribute-to-tigerdata",
+                      "manage-data/reference/glossary",
+                      "manage-data/reference/limitations"
                     ]
                   }
                 ]
@@ -860,9 +865,9 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
-                      "manage-data/reference/configuration-parameters",
-                      "manage-data/reference/limitations",
-                      "manage-data/reference/contribute-to-timescaledb"
+                      "manage-data/reference/contribute-to-tigerdata",
+                      "manage-data/reference/glossary",
+                      "manage-data/reference/limitations"
                     ]
                   }
                 ]
@@ -945,9 +950,9 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
-                      "manage-data/reference/configuration-parameters",
+                      "manage-data/reference/contribute-to-tigerdata",
+                      "manage-data/reference/glossary",
                       "manage-data/reference/limitations",
-                      "manage-data/reference/contribute-to-timescaledb",
                       "deploy-and-operate/tiger-cloud/reference/glossary"
                     ]
                   }
@@ -1471,7 +1476,7 @@
                     ]
                   },
                   {
-                    "group": " ",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -1566,7 +1571,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshoot",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -1661,7 +1666,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshoot",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -1757,7 +1762,7 @@
                     ]
                   },
                   {
-                    "group": " ",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -1853,7 +1858,7 @@
                     ]
                   },
                   {
-                    "group": " ",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -1948,7 +1953,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshoot",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -2043,7 +2048,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshoot",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -2138,7 +2143,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshoot",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -2233,7 +2238,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshoot",
+                    "group": "Troubleshooting",
                     "pages": [
                       "integrations/troubleshooting"
                     ]
@@ -2328,7 +2333,7 @@
                     ]
                   },
                   {
-                    "group": "Troubleshoot",
+                    "group": "Troubleshootinging",
                     "pages": [
                       "integrations/troubleshooting"
                     ]

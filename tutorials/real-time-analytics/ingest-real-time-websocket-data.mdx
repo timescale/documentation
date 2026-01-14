@@ -47,7 +47,7 @@ websocket object and establish the connection.
 Create a new Python virtual environment for this project and activate it. All
 the packages you need to complete for this tutorial are installed in this environment.
 
-<Procedure>
+
 
 ### Setting up a new Python environment
 
@@ -74,7 +74,7 @@ the packages you need to complete for this tutorial are installed in this enviro
     pip install psycopg2-binary
     ```
 
-</Procedure>
+
 
 ## Create the websocket connection
 
@@ -106,7 +106,7 @@ two arguments to create a websocket object and establish connection.
     connection is already created you can also use the `subscribe()` function to
     get data for additional symbols.
 
-<Procedure>
+
 
 ### Connecting to the websocket server
 
@@ -170,7 +170,7 @@ two arguments to create a websocket object and establish connection.
     the health of the connection over time.
     At this point the websocket connection is working successfully to pass data.
 
-</Procedure>
+
 
 </Collapsible>
 
@@ -218,7 +218,7 @@ This function needs to:
 
 ## Ingesting data in real-time
 
-<Procedure>
+
 
 1.  Update the Python script that prints out the current batch size, so you can
     follow when data gets ingested from memory into your database. Use
@@ -316,7 +316,7 @@ This function needs to:
     python websocket_test.py
     ```
 
-</Procedure>
+
 
 You can even create separate Python scripts to start multiple websocket
 connections for different types of symbols, for example, one for stock, and
@@ -341,7 +341,7 @@ aggregate. You can create a continuous aggregate to aggregate data
 for each hour, then set the aggregate to refresh every hour, and aggregate
 the last two hours' worth of data.
 
-<Procedure>
+
 
 ### Creating a continuous aggregate
 
@@ -378,14 +378,14 @@ the last two hours' worth of data.
         schedule_interval => INTERVAL '1 hour');
     ```
 
-</Procedure>
+
 
 ## Query the continuous aggregate
 
 When you have your continuous aggregate set up, you can query it to get the
 OHLCV values.
 
-<Procedure>
+
 
 ### Querying the continuous aggregate
 
@@ -417,7 +417,7 @@ OHLCV values.
      2023-05-30 08:12:00+00 | AAPL   |  175.9 | 175.94 |  175.9 | 175.94 |
     ```
 
-</Procedure>
+
 
 </Collapsible>
 
