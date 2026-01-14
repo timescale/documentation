@@ -17,7 +17,7 @@ library. This library is one of the most popular {PG} libraries for
 Python. It allows you to execute raw SQL queries efficiently and safely, and
 prevents common attacks such as SQL injection.
 
-<Procedure>
+
 
 1.  Import the psycogpg2 library:
 
@@ -90,7 +90,7 @@ prevents common attacks such as SQL injection.
     print(cursor.fetchone())
     ```
 
-</Procedure>
+
 
 ## Create a relational table
 
@@ -100,7 +100,7 @@ called `sensor_data` which holds the measurements of those sensors. The
 measurements contain the time, sensor_id, temperature reading, and CPU
 percentage of the sensors.
 
-<Procedure>
+
 
 1.  Compose a string which contains the SQL statement to create a relational
     table. This example creates a table called `sensors`, with columns `id`,
@@ -127,7 +127,7 @@ percentage of the sensors.
     cursor.close()
     ```
 
-</Procedure>
+
 
 ## Create a hypertable
 
@@ -135,7 +135,7 @@ When you have created the relational table, you can create a hypertable.
 Creating tables and indexes, altering tables, inserting data, selecting data,
 and most other tasks are executed on the hypertable.
 
-<Procedure>
+
 
 1.  Create a string variable that contains the `CREATE TABLE` SQL statement for
     your hypertable. Notice how the hypertable has the compulsory time column:
@@ -179,7 +179,7 @@ and most other tasks are executed on the hypertable.
     cursor.close()
     ```
     
-</Procedure>
+
 
 ## Insert rows of data
 
@@ -187,7 +187,7 @@ You can insert data into your hypertables in several different ways. In this
 section, you can use `psycopg2` with prepared statements, or you can use
 `pgcopy` for a faster insert.
 
-<Procedure>
+
 
 1.  This example inserts a list of tuples, or relational data, called `sensors`,
     into the relational table named `sensors`. Open a cursor with a connection
@@ -223,7 +223,7 @@ section, you can use `psycopg2` with prepared statements, or you can use
     conn.commit()
     ```
 
-</Procedure>
+
 
 If you choose to use `pgcopy` instead, install the `pgcopy` package
 [using pip][pgcopy-install], and then add this line to your list of
@@ -233,7 +233,7 @@ If you choose to use `pgcopy` instead, install the `pgcopy` package
 from pgcopy import CopyManager
 ```
 
-<Procedure>
+
 
 1.  Generate some random sensor data using the `generate_series` function
     provided by {PG}. This example inserts a total of 480 rows of data (4
@@ -318,7 +318,7 @@ from pgcopy import CopyManager
     print(cursor.fetchall())
     ```
 
-</Procedure>
+
 
 ## Execute a query
 
@@ -335,7 +335,7 @@ see the [psycopg2 documentation][psycopg2-docs-basics].
 
 ### Execute a query
 
-<Procedure>
+
 
 1.  Define the SQL query you'd like to run on the database. This example is a
     simple `SELECT` statement querying each row from the previously created
@@ -378,14 +378,14 @@ see the [psycopg2 documentation][psycopg2-docs-basics].
 
     Using this cursor, `cursor.fetchall()` returns a list of dictionary-like objects.
 
-</Procedure>
+
 
 For more complex queries, you can use prepared statements to ensure queries are
 executed safely against the database.
 
 ### Execute queries using prepared statements
 
-<Procedure>
+
 
 1.  Write the query using prepared statements:
 
@@ -407,7 +407,7 @@ executed safely against the database.
     results = cursor.fetchall()
     ```
     
-</Procedure>
+
 
 [install]: /getting-started/latest/
 [create-hypertable-docs]: /api/hypertable/create_hypertable

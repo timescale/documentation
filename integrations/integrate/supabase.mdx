@@ -8,7 +8,7 @@ keywords: [integrate]
 
 import { CLOUD_LONG, PG, SERVICE_LONG, TIMESCALE_DB } from '/snippets/vars.mdx';
 import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
-import OldCreateHypertable from "/snippets/admonitions/_old-api-create-hypertable.mdx";
+import OldCreateHypertable from '/snippets/reference/timescaledb/hypercore/_old-api-create-hypertable.mdx';
 
 [Supabase][supabase] is an open source Firebase alternative. This page shows how to run real-time analytical queries 
 against a {SERVICE_LONG} through Supabase using a foreign data wrapper (fdw) to bring aggregated data from your 
@@ -24,7 +24,7 @@ against a {SERVICE_LONG} through Supabase using a foreign data wrapper (fdw) to 
 
 To set up a {SERVICE_LONG} optimized for analytics to receive data from Supabase:
 
-<Procedure>
+
 
 1. **Optimize time-series data in hypertables**
 
@@ -132,14 +132,14 @@ To set up a {SERVICE_LONG} optimized for analytics to receive data from Supabase
     schedule_interval => INTERVAL '1 minute');
    ```
 
-</Procedure>
+
 
 
 ## Set up a Supabase database 
 
 To set up a Supabase database that injects data into your {SERVICE_LONG}:
 
-<Procedure>
+
 
 1. **Connect a foreign server in Supabase to your {SERVICE_LONG}**
 
@@ -229,13 +229,13 @@ To set up a Supabase database that injects data into your {SERVICE_LONG}:
       ) SERVER timescale OPTIONS (schema_name 'public', table_name 'signs_per_minute_delay');
       ```
 
-</Procedure>
+
 
 ## Test the integration 
 
 To inject data into your {SERVICE_LONG} from a Supabase database using a foreign table: 
 
-<Procedure>
+
 
 1. **Insert data into your Supabase database**
 
@@ -258,7 +258,7 @@ To inject data into your {SERVICE_LONG} from a Supabase database using a foreign
    |-------------|------|------|
    | 2025-02-27 16:30:04.682391+00 | 2025-02-27 16:30:04.682391+00 | test |
 
-</Procedure>
+
 
 You have successfully integrated Supabase with your {SERVICE_LONG}.  
 

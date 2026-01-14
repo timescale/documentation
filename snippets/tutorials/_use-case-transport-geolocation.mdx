@@ -6,7 +6,7 @@ To add geospatial analysis to your ride count visualization, you need geospatial
 originated where. As {TIMESCALE_DB} is compatible with all Postgres extensions, use [PostGIS][postgis] to slice 
 data by time and location.
 
-<Procedure>
+
 
 1.  Connect to your [{SERVICE_LONG}][in-console-editors] and add the PostGIS extension:
 
@@ -29,7 +29,7 @@ data by time and location.
     ```
     This updates 10,906,860 rows of data on both columns, it takes a while. Coffee is your friend.  
 
-</Procedure>
+
 
 ### Visualize the area where you can make the most money
 
@@ -40,7 +40,7 @@ is `GROUP BY` `trip_distance` and location so that Grafana can plot the data pro
 This enables you to see where a taxi driver is most likely to pick up a passenger who wants a longer ride, 
 and make more money.
 
-<Procedure>
+
 
 1. **Create a geolocalization dashboard**
  
@@ -81,7 +81,7 @@ and make more money.
 
       ![Real-time analytics geolocation](https://assets.timescale.com/docs/images/use-case-rta-grafana-heatmap.png)
 
-</Procedure>
+
 
 [in-console-editors]: /deploy-and-operate/tiger-cloud/get-started/run-queries-from-console/
 [postgis]: http://postgis.net/

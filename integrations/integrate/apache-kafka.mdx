@@ -9,7 +9,7 @@ keywords: [Apache Kafka, integrations]
 import { CLOUD_LONG } from '/snippets/vars.mdx';
 import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
 import IntegrationApacheKafka from "/snippets/integrations/_integration-apache-kafka-install.mdx";
-import OldCreateHypertable from "/snippets/admonitions/_old-api-create-hypertable.mdx";
+import OldCreateHypertable from '/snippets/reference/timescaledb/hypercore/_old-api-create-hypertable.mdx';
 
 [Apache Kafka][apache-kafka] is a distributed event streaming platform used for high-performance data pipelines, 
 streaming analytics, and data integration. [Apache Kafka Connect][kafka-connect] is a tool to scalably and reliably 
@@ -29,11 +29,11 @@ This guide explains how to set up Kafka and Kafka Connect to stream data from a 
 
 To install and configure Apache Kafka:
 
-<Procedure>
+
 
 <IntegrationApacheKafka />
    
-</Procedure>
+
 
 Keep these terminals open, you use them to test the integration later.
 
@@ -41,7 +41,7 @@ Keep these terminals open, you use them to test the integration later.
 
 To set up Kafka Connect server, plugins, drivers, and connectors:
 
-<Procedure>
+
 
 1. **Install the {PG} connector**
 
@@ -75,13 +75,13 @@ To set up Kafka Connect server, plugins, drivers, and connectors:
     {"version":"3.9.0","commit":"a60e31147e6b01ee","kafka_cluster_id":"J-iy4IGXTbmiALHwPZEZ-A"}
     ```
 
-</Procedure>
+
 
 ## Create a table in your Tiger service to ingest Kafka events
 
 To prepare your {SERVICE_LONG} for Kafka integration:
 
-<Procedure>
+
 
 1. **[Connect][connect] to your {SERVICE_LONG}**
 
@@ -99,13 +99,13 @@ To prepare your {SERVICE_LONG} for Kafka integration:
    ```
    <OldCreateHypertable />   
 
-</Procedure>
+
 
 ## Create the Tiger Cloud sink
 
 To create a {CLOUD_LONG} sink in Apache Kafka: 
 
-<Procedure>
+
 
 
 1.  **Create the connection configuration**
@@ -149,13 +149,13 @@ To create a {CLOUD_LONG} sink in Apache Kafka:
    #["timescale-standalone-sink"]
    ```
 
-</Procedure>
+
 
 ## Test the integration with Tiger Cloud
 
 To test this integration, send some messages onto the `accounts` topic. You can do this using the kafkacat or kcat utility.
 
-<Procedure>
+
 
 1. **In the terminal running `kafka-console-producer.sh` enter the following json strings**
 
@@ -181,7 +181,7 @@ To test this integration, send some messages onto the `accounts` topic. You can 
    |2025-02-18 13:55:05.283549+00 | Jolene | Tennessee |
    |2025-02-18 13:55:05.35226+00 | Barbara Ann | California |
 
-</Procedure>
+
 
 You have successfully integrated Apache Kafka with {CLOUD_LONG}.
 

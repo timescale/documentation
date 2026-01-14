@@ -13,7 +13,7 @@ Every {SERVICE_LONG} is a 100% {PG} database hosted in {CLOUD_LONG} with
 {COMPANY} extensions such as {TIMESCALE_DB}. You connect to your {SERVICE_LONG}
 from a standard Rails app configured for {PG}.
 
-<Procedure>
+
 
 1.  **Create a new Rails app configured for {PG}**
 
@@ -88,7 +88,7 @@ from a standard Rails app configured for {PG}.
       | timescaledb         | 2.18.1  | public     | Enables scalable inserts and complex queries for time-series data (Community Edition)| 
       | timescaledb_toolkit | 1.19.0  | public     | Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities| 
 
-</Procedure>
+
 
 ## Optimize time-series data in hypertables
 
@@ -97,7 +97,7 @@ you can do with regular {PG} tables, you can do with hypertables - but much fast
 
 In this section, you use the helpers in the {TIMESCALE_DB} gem to create and manage a [hypertable][about-hypertables].
 
-<Procedure>
+
 
 1.  **Generate a migration to create the page loads table**
 
@@ -196,14 +196,14 @@ In this section, you use the helpers in the {TIMESCALE_DB} gem to create and man
     rails db:migrate
     ```
 
-</Procedure>
+
 
 ## Insert data your service
 
 The {TIMESCALE_DB} gem provides efficient ways to insert data into hypertables. This section
 shows you how to ingest test data into your hypertable.
 
-<Procedure>
+
 
 1.  **Create a controller to handle page loads**
 
@@ -271,7 +271,7 @@ shows you how to ingest test data into your hypertable.
    PageLoad.first
    ```
 
-</Procedure>
+
 
 ## Reference
 

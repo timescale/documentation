@@ -46,7 +46,7 @@ Intro sentence. The title should explain what the user will do in this section.
 Use this sentence to either give a small explanation of the architecture or 
 workflow, or just an intro sentence.
 
-<Procedure>
+
 
 1. **Do this**
 

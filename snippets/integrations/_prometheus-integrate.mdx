@@ -29,7 +29,7 @@ To export your data, do the following:
 
 <Tab title="Tiger Cloud">
 
-<Procedure>
+
 
 To export metrics from a {SERVICE_LONG}, you create a dedicated Prometheus exporter in {CONSOLE}, attach it to your {SERVICE_SHORT}, then configure Prometheus to scrape metrics using the exposed URL. The Prometheus exporter exposes the metrics related to the {SERVICE_LONG} like CPU, memory, and storage. To scrape other metrics, use Postgres Exporter as described for {SELF_LONG}. The Prometheus exporter is available for [Scale and Enterprise][pricing-plan-features] pricing plans.
 
@@ -103,7 +103,7 @@ To export metrics from a {SERVICE_LONG}, you create a dedicated Prometheus expor
       |`region`|`us-east-1`| AWS region                 |
       |`role`|`replica` or `primary`| For {SERVICE_SHORT} with replicas |
    
-</Procedure>
+
 
 
 
@@ -111,7 +111,7 @@ To export metrics from a {SERVICE_LONG}, you create a dedicated Prometheus expor
 
 <Tab title="Self-hosted TimescaleDB">
 
-<Procedure>
+
 
 To export metrics from {SELF_LONG}, you import telemetry data about your database to Postgres Exporter, then configure Prometheus to scrape metrics from it. Postgres Exporter exposes metrics that you define, excluding the system metrics.
 
@@ -187,7 +187,7 @@ To export metrics from {SELF_LONG}, you import telemetry data about your databas
 
        You see the Postgres Exporter target and the metrics scraped from it.
 
-</Procedure>
+
     
 </Tab>
 
