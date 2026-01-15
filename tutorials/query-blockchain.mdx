@@ -1,16 +1,16 @@
 ---
 title: Query the Bitcoin blockchain
-description: Learn to use Tiger Cloud to query and analyze transactions on a blockchain as you would any other time-series data
-keywords: [beginner, crypto, blockchain, Bitcoin, finance, analytics, hypercore, compression]
+sidebarTitle: Query Bitcoin blockchain
+description: Query transactions on a blockchain as you would any other time-series data
+keywords: [beginner, crypto, blockchain, Bitcoin, finance, analytics]
 ---
 
-import FinancialIndustry from "/snippets/tutorials/_financial-industry-intro.mdx";
-import SetupBlockchainDataset from "/snippets/tutorials/_setup-blockchain-dataset.mdx";
-import TutorialsHypercoreIntro from "/snippets/intros/_hypercore-intro-short.mdx";
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
-import { CLOUD_LONG, SERVICE_LONG, SERVICE_SHORT, CONSOLE, TIMESCALE_DB, HYPERCORE, COLUMNSTORE, ROWSTORE, HYPERTABLE } from '/snippets/vars.mdx';
+import FinancialIndustryIntro from "/snippets/tutorials/_financial-industry-intro.mdx";
+import IntegrationPrereqs from "/snippets/prerequisites/_prereqs-cloud-and-self.mdx";
+import SetupBlockchainDataset from "/snippets/tutorials/_use-case-setup-blockchain-dataset.mdx";
+import { CLOUD_LONG, SERVICE_LONG, SERVICE_SHORT, HYPERTABLE, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-<FinancialIndustry />
+<FinancialIndustryIntro />
 
 In this tutorial, you use {CLOUD_LONG} to ingest, store, and analyze transactions
 on the Bitcoin blockchain.
@@ -25,10 +25,8 @@ This tutorial covers:
 1.  **Ingest data into a {SERVICE_SHORT}**: set up and connect to a {SERVICE_LONG}, create tables and {HYPERTABLE}s, and ingest data.
 1.  **Query your data**: obtain information, including finding the most recent transactions on the blockchain, and
    gathering information about the transactions using aggregation functions.
-1.  **Compress your data using {HYPERCORE}**: compress data that is no longer needed for highest performance queries, but is still accessed regularly
-    for real-time analytics.
 
-When you've completed this tutorial, you can use the same dataset to [Analyze the Bitcoin blockchain][analyze-blockchain],
+When you've completed this tutorial, you can use the same dataset to [Analyze the Bitcoin data][blockchain-analyze],
 using {TIMESCALE_DB} hyperfunctions.
 
 ## Prerequisites
@@ -74,7 +72,7 @@ transactions.
 1.  The data you get back looks a bit like this:
 
     ```sql
-             time          |                               hash                               | block_id | fee_usd
+                 time          |                               hash                               | block_id | fee_usd
     ------------------------+------------------------------------------------------------------+----------+---------
      2023-06-12 23:54:18+00 | 22e4610bc12d482bc49b7a1c5b27ad18df1a6f34256c16ee7e499b511e02d71e |   794111 |       0
      2023-06-12 23:53:08+00 | dde958bb96a302fd956ced32d7b98dd9860ff82d569163968ecfe29de457fedb |   794110 |       0
@@ -161,84 +159,7 @@ US Dollars.
     (5 rows)
     ```
 
-## Compress your data using hypercore
-
-<TutorialsHypercoreIntro />
-
-### Optimize your data in the columnstore
-
-To compress the data in the `transactions` table, do the following:
-
-1. Connect to your {SERVICE_LONG}
-
-   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. The in-Console editors display the query speed.
-   You can also connect to your {SERVICE_SHORT} using [psql][connect-using-psql].
-
-1. Convert data to the {COLUMNSTORE}:
-
-   You can do this either automatically or manually:
-   - [Automatically convert chunks][add_columnstore_policy] in the {HYPERTABLE} to the {COLUMNSTORE} at a specific time interval:
-
-       ```sql
-      CALL add_columnstore_policy('transactions', after => INTERVAL '1d');
-       ```
-
-   - [Manually convert all chunks][convert_to_columnstore] in the {HYPERTABLE} to the {COLUMNSTORE}:
-
-       ```sql
-       DO $$
-       DECLARE
-          chunk_name TEXT;
-       BEGIN
-          FOR chunk_name IN (SELECT c FROM show_chunks('transactions') c)
-          LOOP
-             RAISE NOTICE 'Converting chunk: %', chunk_name; -- Optional: To see progress
-             CALL convert_to_columnstore(chunk_name);
-          END LOOP;
-          RAISE NOTICE 'Conversion to columnar storage complete for all chunks.'; -- Optional: Completion message
-       END$$;
-       ```
-
-### Take advantage of query speedups
-
-Previously, data in the {COLUMNSTORE} was segmented by the `block_id` column value.
-This means fetching data by filtering or grouping on that column is
-more efficient. Ordering is set to time descending. This means that when you run queries
-which try to order data in the same way, you see performance benefits.
-
-1. Connect to your {SERVICE_LONG}
-
-   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. The in-Console editors display the query speed.
-
-1. Run the following query:
-
-   ```sql
-   WITH recent_blocks AS (
-    SELECT block_id FROM transactions
-    WHERE is_coinbase IS TRUE
-    ORDER BY time DESC
-    LIMIT 5
-   )
-   SELECT
-    t.block_id, count(*) AS transaction_count,
-    SUM(weight) AS block_weight,
-    SUM(output_total_usd) AS block_value_usd
-   FROM transactions t
-   INNER JOIN recent_blocks b ON b.block_id = t.block_id
-   WHERE is_coinbase IS NOT TRUE
-   GROUP BY t.block_id;
-   ```
-
-   Performance speedup is of two orders of magnitude, around 15 ms when compressed in the {COLUMNSTORE} and
-   1 second when decompressed in the {ROWSTORE}.
-
-[analyze-blockchain]: /tutorials/time-series/analyze-blockchain/
-[hypercore]: /use-timescale/hypercore/
-[in-console-editors]: /getting-started/run-queries-from-console/
-[services-portal]: https://console.cloud.timescale.com/dashboard/services
-[connect-using-psql]: /integrations/psql#connect-to-your-service
-[add_columnstore_policy]: /api/hypercore/add_columnstore_policy/
-[convert_to_columnstore]: /api/hypercore/convert_to_columnstore/
+[blockchain-analyze]: /tutorials/analyze-blockchain
 [blockchain-def]: https://www.pcmag.com/encyclopedia/term/blockchain
-[transactions-def]: https://www.pcmag.com/encyclopedia/term/bitcoin-transaction
 [coinbase-def]: https://www.pcmag.com/encyclopedia/term/coinbase-transaction
+[transactions-def]: https://www.pcmag.com/encyclopedia/term/bitcoin-transaction

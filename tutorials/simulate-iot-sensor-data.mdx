@@ -1,12 +1,12 @@
 ---
 title: Simulate an IoT sensor dataset
-sidebarTitle: Simulate IoT sensor data
+sidebarTitle: Sensor data simulation
 description: Simulate an IoT sensor dataset for testing and development with Tiger Cloud
 keywords: [IoT, simulate, sensor data, time-series, testing, development, sample data]
 ---
 
-import IntegrationPrereqs from '/snippets/prerequisites/_integration-prereqs.mdx';
-import OldCreateHypertable from '/snippets/changes/_old-api-create-hypertable.mdx';
+import IntegrationPrereqs from '/snippets/prerequisites/_prereqs-cloud-and-self.mdx';
+import CreateHypertablePolicyNote from '/snippets/reference/timescaledb/hypercore/_create-hypertable-columnstore-policy-note.mdx';
 import { SERVICE_LONG } from '/snippets/vars.mdx';
 
 
@@ -36,7 +36,7 @@ To simulate a dataset, run the following queries:
     ```
 
 1. **Create the `sensor_data` hypertable**
-    
+
     ```sql
     CREATE TABLE sensor_data (
       time TIMESTAMPTZ NOT NULL,
@@ -45,11 +45,10 @@ To simulate a dataset, run the following queries:
       cpu DOUBLE PRECISION,
       FOREIGN KEY (sensor_id) REFERENCES sensors (id)
     ) WITH (
-      tsdb.hypertable,
-      tsdb.partition_column='time'
+      tsdb.hypertable
     );
     ```
-    <OldCreateHypertable />
+    <CreateHypertablePolicyNote />
    
 1. **Populate the `sensors` table**:
 
@@ -197,6 +196,4 @@ After you simulate a dataset, you can run some basic queries on it. For example:
 
 You have now successfully simulated and run queries on an IoT dataset.
 
-[create-a-service]: /deploy-and-operate/tiger-cloud/get-started/create-services/#create-a-timescale-cloud-service
-[connect-to-service]: /deploy-and-operate/tiger-cloud/get-started/run-queries-from-console
 [tsbs]: https://github.com/timescale/tsbs

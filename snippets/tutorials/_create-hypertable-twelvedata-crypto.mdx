@@ -1,6 +1,6 @@
+import CreateHypertablePolicyNote from "/snippets/reference/timescaledb/hypercore/_create-hypertable-columnstore-policy-note.mdx";
 import HypertableIntro from "/snippets/tutorials/_tutorials-hypertable-intro.mdx";
-import OldCreateHypertable from "/snippets/changes/_old-api-create-hypertable.mdx";
-import { SERVICE_LONG, CONSOLE, HYPERTABLE, COLUMNSTORE, PG } from '/snippets/vars.mdx';
+import { COLUMNSTORE, CONSOLE, HYPERTABLE, PG, SERVICE_LONG } from '/snippets/vars.mdx';
 
 ## Optimize time-series data in a hypertable
 
@@ -8,7 +8,7 @@ import { SERVICE_LONG, CONSOLE, HYPERTABLE, COLUMNSTORE, PG } from '/snippets/va
 
 1. **Connect to your {SERVICE_LONG}**
 
-   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. You can also connect to your service using [psql][connect-using-psql].
+   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. You can also connect to your service using [psql][psql].
 
 1. **Create a {HYPERTABLE} to store the real-time cryptocurrency data**
 
@@ -24,12 +24,11 @@ import { SERVICE_LONG, CONSOLE, HYPERTABLE, COLUMNSTORE, PG } from '/snippets/va
         day_volume NUMERIC
     ) WITH (
        tsdb.hypertable,
-       tsdb.partition_column='time',
        tsdb.segmentby='symbol',
        tsdb.orderby='time DESC'
     );
     ```
-   <OldCreateHypertable />
+   <CreateHypertablePolicyNote />
 
 ## Create a standard Postgres table for relational data
 
@@ -48,10 +47,10 @@ standard {PG} relational tables.
 You now have two tables within your {SERVICE_LONG}. A hypertable named `crypto_ticks`, and a normal
 {PG} table named `crypto_assets`.
 
-[in-console-editors]: /getting-started/run-queries-from-console/
+[hypertable-create-table]: /api-reference/timescaledb/hypertables/create_table
+[hypercore]: /manage-data/data-management/hypercore/understand-hypercore
+[hypertables-section]: /manage-data/data-management/hypertables/understand-hypertables
+[in-console-editors]: /deploy-and-operate/tiger-cloud/get-started/run-queries-from-console
+[psql]: /integrations/psql
+[secondary-indexes]: /use-timescale/hypercore/secondary-indexes
 [services-portal]: https://console.cloud.timescale.com/dashboard/services
-[connect-using-psql]: /integrations/psql#connect-to-your-service
-[hypertable-create-table]: /api/hypertable/create_table/
-[hypertables-section]: /use-timescale/hypertables/
-[hypercore]: /use-timescale/hypercore/
-[secondary-indexes]: /use-timescale/hypercore/secondary-indexes/

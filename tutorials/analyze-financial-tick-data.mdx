@@ -1,18 +1,18 @@
 ---
 title: Analyze financial tick data
-description: Use Tiger Cloud to store financial tick data and create candlestick views to perform real-time analysis of price changes
-keywords: [tutorials, finance, beginner, candlestick charts, OHLCV, financial data, tick data, time-series, crypto trading, stock analysis, hypercore, compression]
+sidebarTitle: Analyze financial tick
+description: Store financial tick data and create candlestick views for real-time analysis of price changes
+keywords: [tutorials, finance, beginner, candlestick charts, OHLCV, financial data, tick data, time-series, crypto trading, stock analysis]
 ---
 
-import FinancialIndustry from "/snippets/tutorials/_financial-industry-intro.mdx";
+import AddDataCrypto from "/snippets/tutorials/_add-data-twelvedata-crypto.mdx";
 import CandlestickIntro from "/snippets/tutorials/_candlestick-intro.mdx";
 import CreateHypertableCrypto from "/snippets/tutorials/_create-hypertable-twelvedata-crypto.mdx";
-import AddDataCrypto from "/snippets/tutorials/_add-data-twelvedata-crypto.mdx";
+import FinancialIndustry from "/snippets/tutorials/_financial-industry-intro.mdx";
 import GrafanaConnect from "/snippets/integrations/_grafana-connect.mdx";
 import GraphOhlcv from "/snippets/tutorials/_graphing-ohlcv-data.mdx";
-import TutorialsHypercoreIntro from "/snippets/intros/_hypercore-intro-short.mdx";
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
-import { SERVICE_LONG, SERVICE_SHORT, CONSOLE, TIMESCALE_DB, COMPANY, PG, HYPERCORE, COLUMNSTORE, ROWSTORE, HYPERTABLE } from '/snippets/vars.mdx';
+import IntegrationPrereqs from "/snippets/prerequisites/_prereqs-cloud-and-self.mdx";
+import { CAGG, COMPANY, HYPERTABLE, PG, SERVICE_LONG, SERVICE_SHORT, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 <FinancialIndustry />
 
@@ -26,17 +26,25 @@ In this tutorial, you use real raw financial data provided by
 [Twelve Data][twelve-data], create an aggregated candlestick view, query the
 aggregated data, and visualize the data in Grafana.
 
-This tutorial shows you how to ingest real-time time-series data into a {SERVICE_LONG}:
+This tutorial covers:
 
-1.  **Ingest data into a {SERVICE_SHORT}**: load data from
-    [Twelve Data][twelve-data] into your {TIMESCALE_DB} database.
-1.  **Query your dataset**: create candlestick views, query
-    the aggregated data, and visualize the data in Grafana.
-1.  **Compress your data using {HYPERCORE}**: learn how to store and query
-your financial tick data more efficiently using compression feature of {TIMESCALE_DB}.
+1.  **Ingest data into a {SERVICE_SHORT}**: load data from [Twelve Data][twelve-data] into your {TIMESCALE_DB} database.
+1.  **Query your dataset**: create candlestick views, query the aggregated data, and visualize the data in Grafana.
 
 To create candlestick views, query the aggregated data, and visualize the data in Grafana, see the
-[ingest real-time websocket data section][advanced-websocket].
+[ingest real-time websocket data section][ingest-real-time-financial-data].
+
+## Prerequisites
+
+<IntegrationPrereqs />
+
+This tutorial uses a dataset that contains second-by-second trade data for
+the most-traded crypto-assets. You optimize this time-series data in a {HYPERTABLE} called `crypto_ticks`.
+You also create a separate table of asset symbols in a regular {PG} table named `crypto_assets`.
+
+The dataset is updated on a nightly basis and contains data from the last four
+weeks, typically around 8 million rows of data. Trades are recorded in
+real-time from 180+ cryptocurrency exchanges.
 
 ## OHLCV data and candlestick charts
 
@@ -51,20 +59,6 @@ these stories from some {COMPANY} community members:
 *   [How Trading Strategy built a data stack for crypto quant trading][trading-strategy]
 *   [How Messari uses data to open the cryptoeconomy to everyone][messari]
 *   [How I power a (successful) crypto trading bot with {TIMESCALE_DB}][bot]
-
-## Prerequisites
-
-<IntegrationPrereqs />
-
-## Ingest data into a service
-
-This tutorial uses a dataset that contains second-by-second trade data for
-the most-traded crypto-assets. You optimize this time-series data in a {HYPERTABLE} called `crypto_ticks`.
-You also create a separate table of asset symbols in a regular {PG} table named `crypto_assets`.
-
-The dataset is updated on a nightly basis and contains data from the last four
-weeks, typically around 8 million rows of data. Trades are recorded in
-real-time from 180+ cryptocurrency exchanges.
 
 <CreateHypertableCrypto />
 
@@ -91,23 +85,20 @@ lowest prices, you can use the standard {PG} aggregate functions `MIN` and
 
 In {TIMESCALE_DB}, the most efficient way to create candlestick views is to use
 [continuous aggregates][caggs].
-In this tutorial, you create a continuous aggregate for a candlestick time
+In this tutorial, you create a {CAGG} for a candlestick time
 bucket, and then query the aggregate with different refresh policies. Finally,
 you can use Grafana to visualize your data as a candlestick chart.
 
 ### Create a continuous aggregate
 
-To look at OHLCV values, the most effective way is to create a continuous
-aggregate. In this tutorial, you create a continuous aggregate to aggregate data
+To look at OHLCV values, the most effective way is to create a {CAGG}. In this tutorial, you create a {CAGG} to aggregate data
 for each day. You then set the aggregate to refresh every day, and to aggregate
 the last two days' worth of data.
-
-**Creating a continuous aggregate**
 
 1.  Connect to the {SERVICE_LONG} that contains the Twelve Data
     cryptocurrency dataset.
 
-1.  At the psql prompt, create the continuous aggregate to aggregate data every
+1.  At the psql prompt, create the {CAGG} to aggregate data every
     minute:
 
     ```sql
@@ -125,9 +116,9 @@ the last two days' worth of data.
         GROUP BY bucket, symbol;
     ```
 
-    When you create the continuous aggregate, it refreshes by default.
+    When you create the {CAGG}, it refreshes by default.
 
-1.  Set a refresh policy to update the continuous aggregate every day,
+1.  Set a refresh policy to update the {CAGG} every day,
     if there is new data available in the {HYPERTABLE} for the last two days:
 
     ```sql
@@ -139,10 +130,8 @@ the last two days' worth of data.
 
 ### Query the continuous aggregate
 
-When you have your continuous aggregate set up, you can query it to get the
+When you have your {CAGG} set up, you can query it to get the
 OHLCV values.
-
-**Querying the continuous aggregate**
 
 1.  Connect to the {SERVICE_LONG} that contains the Twelve Data
     cryptocurrency dataset.
@@ -168,96 +157,13 @@ OHLCV values.
 
 <GraphOhlcv />
 
-## Compress your data using hypercore
-
-<TutorialsHypercoreIntro />
-
-### Optimize your data in the columnstore
-
-To compress the data in the `crypto_ticks` table, do the following:
-
-1. Connect to your {SERVICE_LONG}
-
-   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. The in-Console editors display the query speed.
-   You can also connect to your {SERVICE_SHORT} using [psql][connect-using-psql].
-
-1. Convert data to the {COLUMNSTORE}:
-
-   You can do this either automatically or manually:
-   - [Automatically convert chunks][add_columnstore_policy] in the {HYPERTABLE} to the {COLUMNSTORE} at a specific time interval:
-
-       ```sql
-      CALL add_columnstore_policy('crypto_ticks', after => INTERVAL '1d');
-       ```
-
-   - [Manually convert all chunks][convert_to_columnstore] in the {HYPERTABLE} to the {COLUMNSTORE}:
-
-       ```sql
-       CALL convert_to_columnstore(c) from show_chunks('crypto_ticks') c;
-       ```
-
-1.  Now that you have converted the chunks in your {HYPERTABLE} to the {COLUMNSTORE}, compare the
-    size of the dataset before and after compression:
-
-    ```sql
-    SELECT
-        pg_size_pretty(before_compression_total_bytes) as before,
-        pg_size_pretty(after_compression_total_bytes) as after
-     FROM hypertable_columnstore_stats('crypto_ticks');
-    ```
-
-    This shows a significant improvement in data usage:
-
-    ```sql
-    before | after
-    --------+-------
-    694 MB | 75 MB
-    (1 row)
-    ```
-
-### Take advantage of query speedups
-
-Previously, data in the {COLUMNSTORE} was segmented by the `symbol` column value.
-This means fetching data by filtering or grouping on that column is
-more efficient. Ordering is set to time descending. This means that when you run queries
-which try to order data in the same way, you see performance benefits.
-
-1. Connect to your {SERVICE_LONG}
-
-   In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. The in-Console editors display the query speed.
-
-1. Run the following query:
-
-   ```sql
-   SELECT
-       time_bucket('1 day', time) AS bucket,
-       symbol,
-       FIRST(price, time) AS "open",
-       MAX(price) AS high,
-       MIN(price) AS low,
-       LAST(price, time) AS "close",
-       LAST(day_volume, time) AS day_volume
-   FROM crypto_ticks
-   GROUP BY bucket, symbol;
-   ```
-
-   Performance speedup is of two orders of magnitude, around 15 ms when compressed in the {COLUMNSTORE} and
-   1 second when decompressed in the {ROWSTORE}.
-
-[advanced-websocket]: /tutorials/time-series/ingest-real-time-financial-data/
-[cloud-install]: /getting-started/#create-your-timescale-account
+[bot]: https://www.tigerdata.com/blog/how-i-power-a-successful-crypto-trading-bot-with-timescaledb
+[caggs]: /manage-data/data-management/continuous-aggregates/understand-continuous-aggregates
+[first]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/first
+[hyperfunctions]: /api-reference/timescaledb/hyperfunctions/
+[ingest-real-time-financial-data]: /tutorials/ingest-real-time-financial-data
+[last]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/last
+[messari]: https://www.tigerdata.com/blog/how-messari-uses-data-to-open-the-cryptoeconomy-to-everyone
+[time-bucket]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket
+[trading-strategy]: https://www.tigerdata.com/blog/how-trading-strategy-built-a-data-stack-for-crypto-quant-trading
 [twelve-data]: https://twelvedata.com/
-[trading-strategy]: https://www.timescale.com/blog/how-trading-strategy-built-a-data-stack-for-crypto-quant-trading
-[messari]: https://www.timescale.com/blog/how-messari-uses-data-to-open-the-cryptoeconomy-to-everyone
-[bot]: https://www.timescale.com/blog/how-i-power-a-successful-crypto-trading-bot-with-timescaledb
-[caggs]: /use-timescale/continuous-aggregates/
-[first]: /api/hyperfunctions/first/
-[hyperfunctions]: /api/hyperfunctions/
-[last]: /api/hyperfunctions/last/
-[time-bucket]: /api/hyperfunctions/time_bucket/
-[hypercore]: /use-timescale/hypercore/
-[in-console-editors]: /getting-started/run-queries-from-console/
-[services-portal]: https://console.cloud.timescale.com/dashboard/services
-[connect-using-psql]: /integrations/psql#connect-to-your-service
-[add_columnstore_policy]: /api/hypercore/add_columnstore_policy/
-[convert_to_columnstore]: /api/hypercore/convert_to_columnstore/

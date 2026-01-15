@@ -1,14 +1,15 @@
 ---
 title: Analyze the Bitcoin blockchain
-description: Use TimescaleDB hyperfunctions to analyze transactions on the Bitcoin blockchain and discover insights about fees, mining revenue, and more
+sidebarTitle: Analyze Bitcoin blockchain
+description: Analyze transactions and discover insights about fees, mining revenue, and more
 keywords: [intermediate, crypto, blockchain, Bitcoin, finance, analytics, hyperfunctions, continuous aggregates, time-series analysis]
 ---
 
 import FinancialIndustry from "/snippets/tutorials/_financial-industry-intro.mdx";
-import SetupBlockchainDataset from "/snippets/tutorials/_setup-blockchain-dataset.mdx";
+import SetupBlockchainDataset from "/snippets/tutorials/_use-case-setup-blockchain-dataset.mdx";
 import GrafanaConnect from "/snippets/integrations/_grafana-connect.mdx";
-import IntegrationPrereqs from "/snippets/prerequisites/_integration-prereqs.mdx";
-import { CLOUD_LONG, ACCOUNT_LONG, SERVICE_LONG, TIMESCALE_DB, PG, CAGG, CAGG_CAP } from '/snippets/vars.mdx';
+import IntegrationPrereqs from "/snippets/prerequisites/_prereqs-cloud-and-self.mdx";
+import { CAGG, CAGG_CAP, CLOUD_LONG, PG, SERVICE_LONG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
 <FinancialIndustry />
 
@@ -502,9 +503,9 @@ increase the time range.
 
     ![Visualizing block revenue over time](https://assets.timescale.com/docs/images/grafana-blockweight-revenue.webp)
 
-[docs-cagg]: /use-timescale/continuous-aggregates/
-[about-hyperfunctions]: https://docs.tigerdata.com/use-timescale/latest/hyperfunctions/about-hyperfunctions/
-[cloud-install]: /getting-started/#create-your-timescale-account
+[about-hyperfunctions]: /api-reference/timescaledb/hyperfunctions/
 [blockchain-def]: https://www.pcmag.com/encyclopedia/term/blockchain
+[cloud-install]: /deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud
+[docs-cagg]: /manage-data/data-management/continuous-aggregates/understand-continuous-aggregates
+[grafana-setup]: /integrations/observability-alerting/grafana
 [transactions-def]: https://www.pcmag.com/encyclopedia/term/bitcoin-transaction
-[grafana-setup]: /integrations/grafana/

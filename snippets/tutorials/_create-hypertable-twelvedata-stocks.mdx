@@ -1,6 +1,6 @@
+import CreateHypertablePolicyNote from "/snippets/reference/timescaledb/hypercore/_create-hypertable-columnstore-policy-note.mdx";
 import HypertableIntro from "/snippets/tutorials/_tutorials-hypertable-intro.mdx";
-import OldCreateHypertable from "/snippets/changes/_old-api-create-hypertable.mdx";
-import { SERVICE_LONG, CONSOLE, HYPERTABLE, PG } from '/snippets/vars.mdx';
+import { CONSOLE, HYPERTABLE, PG, SERVICE_LONG } from '/snippets/vars.mdx';
 
 ## Optimize time-series data in hypertables
 
@@ -19,11 +19,10 @@ import { SERVICE_LONG, CONSOLE, HYPERTABLE, PG } from '/snippets/vars.mdx';
       price DOUBLE PRECISION NULL,
       day_volume INT NULL
     ) WITH (
-       tsdb.hypertable,
-       tsdb.partition_column='time'
+       tsdb.hypertable
     );
     ```
-   <OldCreateHypertable />
+   <CreateHypertablePolicyNote />
 
 1.  **Create an index to support efficient queries**
 
@@ -52,5 +51,5 @@ You now have two tables in your {SERVICE_LONG}. One {HYPERTABLE}
 named `stocks_real_time`, and one regular {PG} table named `company`.
 
 [services-portal]: https://console.cloud.timescale.com/dashboard/services
-[in-console-editors]: /getting-started/run-queries-from-console/
+[in-console-editors]: /deploy-and-operate/tiger-cloud/get-started/run-queries-from-console
 [connect-using-psql]: /integrations/psql#connect-to-your-service

@@ -1213,7 +1213,6 @@
                     "group": "AI applications",
                     "pages": [
                       "tutorials/financial-forecasting",
-                      "tutorials/powered-observability",
                       "tutorials/real-time-predictive-maintenance"
                     ]
                   },
@@ -1221,49 +1220,56 @@
                     "group": "IoT sensors",
                     "pages": [
                       "tutorials/simulate-iot-sensor-data",
-                      "tutorials/real-time-analytics/energy-consumption",
-                      "tutorials/time-series/health-biometical-analysis"
+                      "tutorials/analyze-energy-consumption",
+                      "tutorials/health-biometical-analysis"
                     ]
                   },
                   {
                     "group": "Real-time dashboards",
                     "pages": [
-                      "tutorials/real-time-analytics/transport",
-                      "tutorials/time-series/anomaly-detection-in-streaming-data"
+                      "tutorials/analyze-transport-data",
+                      "tutorials/detect-anomaly-in-streaming"
                     ]
                   },
                   {
                     "group": "System monitoring",
                     "pages": [
-                      "tutorials/powered-observability",
-                      "tutorials/time-series/anomaly-detection-in-streaming-data"
+                      "tutorials/powered-observability"
                     ]
                   },
                   {
                     "group": "Energy",
                     "pages": [
-                      "tutorials/real-time-analytics/energy-consumption"
+                      "tutorials/analyze-energy-consumption"
                     ]
                   },
                   {
                     "group": "Financial",
                     "pages": [
-                      "tutorials/real-time-analytics/ingest-real-time-websocket-data",
+                      "tutorials/ingest-real-time-financial-data",
+                      "tutorials/analyze-financial-tick-data",
                       "tutorials/financial-forecasting",
-                      "tutorials/time-series/query-bitcoin-blockchain"
+                      "tutorials/query-blockchain",
+                      "tutorials/analyze-blockchain"
                     ]
                   },
                   {
                     "group": "Healthcare",
                     "pages": [
-                      "tutorials/time-series/health-biometical-analysis",
+                      "tutorials/health-biometical-analysis",
                       "tutorials/powered-observability"
                     ]
                   },
                   {
                     "group": "Transport",
                     "pages": [
-                      "tutorials/real-time-analytics/transport"
+                      "tutorials/analyze-transport-data"
+                    ]
+                  },
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/cookbook"
                     ]
                   }
                 ]
@@ -1287,63 +1293,7 @@
                 "url": "tutorials/quickstart"
               },
               {
-                "item": "IoT sensors",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "tutorials/real-time-analytics/energy-consumption"
-                    ]
-                  },
-                  {
-                    "group": "IoT sensors",
-                    "pages": [
-                      "tutorials/real-time-analytics/energy-consumption",
-                      "tutorials/time-series/health-biometical-analysis"
-                    ]
-                  }
-                ],
-                "url": "tutorials/real-time-analytics/energy-consumption"
-              },
-              {
-                "item": "Real-time dashboards",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "tutorials/real-time-analytics/transport"
-                    ]
-                  },
-                  {
-                    "group": "Real-time dashboards",
-                    "pages": [
-                      "tutorials/real-time-analytics/transport",
-                      "tutorials/time-series/anomaly-detection-in-streaming-data"
-                    ]
-                  }
-                ],
-                "url": "tutorials/real-time-analytics/transport"
-              },
-              {
-                "item": "Energy",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "tutorials/real-time-analytics/energy-consumption"
-                    ]
-                  },
-                  {
-                    "group": "Energy",
-                    "pages": [
-                      "tutorials/real-time-analytics/energy-consumption"
-                    ]
-                  }
-                ],
-                "url": "tutorials/real-time-analytics/energy-consumption"
-              },
-              {
-                "item": "Financial",
+                "item": "AI applications",
                 "groups": [
                   {
                     "group": " ",
@@ -1352,14 +1302,111 @@
                     ]
                   },
                   {
-                    "group": "Financial",
+                    "group": "AI applications",
                     "pages": [
                       "tutorials/financial-forecasting",
-                      "tutorials/time-series/query-bitcoin-blockchain"
+                      "tutorials/real-time-predictive-maintenance"
                     ]
                   }
                 ],
                 "url": "tutorials/financial-forecasting"
+              },
+              {
+                "item": "IoT sensors",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/simulate-iot-sensor-data"
+                    ]
+                  },
+                  {
+                    "group": "IoT sensors",
+                    "pages": [
+                      "tutorials/simulate-iot-sensor-data",
+                      "tutorials/analyze-energy-consumption",
+                      "tutorials/health-biometical-analysis"
+                    ]
+                  }
+                ],
+                "url": "tutorials/simulate-iot-sensor-data"
+              },
+              {
+                "item": "Real-time dashboards",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/analyze-transport-data"
+                    ]
+                  },
+                  {
+                    "group": "Real-time dashboards",
+                    "pages": [
+                      "tutorials/analyze-transport-data",
+                      "tutorials/detect-anomaly-in-streaming"
+                    ]
+                  }
+                ],
+                "url": "tutorials/analyze-transport-data"
+              },
+              {
+                "item": "System monitoring",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/powered-observability"
+                    ]
+                  },
+                  {
+                    "group": "System monitoring",
+                    "pages": [
+                      "tutorials/powered-observability"
+                    ]
+                  }
+                ],
+                "url": "tutorials/powered-observability"
+              },
+              {
+                "item": "Energy",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/analyze-energy-consumption"
+                    ]
+                  },
+                  {
+                    "group": "Energy",
+                    "pages": [
+                      "tutorials/analyze-energy-consumption"
+                    ]
+                  }
+                ],
+                "url": "tutorials/analyze-energy-consumption"
+              },
+              {
+                "item": "Financial",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/ingest-real-time-financial-data"
+                    ]
+                  },
+                  {
+                    "group": "Financial",
+                    "pages": [
+                      "tutorials/ingest-real-time-financial-data",
+                      "tutorials/analyze-financial-tick-data",
+                      "tutorials/financial-forecasting",
+                      "tutorials/query-blockchain",
+                      "tutorials/analyze-blockchain"
+                    ]
+                  }
+                ],
+                "url": "tutorials/ingest-real-time-financial-data"
               },
               {
                 "item": "Healthcare",
@@ -1367,18 +1414,36 @@
                   {
                     "group": " ",
                     "pages": [
-                      "tutorials/time-series/health-biometical-analysis"
+                      "tutorials/health-biometical-analysis"
                     ]
                   },
                   {
                     "group": "Healthcare",
                     "pages": [
-                      "tutorials/time-series/health-biometical-analysis",
+                      "tutorials/health-biometical-analysis",
                       "tutorials/powered-observability"
                     ]
                   }
                 ],
-                "url": "tutorials/time-series/health-biometical-analysis"
+                "url": "tutorials/health-biometical-analysis"
+              },
+              {
+                "item": "Transport",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/analyze-transport-data"
+                    ]
+                  },
+                  {
+                    "group": "Transport",
+                    "pages": [
+                      "tutorials/analyze-transport-data"
+                    ]
+                  }
+                ],
+                "url": "tutorials/analyze-transport-data"
               }
             ]
           },
