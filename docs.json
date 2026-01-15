@@ -4407,6 +4407,26 @@
     {
       "source": "/api/latest/time_bucket_ng/",
       "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/",
+      "destination": "/manage-data/features/jobs/create-and-manage-jobs"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/create-and-manage-jobs/",
+      "destination": "/manage-data/features/jobs/create-and-manage-jobs"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/example-downsample-and-compress/",
+      "destination": "/manage-data/features/jobs/create-and-manage-jobs#downsample-and-compress-chunks"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/example-generic-retention/",
+      "destination": "/manage-data/features/jobs/create-and-manage-jobs#generic-retention-policy"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/example-tiered-storage/",
+      "destination": "/manage-data/features/jobs/create-and-manage-jobs#automatic-tablespace-management"
     }
   ]
 }
