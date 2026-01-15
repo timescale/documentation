@@ -1210,20 +1210,19 @@
                     ]
                   },
                   {
-                    "group": "IoT sensor",
+                    "group": "AI applications",
                     "pages": [
-                      "tutorials/time-series/simulate-iot-sensor-data",
-                      "tutorials/ai/real-time-predictive-maintenence",
-                      "tutorials/real-time-analytics/energy-consumption",
-                      "tutorials/time-series/health-biometical-analysis"
+                      "tutorials/financial-forecasting",
+                      "tutorials/powered-observability",
+                      "tutorials/real-time-predictive-maintenance"
                     ]
                   },
                   {
-                    "group": "Financial",
+                    "group": "IoT sensors",
                     "pages": [
-                      "tutorials/real-time-analytics/ingest-real-time-websocket-data",
-                      "tutorials/ai/financial-forcasting",
-                      "tutorials/time-series/query-bitcoin-blockchain"
+                      "tutorials/simulate-iot-sensor-data",
+                      "tutorials/real-time-analytics/energy-consumption",
+                      "tutorials/time-series/health-biometical-analysis"
                     ]
                   },
                   {
@@ -1234,17 +1233,9 @@
                     ]
                   },
                   {
-                    "group": "AI applications",
-                    "pages": [
-                      "tutorials/ai/financial-forcasting",
-                      "tutorials/ai/powered-observability",
-                      "tutorials/ai/real-time-predictive-maintenence"
-                    ]
-                  },
-                  {
                     "group": "System monitoring",
                     "pages": [
-                      "tutorials/ai/powered-observability",
+                      "tutorials/powered-observability",
                       "tutorials/time-series/anomaly-detection-in-streaming-data"
                     ]
                   },
@@ -1255,10 +1246,18 @@
                     ]
                   },
                   {
+                    "group": "Financial",
+                    "pages": [
+                      "tutorials/real-time-analytics/ingest-real-time-websocket-data",
+                      "tutorials/financial-forecasting",
+                      "tutorials/time-series/query-bitcoin-blockchain"
+                    ]
+                  },
+                  {
                     "group": "Healthcare",
                     "pages": [
                       "tutorials/time-series/health-biometical-analysis",
-                      "tutorials/ai/powered-observability"
+                      "tutorials/powered-observability"
                     ]
                   },
                   {
@@ -1288,7 +1287,7 @@
                 "url": "tutorials/quickstart"
               },
               {
-                "item": "IoT sensor",
+                "item": "IoT sensors",
                 "groups": [
                   {
                     "group": " ",
@@ -1297,7 +1296,7 @@
                     ]
                   },
                   {
-                    "group": "IoT sensor",
+                    "group": "IoT sensors",
                     "pages": [
                       "tutorials/real-time-analytics/energy-consumption",
                       "tutorials/time-series/health-biometical-analysis"
@@ -1305,25 +1304,6 @@
                   }
                 ],
                 "url": "tutorials/real-time-analytics/energy-consumption"
-              },
-              {
-                "item": "Financial",
-                "groups": [
-                  {
-                    "group": " ",
-                    "pages": [
-                      "tutorials/ai/financial-forcasting"
-                    ]
-                  },
-                  {
-                    "group": "Financial",
-                    "pages": [
-                      "tutorials/ai/financial-forcasting",
-                      "tutorials/time-series/query-bitcoin-blockchain"
-                    ]
-                  }
-                ],
-                "url": "tutorials/ai/financial-forcasting"
               },
               {
                 "item": "Real-time dashboards",
@@ -1363,6 +1343,25 @@
                 "url": "tutorials/real-time-analytics/energy-consumption"
               },
               {
+                "item": "Financial",
+                "groups": [
+                  {
+                    "group": " ",
+                    "pages": [
+                      "tutorials/financial-forecasting"
+                    ]
+                  },
+                  {
+                    "group": "Financial",
+                    "pages": [
+                      "tutorials/financial-forecasting",
+                      "tutorials/time-series/query-bitcoin-blockchain"
+                    ]
+                  }
+                ],
+                "url": "tutorials/financial-forecasting"
+              },
+              {
                 "item": "Healthcare",
                 "groups": [
                   {
@@ -1375,7 +1374,7 @@
                     "group": "Healthcare",
                     "pages": [
                       "tutorials/time-series/health-biometical-analysis",
-                      "tutorials/ai/powered-observability"
+                      "tutorials/powered-observability"
                     ]
                   }
                 ],
