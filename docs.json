@@ -391,32 +391,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/jobs/create-and-manage-jobs"
                         ]
                       }
                     ]
@@ -424,10 +424,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -476,32 +476,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/jobs/create-and-manage-jobs"
                         ]
                       }
                     ]
@@ -509,10 +509,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -561,32 +561,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/jobs/create-and-manage-jobs"
                         ]
                       }
                     ]
@@ -594,10 +594,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -623,7 +623,7 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/data-management/hypertables/understand-hypertables"
+                      "manage-data/features/hypertables/understand-hypertables"
                     ]
                   },
                   {
@@ -646,32 +646,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/jobs/create-and-manage-jobs"
                         ]
                       }
                     ]
@@ -679,10 +679,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -708,7 +708,7 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration"
+                      "manage-data/features/import-and-ingest/live-migration"
                     ]
                   },
                   {
@@ -731,32 +731,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/jobs/create-and-manage-jobs"
                         ]
                       }
                     ]
@@ -764,10 +764,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -816,32 +816,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/jobs/create-and-manage-jobs"
                         ]
                       }
                     ]
@@ -849,10 +849,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -901,32 +901,32 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/hypertable-crud"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
                       {
                         "group": "Jobs",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/jobs/create-and-manage-jobs"
                         ]
                       }
                     ]
@@ -934,10 +934,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {

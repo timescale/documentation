@@ -1,0 +1,54 @@
+{/*
+  Tiger Data Brand Mermaid Theme
+
+  This file defines the official Tiger Data brand styling for Mermaid diagrams.
+
+  Usage:
+  1. Create a new diagram file in /images/ directory (e.g., /images/manage-data/my-diagram.mdx)
+  2. Copy the TigerMermaidTheme config below into your mermaid code block
+  3. Copy the relevant styles from TigerMermaidStyles (adjust node letters as needed)
+  4. Import your diagram into your page: import MyDiagram from '/images/manage-data/my-diagram.mdx';
+
+  Colors:
+  - Lime Yellow (#F4FF61): Primary actions, highlights
+  - Purple (#6D5AFF): Key execution steps
+  - Blue (#4A90E2): Stored states, catalogs
+  - White (#fff): Standard process nodes
+  - Dark borders (#333): Main flow
+  - Gray borders (#666): Optional/secondary operations
+*/}
+
+export const TigerMermaidTheme = `%%{init: {'theme':'base', 'themeVariables': {
+  'primaryColor':'#F4FF61',
+  'primaryTextColor':'#1a1a1a',
+  'primaryBorderColor':'#333',
+  'lineColor':'#666',
+  'secondaryColor':'#6D5AFF',
+  'secondaryTextColor':'#fff',
+  'secondaryBorderColor':'#333',
+  'tertiaryColor':'#4A90E2',
+  'tertiaryTextColor':'#fff',
+  'tertiaryBorderColor':'#333',
+  'noteBkgColor':'#F4FF61',
+  'noteTextColor':'#1a1a1a',
+  'noteBorderColor':'#333',
+  'background':'#fff',
+  'mainBkg':'#fff',
+  'fontFamily':'Inter, system-ui, -apple-system, sans-serif',
+  'edgeLabelBackground':'#fff',
+  'labelColor':'#333',
+  'labelTextColor':'#333'
+}}}%%`;
+
+export const TigerMermaidStyles = `
+    style A fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a
+    style B fill:#F4FF61,stroke:#333,stroke-width:3px,color:#1a1a1a
+    style C fill:#4A90E2,stroke:#333,stroke-width:2px,color:#fff
+    style D fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a
+    style E fill:#6D5AFF,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a
+    style G fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a
+    style H fill:#fff,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5,color:#1a1a1a
+    style I fill:#fff,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5,color:#1a1a1a
+    style J fill:#fff,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5,color:#1a1a1a
+`;
