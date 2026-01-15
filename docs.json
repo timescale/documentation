@@ -4421,6 +4421,22 @@
     {
       "source": "/api/latest/time_bucket_ng/",
       "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng"
+    },
+    {
+      "source": "/use-timescale/:slug*/troubleshoot-timescaledb/",
+      "destination": "/manage-data/troubleshooting/troubleshooting"
+    },
+    {
+      "source": "/migrate/:slug*/troubleshooting/",
+      "destination": "/manage-data/troubleshooting/troubleshoot-import-ingest"
+    },
+    {
+      "source": "/use-timescale/:slug*/hyperfunctions/troubleshoot-hyperfunctions/",
+      "destination": "/deploy-and-operate/self-hosted/troubleshooting/troubleshooting"
+    },
+    {
+      "source": "/integrations/:slug*/troubleshooting/",
+      "destination": "/integrations/troubleshooting"
     }
   ]
 }
