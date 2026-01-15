@@ -12,7 +12,7 @@ import { PG, CHUNK, CAGG } from '/snippets/vars.mdx';
 ### Dropping chunks times out
 
 **APIs**:
-- `drop_chunks()`
+- [`drop_chunks()`][drop-chunks]
 
 When you drop a {CHUNK}, it requires an exclusive lock. If a {CHUNK} is being
 accessed by another session, you cannot drop the {CHUNK} at the same time. If a
@@ -25,4 +25,5 @@ it completes as expected.
 For more information about locks, see the
 [{PG} lock monitoring documentation][pg-lock-monitoring].
 
+[drop-chunks]: /api-reference/timescaledb/hypertables/drop_chunks
 [pg-lock-monitoring]: https://wiki.postgresql.org/wiki/Lock_Monitoring

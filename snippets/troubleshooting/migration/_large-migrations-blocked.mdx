@@ -1,0 +1,14 @@
+import { CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
+
+### Large migrations blocked
+
+{CLOUD_LONG} automatically manages the underlying disk volume. Due to
+platform limitations, it is only possible to resize the disk once every six
+hours. Depending on the rate at which you're able to copy data, you may be
+affected by this restriction. Affected instances are unable to accept new data
+and error with: `FATAL: terminating connection due to administrator command`.
+
+If you intend on migrating more than 400&nbsp;GB of data to {CLOUD_LONG}, open a
+support request requesting the required storage to be pre-allocated in your
+{SERVICE_LONG}. You can open a support request directly from Tiger Console,
+or by email to [support@tigerdata.com](mailto:support@tigerdata.com).

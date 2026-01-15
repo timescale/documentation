@@ -23,13 +23,13 @@ tags: [jobs, scheduled jobs, background jobs, background workers, automation fra
 - `"<TYPE_OF_BACKGROUND_JOB>": failed to start a background worker`
 
 **APIs**:
-- `timescaledb_information.jobs`
-- `timescaledb_information.job_stats`
-- `timescaledb_information.add_job()`
-- `add_reorder_policy()`
-- `add_retention_policy()`
-- `add_compression_policy()`
-- `add_continuous_aggregate_policy()`
+- [`timescaledb_information.jobs`][jobs]
+- [`timescaledb_information.job_stats`][job-stats]
+- [`add_job()`][add-job]
+- [`add_reorder_policy()`][add-reorder-policy]
+- [`add_retention_policy()`][add-retention-policy]
+- [`add_compression_policy()`][add-compression-policy]
+- [`add_continuous_aggregate_policy()`][add-continuous-aggregate-policy]
 
 You might see this error message in the logs if background workers aren't
 properly configured.

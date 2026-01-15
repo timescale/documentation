@@ -16,11 +16,11 @@ import { TIMESCALE_DB, CAGG, TIME_BUCKET, HYPERTABLE } from '/snippets/vars.mdx'
 ### Continuous aggregate watermark is in the future
 
 **APIs**:
-- `add_continuous_aggregate_policy()`
-- `add_policies()`
-- `alter_policies()`
-- `CREATE MATERIALIZED VIEW (Continuous Aggregate)`
-- `refresh_continuous_aggregate()`
+- [`add_continuous_aggregate_policy()`][add-continuous-aggregate-policy]
+- [`add_policies()`][add-policies]
+- [`alter_policies()`][alter-policies]
+- [`CREATE MATERIALIZED VIEW (Continuous Aggregate)`][create-materialized-view]
+- [`refresh_continuous_aggregate()`][refresh-continuous-aggregate]
 
 {CAGG}s use a watermark to indicate which {TIME_BUCKET}s have
 already been materialized. When you query a {CAGG}, your query
@@ -105,4 +105,10 @@ beware of historical data loss. If your old {CAGG} contained data
 that you dropped from your original {HYPERTABLE}, for example through a data
 retention policy, the dropped data is not included in your new {CAGG}.
 </Info>
+
+[add-continuous-aggregate-policy]: /api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy
+[add-policies]: /api-reference/timescaledb/continuous-aggregates/add_policies
+[alter-policies]: /api-reference/timescaledb/continuous-aggregates/alter_policies
+[create-materialized-view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view
+[refresh-continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate
 

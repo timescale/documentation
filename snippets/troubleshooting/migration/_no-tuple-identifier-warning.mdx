@@ -1,0 +1,9 @@
+### Why does live migration log "no tuple identifier" warning?
+
+Live migration logs a warning `WARNING: no tuple identifier for UPDATE in table`
+when it cannot determine which specific rows should be updated after receiving an
+`UPDATE` statement from the source database during replication. This occurs when tables
+in the source database that receive `UPDATE` statements lack either a `PRIMARY KEY` or
+a `REPLICA IDENTITY` setting. For live migration to successfully replicate `UPDATE` and
+`DELETE` statements, tables must have either a `PRIMARY KEY` or `REPLICA IDENTITY` set
+as a prerequisite.

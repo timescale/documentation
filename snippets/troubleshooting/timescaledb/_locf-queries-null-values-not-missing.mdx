@@ -10,7 +10,7 @@ tags: [continuous aggregates, hyperfunctions, gapfilling, locf, queries]
 ### Queries using `locf()` don't treat `NULL` values as missing
 
 **APIs**:
-- `locf()`
+- [`locf()`][locf]
 
 When you have a query that uses a last observation carried forward (locf)
 function, the query carries forward NULL values by default. If you want the
@@ -29,3 +29,5 @@ dev=# select * FROM (select time_bucket_gapfill(4, time,-5,13), locf(avg(v)::int
                   -8 |
 (6 rows)
 ```
+
+[locf]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/locf

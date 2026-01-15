@@ -1,0 +1,8 @@
+import { PG, SERVICE_LONG, CLOUD_LONG } from '/snippets/vars.mdx';
+
+### Only one database per instance
+
+While {PG} clusters can contain many databases, {SERVICE_LONG}s are
+limited to a single database. When migrating a cluster with multiple databases
+to {CLOUD_LONG}, one can either migrate each source database to a separate
+{SERVICE_LONG} or "merge" source databases to target schemas.

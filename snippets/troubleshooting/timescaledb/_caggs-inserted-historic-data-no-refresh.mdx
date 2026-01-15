@@ -16,11 +16,11 @@ import { HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 ### Continuous aggregate doesn't refresh with newly inserted historical data
 
 **APIs**:
-- `add_continuous_aggregate_policy()`
-- `add_policies()`
-- `alter_policies()`
-- `CREATE MATERIALIZED VIEW (Continuous Aggregate)`
-- `refresh_continuous_aggregate()`
+- [`add_continuous_aggregate_policy()`][add-continuous-aggregate-policy]
+- [`add_policies()`][add-policies]
+- [`alter_policies()`][alter-policies]
+- [`CREATE MATERIALIZED VIEW (Continuous Aggregate)`][create-materialized-view]
+- [`refresh_continuous_aggregate()`][refresh-continuous-aggregate]
 
 Materialized views are generally used with ordered data. If you insert historic
 data, or data that is not related to the current time, you need to refresh
@@ -50,3 +50,9 @@ for example, five of them in a {CAGG}. In this case, it could
 be hard to refresh and would make more sense to isolate these columns in another
 {HYPERTABLE}. Alternatively, you might create one {HYPERTABLE} per metric and
 refresh them independently.
+
+[add-continuous-aggregate-policy]: /api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy
+[add-policies]: /api-reference/timescaledb/continuous-aggregates/add_policies
+[alter-policies]: /api-reference/timescaledb/continuous-aggregates/alter_policies
+[create-materialized-view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view
+[refresh-continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate
