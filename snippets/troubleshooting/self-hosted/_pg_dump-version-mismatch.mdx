@@ -6,7 +6,7 @@ keywords: [backups, restore]
 
 import { PG, TIMESCALE_DB } from '/snippets/vars.mdx';
 
-## Versions are mismatched when dumping and restoring a database
+### Versions are mismatched when dumping and restoring a database
 
 The {PG} `pg_dump` command does not allow you to specify which version of
 the extension to use when backing up. This can create problems if you have a
