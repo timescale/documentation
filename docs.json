@@ -216,47 +216,47 @@
                   {
                     "group": " ",
                     "pages": [
-                      "deploy-and-operate/timescaledb/index"
+                      "deploy-and-operate/self-hosted/index"
                     ]
                   },
                   {
                     "group": "Install and update",
                     "pages": [
-                      "deploy-and-operate/timescaledb/install-and-update/install-self-hosted",
-                      "deploy-and-operate/timescaledb/install-and-update/install-timescaledb-toolkit",
-                      "deploy-and-operate/timescaledb/install-and-update/update-self-hosted",
-                      "deploy-and-operate/timescaledb/install-and-update/uninstall-self-hosted"
+                      "deploy-and-operate/self-hosted/install-and-update/install-self-hosted",
+                      "deploy-and-operate/self-hosted/install-and-update/install-timescaledb-toolkit",
+                      "deploy-and-operate/self-hosted/install-and-update/update-self-hosted",
+                      "deploy-and-operate/self-hosted/install-and-update/uninstall-self-hosted"
                     ]
                   },
                   {
                     "group": "Manage data security",
                     "pages": [
-                      "deploy-and-operate/timescaledb/manage-data-security/high-availability",
-                      "deploy-and-operate/timescaledb/manage-data-security/read-replication",
-                      "deploy-and-operate/timescaledb/manage-data-security/backup-and-restore"
+                      "deploy-and-operate/self-hosted/manage-data-security/high-availability",
+                      "deploy-and-operate/self-hosted/manage-data-security/read-replication",
+                      "deploy-and-operate/self-hosted/manage-data-security/backup-and-restore"
                     ]
                   },
                   {
                     "group": "Configure",
                     "pages": [
-                      "deploy-and-operate/timescaledb/configuration/configure-your-deployment",
-                      "deploy-and-operate/timescaledb/configuration/tune-your-deployment"
+                      "deploy-and-operate/self-hosted/configuration/configure-your-deployment",
+                      "deploy-and-operate/self-hosted/configuration/tune-your-deployment"
                     ]
                   },
                   {
                     "group": "Troubleshooting",
                     "pages": [
-                      "deploy-and-operate/timescaledb/troubleshooting/troubleshooting"
+                      "deploy-and-operate/self-hosted/troubleshooting/troubleshooting"
                     ]
                   },
                   {
                     "group": "Reference",
                     "pages": [
-                      "deploy-and-operate/timescaledb/reference/timescaledb-editions",
-                      "deploy-and-operate/timescaledb/reference/contribute-to-tigerdata",
-                      "deploy-and-operate/timescaledb/reference/glossary",
-                      "deploy-and-operate/timescaledb/reference/limitations",
-                      "deploy-and-operate/timescaledb/reference/supported-platforms"
+                      "deploy-and-operate/self-hosted/reference/timescaledb-editions",
+                      "deploy-and-operate/self-hosted/reference/contribute-to-tigerdata",
+                      "deploy-and-operate/self-hosted/reference/glossary",
+                      "deploy-and-operate/self-hosted/reference/limitations",
+                      "deploy-and-operate/self-hosted/reference/supported-platforms"
                     ]
                   }
                 ]

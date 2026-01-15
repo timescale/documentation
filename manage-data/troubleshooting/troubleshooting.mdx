@@ -1,8 +1,74 @@
 ---
 title: Troubleshoot
-description: Guide to troubleshooting TimescaleDB issues.
-products: [cloud]
-content_group: Troubleshoot
+description: Solutions to common errors and ways to output diagnostic information
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+import ChunkTempFileLimit from '/snippets/troubleshooting/timescaledb/_chunk-temp-file-limit.mdx';
+import CompressionDMLTupleLimit from '/snippets/troubleshooting/timescaledb/_compression-dml-tuple-limit.mdx';
+import CompressionHighCardinality from '/snippets/troubleshooting/timescaledb/_compression-high-cardinality.mdx';
+import CompressionUserperms from '/snippets/troubleshooting/timescaledb/_compression-userperms.mdx';
+import DroppingChunksTimesOut from '/snippets/troubleshooting/timescaledb/_dropping-chunks-times-out.mdx';
+import HypertablesUniqueIndexPartitioning from '/snippets/troubleshooting/timescaledb/_hypertables-unique-index-partitioning.mdx';
+import InvalidAttributeReindexHypertable from '/snippets/troubleshooting/timescaledb/_invalid-attribute-reindex-hypertable.mdx';
+import CaggWatermarkInFuture from '/snippets/troubleshooting/timescaledb/_cagg-watermark-in-future.mdx';
+import CaggsHierarchicalBuckets from '/snippets/troubleshooting/timescaledb/_caggs-hierarchical-buckets.mdx';
+import CaggsHypertableRetentionPolicyNotApplying from '/snippets/troubleshooting/timescaledb/_caggs-hypertable-retention-policy-not-applying.mdx';
+import CaggsInsertedHistoricDataNoRefresh from '/snippets/troubleshooting/timescaledb/_caggs-inserted-historic-data-no-refresh.mdx';
+import CaggsMigratePermissions from '/snippets/troubleshooting/timescaledb/_caggs-migrate-permissions.mdx';
+import CaggsQueriesFail from '/snippets/troubleshooting/timescaledb/_caggs-queries-fail.mdx';
+import CaggsRealTimePreviouslyMaterializedNotShown from '/snippets/troubleshooting/timescaledb/_caggs-real-time-previously-materialized-not-shown.mdx';
+import LocfQueriesNullValuesNotMissing from '/snippets/troubleshooting/timescaledb/_locf-queries-null-values-not-missing.mdx';
+import ColumnstoreBacklogOoms from '/snippets/troubleshooting/timescaledb/_columnstore-backlog-ooms.mdx';
+import ScheduledJobsStopRunning from '/snippets/troubleshooting/timescaledb/_scheduled-jobs-stop-running.mdx';
+import BackgroundWorkerFailedStart from '/snippets/troubleshooting/self-hosted/_background-worker-failed-start.mdx';
+import Explain from '/snippets/troubleshooting/timescaledb/_explain.mdx';
+
+This page provides solutions to common errors and ways to output diagnostic information for troubleshooting TimescaleDB issues.
+
+## Hypertables
+
+<ChunkTempFileLimit />
+
+<DroppingChunksTimesOut />
+
+<CompressionDMLTupleLimit />
+
+<CompressionUserperms />
+
+<CompressionHighCardinality />
+
+<InvalidAttributeReindexHypertable />
+
+<HypertablesUniqueIndexPartitioning />
+
+## Continuous aggregates
+
+<CaggsQueriesFail />
+
+<CaggWatermarkInFuture />
+
+<CaggsRealTimePreviouslyMaterializedNotShown />
+
+<CaggsInsertedHistoricDataNoRefresh />
+
+<CaggsHypertableRetentionPolicyNotApplying />
+
+<CaggsHierarchicalBuckets />
+
+<CaggsMigratePermissions />
+
+<LocfQueriesNullValuesNotMissing />
+
+## Hypercore
+
+<ColumnstoreBacklogOoms />
+
+## Jobs
+
+<ScheduledJobsStopRunning />
+
+<BackgroundWorkerFailedStart />
+
+## Getting more information
+
+<Explain />

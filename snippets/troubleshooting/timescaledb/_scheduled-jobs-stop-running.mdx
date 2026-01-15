@@ -1,0 +1,54 @@
+---
+title: Scheduled jobs stop running
+topics: [jobs, continuous aggregates, data retention, compression, hypercore]
+apis:
+  - [continuous aggregates, add_continuous_aggregate_policy()]
+  - [continuous aggregates, add_policies()]
+  - [hypertables, add_reorder_policy()]
+  - [hypertables, add_retention_policy()]
+  - [hypertables, add_compression_policy()]
+  - [hypertables, add_continuous_aggregate_policy()]
+  - [information, timescaledb_information.jobs]
+  - [information, timescaledb_information.job_stats]
+  - [jobs, add_job()]
+keywords: [jobs, policies, actions]
+tags: [jobs, scheduled jobs, background jobs, background workers, automation framework, policies, actions]
+---
+
+import { TIMESCALE_DB } from '/snippets/vars.mdx';
+
+### Scheduled jobs stop running
+
+**APIs**:
+- `add_continuous_aggregate_policy()`
+- `add_policies()`
+- `add_reorder_policy()`
+- `add_retention_policy()`
+- `add_compression_policy()`
+- `add_continuous_aggregate_policy()`
+- `timescaledb_information.jobs`
+- `timescaledb_information.job_stats`
+- `add_job()`
+
+Your scheduled jobs might stop running for various reasons. On self-hosted
+{TIMESCALE_DB}, you can fix this by restarting background workers:
+
+<Tabs title="Restart Background Workers">
+<Tab title="TimescaleDB >= 2.12">
+
+```sql
+SELECT _timescaledb_functions.start_background_workers();
+```
+
+</Tab>
+
+<Tab title="TimescaleDB < 2.12">
+
+```sql
+SELECT _timescaledb_internal.start_background_workers();
+```
+
+</Tab>
+</Tabs>
+
+On Tiger Cloud and MST, background workers are managed automatically and restart when needed.

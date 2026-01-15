@@ -1,0 +1,23 @@
+---
+title: Errors occur when running `pg_dump`
+topics: [backups]
+errors:
+  - language: bash
+    message: |-
+      pg_dump: NOTICE:  hypertable data are in the chunks, no data will be copied
+      DETAIL:  Data for hypertables are stored in the chunks of a hypertable so COPY TO of a hypertable will not copy any data.
+      HINT:  Use "COPY (SELECT * FROM <hypertable>) TO ..." to copy all data in hypertable, or copy each chunk individually.
+keywords: [backups, restore]
+---
+
+import { HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
+
+## Errors occur when running `pg_dump`
+
+**Message**:
+- pg_dump: NOTICE:  {HYPERTABLE} data are in the {CHUNK}s, no data will be copied
+- DETAIL:  Data for {HYPERTABLE}s are stored in the {CHUNK}s of a {HYPERTABLE} so COPY TO of a {HYPERTABLE} will not copy any data.
+- HINT:  Use `"COPY (SELECT * FROM <hypertable>) TO ..."` to copy all data in {HYPERTABLE}, or copy each {CHUNK} individually.
+
+You might see the errors above when running `pg_dump`. You can safely ignore
+these. Your {HYPERTABLE} data is still accurately copied.
