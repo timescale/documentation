@@ -37,6 +37,8 @@ This tutorial covers:
 ## Prerequisites
 
 <IntegrationPrereqs />
+
+* Install and run [self-managed Grafana][grafana-self-managed], or sign up for [Grafana Cloud][grafana-cloud].
 *   Install Python 3
 *   Sign up for [Twelve Data][twelve-signup]. The free tier is perfect for
     this tutorial.
@@ -53,10 +55,9 @@ and many {COMPANY} community members use it for exactly this purpose.
 
 ## Ingest data into a service
 
-This tutorial uses a dataset that contains second-by-second stock-trade data for
-the top 100 most-traded symbols, in a hypertable named `stocks_real_time`. It
-also includes a separate table of company symbols and company names, in a
-regular {PG} table named `company`.
+This tutorial uses a dataset that contains second-by-second cryptocurrency trade data,
+in a hypertable named `crypto_ticks`. It also includes a separate table of
+cryptocurrency symbols and names, in a regular {PG} table named `crypto_assets`.
 
 ### Connect to the websocket server
 
@@ -238,7 +239,7 @@ This function needs to:
 
     class WebsocketPipeline():
         # name of the hypertable
-        DB_TABLE = "stocks_real_time"
+        DB_TABLE = "crypto_ticks"
 
         # columns in the hypertable in the correct order
         DB_COLUMNS=["time", "symbol", "price", "day_volume"]
@@ -333,27 +334,25 @@ If you see an error message similar to this:
 
 Then check that you use a proper API key received from Twelve Data.
 
-<GrafanaConnect />
-
 ## Query the data
 
 To look at OHLCV values, the most effective way is to create a {CAGG}. You can create a {CAGG} to aggregate data
-for each hour, then set the aggregate to refresh every hour, and aggregate
-the last two hours' worth of data.
+for each day, then set the aggregate to refresh every day, and aggregate
+the last two days' worth of data.
 
 ### Creating a continuous aggregate
 
 1.  Connect to the {SERVICE_LONG} `tsdb` that contains the Twelve Data
-    stocks dataset.
+    cryptocurrency dataset.
 
 1.  At the psql prompt, create the {CAGG} to aggregate data every
-    minute:
+    day:
 
     ```sql
-    CREATE MATERIALIZED VIEW one_hour_candle
+    CREATE MATERIALIZED VIEW one_day_candle
     WITH (timescaledb.continuous) AS
         SELECT
-            time_bucket('1 hour', time) AS bucket,
+            time_bucket('1 day', time) AS bucket,
             symbol,
             FIRST(price, time) AS "open",
             MAX(price) AS high,
@@ -366,14 +365,14 @@ the last two hours' worth of data.
 
     When you create the {CAGG}, it refreshes by default.
 
-1.  Set a refresh policy to update the {CAGG} every hour,
-    if there is new data available in the {HYPERTABLE} for the last two hours:
+1.  Set a refresh policy to update the {CAGG} every day,
+    if there is new data available in the {HYPERTABLE} for the last two days:
 
     ```sql
-    SELECT add_continuous_aggregate_policy('one_hour_candle',
-        start_offset => INTERVAL '3 hours',
-        end_offset => INTERVAL '1 hour',
-        schedule_interval => INTERVAL '1 hour');
+    SELECT add_continuous_aggregate_policy('one_day_candle',
+        start_offset => INTERVAL '3 days',
+        end_offset => INTERVAL '1 day',
+        schedule_interval => INTERVAL '1 day');
     ```
 
 ### Query the continuous aggregate
@@ -382,14 +381,14 @@ When you have your {CAGG} set up, you can query it to get the
 OHLCV values.
 
 1.  Connect to the {SERVICE_LONG} that contains the Twelve Data
-    stocks dataset.
+    cryptocurrency dataset.
 
-1.  At the psql prompt, use this query to select all `AAPL` OHLCV data for the
-    past 5 hours, by time bucket:
+1.  At the psql prompt, use this query to select all Bitcoin OHLCV data for the
+    past 14 days, by time bucket:
 
     ```sql
-    SELECT * FROM one_hour_candle
-    WHERE symbol = 'AAPL' AND bucket >= NOW() - INTERVAL '5 hours'
+    SELECT * FROM one_day_candle
+    WHERE symbol = 'BTC/USD' AND bucket >= NOW() - INTERVAL '14 days'
     ORDER BY bucket;
     ```
 
@@ -398,21 +397,19 @@ OHLCV values.
     ```sql
              bucket         | symbol  |  open   |  high   |   low   |  close  | day_volume
     ------------------------+---------+---------+---------+---------+---------+------------
-     2023-05-30 08:00:00+00 | AAPL   | 176.31 | 176.31 |    176 | 176.01 |
-     2023-05-30 08:01:00+00 | AAPL   | 176.27 | 176.27 | 176.02 |  176.2 |
-     2023-05-30 08:06:00+00 | AAPL   | 176.03 | 176.04 | 175.95 |    176 |
-     2023-05-30 08:07:00+00 | AAPL   | 175.95 |    176 | 175.82 | 175.91 |
-     2023-05-30 08:08:00+00 | AAPL   | 175.92 | 176.02 |  175.8 | 176.02 |
-     2023-05-30 08:09:00+00 | AAPL   | 176.02 | 176.02 |  175.9 | 175.98 |
-     2023-05-30 08:10:00+00 | AAPL   | 175.98 | 175.98 | 175.94 | 175.94 |
-     2023-05-30 08:11:00+00 | AAPL   | 175.94 | 175.94 | 175.91 | 175.91 |
-     2023-05-30 08:12:00+00 | AAPL   |  175.9 | 175.94 |  175.9 | 175.94 |
+     2022-11-24 00:00:00+00 | BTC/USD |   16587 | 16781.2 | 16463.4 | 16597.4 |      21803
+     2022-11-25 00:00:00+00 | BTC/USD | 16597.4 | 16610.1 | 16344.4 | 16503.1 |      20788
+     2022-11-26 00:00:00+00 | BTC/USD | 16507.9 | 16685.5 | 16384.5 | 16450.6 |      12300
     ```
+
+<GrafanaConnect />
 
 <GraphOhlcv />
 
 [api-key]: https://twelvedata.com/account/api-keys
 [candlestick]: https://assets.timescale.com/docs/images/tutorials/intraday-stock-analysis/candlestick_fig.png
+[grafana-cloud]: https://grafana.com/get/
+[grafana-self-managed]: https://grafana.com/get/?tab=self-managed
 [psycopg2]: https://www.psycopg.org/docs/
 [twelve-data]: https://twelvedata.com
 [twelve-signup]: https://twelvedata.com/pricing

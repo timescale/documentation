@@ -31,20 +31,15 @@ This tutorial covers:
 1.  **Ingest data into a {SERVICE_SHORT}**: load data from [Twelve Data][twelve-data] into your {TIMESCALE_DB} database.
 1.  **Query your dataset**: create candlestick views, query the aggregated data, and visualize the data in Grafana.
 
-To create candlestick views, query the aggregated data, and visualize the data in Grafana, see the
-[ingest real-time websocket data section][ingest-real-time-financial-data].
-
 ## Prerequisites
 
 <IntegrationPrereqs />
 
+* Install and run [self-managed Grafana][grafana-self-managed], or sign up for [Grafana Cloud][grafana-cloud].
+
 This tutorial uses a dataset that contains second-by-second trade data for
 the most-traded crypto-assets. You optimize this time-series data in a {HYPERTABLE} called `crypto_ticks`.
 You also create a separate table of asset symbols in a regular {PG} table named `crypto_assets`.
-
-The dataset is updated on a nightly basis and contains data from the last four
-weeks, typically around 8 million rows of data. Trades are recorded in
-real-time from 180+ cryptocurrency exchanges.
 
 ## OHLCV data and candlestick charts
 
@@ -63,8 +58,6 @@ these stories from some {COMPANY} community members:
 <CreateHypertableCrypto />
 
 <AddDataCrypto />
-
-<GrafanaConnect />
 
 ## Query the data
 
@@ -99,7 +92,7 @@ the last two days' worth of data.
     cryptocurrency dataset.
 
 1.  At the psql prompt, create the {CAGG} to aggregate data every
-    minute:
+    day:
 
     ```sql
     CREATE MATERIALIZED VIEW one_day_candle
@@ -155,11 +148,15 @@ OHLCV values.
      2022-11-26 00:00:00+00 | BTC/USD | 16507.9 | 16685.5 | 16384.5 | 16450.6 |      12300
     ```
 
+<GrafanaConnect />
+
 <GraphOhlcv />
 
 [bot]: https://www.tigerdata.com/blog/how-i-power-a-successful-crypto-trading-bot-with-timescaledb
 [caggs]: /manage-data/data-management/continuous-aggregates/understand-continuous-aggregates
 [first]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/first
+[grafana-cloud]: https://grafana.com/get/
+[grafana-self-managed]: https://grafana.com/get/?tab=self-managed
 [hyperfunctions]: /api-reference/timescaledb/hyperfunctions/
 [ingest-real-time-financial-data]: /tutorials/ingest-real-time-financial-data
 [last]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/last

@@ -11,7 +11,7 @@ data by time and location.
 1.  Connect to your [{SERVICE_LONG}][in-console-editors] and add the PostGIS extension:
 
     ```sql
-    CREATE EXTENSION postgis;
+    CREATE EXTENSION IF NOT EXISTS postgis;
     ```
  
 1. Add geometry columns for pick up and drop off locations:
@@ -21,50 +21,45 @@ data by time and location.
     ALTER TABLE rides ADD COLUMN dropoff_geom geometry(POINT,2163);
     ```
 
-1.  Convert the latitude and longitude points into geometry coordinates that work with PostGIS:
+1.  Convert the latitude and longitude points into geometry coordinates that work with PostGIS.
+
+    First, set the decompression limit to avoid errors when updating large amounts of data:
+
+    ```sql
+    SET timescaledb.max_tuples_decompressed_per_dml_transaction TO 0;
+    ```
+
+    Then run the UPDATE to convert coordinates:
 
     ```sql
     UPDATE rides SET pickup_geom = ST_Transform(ST_SetSRID(ST_MakePoint(pickup_longitude,pickup_latitude),4326),2163),
        dropoff_geom = ST_Transform(ST_SetSRID(ST_MakePoint(dropoff_longitude,dropoff_latitude),4326),2163);
     ```
-    This updates 10,906,860 rows of data on both columns, it takes a while. Coffee is your friend.
 
-    You might run into this error while the update happens
-
-       `Error: tuple decompression limit exceeded by operation
-        Error Code: 53400
-        Details: current limit: 100000, tuples decompressed: 10906860
-        Hint: Consider increasing timescaledb.max_tuples_decompressed_per_dml_transaction or set to 0 (unlimited).`
-
-    To fix this, use
-
-    ```sql
-    SET timescaledb.max_tuples_decompressed_per_dml_transaction TO 0;
-    ```  
+    This updates 10,906,860 rows of data on both columns, it takes a while. Coffee is your friend.  
 
 
 
 ### Visualize the area where you can make the most money
 
-In this section you visualize a query that returns rides longer than 5 miles for 
-trips taken within 2 km of Times Square. The data includes the distance travelled and
-is `GROUP BY` `trip_distance` and location so that Grafana can plot the data properly.
-
-This enables you to see where a taxi driver is most likely to pick up a passenger who wants a longer ride, 
-and make more money.
+In this section you visualize a query that returns longer rides (greater than 5 miles)
+within 2 km of Times Square. By filtering for longer trips and visualizing pickup locations,
+you can identify the areas where a taxi driver is most likely to pick up a passenger who wants
+a longer ride, and make more money.
 
 
 
-1. **Create a geolocalization dashboard**
+1. **Create a geolocation dashboard**
+
+   1. In Grafana, from the `Dashboards` page, click `New` and select `New dashboard`.
  
-   1. In Grafana, create a new dashboard that is connected to your {SERVICE_LONG} data source with a Geomap
-      visualization.
+   1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG} and the `Geomap` visualization type in the top right.
  
-   1. In the `Queries` section, select `Code`, then select the Time series `Format`.
+   1. In the `Queries` section, select `Code` and change the `Format` to `Time series`.
 
       ![Real-time analytics geolocation][real-time-analytics-geolocation]
 
-   1. To find rides longer than 5 miles in Manhattan, paste the following query:
+   1. To find longer rides (over 5 miles) within 2 km of Times Square, paste the following query:
 
        ```sql
        SELECT time_bucket('5m', rides.pickup_datetime) AS time,
@@ -75,7 +70,8 @@ and make more money.
        WHERE rides.pickup_datetime BETWEEN '2016-01-01T01:41:55.986Z' AND '2016-01-01T07:41:55.986Z' AND
          ST_Distance(pickup_geom,
                      ST_Transform(ST_SetSRID(ST_MakePoint(-73.9851,40.7589),4326),2163)
-         ) < 2000
+         ) < 2000 AND
+         rides.trip_distance > 5
        GROUP BY time,
                 rides.trip_distance,
                 rides.pickup_latitude,
@@ -89,8 +85,12 @@ and make more money.
 1. **Customize the visualization**
 
    1. In the Geomap options, under `Map Layers`, click `+ Add layer` and select `Heatmap`.
-     You now see the areas where a taxi driver is most likely to pick up a passenger who wants a
-     longer ride, and make more money.
+
+   1. Zoom into your map.
+
+      The heatmap now shows the pickup locations for longer rides (over 5 miles) near Times Square.
+      The areas with higher heat intensity indicate where taxi drivers are most likely to pick up
+      passengers who want longer rides, helping them make more money.
 
       ![Real-time analytics geolocation][real-time-analytics-geolocation-heatmap]
 

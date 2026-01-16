@@ -47,14 +47,12 @@ queries that answer these questions:
 
 ### What are the five most recent coinbase transactions?
 
-In the last procedure, you excluded coinbase transactions from the results.
 [Coinbase][coinbase-def] transactions are the first transaction in a block, and
-they include the reward a coin miner receives for mining the coin. To find out
-the most recent coinbase transactions, you can use a similar `SELECT` statement,
-but search for transactions that are coinbase instead. If you include the
-transaction value in US Dollars again, you'll notice that the value is $0 for
-each. This is because the coin has not transferred ownership in coinbase
-transactions.
+they include the reward a coin miner receives for mining the coin. To find the
+most recent coinbase transactions, you can query for transactions where
+`is_coinbase` is TRUE. You'll notice that the `fee_usd` is $0 for each coinbase
+transaction because the miner receives the block reward directly without paying
+a transaction fee.
 
 **Finding the five most recent coinbase transactions**
 

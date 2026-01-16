@@ -38,7 +38,8 @@ to graph the output in Grafana.
 ## Prerequisites
 
 <IntegrationPrereqs />
-- Sign up for a [Grafana account][grafana-setup] to graph your queries (optional).
+
+* Install and run [self-managed Grafana][grafana-self-managed], or sign up for [Grafana Cloud][grafana-cloud].
 
 <SetupBlockchainDataset />
 
@@ -202,9 +203,12 @@ fees to decrease.
     ...
     ```
 
-1.  To visualize this in Grafana (optional), create a new panel, select the
-    Bitcoin dataset as your data source, and type the query from the previous
-    step. In the `Format as` section, select `Time series`.
+1.  To visualize this in Grafana:
+
+    1. From the `Dashboards` page, click `New` and select `New dashboard`.
+    1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG}.
+    1. In the `Queries` section, change the `Format` to `Time series` and select `Code`.
+    1. Type the query from the previous step and click `Run query`.
 
     ![Visualizing number of transactions and fees](https://assets.timescale.com/docs/images/grafana-transactions-fees.webp)
 
@@ -245,12 +249,14 @@ transaction volume, along with the BTC to US Dollar conversion rate.
      ...
     ```
 
-1.  To visualize this in Grafana (optional), create a new panel, select the
-    Bitcoin dataset as your data source, and type the query from the previous
-    step. In the `Format as` section, select `Time series`.
-1.  To make this visualization more useful (optional), add an override to put
-    the fees on a different Y-axis. In the options panel, add an override for
-    the `btc-usd rate` field for `Axis > Placement` and choose `Right`.
+1.  To visualize this in Grafana:
+
+    1. From the `Dashboards` page, click `New` and select `New dashboard`.
+    1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG}.
+    1. In the `Queries` section, change the `Format` to `Time series` and select `Code`.
+    1. Type the query from the previous step and click `Run query`.
+    1. Under the panel options on the right, click `Add field override` > `Fields with name`, then choose `btc-usd rate` in the dropdown.
+    1. Click `Add override property`, then select `Axis > Placement` and click `Right`.
 
     ![Visualizing transaction volume and BTC-USD conversion rate](https://assets.timescale.com/docs/images/grafana-volume-rate.webp)
 
@@ -290,15 +296,16 @@ To find if more transactions in a block mean the block is more expensive to your
      2023-06-10 10:00:00+00 | 3011.7500000000000000 | 0.44783255750000000000
      2023-06-10 11:00:00+00 | 2874.7500000000000000 | 0.39303009500000000000
      2023-06-10 12:00:00+00 | 2339.5714285714285714 | 0.25590717142857142857
-    ...
     ```
 
-1.  To visualize this in Grafana (optional), create a new panel, select the
-    Bitcoin dataset as your data source, and type the query from the previous
-    step. In the `Format as` section, select `Time series`.
-1.  To make this visualization more useful (optional), add an override to put
-    the fees on a different Y-axis. In the options panel, add an override for
-    the `mining fee` field for `Axis > Placement` and choose `Right`.
+1.  To visualize this in Grafana:
+
+    1. From the `Dashboards` page, click `New` and select `New dashboard`.
+    1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG}.
+    1. In the `Queries` section, change the `Format` to `Time series` and select `Code`.
+    1. Type the query from the previous step and click `Run query`.
+    1. Under the panel options on the right, click `Add field override` > `Fields with name`, then choose `mining fee` in the dropdown.
+    1. Click `Add override property`, then select `Axis > Placement` and click `Right`.
 
     ![Visualizing transactions in a block and the mining fee](https://assets.timescale.com/docs/images/grafana-transactions-miningfee.webp)
 
@@ -341,12 +348,14 @@ To find if higher block weight means the block is more expensive to yours:
     ...
     ```
 
-1.  To visualize this in Grafana (optional), create a new panel, select the
-    Bitcoin dataset as your data source, and type the query from the previous
-    step. In the `Format as` section, select `Time series`.
-1.  To make this visualization more useful (optional), add an override to put
-    the fees on a different Y-axis. In the options panel, add an override for
-    the `mining fee` field for `Axis > Placement` and choose `Right`.
+1.  To visualize this in Grafana:
+
+    1. From the `Dashboards` page, click `New` and select `New dashboard`.
+    1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG}.
+    1. In the `Queries` section, change the `Format` to `Time series` and select `Code`.
+    1. Type the query from the previous step and click `Run query`.
+    1. Under the panel options on the right, click `Add field override` > `Fields with name`, then choose `mining fee` in the dropdown.
+    1. Click `Add override property`, then select `Axis > Placement` and click `Right`.
 
     ![Visualizing blockweight and the mining fee](https://assets.timescale.com/docs/images/grafana-blockweight-miningfee.webp)
 
@@ -395,12 +404,13 @@ few percentage points of overall revenue.
     ...
     ```
 
-1.  To visualize this in Grafana (optional), create a new panel, select the
-    Bitcoin dataset as your data source, and type the query from the previous
-    step. In the `Format as` section, select `Time series`.
-1.  To make this visualization more useful (optional), stack the series to
-    100%. In the options panel, in the `Graph styles` section, for
-    `Stack series` select `100%`.
+1.  To visualize this in Grafana:
+
+    1. From the `Dashboards` page, click `New` and select `New dashboard`.
+    1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG}.
+    1. In the `Queries` section, change the `Format` to `Time series` and select `Code`.
+    1. Type the query from the previous step and click `Run query`.
+    1. In the options panel, in the `Graph styles` section, for `Stack series` select `100%`.
 
     ![Visualizing coinbase revenue sources](https://assets.timescale.com/docs/images/grafana-coinbase-revenue.webp)
 
@@ -451,12 +461,15 @@ grow for individual blocks, and they could include even more transactions.
     ...
     ```
 
-1.  To visualize this in Grafana (optional), create a new panel, select the
-    Bitcoin dataset as your data source, and type the query from the previous
-    step. In the `Format as` section, select `Time series`.
-1.  To make this visualization more useful (optional), add an override to put
-    the fees on a different Y-axis. In the options panel, add an override for
-    the `mining fee` field for `Axis > Placement` and choose `Right`.
+1.  To visualize this in Grafana:
+
+    1. From the `Dashboards` page, click `New` and select `New dashboard`.
+    1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG}.
+    1. In the `Queries` section, change the `Format` to `Time series` and select `Code`.
+    1. Type the query from the previous step and click `Run query`.
+    1. Under the panel options on the right, click `Add field override` > `Fields with name`, then choose `mining fee` in the dropdown.
+    1. Click `Add override property`, then select `Axis > Placement` and click `Right`.
+
 
     ![Visualizing block weight and mining fees](https://assets.timescale.com/docs/images/grafana-blockweight-rewards.webp)
 
@@ -494,12 +507,14 @@ increase the time range.
     ...
     ```
 
-1.  To visualize this in Grafana (optional), create a new panel, select the
-    Bitcoin dataset as your data source, and type the query from the previous
-    step. In the `Format as` section, select `Time series`.
-1.  To make this visualization more useful (optional), add an override to put
-    the US Dollars on a different Y-axis. In the options panel, add an override
-    for the `mining fee` field for `Axis > Placement` and choose `Right`.
+1.  To visualize this in Grafana:
+
+    1. From the `Dashboards` page, click `New` and select `New dashboard`.
+    1. Click `Add visualization`, then select the data source that connects to your {SERVICE_LONG}.
+    1. In the `Queries` section, change the `Format` to `Time series` and select `Code`.
+    1. Type the query from the previous step and click `Run query`.
+    1. Under the panel options on the right, click `Add field override` > `Fields with name`, then choose `revenue in USD` in the dropdown.
+    1. Click `Add override property`, then select `Axis > Placement` and click `Right`.
 
     ![Visualizing block revenue over time](https://assets.timescale.com/docs/images/grafana-blockweight-revenue.webp)
 
@@ -507,5 +522,6 @@ increase the time range.
 [blockchain-def]: https://www.pcmag.com/encyclopedia/term/blockchain
 [cloud-install]: /deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud
 [docs-cagg]: /manage-data/data-management/continuous-aggregates/understand-continuous-aggregates
-[grafana-setup]: /integrations/observability-alerting/grafana
+[grafana-cloud]: https://grafana.com/get/
+[grafana-self-managed]: https://grafana.com/get/?tab=self-managed
 [transactions-def]: https://www.pcmag.com/encyclopedia/term/bitcoin-transaction
