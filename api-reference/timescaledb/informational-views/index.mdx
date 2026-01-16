@@ -91,12 +91,12 @@ FROM timescaledb_information.continuous_aggregates;
 View compression settings for all {HYPERTABLE}s:
 
 ```sql
-SELECT hypertable_name,
-       attname AS column_name,
-       orderby_column_index,
-       segmentby_column_index
+SELECT hypertable,
+       segmentby,
+       orderby,
+       compress_interval_length
 FROM timescaledb_information.hypertable_compression_settings
-ORDER BY hypertable_name, orderby_column_index;
+ORDER BY hypertable;
 ```
 
 ## Available views
