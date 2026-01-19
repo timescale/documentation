@@ -404,7 +404,17 @@
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -486,7 +496,17 @@
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -568,7 +588,17 @@
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -650,7 +680,17 @@
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -732,7 +772,17 @@
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -815,7 +865,17 @@
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -897,7 +957,17 @@
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
                       "manage-data/features/data-retention",

@@ -119,6 +119,34 @@
 - Multi-tab code blocks for multiple language examples
 - Tags for categorization
 
+### Price plan availability badge
+
+Use the `PricePlanBadge` component to display which price plans a feature is available on.
+
+**Frontmatter metadata:**
+Add `price_plans` to frontmatter for documentation (note: not accessible via JavaScript in Mintlify)
+```yaml
+price_plans: [performance, scale, enterprise, free]
+```
+
+**Usage in content:**
+```mdx
+import { PricePlanBadge } from '/snippets/Availability.jsx';
+
+<PricePlanBadge plans={['scale', 'enterprise', 'performance']} />
+```
+
+**Supported values:**
+- **Plans:** `free`, `performance`, `scale`, `enterprise`
+
+**Display:**
+- Shows a green badge with checkmark icon
+- Clickable link to `/deploy-and-operate/tiger-cloud/understand/pricing-and-account-management`
+- Displays text: "Available on: Scale, Enterprise, Performance"
+- Place at the top of the page content after imports
+
+**Component location:** `/snippets/Availability.jsx`
+
 ### SEO optimization
 - Use keywords in titles, headers, and intro paragraphs
 - Summarize paragraph contents in first sentence
