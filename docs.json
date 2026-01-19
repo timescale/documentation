@@ -424,7 +424,20 @@
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      "manage-data/features/create-and-manage-jobs"
+                      "manage-data/features/create-and-manage-jobs",
+                      {
+                        "group": "Compression (Superseded by Hypercore)",
+                        "pages": [
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -516,7 +529,20 @@
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      "manage-data/features/create-and-manage-jobs"
+                      "manage-data/features/create-and-manage-jobs",
+                      {
+                        "group": "Compression (Superseded by Hypercore)",
+                        "pages": [
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -608,7 +634,20 @@
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      "manage-data/features/create-and-manage-jobs"
+                      "manage-data/features/create-and-manage-jobs",
+                      {
+                        "group": "Compression (Superseded by Hypercore)",
+                        "pages": [
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -700,7 +739,20 @@
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      "manage-data/features/create-and-manage-jobs"
+                      "manage-data/features/create-and-manage-jobs",
+                      {
+                        "group": "Compression (Superseded by Hypercore)",
+                        "pages": [
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -792,7 +844,20 @@
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      "manage-data/features/create-and-manage-jobs"
+                      "manage-data/features/create-and-manage-jobs",
+                      {
+                        "group": "Compression (Superseded by Hypercore)",
+                        "pages": [
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -885,7 +950,20 @@
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      "manage-data/features/create-and-manage-jobs"
+                      "manage-data/features/create-and-manage-jobs",
+                      {
+                        "group": "Compression (Superseded by Hypercore)",
+                        "pages": [
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
+                        ]
+                      }
                     ]
                   },
                   {
@@ -977,7 +1055,20 @@
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      "manage-data/features/create-and-manage-jobs"
+                      "manage-data/features/create-and-manage-jobs",
+                      {
+                        "group": "Compression (Superseded by Hypercore)",
+                        "pages": [
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
+                        ]
+                      }
                     ]
                   },
                   {
