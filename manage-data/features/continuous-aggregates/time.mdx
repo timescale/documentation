@@ -17,7 +17,7 @@ own custom aggregation scheme for tables that use an integer time column.
 
 The most common method of working with timezones is to declare an explicit timezone in the view query.
 
-1. Create the view and declare the timezone:
+1. **Create the view with an explicit timezone**
 
    ```sql
    CREATE MATERIALIZED VIEW device_summary
@@ -34,7 +34,9 @@ The most common method of working with timezones is to declare an explicit timez
    GROUP BY bucket, device_id;
    ```
 
-1. Alternatively, you can cast to a timestamp after the view using `SELECT`:
+1. **Cast to timestamp at query time**
+
+   Alternatively, you can cast to a timestamp after the view using `SELECT`:
 
    ```sql
    SELECT min_time::timestamp FROM device_summary;
@@ -54,7 +56,9 @@ devices measure time using the Unix epoch.
 To create a {HYPERTABLE} that uses an integer-based column as time, you need to provide the chunk time
 interval. In this case, each chunk is 10 minutes.
 
-1. Create a {HYPERTABLE} and define the integer-based time column and chunk time
+1. **Create a {HYPERTABLE} with an integer time column**
+
+   Create a {HYPERTABLE} and define the integer-based time column and chunk time
    interval:
 
    ```sql
@@ -78,7 +82,7 @@ current time in the correct format, and set it for the {HYPERTABLE}. You can do 
 needs to be [`STABLE`][pg-func-stable], take no arguments, and return an integer value of the same type as
 the time column in the table. When you have set up the time-handling, you can create the {CAGG}.
 
-1. Set up a function to convert the time to the Unix epoch:
+1. **Set up a function to convert the time to the Unix epoch**
 
    ```sql
    CREATE FUNCTION current_epoch() RETURNS BIGINT
@@ -88,7 +92,7 @@ the time column in the table. When you have set up the time-handling, you can cr
    SELECT set_integer_now_func('devices', 'current_epoch');
    ```
 
-1. Create the {CAGG} for the `devices` table:
+1. **Create the {CAGG} for the `devices` table**
 
    ```sql
    CREATE MATERIALIZED VIEW devices_summary
@@ -100,7 +104,7 @@ the time column in the table. When you have set up the time-handling, you can cr
    GROUP BY bucket;
    ```
 
-1. Insert some rows into the table:
+1. **Insert some rows into the table**
 
    ```sql
    CREATE EXTENSION tablefunc;
@@ -115,7 +119,7 @@ the time column in the table. When you have set up the time-handling, you can cr
    This command uses the `tablefunc` extension to generate a normal distribution, and uses the
    `row_number` function to turn it into a cumulative sequence.
 
-1. Check that the view contains the correct data:
+1. **Check that the view contains the correct data**
 
    ```sql
    postgres=# SELECT * FROM devices_summary ORDER BY bucket LIMIT 10;

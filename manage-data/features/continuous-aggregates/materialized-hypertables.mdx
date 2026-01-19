@@ -17,7 +17,9 @@ To change a materialized {HYPERTABLE}, you need to use its fully qualified name.
 use the [timescaledb_information.continuous_aggregates view][api-continuous-aggregates-info]. You can then
 use the name to modify it in the same way as any other {HYPERTABLE}.
 
-1. Query `timescaledb_information.continuous_aggregates`:
+1. **Query the continuous aggregates view**
+
+   Query `timescaledb_information.continuous_aggregates`:
 
    ```sql
    SELECT view_name, format('%I.%I', materialization_hypertable_schema,
@@ -25,7 +27,9 @@ use the name to modify it in the same way as any other {HYPERTABLE}.
        FROM timescaledb_information.continuous_aggregates;
    ```
 
-1. Locate the name of the {HYPERTABLE} you want to adjust in the results of the query. The results look
+1. **Locate the materialized {HYPERTABLE} name**
+
+   Locate the name of the {HYPERTABLE} you want to adjust in the results of the query. The results look
    like this:
 
    ```sql

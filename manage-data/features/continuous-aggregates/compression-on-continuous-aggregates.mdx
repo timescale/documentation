@@ -14,8 +14,6 @@ import {
   HYPERCORE_CAP
 } from '/snippets/vars.mdx';
 
-<Icon icon="circle-play" iconType="duotone" /> Since 2.20.0
-
 To save on storage costs, you use {HYPERCORE} to downsample historical data stored in {CAGG}s. After you
 [enable {COLUMNSTORE}][compression_continuous-aggregate] on a `MATERIALIZED VIEW`, you set a
 [{COLUMNSTORE} policy][add_columnstore_policy]. This policy defines the intervals when chunks in a {CAGG}
@@ -26,7 +24,7 @@ are compressed as they are converted from the {ROWSTORE} to the {COLUMNSTORE}.
 the `groupby` columns in the {CAGG}, and [ordered by][alter_materialized_view_arguments] the time column.
 [Real-time aggregation][real-time-aggregates] is disabled by default.
 
-For the old API (pre-2.20.0), see [legacy compression documentation](https://www.tigerdata.com/docs/use-timescale/latest/compression/compression-on-continuous-aggregates/).
+<Icon icon="circle-play" iconType="duotone" /> Since 2.20.0. For the old API (pre-2.20.0), see [legacy compression documentation](https://www.tigerdata.com/docs/use-timescale/latest/compression/compression-on-continuous-aggregates/).
 
 ## Configure columnstore on continuous aggregates
 

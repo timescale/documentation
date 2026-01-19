@@ -67,7 +67,9 @@ To change a refresh policy to use a `NULL` `start_offset`:
    In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. You can also connect to your
    {SERVICE_SHORT} using [psql][connect-using-psql].
 
-1. Create a new policy on `conditions_summary_hourly` that keeps the {CAGG} up to date, and runs every
+1. **Create a refresh policy**
+
+   Create a new policy on `conditions_summary_hourly` that keeps the {CAGG} up to date, and runs every
    hour:
 
    ```sql
@@ -82,7 +84,9 @@ To change a refresh policy to use a `NULL` `start_offset`:
     For example, if you have a retention policy that removes data older than one month, set `start_offset` to
     one month or less. This sets your policy so that it does not refresh the dropped data.
 
-1. Create a new policy on `conditions_summary_hourly` that keeps data removed from the {HYPERTABLE} in
+1. **Keep data after removal from hypertable**
+
+   Create a new policy on `conditions_summary_hourly` that keeps data removed from the {HYPERTABLE} in
    the {CAGG}, and runs every hour:
 
    ```sql
@@ -108,12 +112,14 @@ data, and another that refreshes backfilled data.
 The first policy in this example keeps the {CAGG} up to date with data that was inserted in the past day.
 Any data that was inserted or updated for previous days is refreshed by the second policy.
 
-1. Connect to your {SERVICE_LONG}.
+1. **Connect to your {SERVICE_LONG}**
 
    In [{CONSOLE}][services-portal] open an [SQL editor][in-console-editors]. You can also connect to your
    {SERVICE_SHORT} using [psql][connect-using-psql].
 
-1. Create a new policy on `conditions_summary_daily` to refresh the {CAGG} with recently inserted data
+1. **Create a refresh policy for recent data**
+
+   Create a new policy on `conditions_summary_daily` to refresh the {CAGG} with recently inserted data
    which runs hourly:
 
    ```sql
@@ -123,7 +129,9 @@ Any data that was inserted or updated for previous days is refreshed by the seco
      schedule_interval => INTERVAL '1 h');
    ```
 
-2. Create a concurrent policy on `conditions_summary_daily` to refresh the {CAGG}
+2. **Create a concurrent policy for backfilled data**
+
+   Create a concurrent policy on `conditions_summary_daily` to refresh the {CAGG}
    with backfilled data:
 
    ```sql

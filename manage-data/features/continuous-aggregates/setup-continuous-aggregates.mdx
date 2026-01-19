@@ -158,7 +158,7 @@ buckets could be missed.
 
 To use a window function in a {CAGG}:
 
-1. Create a simple table to store a value at a specific time:
+1. **Create a simple table to store a value at a specific time**
 
    ```sql
    CREATE TABLE example (
@@ -167,7 +167,7 @@ To use a window function in a {CAGG}:
    );
    ```
 
-1. Enable window functions.
+1. **Enable window functions**
 
    As window functions are experimental, in order to create {CAGG}s with window functions, you have to
    enable `enable_cagg_window_functions`.
@@ -176,7 +176,9 @@ To use a window function in a {CAGG}:
    SET timescaledb.enable_cagg_window_functions TO TRUE;
    ```
 
-1. Bucket your data by `time` and calculate the delta between time buckets using the `lag` window
+1. **Use time buckets**
+
+   Bucket your data by `time` and calculate the delta between time buckets using the `lag` window
    function:
 
    Window functions must stay within the time bucket. Any query that tries to look beyond the current
@@ -201,7 +203,7 @@ To use a window function in a {CAGG}:
 
 For {TIMESCALE_DB} v2.19.3 and below, {CAGG}s do not support window functions. To work around this:
 
-1. Create a simple table to store a value at a specific time:
+1. **Create a simple table to store a value at a specific time**
 
    ```sql
    CREATE TABLE example (
@@ -210,7 +212,7 @@ For {TIMESCALE_DB} v2.19.3 and below, {CAGG}s do not support window functions. T
    );
    ```
 
-1. Create a {CAGG} that does not use a window function:
+1. **Create a {CAGG} that does not use a window function**
 
    ```sql
    CREATE MATERIALIZED VIEW example_aggregate
@@ -221,7 +223,7 @@ For {TIMESCALE_DB} v2.19.3 and below, {CAGG}s do not support window functions. T
        FROM example GROUP BY bucket;
    ```
 
-1. Use the `lag` window function on your {CAGG} at query time:
+1. **Use the `lag` window function on your {CAGG} at query time**
 
    This speeds up your query by calculating the aggregation ahead of time. The delta is calculated at
    query time.

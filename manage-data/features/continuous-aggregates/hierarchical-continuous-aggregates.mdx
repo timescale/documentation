@@ -5,6 +5,7 @@ description: Create continuous aggregates on top of continuous aggregates to sum
 keywords: [continuous aggregates, hierarchical, create]
 ---
 
+import HierarchicalCaggFlow from '/images/manage-data/hierarchical-cagg-real-time-flow.mdx';
 import { TIMESCALE_DB, HYPERTABLE, CAGG, PG } from '/snippets/vars.mdx';
 
 The more data you have, the more likely you are to run a more sophisticated analysis on it. When a simple
@@ -16,8 +17,6 @@ For example, you might have an hourly {CAGG} that summarizes minute-by-minute da
 summary, you can create a new {CAGG} on top of your hourly aggregate. This is more efficient than
 creating the daily aggregate on top of the original {HYPERTABLE}, because you can reuse the calculations
 from the hourly aggregate.
-
-This feature is available in {TIMESCALE_DB} v2.9 and later.
 
 ## Create a continuous aggregate on top of another continuous aggregate
 
@@ -62,13 +61,7 @@ To make queries on the yearly {CAGG} access all recent data, you can either:
 - Make the monthly {CAGG} real-time, or
 - Redefine the yearly {CAGG} on top of the daily {CAGG}.
 
-<img
-  className="main-content__illustration"
-  width={1375}
-  height={944}
-  src="https://assets.timescale.com/docs/images/cagg_hierarchy.webp"
-  alt="Example of hierarchical continuous aggregates in a finance application"
-/>
+<HierarchicalCaggFlow />
 
 ## Roll up calculations
 
