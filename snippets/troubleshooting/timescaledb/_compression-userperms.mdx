@@ -1,0 +1,41 @@
+import { PG, CHUNK, COLUMNSTORE, ROWSTORE } from '/snippets/vars.mdx';
+
+### User permissions do not allow chunks to be converted to columnstore or rowstore
+
+**Message**:
+- `ERROR`:  must be owner of hypertable "HYPERTABLE_NAME"
+
+**APIs**:
+- [`compress_chunk()`][compress-chunk]
+- [`decompress_chunk()`][decompress-chunk]
+- [`recompress_chunk()`][recompress-chunk]
+- [`timescaledb_information.chunks`][chunks]
+- [`timescaledb_information.compression_settings`][compression-settings]
+
+You might get this error if you attempt to compress a {CHUNK} into the {COLUMNSTORE}, or decompress
+it back into {ROWSTORE} with a non-privileged user account. To compress or decompress a {CHUNK},
+your user account must have permissions that allow it to perform `CREATE INDEX` on the {CHUNK}.
+You can check the permissions of the current user with this command at the `psql` command prompt:
+
+```sql
+\dn+ <USERNAME>
+```
+
+To resolve this problem, grant your user account the appropriate privileges with
+this command:
+
+```sql
+GRANT PRIVILEGES
+    ON TABLE <TABLE_NAME>
+    TO <ROLE_TYPE>;
+```
+
+For more information about the `GRANT` command, see the
+[{PG} documentation][pg-grant].
+
+[chunks]: /api-reference/timescaledb/informational-views/chunks
+[compress-chunk]: /api-reference/timescaledb/compression/compress_chunk
+[compression-settings]: /api-reference/timescaledb/informational-views/compression_settings
+[decompress-chunk]: /api-reference/timescaledb/compression/decompress_chunk
+[pg-grant]: https://www.postgresql.org/docs/current/sql-grant.html
+[recompress-chunk]: /api-reference/timescaledb/compression/recompress_chunk

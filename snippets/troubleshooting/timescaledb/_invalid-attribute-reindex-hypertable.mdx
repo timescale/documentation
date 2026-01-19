@@ -1,0 +1,30 @@
+import { HYPERTABLE } from '/snippets/vars.mdx';
+
+### Reindex hypertables to fix large indexes
+
+**Message**:
+- `ERROR`:  invalid attribute number -6 for _hyper_2_839_chunk
+- `CONTEXT`:  SQL function "hypertable_local_size" statement 1 PL/pgSQL function
+  hypertable_detailed_size(regclass) line 26 at RETURN QUERY SQL function "hypertable_size" statement 1
+- `SQL state`: XX000
+
+**APIs**:
+- [`hypertable_size()`][hypertable-size]
+- [`hypertable_detailed_size()`][hypertable-detailed-size]
+- [`hypertable_index_size()`][hypertable-index-size]
+- [`chunks_detailed_size()`][chunks-detailed-size]
+
+You might see this error if your {HYPERTABLE} indexes have become very large. To
+resolve the problem, reindex your {HYPERTABLE}s with this command:
+
+```sql
+reindex table _timescaledb_internal._hyper_2_1523284_chunk
+```
+
+For more information, see the [hypertable documentation][hypertables-section].
+
+[chunks-detailed-size]: /api-reference/timescaledb/hypertables/chunks_detailed_size
+[hypertable-detailed-size]: /api-reference/timescaledb/hypertables/hypertable_detailed_size
+[hypertable-index-size]: /api-reference/timescaledb/hypertables/hypertable_index_size
+[hypertable-size]: /api-reference/timescaledb/hypertables/hypertable_size
+[hypertables-section]: /use-timescale/hypertables

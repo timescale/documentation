@@ -1,0 +1,21 @@
+import { COLUMNSTORE, ROWSTORE, CHUNK } from '/snippets/vars.mdx';
+
+### Out of memory errors after enabling the columnstore
+
+**Message**:
+- Level: Error out of memory DETAIL: Failed on request of size 16777216 in memory context "ErrorContext".
+
+**APIs**:
+- [`alter_job()`][alter-job]
+
+By default, {COLUMNSTORE} policies move all uncompressed {CHUNK}s to the {COLUMNSTORE}.
+However, before converting a large backlog of {CHUNK}s from the {ROWSTORE} to the {COLUMNSTORE},
+best practice is to set `maxchunks_to_compress` and limit to amount of {CHUNK}s to be converted. For example:
+
+```sql
+SELECT alter_job(job_id, config.maxchunks_to_compress => 10);
+```
+
+When all {CHUNK}s have been converted to the {COLUMNSTORE}, set `maxchunks_to_compress` to `0`, unlimited.
+
+[alter-job]: /api-reference/timescaledb/jobs-automation/alter_job

@@ -1,0 +1,10 @@
+import { TIMESCALE_DB } from '/snippets/vars.mdx';
+
+### Error updating TimescaleDB when using a third-party Postgres admin tool
+
+The update command `ALTER EXTENSION timescaledb UPDATE` must be the first command
+executed upon connection to a database. Some admin tools execute commands before
+this, which can disrupt the process. Try manually updating the database with
+`psql`. For instructions, see the [updating guide][update-db].
+
+[update-db]: /deploy-and-operate/self-hosted/upgrades

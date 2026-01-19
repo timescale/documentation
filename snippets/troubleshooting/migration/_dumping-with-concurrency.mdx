@@ -1,0 +1,37 @@
+### Dumping with concurrency
+
+When using the `pg_dump` directory format, it is possible to use concurrency to
+use multiple connections to the source database to dump data. This speeds up
+the dump process. Due to the fact that there are multiple connections, it is
+possible for `pg_dump` to end up in a deadlock situation. When it detects a
+deadlock it aborts the dump.
+
+In principle, any query which takes an `ACCESS EXCLUSIVE` lock on a table
+causes such a deadlock. As mentioned above, some common operations which take
+an `ACCESS EXCLUSIVE` lock are:
+- retention policies
+- columnstore compression policies
+- continuous aggregate refresh policies
+
+If you would like to use concurrency nonetheless, turn off all background jobs
+in the source database before running `pg_dump`, and turn them on once the dump
+is complete. If the dump procedure takes longer than the continuous aggregate
+refresh policy's window, you must manually refresh the continuous aggregate in
+the correct time range. For more information, consult the
+[refresh policies documentation][refresh-policies].
+
+To turn off the jobs:
+```sql
+SELECT public.alter_job(id::integer, scheduled=>false)
+FROM _timescaledb_config.bgw_job
+WHERE id >= 1000;
+```
+
+To turn on the jobs:
+```sql
+SELECT public.alter_job(id::integer, scheduled=>true)
+FROM _timescaledb_config.bgw_job
+WHERE id >= 1000;
+```
+
+[refresh-policies]: /manage-data/continuous-aggregates/refresh-policies

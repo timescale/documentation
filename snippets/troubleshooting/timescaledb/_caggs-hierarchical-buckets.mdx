@@ -1,0 +1,18 @@
+### Hierarchical continuous aggregate fails with incompatible bucket width
+
+**Message**:
+- `ERROR`:  cannot create continuous aggregate with incompatible bucket width
+- `DETAIL`:  Time bucket width of `"<BUCKET>"` [1 year] should be multiple of the time bucket
+  width of `"<BUCKET>"` [1 day].
+
+**APIs**:
+- [`refresh_continuous_aggregate()`][refresh-continuous-aggregate]
+
+If you attempt to create a hierarchical continuous aggregate, you must use
+compatible time buckets. You can't create a continuous aggregate with a
+fixed-width time bucket on top of a continuous aggregate with a variable-width
+time bucket. For more information, see the restrictions section in
+[hierarchical continuous aggregates][h-caggs-restrictions].
+
+[h-caggs-restrictions]: /use-timescale/continuous-aggregates/hierarchical-continuous-aggregates#restrictions
+[refresh-continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate

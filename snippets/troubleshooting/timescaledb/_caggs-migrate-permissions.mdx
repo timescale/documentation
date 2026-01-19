@@ -1,0 +1,15 @@
+import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
+
+### Permissions error when migrating a continuous aggregate
+
+**APIs**:
+- [`cagg_migrate()`][cagg-migrate]
+
+When migrating a {CAGG} using `cagg_migrate()`, you may encounter permissions errors. The
+`cagg_migrate()` function requires specific permissions to modify the {CAGG} structure.
+
+To resolve this issue, ensure that the user executing the migration has the necessary permissions
+on the {CAGG} and its underlying {HYPERTABLE}. For more information, see the
+[`cagg_migrate()`][cagg-migrate] documentation.
+
+[cagg-migrate]: /api-reference/timescaledb/continuous-aggregates/cagg_migrate

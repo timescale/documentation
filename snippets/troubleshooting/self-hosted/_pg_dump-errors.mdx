@@ -1,0 +1,13 @@
+import { HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
+
+### Errors occur when running `pg_dump`
+
+**Message**:
+- pg_dump: NOTICE:  {HYPERTABLE} data are in the {CHUNK}s, no data will be copied
+- DETAIL:  Data for {HYPERTABLE}s are stored in the {CHUNK}s of a {HYPERTABLE} so COPY TO of a
+  {HYPERTABLE} will not copy any data.
+- HINT:  Use `"COPY (SELECT * FROM <hypertable>) TO ..."` to copy all data in {HYPERTABLE}, or copy
+  each {CHUNK} individually.
+
+You might see the errors above when running `pg_dump`. You can safely ignore
+these. Your {HYPERTABLE} data is still accurately copied.

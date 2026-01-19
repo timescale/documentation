@@ -1,0 +1,10 @@
+import { HYPERTABLE } from '/snippets/vars.mdx';
+
+### Errors occur after restoring from file dump
+
+**Message**:
+- org.postgresql.util.PSQLException: ERROR: invalid INSERT on the root table of {HYPERTABLE} "_hyper_1_10_chunk.
+
+You might see the errors above when running `pg_restore`. When loading from a
+logical dump make sure that you set `timescaledb.restoring` to true before loading
+the dump.

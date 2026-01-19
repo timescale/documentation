@@ -1,0 +1,74 @@
+---
+title: Troubleshoot import and ingest
+description: Solutions to common errors when importing data and migrating databases
+---
+
+import LiveMigrationUnsupported from '/snippets/troubleshooting/migration/_live-migration-unsupported.mdx';
+import LiveMigrationLogsLocation from '/snippets/troubleshooting/migration/_live-migration-logs-location.mdx';
+import VersionMismatch from '/snippets/troubleshooting/migration/_version-mismatch.mdx';
+import NoTupleIdentifierWarning from '/snippets/troubleshooting/migration/_no-tuple-identifier-warning.mdx';
+import ReplicaIdentityPartitionedTables from '/snippets/troubleshooting/migration/_replica-identity-partitioned-tables.mdx';
+import ReplicasAsSource from '/snippets/troubleshooting/migration/_replicas-as-source.mdx';
+import ConnectionPoolerNotSupported from '/snippets/troubleshooting/migration/_connection-pooler-not-supported.mdx';
+import CloudAsSource from '/snippets/troubleshooting/migration/_cloud-as-source.mdx';
+import ExcludeSchemaTable from '/snippets/troubleshooting/migration/_exclude-schema-table.mdx';
+import LargeMigrationsBlocked from '/snippets/troubleshooting/migration/_large-migrations-blocked.mdx';
+import DumpingAndLocks from '/snippets/troubleshooting/migration/_dumping-and-locks.mdx';
+import DumpingWithConcurrency from '/snippets/troubleshooting/migration/_dumping-with-concurrency.mdx';
+import RestoringWithConcurrency from '/snippets/troubleshooting/migration/_restoring-with-concurrency.mdx';
+import BackgroundJobsOwnership from '/snippets/troubleshooting/migration/_background-jobs-ownership.mdx';
+import ExtensionAvailability from '/snippets/troubleshooting/migration/_extension-availability.mdx';
+import TimescaledbPublicSchema from '/snippets/troubleshooting/migration/_timescaledb-public-schema.mdx';
+import Tablespaces from '/snippets/troubleshooting/migration/_tablespaces.mdx';
+import OneDatabasePerInstance from '/snippets/troubleshooting/migration/_one-database-per-instance.mdx';
+import SuperuserPrivileges from '/snippets/troubleshooting/migration/_superuser-privileges.mdx';
+import PartialContinuousAggregates from '/snippets/troubleshooting/migration/_partial-continuous-aggregates.mdx';
+
+This page provides solutions to common errors and frequently asked questions when importing data
+and migrating databases to Tiger Cloud.
+
+## Live import from a database
+
+<LiveMigrationUnsupported />
+
+<LiveMigrationLogsLocation />
+
+<VersionMismatch />
+
+<NoTupleIdentifierWarning />
+
+<ReplicaIdentityPartitionedTables />
+
+<ReplicasAsSource />
+
+<ConnectionPoolerNotSupported />
+
+<CloudAsSource />
+
+<ExcludeSchemaTable />
+
+<LargeMigrationsBlocked />
+
+## Import from a database with downtime
+
+<DumpingAndLocks />
+
+<DumpingWithConcurrency />
+
+<RestoringWithConcurrency />
+
+<BackgroundJobsOwnership />
+
+## Common issues
+
+<ExtensionAvailability />
+
+<TimescaledbPublicSchema />
+
+<Tablespaces />
+
+<OneDatabasePerInstance />
+
+<SuperuserPrivileges />
+
+<PartialContinuousAggregates />

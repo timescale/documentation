@@ -1,0 +1,20 @@
+import { PG, CHUNK, CAGG } from '/snippets/vars.mdx';
+
+### Dropping chunks times out
+
+**APIs**:
+- [`drop_chunks()`][drop-chunks]
+
+When you drop a {CHUNK}, it requires an exclusive lock. If a {CHUNK} is being
+accessed by another session, you cannot drop the {CHUNK} at the same time. If a
+drop {CHUNK} operation can't get the lock on the {CHUNK}, then it times out and the
+process fails. To resolve this problem, check what is locking the {CHUNK}. In some
+cases, this could be caused by a {CAGG} or other process accessing
+the {CHUNK}. When the drop {CHUNK} operation can get an exclusive lock on the {CHUNK},
+it completes as expected.
+
+For more information about locks, see the
+[{PG} lock monitoring documentation][pg-lock-monitoring].
+
+[drop-chunks]: /api-reference/timescaledb/hypertables/drop_chunks
+[pg-lock-monitoring]: https://wiki.postgresql.org/wiki/Lock_Monitoring

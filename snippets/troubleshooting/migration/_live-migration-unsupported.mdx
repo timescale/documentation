@@ -1,0 +1,12 @@
+### Unsupported in live migration
+
+Live migration tooling is currently experimental. You may run into the following shortcomings:
+
+- Live migration does not yet support mutable columnstore compression (`INSERT`, `UPDATE`,
+  `DELETE` on data in the columnstore).
+- By default, numeric fields containing `NaN`/`+Inf`/`-Inf` values are not
+  correctly replicated, and will be converted to `NULL`. A workaround is available, but is not enabled by default.
+
+Should you run into any problems, please open a support request before losing
+any time debugging issues. You can open a support request directly from Tiger Console,
+or by email to [support@tigerdata.com](mailto:support@tigerdata.com).

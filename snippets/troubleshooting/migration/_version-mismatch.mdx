@@ -1,0 +1,44 @@
+import { TIMESCALE_DB, MST_LONG, MST_SHORT, CLOUD_LONG, SERVICE_LONG } from '/snippets/vars.mdx';
+
+### Source and target databases have different TimescaleDB versions
+
+When you migrate a self-hosted or {MST_LONG} ({MST_SHORT})
+database to {CLOUD_LONG}, the source database and the destination
+{SERVICE_LONG} must run the same version of {TIMESCALE_DB}.
+
+Before you start live migration:
+
+1. Check the version of {TIMESCALE_DB} running on the source database and the
+   target {SERVICE_LONG}:
+    ```sql
+    select extversion from pg_extension where extname = 'timescaledb';
+    ```
+
+1. If the version of {TIMESCALE_DB} on the source database is lower than your {SERVICE_LONG},
+   either:
+    - **Downgrade**: reinstall an older version of {TIMESCALE_DB} on your {SERVICE_LONG} that
+      matches the source database:
+
+        1. Connect to your {SERVICE_LONG} and check the versions of {TIMESCALE_DB} available:
+           ```sql
+           SELECT version FROM pg_available_extension_versions WHERE name = 'timescaledb' ORDER BY 1 DESC;
+           ```
+
+        1. If an available {TIMESCALE_DB} release matches your source database:
+
+            1. Uninstall {TIMESCALE_DB} from your {SERVICE_LONG}:
+               ```sql
+               DROP EXTENSION timescaledb;
+               ```
+
+            1. Reinstall the correct version of {TIMESCALE_DB}:
+               ```sql
+               CREATE EXTENSION timescaledb VERSION '<version>';
+               ```
+
+           <Note>
+           You may need to reconnect to your {SERVICE_LONG} using `psql -X` when you're creating
+           the {TIMESCALE_DB} extension.
+           </Note>
+
+    - **Upgrade**: for self-hosted databases, upgrade {TIMESCALE_DB} to match your {SERVICE_LONG}.
