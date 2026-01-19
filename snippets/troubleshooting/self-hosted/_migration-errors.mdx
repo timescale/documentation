@@ -1,26 +1,3 @@
----
-title: Errors encountered during a pg_dump migration
-topics: [migration]
-errors:
-  - language: bash
-    message: |-
-          pg_dump: warning: there are circular foreign-key constraints on this table:
-          pg_dump: hypertable
-          pg_dump: You might not be able to restore the dump without using --disable-triggers or temporarily dropping the constraints.
-          pg_dump: Consider using a full dump instead of a --data-only dump to avoid this problem.
-  - language: bash
-    message: |-
-          pg_dump: NOTICE:  hypertable data are in the chunks, no data will be copied
-          DETAIL:  Data for hypertables are stored in the chunks of a hypertable so COPY TO of a hypertable will not copy any data.
-          HINT:  Use "COPY (SELECT * FROM <hypertable>) TO ..." to copy all data in hypertable, or copy each chunk individually.
-  - language: bash
-    message: |-
-          WARNING:  skipping "<TABLE OR INDEX>" --- only superuser can analyze it
-
-keywords: [migration, pg_dump]
-tags: [migration, pg_dump]
----
-
 import { HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
 ### Errors encountered during a pg_dump migration

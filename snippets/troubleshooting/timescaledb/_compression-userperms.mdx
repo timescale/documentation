@@ -1,17 +1,3 @@
----
-title: User permissions do not allow chunks to be converted to columnstore or rowstore
-topics: [hypertables, compression, configuration, hypercore]
-errors:
-  - language: text
-    message: |-
-      ERROR:  must be owner of hypertable "HYPERTABLE_NAME"
-apis:
-  - [compression, compress_chunk(), decompress_chunk(), recompress_chunk()]
-  - [timescaledb_information.chunks, timescaledb_information.compression_settings]
-keywords: [hypertables, compression, indexes, security, users]
-tags: [hypertables, compression, indexes, security, users]
----
-
 import { PG, CHUNK, COLUMNSTORE, ROWSTORE } from '/snippets/vars.mdx';
 
 ### User permissions do not allow chunks to be converted to columnstore or rowstore

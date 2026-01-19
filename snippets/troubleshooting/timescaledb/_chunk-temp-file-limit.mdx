@@ -1,17 +1,3 @@
----
-title: Temporary file size limit exceeded when converting chunks to the columnstore
-topics: [hypertables, distributed hypertables, compression, hypercore]
-errors:
-  - language: text
-    message: |-
-      ERROR: temporary file size exceeds temp_file_limit
-apis:
-  - [compression, compress_chunk(), add_compression_policy()]
-  - [hypertables, create_hypertable()]
-keywords: [compression, hypertables, distributed hypertables]
-tags: [compression, hypertables, chunks]
----
-
 import { CHUNK, COLUMNSTORE } from '/snippets/vars.mdx';
 
 ### Temporary file size limit exceeded when converting chunks to the columnstore

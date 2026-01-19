@@ -1,21 +1,3 @@
----
-title: Reindex hypertables to fix large indexes
-topics: [hypertables, distributed hypertables, schema management, data retention, compression, hypercore]
-errors:
-  - language: bash
-    message: |-
-      ERROR:  invalid attribute number -6 for _hyper_2_839_chunk
-      CONTEXT:  SQL function "hypertable_local_size" statement 1 PL/pgSQL function hypertable_detailed_size(regclass) line 26 at RETURN QUERY SQL function "hypertable_size" statement 1
-      SQL state: XX000
-apis:
-  - [hypertables, hypertable_size()]
-  - [hypertables, hypertable_detailed_size()]
-  - [hypertables, hypertable_index_size()]
-  - [hypertables, chunks_detailed_size()]
-keywords: [jobs, policies, actions]
-tags: [hypertables, chunks, index, schema management, data retention, compression]
----
-
 import { HYPERTABLE } from '/snippets/vars.mdx';
 
 ### Reindex hypertables to fix large indexes

@@ -1,15 +1,3 @@
----
-title: Inefficient `compress_chunk_time_interval` configuration
-topics: [compression, hypercore]
-errors:
-  - language: text
-    message: |-
-      compress_chunk_time_interval configured and primary dimension not first column in compress_orderby.
-      consider setting "<column name>" as first compress_orderby column
-keywords: [compression, alter_table]
-tags: [compression, alter_table]
----
-
 import { TIMESCALE_DB, CHUNK } from '/snippets/vars.mdx';
 
 ### Inefficient `compress_chunk_time_interval` configuration
