@@ -35,17 +35,17 @@
   `
 }}%%
 graph TB
-    A[Create Function/Procedure] --> B[Register Job&nbsp;&nbsp;]
-    B -->|add_job| C[Job Scheduled in Catalog]
-    C --> D{Schedule Interval}
-    D -->|Time Reached| E[Background Worker Executes Job]
-    E --> F[Job Completes]
-    F --> G[Record in Job Stats]
+    A[Create function/procedure] --> B[Register job&nbsp;&nbsp;]
+    B -->|add_job| C[Job scheduled in catalog]
+    C --> D{Schedule interval}
+    D -->|Time reached| E[Background worker executes job]
+    E --> F[Job completes]
+    F --> G[Record in job stats]
     G --> C
 
-    I[Alter Job&nbsp;&nbsp;] -.->|alter_job| C
-    J[Delete Job&nbsp;&nbsp;] -.->|delete_job| C
-    H[Manual Execution&nbsp;&nbsp;] -.->|run_job| E
+    I[Alter job&nbsp;&nbsp;] -.->|alter_job| C
+    J[Delete job&nbsp;&nbsp;] -.->|delete_job| C
+    H[Manual execution&nbsp;&nbsp;] -.->|run_job| E
 
     %% Border-only hierarchy
     %% - Primary nodes: thicker border (B, C, E)
@@ -70,6 +70,7 @@ graph TB
     linkStyle default stroke:#777,stroke-width:1px
 
     click B "/api-reference/timescaledb/jobs-automation/add_job" "add_job API reference"
+    click C "/api-reference/timescaledb/informational-views/index" "Learn about the catalog"
     click H "/api-reference/timescaledb/jobs-automation/run_job" "run_job API reference"
     click I "/api-reference/timescaledb/jobs-automation/alter_job" "alter_job API reference"
     click J "/api-reference/timescaledb/jobs-automation/delete_job" "delete_job API reference"

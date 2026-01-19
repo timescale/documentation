@@ -407,18 +407,14 @@
                           "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/features/jobs/create-and-manage-jobs"
-                        ]
-                      }
+                      "manage-data/features/create-and-manage-jobs"
                     ]
                   },
                   {
@@ -492,18 +488,14 @@
                           "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/features/jobs/create-and-manage-jobs"
-                        ]
-                      }
+                      "manage-data/features/create-and-manage-jobs"
                     ]
                   },
                   {
@@ -577,18 +569,14 @@
                           "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/features/jobs/create-and-manage-jobs"
-                        ]
-                      }
+                      "manage-data/features/create-and-manage-jobs"
                     ]
                   },
                   {
@@ -662,18 +650,14 @@
                           "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/features/jobs/create-and-manage-jobs"
-                        ]
-                      }
+                      "manage-data/features/create-and-manage-jobs"
                     ]
                   },
                   {
@@ -747,18 +731,14 @@
                           "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/features/jobs/create-and-manage-jobs"
-                        ]
-                      }
+                      "manage-data/features/create-and-manage-jobs"
                     ]
                   },
                   {
@@ -832,18 +812,14 @@
                           "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/features/jobs/create-and-manage-jobs"
-                        ]
-                      }
+                      "manage-data/features/create-and-manage-jobs"
                     ]
                   },
                   {
@@ -917,18 +893,14 @@
                           "manage-data/features/continuous-aggregates/understand-continuous-aggregates"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
                           "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
-                      {
-                        "group": "Jobs",
-                        "pages": [
-                          "manage-data/features/jobs/create-and-manage-jobs"
-                        ]
-                      }
+                      "manage-data/features/create-and-manage-jobs"
                     ]
                   },
                   {
@@ -4410,23 +4382,23 @@
     },
     {
       "source": "/use-timescale/:slug*/jobs/",
-      "destination": "/manage-data/features/jobs/create-and-manage-jobs"
+      "destination": "/manage-data/features/create-and-manage-jobs"
     },
     {
-      "source": "/use-timescale/:slug*/jobs/create-and-manage-jobs/",
-      "destination": "/manage-data/features/jobs/create-and-manage-jobs"
+      "source": "/use-timescale/:slug*/create-and-manage-jobs/",
+      "destination": "/manage-data/features/create-and-manage-jobs"
     },
     {
       "source": "/use-timescale/:slug*/jobs/example-downsample-and-compress/",
-      "destination": "/manage-data/features/jobs/create-and-manage-jobs#downsample-and-compress-chunks"
+      "destination": "/manage-data/features/create-and-manage-jobs#downsample-and-compress-chunks"
     },
     {
       "source": "/use-timescale/:slug*/jobs/example-generic-retention/",
-      "destination": "/manage-data/features/jobs/create-and-manage-jobs#generic-retention-policy"
+      "destination": "/manage-data/features/create-and-manage-jobs#generic-retention-policy"
     },
     {
       "source": "/use-timescale/:slug*/jobs/example-tiered-storage/",
-      "destination": "/manage-data/features/jobs/create-and-manage-jobs#automatic-tablespace-management"
+      "destination": "/manage-data/features/create-and-manage-jobs#automatic-tablespace-management"
     }
   ]
 }
