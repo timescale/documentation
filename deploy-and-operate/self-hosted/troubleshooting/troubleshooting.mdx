@@ -1,0 +1,57 @@
+---
+title: Troubleshoot
+description: Troubleshooting for self-hosted TimescaleDB
+---
+
+import BackgroundWorkerFailedStart from '/snippets/troubleshooting/self-hosted/_background-worker-failed-start.mdx';
+import InstallTimescaleDBCouldNotAccessFile from '/snippets/troubleshooting/self-hosted/_install-timescaledb-could-not-access-file.mdx';
+import UpdateErrorThirdPartyTool from '/snippets/troubleshooting/self-hosted/_update-error-third-party-tool.mdx';
+import UpdateTimescaleDBCouldNotAccessFile from '/snippets/troubleshooting/self-hosted/_update-timescaledb-could-not-access-file.mdx';
+import UpgradeFailsAlreadyLoaded from '/snippets/troubleshooting/self-hosted/_upgrade-fails-already-loaded.mdx';
+import UpgradeNoUpdatePath from '/snippets/troubleshooting/self-hosted/_upgrade-no-update-path.mdx';
+import WindowsInstallLibraryNotLoaded from '/snippets/troubleshooting/self-hosted/_windows-install-library-not-loaded.mdx';
+import MigrationErrors from '/snippets/troubleshooting/self-hosted/_migration-errors.mdx';
+import MigrationErrorsPerms from '/snippets/troubleshooting/self-hosted/_migration-errors-perms.mdx';
+import PgDumpErrors from '/snippets/troubleshooting/self-hosted/_pg_dump-errors.mdx';
+import PgDumpPermissionDenied from '/snippets/troubleshooting/self-hosted/_pg_dump-permission-denied.mdx';
+import PgDumpVersionMismatch from '/snippets/troubleshooting/self-hosted/_pg_dump-version-mismatch.mdx';
+import PgRestoreErrors from '/snippets/troubleshooting/self-hosted/_pg_restore-errors.mdx';
+import ToolkitCannotCreateUpgradeExtension from '/snippets/troubleshooting/self-hosted/_toolkit-cannot-create-upgrade-extension.mdx';
+
+## Install
+
+<InstallTimescaleDBCouldNotAccessFile />
+
+<WindowsInstallLibraryNotLoaded />
+
+## Update and upgrade
+
+<UpdateErrorThirdPartyTool />
+
+<UpdateTimescaleDBCouldNotAccessFile />
+
+<UpgradeFailsAlreadyLoaded />
+
+<UpgradeNoUpdatePath />
+
+## TimescaleDB Toolkit
+
+<ToolkitCannotCreateUpgradeExtension />
+
+## Backup and migrate
+
+<PgDumpErrors />
+
+<PgDumpPermissionDenied />
+
+<PgDumpVersionMismatch />
+
+<PgRestoreErrors />
+
+<MigrationErrors />
+
+<MigrationErrorsPerms />
+
+## Jobs and background workers
+
+<BackgroundWorkerFailedStart />

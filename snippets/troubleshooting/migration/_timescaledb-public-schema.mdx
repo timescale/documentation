@@ -1,0 +1,8 @@
+import { TIMESCALE_DB, CLOUD_LONG } from '/snippets/vars.mdx';
+
+### TimescaleDB extension in the public schema
+
+When self-hosting, the {TIMESCALE_DB} extension may be installed in an arbitrary
+schema. {CLOUD_LONG} only supports installing the {TIMESCALE_DB} extension in the
+`public` schema. How to go about resolving this depends heavily on the
+particular details of the source schema and the migration approach chosen.

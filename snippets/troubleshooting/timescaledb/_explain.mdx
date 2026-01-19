@@ -1,0 +1,31 @@
+import { PG, HYPERTABLE } from '/snippets/vars.mdx';
+
+### A particular query executes more slowly than expected
+
+To troubleshoot a query, you can examine its EXPLAIN plan.
+
+{PG}'s EXPLAIN feature allows users to understand the underlying query
+plan that {PG} uses to execute a query. There are multiple ways that
+{PG} can execute a query: for example, a query might be fulfilled using a
+slow sequence scan or a much more efficient index scan. The choice of plan
+depends on what indexes are created on the table, the statistics that {PG}
+has about your data, and various planner settings. The EXPLAIN output let's you
+know which plan {PG} is choosing for a particular query. {PG} has a
+[in-depth explanation][using explain] of this feature.
+
+To understand the query performance on a {HYPERTABLE}, we suggest first
+making sure that the planner statistics and table maintenance is up-to-date on the {HYPERTABLE}
+by running `VACUUM ANALYZE <your-hypertable>;`. Then, we suggest running the
+following version of EXPLAIN:
+
+```sql
+EXPLAIN (ANALYZE on, BUFFERS on) <original query>;
+```
+
+If you suspect that your performance issues are due to slow IOs from disk, you
+can get even more information by enabling the
+[track\_io\_timing][track_io_timing] variable with `SET track_io_timing = 'on';`
+before running the above EXPLAIN.
+
+[using explain]: https://www.postgresql.org/docs/current/static/using-explain.html
+[track_io_timing]: https://www.postgresql.org/docs/current/static/runtime-config-statistics.html#GUC-TRACK-IO-TIMING

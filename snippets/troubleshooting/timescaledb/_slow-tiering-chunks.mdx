@@ -1,0 +1,15 @@
+import { CHUNK } from '/snippets/vars.mdx';
+
+### Slow tiering of chunks
+
+{CHUNK}s are tiered asynchronously. {CHUNK}s are selected to be tiered to the object storage tier
+one at a time ordered by their enqueue time.
+
+To see the {CHUNK}s waiting to be tiered query the `timescaledb_osm.chunks_queued_for_tiering` view
+
+```sql
+select count(*) from timescaledb_osm.chunks_queued_for_tiering
+```
+
+Processing all the {CHUNK}s in the queue may take considerable time if a large quantity of data is
+being migrated to the object storage tier.

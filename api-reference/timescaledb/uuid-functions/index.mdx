@@ -61,7 +61,7 @@ You use UUIDs for events, orders, messages, uploads, runs, jobs, spans, and more
       ```
   - Keyset pagination:
       ```sql
-      SELECT * FROM logs WHERE id > to_uuidv7($last_seen'::timestamptz, true) ORDER BY id LIMIT 1000;
+      SELECT * FROM logs WHERE id > to_uuidv7_boundary($last_seen::timestamptz) ORDER BY id LIMIT 1000;
       ```
 
 - **Workflow / durable execution runs**:
@@ -84,8 +84,8 @@ You use UUIDs for events, orders, messages, uploads, runs, jobs, spans, and more
 
     ```sql
     SELECT * FROM orders
-    WHERE id >= to_uuidv7('2025-08-01'::timestamptz, true)
-    AND id <  to_uuidv7('2025-08-02'::timestamptz, true)
+    WHERE id >= to_uuidv7_boundary('2025-08-01'::timestamptz)
+    AND id <  to_uuidv7_boundary('2025-08-02'::timestamptz)
     ORDER BY id;
     ```
 

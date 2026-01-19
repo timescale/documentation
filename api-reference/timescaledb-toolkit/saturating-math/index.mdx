@@ -17,6 +17,20 @@ function with a lower bound of `0`, such as [`saturating_add_pos`][saturating_ad
 You can use saturating math to make sure your results don't overflow the allowed range of integers, or to force a result
 to be greater than or equal to zero.
 
+<Note>
+All saturating math functions are in the `toolkit_experimental` schema. You must use schema-qualified names:
+
+```sql
+SELECT toolkit_experimental.saturating_add(100, 50);
+```
+
+Alternatively, add the schema to your search path:
+
+```sql
+SET search_path TO public, toolkit_experimental;
+```
+</Note>
+
 ## Available functions
 
 ### Addition

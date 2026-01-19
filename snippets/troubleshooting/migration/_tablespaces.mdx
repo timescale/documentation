@@ -1,0 +1,8 @@
+import { CLOUD_LONG } from '/snippets/vars.mdx';
+
+### Tablespaces
+
+{CLOUD_LONG} does not support using custom tablespaces. Providing the
+`--no-tablespaces` flag to `pg_dump` and `pg_restore` when
+dumping/restoring the schema results in all objects being in the
+default tablespace as desired.

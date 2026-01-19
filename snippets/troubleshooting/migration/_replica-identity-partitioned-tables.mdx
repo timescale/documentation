@@ -1,0 +1,7 @@
+import { PG } from '/snippets/vars.mdx';
+
+### Set REPLICA IDENTITY on Postgres partitioned tables
+
+If your {PG} tables use native partitioning, setting `REPLICA IDENTITY` on the
+root (parent) table will not automatically apply it to the partitioned child tables.
+You must manually set `REPLICA IDENTITY` on each partitioned child table.

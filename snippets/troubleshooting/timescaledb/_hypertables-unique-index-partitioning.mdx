@@ -1,0 +1,22 @@
+import { HYPERTABLE } from '/snippets/vars.mdx';
+
+### Can't create unique index on hypertable, or can't create hypertable with unique index
+
+**Message**:
+- `ERROR: cannot create a unique index without the column "<COLUMN_NAME>" (used in partitioning)`
+
+**APIs**:
+- [`create_hypertable()`][create-hypertable]
+- `create_distributed_hypertable()`
+
+You might get a unique index and partitioning column error in 2 situations:
+
+*   When creating a primary key or unique index on a {HYPERTABLE}
+*   When creating a {HYPERTABLE} from a table that already has a unique index or
+    primary key
+
+For more information on how to fix this problem, see the
+[section on creating unique indexes on hypertables][hypertables-and-unique-indexes].
+
+[create-hypertable]: /api-reference/timescaledb/hypertables/create_hypertable
+[hypertables-and-unique-indexes]: /use-timescale/hypertables/hypertables-and-unique-indexes

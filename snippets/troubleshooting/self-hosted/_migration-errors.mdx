@@ -1,0 +1,19 @@
+import { HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
+
+### Errors encountered during a pg_dump migration
+
+**Message**:
+- pg_dump: warning: there are circular foreign-key constraints on this table:
+- pg_dump: hypertable
+- pg_dump: You might not be able to restore the dump without using --disable-triggers or temporarily
+  dropping the constraints.
+- pg_dump: Consider using a full dump instead of a --data-only dump to avoid this problem.
+- pg_dump: NOTICE:  {HYPERTABLE} data are in the {CHUNK}s, no data will be copied
+- DETAIL:  Data for {HYPERTABLE}s are stored in the {CHUNK}s of a {HYPERTABLE} so COPY TO of a
+  {HYPERTABLE} will not copy any data.
+- HINT:  Use `"COPY (SELECT * FROM <hypertable>) TO ..."` to copy all data in {HYPERTABLE}, or copy
+  each {CHUNK} individually.
+- `WARNING:  skipping "<TABLE OR INDEX>" --- only superuser can analyze it`
+
+If you see these errors during the migration process, you can safely ignore
+them. The migration still occurs successfully.

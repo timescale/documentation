@@ -97,5 +97,5 @@ You have \<what the user will do in this section>.
 
 [create-a-service]: /deploy-and-operate/tiger/get-started/create-services
 [secure-vpc-aws]: /deploy-and-operate/tiger/secure-access/vpc-peering-and-aws-private-link
-[install-linux]: /deploy-and-operate/timescaledb/install-and-update/install-self-hosted
+[install-linux]: /deploy-and-operate/self-hosted/install-and-update/install-self-hosted
 [gdsg]: https://developers.google.com/style/highlights

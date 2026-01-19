@@ -24,7 +24,7 @@ Unless `uuid` is known to encode a valid sub-millisecond fraction, use [`uuid_ti
 ## Samples
 
 ```sql
-postgres=# SELECT uuid_timestamp_micros('019913ce-f124-7835-96c7-a2df691caa98');
+SELECT uuid_timestamp_micros('019913ce-f124-7835-96c7-a2df691caa98');
 ```
 Returns something like:
 ```terminaloutput

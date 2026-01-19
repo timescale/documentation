@@ -1,0 +1,20 @@
+import { HYPERTABLE } from '/snippets/vars.mdx';
+
+### Permission denied when changing ownership of tables and hypertables
+
+**Message**:
+- `ERROR`: permission denied for schema _timescaledb_internal
+
+You might see this error when using the `ALTER TABLE` command to change the
+ownership of tables or {HYPERTABLE}s.
+
+This use of `ALTER TABLE` is blocked because the `tsdbadmin` user is not a
+superuser.
+
+To change table ownership, use the [`REASSIGN`][sql-reassign] command instead:
+
+```sql
+REASSIGN OWNED BY <current_role> TO <desired_role>
+```
+
+[sql-reassign]: https://www.postgresql.org/docs/current/sql-reassign-owned.html

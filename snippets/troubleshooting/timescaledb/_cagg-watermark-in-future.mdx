@@ -1,0 +1,101 @@
+import { TIMESCALE_DB, CAGG, TIME_BUCKET, HYPERTABLE } from '/snippets/vars.mdx';
+
+### Continuous aggregate watermark is in the future
+
+**APIs**:
+- [`add_continuous_aggregate_policy()`][add-continuous-aggregate-policy]
+- [`add_policies()`][add-policies]
+- [`alter_policies()`][alter-policies]
+- [`CREATE MATERIALIZED VIEW (Continuous Aggregate)`][create-materialized-view]
+- [`refresh_continuous_aggregate()`][refresh-continuous-aggregate]
+
+{CAGG}s use a watermark to indicate which {TIME_BUCKET}s have
+already been materialized. When you query a {CAGG}, your query
+returns materialized data from before the watermark. It returns real-time,
+non-materialized data from after the watermark.
+
+In certain cases, the watermark might be in the future. If this happens, all
+{TIME_BUCKET}s, including the most recent {TIME_BUCKET}, are materialized and below the
+watermark. No real-time data is returned.
+
+This might happen if you refresh your {CAGG} over the time window
+`<START_TIME>, NULL`, which materializes all recent data. It might also happen
+if you create a {CAGG} using the `WITH DATA` option. This also
+implicitly refreshes your {CAGG} with a window of `NULL, NULL`.
+
+To fix this, create a new {CAGG} using the `WITH NO DATA` option.
+Then use a policy to refresh this {CAGG} over an explicit time
+window.
+
+
+1.  Create a {CAGG} using the `WITH NO DATA` option:
+
+    ```sql
+    CREATE MATERIALIZED VIEW <continuous_aggregate_name>
+        WITH (timescaledb.continuous)
+        AS SELECT time_bucket('<interval>', <partition_column>),
+        <other_columns_to_select>,
+        ...
+        FROM <hypertable>
+        GROUP BY bucket, <optional_other_columns>
+        WITH NO DATA;
+    ```
+
+1.  Refresh the {CAGG} using a policy with an explicit
+    `end_offset`. For example:
+
+    ```sql
+    SELECT add_continuous_aggregate_policy('<continuous_aggregate_name>',
+        start_offset => INTERVAL '30 day',
+        end_offset => INTERVAL '1 hour',
+        schedule_interval => INTERVAL '1 hour');
+    ```
+
+1.  Check your new {CAGG}'s watermark to make sure it is in the
+    past, not the future.
+
+    Get the ID for the materialization {HYPERTABLE} that contains the actual
+    {CAGG} data:
+
+    ```sql
+    SELECT id FROM _timescaledb_catalog.hypertable
+        WHERE table_name=(
+            SELECT materialization_hypertable_name
+                FROM timescaledb_information.continuous_aggregates
+                WHERE view_name='<continuous_aggregate_name>'
+        );
+    ```
+
+1.  Use the returned ID to query for the watermark's timestamp:
+
+    For {TIMESCALE_DB} >= 2.12:
+
+    ```sql
+    SELECT COALESCE(
+        _timescaledb_functions.to_timestamp(_timescaledb_functions.cagg_watermark(<ID>)),
+        '-infinity'::timestamp with time zone
+    );
+    ```
+
+    For {TIMESCALE_DB} < 2.12:
+
+    ```sql
+    SELECT COALESCE(
+        _timescaledb_internal.to_timestamp(_timescaledb_internal.cagg_watermark(<ID>)),
+        '-infinity'::timestamp with time zone
+    );
+    ```
+
+<Info>
+If you choose to delete your old {CAGG} after creating a new one,
+beware of historical data loss. If your old {CAGG} contained data
+that you dropped from your original {HYPERTABLE}, for example through a data
+retention policy, the dropped data is not included in your new {CAGG}.
+</Info>
+
+[add-continuous-aggregate-policy]: /api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy
+[add-policies]: /api-reference/timescaledb/continuous-aggregates/add_policies
+[alter-policies]: /api-reference/timescaledb/continuous-aggregates/alter_policies
+[create-materialized-view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view
+[refresh-continuous-aggregate]: /api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate
+

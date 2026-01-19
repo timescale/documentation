@@ -1,0 +1,23 @@
+import { CLOUD_LONG } from '/snippets/vars.mdx';
+
+### Dumping and locks
+
+When `pg_dump` starts, it takes an `ACCESS SHARE` lock on all tables which it
+dumps. This ensures that tables aren't dropped before `pg_dump` is able to drop
+them. A side effect of this is that any query which tries to take an
+`ACCESS EXCLUSIVE` lock on a table is be blocked by the `ACCESS SHARE` lock.
+
+A number of {CLOUD_LONG}-internal processes require taking `ACCESS EXCLUSIVE`
+locks to ensure consistency of the data. The following is a non-exhaustive list
+of potentially affected operations:
+
+- converting a chunk into the columnstore/rowstore and back
+- continuous aggregate refresh (before 2.12)
+- create hypertable with foreign keys, truncate hypertable
+- enable hypercore on a hypertable
+- drop chunks
+
+The most likely impact of the above is that background jobs for retention
+policies, columnstore compression policies, and continuous aggregate refresh policies are
+blocked for the duration of the `pg_dump` command. This may have unintended
+consequences for your database performance.

@@ -1,0 +1,13 @@
+import { SERVICE_LONG, PG } from '/snippets/vars.mdx';
+
+### Cannot create another database
+
+**Message**:
+- `ERROR:  tsdb_admin: database <DB_NAME> is not an allowed database name`
+- `HINT:  Contact your administrator to configure the "tsdb_admin.allowed_databases"`
+
+Each {SERVICE_LONG} hosts a single {PG} instance called `tsdb`. You see this error when you try
+to create an additional database in a {SERVICE_LONG}. If you need another database,
+[create a new service][create-service].
+
+[create-service]: /deploy-and-operate/tiger-cloud/get-started/create-services

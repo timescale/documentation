@@ -1,0 +1,5 @@
+### Can I use read/failover replicas as source database for live migration?
+
+Live migration does not support replication from read or failover replicas. You must
+provide a connection string that points directly to your source database for
+live migration.

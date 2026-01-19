@@ -1,0 +1,34 @@
+### Failed to start a background worker
+
+**Message**:
+- `"<TYPE_OF_BACKGROUND_JOB>": failed to start a background worker`
+
+**APIs**:
+- [`timescaledb_information.jobs`][jobs]
+- [`timescaledb_information.job_stats`][job-stats]
+- [`add_job()`][add-job]
+- [`add_reorder_policy()`][add-reorder-policy]
+- [`add_retention_policy()`][add-retention-policy]
+- [`add_compression_policy()`][add-compression-policy]
+- [`add_continuous_aggregate_policy()`][add-continuous-aggregate-policy]
+
+You might see this error message in the logs if background workers aren't
+properly configured.
+
+To fix this error, make sure that `max_worker_processes`,
+`max_parallel_workers`, and `timescaledb.max_background_workers` are properly
+set. `timescaledb.max_background_workers` should equal the number of databases
+plus the number of concurrent background workers. `max_worker_processes` should
+equal the sum of `timescaledb.max_background_workers` and
+`max_parallel_workers`.
+
+For more information, see the [worker configuration docs][worker-config].
+
+[jobs]: /api-reference/timescaledb/informational-views/jobs
+[job-stats]: /api-reference/timescaledb/informational-views/job_stats
+[add-job]: /api-reference/timescaledb/jobs-automation/add_job
+[add-reorder-policy]: /api-reference/timescaledb/hypertables/add_reorder_policy
+[add-retention-policy]: /api-reference/timescaledb/data-retention/add_retention_policy
+[add-compression-policy]: /api-reference/timescaledb/compression/add_compression_policy
+[add-continuous-aggregate-policy]: /api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy
+[worker-config]: /deploy-and-operate/self-hosted/configuration/about-configuration#workers
