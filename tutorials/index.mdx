@@ -7,6 +7,8 @@ keywords: [tutorials, examples, guides]
 mode: "wide"
 ---
 
+import { CAGG, HYPERTABLE } from '/snippets/vars.mdx';
+
 <CardGroup cols={1}>
   <Card
     title="Quickstart"
@@ -32,7 +34,7 @@ mode: "wide"
     icon="sensor"
     href="/tutorials/simulate-iot-sensor-data"
   >
-    Simulate IoT sensor datasets for testing and development. Create hypertables for temperature, CPU, and other sensor metrics, then analyze energy consumption patterns and health monitoring data.
+    Simulate IoT sensor datasets for testing and development. Create {HYPERTABLE}s for temperature, CPU, and other sensor metrics, then analyze energy consumption patterns and health monitoring data.
   </Card>
   <Card
     title="Real-time dashboards"
@@ -58,7 +60,7 @@ mode: "wide"
     icon="bolt"
     href="/tutorials/analyze-energy-consumption"
   >
-    Analyze energy consumption data with continuous aggregates and Grafana. Optimize energy production timing, track usage patterns, and build real-time dashboards for grid management.
+    Analyze energy consumption data with {CAGG}s and Grafana. Optimize energy production timing, track usage patterns, and build real-time dashboards for grid management.
   </Card>
   <Card
     title="Financial"

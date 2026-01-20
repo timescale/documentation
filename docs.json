@@ -1249,7 +1249,6 @@
                       "tutorials/ingest-real-time-financial-data",
                       "tutorials/analyze-financial-tick-data",
                       "tutorials/financial-forecasting",
-                      "tutorials/query-blockchain",
                       "tutorials/analyze-blockchain"
                     ]
                   },
@@ -1401,7 +1400,6 @@
                       "tutorials/ingest-real-time-financial-data",
                       "tutorials/analyze-financial-tick-data",
                       "tutorials/financial-forecasting",
-                      "tutorials/query-blockchain",
                       "tutorials/analyze-blockchain"
                     ]
                   }
