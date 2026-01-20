@@ -393,6 +393,7 @@
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
                           "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/time-buckets",
                           "manage-data/features/hypertables/improve-query-performance",
                           "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
@@ -503,6 +504,7 @@
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
                           "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/time-buckets",
                           "manage-data/features/hypertables/improve-query-performance",
                           "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
@@ -613,6 +615,7 @@
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
                           "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/time-buckets",
                           "manage-data/features/hypertables/improve-query-performance",
                           "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
@@ -723,6 +726,7 @@
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
                           "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/time-buckets",
                           "manage-data/features/hypertables/improve-query-performance",
                           "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
@@ -833,6 +837,7 @@
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
                           "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/time-buckets",
                           "manage-data/features/hypertables/improve-query-performance",
                           "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
@@ -944,6 +949,7 @@
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
                           "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/time-buckets",
                           "manage-data/features/hypertables/improve-query-performance",
                           "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
@@ -1054,6 +1060,7 @@
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
                           "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/time-buckets",
                           "manage-data/features/hypertables/improve-query-performance",
                           "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
