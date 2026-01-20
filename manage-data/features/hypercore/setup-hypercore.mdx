@@ -146,11 +146,11 @@ To set up your hypercore automation:
 
    ```sql
    SELECT * FROM timescaledb_information.jobs WHERE
-     proc_name = 'policy_compression' AND relname = 'crypto_ticks'
+     proc_name = 'policy_compression' AND relname = 'crypto_ticks';
 
-   -- Select the JOB_ID from the results
+   -- Select the JOB_ID from the results, then use it in the next command
 
-   SELECT alter_job(JOB_ID, scheduled => false);
+   SELECT alter_job(<JOB_ID>, scheduled => false);
    ```
 
    See [`alter_job`][alter_job].
@@ -158,7 +158,7 @@ To set up your hypercore automation:
 1. **Restart a columnstore policy**
 
    ```sql
-   SELECT alter_job(JOB_ID, scheduled => true);
+   SELECT alter_job(<JOB_ID>, scheduled => true);
    ```
 
    See [`alter_job`][alter_job].

@@ -10,7 +10,7 @@ import Prerequisites from '/snippets/prerequisites/_prereqs-cloud-and-self.mdx';
 import CaggsIntro from '/snippets/manage-data/_caggs-intro.mdx';
 import CaggsTypes from '/snippets/manage-data/_caggs-types.mdx';
 import CaggsFunctionSupport from '/snippets/manage-data/_caggs-function-support.mdx';
-import CreateHypertablePolicyNote from '/snippets/manage-data/_create-hypertable-columnstore-policy-note.mdx';
+import CreateHypertablePolicyNote from '/snippets/reference/timescaledb/hypercore/_create-hypertable-columnstore-policy-note.mdx';
 import { TIMESCALE_DB, HYPERTABLE, CHUNK, CAGG, CAGG_CAP, PG } from '/snippets/vars.mdx';
 
 <CaggsIntro />
@@ -81,7 +81,7 @@ CREATE TABLE conditions (
   device_id INTEGER,
   temperature FLOAT8
 ) WITH (
-  tsdb.hypertable
+  timescaledb.hypertable
 );
 ```
 

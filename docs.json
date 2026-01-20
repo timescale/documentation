@@ -392,7 +392,9 @@
                         "group": "Hypertables",
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
-                          "manage-data/features/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
@@ -500,7 +502,9 @@
                         "group": "Hypertables",
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
-                          "manage-data/features/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
@@ -608,7 +612,9 @@
                         "group": "Hypertables",
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
-                          "manage-data/features/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
@@ -716,7 +722,9 @@
                         "group": "Hypertables",
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
-                          "manage-data/features/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
@@ -824,7 +832,9 @@
                         "group": "Hypertables",
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
-                          "manage-data/features/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
@@ -933,7 +943,9 @@
                         "group": "Hypertables",
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
-                          "manage-data/features/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
@@ -1041,7 +1053,9 @@
                         "group": "Hypertables",
                         "pages": [
                           "manage-data/features/hypertables/understand-hypertables",
-                          "manage-data/features/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
