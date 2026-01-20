@@ -398,7 +398,10 @@
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/features/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
@@ -503,7 +506,10 @@
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/features/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
@@ -608,7 +614,10 @@
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/features/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
@@ -713,7 +722,10 @@
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/features/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
@@ -818,7 +830,10 @@
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/features/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
@@ -924,7 +939,10 @@
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/features/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
@@ -1029,7 +1047,10 @@
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/features/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {

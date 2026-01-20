@@ -147,6 +147,106 @@ import { PricePlanBadge } from '/snippets/Availability.jsx';
 
 **Component location:** `/snippets/Availability.jsx`
 
+### Mermaid diagrams
+
+Use Mermaid diagrams to visualize workflows and processes. All diagrams must follow the established theme for consistency.
+
+**Location:**
+- Store diagram files in `images/manage-data/` directory
+- Name files descriptively (e.g., `hypercore-workflow.mdx`, `continuous-aggregate-workflow.mdx`)
+
+**Theme configuration:**
+All mermaid diagrams must use this exact theme configuration:
+```mdx
+```mermaid
+%%{init: {
+  'theme':'base',
+  'themeVariables': {
+    'primaryColor':'#fff',
+    'primaryTextColor':'#1a1a1a',
+    'primaryBorderColor':'#333',
+    'lineColor':'#666',
+    'secondaryColor':'#fff',
+    'secondaryTextColor':'#1a1a1a',
+    'secondaryBorderColor':'#333',
+    'tertiaryColor':'#fff',
+    'tertiaryTextColor':'#1a1a1a',
+    'tertiaryBorderColor':'#333',
+    'noteBkgColor':'#fff',
+    'noteTextColor':'#1a1a1a',
+    'noteBorderColor':'#333',
+    'background':'#fff',
+    'mainBkg':'#fff',
+    'fontFamily': "'Geist Mono', monospace",
+    'edgeLabelBackground':'#fff',
+    'labelColor':'#333',
+    'labelTextColor':'#333'
+  },
+  'flowchart': { 'padding': 30, 'htmlLabels': true, 'curve': 'stepAfter' },
+
+  /* Hover tint (best-effort; renderer may ignore themeCSS) */
+  'themeCSS': `
+    .node rect:hover,
+    .node polygon:hover,
+    .node path:hover {
+      fill: rgba(244, 255, 97, 0.18) !important;
+      transition: fill 120ms ease-in-out;
+    }
+  `
+}}%%
+graph TB
+    [Your flowchart here]
+```
+```
+
+**Node styling:**
+Apply border-based visual hierarchy to nodes:
+- **Primary nodes** (thicker border, 3px): Key actions like `CREATE`, `ALTER`, policy scheduling
+  ```
+  style NodeName fill:#fff,stroke:#333,stroke-width:3px,color:#1a1a1a,rx:4,ry:4
+  ```
+- **Standard nodes** (normal border, 2px): Regular workflow steps
+  ```
+  style NodeName fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a,rx:4,ry:4
+  ```
+- **Optional nodes** (dashed border, 1.5px): Alternative or management operations
+  ```
+  style NodeName fill:#fff,stroke:#666,stroke-width:1.5px,stroke-dasharray: 5 5,color:#1a1a1a,rx:4,ry:4
+  ```
+- **Decision nodes** (diamond): Use stroke-width:2px without rx:4,ry:4
+  ```
+  style NodeName fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a
+  ```
+
+**Connectors:**
+Use consistent connector styling:
+```
+linkStyle default stroke:#777,stroke-width:1px
+```
+
+**Clickable nodes:**
+Add click handlers linking to relevant API or concept pages:
+```
+click NodeName "/api-reference/path/to/api" "API reference tooltip"
+click NodeName "/manage-data/path/to/concept" "Concept page tooltip"
+```
+
+**Usage in content:**
+Import the diagram file where you need it:
+```mdx
+import DiagramName from '/images/manage-data/diagram-name.mdx';
+
+<DiagramName />
+```
+
+**Node labeling:**
+- Add `&nbsp;&nbsp;` (2 non-breaking spaces) to the end of node labels to provide padding within nodes
+- This ensures text doesn't touch the node borders
+
+**Examples:**
+- See `/images/manage-data/continuous-aggregate-workflow.mdx` for continuous aggregate workflow
+- See `/images/manage-data/hypercore-workflow.mdx` for hypercore workflow
+
 ### SEO optimization
 - Use keywords in titles, headers, and intro paragraphs
 - Summarize paragraph contents in first sentence
