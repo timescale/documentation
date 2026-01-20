@@ -4591,6 +4591,78 @@
       "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng"
     },
     {
+      "source": "/use-timescale/:slug*/compression/:slug*",
+      "destination": "/manage-data/features/compression/:slug*"
+    },
+    {
+      "source": "/use-timescale/:slug*/continuous-aggregates/about-continuous-aggregates/",
+      "destination": "/manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+    },
+    {
+      "source": "/use-timescale/:slug*/continuous-aggregates/create-a-continuous-aggregate/",
+      "destination": "/manage-data/features/continuous-aggregates/setup-continuous-aggregates"
+    },
+    {
+      "source": "/use-timescale/:slug*/continuous-aggregates/:slug*",
+      "destination": "/manage-data/features/continuous-aggregates/:slug*"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/about-data-retention/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/create-a-retention-policy/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/manually-drop-chunks/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/data-retention-with-continuous-aggregates/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/",
+      "destination": "/manage-data/features/hypercore/understand-hypercore"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/modify-data-in-hypercore/",
+      "destination": "/manage-data/features/hypercore/setup-hypercore"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/real-time-analytics-in-hypercore/",
+      "destination": "/manage-data/features/hypercore/setup-hypercore"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/:slug*",
+      "destination": "/manage-data/features/hypercore/:slug*"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypertables/",
+      "destination": "/manage-data/features/hypertables/understand-hypertables"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypertables/hypertable-crud/",
+      "destination": "/manage-data/features/hypertables/setup-hypertables"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypertables/:slug*",
+      "destination": "/manage-data/features/hypertables/:slug*"
+    },
+    {
+      "source": "/tutorials/real-time-analytics-energy-consumption/",
+      "destination": "/tutorials/real-time-analytics/energy-consumption"
+    },
+    {
+      "source": "/tutorials/real-time-analytics-transport/",
+      "destination": "/tutorials/real-time-analytics/transport"
+    },
+    {
       "source": "/use-timescale/:slug*/jobs/",
       "destination": "/manage-data/features/create-and-manage-jobs"
     },
