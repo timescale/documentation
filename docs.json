@@ -40,15 +40,14 @@
                   {
                     "group": " ",
                     "pages": [
-                      "deploy-and-operate/index",
                       "deploy-and-operate/tiger-cloud/index"
                     ]
                   },
                   {
                     "group": "Get started",
                     "pages": [
-                      "deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud",
                       "deploy-and-operate/tiger-cloud/get-started/create-services",
+                      "deploy-and-operate/tiger-cloud/get-started/try-key-features",
                       "deploy-and-operate/tiger-cloud/get-started/run-queries-from-console",
                       "deploy-and-operate/tiger-cloud/get-started/run-your-workload-in-cloud"
                     ]
@@ -273,8 +272,8 @@
                   {
                     "group": "Get started",
                     "pages": [
-                      "deploy-and-operate/tiger-cloud/get-started/get-started-with-tiger-cloud",
                       "deploy-and-operate/tiger-cloud/get-started/create-services",
+                      "deploy-and-operate/tiger-cloud/get-started/try-key-features",
                       "deploy-and-operate/tiger-cloud/get-started/run-queries-from-console",
                       "deploy-and-operate/tiger-cloud/get-started/run-your-workload-in-cloud"
                     ]
