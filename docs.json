@@ -427,7 +427,14 @@
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/features/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/understand-database-schemas",
+                          "manage-data/features/optimize-your-schema/indexing",
+                          "manage-data/features/optimize-your-schema/manage-tablespaces",
+                          "manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints",
+                          "manage-data/features/optimize-your-schema/automate-tasks-with-triggers",
+                          "manage-data/features/optimize-your-schema/handle-semi-structured-data-with-json",
+                          "manage-data/features/optimize-your-schema/query-external-data-sources-with-fdw",
+                          "manage-data/features/optimize-your-schema/alter-update-table-schema"
                         ]
                       },
                       "manage-data/features/create-and-manage-jobs",
@@ -538,7 +545,14 @@
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/features/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/understand-database-schemas",
+                          "manage-data/features/optimize-your-schema/indexing",
+                          "manage-data/features/optimize-your-schema/manage-tablespaces",
+                          "manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints",
+                          "manage-data/features/optimize-your-schema/automate-tasks-with-triggers",
+                          "manage-data/features/optimize-your-schema/handle-semi-structured-data-with-json",
+                          "manage-data/features/optimize-your-schema/query-external-data-sources-with-fdw",
+                          "manage-data/features/optimize-your-schema/alter-update-table-schema"
                         ]
                       },
                       "manage-data/features/create-and-manage-jobs",
@@ -649,7 +663,14 @@
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/features/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/understand-database-schemas",
+                          "manage-data/features/optimize-your-schema/indexing",
+                          "manage-data/features/optimize-your-schema/manage-tablespaces",
+                          "manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints",
+                          "manage-data/features/optimize-your-schema/automate-tasks-with-triggers",
+                          "manage-data/features/optimize-your-schema/handle-semi-structured-data-with-json",
+                          "manage-data/features/optimize-your-schema/query-external-data-sources-with-fdw",
+                          "manage-data/features/optimize-your-schema/alter-update-table-schema"
                         ]
                       },
                       "manage-data/features/create-and-manage-jobs",
@@ -760,7 +781,14 @@
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/features/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/understand-database-schemas",
+                          "manage-data/features/optimize-your-schema/indexing",
+                          "manage-data/features/optimize-your-schema/manage-tablespaces",
+                          "manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints",
+                          "manage-data/features/optimize-your-schema/automate-tasks-with-triggers",
+                          "manage-data/features/optimize-your-schema/handle-semi-structured-data-with-json",
+                          "manage-data/features/optimize-your-schema/query-external-data-sources-with-fdw",
+                          "manage-data/features/optimize-your-schema/alter-update-table-schema"
                         ]
                       },
                       "manage-data/features/create-and-manage-jobs",
@@ -871,7 +899,14 @@
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/features/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/understand-database-schemas",
+                          "manage-data/features/optimize-your-schema/indexing",
+                          "manage-data/features/optimize-your-schema/manage-tablespaces",
+                          "manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints",
+                          "manage-data/features/optimize-your-schema/automate-tasks-with-triggers",
+                          "manage-data/features/optimize-your-schema/handle-semi-structured-data-with-json",
+                          "manage-data/features/optimize-your-schema/query-external-data-sources-with-fdw",
+                          "manage-data/features/optimize-your-schema/alter-update-table-schema"
                         ]
                       },
                       "manage-data/features/create-and-manage-jobs",
@@ -983,7 +1018,14 @@
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/features/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/understand-database-schemas",
+                          "manage-data/features/optimize-your-schema/indexing",
+                          "manage-data/features/optimize-your-schema/manage-tablespaces",
+                          "manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints",
+                          "manage-data/features/optimize-your-schema/automate-tasks-with-triggers",
+                          "manage-data/features/optimize-your-schema/handle-semi-structured-data-with-json",
+                          "manage-data/features/optimize-your-schema/query-external-data-sources-with-fdw",
+                          "manage-data/features/optimize-your-schema/alter-update-table-schema"
                         ]
                       },
                       "manage-data/features/create-and-manage-jobs",
@@ -1094,7 +1136,14 @@
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/features/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/understand-database-schemas",
+                          "manage-data/features/optimize-your-schema/indexing",
+                          "manage-data/features/optimize-your-schema/manage-tablespaces",
+                          "manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints",
+                          "manage-data/features/optimize-your-schema/automate-tasks-with-triggers",
+                          "manage-data/features/optimize-your-schema/handle-semi-structured-data-with-json",
+                          "manage-data/features/optimize-your-schema/query-external-data-sources-with-fdw",
+                          "manage-data/features/optimize-your-schema/alter-update-table-schema"
                         ]
                       },
                       "manage-data/features/create-and-manage-jobs",
@@ -4596,6 +4645,34 @@
     {
       "source": "/api/latest/time_bucket_ng/",
       "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng"
+    },
+    {
+      "source": "/use-timescale/:slug*/time-buckets/:slug*",
+      "destination": "/manage-data/features/hypertables/time-buckets"
+    },
+    {
+      "source": "/use-timescale/:slug*/schema-management/about-schemas/",
+      "destination": "/manage-data/features/optimize-your-schema/understand-database-schemas"
+    },
+    {
+      "source": "/use-timescale/:slug*/schema-management/about-indexing/",
+      "destination": "/manage-data/features/optimize-your-schema/indexing"
+    },
+    {
+      "source": "/use-timescale/:slug*/schema-management/indexing/",
+      "destination": "/manage-data/features/optimize-your-schema/indexing"
+    },
+    {
+      "source": "/use-timescale/:slug*/schema-management/about-tablespaces/",
+      "destination": "/manage-data/features/optimize-your-schema/manage-tablespaces"
+    },
+    {
+      "source": "/use-timescale/:slug*/schema-management/about-constraints/",
+      "destination": "/manage-data/features/optimize-your-schema/ensure-data-integrity-with-constraints"
+    },
+    {
+      "source": "/use-timescale/:slug*/schema-management/triggers/",
+      "destination": "/manage-data/features/optimize-your-schema/automate-tasks-with-triggers"
     },
     {
       "source": "/use-timescale/:slug*/jobs/",
