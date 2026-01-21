@@ -426,7 +426,9 @@
                       {
                         "group": "Hyperfunctions",
                         "pages": [
+                          "manage-data/features/hyperfunctions/about-hyperfunctions",
                           "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/approximate-count-distinct",
                           "manage-data/features/hyperfunctions/counter-aggregation",
                           "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
                           "manage-data/features/hyperfunctions/heartbeat-aggregation",
@@ -484,6 +486,8 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/hyperfunctions",
+                      "manage-data/reference/hyperfunction-pipeline-elements",
                       "manage-data/reference/contribute-to-tigerdata",
                       "manage-data/reference/glossary",
                       "manage-data/reference/limitations"
@@ -555,7 +559,9 @@
                       {
                         "group": "Hyperfunctions",
                         "pages": [
+                          "manage-data/features/hyperfunctions/about-hyperfunctions",
                           "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/approximate-count-distinct",
                           "manage-data/features/hyperfunctions/counter-aggregation",
                           "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
                           "manage-data/features/hyperfunctions/heartbeat-aggregation",
@@ -613,6 +619,8 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/hyperfunctions",
+                      "manage-data/reference/hyperfunction-pipeline-elements",
                       "manage-data/reference/contribute-to-tigerdata",
                       "manage-data/reference/glossary",
                       "manage-data/reference/limitations"
@@ -684,7 +692,9 @@
                       {
                         "group": "Hyperfunctions",
                         "pages": [
+                          "manage-data/features/hyperfunctions/about-hyperfunctions",
                           "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/approximate-count-distinct",
                           "manage-data/features/hyperfunctions/counter-aggregation",
                           "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
                           "manage-data/features/hyperfunctions/heartbeat-aggregation",
@@ -742,6 +752,8 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/hyperfunctions",
+                      "manage-data/reference/hyperfunction-pipeline-elements",
                       "manage-data/reference/contribute-to-tigerdata",
                       "manage-data/reference/glossary",
                       "manage-data/reference/limitations"
@@ -813,7 +825,9 @@
                       {
                         "group": "Hyperfunctions",
                         "pages": [
+                          "manage-data/features/hyperfunctions/about-hyperfunctions",
                           "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/approximate-count-distinct",
                           "manage-data/features/hyperfunctions/counter-aggregation",
                           "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
                           "manage-data/features/hyperfunctions/heartbeat-aggregation",
@@ -871,6 +885,8 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/hyperfunctions",
+                      "manage-data/reference/hyperfunction-pipeline-elements",
                       "manage-data/reference/contribute-to-tigerdata",
                       "manage-data/reference/glossary",
                       "manage-data/reference/limitations"
@@ -942,7 +958,9 @@
                       {
                         "group": "Hyperfunctions",
                         "pages": [
+                          "manage-data/features/hyperfunctions/about-hyperfunctions",
                           "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/approximate-count-distinct",
                           "manage-data/features/hyperfunctions/counter-aggregation",
                           "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
                           "manage-data/features/hyperfunctions/heartbeat-aggregation",
@@ -1000,6 +1018,8 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/hyperfunctions",
+                      "manage-data/reference/hyperfunction-pipeline-elements",
                       "manage-data/reference/contribute-to-tigerdata",
                       "manage-data/reference/glossary",
                       "manage-data/reference/limitations"
@@ -1072,7 +1092,9 @@
                       {
                         "group": "Hyperfunctions",
                         "pages": [
+                          "manage-data/features/hyperfunctions/about-hyperfunctions",
                           "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/approximate-count-distinct",
                           "manage-data/features/hyperfunctions/counter-aggregation",
                           "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
                           "manage-data/features/hyperfunctions/heartbeat-aggregation",
@@ -1130,6 +1152,8 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/hyperfunctions",
+                      "manage-data/reference/hyperfunction-pipeline-elements",
                       "manage-data/reference/contribute-to-tigerdata",
                       "manage-data/reference/glossary",
                       "manage-data/reference/limitations"
@@ -1201,7 +1225,9 @@
                       {
                         "group": "Hyperfunctions",
                         "pages": [
+                          "manage-data/features/hyperfunctions/about-hyperfunctions",
                           "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/approximate-count-distinct",
                           "manage-data/features/hyperfunctions/counter-aggregation",
                           "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
                           "manage-data/features/hyperfunctions/heartbeat-aggregation",
@@ -1259,6 +1285,7 @@
                     "group": "Reference",
                     "pages": [
                       "manage-data/reference/timescaledb-editions",
+                      "manage-data/reference/hyperfunctions",
                       "manage-data/reference/contribute-to-tigerdata",
                       "manage-data/reference/glossary",
                       "manage-data/reference/limitations",

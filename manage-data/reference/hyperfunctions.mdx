@@ -1,0 +1,103 @@
+---
+title: Hyperfunctions
+description: Reference list of all available TimescaleDB hyperfunctions
+keywords: [hyperfunctions, Toolkit, analytics, reference]
+---
+
+import { TIMESCALE_DB, TOOLKIT_LONG, CLOUD_LONG } from '/snippets/vars.mdx';
+
+{CLOUD_LONG} includes all hyperfunctions by default, while self-hosted {TIMESCALE_DB} includes a subset of them. For
+additional hyperfunctions, install the [{TOOLKIT_LONG}][install-toolkit] extension.
+
+## Available hyperfunctions
+
+Here is a list of all the hyperfunctions provided by {TIMESCALE_DB}. Hyperfunctions with ✓ in the `Toolkit` column
+require an installation of {TOOLKIT_LONG} for self-hosted deployments. Hyperfunctions with ✓ in the `Experimental`
+column are still under development.
+
+<Info>
+Experimental hyperfunctions are still under active development and subject to change. When you upgrade to a new
+version of {TOOLKIT_LONG}, experimental features might have changed or been removed. Be prepared to update your code
+if you use experimental hyperfunctions.
+</Info>
+
+| Hyperfunction | Description | Toolkit | Experimental | Family |
+|---------------|-------------|---------|--------------|--------|
+| [`asap_smooth()`][asap_smooth] | Downsample data with the ASAP smoothing algorithm | ✓ | | Downsampling |
+| [`candlestick_agg()`][candlestick_agg] | Aggregate financial candlestick data | ✓ | | Financial analysis |
+| [`compact_state_agg()`][compact_state_agg] | Compact representation of state changes | ✓ | | State tracking |
+| [`counter_agg()`][counter_agg] | Aggregate counter data with reset handling | ✓ | | Counters and gauges |
+| [`count_min_sketch()`][count_min_sketch] | Probabilistic counting with count-min sketch | ✓ | ✓ | Sketching |
+| [`days_in_month()`][days_in_month] | Get number of days in a month | | | Time-series utilities |
+| [`first()`][first] | Get the first value in a time range | | | Time-series utilities |
+| [`freq_agg()`][freq_agg] | Track frequency of values | ✓ | | Frequency analysis |
+| [`gauge_agg()`][gauge_agg] | Aggregate gauge metrics over time | ✓ | | Counters and gauges |
+| [`gp_lttb()`][gp_lttb] | Downsample with LTTB (Greenplum version) | ✓ | ✓ | Downsampling |
+| [`heartbeat_agg()`][heartbeat_agg] | Track system liveness from timestamped heartbeats | ✓ | | State tracking |
+| [`histogram()`][histogram] | Approximate distribution with histogram | | | Distribution analysis |
+| [`hyperloglog()`][hyperloglog] | Probabilistic cardinality estimation | ✓ | | Sketching |
+| [`interpolate()`][interpolate] | Linear interpolation for missing values | | | Gapfilling |
+| [`last()`][last] | Get the last value in a time range | | | Time-series utilities |
+| [`locf()`][locf] | Last observation carried forward | | | Gapfilling |
+| [`lttb()`][lttb] | Downsample with Largest Triangle Three Buckets | ✓ | | Downsampling |
+| [`max_n()`][max_n] | Get N largest values | ✓ | | Top-N analysis |
+| [`max_n_by()`][max_n_by] | Get N largest values by a specific column | ✓ | | Top-N analysis |
+| [`min_n()`][min_n] | Get N smallest values | ✓ | | Top-N analysis |
+| [`min_n_by()`][min_n_by] | Get N smallest values by a specific column | ✓ | | Top-N analysis |
+| [`month_normalize()`][month_normalize] | Normalize intervals to months | | | Time-series utilities |
+| [`saturating_add()`][saturating_add] | Addition with saturation at bounds | ✓ | | Saturating math |
+| [`saturating_add_pos()`][saturating_add_pos] | Positive addition with saturation | ✓ | | Saturating math |
+| [`saturating_multiply()`][saturating_multiply] | Multiplication with saturation | ✓ | | Saturating math |
+| [`saturating_sub()`][saturating_sub] | Subtraction with saturation | ✓ | | Saturating math |
+| [`saturating_sub_pos()`][saturating_sub_pos] | Positive subtraction with saturation | ✓ | | Saturating math |
+| [`state_agg()`][state_agg] | Track state transitions over time | ✓ | | State tracking |
+| [`stats_agg()`][stats_agg] | Statistical aggregate (one variable) | ✓ | | Statistical analysis |
+| [`stats_agg()`][stats_agg_two] | Statistical aggregate (two variables) | ✓ | | Statistical analysis |
+| [`tdigest()`][tdigest] | Percentile approximation for extreme percentiles | ✓ | | Percentile approximation |
+| [`time_bucket()`][time_bucket] | Bucket time values into intervals | | | Time-series utilities |
+| [`time_bucket_gapfill()`][time_bucket_gapfill] | Fill gaps in time-series data | | | Gapfilling |
+| [`time_weight()`][time_weight] | Calculate time-weighted averages | ✓ | | Time-weighted calculations |
+| [`uddsketch()`][uddsketch] | Percentile approximation with error guarantees | ✓ | | Percentile approximation |
+
+For more information about each hyperfunction, see the [hyperfunction API documentation][api-hyperfunctions].
+
+For detailed usage examples, see the [hyperfunctions features documentation][hyperfunctions-features].
+
+[api-hyperfunctions]: /api-reference/timescaledb/hyperfunctions
+[asap_smooth]: /api-reference/timescaledb-toolkit/downsampling/asap_smooth
+[candlestick_agg]: /api-reference/timescaledb-toolkit/candlestick_agg/candlestick_agg
+[compact_state_agg]: /api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/compact_state_agg
+[count_min_sketch]: /api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/count_min_sketch
+[counter_agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg
+[days_in_month]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month
+[first]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/first
+[freq_agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/freq_agg
+[gauge_agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
+[gp_lttb]: /api-reference/timescaledb-toolkit/downsampling/gp_lttb
+[heartbeat_agg]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/heartbeat_agg
+[histogram]: /api-reference/timescaledb/hyperfunctions/distribution-analysis/histogram
+[hyperloglog]: /api-reference/timescaledb-toolkit/hyperloglog/hyperloglog
+[hyperfunctions-features]: /manage-data/features/hyperfunctions
+[install-toolkit]: /deploy-and-operate/self-hosted/install-and-update/install-toolkit
+[interpolate]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/interpolate
+[last]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/last
+[locf]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/locf
+[lttb]: /api-reference/timescaledb-toolkit/downsampling/lttb
+[max_n]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/max_n
+[max_n_by]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/max_n_by
+[min_n]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/min_n
+[min_n_by]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/min_n_by
+[month_normalize]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize
+[saturating_add]: /api-reference/timescaledb-toolkit/saturating-math/saturating_add
+[saturating_add_pos]: /api-reference/timescaledb-toolkit/saturating-math/saturating_add_pos
+[saturating_multiply]: /api-reference/timescaledb-toolkit/saturating-math/saturating_mul
+[saturating_sub]: /api-reference/timescaledb-toolkit/saturating-math/saturating_sub
+[saturating_sub_pos]: /api-reference/timescaledb-toolkit/saturating-math/saturating_sub_pos
+[state_agg]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/state_agg
+[stats_agg]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable
+[stats_agg_two]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables
+[tdigest]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/tdigest
+[time_bucket]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket
+[time_bucket_gapfill]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill
+[time_weight]: /api-reference/timescaledb-toolkit/time_weight/time_weight
+[uddsketch]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/uddsketch
