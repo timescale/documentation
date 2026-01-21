@@ -423,6 +423,17 @@
                           "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      {
+                        "group": "Hyperfunctions",
+                        "pages": [
+                          "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/counter-aggregation",
+                          "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
+                          "manage-data/features/hyperfunctions/heartbeat-aggregation",
+                          "manage-data/features/hyperfunctions/statistical-aggregation",
+                          "manage-data/features/hyperfunctions/time-weighted-averages"
+                        ]
+                      },
                       "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
@@ -539,6 +550,17 @@
                           "manage-data/features/continuous-aggregates/materialized-hypertables",
                           "manage-data/features/continuous-aggregates/migrate",
                           "manage-data/features/continuous-aggregates/drop-data"
+                        ]
+                      },
+                      {
+                        "group": "Hyperfunctions",
+                        "pages": [
+                          "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/counter-aggregation",
+                          "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
+                          "manage-data/features/hyperfunctions/heartbeat-aggregation",
+                          "manage-data/features/hyperfunctions/statistical-aggregation",
+                          "manage-data/features/hyperfunctions/time-weighted-averages"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -659,6 +681,17 @@
                           "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      {
+                        "group": "Hyperfunctions",
+                        "pages": [
+                          "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/counter-aggregation",
+                          "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
+                          "manage-data/features/hyperfunctions/heartbeat-aggregation",
+                          "manage-data/features/hyperfunctions/statistical-aggregation",
+                          "manage-data/features/hyperfunctions/time-weighted-averages"
+                        ]
+                      },
                       "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
@@ -777,6 +810,17 @@
                           "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      {
+                        "group": "Hyperfunctions",
+                        "pages": [
+                          "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/counter-aggregation",
+                          "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
+                          "manage-data/features/hyperfunctions/heartbeat-aggregation",
+                          "manage-data/features/hyperfunctions/statistical-aggregation",
+                          "manage-data/features/hyperfunctions/time-weighted-averages"
+                        ]
+                      },
                       "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
@@ -893,6 +937,17 @@
                           "manage-data/features/continuous-aggregates/materialized-hypertables",
                           "manage-data/features/continuous-aggregates/migrate",
                           "manage-data/features/continuous-aggregates/drop-data"
+                        ]
+                      },
+                      {
+                        "group": "Hyperfunctions",
+                        "pages": [
+                          "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/counter-aggregation",
+                          "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
+                          "manage-data/features/hyperfunctions/heartbeat-aggregation",
+                          "manage-data/features/hyperfunctions/statistical-aggregation",
+                          "manage-data/features/hyperfunctions/time-weighted-averages"
                         ]
                       },
                       "manage-data/features/data-retention",
@@ -1014,6 +1069,17 @@
                           "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      {
+                        "group": "Hyperfunctions",
+                        "pages": [
+                          "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/counter-aggregation",
+                          "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
+                          "manage-data/features/hyperfunctions/heartbeat-aggregation",
+                          "manage-data/features/hyperfunctions/statistical-aggregation",
+                          "manage-data/features/hyperfunctions/time-weighted-averages"
+                        ]
+                      },
                       "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
@@ -1130,6 +1196,17 @@
                           "manage-data/features/continuous-aggregates/materialized-hypertables",
                           "manage-data/features/continuous-aggregates/migrate",
                           "manage-data/features/continuous-aggregates/drop-data"
+                        ]
+                      },
+                      {
+                        "group": "Hyperfunctions",
+                        "pages": [
+                          "manage-data/features/hyperfunctions/analyse-data-distribution",
+                          "manage-data/features/hyperfunctions/counter-aggregation",
+                          "manage-data/features/hyperfunctions/gapfilling-and-interpolation",
+                          "manage-data/features/hyperfunctions/heartbeat-aggregation",
+                          "manage-data/features/hyperfunctions/statistical-aggregation",
+                          "manage-data/features/hyperfunctions/time-weighted-averages"
                         ]
                       },
                       "manage-data/features/data-retention",
