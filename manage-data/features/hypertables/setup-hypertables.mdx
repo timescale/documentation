@@ -1,5 +1,5 @@
 ---
-title: Setup hypertables
+title: Set up hypertables
 description: See how to create, alter, and drop a hypertable.
 keywords: [hypertables, create]
 ---
@@ -10,8 +10,8 @@ import ColumnstorePolicyNote from '/snippets/manage-data/_columnstore-policy-not
 import HypertableSetupWorkflow from '/images/manage-data/hypertable-setup-workflow.mdx';
 import { HYPERTABLE_CAP, PG, HYPERTABLE, COLUMNSTORE, CHUNK } from "/snippets/vars.mdx";
 
-{HYPERTABLE_CAP} are designed for real-time analytics, they are {PG} tables that automatically partition your data by
-time. Typically, you partition {HYPERTABLE} on columns that hold time values.
+{HYPERTABLE_CAP}s are designed for real-time analytics, they are {PG} tables that automatically partition your data by
+time. Typically, you partition {HYPERTABLE}s on columns that hold time values.
 [Best practice is to use `timestamptz`][postgresql-timestamp] column type. However, you can also partition on
 `date`, `integer`, `timestamp` and [UUIDv7][uuidv7_functions] types.
 
