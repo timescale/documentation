@@ -388,7 +388,7 @@
                   {
                     "group": "Capabilities",
                     "pages": [
-                      "manage-data/capabilities/understand-capabilities",
+                    "manage-data/capabilities/understand-capabilities",
                       {
                         "group": "Hypertables",
                         "pages": [
@@ -770,7 +770,7 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/capabilities/hypertables/understand-hypertables"
+                      "manage-data/capabilities/understand-capabilities"
                     ]
                   },
                   {
