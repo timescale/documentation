@@ -1,0 +1,50 @@
+---
+title: Understand database schemas
+description: A database schema defines how tables and indexes are organized. Learn how to design efficient schemas for
+  real-time analytics in TimescaleDB
+keywords: [schemas, hypertables, indexes, design]
+tags: [schemas, design]
+---
+
+import { TIMESCALE_DB, PG, HYPERTABLE } from '/snippets/vars.mdx';
+
+A database schema defines how the tables and indexes in your database are organized. Using a schema that is appropriate
+for your workload can result in significant performance improvements. Conversely, using a poorly suited schema can
+result in significant performance degradation.
+
+If you are working with semi-structured data, such as readings from IoT sensors that collect varying measurements, you
+might need a flexible schema. In this case, you can use {PG} JSON and JSONB data types.
+
+{TIMESCALE_DB} supports all table objects supported within {PG}, including data types, indexes, and triggers. However,
+when you create a {HYPERTABLE}, set the datatype for the `time` column as `timestamptz` and not `timestamp`. For more
+information, see [{PG} timestamp best practices][postgresql-timestamp].
+
+This section explains how to design your schema, how indexing and tablespaces work, and how to use {PG} constraint
+types. It also includes examples to help you create your own schema, and learn how to use JSON and JSONB for
+semi-structured data.
+
+In this section:
+
+- [Accelerate queries using indexes][indexing]: learn how indexing works in {TIMESCALE_DB}, including default indexes
+  on {HYPERTABLE}s, composite indexes, and best practices for query optimization
+- [Manage tablespaces][manage-tablespaces]: use tablespaces to control where {TIMESCALE_DB} stores data on disk and
+  move older chunks to different storage tiers
+- [Ensure data integrity with constraints][constraints]: implement {PG} constraints including `CHECK`, `FOREIGN KEY`,
+  `PRIMARY KEY`, and `UNIQUE` to maintain data quality
+- [Automate tasks with triggers][triggers]: use {PG} triggers to automatically execute functions when data changes
+  occur, including data validation, audit logging, and notifications
+- [Handle semi-structured data with JSON][json]: work with flexible, semi-structured data using {PG} JSON and JSONB
+  data types for IoT sensor readings, logs, and varying structures
+- [Query external data sources with FDW][fdw]: query other Tiger Cloud services or external {PG} databases using
+  {PG} foreign data wrappers
+- [Alter and update table schemas][alter-schema]: modify existing {HYPERTABLE} schemas using `ALTER TABLE` and handle
+  schema changes on {HYPERTABLE}s with columnstore enabled
+
+[alter-schema]: /manage-data/capabilities/optimize-your-schema/alter-update-table-schema
+[constraints]: /manage-data/capabilities/optimize-your-schema/ensure-data-integrity-with-constraints
+[fdw]: /manage-data/capabilities/optimize-your-schema/query-external-data-sources-with-fdw
+[indexing]: /manage-data/capabilities/optimize-your-schema/indexing
+[json]: /manage-data/capabilities/optimize-your-schema/handle-semi-structured-data-with-json
+[manage-tablespaces]: /manage-data/capabilities/optimize-your-schema/manage-tablespaces
+[postgresql-timestamp]: https://wiki.postgresql.org/wiki/Don't_Do_This#Don.27t_use_timestamp_.28without_time_zone.29
+[triggers]: /manage-data/capabilities/optimize-your-schema/automate-tasks-with-triggers

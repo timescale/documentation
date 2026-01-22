@@ -1,0 +1,245 @@
+---
+title: Data retention
+description: Save on storage costs by automatically dropping old data from your hypertables with data retention
+  policies in TimescaleDB
+keywords: [data retention, policies, drop, delete, storage]
+tags: [data retention, policies, drop, delete, chunks]
+---
+
+import Prerequisites from '/snippets/prerequisites/_prereqs-cloud-and-self.mdx';
+import DataRetentionWorkflow from '/images/manage-data/data-retention-workflow.mdx';
+import { TIMESCALE_DB, HYPERTABLE, CHUNK, CAGG, PG } from '/snippets/vars.mdx';
+
+Data retention helps you save on storage costs by automatically deleting old data. As data grows
+exponentially in modern applications, older data often becomes less useful for day-to-day operations
+while still being valuable for historical analysis. {TIMESCALE_DB} solves this with automated data
+retention policies that drop old data on a schedule you define.
+
+By combining data retention with [continuous aggregates][caggs], you can downsample your data and
+keep useful summaries while discarding raw data. This lets you analyze historical trends while
+significantly reducing storage costs.
+
+## How data retention works
+
+{TIMESCALE_DB} provides two methods for managing data retention: automated policies that run on a
+schedule, and manual operations for one-time cleanup. Both methods work by dropping {CHUNK}s—entire
+files from disk—rather than deleting individual rows, making the process fast and efficient.
+
+<DataRetentionWorkflow />
+
+Data retention works at the {CHUNK} level, not row-by-row. {TIMESCALE_DB} only drops {CHUNK}s
+where all the data falls within your specified time range. For example, if you have three {CHUNK}s
+containing data from more than 36 hours ago, between 12-36 hours ago, and from the last 12 hours, a
+24-hour retention policy only drops the oldest {CHUNK}. The middle {CHUNK} is retained because it
+contains some data newer than 24 hours—no individual rows are deleted from that {CHUNK}.
+
+This chunk-based approach is faster than row-by-row deletion with {PG}'s `DELETE` command because
+it deletes entire files from disk without requiring garbage collection and defragmentation.
+
+## Prerequisites
+
+<Prerequisites />
+
+## Add a retention policy
+
+Automatically drop data once its time value ages past a certain interval. When you create a data
+retention policy, {TIMESCALE_DB} automatically schedules a background job to drop old {CHUNK}s.
+
+1. **Choose your hypertable and retention interval**
+
+   Decide which {HYPERTABLE} needs retention and how long to keep data before dropping it. For
+   example, to retain data for 24 hours on a {HYPERTABLE} named `conditions`:
+
+   ```sql
+   SELECT add_retention_policy('conditions', INTERVAL '24 hours');
+   ```
+
+   The retention policy schedules a background job that periodically checks for {CHUNK}s older than
+   24 hours and drops them.
+
+2. **Verify the policy was created**
+
+   Query the jobs view to see your new retention policy:
+
+   ```sql
+   SELECT j.hypertable_name,
+          j.job_id,
+          config,
+          schedule_interval,
+          job_status
+     FROM timescaledb_information.jobs j
+    WHERE j.proc_name = 'policy_retention';
+   ```
+
+<Note>
+A data retention policy only allows you to drop {CHUNK}s based on how far they are in the past. To
+drop {CHUNK}s based on how far they are in the future, [manually drop chunks](#manually-drop-chunks).
+</Note>
+
+## Data retention with continuous aggregates
+
+Downsample your data by combining a data retention policy with [continuous aggregates][caggs]. If
+you configure your refresh policies correctly, you can delete old data from a {HYPERTABLE} without
+deleting it from any continuous aggregates. This lets you save on raw data storage while keeping
+summarized data for historical analysis.
+
+<Warning>
+To keep your aggregates while dropping raw data, you must be careful about refreshing your
+aggregates. You can delete raw data from the underlying table without deleting data from continuous
+aggregates, so long as you don't refresh the aggregate over the deleted data.
+
+When you refresh a continuous aggregate, {TIMESCALE_DB} updates the aggregate based on changes in
+the raw data for the refresh window. If it sees that the raw data was deleted, it also deletes the
+aggregate data. To prevent this, make sure that the aggregate's refresh window doesn't overlap with
+any deleted data.
+</Warning>
+
+### Example: Setting compatible retention and refresh policies
+
+Consider a `conditions` {HYPERTABLE} that stores device temperatures with a daily continuous
+aggregate:
+
+```sql
+CREATE MATERIALIZED VIEW conditions_summary_daily (day, device, temp)
+WITH (timescaledb.continuous) AS
+  SELECT time_bucket('1 day', time), device, avg(temperature)
+  FROM conditions
+  GROUP BY (1, 2);
+
+SELECT add_continuous_aggregate_policy('conditions_summary_daily', '7 days', '1 day', '1 day');
+```
+
+This creates a `conditions_summary_daily` aggregate that stores daily temperature per device. The
+aggregate refreshes every day, updating with any data changes from 7 days ago to 1 day ago.
+
+**Don't** set a 24-hour retention policy on the `conditions` {HYPERTABLE}. If you do, {CHUNK}s
+older than 1 day are dropped. When the aggregate refreshes, it sees that data was deleted and also
+deletes the aggregate data. You end up with no data in the `conditions_summary_daily` table.
+
+**Instead**, set a longer retention policy—for example, 30 days:
+
+```sql
+SELECT add_retention_policy('conditions', INTERVAL '30 days');
+```
+
+Now, {CHUNK}s older than 30 days are dropped. When the aggregate refreshes, it only looks for
+changes between 7 days and 1 day ago. The raw {HYPERTABLE} still contains data for that time
+period, so your aggregate retains the data.
+
+### Retention on continuous aggregates
+
+You can also apply data retention on a continuous aggregate itself. For example, keep raw data for
+30 days, daily aggregates for 600 days, and no data beyond that:
+
+```sql
+-- Retention on raw hypertable
+SELECT add_retention_policy('conditions', INTERVAL '30 days');
+
+-- Retention on continuous aggregate
+SELECT add_retention_policy('conditions_summary_daily', INTERVAL '600 days');
+```
+
+## Manually drop chunks
+
+Drop {CHUNK}s manually for one-time cleanup operations. Manual drops are useful for ad hoc data
+management that doesn't fit an automated schedule.
+
+<Note>
+Dropping {CHUNK}s manually is a one-time operation. To automatically drop {CHUNK}s as they age, set
+up a [data retention policy](#add-a-retention-policy).
+</Note>
+
+### Drop chunks older than a date
+
+To drop {CHUNK}s older than a certain date, use the [`drop_chunks`][drop-chunks] function. Provide
+the name of the {HYPERTABLE} and a time interval:
+
+```sql
+SELECT drop_chunks('conditions', INTERVAL '24 hours');
+```
+
+This immediately drops all {CHUNK}s containing data older than 24 hours.
+
+### Drop chunks between two dates
+
+Drop {CHUNK}s within a specific time range. For example, to drop {CHUNK}s with data between 3 and
+4 months old:
+
+```sql
+SELECT drop_chunks(
+  'conditions',
+  older_than => INTERVAL '3 months',
+  newer_than => INTERVAL '4 months'
+);
+```
+
+### Drop chunks in the future
+
+Drop {CHUNK}s in the future, for example, to correct data with incorrect timestamps. To drop all
+{CHUNK}s more than 3 months in the future:
+
+```sql
+SELECT drop_chunks(
+  'conditions',
+  newer_than => now() + INTERVAL '3 months'
+);
+```
+
+## Monitor retention jobs
+
+To see your scheduled data retention jobs and their execution statistics, query the
+[`timescaledb_information.jobs`][jobs] and [`timescaledb_information.job_stats`][job-stats] views:
+
+```sql
+SELECT j.hypertable_name,
+       j.job_id,
+       config,
+       schedule_interval,
+       job_status,
+       last_run_status,
+       last_run_started_at,
+       js.next_start,
+       total_runs,
+       total_successes,
+       total_failures
+  FROM timescaledb_information.jobs j
+  JOIN timescaledb_information.job_stats js
+    ON j.job_id = js.job_id
+ WHERE j.proc_name = 'policy_retention';
+```
+
+The results show details about each retention policy:
+
+```sql
+-[ RECORD 1 ]-------+-----------------------------------------------
+hypertable_name     | conditions
+job_id              | 1000
+config              | {"drop_after": "5 years", "hypertable_id": 14}
+schedule_interval   | 1 day
+job_status          | Scheduled
+last_run_status     | Success
+last_run_started_at | 2022-05-19 16:15:11.200109+00
+next_start          | 2022-05-20 16:15:11.243531+00
+total_runs          | 1
+total_successes     | 1
+total_failures      | 0
+```
+
+## Remove a retention policy
+
+Remove an existing data retention policy using the
+[`remove_retention_policy`][remove-retention-policy] function. Pass it the name of the
+{HYPERTABLE}:
+
+```sql
+SELECT remove_retention_policy('conditions');
+```
+
+This stops the automated background job from dropping old {CHUNK}s. Existing data remains until you
+manually drop it or add a new policy.
+
+[caggs]: /manage-data/capabilities/continuous-aggregates/understand-continuous-aggregates
+[drop-chunks]: /api-reference/timescaledb/hypertables/drop_chunks
+[jobs]: /api-reference/timescaledb/informational-views/jobs
+[job-stats]: /api-reference/timescaledb/informational-views/job_stats
+[remove-retention-policy]: /api-reference/timescaledb/data-retention/remove_retention_policy

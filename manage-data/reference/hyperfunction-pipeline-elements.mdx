@@ -12,8 +12,7 @@ Function pipeline elements are the building blocks for constructing data analysi
 function pipelines. This reference covers all available elements organized by category.
 
 ## Transform elements
-
-Transform elements take a `timevector`, and produce a `timevector`.
+Transform elements take a [`timevector`][timevector], and produce a `timevector`.
 
 ### Vectorized math functions
 
@@ -60,7 +59,7 @@ are:
 |`sqrt()`|Computes the square root for each value|
 |`trunc()`|Computes only the integer portion of each value|
 
-Even if an element logically computes an integer, `timevectors` only deal with double precision
+Even if an element logically computes an integer, `timevector`s only deal with double precision
 floating point values, so the computed value is the floating point representation of the integer.
 For example:
 
@@ -140,11 +139,11 @@ The output for this example:
 ### Compound transforms
 
 Mathematical transforms are applied only to the `value` in each point in a `timevector` and always
-produce one-to-one output `timevectors`. Compound transforms can involve both the `time` and
+produce one-to-one output `timevector`s. Compound transforms can involve both the `time` and
 `value` parts of the points in the `timevector`, and they are not necessarily one-to-one. One or
 more points in the input can be used to produce zero or more points in the output. So, where
-mathematical transforms always produce `timevectors` of the same length, compound transforms can
-produce larger or smaller `timevectors` as an output.
+mathematical transforms always produce `timevector`s of the same length, compound transforms can
+produce larger or smaller `timevector`s as an output.
 
 #### Delta transforms
 
@@ -395,7 +394,7 @@ You can finalize a pipeline with a `timevector` output element. These are used a
 pipeline to return a `timevector`. This can be useful if you need to use them in another pipeline
 later on. The two types of output are:
 
-*   `unnest()`, which returns a set of `(TimestampTZ, DOUBLE PRECISION)` pairs.
+*   [`unnest()`][unnest], which returns a set of `(TimestampTZ, DOUBLE PRECISION)` pairs.
 *   `materialize()`, which forces the pipeline to materialize a `timevector`. This blocks any
     optimizations that lazily materialize a `timevector`.
 
@@ -732,6 +731,8 @@ This table lists all function pipeline elements in alphabetical order:
 [tdigest]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest
 [time-weight]: /api-reference/timescaledb-toolkit/time-weighted-averages/time_weight
 [time-weight-average]: /api-reference/timescaledb-toolkit/time-weighted-averages/average
+[timevector]: /api-reference/timescaledb-toolkit/timevector/timevector
 [uddsketch]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch
+[unnest]: /api-reference/timescaledb-toolkit/timevector/unnest
 [variance]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/variance
 [x-intercept]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/x_intercept

@@ -1,0 +1,79 @@
+---
+title: Drop data from continuous aggregates
+description: Drop a view or raw data from a continuous aggregate or its underlying hypertable
+keywords: [continuous aggregates, hypertables, delete]
+tags: [drop]
+price_plans: [scale, enterprise, performance]
+---
+
+import { PricePlanBadge } from '/snippets/Availability.jsx';
+import { PolicyVisualizer } from '/snippets/PolicyVisualizer.jsx';
+import { HYPERTABLE, CAGG, CAGG_CAP, SERVICE_LONG } from '/snippets/vars.mdx';
+
+<PricePlanBadge plans={['scale', 'enterprise', 'performance']} />
+
+When you are working with {CAGG}s, you can drop a view, or you can drop raw data from the underlying
+{HYPERTABLE} or from the {CAGG} itself. A combination of [refresh][refresh-policy] and data retention
+policies can help you downsample your data. This lets you keep historical data at a lower granularity than
+recent data.
+
+However, you should be aware if a retention policy is likely to drop raw data from your {HYPERTABLE} that
+you need in your {CAGG}.
+
+To simplify the process of setting up downsampling, you can use the
+[visualizer and code generator](#set-up-downsampling-and-data-retention).
+
+## Drop a continuous aggregate view
+
+You can drop a {CAGG} view using the `DROP MATERIALIZED VIEW` command. This command also removes refresh
+policies defined on the {CAGG}. It does not drop the data from the underlying {HYPERTABLE}.
+
+To drop a {CAGG} view:
+
+```sql
+DROP MATERIALIZED VIEW view_name;
+```
+
+## Drop raw data from a hypertable
+
+If you drop data from a {HYPERTABLE} used in a {CAGG} it can lead to problems with your {CAGG} view. In
+many cases, dropping underlying data replaces the aggregate with NULL values, which can lead to unexpected
+results in your view.
+
+You can drop data from a {HYPERTABLE} using [`drop_chunks`][drop-chunks] in the usual way, but before you
+do so, always check that the chunk is not within the refresh window of a {CAGG} that still needs the data.
+This is also important if you are manually refreshing a {CAGG}. Calling
+[`refresh_continuous_aggregate`][refresh-cagg] on a region containing dropped chunks recalculates the
+aggregate without the dropped data.
+
+If a {CAGG} is refreshing when data is dropped because of a retention policy, the aggregate is updated to
+reflect the loss of data. If you need to retain the {CAGG} after dropping the underlying data, set the
+`start_offset` value of the aggregate policy to a smaller interval than the `drop_after` parameter of the
+retention policy.
+
+For more information, see the [data retention documentation][data-retention-with-continuous-aggregates].
+
+## Set up downsampling and data retention
+
+Maximize your storage by keeping downsampled historical data and dropping raw data.
+
+Once you've [created a {CAGG}][create-cagg], you can automatically downsample your data by configuring the
+ following policies:
+
+1. **Refresh policy**: control when and how often your {CAGG} is updated
+2. **Raw data retention policy**: control how long to keep data in the underlying {HYPERTABLE}
+3. **Downsampled data retention policy**: control how long to keep data in the {CAGG}
+
+The following widget creates a valid policy for you. Run the generated SQL in your {SERVICE_LONG}.
+
+<PolicyVisualizer />
+
+Dropping raw data within your refresh interval can cause data loss. To fix, only drop raw data older than your
+refresh interval.
+
+
+[create-cagg]: /manage-data/capabilities/continuous-aggregates/setup-continuous-aggregates
+[data-retention-with-continuous-aggregates]: /manage-data/capabilities/data-retention#data-retention-with-continuous-aggregates
+[drop-chunks]: /api-reference/timescaledb/hypertables/drop_chunks
+[refresh-cagg]: /api-reference/timescaledb/continuous-aggregates/refresh_continuous_aggregate
+[refresh-policy]: /manage-data/capabilities/continuous-aggregates/refresh-policies

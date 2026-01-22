@@ -1,0 +1,184 @@
+---
+title: Count distinct values efficiently
+description: Use approximate count distinct to find the number of unique values, or cardinality, in a large dataset.
+keywords: [hyperfunctions, Toolkit, approximate count distinct, hyperloglog, cardinality]
+---
+
+import Prerequisites from '/snippets/prerequisites/_prereqs-cloud-and-self.mdx';
+import TwoStepAggregation from '/snippets/reference/timescaledb/hyperfunctions/_two-step-aggregation.mdx';
+import { TIMESCALE_DB } from '/snippets/vars.mdx';
+
+When you calculate cardinality in a dataset, the time it takes to process the query is
+proportional to how large the dataset is. Finding the cardinality of a dataset that contains 20
+million entries can take a significant amount of time and compute resources.
+
+Approximate count distinct does not calculate the exact cardinality of a dataset, but rather
+estimates the number of unique values. This reduces memory consumption and improves compute time by
+avoiding spilling intermediate results to secondary storage. {TIMESCALE_DB} uses the
+[HyperLogLog][hyperloglog-wiki] algorithm, which provides estimates typically within a 2% margin of
+error.
+
+The benefit of HyperLogLog on time-series data is that it can continue to calculate the approximate
+cardinality of a dataset as it changes over time. It does this by adding an entry to the
+HyperLogLog hash as new data is retrieved, rather than recalculating the result for the entire
+dataset every time it is needed. This makes it an ideal candidate for using with continuous
+aggregates.
+
+## Prerequisites
+
+<Prerequisites />
+
+## Calculate approximate distinct counts
+
+This example tracks unique users visiting different API endpoints over time.
+
+1.  **Create the `api_requests` hypertable**
+
+    ```sql
+    CREATE TABLE api_requests (
+      ts TIMESTAMPTZ NOT NULL,
+      endpoint TEXT,
+      user_id INTEGER,
+      response_time_ms DOUBLE PRECISION
+    ) WITH (tsdb.hypertable);
+    ```
+
+2.  **Insert sample data**
+
+    Generate API requests from different users:
+
+    ```sql
+    -- Insert requests with varying user patterns
+    INSERT INTO api_requests (ts, endpoint, user_id, response_time_ms)
+    SELECT
+      time,
+      CASE (random() * 3)::int
+        WHEN 0 THEN '/api/users'
+        WHEN 1 THEN '/api/orders'
+        ELSE '/api/products'
+      END as endpoint,
+      (random() * 10000)::int as user_id,
+      50 + random() * 150 as response_time_ms
+    FROM generate_series(
+      now() - interval '30 days',
+      now(),
+      interval '1 minute'
+    ) AS g1(time);
+    ```
+
+3.  **Count distinct users per endpoint using approx_count_distinct**
+
+    The [`approx_count_distinct()`][approx-count-distinct] function uses default settings that work
+    well for most use cases:
+
+    ```sql
+    SELECT
+      endpoint,
+      approx_count_distinct(user_id) as hll_users
+    FROM api_requests
+    WHERE ts > now() - interval '7 days'
+    GROUP BY endpoint;
+    ```
+
+    This creates a hyperloglog aggregate for each endpoint. To get the actual distinct count, use the
+    [`distinct_count()`][distinct-count] accessor:
+
+    ```sql
+    SELECT
+      endpoint,
+      distinct_count(approx_count_distinct(user_id)) as unique_users
+    FROM api_requests
+    WHERE ts > now() - interval '7 days'
+    GROUP BY endpoint
+    ORDER BY endpoint;
+    ```
+
+4.  **Count distinct users per hour using hyperloglog with custom bucket size**
+
+    For more control over accuracy, use [`hyperloglog()`][hyperloglog] directly:
+
+    ```sql
+    SELECT
+      time_bucket('1 hour'::interval, ts) as bucket,
+      endpoint,
+      distinct_count(hyperloglog(8192, user_id)) as unique_users
+    FROM api_requests
+    WHERE ts > now() - interval '1 day'
+    GROUP BY bucket, endpoint
+    ORDER BY bucket DESC, unique_users DESC
+    LIMIT 20;
+    ```
+
+## Use with continuous aggregates
+
+Create a continuous aggregate to efficiently track unique users over time.
+
+1.  **Create a continuous aggregate with HyperLogLog**
+
+    ```sql
+    CREATE MATERIALIZED VIEW api_users_hourly
+    WITH (timescaledb.continuous)
+    AS SELECT
+      time_bucket('1 hour'::interval, ts) as bucket,
+      endpoint,
+      hyperloglog(8192, user_id) as hll_users
+    FROM api_requests
+    GROUP BY bucket, endpoint;
+    ```
+
+2.  **Query daily unique users by rolling up hourly aggregates**
+
+    ```sql
+    SELECT
+      time_bucket('1 day'::interval, bucket) as day,
+      endpoint,
+      distinct_count(rollup(hll_users)) as unique_users
+    FROM api_users_hourly
+    WHERE bucket > now() - interval '7 days'
+    GROUP BY day, endpoint
+    ORDER BY day DESC, unique_users DESC;
+    ```
+
+3.  **Calculate total unique users across all endpoints**
+
+    ```sql
+    SELECT
+      time_bucket('1 day'::interval, bucket) as day,
+      distinct_count(rollup(hll_users)) as total_unique_users
+    FROM api_users_hourly
+    WHERE bucket > now() - interval '7 days'
+    GROUP BY day
+    ORDER BY day DESC;
+    ```
+
+## Understand accuracy and memory trade-offs
+
+The number of buckets in a HyperLogLog affects both accuracy and memory usage. More buckets provide
+better accuracy but require more memory.
+
+### Approximate relative errors by bucket size
+
+| Precision | Buckets | Error  | Memory (bytes) |
+|-----------|---------|--------|----------------|
+| 10        | 1024    | 3.25%  | 768            |
+| 11        | 2048    | 2.30%  | 1536           |
+| 12        | 4096    | 1.63%  | 3072           |
+| 13        | 8192    | 1.15%  | 6144           |
+| 14        | 16384   | 0.81%  | 12288          |
+| 15        | 32768   | 0.57%  | 24576          |
+| 16        | 65536   | 0.41%  | 49152          |
+
+**Recommendations:**
+- For most use cases, 8,192 buckets (1.15% error) provides a good balance
+- Use fewer buckets (1,024-4,096) when memory is constrained
+- Use more buckets (16,384+) when high accuracy is critical
+- Avoid using less than 1,024 buckets when cardinality is high
+
+
+*   For more information about the HyperLogLog algorithm, see the [HyperLogLog Wikipedia article][hyperloglog-wiki].
+
+[approx-count-distinct]: /api-reference/timescaledb-toolkit/hyperloglog/approx_count_distinct
+[distinct-count]: /api-reference/timescaledb-toolkit/hyperloglog/distinct_count
+[hyperloglog]: /api-reference/timescaledb-toolkit/hyperloglog/hyperloglog
+[hyperloglog-wiki]: https://en.wikipedia.org/wiki/HyperLogLog
+[hyperfunctions-api-approx-count-distinct]: /api-reference/timescaledb-toolkit/hyperloglog

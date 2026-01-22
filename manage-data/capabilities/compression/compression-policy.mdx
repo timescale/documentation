@@ -1,0 +1,105 @@
+---
+title: Create a compression policy
+description: Compress your data automatically, based on the conditions you set
+keywords: [compression, hypertables, policy]
+tag: Old API
+---
+
+import { HYPERTABLE } from '/snippets/vars.mdx';
+
+<Icon icon="archive" iconType="duotone" /> Old API since [2.18.0][tsdb-2.18.0]. Superseded by [Optimize your data for
+real-time analytics][hypercore-optimize]. However, compression APIs are still supported, you do not need to migrate to
+the hypercore APIs.
+
+You can enable compression on individual {HYPERTABLE}s, by declaring which column you want to segment by.
+
+## Enable a compression policy
+
+This page uses an example table, called `example`, and segments it by the `device_id` column. Every chunk that is more
+than seven days old is then marked to be automatically compressed. The source data is organized like this:
+
+|time|device_id|cpu|disk_io|energy_consumption|
+|-|-|-|-|-|
+|8/22/2019 0:00|1|88.2|20|0.8|
+|8/22/2019 0:05|2|300.5|30|0.9|
+
+1. **Alter the table**
+
+   At the `psql` prompt, alter the table:
+
+   ```sql
+   ALTER TABLE example SET (
+     timescaledb.compress,
+     timescaledb.compress_segmentby = 'device_id'
+   );
+   ```
+
+1. **Add a compression policy**
+
+   Add a compression policy to compress chunks that are older than seven days:
+
+   ```sql
+   SELECT add_compression_policy('example', INTERVAL '7 days');
+   ```
+
+For more information, see the API reference for [`ALTER TABLE (compression)`][alter-table-compression] and
+[`add_compression_policy`][add_compression_policy].
+
+## View current compression policy
+
+To view the compression policy that you've set:
+
+```sql
+SELECT * FROM timescaledb_information.jobs
+  WHERE proc_name='policy_compression';
+```
+
+For more information, see the API reference for [`timescaledb_information.jobs`][informational-views].
+
+## Pause compression policy
+
+To disable a compression policy temporarily, find the corresponding job ID and then call `alter_job` to pause it:
+
+```sql
+SELECT * FROM timescaledb_information.jobs where proc_name = 'policy_compression' AND relname = 'example'
+```
+
+```sql
+SELECT alter_job(<job_id>, scheduled => false);
+```
+
+To enable it again:
+
+```sql
+SELECT alter_job(<job_id>, scheduled => true);
+```
+
+## Remove compression policy
+
+To remove a compression policy, use `remove_compression_policy`:
+
+```sql
+SELECT remove_compression_policy('example');
+```
+
+For more information, see the API reference for [`remove_compression_policy`][remove_compression_policy].
+
+## Disable compression
+
+You can disable compression entirely on individual {HYPERTABLE}s. This command works only if you don't currently have any
+compressed chunks:
+
+```sql
+ALTER TABLE <EXAMPLE> SET (timescaledb.compress=false);
+```
+
+If your {HYPERTABLE} contains compressed chunks, you need to [decompress each chunk][decompress-chunks] individually
+before you can turn off compression.
+
+[add_compression_policy]: /api-reference/timescaledb/compression/add_compression_policy
+[alter-table-compression]: /api-reference/timescaledb/compression/alter_table_compression
+[decompress-chunks]: /manage-data/capabilities/compression/decompress-chunks
+[hypercore-optimize]: /manage-data/capabilities/hypercore/real-time-analytics-in-hypercore
+[informational-views]: /api-reference/timescaledb/informational-views/jobs
+[remove_compression_policy]: /api-reference/timescaledb/compression/remove_compression_policy
+[tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

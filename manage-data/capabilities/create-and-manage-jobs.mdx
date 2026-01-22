@@ -1,0 +1,340 @@
+---
+title: Create and manage jobs
+description: Create and manage custom Postgres functions and procedures that run on a schedule in TimescaleDB
+keywords: [jobs, scheduled jobs, background jobs, automation framework]
+tags: [jobs, scheduled jobs, background jobs, automation framework]
+---
+
+import Prerequisites from '/snippets/prerequisites/_prereqs-cloud-and-self.mdx';
+import JobsWorkflow from '/images/manage-data/jobs-workflow.mdx';
+import AutomaticTablespaceManagement from '/snippets/manage-data/_jobs-automatic-tablespace-management.mdx';
+import { TIMESCALE_DB, JOB, JOB_CAP, CAGG, HYPERCORE, CHUNK, HYPERTABLE, CLOUD_LONG } from '/snippets/vars.mdx';
+
+{JOB_CAP}s in {TIMESCALE_DB} are custom Postgres functions or procedures that run on a schedule you
+define. They help you automate routine database maintenance tasks, data processing operations, and
+custom workflows that go beyond the built-in automation policies.
+
+While {TIMESCALE_DB} includes native scheduling policies for common operations like
+[refreshing {CAGG}s][refresh-policy], [compressing data with {HYPERCORE}][compression-policy],
+[dropping old data][retention-policy], and [reordering data within {CHUNK}s][reordering-policy],
+you may need custom {JOB}s to:
+
+- Perform complex data transformations that aren't covered by built-in policies
+- Trigger external processes or notifications based on database events
+- Coordinate multiple operations in a specific sequence
+- Run custom business logic on a schedule
+- Implement organization-specific maintenance routines
+
+## How jobs work
+
+{JOB_CAP}s in {TIMESCALE_DB} follow a simple lifecycle: you create a function or procedure, register
+it with the job scheduler, and the system handles execution on your defined schedule.
+
+<JobsWorkflow />
+
+The job scheduler runs as a background process and automatically executes your {JOB}s according to
+the schedule you define. You can monitor execution history through the
+[`timescaledb_information.jobs`][informational-views] and
+[`timescaledb_information.job_stats`][job-stats] views, and manually trigger jobs for testing or
+immediate execution.
+
+## Prerequisites
+
+<Prerequisites />
+
+## Create a job
+
+To create a {JOB}, create a [function][postgres-createfunction] or
+[procedure][postgres-createprocedure] that you want your database to execute, then set it up to
+run on a schedule.
+
+1. **Define a function or procedure in the language of your choice**
+
+   Wrap it in a `CREATE` statement:
+
+   ```sql
+   CREATE FUNCTION <function_name> (job_id INT DEFAULT NULL, config JSONB DEFAULT NULL)
+   RETURNS VOID
+   DECLARE
+       <declaration>;
+   BEGIN
+       <function_body>;
+   END;
+   $<variable_name>$ LANGUAGE <language>;
+   ```
+
+   For example, to create a function that reindexes a table within your database:
+
+   ```sql
+   CREATE FUNCTION reindex_mytable(job_id INT DEFAULT NULL, config JSONB DEFAULT NULL)
+   RETURNS VOID
+   AS $$
+   BEGIN
+      REINDEX TABLE mytable;
+   END;
+   $$ LANGUAGE plpgsql;
+   ```
+
+   `job_id` and `config` are required arguments in the function signature. This returns
+   `CREATE FUNCTION` to indicate that the function has successfully been created.
+
+2. **Call the function to validate**
+
+   For example:
+
+   ```sql
+   select reindex_mytable();
+   ```
+
+   The result looks like this:
+
+   ```sql
+    reindex_mytable
+   -----------------
+
+   (1 row)
+   ```
+
+3. **Register your job with [`add_job`][job]**
+
+   Pass the name of your {JOB}, the schedule you want it to run on, and the content of your
+   config. For the `config` value, if you don't need any special configuration parameters, set to
+   `NULL`. For example, to run the `reindex_mytable` function every hour:
+
+   ```sql
+   SELECT add_job('reindex_mytable', '1h', config => NULL);
+   ```
+
+   The call returns a `job_id` and stores it along with `config` in the {TIMESCALE_DB} catalog.
+
+   The {JOB} runs on the schedule you set. You can also run it manually with [`run_job`][run-job]
+   passing `job_id`. When the {JOB} runs, `job_id` and `config` are passed as arguments.
+
+4. **Validate the job**
+
+   List all currently registered {JOB}s with [`timescaledb_information.jobs`][informational-views]:
+
+   ```sql
+   SELECT * FROM timescaledb_information.jobs;
+   ```
+
+   The result looks like this:
+
+   ```sql
+   job_id |      application_name      | schedule_interval | max_runtime | max_retries | retry_period |      proc_schema      |    proc_name     |   owner   | scheduled |         config         |          next_start           | hypertable_schema | hypertable_name
+   --------+----------------------------+-------------------+-------------+-------------+--------------+-----------------------+------------------+-----------+-----------+------------------------+-------------------------------+-------------------+-----------------
+   1 | Telemetry Reporter [1]     | 24:00:00          | 00:01:40    |          -1 | 01:00:00     | _timescaledb_internal | policy_telemetry | postgres  | t         |                        | 2022-08-18 06:26:39.524065+00 |                   |
+   1000 | User-Defined Action [1000] | 01:00:00          | 00:00:00    |          -1 | 00:05:00     | public                | reindex_mytable  | tsdbadmin | t         |                        | 2022-08-17 07:17:24.831698+00 |                   |
+   (2 rows)
+   ```
+
+## Test and debug a job
+
+To debug a {JOB}, increase the log level and run the {JOB} manually with [`run_job`][run-job] in
+the foreground. Because `run_job` is a stored procedure and not a function, run it with
+[`CALL`][postgres-call] instead of `SELECT`.
+
+1. **Set the minimum log level to `DEBUG1`**
+
+   ```sql
+   SET client_min_messages TO DEBUG1;
+   ```
+
+2. **Run the job**
+
+   Replace `1000` with your `job_id`:
+
+   ```sql
+   CALL run_job(1000);
+   ```
+
+## Alter and delete a job
+
+Alter an existing {JOB} with [`alter_job`][alter_job]. You can change both the config and the
+schedule on which the {JOB} runs.
+
+1. **Change a job's config**
+
+   To replace the entire JSON config for a {JOB}, call `alter_job` with a new `config` object.
+   For example, replace the JSON config for a {JOB} with ID `1000`:
+
+   ```sql
+   SELECT alter_job(1000, config => '{"hypertable":"metrics"}');
+   ```
+
+2. **Turn off job scheduling**
+
+   To turn off automatic scheduling of a {JOB}, call `alter_job` and set `scheduled`to `false`.
+   You can still run the {JOB} manually with `run_job`. For example, turn off the scheduling for a
+   {JOB} with ID `1000`:
+
+   ```sql
+   SELECT alter_job(1000, scheduled => false);
+   ```
+
+3. **Re-enable automatic scheduling of a job**
+
+   To re-enable automatic scheduling of a {JOB}, call `alter_job` and set `scheduled` to `true`.
+   For example, re-enable scheduling for a {JOB} with ID `1000`:
+
+   ```sql
+   SELECT alter_job(1000, scheduled => true);
+   ```
+
+4. **Delete a job with [`delete_job`][delete_job]**
+
+   For example, to delete a {JOB} with ID `1000`:
+
+   ```sql
+   SELECT delete_job(1000);
+   ```
+
+## Samples
+
+### Downsample and compress chunks
+
+{TIMESCALE_DB} lets you downsample and compress {CHUNK}s by combining a [{CAGG} refresh
+policy][create-cagg] with [{HYPERCORE}][hypercore]. If you want to implement features not
+supported by those policies, you can write a {JOB} to downsample and convert {CHUNK}s to
+columnstore instead.
+
+The following example downsamples raw data to an average over hourly data. This is an illustrative
+example, which can be done more simply with a {CAGG} policy. But you can make the query
+arbitrarily complex.
+
+1. **Create a procedure to downsample chunks and convert them to columnstore**
+
+   This procedure that first queries the {CHUNK}s of a {HYPERTABLE} to determine if they are older
+   than the `lag` parameter. The {HYPERTABLE} in this example is named `metrics`. If the {CHUNK}
+   is not already compressed, downsample it by taking the average of the raw data. Then compress
+   by converting to the columnstore. This procedure uses a temporary table to store the data while
+   calculating the average.
+
+   ```sql
+   CREATE OR REPLACE PROCEDURE downsample_compress (job_id int, config jsonb)
+   LANGUAGE PLPGSQL
+   AS $$
+   DECLARE
+     lag interval;
+     chunk REGCLASS;
+     tmp_name name;
+   BEGIN
+     SELECT jsonb_object_field_text (config, 'lag')::interval INTO STRICT lag;
+
+     IF lag IS NULL THEN
+       RAISE EXCEPTION 'Config must have lag';
+     END IF;
+
+     FOR chunk IN
+       SELECT show.oid
+       FROM show_chunks('metrics', older_than => lag) SHOW (oid)
+         INNER JOIN pg_class pgc ON pgc.oid = show.oid
+         INNER JOIN pg_namespace pgns ON pgc.relnamespace = pgns.oid
+         INNER JOIN timescaledb_information.chunks chunk ON chunk.chunk_name = pgc.relname
+           AND chunk.chunk_schema = pgns.nspname
+       WHERE chunk.is_compressed::bool = FALSE
+     LOOP
+       RAISE NOTICE 'Processing chunk: %', chunk::text;
+
+       -- build name for temp table
+       SELECT '_tmp' || relname
+       FROM pg_class
+       WHERE oid = chunk INTO STRICT tmp_name;
+
+       -- copy downsampled chunk data into temp table
+       EXECUTE format($sql$ CREATE UNLOGGED TABLE %I AS
+         SELECT time_bucket('1h', time), device_id, avg(value) FROM %s GROUP BY 1, 2;
+       $sql$, tmp_name, chunk);
+
+       -- clear original chunk
+       EXECUTE format('TRUNCATE %s;', chunk);
+
+       -- copy downsampled data back into chunk
+       EXECUTE format('INSERT INTO %s(time, device_id, value) SELECT * FROM %I;', chunk, tmp_name);
+
+       -- drop temp table
+       EXECUTE format('DROP TABLE %I;', tmp_name);
+
+       PERFORM convert_to_columnstore (chunk);
+
+       COMMIT;
+     END LOOP;
+   END
+   $$;
+   ```
+
+2. **Register the job to run daily**
+
+   In the `config`, set `lag` to 12 months to drop {CHUNK}s containing data older than 12 months.
+
+   ```sql
+   SELECT add_job('downsample_compress','1d', config => '{"lag":"12 month"}');
+   ```
+
+### Generic retention policy
+
+{TIMESCALE_DB} natively supports adding a [data retention policy][retention-policy] to a
+{HYPERTABLE}. If you want to add a generic data retention policy to all {HYPERTABLE}s, you can
+create a custom {JOB}.
+
+1. **Create a procedure that drops chunks from any hypertable**
+
+   This procedure drops {CHUNK}s from any {HYPERTABLE} if they are older than the `drop_after`
+   parameter. To get all {HYPERTABLE}s, the `timescaledb_information.hypertables` table is
+   queried.
+
+   ```sql
+   CREATE OR REPLACE PROCEDURE generic_retention (job_id int, config jsonb)
+   LANGUAGE PLPGSQL
+   AS $$
+   DECLARE
+     drop_after interval;
+   BEGIN
+     SELECT jsonb_object_field_text (config, 'drop_after')::interval
+       INTO STRICT drop_after;
+
+     IF drop_after IS NULL THEN
+       RAISE EXCEPTION 'Config must have drop_after';
+     END IF;
+
+     PERFORM drop_chunks(
+       format('%I.%I', hypertable_schema, hypertable_name),
+       older_than => drop_after
+     ) FROM timescaledb_information.hypertables;
+   END
+   $$;
+   ```
+
+2. **Register the job to run daily**
+
+   In the `config`, set `drop_after` to 12 months to drop {CHUNK}s containing data older than 12
+   months.
+
+   ```sql
+   SELECT add_job('generic_retention','1d', config => '{"drop_after":"12 month"}');
+   ```
+
+<Note>
+You can further refine this policy by adding filters to your procedure. For example, add a `WHERE`
+clause to the `PERFORM` query to only drop {CHUNK}s from particular {HYPERTABLE}s.
+</Note>
+
+### Automatic tablespace management
+
+<AutomaticTablespaceManagement />
+
+[alter_job]: /api-reference/timescaledb/jobs-automation/alter_job
+[compression-policy]: /api-reference/timescaledb/compression/add_compression_policy
+[create-cagg]: /manage-data/continuous-aggregates/create-a-continuous-aggregate
+[delete_job]: /api-reference/timescaledb/jobs-automation/delete_job
+[hypercore]: /manage-data/capabilities/hypercore/understand-hypercore
+[informational-views]: /api-reference/timescaledb/informational-views/jobs
+[job]: /api-reference/timescaledb/jobs-automation/add_job
+[job-stats]: /api-reference/timescaledb/informational-views/job_stats
+[postgres-call]: https://www.postgresql.org/docs/current/sql-call.html
+[postgres-createfunction]: https://www.postgresql.org/docs/current/xfunc.html
+[postgres-createprocedure]: https://www.postgresql.org/docs/current/xproc.html
+[refresh-policy]: /api-reference/timescaledb/continuous-aggregates/add_continuous_aggregate_policy
+[reordering-policy]: /api-reference/timescaledb/hypertables/add_reorder_policy
+[retention-policy]: /api-reference/timescaledb/data-retention/add_retention_policy
+[run-job]: /api-reference/timescaledb/jobs-automation/run_job
