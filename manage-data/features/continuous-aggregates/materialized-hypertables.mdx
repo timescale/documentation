@@ -1,0 +1,44 @@
+---
+title: Materialized hypertables
+description: Continuous aggregates store aggregated data in materialized hypertables that you can manage
+keywords: [continuous aggregates, materialized views]
+tags: [materialized views]
+---
+
+import { HYPERTABLE, CAGG, CAGG_CAP } from '/snippets/vars.mdx';
+
+{CAGG_CAP}s take raw data from the original {HYPERTABLE}, aggregate it, and store the aggregated data in a
+materialization {HYPERTABLE}. You can modify this materialized {HYPERTABLE} in the same way as any other
+{HYPERTABLE}.
+
+## Discover the name of a materialized hypertable
+
+To change a materialized {HYPERTABLE}, you need to use its fully qualified name. To find the correct name,
+use the [timescaledb_information.continuous_aggregates view][api-continuous-aggregates-info]. You can then
+use the name to modify it in the same way as any other {HYPERTABLE}.
+
+1. **Query the continuous aggregates view**
+
+   Query `timescaledb_information.continuous_aggregates`:
+
+   ```sql
+   SELECT view_name, format('%I.%I', materialization_hypertable_schema,
+           materialization_hypertable_name) AS materialization_hypertable
+       FROM timescaledb_information.continuous_aggregates;
+   ```
+
+1. **Locate the materialized {HYPERTABLE} name**
+
+   Locate the name of the {HYPERTABLE} you want to adjust in the results of the query. The results look
+   like this:
+
+   ```sql
+            view_name         |            materialization_hypertable
+   ---------------------------+---------------------------------------------------
+   conditions_summary_hourly | _timescaledb_internal._materialized_hypertable_30
+   conditions_summary_daily  | _timescaledb_internal._materialized_hypertable_31
+   (2 rows)
+   ```
+
+
+[api-continuous-aggregates-info]: /api-reference/timescaledb/informational-views/continuous_aggregates

@@ -1,0 +1,100 @@
+---
+title: Understand hypercore
+description: Explore hypercore - the hybrid row-columnar storage engine that is perfect for real-time analytics powered
+  by time-series data
+keywords: [hypercore, hypertable, compression, row-columnar storage]
+---
+
+import HypercoreIntro from '/snippets/intros/_hypercore-intro.mdx';
+import { TIMESCALE_DB, HYPERCORE_CAP, COLUMNSTORE, ROWSTORE, PG, HYPERTABLE } from '/snippets/vars.mdx';
+
+<HypercoreIntro />
+
+## Columnar batches
+
+{TIMESCALE_DB} uses columnar collocation and columnar compression within row-based storage to optimize analytical query
+performance while maintaining full {PG} compatibility. This approach ensures efficient storage, high compression ratios,
+and rapid query execution.
+
+![Columnstore architecture][columnstore-img]
+
+A {ROWSTORE} chunk is converted to a {COLUMNSTORE} chunk by successfully grouping together sets of rows (typically up to
+1000) into a single batch, then converting the batch into columnar form.
+
+Each compressed batch does the following:
+
+* Encapsulates columnar data in compressed arrays of up to 1,000 values per column, stored as a single entry in the
+  underlying compressed table
+* Uses a column-major format within the batch, enabling efficient scans by co-locating values of the same column and
+  allowing the selection of individual columns without reading the entire batch
+* Applies advanced compression techniques at the column level, including run-length encoding, delta encoding, and Gorilla
+  compression, to significantly reduce storage footprint (by up to 95%) and improve I/O performance.
+
+While the chunk interval of {ROWSTORE} and {COLUMNSTORE} batches usually remains the same, {TIMESCALE_DB} can also
+combine {COLUMNSTORE} batches so they use a different chunk interval.
+
+This architecture provides the benefits of columnar storage—optimized scans, reduced disk I/O, and improved analytical
+performance—while seamlessly integrating with {PG}'s row-based execution model.
+
+## Segmenting and ordering data
+
+To optimize query performance, {TIMESCALE_DB} allows explicit control over how data is physically organized within
+columnar storage. By structuring data effectively, queries can minimize disk reads and execute more efficiently, using
+vectorized execution for parallel batch processing where possible.
+
+![Columnstore segmentation][columnstore-segmentby-img]
+
+* **Group related data together to improve scan efficiency**: organizing rows into logical segments ensures that queries
+  filtering by a specific value only scan relevant data sections. For example, in the above, querying for a specific ID
+  is particularly fast. *(Implemented with <code>SEGMENTBY</code>.)*
+* **Sort data within segments to accelerate range queries**: defining a consistent order reduces the need for post-query
+  sorting, making time-based queries and range scans more efficient. *(Implemented with <code>ORDERBY</code>.)*
+* **Reduce disk reads and maximize vectorized execution**: a well-structured storage layout enables efficient batch
+  processing (Single Instruction, Multiple Data, or SIMD vectorization) and parallel execution, optimizing query
+  performance.
+
+By combining segmentation and ordering, {TIMESCALE_DB} ensures that columnar queries are not only fast but also
+resource-efficient, enabling high-performance real-time analytics.
+
+## Data mutability
+
+Traditional databases force a trade-off between fast updates and efficient analytics. Fully immutable storage is
+impractical in real-world applications, where data needs to change. Asynchronous mutability—where updates only become
+visible after batch processing—introduces delays that break real-time workflows. In-place mutability, while
+theoretically ideal, is prohibitively slow in columnar storage, requiring costly decompression, segmentation, ordering,
+and recompression cycles.
+
+Hypercore navigates these trade-offs with a hybrid approach that enables immediate updates without modifying compressed
+{COLUMNSTORE} data in place. By staging changes in an interim {ROWSTORE} chunk, hypercore allows updates and deletes to
+happen efficiently while preserving the analytical performance of columnar storage.
+
+![Data mutation][mutation-img]
+
+### Real-time writes without delays
+
+All new data which is destined for a {COLUMNSTORE} chunk is first written to an interim {ROWSTORE} chunk, ensuring
+high-speed ingestion and immediate queryability. Unlike fully columnar systems that require ingestion to go through
+compression pipelines, hypercore allows fresh data to remain in a fast row-based structure before being later compressed
+into columnar format in ordered batches as normal.
+
+Queries transparently access both the {ROWSTORE} and {COLUMNSTORE} chunks, meaning applications always see the latest
+data instantly, regardless of its storage format.
+
+### Efficient updates and deletes without performance penalties
+
+When modifying or deleting existing data, hypercore avoids the inefficiencies of both asynchronous updates and in-place
+modifications. Instead of modifying compressed storage directly, affected batches are decompressed and staged in the
+interim {ROWSTORE} chunk, where changes are applied immediately.
+
+These modified batches remain in row storage until they are recompressed and reintegrated into the {COLUMNSTORE} (which
+happens automatically via a background process). This approach ensures updates are immediately visible, but without the
+expensive overhead of decompressing and rewriting entire chunks. This approach avoids:
+
+* The rigidity of immutable storage, which requires workarounds like versioning or copy-on-write strategies
+* The delays of asynchronous updates, where modified data is only visible after batch processing
+* The performance hit of in-place mutability, which makes compressed storage prohibitively slow for frequent updates
+* The restrictions some databases have on not altering the segmentation or ordering keys
+
+[columnstore-img]: https://assets.timescale.com/docs/images/columnstore.png
+[columnstore-segmentby-img]: https://assets.timescale.com/docs/images/columnstore-segmentby.png
+[mutation-img]: https://assets.timescale.com/docs/images/mutation.png

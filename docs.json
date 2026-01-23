@@ -391,32 +391,56 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
+                      "manage-data/features/create-and-manage-jobs",
                       {
-                        "group": "Jobs",
+                        "group": "Compression (Superseded by Hypercore)",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
                         ]
                       }
                     ]
@@ -424,10 +448,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -477,32 +501,56 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
+                      "manage-data/features/create-and-manage-jobs",
                       {
-                        "group": "Jobs",
+                        "group": "Compression (Superseded by Hypercore)",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
                         ]
                       }
                     ]
@@ -510,10 +558,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -563,32 +611,56 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
+                      "manage-data/features/create-and-manage-jobs",
                       {
-                        "group": "Jobs",
+                        "group": "Compression (Superseded by Hypercore)",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
                         ]
                       }
                     ]
@@ -596,10 +668,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -626,7 +698,7 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/data-management/hypertables/understand-hypertables"
+                      "manage-data/features/hypertables/understand-hypertables"
                     ]
                   },
                   {
@@ -649,32 +721,56 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
+                      "manage-data/features/create-and-manage-jobs",
                       {
-                        "group": "Jobs",
+                        "group": "Compression (Superseded by Hypercore)",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
                         ]
                       }
                     ]
@@ -682,10 +778,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -712,7 +808,7 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration"
+                      "manage-data/features/import-and-ingest/live-migration"
                     ]
                   },
                   {
@@ -735,32 +831,56 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
+                      "manage-data/features/create-and-manage-jobs",
                       {
-                        "group": "Jobs",
+                        "group": "Compression (Superseded by Hypercore)",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
                         ]
                       }
                     ]
@@ -768,10 +888,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -822,32 +942,56 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
+                      "manage-data/features/create-and-manage-jobs",
                       {
-                        "group": "Jobs",
+                        "group": "Compression (Superseded by Hypercore)",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
                         ]
                       }
                     ]
@@ -855,10 +999,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -908,32 +1052,56 @@
                       {
                         "group": "Hypertables",
                         "pages": [
-                          "manage-data/data-management/hypertables/understand-hypertables",
-                          "manage-data/data-management/hypertables/hypertable-crud"
+                          "manage-data/features/hypertables/understand-hypertables",
+                          "manage-data/features/hypertables/setup-hypertables",
+                          "manage-data/features/hypertables/improve-query-performance",
+                          "manage-data/features/hypertables/hypertables-and-unique-indexes"
                         ]
                       },
                       {
                         "group": "Hypercore",
                         "pages": [
-                          "manage-data/data-management/hypercore/understand-hypercore"
+                          "manage-data/features/hypercore/understand-hypercore",
+                          "manage-data/features/hypercore/setup-hypercore",
+                          "manage-data/features/hypercore/secondary-indexes",
+                          "manage-data/features/hypercore/compression-methods"
                         ]
                       },
                       {
                         "group": "Continuous aggregates",
                         "pages": [
-                          "manage-data/data-management/continuous-aggregates/understand-continuous-aggregates"
+                          "manage-data/features/continuous-aggregates/understand-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/setup-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/refresh-policies",
+                          "manage-data/features/continuous-aggregates/real-time-aggregates",
+                          "manage-data/features/continuous-aggregates/hierarchical-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/compression-on-continuous-aggregates",
+                          "manage-data/features/continuous-aggregates/create-index",
+                          "manage-data/features/continuous-aggregates/time",
+                          "manage-data/features/continuous-aggregates/materialized-hypertables",
+                          "manage-data/features/continuous-aggregates/migrate",
+                          "manage-data/features/continuous-aggregates/drop-data"
                         ]
                       },
+                      "manage-data/features/data-retention",
                       {
                         "group": "Optimize your schema",
                         "pages": [
-                          "manage-data/data-management/optimize-your-schema/optimize-your-schema"
+                          "manage-data/features/optimize-your-schema/optimize-your-schema"
                         ]
                       },
+                      "manage-data/features/create-and-manage-jobs",
                       {
-                        "group": "Jobs",
+                        "group": "Compression (Superseded by Hypercore)",
                         "pages": [
-                          "manage-data/data-management/jobs/understand-jobs"
+                          "manage-data/features/compression/about-compression",
+                          "manage-data/features/compression/compression-design",
+                          "manage-data/features/compression/compression-policy",
+                          "manage-data/features/compression/manual-compression",
+                          "manage-data/features/compression/decompress-chunks",
+                          "manage-data/features/compression/modify-a-schema",
+                          "manage-data/features/compression/modify-compressed-data",
+                          "manage-data/features/compression/compression-on-continuous-aggregates"
                         ]
                       }
                     ]
@@ -941,10 +1109,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/data-management/import-and-ingest/live-migration",
-                      "manage-data/data-management/import-and-ingest/migrate-with-downtime",
-                      "manage-data/data-management/import-and-ingest/import-console",
-                      "manage-data/data-management/import-and-ingest/import-terminal"
+                      "manage-data/features/import-and-ingest/live-migration",
+                      "manage-data/features/import-and-ingest/migrate-with-downtime",
+                      "manage-data/features/import-and-ingest/import-console",
+                      "manage-data/features/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -4482,6 +4650,98 @@
     {
       "source": "/api/latest/time_bucket_ng/",
       "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng"
+    },
+    {
+      "source": "/use-timescale/:slug*/compression/:slug*",
+      "destination": "/manage-data/features/compression/:slug*"
+    },
+    {
+      "source": "/use-timescale/:slug*/continuous-aggregates/about-continuous-aggregates/",
+      "destination": "/manage-data/features/continuous-aggregates/understand-continuous-aggregates"
+    },
+    {
+      "source": "/use-timescale/:slug*/continuous-aggregates/create-a-continuous-aggregate/",
+      "destination": "/manage-data/features/continuous-aggregates/setup-continuous-aggregates"
+    },
+    {
+      "source": "/use-timescale/:slug*/continuous-aggregates/:slug*",
+      "destination": "/manage-data/features/continuous-aggregates/:slug*"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/about-data-retention/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/create-a-retention-policy/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/manually-drop-chunks/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/data-retention/data-retention-with-continuous-aggregates/",
+      "destination": "/manage-data/features/data-retention"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/",
+      "destination": "/manage-data/features/hypercore/understand-hypercore"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/modify-data-in-hypercore/",
+      "destination": "/manage-data/features/hypercore/setup-hypercore"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/real-time-analytics-in-hypercore/",
+      "destination": "/manage-data/features/hypercore/setup-hypercore"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypercore/:slug*",
+      "destination": "/manage-data/features/hypercore/:slug*"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypertables/",
+      "destination": "/manage-data/features/hypertables/understand-hypertables"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypertables/hypertable-crud/",
+      "destination": "/manage-data/features/hypertables/setup-hypertables"
+    },
+    {
+      "source": "/use-timescale/:slug*/hypertables/:slug*",
+      "destination": "/manage-data/features/hypertables/:slug*"
+    },
+    {
+      "source": "/tutorials/real-time-analytics-energy-consumption/",
+      "destination": "/tutorials/real-time-analytics/energy-consumption"
+    },
+    {
+      "source": "/tutorials/real-time-analytics-transport/",
+      "destination": "/tutorials/real-time-analytics/transport"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/",
+      "destination": "/manage-data/features/create-and-manage-jobs"
+    },
+    {
+      "source": "/use-timescale/:slug*/create-and-manage-jobs/",
+      "destination": "/manage-data/features/create-and-manage-jobs"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/example-downsample-and-compress/",
+      "destination": "/manage-data/features/create-and-manage-jobs#downsample-and-compress-chunks"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/example-generic-retention/",
+      "destination": "/manage-data/features/create-and-manage-jobs#generic-retention-policy"
+    },
+    {
+      "source": "/use-timescale/:slug*/jobs/example-tiered-storage/",
+      "destination": "/manage-data/features/create-and-manage-jobs#automatic-tablespace-management"
     },
     {
       "source": "/use-timescale/:slug*/troubleshoot-timescaledb/",

@@ -1,0 +1,55 @@
+{/*
+  Tiger Data Brand Mermaid Theme (Mintlify-safe)
+
+  Updates based on what we just used:
+  - flowchart.padding: 30 (more breathing room)
+  - flowchart.curve: stepAfter (more orthogonal lines in Mintlify)
+  - subtle node corner radius via rx/ry on styles (4px)
+  - default connector style: thinner + slightly lighter (stroke #777, 1px)
+  - keep htmlLabels: true (needed for &nbsp; workaround)
+*/}
+
+export const TigerMermaidTheme = `%%{init: {'theme':'base', 'themeVariables': {
+  'primaryColor':'#F4FF61',
+  'primaryTextColor':'#1a1a1a',
+  'primaryBorderColor':'#333',
+  'lineColor':'#777',
+  'secondaryColor':'#6D5AFF',
+  'secondaryTextColor':'#fff',
+  'secondaryBorderColor':'#333',
+  'tertiaryColor':'#4A90E2',
+  'tertiaryTextColor':'#fff',
+  'tertiaryBorderColor':'#333',
+  'noteBkgColor':'#F4FF61',
+  'noteTextColor':'#1a1a1a',
+  'noteBorderColor':'#333',
+  'background':'#fff',
+  'mainBkg':'#fff',
+  'fontFamily': "'Geist Mono', monospace",
+  'edgeLabelBackground':'#fff',
+  'labelColor':'#333',
+  'labelTextColor':'#333'
+}, 'flowchart': {
+  'padding': 30,
+  'htmlLabels': true,
+  'curve': 'stepAfter'
+}}}%%`;
+
+export const TigerMermaidStyles = `
+    %% Nodes (subtle rounding)
+    style A fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a,rx:4,ry:4
+    style B fill:#F4FF61,stroke:#333,stroke-width:2px,color:#1a1a1a,rx:4,ry:4
+    style C fill:#4A90E2,stroke:#333,stroke-width:2px,color:#fff,rx:4,ry:4
+    style D fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a
+    style E fill:#6D5AFF,stroke:#333,stroke-width:2px,color:#fff,rx:4,ry:4
+    style F fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a,rx:4,ry:4
+    style G fill:#fff,stroke:#333,stroke-width:2px,color:#1a1a1a,rx:4,ry:4
+
+    %% Optional/secondary operations (dashed)
+    style H fill:#fff,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5,color:#1a1a1a,rx:4,ry:4
+    style I fill:#fff,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5,color:#1a1a1a,rx:4,ry:4
+    style J fill:#fff,stroke:#666,stroke-width:1px,stroke-dasharray: 5 5,color:#1a1a1a,rx:4,ry:4
+
+    %% Connectors (cleaner + lighter)
+    linkStyle default stroke:#777,stroke-width:1px
+`;

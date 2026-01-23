@@ -308,15 +308,15 @@ To disable compression on a hypertable, the following steps can be taken:
 
 The latest Tiger Cloud version allows you to modify (UPDATE/DELETE) compressed data. To ensure only necessary data is decompressed while updating data, use columns in segment-by and order-by to filter data.
 
-When performing bulk inserts, [decompress](https://docs.timescale.com/use-timescale/latest/compression/decompress-chunks/) affected chunks first, as inserting data into compressed chunks is more computationally expensive.
+When performing bulk inserts, [decompress][decompress-chunks] affected chunks first, as inserting data into compressed chunks is more computationally expensive.
 
 Insert operations against a compressed chunk with a unique constraint or primary keys cause a small amount of data to be decompressed, allowing speculative insertion and blocking any inserts that could violate constraints.
 
 Inserting into a hypertable with no unique constraint does not incur decompression.
 
-You can [decompress individual chunks](https://docs.timescale.com/use-timescale/latest/compression/decompress-chunks/#decompress-individual-chunks), use a [range to filter chunks](https://docs.timescale.com/use-timescale/latest/compression/decompress-chunks/#decompress-chunks-by-time), or decompress [specific chunks](https://docs.timescale.com/use-timescale/latest/compression/decompress-chunks/#decompress-chunks-on-more-precise-constraints) based on query filters.
+You can [decompress individual chunks][decompress-individual], use a [range to filter chunks][decompress-by-time], or decompress [specific chunks][decompress-on-constraints] based on query filters.
 
-The latest Tiger Cloud versions support direct backfill into compressed chunks. You might encounter [this limit error](https://docs.timescale.com/use-timescale/latest/compression/troubleshooting/#tuple-decompression-limit-exceeded-by-operation) when the decompression process exceeds timescaledb.max_tuples_decompressed_per_dml_transaction (100k by default) limit. The solution provided is to disable or increase the limit.
+The latest Tiger Cloud versions support direct backfill into compressed chunks. You might encounter [this limit error][troubleshooting-tuple-limit] when the decompression process exceeds timescaledb.max_tuples_decompressed_per_dml_transaction (100k by default) limit. The solution provided is to disable or increase the limit.
 
 
 ### Backfill with a supplied function
@@ -393,7 +393,7 @@ To drop data from a Cagg, you can either:
 
 Caggs are supported by [materialized hypertables](https://docs.timescale.com/use-timescale/latest/continuous-aggregates/materialized-hypertables/), which adopt the same structure as regular hypertables.
 
-[Enabling compression](https://docs.timescale.com/use-timescale/latest/continuous-aggregates/compression-on-continuous-aggregates/#compress-continuous-aggregates) on Caggs follows a similar approach to hypertable compression. When compression is enabled and no other options are provided, the segment_by value will be automatically set to the group by columns of the continuous aggregate and the time_bucket column will be used as the order_by column in the compression configuration.
+[Enabling compression][cagg-compression] on Caggs follows a similar approach to hypertable compression. When compression is enabled and no other options are provided, the segment_by value will be automatically set to the group by columns of the continuous aggregate and the time_bucket column will be used as the order_by column in the compression configuration.
 
 You can also customize the **segment_by** and **order_by** arguments columns to align with the filters used in your queries. If you add a custom index to a Cagg, ensure the index’s columns are part of the **segment_by** or **order_by** arguments. If you enable compression in a Cagg and do not specify **segment_by** or **order_by** columns, these arguments are automatically set to the columns used in the group by clause of the Cagg view definition.
 
@@ -463,3 +463,10 @@ To query tiered data, you must enable **timescaledb.enable_tiered_reads** parame
 
 Once this setting is enabled, you can use a standard SELECT statement to query tiered data.
 
+
+[cagg-compression]: /manage-data/features/continuous-aggregates/compression-on-continuous-aggregates
+[decompress-chunks]: /manage-data/features/compression/decompress-chunks
+[decompress-individual]: /manage-data/features/compression/decompress-chunks#decompress-individual-chunks
+[decompress-by-time]: /manage-data/features/compression/decompress-chunks#decompress-chunks-by-time
+[decompress-on-constraints]: /manage-data/features/compression/decompress-chunks#decompress-chunks-on-more-precise-constraints
+[troubleshooting-tuple-limit]: /manage-data/troubleshooting/troubleshooting#tuple-decompression-limit-exceeded-by-operation
