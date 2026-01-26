@@ -1,0 +1,540 @@
+---
+title: Hyperfunctions
+description: Reference list of all available TimescaleDB hyperfunctions
+keywords: [hyperfunctions, Toolkit, analytics, reference]
+---
+
+import { TIMESCALE_DB, TOOLKIT_LONG, CLOUD_LONG } from '/snippets/vars.mdx';
+
+{CLOUD_LONG} includes all hyperfunctions by default, while self-hosted {TIMESCALE_DB} includes a subset of them. For
+additional hyperfunctions, install the [{TOOLKIT_LONG}][install-toolkit] extension.
+
+## Available hyperfunctions
+
+Hyperfunctions are organized by their analytical purpose. Functions marked with ✓ in the `Toolkit` column
+require an installation of {TOOLKIT_LONG} for self-hosted deployments. Functions marked with ✓ in the `Experimental`
+column are still under development.
+
+<Info>
+Experimental hyperfunctions are still under active development and subject to change. When you upgrade to a new
+version of {TOOLKIT_LONG}, experimental features might have changed or been removed. Be prepared to update your code
+if you use experimental hyperfunctions.
+</Info>
+
+### Approximate count distinct functions
+
+#### hyperloglog() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`hyperloglog()`][hyperloglog] | ✓ | |
+| Alternate aggregate | [`approx_count_distinct()`][approx_count_distinct] | ✓ | |
+| Accessor | [`distinct_count()`][distinct_count] | ✓ | |
+| Accessor | [`stderror()`][stderror] | ✓ | |
+| Rollup | [`rollup()`][hyperloglog_rollup] | ✓ | |
+
+### Counters and gauges functions
+
+#### counter_agg() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`counter_agg()`][counter_agg] | ✓ | |
+| Accessor | [`corr()`][counter_corr] | ✓ | |
+| Accessor | [`delta()`][counter_delta] | ✓ | |
+| Accessor | [`extrapolated_rate()`][counter_extrapolated_rate] | ✓ | |
+| Accessor | [`counter_zero_time()`][counter_zero_time] | ✓ | |
+| Accessor | [`first_time()`][counter_first_time] | ✓ | |
+| Accessor | [`first_val()`][counter_first_val] | ✓ | |
+| Accessor | [`extrapolated_delta()`][counter_extrapolated_delta] | ✓ | |
+| Accessor | [`idelta_right()`][counter_idelta_right] | ✓ | |
+| Accessor | [`idelta_left()`][counter_idelta_left] | ✓ | |
+| Accessor | [`interpolated_rate()`][counter_interpolated_rate] | ✓ | |
+| Accessor | [`intercept()`][counter_intercept] | ✓ | |
+| Accessor | [`irate_right()`][counter_irate_right] | ✓ | |
+| Accessor | [`irate_left()`][counter_irate_left] | ✓ | |
+| Accessor | [`interpolated_delta()`][counter_interpolated_delta] | ✓ | |
+| Accessor | [`num_changes()`][counter_num_changes] | ✓ | |
+| Accessor | [`last_time()`][counter_last_time] | ✓ | |
+| Accessor | [`last_val()`][counter_last_val] | ✓ | |
+| Accessor | [`num_resets()`][counter_num_resets] | ✓ | |
+| Accessor | [`rate()`][counter_rate] | ✓ | |
+| Accessor | [`time_delta()`][counter_time_delta] | ✓ | |
+| Accessor | [`slope()`][counter_slope] | ✓ | |
+| Accessor | [`num_elements()`][counter_num_elements] | ✓ | |
+| Mutator | [`with_bounds()`][counter_with_bounds] | ✓ | |
+| Rollup | [`rollup()`][counter_rollup] | ✓ | |
+
+#### gauge_agg() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`gauge_agg()`][gauge_agg] | ✓ | ✓ |
+| Accessor | [`delta()`][gauge_delta] | ✓ | ✓ |
+| Accessor | [`extrapolated_delta()`][gauge_extrapolated_delta] | ✓ | ✓ |
+| Accessor | [`extrapolated_rate()`][gauge_extrapolated_rate] | ✓ | ✓ |
+| Accessor | [`gauge_zero_time()`][gauge_zero_time] | ✓ | ✓ |
+| Accessor | [`corr()`][gauge_corr] | ✓ | ✓ |
+| Accessor | [`intercept()`][gauge_intercept] | ✓ | ✓ |
+| Accessor | [`idelta_left()`][gauge_idelta_left] | ✓ | ✓ |
+| Accessor | [`interpolated_rate()`][gauge_interpolated_rate] | ✓ | ✓ |
+| Accessor | [`interpolated_delta()`][gauge_interpolated_delta] | ✓ | ✓ |
+| Accessor | [`idelta_right()`][gauge_idelta_right] | ✓ | ✓ |
+| Accessor | [`irate_left()`][gauge_irate_left] | ✓ | ✓ |
+| Accessor | [`num_changes()`][gauge_num_changes] | ✓ | ✓ |
+| Accessor | [`num_elements()`][gauge_num_elements] | ✓ | ✓ |
+| Accessor | [`irate_right()`][gauge_irate_right] | ✓ | ✓ |
+| Accessor | [`rate()`][gauge_rate] | ✓ | ✓ |
+| Accessor | [`time_delta()`][gauge_time_delta] | ✓ | ✓ |
+| Accessor | [`slope()`][gauge_slope] | ✓ | ✓ |
+| Rollup | [`rollup()`][gauge_rollup] | ✓ | ✓ |
+| Mutator | [`with_bounds()`][gauge_with_bounds] | ✓ | ✓ |
+
+### Downsampling functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Function | [`asap_smooth()`][asap_smooth] | ✓ | |
+| Function | [`gp_lttb()`][gp_lttb] | ✓ | ✓ |
+| Function | [`lttb()`][lttb] | ✓ | |
+
+### Financial analysis functions
+
+#### candlestick_agg() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`candlestick_agg()`][candlestick_agg] | ✓ | |
+| Pseudo aggregate | [`candlestick()`][candlestick] | ✓ | |
+| Accessor | [`close()`][candlestick_close] | ✓ | |
+| Accessor | [`close_time()`][candlestick_close_time] | ✓ | |
+| Accessor | [`high()`][candlestick_high] | ✓ | |
+| Accessor | [`low_time()`][candlestick_low_time] | ✓ | |
+| Accessor | [`open()`][candlestick_open] | ✓ | |
+| Accessor | [`open_time()`][candlestick_open_time] | ✓ | |
+| Accessor | [`volume()`][candlestick_volume] | ✓ | |
+| Accessor | [`low()`][candlestick_low] | ✓ | |
+| Accessor | [`vwap()`][candlestick_vwap] | ✓ | |
+| Accessor | [`high_time()`][candlestick_high_time] | ✓ | |
+| Rollup | [`rollup()`][candlestick_rollup] | ✓ | |
+
+### Frequency analysis functions
+
+#### count_min_sketch() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`count_min_sketch()`][count_min_sketch] | ✓ | ✓ |
+| Accessor | [`approx_count()`][count_min_sketch_approx_count] | ✓ | ✓ |
+
+#### freq_agg() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`freq_agg()`][freq_agg] | ✓ | ✓ |
+| Accessor | [`into_values()`][freq_agg_into_values] | ✓ | |
+| Accessor | [`max_frequency()`][freq_agg_max_frequency] | ✓ | |
+| Accessor | [`min_frequency()`][freq_agg_min_frequency] | ✓ | |
+| Accessor | [`topn()`][freq_agg_topn] | ✓ | |
+| Alternate aggregate | [`mcv_agg()`][freq_agg_mcv_agg] | ✓ | |
+| Rollup | [`rollup()`][freq_agg_rollup] | ✓ | |
+
+### Gapfilling functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Bucket | [`time_bucket_gapfill()`][time_bucket_gapfill] | | |
+| Interpolator | [`locf()`][locf] | | |
+| Interpolator | [`interpolate()`][interpolate] | | |
+
+### Minimum and maximum functions
+
+#### max_n() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`max_n()`][max_n] | ✓ | |
+| Accessor | [`into_array()`][max_n_into_array] | ✓ | |
+| Accessor | [`into_values()`][max_n_into_values] | ✓ | |
+| Rollup | [`rollup()`][max_n_rollup] | ✓ | |
+
+#### max_n_by() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`max_n_by()`][max_n_by] | ✓ | |
+| Accessor | [`into_values()`][max_n_by_into_values] | ✓ | |
+| Rollup | [`rollup()`][max_n_by_rollup] | ✓ | |
+
+#### min_n() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`min_n()`][min_n] | ✓ | |
+| Accessor | [`into_array()`][min_n_into_array] | ✓ | |
+| Accessor | [`into_values()`][min_n_into_values] | ✓ | |
+| Rollup | [`rollup()`][min_n_rollup] | ✓ | |
+
+#### min_n_by() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`min_n_by()`][min_n_by] | ✓ | |
+| Rollup | [`rollup()`][min_n_by_rollup] | ✓ | |
+| Accessor | [`into_values()`][min_n_by_into_values] | ✓ | |
+
+### Percentile approximation functions
+
+#### tdigest() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`tdigest()`][tdigest] | ✓ | |
+| Accessor | [`approx_percentile_rank()`][tdigest_approx_percentile_rank] | ✓ | |
+| Accessor | [`approx_percentile()`][tdigest_approx_percentile] | ✓ | |
+| Accessor | [`mean()`][tdigest_mean] | ✓ | |
+| Accessor | [`num_vals()`][tdigest_num_vals] | ✓ | |
+| Rollup | [`rollup()`][tdigest_rollup] | ✓ | |
+
+#### uddsketch() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`uddsketch()`][uddsketch] | ✓ | |
+| Accessor | [`approx_percentile()`][uddsketch_approx_percentile] | ✓ | |
+| Accessor | [`approx_percentile_array()`][uddsketch_approx_percentile_array] | ✓ | |
+| Accessor | [`approx_percentile_rank()`][uddsketch_approx_percentile_rank] | ✓ | |
+| Accessor | [`error()`][uddsketch_error] | ✓ | |
+| Accessor | [`mean()`][uddsketch_mean] | ✓ | |
+| Accessor | [`num_vals()`][uddsketch_num_vals] | ✓ | |
+| Alternate aggregate | [`percentile_agg()`][uddsketch_percentile_agg] | ✓ | |
+| Rollup | [`rollup()`][uddsketch_rollup] | ✓ | |
+
+### Saturating math functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Function | [`saturating_add()`][saturating_add] | ✓ | ✓ |
+| Function | [`saturating_mul()`][saturating_mul] | ✓ | ✓ |
+| Function | [`saturating_sub_pos()`][saturating_sub_pos] | ✓ | ✓ |
+| Function | [`saturating_sub()`][saturating_sub] | ✓ | ✓ |
+| Function | [`saturating_add_pos()`][saturating_add_pos] | ✓ | ✓ |
+
+### State tracking functions
+
+#### compact_state_agg() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`compact_state_agg()`][compact_state_agg] | ✓ | ✓ |
+| Rollup | [`rollup()`][compact_state_agg_rollup] | ✓ | ✓ |
+| Accessor | [`into_values()`][compact_state_agg_into_values] | ✓ | ✓ |
+| Accessor | [`duration_in()`][compact_state_agg_duration_in] | ✓ | ✓ |
+| Accessor | [`interpolated_duration_in()`][compact_state_agg_interpolated_duration_in] | ✓ | ✓ |
+
+#### heartbeat_agg() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`heartbeat_agg()`][heartbeat_agg] | ✓ | |
+| Accessor | [`dead_ranges()`][heartbeat_agg_dead_ranges] | ✓ | |
+| Accessor | [`downtime()`][heartbeat_agg_downtime] | ✓ | |
+| Accessor | [`interpolated_downtime()`][heartbeat_agg_interpolated_downtime] | ✓ | |
+| Accessor | [`interpolated_uptime()`][heartbeat_agg_interpolated_uptime] | ✓ | |
+| Accessor | [`interpolate()`][heartbeat_agg_interpolate] | ✓ | |
+| Accessor | [`live_at()`][heartbeat_agg_live_at] | ✓ | |
+| Accessor | [`num_live_ranges()`][heartbeat_agg_num_live_ranges] | ✓ | |
+| Accessor | [`live_ranges()`][heartbeat_agg_live_ranges] | ✓ | |
+| Accessor | [`uptime()`][heartbeat_agg_uptime] | ✓ | |
+| Accessor | [`trim_to()`][heartbeat_agg_trim_to] | ✓ | |
+| Accessor | [`num_gaps()`][heartbeat_agg_num_gaps] | ✓ | |
+| Rollup | [`rollup()`][heartbeat_agg_rollup] | ✓ | |
+
+#### state_agg() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`state_agg()`][state_agg] | ✓ | |
+| Accessor | [`interpolated_state_periods()`][state_agg_interpolated_state_periods] | ✓ | |
+| Accessor | [`interpolated_state_timeline()`][state_agg_interpolated_state_timeline] | ✓ | |
+| Accessor | [`into_values()`][state_agg_into_values] | ✓ | |
+| Accessor | [`state_periods()`][state_agg_state_periods] | ✓ | |
+| Accessor | [`state_timeline()`][state_agg_state_timeline] | ✓ | |
+| Accessor | [`state_at()`][state_agg_state_at] | ✓ | |
+| Accessor | [`duration_in()`][state_agg_duration_in] | ✓ | |
+| Accessor | [`interpolated_duration_in()`][state_agg_interpolated_duration_in] | ✓ | |
+| Rollup | [`rollup()`][state_agg_rollup] | ✓ | |
+
+### Statistical and regression analysis functions
+
+#### stats_agg() (one variable) functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`stats_agg()`][stats_agg_one] (one variable) | ✓ | |
+| Accessor | [`average()`][stats_agg_one_average] | ✓ | |
+| Accessor | [`num_vals()`][stats_agg_one_num_vals] | ✓ | |
+| Accessor | [`kurtosis()`][stats_agg_one_kurtosis] | ✓ | |
+| Accessor | [`skewness()`][stats_agg_one_skewness] | ✓ | |
+| Accessor | [`sum()`][stats_agg_one_sum] | ✓ | |
+| Accessor | [`stddev()`][stats_agg_one_stddev] | ✓ | |
+| Accessor | [`variance()`][stats_agg_one_variance] | ✓ | |
+| Rollup | [`rollup()`][stats_agg_one_rollup] | ✓ | |
+| Rollup | [`rolling()`][stats_agg_one_rolling] | ✓ | |
+
+#### stats_agg() (two variables) functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`stats_agg()`][stats_agg_two] (two variables) | ✓ | |
+| Accessor | [`average_y()`, `average_x()`][stats_agg_two_average] | ✓ | |
+| Accessor | [`covariance()`][stats_agg_two_covariance] | ✓ | |
+| Accessor | [`corr()`][stats_agg_two_corr] | ✓ | |
+| Accessor | [`determination_coeff()`][stats_agg_two_determination_coeff] | ✓ | |
+| Accessor | [`intercept()`][stats_agg_two_intercept] | ✓ | |
+| Accessor | [`kurtosis_y()`, `kurtosis_x()`][stats_agg_two_kurtosis] | ✓ | |
+| Accessor | [`num_vals()`][stats_agg_two_num_vals] | ✓ | |
+| Accessor | [`slope()`][stats_agg_two_slope] | ✓ | |
+| Accessor | [`skewness_y()`, `skewness_x()`][stats_agg_two_skewness] | ✓ | |
+| Accessor | [`variance_y()`, `variance_x()`][stats_agg_two_variance] | ✓ | |
+| Accessor | [`sum_y()`, `sum_x()`][stats_agg_two_sum] | ✓ | |
+| Accessor | [`stddev_y()`, `stddev_x()`][stats_agg_two_stddev] | ✓ | |
+| Accessor | [`x_intercept()`][stats_agg_two_x_intercept] | ✓ | |
+| Rollup | [`rolling()`][stats_agg_two_rolling] | ✓ | |
+| Rollup | [`rollup()`][stats_agg_two_rollup] | ✓ | |
+
+### Time weighted calculations functions
+
+#### time_weight() functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`time_weight()`][time_weight] | ✓ | |
+| Accessor | [`average()`][time_weight_average] | ✓ | |
+| Accessor | [`first_time()`][time_weight_first_time] | ✓ | |
+| Accessor | [`first_val()`][time_weight_first_val] | ✓ | |
+| Accessor | [`integral()`][time_weight_integral] | ✓ | |
+| Accessor | [`last_time()`][time_weight_last_time] | ✓ | |
+| Accessor | [`last_val()`][time_weight_last_val] | ✓ | |
+| Accessor | [`interpolated_average()`][time_weight_interpolated_average] | ✓ | |
+| Accessor | [`interpolated_integral()`][time_weight_interpolated_integral] | ✓ | |
+| Rollup | [`rollup()`][time_weight_rollup] | ✓ | |
+
+### Timevector functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Aggregate | [`timevector()`][timevector] | ✓ | ✓ |
+| Accessor | [`unnest()`][unnest] | ✓ | ✓ |
+| Rollup | [`rollup()`][timevector_rollup] | ✓ | ✓ |
+
+### General functions
+
+| Hyperfunction type | Hyperfunction name | Toolkit | Experimental |
+|--------------------|-------------------|---------|--------------|
+| Bucket | [`time_bucket()`][time_bucket] | | |
+| Bucket | [`timescaledb_experimental.time_bucket_ng()`][time_bucket_ng] | | ✓ |
+| One step aggregate | [`approximate_row_count()`][approximate_row_count] | | |
+| One step aggregate | [`histogram()`][histogram] | | |
+| One step aggregate | [`first()`][first] | | |
+| One step aggregate | [`last()`][last] | | |
+| One step operation | [`days_in_month()`][days_in_month] | ✓ | |
+| One step operation | [`month_normalize()`][month_normalize] | ✓ | |
+
+For more information about each hyperfunction, see the [TimescaleDB API documentation][api-timescaledb] and [TimescaleDB Toolkit API documentation][api-toolkit].
+
+For detailed usage examples, see the [hyperfunctions features documentation][hyperfunctions-features].
+
+[api-timescaledb]: /api-reference/timescaledb/hyperfunctions
+[api-toolkit]: /api-reference/timescaledb-toolkit
+[approximate_row_count]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/approximate_row_count
+[approx_count_distinct]: /api-reference/timescaledb-toolkit/hyperloglog/approx_count_distinct
+[asap_smooth]: /api-reference/timescaledb-toolkit/downsampling/asap_smooth
+[candlestick]: /api-reference/timescaledb-toolkit/candlestick_agg/candlestick
+[candlestick_agg]: /api-reference/timescaledb-toolkit/candlestick_agg/candlestick_agg
+[candlestick_close]: /api-reference/timescaledb-toolkit/candlestick_agg/close
+[candlestick_close_time]: /api-reference/timescaledb-toolkit/candlestick_agg/close_time
+[candlestick_high]: /api-reference/timescaledb-toolkit/candlestick_agg/high
+[candlestick_high_time]: /api-reference/timescaledb-toolkit/candlestick_agg/high_time
+[candlestick_low]: /api-reference/timescaledb-toolkit/candlestick_agg/low
+[candlestick_low_time]: /api-reference/timescaledb-toolkit/candlestick_agg/low_time
+[candlestick_open]: /api-reference/timescaledb-toolkit/candlestick_agg/open
+[candlestick_open_time]: /api-reference/timescaledb-toolkit/candlestick_agg/open_time
+[candlestick_rollup]: /api-reference/timescaledb-toolkit/candlestick_agg/rollup
+[candlestick_volume]: /api-reference/timescaledb-toolkit/candlestick_agg/volume
+[candlestick_vwap]: /api-reference/timescaledb-toolkit/candlestick_agg/vwap
+[compact_state_agg]: /api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/compact_state_agg
+[compact_state_agg_duration_in]: /api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/duration_in
+[compact_state_agg_interpolated_duration_in]: /api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/interpolated_duration_in
+[compact_state_agg_into_values]: /api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/into_values
+[compact_state_agg_rollup]: /api-reference/timescaledb-toolkit/state-tracking/compact_state_agg/rollup
+[count_min_sketch]: /api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/count_min_sketch
+[count_min_sketch_approx_count]: /api-reference/timescaledb-toolkit/frequency-analysis/count_min_sketch/approx_count
+[counter_agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_agg
+[counter_corr]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/corr
+[counter_counter_zero_time]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_zero_time
+[counter_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/delta
+[counter_extrapolated_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/extrapolated_delta
+[counter_extrapolated_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/extrapolated_rate
+[counter_first_time]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/first_time
+[counter_first_val]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/first_val
+[counter_idelta_left]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/idelta_left
+[counter_idelta_right]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/idelta_right
+[counter_intercept]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/intercept
+[counter_interpolated_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/interpolated_delta
+[counter_interpolated_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/interpolated_rate
+[counter_irate_left]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/irate_left
+[counter_irate_right]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/irate_right
+[counter_last_time]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/last_time
+[counter_last_val]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/last_val
+[counter_num_changes]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_changes
+[counter_num_elements]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_elements
+[counter_num_resets]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/num_resets
+[counter_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/rate
+[counter_rollup]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/rollup
+[counter_slope]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/slope
+[counter_time_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/time_delta
+[counter_with_bounds]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/with_bounds
+[counter_zero_time]: /api-reference/timescaledb-toolkit/counters-and-gauges/counter_agg/counter_zero_time
+[days_in_month]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month
+[distinct_count]: /api-reference/timescaledb-toolkit/hyperloglog/distinct_count
+[first]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/first
+[freq_agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/freq_agg
+[freq_agg_into_values]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/into_values
+[freq_agg_max_frequency]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/max_frequency
+[freq_agg_mcv_agg]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/mcv_agg
+[freq_agg_min_frequency]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/min_frequency
+[freq_agg_rollup]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/rollup
+[freq_agg_topn]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/topn
+[gauge_agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
+[gauge_corr]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/corr
+[gauge_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/delta
+[gauge_extrapolated_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_delta
+[gauge_extrapolated_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/extrapolated_rate
+[gauge_gauge_zero_time]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_zero_time
+[gauge_idelta_left]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_left
+[gauge_idelta_right]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/idelta_right
+[gauge_intercept]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/intercept
+[gauge_interpolated_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_delta
+[gauge_interpolated_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/interpolated_rate
+[gauge_irate_left]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_left
+[gauge_irate_right]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/irate_right
+[gauge_num_changes]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_changes
+[gauge_num_elements]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/num_elements
+[gauge_rate]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rate
+[gauge_rollup]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/rollup
+[gauge_slope]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/slope
+[gauge_time_delta]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/time_delta
+[gauge_with_bounds]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/with_bounds
+[gauge_zero_time]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_zero_time
+[gp_lttb]: /api-reference/timescaledb-toolkit/downsampling/gp_lttb
+[heartbeat_agg]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/heartbeat_agg
+[heartbeat_agg_dead_ranges]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/dead_ranges
+[heartbeat_agg_downtime]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/downtime
+[heartbeat_agg_interpolate]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolate
+[heartbeat_agg_interpolated_downtime]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolated_downtime
+[heartbeat_agg_interpolated_uptime]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/interpolated_uptime
+[heartbeat_agg_live_at]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/live_at
+[heartbeat_agg_live_ranges]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/live_ranges
+[heartbeat_agg_num_gaps]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/num_gaps
+[heartbeat_agg_num_live_ranges]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/num_live_ranges
+[heartbeat_agg_rollup]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/rollup
+[heartbeat_agg_trim_to]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/trim_to
+[heartbeat_agg_uptime]: /api-reference/timescaledb-toolkit/state-tracking/heartbeat_agg/uptime
+[histogram]: /api-reference/timescaledb/hyperfunctions/distribution-analysis/histogram
+[hyperloglog]: /api-reference/timescaledb-toolkit/hyperloglog/hyperloglog
+[hyperloglog_rollup]: /api-reference/timescaledb-toolkit/hyperloglog/rollup
+[hyperfunctions-features]: /manage-data/capabilities/hyperfunctions
+[install-toolkit]: /deploy-and-operate/self-hosted/install-and-update/install-toolkit
+[interpolate]: /api-reference/timescaledb/hyperfunctions/gapfilling-and-interpolation/interpolate
+[last]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/last
+[locf]: /api-reference/timescaledb/hyperfunctions/gapfilling-and-interpolation/locf
+[lttb]: /api-reference/timescaledb-toolkit/downsampling/lttb
+[max_n]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/max_n
+[max_n_by]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/max_n_by
+[max_n_by_into_values]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/into_values
+[max_n_by_rollup]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n_by/rollup
+[max_n_into_array]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/into_array
+[max_n_into_values]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/into_values
+[max_n_rollup]: /api-reference/timescaledb-toolkit/minimum-and-maximum/max_n/rollup
+[min_n]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/min_n
+[min_n_by]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/min_n_by
+[min_n_by_into_values]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/into_values
+[min_n_by_rollup]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n_by/rollup
+[min_n_into_array]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/into_array
+[min_n_into_values]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/into_values
+[min_n_rollup]: /api-reference/timescaledb-toolkit/minimum-and-maximum/min_n/rollup
+[month_normalize]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize
+[saturating_add]: /api-reference/timescaledb-toolkit/saturating-math/saturating_add
+[saturating_add_pos]: /api-reference/timescaledb-toolkit/saturating-math/saturating_add_pos
+[saturating_mul]: /api-reference/timescaledb-toolkit/saturating-math/saturating_mul
+[saturating_sub]: /api-reference/timescaledb-toolkit/saturating-math/saturating_sub
+[saturating_sub_pos]: /api-reference/timescaledb-toolkit/saturating-math/saturating_sub_pos
+[state_agg]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/state_agg
+[state_agg_duration_in]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/duration_in
+[state_agg_interpolated_duration_in]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_duration_in
+[state_agg_interpolated_state_periods]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_state_periods
+[state_agg_interpolated_state_timeline]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/interpolated_state_timeline
+[state_agg_into_values]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/into_values
+[state_agg_rollup]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/rollup
+[state_agg_state_at]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/state_at
+[state_agg_state_periods]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/state_periods
+[state_agg_state_timeline]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/state_timeline
+[stats_agg_one]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/stats_agg
+[stats_agg_one_average]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/average
+[stats_agg_one_kurtosis]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/kurtosis
+[stats_agg_one_num_vals]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/num_vals
+[stats_agg_one_rolling]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/rolling
+[stats_agg_one_rollup]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/rollup
+[stats_agg_one_skewness]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/skewness
+[stats_agg_one_stddev]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/stddev
+[stats_agg_one_sum]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/sum
+[stats_agg_one_variance]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-one-variable/variance
+[stats_agg_two]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/stats_agg
+[stats_agg_two_average]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/average_y_x
+[stats_agg_two_corr]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/corr
+[stats_agg_two_covariance]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/covariance
+[stats_agg_two_determination_coeff]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/determination_coeff
+[stats_agg_two_intercept]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/intercept
+[stats_agg_two_kurtosis]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/kurtosis_y_x
+[stats_agg_two_num_vals]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/num_vals
+[stats_agg_two_rolling]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/rolling
+[stats_agg_two_rollup]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/rollup
+[stats_agg_two_skewness]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/skewness_y_x
+[stats_agg_two_slope]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/slope
+[stats_agg_two_stddev]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/stddev_y_x
+[stats_agg_two_sum]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/sum_y_x
+[stats_agg_two_variance]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/variance_y_x
+[stats_agg_two_x_intercept]: /api-reference/timescaledb-toolkit/statistical-and-regression-analysis/stats_agg-two-variables/x_intercept
+[stderror]: /api-reference/timescaledb-toolkit/hyperloglog/stderror
+[tdigest]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/tdigest
+[tdigest_approx_percentile]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/approx_percentile
+[tdigest_approx_percentile_rank]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/approx_percentile_rank
+[tdigest_mean]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/mean
+[tdigest_num_vals]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/num_vals
+[tdigest_rollup]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/rollup
+[time_bucket]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket
+[time_bucket_gapfill]: /api-reference/timescaledb/hyperfunctions/gapfilling-and-interpolation/time_bucket_gapfill
+[time_bucket_ng]: /api-reference/timescaledb/hyperfunctions/legacy/time_bucket_ng
+[time_weight]: /api-reference/timescaledb-toolkit/time_weight/time_weight
+[time_weight_average]: /api-reference/timescaledb-toolkit/time_weight/average
+[time_weight_first_time]: /api-reference/timescaledb-toolkit/time_weight/first_time
+[time_weight_first_val]: /api-reference/timescaledb-toolkit/time_weight/first_val
+[time_weight_integral]: /api-reference/timescaledb-toolkit/time_weight/integral
+[time_weight_interpolated_average]: /api-reference/timescaledb-toolkit/time_weight/interpolated_average
+[time_weight_interpolated_integral]: /api-reference/timescaledb-toolkit/time_weight/interpolated_integral
+[time_weight_last_time]: /api-reference/timescaledb-toolkit/time_weight/last_time
+[time_weight_last_val]: /api-reference/timescaledb-toolkit/time_weight/last_val
+[time_weight_rollup]: /api-reference/timescaledb-toolkit/time_weight/rollup
+[timevector]: /api-reference/timescaledb-toolkit/timevector/timevector
+[timevector_rollup]: /api-reference/timescaledb-toolkit/timevector/rollup
+[uddsketch]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/uddsketch
+[uddsketch_approx_percentile]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile
+[uddsketch_approx_percentile_array]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile_array
+[uddsketch_approx_percentile_rank]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/approx_percentile_rank
+[uddsketch_error]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/error
+[uddsketch_mean]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/mean
+[uddsketch_num_vals]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/num_vals
+[uddsketch_percentile_agg]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/percentile_agg
+[uddsketch_rollup]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/rollup
+[unnest]: /api-reference/timescaledb-toolkit/timevector/unnest

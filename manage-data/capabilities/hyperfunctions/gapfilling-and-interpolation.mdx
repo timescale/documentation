@@ -1,0 +1,144 @@
+---
+title: Gapfilling and interpolation
+description: Handle missing data when you query time-series data
+keywords: [hyperfunctions, gapfilling, interpolate, locf]
+---
+
+import Prerequisites from '/snippets/prerequisites/_prereqs-cloud-and-self.mdx';
+import { TIMESCALE_DB } from '/snippets/vars.mdx';
+
+Most time-series data analysis techniques aggregate data into fixed time intervals, which smooths the data and makes
+it easier to interpret and analyze. When you write queries for data in this form, you need an efficient way to
+aggregate raw observations, which are often noisy and irregular, into fixed time intervals. {TIMESCALE_DB} does this
+using [time bucketing][time_bucket], which gives a clear picture of the important data trends using a concise,
+declarative SQL query.
+
+Sorting data into time buckets works well in most cases, but gaps in the data can cause problems. If you have a time
+bucket that has no data at all, the average returned from the time bucket is `NULL`. This can happen if
+you have irregular sampling intervals, or you have experienced an outage of some sort. You can use a gapfilling
+function to create additional rows of data in any gaps, ensuring that rows appear in chronological order and remain
+contiguous. The [`time_bucket_gapfill`][time_bucket_gapfill] function creates a contiguous set of time buckets but does
+not fill the rows with data. You can create data for the new rows using:
+
+- **[`locf()`][locf]**: Last observation carried forward - takes the last known value and uses it as a replacement for
+  missing data
+- **[`interpolate()`][interpolate]**: Linear interpolation - calculates values between known data points
+
+## Prerequisites
+
+<Prerequisites />
+
+## Fill gaps with time_bucket_gapfill
+
+This example uses a `sensor_data` table that tracks temperature readings from IoT sensors.
+
+1. **Create the `sensor_data` hypertable**
+
+   ```sql
+   CREATE TABLE sensor_data (
+     time TIMESTAMPTZ NOT NULL,
+     sensor_id INTEGER,
+     temperature DOUBLE PRECISION
+   ) WITH (tsdb.hypertable);
+   ```
+
+1. **Insert sample data with gaps**
+
+   Create data with intentional gaps to demonstrate gapfilling:
+
+   ```sql
+   -- Insert readings every 10 minutes, but skip some time periods
+   INSERT INTO sensor_data (time, sensor_id, temperature)
+   SELECT
+     time,
+     1 as sensor_id,
+     20 + random() * 5 as temperature
+   FROM generate_series(
+     '2024-01-01 00:00:00'::timestamptz,
+     '2024-01-01 01:00:00'::timestamptz,
+     interval '10 minutes'
+   ) AS time
+   WHERE extract(minute from time) NOT IN (20, 40);
+   ```
+
+1. **Query without gapfilling**
+
+   First, see what happens with a regular `time_bucket` query:
+
+   ```sql
+   SELECT
+     time_bucket('10 minutes', time) AS bucket,
+     avg(temperature) as avg_temp
+   FROM sensor_data
+   WHERE time >= '2024-01-01 00:00:00'
+     AND time < '2024-01-01 01:00:00'
+   GROUP BY bucket
+   ORDER BY bucket;
+   ```
+
+   This returns gaps where data is missing (no rows for 00:20:00 and 00:40:00).
+
+1. **Query with time_bucket_gapfill**
+
+   Use `time_bucket_gapfill` to create rows for missing time periods:
+
+   ```sql
+   SELECT
+     time_bucket_gapfill('10 minutes', time) AS bucket,
+     avg(temperature) as avg_temp
+   FROM sensor_data
+   WHERE time >= '2024-01-01 00:00:00'
+     AND time < '2024-01-01 01:00:00'
+   GROUP BY bucket
+   ORDER BY bucket;
+   ```
+
+   This returns all time buckets, but missing data shows as NULL.
+
+## Fill gaps with LOCF
+
+Last observation carried forward (LOCF) takes the last known value and uses it as a replacement for missing data. This
+is useful when values change slowly or when you want to assume the last known state continues.
+
+1. **Use LOCF to fill missing values**
+
+   ```sql
+   SELECT
+     time_bucket_gapfill('10 minutes', time) AS bucket,
+     locf(avg(temperature)) as avg_temp
+   FROM sensor_data
+   WHERE time >= '2024-01-01 00:00:00'
+     AND time < '2024-01-01 01:00:00'
+   GROUP BY bucket
+   ORDER BY bucket;
+   ```
+
+   Missing values are now filled with the last observed temperature.
+
+## Fill gaps with interpolation
+
+Linear interpolation calculates values between known data points, creating a smooth transition. This is useful when
+values change gradually and you want to estimate intermediate values.
+
+1. **Use interpolate to fill missing values**
+
+   ```sql
+   SELECT
+     time_bucket_gapfill('10 minutes', time) AS bucket,
+     interpolate(avg(temperature)) as avg_temp
+   FROM sensor_data
+   WHERE time >= '2024-01-01 00:00:00'
+     AND time < '2024-01-01 01:00:00'
+   GROUP BY bucket
+   ORDER BY bucket;
+   ```
+
+   Missing values are now calculated by linearly interpolating between known data points.
+
+For more information about how gapfilling works, read the [gapfilling blog][blog-gapfilling].
+
+[blog-gapfilling]: https://www.tigerdata.com/blog/sql-functions-for-time-series-analysis
+[interpolate]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/interpolate
+[locf]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/locf
+[time_bucket]: /api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket
+[time_bucket_gapfill]: /api-reference/timescaledb/hyperfunctions/time_bucket_gapfill/time_bucket_gapfill

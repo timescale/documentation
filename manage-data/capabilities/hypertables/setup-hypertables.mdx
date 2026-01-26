@@ -1,0 +1,140 @@
+---
+title: Setup hypertables
+description: See how to create, alter, and drop a hypertable.
+keywords: [hypertables, create]
+---
+
+import IntegrationPrereqs from "/snippets/prerequisites/_prereqs-cloud-and-self.mdx";
+import HypercoreDirectCompress from '/snippets/manage-data/_hypercore-direct-compress.mdx';
+import ColumnstorePolicyNote from '/snippets/manage-data/_columnstore-policy-note.mdx';
+import HypertableSetupWorkflow from '/images/manage-data/hypertable-setup-workflow.mdx';
+import { HYPERTABLE_CAP, PG, HYPERTABLE, COLUMNSTORE, CHUNK } from "/snippets/vars.mdx";
+
+{HYPERTABLE_CAP} are designed for real-time analytics, they are {PG} tables that automatically partition your data by
+time. Typically, you partition {HYPERTABLE} on columns that hold time values.
+[Best practice is to use `timestamptz`][postgresql-timestamp] column type. However, you can also partition on
+`date`, `integer`, `timestamp` and [UUIDv7][uuidv7_functions] types.
+
+The following diagram shows the workflow to follow when you create {HYPERTABLE}s.
+
+<HypertableSetupWorkflow />
+
+## Prerequisites
+
+<IntegrationPrereqs />
+
+## Create a hypertable
+
+Create a [{HYPERTABLE}][hypertables-section] for your time-series data using [CREATE TABLE][hypertable-create-table].
+For [efficient queries][secondary-indexes], remember to `segmentby` the column you will use most often to filter your
+data:
+
+```sql
+CREATE TABLE conditions (
+   time        TIMESTAMPTZ       NOT NULL,
+   location    TEXT              NOT NULL,
+   device      TEXT              NOT NULL,
+   temperature DOUBLE PRECISION  NULL,
+   humidity    DOUBLE PRECISION  NULL
+) WITH (
+   tsdb.hypertable,
+   tsdb.segmentby = 'device',
+   tsdb.orderby = 'time DESC'
+);
+```
+
+<ColumnstorePolicyNote />
+
+To convert an existing table with data in it, call `create_hypertable` on that table with
+[`migrate_data` to `true`][api-create-hypertable-arguments]. However, if you have a lot of data, this may take a long time.
+
+## Speed up data ingestion
+
+<HypercoreDirectCompress />
+
+## Alter a hypertable
+
+You can alter a {HYPERTABLE}, for example to add a column, by using the {PG}
+[`ALTER TABLE`][postgres-alter-table] command. Some operations are not supported for {HYPERTABLE} with {COLUMNSTORE} enabled. See [Altering hypertables with columnstore enabled][alter-schema].
+
+### Add a column to a hypertable
+
+You add a column to a {HYPERTABLE} using the `ALTER TABLE` command. In this
+example, the {HYPERTABLE} is named `conditions` and the new column is named
+`humidity`:
+
+```sql
+ALTER TABLE conditions
+  ADD COLUMN humidity DOUBLE PRECISION NULL;
+```
+
+If the column you are adding has the default value set to `NULL`, or has no
+default value, then adding a column is relatively fast. If you set the default
+to a non-null value, it takes longer, because it needs to fill in this value for
+all existing rows of all existing {CHUNK}s.
+
+### Rename a hypertable
+
+You can change the name of a {HYPERTABLE} using the `ALTER TABLE` command. In this
+example, the {HYPERTABLE} is called `conditions`, and is being changed to the new
+name, `weather`:
+
+```sql
+ALTER TABLE conditions
+  RENAME TO weather;
+```
+
+### Change a column data type
+
+You can change the data type of a column in a {HYPERTABLE} using the `ALTER TABLE`
+command. In this example, the `temperature` column data type is changed from `DOUBLE PRECISION`
+to `NUMERIC`:
+
+```sql
+ALTER TABLE conditions
+  ALTER COLUMN temperature TYPE NUMERIC;
+```
+
+The following restrictions apply:
+
+- You cannot change the type of `segmentby` columns.
+- For time dimension columns, you can only change to `TIMESTAMPTZ`, `TIMESTAMP`, `DATE`,
+  `INTEGER` (smallint, integer, or bigint), or `UUID` (UUIDv7 only).
+- You cannot change the type of columns with custom partitioning functions.
+- You cannot change the type of columns for {HYPERTABLE}s with {COLUMNSTORE} enabled. See [Altering hypertables with
+  columnstore enabled][alter-schema] for how to do it instead.
+- For columns with statistics enabled, you can only change to integer or timestamp types.
+  To change to other types, first disable statistics using `disable_column_stats`.
+
+### Drop a column
+
+You can drop a column from a {HYPERTABLE} using the `ALTER TABLE` command. In this
+example, the `humidity` column is dropped from the `conditions` {HYPERTABLE}:
+
+```sql
+ALTER TABLE conditions
+  DROP COLUMN humidity;
+```
+
+You cannot drop partitioning columns.
+
+## Drop a hypertable
+
+Drop a {HYPERTABLE} using a standard {PG} [`DROP TABLE`][postgres-droptable]
+command:
+
+```sql
+DROP TABLE weather;
+```
+
+All data {CHUNK}s belonging to the {HYPERTABLE} are deleted.
+
+[alter-schema]: /manage-data/schema-management/alter#altering-hypertables-with-columnstore-enabled
+[api-create-hypertable-arguments]: /api-reference/timescaledb/hypertables/create_hypertable#arguments
+[hypertable-create-table]: /api-reference/timescaledb/hypertables/create_table
+[hypertables-section]: /manage-data/capabilities/hypertables/understand-hypertables
+[postgres-alter-table]: https://www.postgresql.org/docs/current/sql-altertable.html
+[postgres-droptable]: https://www.postgresql.org/docs/current/sql-droptable.html
+[postgresql-timestamp]: https://wiki.postgresql.org/wiki/Don't_Do_This#Don.27t_use_timestamp_.28without_time_zone.29
+[secondary-indexes]: /manage-data/capabilities/hypercore/secondary-indexes
+[uuidv7_functions]: /api-reference/timescaledb/uuid-functions
