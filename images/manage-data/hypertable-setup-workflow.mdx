@@ -29,7 +29,7 @@
   }
 }}%%
 flowchart TD
-    Start([Setup hypertable&nbsp;&nbsp;]) -->|New table| CreateNew[CREATE TABLE WITH&nbsp;&nbsp;<br/>tsdb.hypertable&nbsp;&nbsp;]
+    Start([Set up hypertable&nbsp;&nbsp;]) -->|New table| CreateNew[CREATE TABLE WITH&nbsp;&nbsp;<br/>tsdb.hypertable&nbsp;&nbsp;]
     Start -->|Existing table| Convert[create_hypertable&nbsp;&nbsp;<br/>with migrate_data=true&nbsp;&nbsp;]
 
     CreateNew --> Config[Configure:<br/>- segmentby column<br/>- orderby column<br/>- chunk_interval&nbsp;&nbsp;]

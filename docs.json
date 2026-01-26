@@ -453,7 +453,7 @@
                       },
                       "manage-data/capabilities/create-and-manage-jobs",
                       {
-                        "group": "Compression (Superseded by Hypercore)",
+                        "group": "Compression (Old API)",
                         "pages": [
                           "manage-data/capabilities/compression/about-compression",
                           "manage-data/capabilities/compression/compression-design",
@@ -470,10 +470,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration",
-                      "manage-data/capabilities/import-and-ingest/migrate-with-downtime",
-                      "manage-data/capabilities/import-and-ingest/import-console",
-                      "manage-data/capabilities/import-and-ingest/import-terminal"
+                      "manage-data/import-and-ingest/live-migration",
+                      "manage-data/import-and-ingest/migrate-with-downtime",
+                      "manage-data/import-and-ingest/import-console",
+                      "manage-data/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -587,7 +587,7 @@
                       },
                       "manage-data/capabilities/create-and-manage-jobs",
                       {
-                        "group": "Compression (Superseded by Hypercore)",
+                        "group": "Compression (Old API)",
                         "pages": [
                           "manage-data/capabilities/compression/about-compression",
                           "manage-data/capabilities/compression/compression-design",
@@ -604,10 +604,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration",
-                      "manage-data/capabilities/import-and-ingest/migrate-with-downtime",
-                      "manage-data/capabilities/import-and-ingest/import-console",
-                      "manage-data/capabilities/import-and-ingest/import-terminal"
+                      "manage-data/import-and-ingest/live-migration",
+                      "manage-data/import-and-ingest/migrate-with-downtime",
+                      "manage-data/import-and-ingest/import-console",
+                      "manage-data/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -721,7 +721,7 @@
                       },
                       "manage-data/capabilities/create-and-manage-jobs",
                       {
-                        "group": "Compression (Superseded by Hypercore)",
+                        "group": "Compression (Old API)",
                         "pages": [
                           "manage-data/capabilities/compression/about-compression",
                           "manage-data/capabilities/compression/compression-design",
@@ -738,10 +738,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration",
-                      "manage-data/capabilities/import-and-ingest/migrate-with-downtime",
-                      "manage-data/capabilities/import-and-ingest/import-console",
-                      "manage-data/capabilities/import-and-ingest/import-terminal"
+                      "manage-data/import-and-ingest/live-migration",
+                      "manage-data/import-and-ingest/migrate-with-downtime",
+                      "manage-data/import-and-ingest/import-console",
+                      "manage-data/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -855,7 +855,7 @@
                       },
                       "manage-data/capabilities/create-and-manage-jobs",
                       {
-                        "group": "Compression (Superseded by Hypercore)",
+                        "group": "Compression (Old API)",
                         "pages": [
                           "manage-data/capabilities/compression/about-compression",
                           "manage-data/capabilities/compression/compression-design",
@@ -872,10 +872,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration",
-                      "manage-data/capabilities/import-and-ingest/migrate-with-downtime",
-                      "manage-data/capabilities/import-and-ingest/import-console",
-                      "manage-data/capabilities/import-and-ingest/import-terminal"
+                      "manage-data/import-and-ingest/live-migration",
+                      "manage-data/import-and-ingest/migrate-with-downtime",
+                      "manage-data/import-and-ingest/import-console",
+                      "manage-data/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -904,7 +904,7 @@
                   {
                     "group": "  ",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration"
+                      "manage-data/import-and-ingest/live-migration"
                     ]
                   },
                   {
@@ -989,7 +989,7 @@
                       },
                       "manage-data/capabilities/create-and-manage-jobs",
                       {
-                        "group": "Compression (Superseded by Hypercore)",
+                        "group": "Compression (Old API)",
                         "pages": [
                           "manage-data/capabilities/compression/about-compression",
                           "manage-data/capabilities/compression/compression-design",
@@ -1006,10 +1006,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration",
-                      "manage-data/capabilities/import-and-ingest/migrate-with-downtime",
-                      "manage-data/capabilities/import-and-ingest/import-console",
-                      "manage-data/capabilities/import-and-ingest/import-terminal"
+                      "manage-data/import-and-ingest/live-migration",
+                      "manage-data/import-and-ingest/migrate-with-downtime",
+                      "manage-data/import-and-ingest/import-console",
+                      "manage-data/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -1124,7 +1124,7 @@
                       },
                       "manage-data/capabilities/create-and-manage-jobs",
                       {
-                        "group": "Compression (Superseded by Hypercore)",
+                        "group": "Compression (Old API)",
                         "pages": [
                           "manage-data/capabilities/compression/about-compression",
                           "manage-data/capabilities/compression/compression-design",
@@ -1141,10 +1141,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration",
-                      "manage-data/capabilities/import-and-ingest/migrate-with-downtime",
-                      "manage-data/capabilities/import-and-ingest/import-console",
-                      "manage-data/capabilities/import-and-ingest/import-terminal"
+                      "manage-data/import-and-ingest/live-migration",
+                      "manage-data/import-and-ingest/migrate-with-downtime",
+                      "manage-data/import-and-ingest/import-console",
+                      "manage-data/import-and-ingest/import-terminal"
                     ]
                   },
                   {
@@ -1258,7 +1258,7 @@
                       },
                       "manage-data/capabilities/create-and-manage-jobs",
                       {
-                        "group": "Compression (Superseded by Hypercore)",
+                        "group": "Compression (Old API)",
                         "pages": [
                           "manage-data/capabilities/compression/about-compression",
                           "manage-data/capabilities/compression/compression-design",
@@ -1275,10 +1275,10 @@
                   {
                     "group": "Import and ingest data",
                     "pages": [
-                      "manage-data/capabilities/import-and-ingest/live-migration",
-                      "manage-data/capabilities/import-and-ingest/migrate-with-downtime",
-                      "manage-data/capabilities/import-and-ingest/import-console",
-                      "manage-data/capabilities/import-and-ingest/import-terminal"
+                      "manage-data/import-and-ingest/live-migration",
+                      "manage-data/import-and-ingest/migrate-with-downtime",
+                      "manage-data/import-and-ingest/import-console",
+                      "manage-data/import-and-ingest/import-terminal"
                     ]
                   },
                   {
