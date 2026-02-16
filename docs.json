@@ -2916,8 +2916,7 @@
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/first",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/last",
                           "api-reference/timescaledb/hyperfunctions/time-series-utilities/days_in_month",
-                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize",
-                          "api-reference/timescaledb/hyperfunctions/legacy/time_bucket_ng"
+                          "api-reference/timescaledb/hyperfunctions/time-series-utilities/month_normalize"
                         ]
                       },
                       {
@@ -4822,10 +4821,6 @@
     {
       "source": "/api/latest/time_bucket/",
       "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket"
-    },
-    {
-      "source": "/api/latest/time_bucket_ng/",
-      "destination": "/api-reference/timescaledb/hyperfunctions/time-series-utilities/time_bucket_ng"
     },
     {
       "source": "/use-timescale/:slug*/time-buckets/:slug*",
