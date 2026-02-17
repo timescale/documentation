@@ -61,12 +61,12 @@ SELECT timescaledb_experimental.add_policies(
 The syntax is:
 
 ```sql
-CALL add_policies(
+SELECT timescaledb_experimental.add_policies(
     relation = '<view_name>',
     refresh_start_offset = <interval>,
     refresh_end_offset = <interval>,
     compress_after = <interval>,
-    refresh_schedule_interval = <interval>
+    drop_after = <interval>
 );
 ```
 

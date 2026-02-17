@@ -23,6 +23,9 @@ The other advanced percentile approximation aggregate is [`uddsketch`][uddsketch
 within a guaranteed relative error. If you aren't sure which to use, try the default percentile estimation method,
 [`percentile_agg`][percentile_agg]. It uses the `uddsketch` algorithm with some sensible defaults.
 
+For more information about percentile approximation algorithms, see the
+[algorithms overview][advanced-agg].
+
 import TwoStepAggregation from '/snippets/reference/timescaledb/hyperfunctions/_two-step-aggregation.mdx';
 
 ## Two-step aggregation
@@ -82,6 +85,7 @@ GROUP BY 1;
 [percentile_agg]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch/percentile_agg
 [rollup]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/rollup
 [tdigest]: /api-reference/timescaledb-toolkit/percentile-approximation/tdigest/tdigest
+[advanced-agg]: /manage-data/capabilities/hyperfunctions/percentile-approx-algorithms
 [toolkit-1.0.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.0.0
 [two-step-aggregation]: #two-step-aggregation
 [uddsketch]: /api-reference/timescaledb-toolkit/percentile-approximation/uddsketch

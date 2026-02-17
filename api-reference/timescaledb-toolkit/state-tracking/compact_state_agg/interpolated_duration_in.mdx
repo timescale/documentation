@@ -62,21 +62,21 @@ The syntax is:
 
 ```sql
 interpolated_duration_in(
-  agg StateAgg,
+  agg CompactStateAgg,
   state {TEXT | BIGINT},
   start TIMESTAMPTZ,
   interval INTERVAL
-  [, prev StateAgg]
-) RETURNS DOUBLE PRECISION
+  [, prev CompactStateAgg]
+) RETURNS INTERVAL
 ```
 
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | A state aggregate created with [`compact_state_agg`][compact_state_agg] |
+| agg | CompactStateAgg | - | ✔ | A state aggregate created with [`compact_state_agg`][compact_state_agg] |
 | state | TEXT \| BIGINT | - | ✔ | The state to query |
 | start | TIMESTAMPTZ | - | ✔ | The start of the interval to be calculated |
 | interval | INTERVAL | - | ✔ | The length of the interval to be calculated |
-| prev | StateAgg | - | | The state aggregate from the prior interval, used to interpolate the value at `start`. If `NULL`, the first timestamp in `aggregate` is used as the start of the interval |
+| prev | CompactStateAgg | - | | The state aggregate from the prior interval, used to interpolate the value at `start`. If `NULL`, the first timestamp in `aggregate` is used as the start of the interval |
 
 ## Returns
 

@@ -38,13 +38,6 @@ max_frequency (
 ) RETURNS DOUBLE PRECISION
 ```
 
-
-```sql
-max_frequency (
-    agg SpaceSavingAggregate,
-    value AnyElement
-) RETURNS DOUBLE PRECISION
-```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
 | `agg` | SpaceSavingAggregate | - | ✔ | A space-saving aggregate created using either [`freq_agg`][freq-agg] or [`mcv_agg`][mcv-agg] |

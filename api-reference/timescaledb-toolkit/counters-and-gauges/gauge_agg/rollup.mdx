@@ -2,7 +2,7 @@
 title: rollup()
 description: Combine multiple gauge aggregates
 license: community
-type: function
+type: aggregate
 toolkit: true
 hyperfunction:
   family: counters and gauges
@@ -11,10 +11,6 @@ hyperfunction:
     - gauge_agg()
 topics:
   - hyperfunctions
-products:
-  - cloud
-  - mst
-  - self_hosted
 ---
 
 <Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [1.6.0][toolkit-1.6.0]
@@ -29,18 +25,18 @@ The syntax is:
 
 ```sql
 rollup(
-    cs CounterSummary
-) RETURNS CounterSummary
+    gs GaugeSummary
+) RETURNS GaugeSummary
 ```
 | Name | Type | Default | Required | Description |
 | --- | --- | --- | --- | --- |
-| `cs` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`][gauge-agg] |
+| `gs` | `GaugeSummary` | - | ✔ | A gauge aggregate created using [`gauge_agg`][gauge-agg] |
 
 ## Returns
 
 | Column | Type | Description |
 |--------|------|-------------|
-| counter_agg | CounterSummary | A new counter aggregate created by combining the input counter aggregates |
+| rollup | GaugeSummary | A new gauge aggregate created by combining the input gauge aggregates |
 
 [gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
 [toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

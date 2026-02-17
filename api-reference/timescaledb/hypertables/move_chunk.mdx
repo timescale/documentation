@@ -63,7 +63,7 @@ SELECT move_chunk(
 |-|-|-|-|-|
 |`chunk`|REGCLASS| - | ✔ |Name of {CHUNK} to be moved|
 |`destination_tablespace`|NAME| - | ✔ |Target tablespace for {CHUNK} being moved|
-|`index_destination_tablespace`|NAME| - | ✔ |Target tablespace for index associated with the {CHUNK} you are moving|
+|`index_destination_tablespace`|NAME| `NULL` | ✖ |Target tablespace for index associated with the {CHUNK} you are moving|
 |`reorder_index`|REGCLASS| - | ✖ |The name of the index (on either the {HYPERTABLE} or {CHUNK}) to order by|
 |`verbose`|BOOLEAN| `FALSE` | ✖ |Setting to true displays messages about the progress of the move_chunk command.|
 

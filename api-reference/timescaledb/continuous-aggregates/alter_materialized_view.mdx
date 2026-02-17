@@ -61,16 +61,15 @@ ALTER MATERIALIZED VIEW <view_name> SET ( timescaledb.<argument> =  <value> [, .
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `view_name` | TEXT | - | ✔ | The name of the {CAGG} view to be altered. |
-| `timescaledb.materialized_only` | BOOLEAN | `true` | - | Enable real-time aggregation. |
+| `timescaledb.materialized_only` | BOOLEAN | `true` | - | Return only materialized data when querying the {CAGG} view. Set to `false` to enable real-time aggregation. |
 | `timescaledb.enable_columnstore` | BOOLEAN | `true` | - | Enable {COLUMNSTORE}. Effectively the same as `timescaledb.compress`. Since 2.18.0 |
 | `timescaledb.compress` | TEXT | Disabled | - | Enable compression. |
 | `timescaledb.orderby` | TEXT | Descending order on the time column in `table_name`. | - | Set the order in which items are used in the {COLUMNSTORE}. Specified in the same way as an `ORDER BY` clause in a `SELECT` query. Since 2.18.0 |
 | `timescaledb.compress_orderby` | TEXT | Descending order on the time column in `table_name`. | - | Set the order used by compression. Specified in the same way as the `ORDER BY` clause in a `SELECT` query. |
-| `timescaledb.segmentby` | TEXT | No segementation by column. | - | Set the list of columns used to segment data in the {COLUMNSTORE} for `table`. An identifier representing the source of the data such as `device_id` or `tags_id` is usually a good candidate. Since 2.18.0 |
-| `timescaledb.compress_segmentby` | TEXT | No segementation by column. | - | Set the list of columns used to segment the compressed data. An identifier representing the source of the data such as `device_id` or `tags_id` is usually a good candidate. |
+| `timescaledb.segmentby` | TEXT | No segmentation by column. | - | Set the list of columns used to segment data in the {COLUMNSTORE} for `table`. An identifier representing the source of the data such as `device_id` or `tags_id` is usually a good candidate. Since 2.18.0 |
+| `timescaledb.compress_segmentby` | TEXT | No segmentation by column. | - | Set the list of columns used to segment the compressed data. An identifier representing the source of the data such as `device_id` or `tags_id` is usually a good candidate. |
 | `column_name` | TEXT | - | - | Set the name of the column to order by or segment by. |
 | `timescaledb.compress_chunk_time_interval` | TEXT | - | - | Reduce the total number of compressed/{COLUMNSTORE} {CHUNK}s for `table`. If you set `compress_chunk_time_interval`, compressed/{COLUMNSTORE} {CHUNK}s are merged with the previous adjacent {CHUNK} within `chunk_time_interval` whenever possible. These {CHUNK}s are irreversibly merged. If you call to [decompress][decompress]/[convert_to_rowstore][convert_to_rowstore], merged {CHUNK}s are not split up. You can call `compress_chunk_time_interval` independently of other compression settings; `timescaledb.compress`/`timescaledb.enable_columnstore` is not required. |
-| `timescaledb.enable_cagg_window_functions` | BOOLEAN | `false` | - | EXPERIMENTAL: enable window functions on {CAGG}s. Support is experimental, as there is a risk of data inconsistency. For example, in backfill scenarios, buckets could be missed. |
 | `timescaledb.chunk_interval` (formerly `timescaledb.chunk_time_interval`) | INTERVAL | 10x the original {HYPERTABLE}. | - | Set the {CHUNK} interval. Renamed in {TIMESCALE_DB} V2.20. |
 
 ## Returns
@@ -80,7 +79,7 @@ For standard `ALTER MATERIALIZED VIEW` return behavior, see the [PostgreSQL ALTE
 [convert_to_rowstore]: /api-reference/timescaledb/hypercore/convert_to_rowstore
 [create-cagg]: /use-timescale/latest/continuous-aggregates/create-a-continuous-aggregate/
 [create_materialized_view]: /api-reference/timescaledb/continuous-aggregates/create_materialized_view#arguments
-[decompress]: /api-reference/timescaledb/compression/decompress_chunk
+[decompress]: /api-reference/timescaledb/hypercore/convert_to_rowstore
 [default_table_access_method]: https://www.postgresql.org/docs/17/runtime-config-client.html#GUC-DEFAULT-TABLE-ACCESS-METHOD
 [postgres-alterview]: https://www.postgresql.org/docs/current/sql-alterview.html
 [tsdb-1.3.0]: https://github.com/timescale/timescaledb/releases/tag/1.3.0

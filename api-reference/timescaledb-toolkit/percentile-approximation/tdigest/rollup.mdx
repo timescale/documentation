@@ -3,7 +3,7 @@ title: rollup()
 description: Roll up multiple `tdigest`s
 topics: [hyperfunctions]
 license: community
-type: function
+type: aggregate
 toolkit: true
 hyperfunction:
   family: percentile approximation
@@ -28,7 +28,7 @@ rollup(
 ```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| digest | TDigest | - |  | The `tdigest`s to roll up |
+| digest | TDigest | - | ✔ | The `tdigest`s to roll up |
 
 ## Returns
 

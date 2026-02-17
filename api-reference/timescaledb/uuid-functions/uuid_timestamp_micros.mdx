@@ -21,6 +21,8 @@ Unlike [`uuid_timestamp`][uuid_timestamp], the microsecond part of `uuid` is use
 
 Unless `uuid` is known to encode a valid sub-millisecond fraction, use [`uuid_timestamp`][uuid_timestamp].
 
+![UUIDv7 microseconds][uuidv7-microseconds]
+
 ## Samples
 
 ```sql
@@ -56,3 +58,4 @@ SELECT uuid_timestamp_micros(
 [pg-timestamp-timezone]: https://www.postgresql.org/docs/current/datatype-datetime.html
 [tsdb-2.23.0]: https://github.com/timescale/timescaledb/releases/tag/2.23.0
 [uuid_timestamp]: /api-reference/timescaledb/uuid-functions/uuid_timestamp
+[uuidv7-microseconds]: https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg

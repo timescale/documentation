@@ -10,11 +10,15 @@ products: [cloud, mst, self_hosted]
 ---
 
 import ReturnsVoid from '/snippets/reference/timescaledb/_returns-void.mdx';
-import { COLUMNSTORE, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
+import { COLUMNSTORE, CHUNK, HYPERTABLE, CAGG } from '/snippets/vars.mdx';
 
 <Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 <Tag>Community</Tag>
+
+<Info>
+`remove_columnstore_policy()` replaces `remove_compression_policy()`, deprecated in 2.18.0. The parameters are the same.
+</Info>
 
 Remove a {COLUMNSTORE} policy from a {HYPERTABLE} or {CAGG}.
 

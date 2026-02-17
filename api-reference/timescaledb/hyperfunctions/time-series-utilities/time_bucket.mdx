@@ -103,6 +103,18 @@ GROUP BY month_bucket
 ORDER BY month_bucket DESC LIMIT 10;
 ```
 
+To compute buckets on version 7 UUIDs that contain a timestamp
+in Unix time format, run the following:
+
+```sql
+ SELECT time_bucket('1 hour', '0194214e-cd00-7000-a9a7-63f1416dab45'::uuid);
+      time_bucket
+------------------------
+ 2025-01-01 11:00:00+01
+```
+
+When you bucket UUIDs, a regular TIMESTAMP WITH TIME ZONE value is returned.
+
 ## Arguments
 
 The syntax is:
@@ -120,8 +132,8 @@ SELECT time_bucket(
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
 | `bucket_width` | INTERVAL | - | ✔ | A {PG} time interval for how long each bucket is |
-| `ts` | DATE, TIMESTAMP, or TIMESTAMPTZ | - | ✔ | The timestamp to bucket |
-| `timezone` | TEXT | UTC+0 | - | The time zone for calculating bucket start and end times. Can only be used with `TIMESTAMPTZ`. |
+| `ts` | DATE, TIMESTAMP, TIMESTAMPTZ, or UUID (v7) | - | ✔ | The timestamp to bucket |
+| `timezone` | TEXT | UTC+0 | - | The time zone for calculating bucket start and end times. Can only be used with `TIMESTAMPTZ` and `UUID` (version 7). Defaults to UTC+0. |
 | `origin` | DATE, TIMESTAMP, or TIMESTAMPTZ | midnight on January 3, 2000 (for buckets < month) or midnight on January 1, 2000 (for month/year/century buckets) | - | Buckets are aligned relative to this timestamp |
 | `offset` | INTERVAL | - | - | The time interval to offset all time buckets by. A positive value shifts bucket start and end times later. A negative value shifts bucket start and end times earlier. `offset` must be surrounded with double quotes when used as a named argument, because it is a reserved key word in {PG}. |
 
@@ -129,9 +141,9 @@ SELECT time_bucket(
 
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
-| `bucket_width` | INTEGER | - | ✔ | The bucket width |
-| `ts` | INTEGER | - | ✔ | The timestamp to bucket |
-| `offset` | INTEGER | - | - | The amount to offset all buckets by. A positive value shifts bucket start and end times later. A negative value shifts bucket start and end times earlier. `offset` must be surrounded with double quotes when used as a named argument, because it is a reserved key word in {PG}. |
+| `bucket_width` | SMALLINT, INT, or BIGINT | - | ✔ | The bucket width. Must match the type of `ts`. |
+| `ts` | SMALLINT, INT, or BIGINT | - | ✔ | The timestamp to bucket |
+| `offset` | SMALLINT, INT, or BIGINT | - | - | The amount to offset all buckets by. Must match the type of `ts`. A positive value shifts bucket start and end times later. A negative value shifts bucket start and end times earlier. `offset` must be surrounded with double quotes when used as a named argument, because it is a reserved key word in {PG}. |
 
 <Info>
 

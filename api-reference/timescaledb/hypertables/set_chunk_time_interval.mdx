@@ -50,7 +50,7 @@ SELECT set_chunk_time_interval(
 |-------------|------------------|---------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 |`hypertable`|REGCLASS| -       | ✔                                                                    | {HYPERTABLE} or {CAGG} to update interval for.                                                                                       |
 |`chunk_time_interval`|See note|-       | ✔   | Event time that each new {CHUNK} covers.                                                                                                           |
-|`dimension_name`|REGCLASS|-       | ✖ | The name of the time dimension to set the number of partitions for. Only use `dimension_name` when your {HYPERTABLE} has multiple time dimensions. |
+|`dimension_name`|NAME| `NULL` | ✖ | The name of the time dimension to set the number of partitions for. Only use `dimension_name` when your {HYPERTABLE} has multiple time dimensions. |
 
 If you change {CHUNK} time interval you may see a {CHUNK} that is smaller than the new interval. For example, if you
 have two 7-day {CHUNK}s that cover 14 days, then change `chunk_time_interval` to 3 days, you may end up with a

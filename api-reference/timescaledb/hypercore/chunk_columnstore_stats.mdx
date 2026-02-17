@@ -2,7 +2,7 @@
 title: chunk_columnstore_stats()
 description: Get statistics about chunks in the columnstore
 license: community
-type: procedure
+type: function
 topics: [hypercore, columnstore]
 keywords: [columnstore, hypercore, statistics, chunks, information]
 tags: [disk space, schemas, size]
@@ -14,6 +14,10 @@ import { COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 <Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 <Tag>Community</Tag>
+
+<Info>
+`chunk_columnstore_stats()` replaces `chunk_compression_stats()`, deprecated in 2.18.0. The parameters are the same.
+</Info>
 
 Retrieve statistics about the {CHUNK}s in the {COLUMNSTORE}
 
@@ -93,15 +97,15 @@ SELECT * FROM chunk_columnstore_stats('<hypertable_name>');
 
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
-|`hypertable`|`REGCLASS`|-|✖| The name of a {HYPERTABLE} |
+|`hypertable`|`REGCLASS`|-|✔| The name of a {HYPERTABLE} |
 
 
 ## Returns
 
 |Column|Type| Description                                                                                                                                                                                                      |
 |-|-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|`chunk_schema`|TEXT| Schema name of the {CHUNK}.                                                                                                                                                                                        |
-|`chunk_name`|TEXT| Name of the {CHUNK}.                                                                                                                                                                                               |
+|`chunk_schema`|NAME| Schema name of the {CHUNK}.                                                                                                                                                                                        |
+|`chunk_name`|NAME| Name of the {CHUNK}.                                                                                                                                                                                               |
 |`compression_status`|TEXT| Current compression status of the {CHUNK}.                                                                                                                                                                         |
 |`before_compression_table_bytes`|BIGINT| Size of the heap before compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                                   |
 |`before_compression_index_bytes`|BIGINT| Size of all the indexes before compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                            |
@@ -111,7 +115,7 @@ SELECT * FROM chunk_columnstore_stats('<hypertable_name>');
 |`after_compression_index_bytes`|BIGINT| Size of all the indexes after compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                             |
 |`after_compression_toast_bytes`|BIGINT| Size the TOAST table after compression. Returns `NULL` if `compression_status` == `Uncompressed`.                                                                                                                |
 |`after_compression_total_bytes`|BIGINT| Size of the entire {CHUNK} table (`after_compression_table_bytes` + `after_compression_index_bytes `+ `after_compression_toast_bytes`) after compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
-|`node_name`|TEXT| **DEPRECATED**: nodes the {CHUNK} is located on, applicable only to distributed {HYPERTABLE}s.                                                                                                                       |
+|`node_name`|NAME| **DEPRECATED**: nodes the {CHUNK} is located on, applicable only to distributed {HYPERTABLE}s.                                                                                                                       |
 
 [add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy
 [chunks_detailed_size]: /api-reference/timescaledb/hypertables/chunks_detailed_size

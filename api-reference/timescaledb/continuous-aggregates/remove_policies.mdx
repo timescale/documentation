@@ -50,9 +50,10 @@ SELECT timescaledb_experimental.remove_policies(
 The syntax is:
 
 ```sql
-CALL remove_policies(
+SELECT timescaledb_experimental.remove_policies(
     relation = '<view_name>',
-    if_exists = true | false
+    if_exists = true | false,
+    policy_names = '<policy_name>', ...
 );
 ```
 

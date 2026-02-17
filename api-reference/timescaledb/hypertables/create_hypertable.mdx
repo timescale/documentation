@@ -32,9 +32,135 @@ this constraint on the table when it is executed.
 This page describes the generalized {HYPERTABLE} API introduced in {TIMESCALE_DB} v2.13.
 The [old interface for `create_hypertable` is also available][create-hypertable-old].
 
-## Arguments
+## Samples
 
-Before you call `create_hypertable`, you create a standard {PG} relational table.
+Before you call `create_hypertable`, you create a standard {PG} relational table. For example:
+
+```sql
+CREATE TABLE conditions (
+   time        TIMESTAMPTZ         NOT NULL,
+   location    text                NOT NULL,
+   temperature DOUBLE PRECISION    NULL
+);
+```
+
+The following examples show you how to create a hypertable from an existing table or a function:
+
+- [Time partition a hypertable by time range][sample-time-range]
+- [Time partition a hypertable using composite columns and immutable functions][sample-composite-columns]
+- [Time partition a hypertable using ISO formatting][sample-iso-formatting]
+- [Time partition a hypertable using UUIDv7][sample-uuidv7]
+
+
+### Time partition a hypertable by time range
+
+The following examples show different ways to create a hypertable:
+
+- Convert with range partitioning on the `time` column:
+
+  ```sql
+  SELECT create_hypertable('conditions', by_range('time'));
+  ```
+
+- Convert with a [set_chunk_time_interval][set_chunk_time_interval] of 24 hours:
+  Either:
+  ```sql
+  SELECT create_hypertable('conditions', by_range('time', 86400000000));
+  ```
+  or:
+  ```sql
+  SELECT create_hypertable('conditions', by_range('time', INTERVAL '1 day'));
+  ```
+
+- With range partitioning on the `time` column, do not raise a warning if `conditions` is already a hypertable:
+
+  ```sql
+  SELECT create_hypertable('conditions', by_range('time'), if_not_exists => TRUE);
+  ```
+
+<Info>
+
+If you call `SELECT * FROM create_hypertable(...)` the return value is formatted as a table with column headings.
+
+</Info>
+
+
+### Time partition a hypertable using composite columns and immutable functions
+
+The following example shows how to time partition the `measurements` relational table on a composite
+column type using a range partitioning function.
+
+1. Create the report type, then an immutable function that converts the column value into a supported column value:
+
+    ```sql
+    CREATE TYPE report AS (reported timestamp with time zone, contents jsonb);
+
+    CREATE FUNCTION report_reported(report)
+      RETURNS timestamptz
+      LANGUAGE SQL
+      IMMUTABLE AS
+      'SELECT $1.reported';
+    ```
+
+1. Create the hypertable using the immutable function:
+    ```sql
+    SELECT create_hypertable('measurements', by_range('report', partition_func => 'report_reported'));
+    ```
+
+### Time partition a hypertable using ISO formatting
+
+The following example shows how to time partition the `events` table on a `jsonb` (`event`) column
+type, which has a top level `started` key that contains an ISO 8601 formatted timestamp:
+
+```sql
+CREATE FUNCTION event_started(jsonb)
+    RETURNS timestamptz
+    LANGUAGE SQL
+    IMMUTABLE AS
+  $func$SELECT ($1->>'started')::timestamptz$func$;
+
+SELECT create_hypertable('events', by_range('event', partition_func => 'event_started'));
+```
+
+### Time partition a hypertable using UUIDv7
+
+1. Create a table with a UUIDv7 column:
+
+    <Tabs>
+    <Tab title="Postgres 17 and lower">
+
+    ```sql
+    CREATE TABLE events (
+        id  uuid PRIMARY KEY DEFAULT generate_uuidv7(),
+        payload jsonb
+    );
+    ```
+
+    </Tab>
+    <Tab title="Postgres v18">
+
+    ```sql
+    CREATE TABLE events (
+        id  uuid PRIMARY KEY DEFAULT uuidv7(),
+        payload jsonb
+    );
+    ```
+
+    </Tab>
+    </Tabs>
+
+1. Partition the table based on the timestamps embedded within the UUID values:
+
+    ```sql
+    SELECT create_hypertable(
+        'events',
+        by_range('id', INTERVAL '1 month')
+    );
+    ```
+
+Subsequent data insertion and queries automatically leverage the UUIDv7-based partitioning.
+
+## Arguments
 
 The syntax for `create_hypertable` is:
 
@@ -95,6 +221,7 @@ On failure, an error is returned:
 [migrate-data]: /api-reference/timescaledb/hypertables/create_hypertable/#arguments
 [sample-composite-columns]: /api-reference/timescaledb/hypertables/create_hypertable/#time-partition-a-hypertable-using-composite-columns-and-immutable-functions
 [sample-iso-formatting]: /api-reference/timescaledb/hypertables/create_hypertable/#time-partition-a-hypertable-using-iso-formatting
+[sample-uuidv7]: /api-reference/timescaledb/hypertables/create_hypertable/#time-partition-a-hypertable-using-uuidv7
 [sample-time-range]: /api-reference/timescaledb/hypertables/create_hypertable/#time-partition-a-hypertable-by-time-range
 [set_chunk_time_interval]: /api-reference/timescaledb/hypertables/set_chunk_time_interval
 [share-row-exclusive]: https://www.postgresql.org/docs/current/sql-lock.html

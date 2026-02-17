@@ -39,7 +39,7 @@ SELECT timescaledb_experimental.remove_all_policies('example_continuous_aggregat
 The syntax is:
 
 ```sql
-CALL remove_all_policies(
+SELECT timescaledb_experimental.remove_all_policies(
     relation = '<view_name>',
     if_exists = true | false
 );

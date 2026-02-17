@@ -62,8 +62,8 @@ SELECT first(
 
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
-| `value` | TEXT | - | ✔ | The value to return |
-| `time` | TIMESTAMP or INTEGER | - | ✔ | The timestamp to use for comparison |
+| `value` | ANYELEMENT | - | ✔ | The value to return |
+| `time` | "any" | - | ✔ | The timestamp to use for comparison. Accepts any comparable type such as TIMESTAMPTZ, TIMESTAMP, INTEGER, or BIGINT. |
 
 ## Returns
 

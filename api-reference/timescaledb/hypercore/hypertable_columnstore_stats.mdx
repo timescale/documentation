@@ -2,7 +2,7 @@
 title: hypertable_columnstore_stats()
 description: Get columnstore statistics related to the columnstore
 license: community
-type: procedure
+type: function
 topics: [hypercore, columnstore]
 keywords: [hypercore, columnstore, hypertables, information]
 tags: [statistics, size]
@@ -14,6 +14,10 @@ import { COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 <Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 <Tag>Community</Tag>
+
+<Info>
+`hypertable_columnstore_stats()` replaces `hypertable_compression_stats()`, deprecated in 2.18.0. The parameters are the same.
+</Info>
 
 Retrieve compression statistics for the {COLUMNSTORE}.
 
@@ -74,7 +78,7 @@ SELECT * FROM hypertable_columnstore_stats('<hypertable_name>');
 |Column|Type|Description|
 |-|-|-|
 |`total_chunks`|BIGINT|The number of {CHUNK}s used by the {HYPERTABLE}. Returns `NULL` if `compression_status` == `Uncompressed`. |
-|`number_compressed_chunks`|INTEGER|The number of {CHUNK}s used by the {HYPERTABLE} that are currently compressed. Returns `NULL` if `compression_status` == `Uncompressed`. |
+|`number_compressed_chunks`|BIGINT|The number of {CHUNK}s used by the {HYPERTABLE} that are currently compressed. Returns `NULL` if `compression_status` == `Uncompressed`. |
 |`before_compression_table_bytes`|BIGINT|Size of the heap before compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
 |`before_compression_index_bytes`|BIGINT|Size of all the indexes before compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
 |`before_compression_toast_bytes`|BIGINT|Size the TOAST table before compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
@@ -83,7 +87,7 @@ SELECT * FROM hypertable_columnstore_stats('<hypertable_name>');
 |`after_compression_index_bytes`|BIGINT|Size of all the indexes after compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
 |`after_compression_toast_bytes`|BIGINT|Size the TOAST table after compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
 |`after_compression_total_bytes`|BIGINT|Size of the entire table (`after_compression_table_bytes` + `after_compression_index_bytes `+ `after_compression_toast_bytes`) after compression. Returns `NULL` if `compression_status` == `Uncompressed`. |
-|`node_name`|TEXT|nodes on which the {HYPERTABLE} is located, applicable only to distributed {HYPERTABLE}s. Returns `NULL` if `compression_status` == `Uncompressed`. |
+|`node_name`|NAME|nodes on which the {HYPERTABLE} is located, applicable only to distributed {HYPERTABLE}s. Returns `NULL` if `compression_status` == `Uncompressed`. |
 
 [hypertable-docs]: /manage-data/capabilities/hypertables
 

@@ -3024,35 +3024,6 @@
                     "pages": [
                       "api-reference/timescaledb/tag-overview"
                     ]
-                  },
-                  {
-                    "group": "Compression (replaced by hypercore)",
-                    "pages": [
-                      "api-reference/timescaledb/compression/index",
-                      {
-                        "group": "Policies",
-                        "pages": [
-                          "api-reference/timescaledb/compression/add_compression_policy",
-                          "api-reference/timescaledb/compression/remove_compression_policy"
-                        ]
-                      },
-                      {
-                        "group": "Manual compression",
-                        "pages": [
-                          "api-reference/timescaledb/compression/alter_table_compression",
-                          "api-reference/timescaledb/compression/compress_chunk",
-                          "api-reference/timescaledb/compression/decompress_chunk",
-                          "api-reference/timescaledb/compression/recompress_chunk"
-                        ]
-                      },
-                      {
-                        "group": "Statistics",
-                        "pages": [
-                          "api-reference/timescaledb/compression/chunk_compression_stats",
-                          "api-reference/timescaledb/compression/hypertable_compression_stats"
-                        ]
-                      }
-                    ]
                   }
                 ]
               },
@@ -3876,7 +3847,7 @@
     },
     {
       "source": "/api/latest/compression/:slug*",
-      "destination": "/api-reference/timescaledb/compression/:slug*"
+      "destination": "/api-reference/timescaledb/hypercore/:slug*"
     },
     {
       "source": "/api/latest/configuration/:slug*",

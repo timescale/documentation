@@ -43,7 +43,7 @@ The syntax is:
 
 ```sql
 idelta_left(
-  summary CounterSummary
+  summary GaugeSummary
 ) RETURNS DOUBLE PRECISION
 ```
 | Name | Type | Default | Required | Description |
@@ -55,7 +55,7 @@ idelta_left(
 
 | Column | Type | Description |
 |--------|------|-------------|
-| idelta_left | DOUBLE PRECISION | The instantaneous delta at the left, or earliest, edge of the counter aggregate |
+| idelta_left | DOUBLE PRECISION | The instantaneous delta at the left, or earliest, edge of the gauge aggregate |
 
 [gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
 [toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

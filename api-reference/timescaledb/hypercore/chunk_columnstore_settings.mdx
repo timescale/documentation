@@ -13,6 +13,10 @@ import { COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
 <Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
+<Info>
+`timescaledb_information.chunk_columnstore_settings` replaces `timescaledb_information.chunk_compression_settings`, deprecated in 2.18.0. The columns are the same.
+</Info>
+
 Retrieve the compression settings for each {CHUNK} in the {COLUMNSTORE}.
 
 ## Samples
@@ -55,6 +59,6 @@ To retrieve information about settings:
 |`chunk`|`REGCLASS`| The name of the {CHUNK} in the `hypertable`.  |
 |`segmentby`|`TEXT`| The list of columns used to segment the `hypertable`. |
 |`orderby`|`TEXT`| The list of columns used to order the data in the `hypertable`, along with the ordering and `NULL` ordering information. |
-|`index`| `TEXT` | The sparse index details.  |
+|`index`| `JSONB` | The sparse index details.  |
 
 [tsdb-2.18.0]: https://github.com/timescale/timescaledb/releases/tag/2.18.0

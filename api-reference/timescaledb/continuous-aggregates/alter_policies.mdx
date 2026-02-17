@@ -47,19 +47,19 @@ SELECT timescaledb_experimental.alter_policies(
 The syntax is:
 
 ```sql
-CALL alter_policies(
+SELECT timescaledb_experimental.alter_policies(
     relation = '<view_name>',
     refresh_start_offset = <interval>,
     refresh_end_offset = <interval>,
     compress_after = <interval>,
-    refresh_schedule_interval = <interval>
+    drop_after = <interval>
 );
 ```
 
 | Name | Type | Default | Required | Description |
 |-|-|-|-|-|
 | `relation` | `REGCLASS` | - | ✔ | The {CAGG} that you want to alter policies for |
-| `if_not_exists` | `BOOL` | false | - | When true, prints a warning instead of erroring if the policy doesn't exist. |
+| `if_exists` | `BOOL` | false | - | When true, prints a warning instead of erroring if the policy doesn't exist. |
 | `refresh_start_offset` | `INTERVAL` or `INTEGER` | - | - | The start of the {CAGG} refresh window, expressed as an offset from the policy run time. |
 | `refresh_end_offset` | `INTERVAL` or `INTEGER` | - | - | The end of the {CAGG} refresh window, expressed as an offset from the policy run time. Must be greater than `refresh_start_offset`. |
 | `compress_after` | `INTERVAL` or `INTEGER` | - | - | {CAGG} {CHUNK}s are compressed into the {COLUMNSTORE} if they exclusively contain data older than this interval. |

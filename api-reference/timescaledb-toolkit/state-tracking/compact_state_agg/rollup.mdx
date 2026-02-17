@@ -40,18 +40,18 @@ The syntax is:
 
 ```sql
 rollup(
-    agg StateAgg
-) RETURNS StateAgg
+    agg CompactStateAgg
+) RETURNS CompactStateAgg
 ```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | State aggregates created using `compact_state_agg` |
+| agg | CompactStateAgg | - | ✔ | State aggregates created using `compact_state_agg` |
 
 ## Returns
 
 | Column | Type | Description |
 |--------|------|-------------|
-| agg | StateAgg | A new state aggregate that combines the input state aggregates |
+| agg | CompactStateAgg | A new state aggregate that combines the input state aggregates |
 
 
 [toolkit-1.13.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.13.0

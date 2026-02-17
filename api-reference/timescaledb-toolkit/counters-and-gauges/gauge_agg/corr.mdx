@@ -43,7 +43,7 @@ The syntax is:
 
 ```sql
 corr(
-    summary CounterSummary
+    summary GaugeSummary
 ) RETURNS DOUBLE PRECISION
 ```
 | Name | Type | Default | Required | Description |
@@ -55,7 +55,7 @@ corr(
 
 | Column | Type | Description |
 |--------|------|-------------|
-| corr | DOUBLE PRECISION | The correlation coefficient calculated with time as the independent variable and counter value as the dependent variable. |
+| corr | DOUBLE PRECISION | The correlation coefficient calculated with time as the independent variable and gauge value as the dependent variable. |
 
 [gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
 [toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

@@ -4,7 +4,7 @@ description: Combine multiple MaxN aggregates
 topics: [hyperfunctions]
 tags: [hyperfunctions, toolkit, maximum]
 license: community
-type: function
+type: aggregate
 toolkit: true
 hyperfunction:
   family: minimum and maximum
@@ -27,8 +27,8 @@ The syntax is:
 
 ```sql
 rollup(
-    agg MinN
-) MinN
+    agg MaxN
+) MaxN
 ```
 | Name | Type | Default | Required | Description |
 |--|--|--|--|--|
@@ -38,6 +38,6 @@ rollup(
 
 | Column | Type | Description |
 |--------|------|-------------|
-| rollup | MinN | An aggregate over all of the contributing values. |
+| rollup | MaxN | An aggregate over all of the contributing values. |
 
 [toolkit-1.16.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.16.0

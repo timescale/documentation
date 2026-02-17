@@ -13,6 +13,10 @@ import { COLUMNSTORE, HYPERTABLE } from '/snippets/vars.mdx';
 
 <Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
+<Info>
+`timescaledb_information.hypertable_columnstore_settings` replaces `timescaledb_information.hypertable_compression_settings`, deprecated in 2.18.0. The columns are the same.
+</Info>
+
 Retrieve information about the settings for all {HYPERTABLE}s in the {COLUMNSTORE}.
 
 ## Samples
@@ -53,7 +57,7 @@ To retrieve information about settings:
 |`segmentby`|`TEXT`| The list of columns used to segment data. |
 |`orderby`|`TEXT`| List of columns used to order the data, along with ordering and NULL ordering information. |
 |`compress_interval_length`|`TEXT`| Interval used for [rolling up {CHUNK}s during compression][rollup-compression]. |
-|`index`| `TEXT` | The sparse index details.  |
+|`index`| `JSONB` | The sparse index details.  |
 
 [compression_alter-table]: /api-reference/timescaledb/hypercore/alter_table
 [rollup-compression]: /manage-data/capabilities/compression/manual-compression/#roll-up-uncompressed-chunks-when-compressing

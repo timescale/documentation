@@ -49,7 +49,7 @@ into_values(
 
 into_int_values(
   agg StateAgg
-) RETURNS (INT, INTERVAL)
+) RETURNS (BIGINT, INTERVAL)
 ```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
@@ -59,7 +59,7 @@ into_int_values(
 
 | Column | Type | Description |
 |--------|------|-------------|
-| state | TEXT | BIGINT | A state found in the state aggregate |
+| state | TEXT \| BIGINT | A state found in the state aggregate |
 | duration | INTERVAL | The total time spent in that state |
 
 [state_agg]: /api-reference/timescaledb-toolkit/state-tracking/state_agg/state_agg#arguments

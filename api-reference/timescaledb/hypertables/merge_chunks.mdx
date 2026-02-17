@@ -25,7 +25,17 @@ dimensions.
 {CHUNK} merging has the following limitations. You cannot:
 
 * Merge {CHUNK}s with tiered data
-* Read or write from the {CHUNK}s while they are being merged
+* Write to {CHUNK}s that are being merged
+
+## Concurrent mode
+
+When a merge is executed using the `concurrently` option, other processes can
+simultaneously read from the {CHUNK}s being merged and insert into other {CHUNK}s.
+The merge happens across two transactions: the first one rewrites the {CHUNK}s
+into a temporary relation without taking any locks that prevent reads, while
+the second transaction locks out all other operations before swapping the old
+relations for the new one. The second operation completes quickly so it
+should not significantly affect other operations.
 
 ## Samples
 
@@ -41,20 +51,31 @@ dimensions.
    CALL merge_chunks('{_timescaledb_internal._hyper_1_1_chunk, _timescaledb_internal._hyper_1_2_chunk, _timescaledb_internal._hyper_1_3_chunk}');
    ```
 
+- Merge two {CHUNK}s concurrently, allowing reads:
+
+   ```sql
+   CALL merge_chunks('_timescaledb_internal._hyper_1_1_chunk', '_timescaledb_internal._hyper_1_2_chunk', concurrently => true);
+   ```
 
 ## Arguments
 
 The syntax is:
 
 ```sql
+-- Merge two chunks:
 CALL merge_chunks(
     chunk1 = '<chunk_name_1>',
     chunk2 = '<chunk_name_2>',
     concurrently = true | false
 );
 
--- Or merge multiple chunks:
+-- Merge multiple chunks:
 CALL merge_chunks(
+    chunks = ARRAY['<chunk_name_1>', '<chunk_name_2>', ...]::REGCLASS[]
+);
+
+-- Merge multiple chunks concurrently:
+CALL merge_chunks_concurrently(
     chunks = ARRAY['<chunk_name_1>', '<chunk_name_2>', ...]::REGCLASS[]
 );
 ```
@@ -63,11 +84,15 @@ You can merge either two {CHUNK}s, or an arbitrary number of {CHUNK}s specified 
 When you call `merge_chunks`, you must specify either `chunk1` and `chunk2`, or `chunks`. You cannot use both
 arguments.
 
+The `concurrently` option is only available for the two-chunk overload. To merge an array of {CHUNK}s concurrently,
+use `merge_chunks_concurrently()` instead.
+
 
 | Name               | Type        | Default | Required | Description                                    |
 |--------------------|-------------|--|--|------------------------------------------------|
 | `chunk1`, `chunk2` | REGCLASS    | - | ✖ | The two {CHUNK}s to merge in partition order |
 | `chunks`           | REGCLASS[]  |- | ✖ | The array of {CHUNK}s to merge in partition order |
+| `concurrently`     | BOOLEAN     | `false` | ✖ | Set to `true` to allow reads on the merging {CHUNK}s. Only available for the two-chunk overload. |
 
 ## Returns
 

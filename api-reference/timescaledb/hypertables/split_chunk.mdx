@@ -4,7 +4,7 @@ description: Split a large chunk at a specific point in time.
 topics: [hypertables]
 keywords: [chunks, hypertables, split]
 license: community
-type: function
+type: procedure
 products: [cloud, mst, self_hosted]
 ---
 
@@ -49,7 +49,7 @@ CALL split_chunk(
 |Name|Type| Default | Required | Description                      |
 |---|---|---|---|----------------------------------|
 | `chunk` | REGCLASS | - | ✔ | Name of the {CHUNK} to split.      |
-| `split_at` | `TIMESTAMPTZ`| - | ✖ |Timestamp to split the {CHUNK} at. |
+| `split_at` | "any" | `NULL` | ✖ | The point at which to split the {CHUNK}. Accepts TIMESTAMPTZ for time-based dimensions or INTEGER for integer-based dimensions. If not specified, the {CHUNK} is split in half. |
 
 
 ## Returns

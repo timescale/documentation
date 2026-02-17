@@ -44,16 +44,16 @@ The syntax is:
 
 ```sql
 into_values(
-  agg StateAgg
+  agg CompactStateAgg
 ) RETURNS (TEXT, INTERVAL)
 
 into_int_values(
-  agg StateAgg
-) RETURNS (INT, INTERVAL)
+  agg CompactStateAgg
+) RETURNS (BIGINT, INTERVAL)
 ```
 | Name | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| agg | StateAgg | - | ✔ | A state aggregate created with [`compact_state_agg`][compact_state_agg] |
+| agg | CompactStateAgg | - | ✔ | A state aggregate created with [`compact_state_agg`][compact_state_agg] |
 
 ## Returns
 

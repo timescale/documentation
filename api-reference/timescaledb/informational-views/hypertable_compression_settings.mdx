@@ -20,20 +20,28 @@ Show compression settings for all {HYPERTABLE}s:
 
 ```sql
 SELECT * FROM timescaledb_information.hypertable_compression_settings;
-hypertable               | measurements
-chunk                    | _timescaledb_internal._hyper_2_97_chunk
-segmentby                |
-orderby                  | time DESC
+```
+
+```sql
+hypertable                | measurements
+segmentby                 |
+orderby                   | time DESC
+compress_interval_length  | 7 days
+index                     |
 ```
 
 Find compression settings for a specific {HYPERTABLE}:
 
 ```sql
 SELECT * FROM timescaledb_information.hypertable_compression_settings WHERE hypertable::TEXT LIKE 'metrics';
-hypertable               | metrics
-chunk                    | _timescaledb_internal._hyper_1_12_chunk
-segmentby                | metric_id
-orderby                  | time DESC
+```
+
+```sql
+hypertable                | metrics
+segmentby                 | metric_id
+orderby                   | time DESC
+compress_interval_length  | 7 days
+index                     |
 ```
 
 ## Available columns
@@ -41,8 +49,9 @@ orderby                  | time DESC
 | Name | Type | Description |
 |------|------|-------------|
 | `hypertable` | `REGCLASS` | Hypertable which has compression enabled |
-| `chunk` | `REGCLASS` | Hypertable chunk which has compression enabled |
 | `segmentby` | `TEXT` | List of columns used for segmenting the compressed data |
 | `orderby` | `TEXT` | List of columns used for ordering compressed data along with ordering and NULL ordering information |
+| `compress_interval_length` | `TEXT` | The compress chunk time interval for the hypertable |
+| `index` | `JSONB` | The compression index configuration |
 
 [tsdb-1.5.0]: https://github.com/timescale/timescaledb/releases/tag/1.5.0

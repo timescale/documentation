@@ -11,7 +11,7 @@ products: [cloud, mst, self_hosted]
 
 import { HYPERTABLE, HYPERTABLE_CAP, CHUNK, CHUNK_CAP, CAGG, PG } from '/snippets/vars.mdx';
 
-<Icon icon="tag" iconType="duotone" /> Since [2.13.0][tsdb-2.13.0]
+<Icon icon="tag" iconType="duotone" /> Since [2.14.0][tsdb-2.14.0]
 
 Get the approximate total disk space used by a {HYPERTABLE} or {CAGG},
 that is, the sum of the size for the table itself including {CHUNK}s,
@@ -94,4 +94,4 @@ SELECT hypertable_approximate_size('<hypertable_name>');
 
 [hypertable-docs]: /use-timescale/hypertables/
 
-[tsdb-2.13.0]: https://github.com/timescale/timescaledb/releases/tag/2.13.0
+[tsdb-2.14.0]: https://github.com/timescale/timescaledb/releases/tag/2.14.0

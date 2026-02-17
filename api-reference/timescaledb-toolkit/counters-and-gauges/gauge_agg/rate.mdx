@@ -41,7 +41,7 @@ The syntax is:
 
 ```sql
 rate(
-    summary CounterSummary
+    summary GaugeSummary
 ) RETURNS DOUBLE PRECISION
 ```
 | Name | Type | Default | Required | Description |
@@ -53,7 +53,7 @@ rate(
 
 | Column | Type | Description |
 |--------|------|-------------|
-| rate | DOUBLE PRECISION | The rate of change of the counter |
+| rate | DOUBLE PRECISION | The rate of change of the gauge |
 
 [gauge-agg]: /api-reference/timescaledb-toolkit/counters-and-gauges/gauge_agg/gauge_agg
 [toolkit-1.6.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.6.0

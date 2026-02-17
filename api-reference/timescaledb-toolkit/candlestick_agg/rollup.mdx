@@ -4,8 +4,7 @@ description: Roll up multiple Candlestick aggregates
 topics: [hyperfunctions]
 tags: [hyperfunctions, finance, candlestick]
 license: community
-type: function
-experimental: false
+type: aggregate
 toolkit: true
 hyperfunction:
   family: financial analysis
@@ -14,7 +13,7 @@ hyperfunction:
     - candlestick_agg()
 ---
 
-<Icon icon="flask" /> Early access <Icon icon="tag" iconType="duotone" /> Since [1.12.0][toolkit-1.12.0]
+<Icon icon="tag" iconType="duotone" /> Since [1.12.0][toolkit-1.12.0]
 
 Combine multiple intermediate candlestick aggregates, produced by `candlestick_agg` or `candlestick`, into a single
 intermediate candlestick aggregate. For example, you can use `rollup` to combine candlestick aggregates from 15-minute

@@ -9,11 +9,16 @@ tags: [chunks, hypercore]
 products: [cloud, mst, self_hosted]
 ---
 
+import ReturnsVoid from '/snippets/reference/timescaledb/_returns-void.mdx';
 import { ROWSTORE, COLUMNSTORE, HYPERTABLE, CHUNK } from '/snippets/vars.mdx';
 
 <Icon icon="tag" iconType="duotone" /> Since [2.18.0][tsdb-2.18.0]
 
 <Tag>Community</Tag>
+
+<Info>
+`convert_to_columnstore()` replaces `compress_chunk()`, deprecated in 2.18.0.
+</Info>
 
 Manually convert a specific {CHUNK} in the {HYPERTABLE} {ROWSTORE} to the {COLUMNSTORE}.
 
@@ -46,16 +51,12 @@ CALL convert_to_columnstore(
 | Name                 | Type | Default | Required | Description                                                                                                                                        |
 |----------------------|--|---------|--|----------------------------------------------------------------------------------------------------------------------------------------------------|
 | `chunk`         | REGCLASS | -       |✔| Name of the {CHUNK} to add to the {COLUMNSTORE}.                                                                                                      |
-| `if_not_columnstore` | BOOLEAN | `true`  |✖| Set to `false` so this job fails with an error rather than a warning if `chunk` is already in the {COLUMNSTORE}.                                    |
-| `recompress`         | BOOLEAN | `false` |✖| Set to `true` to add a {CHUNK} that had more data inserted after being added to the {COLUMNSTORE}.                                                    |
+| `if_not_columnstore` | BOOLEAN | `true`  |✖| Set to `false` so this call fails with an error rather than a warning if `chunk` is already in the {COLUMNSTORE}.                                    |
+| `recompress`         | BOOLEAN | `false` |✖| Set to `true` to recompress. In-memory recompression is attempted first; it falls back to internal decompress/compress. |
 
 ## Returns
 
-Calls to `convert_to_columnstore` return:
-
-| Column            | Type               | Description                                                                                        |
-|-------------------|--------------------|----------------------------------------------------------------------------------------------------|
-| `chunk name` or `table` | REGCLASS or String | The name of the {CHUNK} added to the {COLUMNSTORE}, or a table-like result set with zero or more rows. |
+<ReturnsVoid />
 
 [add_columnstore_policy]: /api-reference/timescaledb/hypercore/add_columnstore_policy
 [convert_to_rowstore]: /api-reference/timescaledb/hypercore/convert_to_rowstore

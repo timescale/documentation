@@ -9,7 +9,7 @@ products: [cloud, mst, self_hosted]
 ---
 
 
-Get the most common elements of a set and their relative frequency. The estimation uses the SpaceSaving algorithm.
+Get the most common elements of a set and their relative frequency. The estimation uses the [SpaceSaving][spacesaving-algorithm] algorithm.
 
 This group of functions contains two aggregate functions, which let you set the cutoff for keeping track of a value in different ways. [`freq_agg`][freq-agg] allows you to specify a minimum frequency, and [`mcv_agg`][mcv-agg] allows you to specify the target number of values to keep.
 
@@ -81,6 +81,27 @@ The output for this query looks like this, with some variation due to randomness
     10 |  0.05286 |  0.05289
 ```
 
+## Advanced use
+
+You can adjust the following advanced options to suit your data distribution:
+
+### Estimated skew
+
+`mcv_agg` assumes that the data is skewed. In other words, some values are more
+frequent than others. The degree of skew is defined by the `s` parameter of a
+[zeta distribution][zeta-distribution].
+
+The default value of `1.1` works on data with this distribution or a more
+extreme one:
+
+| N | Minimum percentage of all values represented by the top N (approximate) |
+|---|-------------------------------------------------------------------------|
+| 5 | 20% |
+| 10 | 25% |
+| 20 | 30% |
+| 50 | 36% |
+| 100 | 40% |
+
 ## Available functions
 
 ### Aggregates
@@ -105,4 +126,6 @@ The output for this query looks like this, with some variation due to randomness
 [rollup]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/rollup
 [toolkit-1.5.0]: https://github.com/timescale/timescaledb-toolkit/releases/tag/1.5.0
 [topn]: /api-reference/timescaledb-toolkit/frequency-analysis/freq_agg/topn
+[spacesaving-algorithm]: https://www.cse.ust.hk/~raywong/comp5331/References/EfficientComputationOfFrequentAndTop-kElementsInDataStreams.pdf
 [two-step-aggregation]: #two-step-aggregation
+[zeta-distribution]: https://en.wikipedia.org/wiki/Zeta_distribution

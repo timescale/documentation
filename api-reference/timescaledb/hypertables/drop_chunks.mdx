@@ -116,7 +116,7 @@ SELECT drop_chunks(
 |`relation`|REGCLASS| - | ✔ |{HYPERTABLE} or {CAGG} from which to drop {CHUNK}s.|
 |`older_than`|ANY| - | ✖ |Specification of cut-off point where any {CHUNK}s older than this timestamp should be removed.|
 |`newer_than`|ANY| - | ✖ |Specification of cut-off point where any {CHUNK}s newer than this timestamp should be removed.|
-|`verbose`|BOOLEAN| `FALSE` | ✖ |Setting to true displays messages about the progress of the reorder command.|
+|`verbose`|BOOLEAN| `FALSE` | ✖ |Setting to true displays messages about the progress of the drop_chunks command.|
 |`created_before`|ANY| - | ✖ |Specification of cut-off point where any {CHUNK}s created before this timestamp should be removed.|
 |`created_after`|ANY| - | ✖ |Specification of cut-off point where any {CHUNK}s created after this timestamp should be removed.|
 

@@ -47,7 +47,7 @@ Use gap-preserving LTTB to downsample data while maintaining boundaries of missi
 ```sql
 SELECT time, value
 FROM unnest((
-    SELECT toolkit_experimental.gp_lttb(date, reading, 8, '12 hours'::interval)
+    SELECT toolkit_experimental.gp_lttb(date, reading, '12 hours'::interval, 8)
     FROM metrics
 ));
 ```

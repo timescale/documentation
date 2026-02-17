@@ -59,7 +59,6 @@ range_start_integer    | 0
 range_end_integer      | 10
 is_compressed          | f
 chunk_tablespace       |
-data_nodes             |
 -[ RECORD 2 ]----------+----------------------
 hypertable_schema      | public
 hypertable_name        | hyper_int
@@ -73,7 +72,6 @@ range_start_integer    | 20
 range_end_integer      | 30
 is_compressed          | f
 chunk_tablespace       | tablespace1
-data_nodes             |
 ```
 
 ## Returns
@@ -90,9 +88,9 @@ data_nodes             |
 | `range_end` | TIMESTAMP WITH TIME ZONE | End of the range for the {CHUNK}'s dimension |
 | `range_start_integer` | BIGINT | Start of the range for the {CHUNK}'s dimension, if the dimension type is integer based |
 | `range_end_integer` | BIGINT | End of the range for the {CHUNK}'s dimension, if the dimension type is integer based |
-| `is_compressed` | BOOLEAN | Is the data in the {CHUNK} compressed? <br/><br/> Note that for distributed {HYPERTABLE}s, this is the cached compression status of the {CHUNK} on the access node. The cached status on the access node and data node is not in sync in some scenarios. For example, if a user compresses or decompresses the {CHUNK} on the data node instead of the access node, or sets up compression policies directly on data nodes. <br/><br/> Use `chunk_compression_stats()` function to get real-time compression status for distributed {CHUNK}s. |
+| `is_compressed` | BOOLEAN | Is the {CHUNK} in the columnstore? |
 | `chunk_tablespace` | TEXT | Tablespace used by the {CHUNK} |
-| `data_nodes` | ARRAY | Nodes on which the {CHUNK} is replicated. This is applicable only to {CHUNK}s for distributed {HYPERTABLE}s |
+
 | `chunk_creation_time` | TIMESTAMP WITH TIME ZONE | The time when this {CHUNK} was created for data addition |
 
 [dimensions]: /api-reference/timescaledb/informational-views/dimensions

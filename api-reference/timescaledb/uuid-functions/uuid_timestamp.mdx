@@ -18,6 +18,8 @@ Extract a {PG} timestamp with time zone from a UUIDv7 object.
 `uuid` contains a millisecond unix timestamp and an optional sub-millisecond fraction.
 This fraction is used to construct the {PG} timestamp.
 
+![UUIDv7 microseconds][uuidv7-microseconds]
+
 To include the sub-millisecond fraction in the returned timestamp, call
 [`uuid_timestamp_micros`][uuid_timestamp_micros].
 
@@ -55,3 +57,4 @@ SELECT uuid_timestamp(
 
 [tsdb-2.23.0]: https://github.com/timescale/timescaledb/releases/tag/2.23.0
 [uuid_timestamp_micros]: /api-reference/timescaledb/uuid-functions/uuid_timestamp_micros
+[uuidv7-microseconds]: https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg

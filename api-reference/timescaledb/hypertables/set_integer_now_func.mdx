@@ -62,8 +62,8 @@ SELECT set_integer_now_func(
 
 |Name|Type| Default | Required | Description |
 |-|-|-|-|-|
-|`main_table`|REGCLASS| - | ✔ | The {HYPERTABLE} `integer_now_func` is used in. |
-|`integer_now_func`|REGPROC| - | ✔ | A function that returns the current time set in each row in the `time` column in `main_table`.|
+|`hypertable`|REGCLASS| - | ✔ | The {HYPERTABLE} `integer_now_func` is used in. |
+|`integer_now_func`|REGPROC| - | ✔ | A function that returns the current time set in each row in the `time` column in the {HYPERTABLE}.|
 |`replace_if_exists`|BOOLEAN| `FALSE` | ✖ | Set to `true` to override `integer_now_func` when you have previously set a custom function. |
 
 ## Returns

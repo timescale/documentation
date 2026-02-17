@@ -17,6 +17,8 @@ Create a UUIDv7 object from a {PG} timestamp and random bits.
 
 `ts` is converted to a UNIX timestamp split into millisecond and sub-millisecond parts.
 
+![UUIDv7 microseconds][uuidv7-microseconds]
+
 ## Samples
 
 ```sql
@@ -45,3 +47,4 @@ SELECT to_uuidv7(
 | `to_uuidv7` | UUID | A UUIDv7 object created from the input timestamp with random bits. |
 
 [tsdb-2.23.0]: https://github.com/timescale/timescaledb/releases/tag/2.23.0
+[uuidv7-microseconds]: https://assets.timescale.com/docs/images/uuidv7-structure-microseconds.svg
